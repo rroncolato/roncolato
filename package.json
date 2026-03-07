@@ -1,0 +1,15 @@
+{
+  "name": "site-roncolato",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "live-server --open=rodrigo-roncolato-v3_8.html",
+    "add-project": "node add-project.js",
+    "add-article": "node add-article.js",
+    "artigos": "node add-article.js",
+    "projetos": "node add-project.js"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "sharp": "^0.34.5"
+  }
+}
