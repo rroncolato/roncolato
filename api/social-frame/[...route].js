@@ -91,8 +91,11 @@ function escolherCapa(fotos, metadados) {
 }
 
 export default async function handler(req, res) {
-  const route = req.query.route || [];
-  const [acao, param] = route;
+  // Parseia direto da URL: /api/social-frame/<acao>/<param>
+  const partes = (req.url || '').split('?')[0].split('/').filter(Boolean);
+  const idx = partes.indexOf('social-frame');
+  const acao = partes[idx + 1];
+  const param = partes[idx + 2];
 
   try {
     // GET /api/social-frame/fotos/:cliente
