@@ -118,6 +118,7 @@ async function handleSocialFrameRequest(req, res, pathname, method) {
         success: true,
         cliente,
         nome_completo: clienteData.nome_completo,
+        aliases: clienteData.aliases || [],
         fotos,
         total: fotos.length
       });

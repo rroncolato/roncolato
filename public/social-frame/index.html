@@ -147,6 +147,11 @@
       border: 1px solid var(--g4);
     }
 
+    .btn-whats {
+      background: #25D366;
+      color: #0A0A0A;
+    }
+
     .btn-ghost:hover { border-color: var(--y); color: var(--y); opacity: 1; }
 
     .login-error {
@@ -501,6 +506,7 @@
       .topbar > .brand { display: none; }
       .topbar-actions { flex: 1; justify-content: flex-end; }
       .topbar .btn { padding: 12px 14px; font-size: 10px; letter-spacing: 2px; }
+      .whats-full { display: none; }
       .client-name { font-size: 15px; }
       .client-meta { font-size: 10px; }
 
@@ -614,6 +620,7 @@
       </div>
       <div class="brand">SOCIAL FRAME</div>
       <div class="topbar-actions">
+        <a class="btn btn-whats" id="whatsBtn" href="#" target="_blank" rel="noopener" style="display:none;text-decoration:none;"><span class="whats-full">Enviar no </span>WhatsApp</a>
         <button class="btn btn-ghost" id="logoutBtn">Sair</button>
         <button class="btn" id="downloadBtn">⬇ Baixar todas</button>
       </div>
@@ -728,6 +735,18 @@
 
       document.getElementById('clientTitle').textContent = data.nome_completo || nome;
       document.getElementById('clientMeta').textContent = `${data.total} fotos`;
+
+      // Botão WhatsApp: só no modo admin, com mensagem pronta de entrega
+      const whatsBtn = document.getElementById('whatsBtn');
+      if (isAdmin) {
+        const primeiroNome = (data.nome_completo || nome).split(' ')[0];
+        const acesso = (data.aliases && data.aliases[0]) || nome.replace(/-/g, ' ');
+        const msg = `Olá, ${primeiroNome}! A espera acabou.\n\nSuas fotos estão prontas. Organizei tudo num catálogo só seu, com a recomendação de uso de cada imagem: perfil, feed, stories.\n\n📸 Acesse: rroncolato.com.br/socialframe\n🔑 Seu nome de acesso: ${acesso}\n\nExplora com calma. Depois me conta o que achou.`;
+        whatsBtn.href = `https://wa.me/?text=${encodeURIComponent(msg)}`;
+        whatsBtn.style.display = 'inline-block';
+      } else {
+        whatsBtn.style.display = 'none';
+      }
       buildFilters();
       applyFilter('all');
 

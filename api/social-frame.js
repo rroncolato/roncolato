@@ -125,6 +125,7 @@ export default async function handler(req, res) {
         success: true,
         cliente: param,
         nome_completo: clienteData.nome_completo,
+        aliases: clienteData.aliases || [],
         total: fotos.length,
         fotos
       });

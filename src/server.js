@@ -252,6 +252,32 @@ const server = http.createServer(async (req, res) => {
   // API ROUTES
   // ==========================================
 
+  // SOCIAL FRAME (catálogo de fotos via Google Drive)
+  if (pathname.startsWith('/api/social-frame/')) {
+    res = wrapRes(res);
+    req.query = parsedUrl.query || {};
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', async () => {
+      try {
+        req.body = body ? JSON.parse(body) : {};
+      } catch (e) {
+        req.body = {};
+      }
+      try {
+        const socialFrameHandler = require('./api/social-frame/handler');
+        return await socialFrameHandler(req, res, pathname, req.method);
+      } catch (err) {
+        console.error('[SocialFrame] Erro:', err.message);
+        if (!res.headersSent) {
+          res.writeHead(500, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ success: false, error: 'Erro interno' }));
+        }
+      }
+    });
+    return;
+  }
+
   // ADMIN AUTH
   if (pathname === '/api/admin/auth' && req.method === 'POST') {
     res = wrapRes(res);
