@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROTETIC - Projetos em Execução</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .logo {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .logo img {
+            max-width: 200px;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #F5C518;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #CCCCCC;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid #F5C518;
+            border-radius: 12px;
+            padding: 50px 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .project-card:hover {
+            background: rgba(245, 197, 24, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(245, 197, 24, 0.2);
+        }
+
+        .project-icon {
+            font-size: 64px;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .project-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .project-desc {
+            font-size: 14px;
+            color: #AAAAAA;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .project-btn {
+            display: inline-block;
+            background-color: #F5C518;
+            color: #0A0A0A;
+            padding: 16px 40px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Jost', sans-serif;
+        }
+
+        .project-btn:hover {
+            background-color: #FFFFFF;
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(245, 197, 24, 0.3);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 12px;
+            color: #666666;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 36px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                margin-top: 40px;
+            }
+
+            .header {
+                margin-bottom: 50px;
+            }
+
+            .project-card {
+                padding: 40px 30px;
+            }
+
+            .project-icon {
+                font-size: 48px;
+            }
+
+            .project-title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="logo">
+                <img src="../../assets/IMG/roncolato-branco-horizontal.png" alt="Roncolato">
+            </div>
+            <h1 class="title">PROTETIC</h1>
+            <p class="subtitle">Projetos em Execução<br>Escolha abaixo o que deseja visualizar</p>
+        </div>
+
+        <!-- PROJECTS -->
+        <div class="projects">
+            <!-- PORTFOLIO -->
+            <div class="project-card">
+                <span class="project-icon">🎨</span>
+                <h2 class="project-title">Portfólio Online</h2>
+                <p class="project-desc">Navegue pela galeria de trabalhos e conheça os cases da PROTETIC</p>
+                <a href="/protetic/portfolio" class="project-btn">Acessar Portfólio</a>
+            </div>
+
+            <!-- SITE -->
+            <div class="project-card">
+                <span class="project-icon">🌐</span>
+                <h2 class="project-title">Site Institucional</h2>
+                <p class="project-desc">Conheça mais sobre a PROTETIC, serviços e formas de contato</p>
+                <a href="/protetic/site" class="project-btn">Acessar Site</a>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p>© 2026 Estúdio Roncolato. Apresentação de Projetos PROTETIC</p>
+        </div>
+    </div>
+</body>
+</html>

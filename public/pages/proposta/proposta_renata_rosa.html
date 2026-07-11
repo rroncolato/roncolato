@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Renata Rosa - Estratégia de Autoridade Médica Digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100vh;
+            font-family: 'Jost', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            overflow: hidden;
+            color: #fff;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .presentation {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            position: relative;
+            background: inherit;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: clamp(28px, 4vh, 52px) clamp(40px, 5vw, 80px);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+        }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .accent-line {
+            position: absolute;
+            background: linear-gradient(90deg, #d4af37 0%, transparent 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .accent-line.top {
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 2px;
+            opacity: 0;
+            animation: lineIn 0.8s ease-out 0.2s forwards;
+        }
+
+        .accent-line.side {
+            top: 0;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, #d4af37 0%, transparent 100%);
+            opacity: 0;
+            animation: lineIn 0.8s ease-out 0.4s forwards;
+        }
+
+        .accent-line.bottom {
+            bottom: 0;
+            left: 0;
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #d4af37 100%);
+            opacity: 0;
+            animation: lineIn 0.8s ease-out 0.6s forwards;
+        }
+
+        @keyframes lineIn {
+            from {
+                opacity: 0;
+                clip-path: inset(0 100% 0 0);
+            }
+            to {
+                opacity: 1;
+                clip-path: inset(0);
+            }
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 1450px;
+        }
+
+        .logo-text {
+            font-size: clamp(60px, 10vw, 140px);
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -3px;
+            line-height: 1;
+            margin-bottom: clamp(16px, 2.5vh, 30px);
+            background: linear-gradient(135deg, #ffffff 0%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInScale 1s ease-out;
+        }
+
+        .logo-subtitle-cursive {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(32px, 5vw, 72px);
+            font-weight: 500;
+            color: #d4af37;
+            letter-spacing: 1px;
+            margin-bottom: clamp(16px, 2.5vh, 32px);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+            font-style: italic;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .logo-subtitle {
+            font-size: 24px;
+            letter-spacing: 2px;
+            color: #d4af37;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: clamp(16px,2.5vh,32px);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+        }
+
+        .logo-desc {
+            font-size: clamp(15px,1.5vw,22px);
+            color: #aaa;
+            line-height: 1.7;
+            text-align: center;
+            font-weight: 400;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.4s forwards;
+            max-width: 800px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes expandLine {
+            from { width: 0; opacity: 0; }
+            to   { width: 280px; opacity: 1; }
+        }
+
+        .centered-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 900px;
+            gap: clamp(12px, 1.8vh, 26px);
+        }
+
+        .big-title {
+            font-size: clamp(32px, 4.5vw, 72px);
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        .big-title .highlight {
+            color: #d4af37;
+        }
+
+        .big-text {
+            font-size: clamp(16px, 1.6vw, 26px);
+            color: #bbb;
+            line-height: 1.7;
+            text-align: center;
+            font-weight: 400;
+            max-width: 850px;
+        }
+
+        .big-text strong {
+            color: #d4af37;
+            font-weight: 600;
+        }
+
+        .two-blocks {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .block {
+            text-align: left;
+        }
+
+        .block h2 {
+            font-size: 48px;
+            color: #ffffff;
+            margin-bottom: 30px;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+
+        .block h2 .highlight {
+            color: #d4af37;
+        }
+
+        .block p {
+            font-size: 24px;
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .pain-points {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(14px, 2vh, 28px);
+            width: 100%;
+        }
+
+        .pain-item {
+            background: rgba(212, 175, 55, 0.08);
+            padding: clamp(18px, 2.5vh, 32px) clamp(18px, 2vw, 32px);
+            border-left: 4px solid #d4af37;
+            transition: all 0.4s ease;
+            text-align: left;
+        }
+
+        .pain-item:hover {
+            background: rgba(212, 175, 55, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15);
+        }
+
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(16px, 2.5vw, 44px);
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+            margin-top: clamp(12px, 2vh, 30px);
+            padding: 0 16px;
+        }
+
+        .roadmap-item {
+            background: rgba(212, 175, 55, 0.08);
+            padding: clamp(22px, 3vh, 52px) clamp(20px, 2.5vw, 44px);
+            border-top: 5px solid #d4af37;
+            text-align: center;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+        }
+
+        .roadmap-item:hover {
+            background: rgba(212, 175, 55, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15);
+        }
+
+        .roadmap-period {
+            font-size: clamp(28px, 3.5vw, 50px);
+            color: #d4af37;
+            font-weight: 800;
+            margin-bottom: clamp(12px, 1.8vh, 28px);
+            line-height: 1.1;
+        }
+
+        .roadmap-title {
+            font-size: clamp(15px, 1.8vw, 25px);
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: clamp(12px, 1.8vh, 32px);
+            line-height: 1.3;
+        }
+
+        .roadmap-text {
+            font-size: clamp(13px, 1.1vw, 17px);
+            color: #aaa;
+            line-height: 1.7;
+        }
+
+        .pain-item h3 {
+            font-size: clamp(15px, 1.6vw, 22px);
+            color: #d4af37;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .pain-item p {
+            font-size: clamp(13px, 1.2vw, 17px);
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: clamp(12px,1.5vw,24px);
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        .pricing-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            padding: clamp(22px,3vh,44px) clamp(22px,2.5vw,40px);
+            text-align: left;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .pricing-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(160deg, rgba(212, 175, 55, 0.13) 0%, rgba(212, 175, 55, 0.04) 100%);
+            border-color: #d4af37;
+            box-shadow: 0 0 0 2px #d4af37, 0 20px 50px rgba(212, 175, 55, 0.2);
+        }
+
+        .pricing-card.featured::after {
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            height: 3px;
+            opacity: 1;
+        }
+
+        .pricing-card:hover {
+            border-color: rgba(212, 175, 55, 0.7);
+            background: rgba(212, 175, 55, 0.07);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.15);
+        }
+
+        .pricing-card.featured:hover {
+            transform: translateY(-4px);
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            background: #d4af37;
+            color: #0a0a0a;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            margin-bottom: clamp(8px,1.2vh,16px);
+            align-self: flex-start;
+        }
+
+        .pricing-tier-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(212,175,55,0.6);
+            margin-bottom: 6px;
+        }
+
+        .pricing-card h3 {
+            font-size: clamp(16px,1.6vw,22px);
+            color: #ffffff;
+            margin-bottom: clamp(10px,1.4vh,20px);
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            line-height: 1.25;
+        }
+
+        .pricing-divider {
+            width: 40px;
+            height: 2px;
+            background: #d4af37;
+            margin-bottom: clamp(10px,1.4vh,18px);
+            opacity: 0.5;
+        }
+
+        .pricing-card.featured .pricing-divider {
+            opacity: 1;
+            width: 60px;
+        }
+
+        .pricing-value-wrap {
+            margin-bottom: 4px;
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+
+        .pricing-currency {
+            font-size: 18px;
+            color: #d4af37;
+            font-weight: 600;
+            line-height: 1;
+            position: relative;
+            top: -6px;
+        }
+
+        .pricing-value {
+            font-size: clamp(36px,4.5vw,58px);
+            color: #d4af37;
+            line-height: 1;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -2px;
+        }
+
+        .pricing-installment-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: rgba(212,175,55,0.55);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .pricing-period {
+            font-size: 13px;
+            color: rgba(153,153,153,0.6);
+            margin-bottom: clamp(12px,1.6vh,22px);
+            position: relative;
+            z-index: 1;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        .pricing-features {
+            text-align: left;
+            font-size: 15px;
+            color: #999;
+            line-height: 1;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .pricing-features-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #d4af37;
+            margin-bottom: 8px;
+        }
+
+        .pricing-feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: clamp(5px,0.8vh,9px) 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: color 0.2s ease;
+        }
+
+        .pricing-feature-item:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-feature-item:hover {
+            color: #ddd;
+        }
+
+        .pricing-check {
+            color: #d4af37;
+            font-size: 13px;
+            flex-shrink: 0;
+            margin-top: 1px;
+            font-weight: 700;
+        }
+
+        .pricing-cta {
+            display: block;
+            margin-top: clamp(12px,1.6vh,24px);
+            padding: clamp(10px,1.2vh,14px) 0;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid rgba(212,175,55,0.4);
+            color: rgba(212,175,55,0.8);
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: #d4af37;
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+            z-index: 0;
+        }
+
+        .pricing-cta span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .pricing-cta:hover {
+            color: #0a0a0a;
+            border-color: #d4af37;
+        }
+
+        .pricing-cta:hover::before {
+            transform: translateX(0);
+        }
+
+        .pricing-card.featured .pricing-cta {
+            border-color: #d4af37;
+            color: #d4af37;
+        }
+
+        .nav-buttons {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        button {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #d4af37;
+            background: rgba(212, 175, 55, 0.1);
+            color: #d4af37;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50%;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        button:hover {
+            background: #d4af37;
+            color: #0a0a0a;
+            transform: scale(1.15);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 40px;
+            left: 40px;
+            color: #d4af37;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            z-index: 100;
+            font-weight: 600;
+        }
+
+        .footer-content {
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer-content h1 {
+            font-size: clamp(52px,7vw,90px);
+            color: #ffffff;
+            margin-bottom: clamp(16px,2vh,32px);
+            font-weight: 800;
+            letter-spacing: -3px;
+        }
+
+        .footer-content p {
+            font-size: clamp(14px,1.5vw,22px);
+            color: #d4af37;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: clamp(20px,3vh,40px);
+            font-weight: 600;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            padding: 18px 50px;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            background: rgba(212, 175, 55, 0.06);
+            color: #d4af37;
+            font-size: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            width: auto;
+            height: auto;
+            font-weight: 700;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: #d4af37;
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+            z-index: 0;
+        }
+
+        .contact-btn > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-btn:hover {
+            color: #0a0a0a;
+            border-color: #d4af37;
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.3);
+        }
+
+        .contact-btn:hover::before {
+            transform: translateX(0);
+        }
+
+        .contact-btn:active {
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 1024px) {
+            .slide {
+                padding: 40px;
+            }
+
+            .logo-text {
+                font-size: 80px;
+            }
+
+            .big-title {
+                font-size: 48px;
+            }
+
+            .big-text {
+                font-size: 22px;
+            }
+
+            .two-blocks {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .pain-points {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .roadmap-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px 20px;
+                padding-top: 60px;
+            }
+
+            .logo-text {
+                font-size: 60px;
+            }
+
+            .logo-subtitle {
+                font-size: 16px;
+            }
+
+            .logo-desc {
+                font-size: 18px;
+            }
+
+            .nav-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            button {
+                width: 40px;
+                height: 40px;
+                font-size: 14px;
+            }
+
+            .slide-counter {
+                bottom: 20px;
+                left: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slide {
+                padding: 25px 15px;
+                padding-top: 50px;
+            }
+
+            .logo-text {
+                font-size: 48px;
+            }
+
+            .big-title {
+                font-size: 28px;
+            }
+
+            .big-text {
+                font-size: 16px;
+            }
+
+            .contact-btn {
+                width: 100%;
+                padding: 14px 20px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <!-- SLIDE 1: CAPA -->
+        <div class="slide logo-slide active">
+            <div class="accent-line top"></div>
+            <div class="accent-line side"></div>
+            <div class="accent-line bottom"></div>
+
+            <div class="slide-content">
+                <img src="../../../assets/IMG/roncolato-branco-horizontal.png" alt="Roncolato" style="max-width: 220px; height: auto; margin-bottom: 40px; opacity: 0; animation: fadeInDown 0.8s ease-out 0.05s forwards;">
+
+                <div style="font-size: 12px; font-weight: 700; letter-spacing: 5px; color: rgba(212,175,55,0.55); text-transform: uppercase; margin-bottom: 28px; opacity: 0; animation: fadeInUp 1s ease-out 0.1s forwards;">
+                    Estudio Roncolato · 2026
+                </div>
+
+                <div class="logo-text">RENATA ROSA</div>
+
+                <div style="width: 0; height: 1px; background: linear-gradient(90deg, transparent, #d4af37, transparent); margin: 24px auto; opacity: 0; animation: expandLine 1s ease-out 0.5s forwards;"></div>
+
+                <div class="logo-subtitle-cursive">Pediatra • Infectologista • Educadora</div>
+                <div class="logo-subtitle">Posicionamento Digital Premium</div>
+                <div class="logo-desc">Transformar expertise médica consolidada em autoridade digital que gera renda escalável, estruturada e protegida</div>
+
+                <div style="position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeInUp 1s ease-out 1.2s forwards;">
+                    <div style="font-size: 11px; letter-spacing: 3px; color: rgba(255,255,255,0.2); text-transform: uppercase; font-weight: 600; text-align: center;">Use as setas para navegar</div>
+                    <div style="font-size: 18px; color: rgba(212,175,55,0.6);">↓</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: A HISTÓRIA -->
+        <div class="slide">
+            <div class="accent-line top"></div>
+            <div class="accent-line side"></div>
+
+            <div class="slide-content">
+                <div class="centered-content">
+                    <div style="display: flex; align-items: flex-start; gap: 32px; justify-content: center; margin-bottom: clamp(18px,2.5vh,36px);">
+                        <div style="font-size: clamp(60px,8vw,110px); font-weight: 900; line-height: 0.85; color: #d4af37; letter-spacing: -6px; opacity: 0.9; flex-shrink: 0;">20+</div>
+                        <div style="text-align: left; padding-top: 12px;">
+                            <div style="font-size: 12px; font-weight: 700; letter-spacing: 4px; color: rgba(212,175,55,0.6); text-transform: uppercase; margin-bottom: 10px;">Anos de jornada profissional</div>
+                            <div class="big-title" style="text-align: left; font-size: 52px;">Expertise<br><span class="highlight">Consolidada e Invisível</span></div>
+                        </div>
+                    </div>
+
+                    <div class="big-text" style="max-width: 780px;">
+                        Pediatra. Infectologista. Pesquisadora. Professora. Duas décadas de clínica, pesquisa e didática. Seu conhecimento é profundo e reconhecido no meio acadêmico. Fora dele? Praticamente ninguém sabe.
+                    </div>
+
+                    <div style="margin-top: clamp(16px,2vh,32px); width: 100%; max-width: 780px; position: relative; overflow: hidden; background: rgba(212,175,55,0.06); border: 1px solid rgba(212,175,55,0.3); padding: clamp(18px,2.5vh,34px) clamp(20px,2.5vw,40px);">
+                        <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: #d4af37;"></div>
+                        <div style="position: absolute; right: -8px; top: -16px; font-size: 100px; font-weight: 900; color: rgba(212,175,55,0.04); line-height: 1; pointer-events: none; user-select: none;">"</div>
+                        <div style="font-size: 13px; font-weight: 700; letter-spacing: 3px; color: rgba(212,175,55,0.6); text-transform: uppercase; margin-bottom: 16px;">O Contexto</div>
+                        <div style="font-size: 22px; color: #ddd; line-height: 1.75;">
+                            Você sabe o que nenhuma consultoria sabe: como pediatria realmente funciona em tempo real, com nuances que só quem está na prática domina.
+                            <span style="color: #fff; font-weight: 600;"> Mas essa autoridade não trabalha para você. Ainda.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: FOUNDATION -->
+        <div class="slide">
+            <div class="accent-line top"></div>
+            <div class="accent-line side"></div>
+
+            <div class="slide-content" style="max-width: 1300px; width: 100%;">
+                <div style="text-align: center; margin-bottom: clamp(16px,2.5vh,36px);">
+                    <div style="font-size: 12px; font-weight: 700; letter-spacing: 4px; color: rgba(212,175,55,0.6); text-transform: uppercase; margin-bottom: 14px;">Diagnóstico inicial</div>
+                    <div class="big-title">Sua Posição <span class="highlight">Hoje</span></div>
+                </div>
+
+                <div class="two-blocks" style="gap: 32px; align-items: stretch;">
+                    <div style="background: rgba(212,175,55,0.05); border: 1px solid rgba(212,175,55,0.35); border-top: 4px solid #d4af37; padding: clamp(20px,2.8vh,38px) clamp(18px,2.2vw,34px); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.background='rgba(212,175,55,0.09)'; this.style.transform='translateY(-6px)'" onmouseout="this.style.background='rgba(212,175,55,0.05)'; this.style.transform='translateY(0)'">
+                        <div style="position: absolute; right: -12px; bottom: -16px; font-size: 90px; font-weight: 900; color: rgba(212,175,55,0.04); line-height: 1; pointer-events: none; user-select: none;">✓</div>
+
+                        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 28px;">
+                            <div style="width: 40px; height: 40px; background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.5); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">✓</div>
+                            <div>
+                                <div style="font-size: 11px; font-weight: 700; letter-spacing: 3px; color: rgba(212,175,55,0.6); text-transform: uppercase; margin-bottom: 4px;">O que você conquistou</div>
+                                <div style="font-size: 26px; font-weight: 800; color: #fff;">Suas Forças Reais</div>
+                            </div>
+                        </div>
+
+                        <div style="font-size: 17px; color: #888; margin-bottom: 24px; line-height: 1.5;">Você já tem o que muitos buscam:</div>
+
+                        <div style="display: flex; flex-direction: column; gap: 0;">
+                            <div style="display: flex; align-items: center; gap: 14px; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <div style="width: 6px; height: 6px; background: #d4af37; border-radius: 50%; flex-shrink: 0;"></div>
+                                <div style="font-size: 18px; color: #ccc;">Expertise consolidada em pediatria/infectologia</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 14px; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <div style="width: 6px; height: 6px; background: #d4af37; border-radius: 50%; flex-shrink: 0;"></div>
+                                <div style="font-size: 18px; color: #ccc;">Professora respeitada + pesquisa credenciada</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 14px; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <div style="width: 6px; height: 6px; background: #d4af37; border-radius: 50%; flex-shrink: 0;"></div>
+                                <div style="font-size: 18px; color: #ccc;">Consultório ativo com avaliações genuínas</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 14px; padding: 13px 0;">
+                                <div style="width: 6px; height: 6px; background: #d4af37; border-radius: 50%; flex-shrink: 0;"></div>
+                                <div style="font-size: 18px; color: #ccc;">Comunidade de alunos/colegas receptivos</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); border-top: 4px solid rgba(255,255,255,0.25); padding: clamp(20px,2.8vh,38px) clamp(18px,2.2vw,34px); position: relative; overflow: hidden; transition: all 0.4s ease;" onmouseover="this.style.background='rgba(255,255,255,0.04)'; this.style.transform='translateY(-6px)'" onmouseout="this.style.background='rgba(255,255,255,0.02)'; this.style.transform='translateY(0)'">
+                        <div style="position: absolute; right: -12px; bottom: -16px; font-size: 90px; font-weight: 900; color: rgba(255,255,255,0.02); line-height: 1; pointer-events: none; user-select: none;">!</div>
+
+                        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 28px;">
+                            <div style="width: 40px; height: 40px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; color: #aaa;">!</div>
+                            <div>
+                                <div style="font-size: 11px; font-weight: 700; letter-spacing: 3px; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-bottom: 4px;">O que está faltando</div>
+                                <div style="font-size: 26px; font-weight: 800; color: #fff;">O Desafio Estrutural</div>
+                            </div>
+                        </div>
+
+                        <div style="font-size: 17px; color: #888; margin-bottom: 24px; line-height: 1.5;">Mas sua autoridade não gera renda escalável:</div>
+
+                        <div style="display: flex; flex-direction: column; gap: 0;">
+                            <div style="display: flex; align-items: flex-start; gap: 14px; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <div style="width: 6px; height: 6px; background: rgba(255,255,255,0.25); border-radius: 50%; flex-shrink: 0; margin-top: 8px;"></div>
+                                <div style="font-size: 18px; color: #888; line-height: 1.5;">Expertise fica confinada ao consultório e sala de aula</div>
+                            </div>
+                            <div style="display: flex; align-items: flex-start; gap: 14px; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <div style="width: 6px; height: 6px; background: rgba(255,255,255,0.25); border-radius: 50%; flex-shrink: 0; margin-top: 8px;"></div>
+                                <div style="font-size: 18px; color: #888; line-height: 1.5;">Sofre com pirataria quando tenta monetizar</div>
+                            </div>
+                            <div style="display: flex; align-items: flex-start; gap: 14px; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <div style="width: 6px; height: 6px; background: rgba(255,255,255,0.25); border-radius: 50%; flex-shrink: 0; margin-top: 8px;"></div>
+                                <div style="font-size: 18px; color: #888; line-height: 1.5;">Renda limitada pelo tempo (consultório + docência)</div>
+                            </div>
+                            <div style="display: flex; align-items: flex-start; gap: 14px; padding: 13px 0;">
+                                <div style="width: 6px; height: 6px; background: rgba(255,255,255,0.25); border-radius: 50%; flex-shrink: 0; margin-top: 8px;"></div>
+                                <div style="font-size: 18px; color: #888; line-height: 1.5;">Presença digital estratégica = zero (ou amadora)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: AS DORES -->
+        <div class="slide">
+            <div class="accent-line top"></div>
+            <div class="accent-line side"></div>
+
+            <div class="slide-content">
+                <div class="centered-content">
+                    <div style="text-align: center; margin-bottom: clamp(14px,2vh,32px);">
+                        <div style="font-size: 12px; font-weight: 700; letter-spacing: 4px; color: rgba(212,175,55,0.6); text-transform: uppercase; margin-bottom: 14px;">O que está em jogo</div>
+                        <div class="big-title">As <span class="highlight">Realidades Incômodas</span></div>
+                    </div>
+
+                    <div class="pain-points" style="margin-top: 0;">
+                        <div class="pain-item" style="position: relative; overflow: hidden;">
+                            <div style="position: absolute; top: 16px; right: 20px; font-size: 48px; font-weight: 900; color: rgba(212,175,55,0.06); line-height: 1; pointer-events: none;">01</div>
+                            <h3>Um Mercado Crescente Desconhecido</h3>
+                            <p>45 mil médicos formados por ano no Brasil. Milhares deles procuram mentorias especializadas e cursos antes de pedir indicações. Você não aparece. Alguém menos qualificado aparece.</p>
+                        </div>
+                        <div class="pain-item" style="position: relative; overflow: hidden;">
+                            <div style="position: absolute; top: 16px; right: 20px; font-size: 48px; font-weight: 900; color: rgba(212,175,55,0.06); line-height: 1; pointer-events: none;">02</div>
+                            <h3>A Pirataria que Destrói Monetização</h3>
+                            <p>Alunos compartilham seu e-book no grupo de WhatsApp. Uma venda vira 50 downloads não autorizados. Sem estrutura de proteção, é impossível gerar receita recorrente em conteúdo.</p>
+                        </div>
+                        <div class="pain-item" style="position: relative; overflow: hidden;">
+                            <div style="position: absolute; top: 16px; right: 20px; font-size: 48px; font-weight: 900; color: rgba(212,175,55,0.06); line-height: 1; pointer-events: none;">03</div>
+                            <h3>Renda Presa ao Seu Tempo</h3>
+                            <p>Consultório + mestrado + doutorado = agenda saturada. Você só ganha quando está presente. Sem produtos digitais escaláveis, sua renda máxima é finita e cada hora trabalhada custa saúde.</p>
+                        </div>
+                        <div class="pain-item" style="position: relative; overflow: hidden;">
+                            <div style="position: absolute; top: 16px; right: 20px; font-size: 48px; font-weight: 900; color: rgba(212,175,55,0.06); line-height: 1; pointer-events: none;">04</div>
+                            <h3>A Procrastinação Estruturada</h3>
+                            <p>Após mestrado vem doutorado. Depois, pós-doc. O ciclo de "depois começo" nunca termina. A janela de oportunidade se fecha a cada semestre.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: DIAGNÓSTICO -->
+        <div class="slide">
+            <div class="accent-line top"></div>
+            <div class="accent-line side"></div>
+
+            <div class="slide-content">
+                <div class="centered-content">
+                    <div style="text-align: center; margin-bottom: 44px;">
+                        <div style="font-size: 12px; font-weight: 700; letter-spacing: 4px; color: rgba(212,175,55,0.6); text-transform: uppercase; margin-bottom: 14px;">O cenário em transformação</div>
+                        <div class="big-title">O Mercado de <span class="highlight">Educação Médica</span><br>Está Digital Agora</div>
+                    </div>
+
+                    <div class="big-text" style="max-width: 820px;">
+                        Residentes e especialistas pesquisam cursos online <em>antes</em> de fazer contatos informais. Se você não aparece em uma busca, alguém aparece. Se alguém aparece, uma oportunidade é perdida.
+                    </div>
+
+                    <div style="margin-top: clamp(18px,2.5vh,38px); width: 100%; max-width: 900px; display: grid; grid-template-columns: auto 1fr; gap: 0; border: 1px solid rgba(212,175,55,0.3); overflow: hidden; background: rgba(212,175,55,0.04);">
+                        <div style="background: rgba(212,175,55,0.1); border-right: 1px solid rgba(212,175,55,0.2); padding: 32px 20px; display: flex; align-items: center; justify-content: center; min-width: 56px;">
+                            <div style="font-size: 10px; font-weight: 800; letter-spacing: 3px; color: #d4af37; text-transform: uppercase; writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg);">Evidência</div>
+                        </div>
+
+                        <div style="padding: 32px 36px;">
+                            <div style="font-size: 15px; font-weight: 700; color: #d4af37; letter-spacing: 1px; margin-bottom: 14px;">O Padrão Competitivo Mudou</div>
+                            <div style="font-size: 20px; color: #ccc; line-height: 1.75;">
+                                Enquanto você constrói reputação por expertise real, profissionais menos qualificados estão estruturando presença digital que os faz parecer maiores que realmente são.
+                                <span style="color: #fff; font-weight: 600;"> E estão conquistando alunos que deveriam ser seus.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: A SOLUÇÃO -->
+        <div class="slide">
+            <div class="accent-line top"></div>
+            <div class="accent-line side"></div>
+
+            <div class="slide-content">
+                <div class="centered-content">
+                    <div style="text-align: center; margin-bottom: 44px;">
+                        <div style="font-size: 12px; font-weight: 700; letter-spacing: 4px; color: rgba(212,175,55,0.6); text-transform: uppercase; margin-bottom: 14px;">A abordagem estratégica</div>
+                        <div class="big-title">Não É Sobre <span class="highlight">Redes Sociais</span></div>
+                    </div>
+
+                    <div class="big-text" style="max-width: 780px; margin-bottom: clamp(18px,2.5vh,36px);">
+                        É construir uma <strong>esteira de produtos digitais protegidos</strong> que amplificam sua autoridade médica consolidada – transformando conhecimento que você já domina em receita recorrente, escalável e com segurança contra pirataria.
+                    </div>
+
+                    <div style="width: 100%; max-width: 900px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(212,175,55,0.15);">
+                        <div style="background: #0a0a0a; padding: 36px 28px; text-align: center; transition: background 0.3s ease;" onmouseover="this.style.background='rgba(212,175,55,0.07)'" onmouseout="this.style.background='#0a0a0a'">
+                            <div style="font-size: 28px; margin-bottom: 16px;">🎓</div>
+                            <div style="font-size: 13px; font-weight: 700; letter-spacing: 2.5px; color: #d4af37; text-transform: uppercase; margin-bottom: 12px;">Mentorias</div>
+                            <div style="font-size: 16px; color: #888; line-height: 1.6;">Começar aqui. Já faz isso informalmente, agora estruturado e faturando.</div>
+                        </div>
+
+                        <div style="background: rgba(212,175,55,0.06); padding: 36px 28px; text-align: center; transition: background 0.3s ease;" onmouseover="this.style.background='rgba(212,175,55,0.1)'" onmouseout="this.style.background='rgba(212,175,55,0.06)'">
+                            <div style="font-size: 28px; margin-bottom: 16px;">🔐</div>
+                            <div style="font-size: 13px; font-weight: 700; letter-spacing: 2.5px; color: #d4af37; text-transform: uppercase; margin-bottom: 12px;">Mini-Cursos</div>
+                            <div style="font-size: 16px; color: #888; line-height: 1.6;">Gravados 1x, vendidos infinitas vezes com certificados validáveis.</div>
+                        </div>
+
+                        <div style="background: #0a0a0a; padding: 36px 28px; text-align: center; transition: background 0.3s ease;" onmouseover="this.style.background='rgba(212,175,55,0.07)'" onmouseout="this.style.background='#0a0a0a'">
+                            <div style="font-size: 28px; margin-bottom: 16px;">🚀</div>
+                            <div style="font-size: 13px; font-weight: 700; letter-spacing: 2.5px; color: #d4af37; text-transform: uppercase; margin-bottom: 12px;">Pós-Graduação</div>
+                            <div style="font-size: 16px; color: #888; line-height: 1.6;">Objetivo futuro: R$ 25.000/aluno em pós lato sensu estruturada.</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 36px; font-size: 18px; color: rgba(212,175,55,0.7); font-style: italic; letter-spacing: 0.5px;">
+                        Mentorias. Mini-cursos protegidos. Pós-graduação escalável.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: ROADMAP -->
+        <div class="slide">
+            <div class="accent-line top"></div>
+            <div class="accent-line side"></div>
+
+            <div class="slide-content">
+                <div class="centered-content">
+                    <div style="text-align: center; margin-bottom: 4px;">
+                        <div style="font-size: 12px; font-weight: 700; letter-spacing: 4px; color: rgba(212,175,55,0.6); text-transform: uppercase; margin-bottom: 14px;">Como estruturamos</div>
+                        <div class="big-title">Um Caminho em <span class="highlight">Três Fases</span></div>
+                    </div>
+
+                    <div class="roadmap-grid" style="position: relative;">
+                        <div style="position: absolute; top: 68px; left: calc(33.33% - 20px); right: calc(33.33% - 20px); height: 2px; background: linear-gradient(90deg, rgba(212,175,55,0.4), rgba(212,175,55,0.2), rgba(212,175,55,0.4)); z-index: 0; pointer-events: none;"></div>
+
+                        <div class="roadmap-item" style="z-index: 1;">
+                            <div style="font-size: 11px; font-weight: 700; letter-spacing: 3px; color: rgba(212,175,55,0.5); text-transform: uppercase; margin-bottom: 14px;">Fase 01</div>
+                            <div class="roadmap-period">1–2<br>MESES</div>
+                            <div class="roadmap-title">Fundação:<br>Marca Pessoal</div>
+                            <div style="width: 32px; height: 2px; background: #d4af37; margin: 0 auto 28px; opacity: 0.5;"></div>
+                            <div class="roadmap-text">Extração de marca, posicionamento, fotografia profissional, identidade visual "Renata Rosa". Você sai com clareza cristalina de quem é e como se comunicar.</div>
+                        </div>
+
+                        <div class="roadmap-item" style="z-index: 1; background: rgba(212,175,55,0.12); border-top-color: #d4af37; border-top-width: 6px;">
+                            <div style="font-size: 11px; font-weight: 700; letter-spacing: 3px; color: rgba(212,175,55,0.7); text-transform: uppercase; margin-bottom: 14px;">Fase 02</div>
+                            <div class="roadmap-period">1–4<br>MESES</div>
+                            <div class="roadmap-title">Mentorias:<br>Primeira Receita</div>
+                            <div style="width: 48px; height: 2px; background: #d4af37; margin: 0 auto 28px;"></div>
+                            <div class="roadmap-text">Mentorias em grupo estruturadas + conteúdo educativo para redes. Primeira renda recorrente começa. 1º mini-curso gravado com proteção anti-pirataria.</div>
+                        </div>
+
+                        <div class="roadmap-item" style="z-index: 1;">
+                            <div style="font-size: 11px; font-weight: 700; letter-spacing: 3px; color: rgba(212,175,55,0.5); text-transform: uppercase; margin-bottom: 14px;">Fase 03</div>
+                            <div class="roadmap-period">4–12<br>MESES</div>
+                            <div class="roadmap-title">Escala:<br>Autoridade Pública</div>
+                            <div style="width: 32px; height: 2px; background: #d4af37; margin: 0 auto 28px; opacity: 0.5;"></div>
+                            <div class="roadmap-text">3+ mini-cursos ativos com certificados validáveis. Podcast/YouTube educativo. Posicionamento como referência. Preparação estruturada para pós-graduação.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: PRICING -->
+        <div class="slide">
+            <div class="accent-line top"></div>
+            <div class="accent-line side"></div>
+
+            <div class="slide-content">
+                <div style="width: 100%; max-width: 1400px;">
+                    <div style="text-align: center; margin-bottom: clamp(16px,2.5vh,36px);">
+                        <div class="big-title">Investimento em <span class="highlight">Autoridade</span></div>
+                        <div style="font-size: 16px; color: rgba(212,175,55,0.6); letter-spacing: 3px; text-transform: uppercase; margin-top: 16px; font-weight: 600;">Escolha o plano certo para onde você está</div>
+                    </div>
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <div class="pricing-tier-label">Plano 01</div>
+                            <h3>Marca Pessoal<br>Estruturada</h3>
+                            <div class="pricing-divider"></div>
+                            <div class="pricing-installment-label">2 parcelas de</div>
+                            <div class="pricing-value-wrap">
+                                <span class="pricing-currency">R$</span>
+                                <div class="pricing-value">3.250</div>
+                            </div>
+                            <div class="pricing-period">ou R$ 6.000 à vista</div>
+                            <div class="pricing-features">
+                                <div class="pricing-features-label">O que inclui</div>
+                                <div class="pricing-feature-item"><span class="pricing-check">✓</span> Diagnóstico estratégico aprofundado</div>
+                                <div class="pricing-feature-item"><span class="pricing-check">✓</span> Posicionamento definido e diferenciador</div>
+                                <div class="pricing-feature-item"><span class="pricing-check">✓</span> Linguagem verbal e tom de marca</div>
+                                <div class="pricing-feature-item"><span class="pricing-check">✓</span> Direção visual e tipografia</div>
+                                <div class="pricing-feature-item"><span class="pricing-check">✓</span> 3 encontros de alinhamento presenciais</div>
+                            </div>
+                            <a href="https://wa.me/5562985928423" class="pricing-cta"><span>Quero este →</span></a>
+                        </div>
+
+                        <div class="pricing-card featured">
+                            <div class="pricing-badge">Mais escolhido</div>
+                            <div class="pricing-tier-label">Plano 02</div>
+                            <h3>Autoridade em<br>Construção</h3>
+                            <div class="pricing-divider"></div>
+                            <div class="pricing-installment-label">5 parcelas de</div>
+                            <div class="pricing-value-wrap">
+                                <span class="pricing-currency">R$</span>
+                                <div class="pricing-value">3.200</div>
+                            </div>
+                            <div class="pricing-period">ou R$ 15.000 à vista</div>
+                            <div class="pricing-features">
+                                <div class="pricing-features-label">Tudo do plano 01 +</div>
+                                <div class="pricing-feature-item"><span class="pricing-check">✓</span> 4 meses de acompanhamento ativo</div>
+                                <div class="pricing-feature-item"><span class="pricing-check">✓</span> Mentorias estruturadas e documentadas</div>
+                                <div class="pricing-feature-item"><span class="pricing-check">✓</span> 1º mini-curso gravado e protegido</div>
+                                <div class="pricing-feature-item"><span class="pricing-check">✓</span> Ensaio fotográfico profissional</div>
+                                <div class="pricing-feature-item"><span class="pricing-check">✓</span> LinkedIn + Instagram estruturados</div>
+                            </div>
+                            <a href="https://wa.me/5562985928423" class="pricing-cta"><span>Quero este →</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: URGÊNCIA ESTRATÉGICA -->
+        <div class="slide">
+            <div class="accent-line top"></div>
+            <div class="accent-line side"></div>
+
+            <div class="slide-content" style="max-width: 1400px; width: 100%;">
+                <div style="text-align: center; margin-bottom: clamp(14px,2vh,32px);">
+                    <div style="font-size: 12px; font-weight: 700; letter-spacing: 4px; color: rgba(212,175,55,0.6); text-transform: uppercase; margin-bottom: 18px;">Realidade temporal</div>
+                    <div class="big-title">Você Tem Tempo.<br><span class="highlight">Mas Ele Está Passando.</span></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; width: 100%;">
+                    <div style="position: relative; overflow: hidden; background: rgba(212,175,55,0.06); border: 1px solid rgba(212,175,55,0.4); padding: clamp(14px,1.8vh,26px) clamp(16px,2vw,28px); transition: all 0.4s ease;" onmouseover="this.style.background='rgba(212,175,55,0.1)'; this.style.transform='translateY(-6px)'" onmouseout="this.style.background='rgba(212,175,55,0.06)'; this.style.transform='translateY(0)'">
+                        <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: #d4af37;"></div>
+                        <div style="position: absolute; right: -10px; bottom: -20px; font-size: 120px; font-weight: 900; color: rgba(212,175,55,0.04); line-height: 1; pointer-events: none; user-select: none;">SIM</div>
+
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: clamp(12px,1.6vh,22px);">
+                            <div style="width: 36px; height: 36px; background: #d4af37; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;">⏳</div>
+                            <div style="font-size: 22px; color: #d4af37; font-weight: 800; letter-spacing: -0.5px;">Se Começar Agora</div>
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; gap: 0;">
+                            <div style="display: flex; align-items: baseline; gap: 16px; padding: clamp(6px,0.9vh,11px) 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
+                                <div style="font-size: 11px; color: #d4af37; font-weight: 700; letter-spacing: 1.5px; white-space: nowrap; min-width: 80px;">MAI 2026</div>
+                                <div style="font-size: 17px; color: #ccc;">Branding finalizado, marca pessoal clara</div>
+                            </div>
+                            <div style="display: flex; align-items: baseline; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
+                                <div style="font-size: 11px; color: #d4af37; font-weight: 700; letter-spacing: 1.5px; white-space: nowrap; min-width: 80px;">JUN 2026</div>
+                                <div style="font-size: 17px; color: #ccc;">Mentorias estruturadas gerando renda</div>
+                            </div>
+                            <div style="display: flex; align-items: baseline; gap: 16px; padding: 14px 0;">
+                                <div style="font-size: 11px; color: #d4af37; font-weight: 700; letter-spacing: 1.5px; white-space: nowrap; min-width: 80px;">DEZ 2026</div>
+                                <div style="font-size: 17px; color: #ccc;">3+ produtos protegidos gerando receita</div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: clamp(10px,1.4vh,20px); padding: clamp(8px,1.2vh,14px) 18px; background: rgba(212,175,55,0.12); border-left: 3px solid #d4af37;">
+                            <div style="font-size: 16px; color: #d4af37; font-weight: 700;">Renda recorrente estruturada.</div>
+                        </div>
+                    </div>
+
+                    <div style="position: relative; overflow: hidden; background: rgba(180,30,30,0.06); border: 1px solid rgba(200,50,50,0.3); padding: clamp(14px,1.8vh,26px) clamp(16px,2vw,28px); transition: all 0.4s ease;" onmouseover="this.style.background='rgba(180,30,30,0.1)'; this.style.transform='translateY(-6px)'" onmouseout="this.style.background='rgba(180,30,30,0.06)'; this.style.transform='translateY(0)'">
+                        <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #c43232, #ff6b6b);"></div>
+                        <div style="position: absolute; right: -10px; bottom: -20px; font-size: 120px; font-weight: 900; color: rgba(200,50,50,0.05); line-height: 1; pointer-events: none; user-select: none;">NÃO</div>
+
+                        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 30px;">
+                            <div style="width: 36px; height: 36px; background: rgba(200,50,50,0.3); border: 1px solid rgba(200,50,50,0.6); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;">⏱</div>
+                            <div style="font-size: 22px; color: #ff6b6b; font-weight: 800; letter-spacing: -0.5px;">Se Esperar Mais</div>
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; gap: 0;">
+                            <div style="display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
+                                <div style="color: rgba(200,50,50,0.8); font-size: 14px; margin-top: 2px; flex-shrink: 0;">✗</div>
+                                <div style="font-size: 17px; color: #999;">Oportunidade de 2026 vai embora</div>
+                            </div>
+                            <div style="display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06);">
+                                <div style="color: rgba(200,50,50,0.8); font-size: 14px; margin-top: 2px; flex-shrink: 0;">✗</div>
+                                <div style="font-size: 17px; color: #999;">Alunos crescem achando autoridades mais estruturadas</div>
+                            </div>
+                            <div style="display: flex; align-items: flex-start; gap: 14px; padding: 14px 0;">
+                                <div style="color: rgba(200,50,50,0.8); font-size: 14px; margin-top: 2px; flex-shrink: 0;">✗</div>
+                                <div style="font-size: 17px; color: #999;">Ciclo de adiamento (mestrado → doutorado) continua</div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: clamp(10px,1.4vh,20px); padding: clamp(8px,1.2vh,14px) 18px; background: rgba(200,50,50,0.1); border-left: 3px solid rgba(200,50,50,0.7);">
+                            <div style="font-size: 16px; color: #ff6b6b; font-weight: 700;">Invisibilidade continua. Oportunidade passada.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: clamp(10px,1.5vh,20px); width: 100%; padding: clamp(14px,2vh,24px) clamp(20px,2.5vw,36px); background: rgba(212,175,55,0.07); border: 1px solid rgba(212,175,55,0.25); position: relative; overflow: hidden;">
+                    <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: #d4af37;"></div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
+                        <div style="font-size: 20px; color: #ddd; line-height: 1.6; max-width: 820px;">
+                            Você tem expertise real. Estudantes querem aprender com você. Mas ninguém sabe porque você não está lá.
+                            <br>
+                            <span style="color: #fff; font-weight: 600;">A única coisa que falta é estrutura digital estratégica.</span>
+                        </div>
+                        <div style="text-align: right; flex-shrink: 0;">
+                            <div style="font-size: 13px; color: rgba(212,175,55,0.7); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px;">Este é o momento.</div>
+                            <div style="font-size: 15px; color: #fff; font-weight: 600;">Não por desespero. Por estratégia.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: CLOSING -->
+        <div class="slide">
+            <div class="accent-line top"></div>
+            <div class="accent-line side"></div>
+
+            <div class="slide-content">
+                <div class="centered-content" style="max-width: 860px;">
+                    <div style="font-size: 12px; font-weight: 700; letter-spacing: 4px; color: rgba(212,175,55,0.5); text-transform: uppercase; margin-bottom: 28px;">A proposta</div>
+
+                    <div class="big-title" style="font-size: 58px; line-height: 1.2;">
+                        Aqui eu não estou te<br><span class="highlight">oferecendo um serviço.</span>
+                    </div>
+
+                    <div style="width: 60px; height: 1px; background: rgba(212,175,55,0.4); margin: clamp(14px,2vh,28px) auto;"></div>
+
+                    <div class="big-text" style="font-size: 22px; max-width: 680px;">
+                        Estou te propondo uma <strong>construção consciente</strong> de sua marca pessoal.<br><br>Seu conhecimento merecia estar visível há anos. Deixa a gente fazer isso.
+                    </div>
+
+                    <div style="margin-top: clamp(20px,3vh,44px); display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: center; width: 100%; max-width: 700px;">
+                        <div style="text-align: right; padding-right: 40px;">
+                            <div style="font-size: 72px; font-weight: 900; color: rgba(255,255,255,0.15); line-height: 1; letter-spacing: -3px;">2025</div>
+                            <div style="font-size: 13px; font-weight: 600; letter-spacing: 2px; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-top: 8px;">Sem estrutura</div>
+                        </div>
+
+                        <div style="width: 1px; height: 80px; background: linear-gradient(180deg, transparent, rgba(212,175,55,0.5), transparent);"></div>
+
+                        <div style="text-align: left; padding-left: 40px;">
+                            <div style="font-size: 72px; font-weight: 900; color: #d4af37; line-height: 1; letter-spacing: -3px;">2026</div>
+                            <div style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: rgba(212,175,55,0.7); text-transform: uppercase; margin-top: 8px;">Autoridade estruturada</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11: CONTATO -->
+        <div class="slide">
+            <div class="accent-line top"></div>
+            <div class="accent-line side"></div>
+            <div class="accent-line bottom"></div>
+
+            <div class="slide-content">
+                <div class="footer-content">
+                    <div style="font-size: 11px; font-weight: 700; letter-spacing: 5px; color: rgba(212,175,55,0.5); text-transform: uppercase; margin-bottom: 24px;">Próximo passo</div>
+
+                    <h1 style="background: linear-gradient(135deg, #fff 0%, #d4af37 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Vamos Estruturar Juntas</h1>
+
+                    <div style="display: flex; align-items: center; gap: 20px; justify-content: center; margin: 28px 0;">
+                        <div style="flex: 1; max-width: 120px; height: 1px; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.4));"></div>
+                        <div style="font-size: 11px; font-weight: 700; letter-spacing: 3px; color: rgba(212,175,55,0.5); text-transform: uppercase;">Estudio Roncolato</div>
+                        <div style="flex: 1; max-width: 120px; height: 1px; background: linear-gradient(90deg, rgba(212,175,55,0.4), transparent);"></div>
+                    </div>
+
+                    <p>HORA DE COLOCAR EM PRÁTICA</p>
+
+                    <div class="contact-buttons">
+                        <a href="https://wa.me/5562985928423" class="contact-btn">
+                            <span style="font-size: 14px; opacity: 0.6; display: block; letter-spacing: 2px; margin-bottom: 4px; font-weight: 600;">WHATSAPP</span>
+                            (62) 98592-8423
+                        </a>
+                        <a href="https://instagram.com/rroncolato" class="contact-btn">
+                            <span style="font-size: 14px; opacity: 0.6; display: block; letter-spacing: 2px; margin-bottom: 4px; font-weight: 600;">INSTAGRAM</span>
+                            @RRONCOLATO
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-counter">
+        <span id="current">1</span> / <span id="total">11</span>
+    </div>
+
+    <div class="nav-buttons">
+        <button id="prevBtn" onclick="changeSlide(-1)" aria-label="Slide anterior">←</button>
+        <button id="nextBtn" onclick="changeSlide(1)" aria-label="Próximo slide">→</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+
+            document.getElementById('current').textContent = currentSlide + 1;
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' && currentSlide > 0) changeSlide(-1);
+            if (e.key === 'ArrowRight' && currentSlide < totalSlides - 1) changeSlide(1);
+            if (e.key === ' ') {
+                e.preventDefault();
+                if (currentSlide < totalSlides - 1) changeSlide(1);
+            }
+        });
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50 && currentSlide < totalSlides - 1) {
+                changeSlide(1);
+            } else if (touchEndX - touchStartX > 50 && currentSlide > 0) {
+                changeSlide(-1);
+            }
+        });
+
+        document.getElementById('total').textContent = totalSlides;
+        document.getElementById('prevBtn').disabled = true;
+    </script>
+</body>
+</html>

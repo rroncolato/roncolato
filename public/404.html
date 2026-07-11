@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página não encontrada - Rodrigo Roncolato</title>
+  <meta name="description" content="Página não encontrada. Retorne ao portfólio de fotografia corporativa de Rodrigo Roncolato em Goiânia.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://www.rroncolato.com.br/">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.rroncolato.com.br/">
+  <meta property="og:title" content="Rodrigo Roncolato - Fotografia Corporativa">
+  <meta property="og:description" content="Fotografia corporativa e personal branding para empresas em Goiânia">
+  <meta property="og:image" content="https://www.rroncolato.com.br/assets/IMG/site/og-image.png">
+
+  <style>
+    /* Design System */
+    :root {
+      --k: #0A0A0A;
+      --w: #F0F0EB;
+      --y: #F5C518;
+      --g1: #111;
+      --g2: #1a1a1a;
+      --g3: #242424;
+      --g4: #404040;
+      --g5: #7a7a7a;
+      --g6: #b0b0a8;
+      --f: 'Jost', sans-serif;
+      --ease: cubic-bezier(.25, .46, .45, .94);
+      --ease2: cubic-bezier(.76, 0, .24, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      width: 100%;
+      background-color: var(--k);
+      color: var(--w);
+      font-family: var(--f);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      position: relative;
+      background-color: var(--k);
+      padding: 24px;
+      border-bottom: 1px solid var(--g2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 24px;
+      letter-spacing: -1px;
+      color: var(--w);
+      text-decoration: none;
+    }
+
+    nav a {
+      color: var(--w);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      margin-left: 32px;
+      transition: color 0.3s var(--ease);
+    }
+
+    nav a:hover {
+      color: var(--y);
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* 404 Section */
+    .error-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 150px);
+      padding: 80px 24px;
+      text-align: center;
+    }
+
+    .error-content {
+      max-width: 600px;
+    }
+
+    .error-code {
+      font-size: 120px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--y);
+      margin-bottom: 16px;
+      letter-spacing: -3px;
+    }
+
+    .error-title {
+      font-size: 40px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--w);
+    }
+
+    .error-description {
+      font-size: 18px;
+      color: var(--g6);
+      margin-bottom: 48px;
+      line-height: 1.8;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 32px;
+      border-radius: 2px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s var(--ease);
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-primary {
+      background-color: var(--y);
+      color: var(--k);
+    }
+
+    .btn-primary:hover {
+      background-color: #f5d747;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: var(--g2);
+      color: var(--w);
+      border: 1px solid var(--g4);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--g3);
+      border-color: var(--y);
+      color: var(--y);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--g2);
+      padding: 40px 24px;
+      background-color: var(--k);
+      text-align: center;
+      color: var(--g5);
+      font-size: 12px;
+    }
+
+    footer a {
+      color: var(--y);
+      text-decoration: none;
+      transition: color 0.3s var(--ease);
+    }
+
+    footer a:hover {
+      color: var(--w);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .error-section {
+        min-height: calc(100vh - 120px);
+        padding: 40px 24px;
+      }
+
+      .error-code {
+        font-size: 80px;
+      }
+
+      .error-title {
+        font-size: 28px;
+      }
+
+      .error-description {
+        font-size: 16px;
+        margin-bottom: 32px;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <a href="https://www.rroncolato.com.br" class="logo">RR</a>
+    <nav>
+      <a href="https://www.rroncolato.com.br">Início</a>
+      <a href="https://www.rroncolato.com.br/#portfolio">Portfólio</a>
+      <a href="https://www.rroncolato.com.br/#blog">Blog</a>
+      <a href="https://www.rroncolato.com.br/#sobre">Sobre</a>
+      <a href="https://www.rroncolato.com.br/#contato">Contato</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <section class="error-section">
+      <div class="error-content">
+        <div class="error-code">404</div>
+        <h1 class="error-title">Página não encontrada</h1>
+        <p class="error-description">
+          Desculpe, a página que você está procurando não existe ou foi movida.
+          Navegue pelo portfólio abaixo ou entre em contato comigo.
+        </p>
+
+        <div class="cta-buttons">
+          <a href="https://www.rroncolato.com.br" class="btn btn-primary">Voltar à Página Inicial</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Rodrigo Roncolato. Fotografia Corporativa em Goiânia.</p>
+    <p style="margin-top: 12px;">
+      <a href="https://instagram.com/rodrigoroncolato">Instagram</a> •
+      <a href="https://linkedin.com/in/rodrigoroncolato">LinkedIn</a> •
+      <a href="tel:+5562985928423">(62) 98592-8423</a>
+    </p>
+  </footer>
+</body>
+</html>

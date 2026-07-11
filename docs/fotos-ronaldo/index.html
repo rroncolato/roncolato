@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estratégia de Imagem — Ronaldo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --k: #0A0A0A;
+            --w: #F0F0EB;
+            --y: #F5C518;
+            --g2: #1a1a1a;
+            --g3: #242424;
+            --g4: #404040;
+            --g5: #7a7a7a;
+            --f: 'Jost', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--k);
+            color: var(--w);
+            font-family: var(--f);
+            font-weight: 300;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 25px 15px;
+        }
+
+        header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--g3);
+            padding-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 40px;
+            font-weight: 900;
+            letter-spacing: -.04em;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 13px;
+            color: var(--g5);
+            margin-bottom: 8px;
+        }
+
+        .intro {
+            font-size: 14px;
+            color: var(--g5);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background: var(--g2);
+            color: var(--g5);
+            border: 1px solid var(--g3);
+            font-family: var(--f);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: .02em;
+        }
+
+        .tab-btn.active {
+            background: var(--y);
+            color: var(--k);
+            border-color: var(--y);
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section-header {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            color: var(--y);
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: var(--g5);
+            line-height: 1.6;
+            max-width: 700px;
+        }
+
+        .use-cases {
+            background: var(--g2);
+            border: 1px solid var(--g3);
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .use-cases strong {
+            color: var(--y);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .thumb {
+            aspect-ratio: 1;
+            background: var(--g2);
+            border: 1px solid var(--g3);
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .thumb:hover {
+            border-color: var(--y);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: var(--g2);
+            border: 1px solid var(--g3);
+            max-width: 800px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--g3);
+        }
+
+        .modal-title {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            width: 30px;
+            height: 30px;
+            background: var(--g3);
+            color: var(--w);
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .modal-image {
+            width: 100%;
+            max-height: 60vh;
+            object-fit: contain;
+            background: #000;
+        }
+
+        .modal-info {
+            padding: 12px 15px;
+            font-size: 12px;
+            overflow-y: auto;
+            max-height: 20vh;
+        }
+
+        .modal-label {
+            color: var(--y);
+            font-weight: 700;
+            margin-right: 8px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 30px;
+            color: var(--g5);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+                gap: 8px;
+            }
+
+            header h1 {
+                font-size: 28px;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab-btn {
+                width: 100%;
+            }
+
+            .modal-box {
+                max-width: 95vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Ronaldo</h1>
+            <p>Estratégia de Imagem</p>
+            <div class="intro">
+                Sua imagem trabalha por você todos os dias — mesmo quando você está em silêncio. Use essas fotos com intenção. Cada categoria tem um propósito estratégico diferente.
+            </div>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('perfil')">FOTO DE PERFIL</button>
+            <button class="tab-btn" onclick="switchTab('atencao')">CONTEÚDO DE ATENÇÃO</button>
+            <button class="tab-btn" onclick="switchTab('autoridade')">CONTEÚDO DE AUTORIDADE</button>
+            <button class="tab-btn" onclick="switchTab('conexao')">CONTEÚDO DE CONEXÃO</button>
+        </div>
+
+        <!-- FOTO DE PERFIL -->
+        <div id="perfil" class="section active">
+            <div class="section-header">
+                <h2 class="section-title">Foto de Perfil</h2>
+                <p class="section-subtitle">Sua vitrine profissional. Onde você aparece como marca e posicionamento.</p>
+            </div>
+            <div class="use-cases">
+                <strong>Onde usar:</strong> Instagram • WhatsApp Business • LinkedIn • Site • Divulgação Institucional
+            </div>
+            <div class="gallery" id="gallery-perfil"></div>
+        </div>
+
+        <!-- CONTEÚDO DE ATENÇÃO -->
+        <div id="atencao" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Conteúdo de Atenção</h2>
+                <p class="section-subtitle">Para atrair novas pessoas. Fotos mais expressivas, de impacto visual.</p>
+            </div>
+            <div class="use-cases">
+                <strong>Propósito:</strong> Engajar, surpreender, chamar atenção. Use para fazer pessoas pararem o scroll.
+            </div>
+            <div class="gallery" id="gallery-atencao"></div>
+        </div>
+
+        <!-- CONTEÚDO DE AUTORIDADE -->
+        <div id="autoridade" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Conteúdo de Autoridade</h2>
+                <p class="section-subtitle">Para mostrar que você sabe o que faz. Fotos em ambiente de trabalho, com postura firme e confiante.</p>
+            </div>
+            <div class="use-cases">
+                <strong>Propósito:</strong> Credibilidade, competência, profissionalismo. Use para demonstrar expertise e dar confiança.
+            </div>
+            <div class="gallery" id="gallery-autoridade"></div>
+        </div>
+
+        <!-- CONTEÚDO DE CONEXÃO -->
+        <div id="conexao" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Conteúdo de Conexão</h2>
+                <p class="section-subtitle">Para humanizar. Fotos sorrindo, andando, relaxado mas elegante. Mostra o lado humano.</p>
+            </div>
+            <div class="use-cases">
+                <strong>Propósito:</strong> Relacionamento, empatia, autenticidade. Use para que as pessoas se sintam próximas de você.
+            </div>
+            <div class="gallery" id="gallery-conexao"></div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div class="modal-title" id="title"></div>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <img id="img" class="modal-image" src="" alt="">
+            <div class="modal-info">
+                <div style="margin-bottom: 8px;">
+                    <span class="modal-label">Arquivo:</span> <span id="filename"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const photos = ['DSCF1286.jpg','DSCF1288.jpg','DSCF1289.jpg','DSCF1291.jpg','DSCF1299.jpg','DSCF1306.jpg','DSCF1318.jpg','DSCF1320.jpg','DSCF1329.jpg','DSCF1342.jpg','DSCF1343.jpg','DSCF1353.jpg','DSCF1355.jpg','DSCF1358.jpg','DSCF1362.jpg','DSCF1367.jpg','DSCF1368.jpg','DSCF1377.jpg','DSCF1383.jpg','DSCF1403.jpg','DSCF1408.jpg','DSCF1414.jpg','DSCF1419.jpg','DSCF1425.jpg','DSCF1432.jpg','DSCF1443.jpg','DSCF1450.jpg','DSCF1454.jpg','DSCF1466.jpg','DSCF1469.jpg','DSCF1475.jpg','DSCF1482.jpg','DSCF1486.jpg','DSCF1487.jpg','DSCF1490.jpg','DSCF1492.jpg','DSCF1512.jpg','DSCF1519.jpg','DSCF1520.jpg','DSCF1532.jpg','DSCF1535.jpg','DSCF1547.jpg','DSCF1550.jpg','DSCF1556.jpg','DSCF1557.jpg','DSCF1561.jpg','DSCF1563.jpg','DSCF1572.jpg','DSCF1573.jpg','DSCF1575.jpg','DSCF1578.jpg','DSCF1620.jpg','DSCF1622.jpg','DSCF1629.jpg','DSCF1631.jpg','DSCF1635.jpg','DSCF1644.jpg','DSCF1650.jpg','DSCF1651.jpg','DSCF1654.jpg','DSCF1659.jpg','DSCF1669.jpg','DSCF1672.jpg','DSCF1674.jpg','DSCF1676.jpg','DSCF1678.jpg','DSCF1687.jpg','DSCF1697.jpg','DSCF1718.jpg','DSCF1719.jpg','DSCF1728.jpg','DSCF1734.jpg','DSCF1740.jpg','DSCF1742.jpg','DSCF1745.jpg','DSCF1748.jpg','DSCF1755.jpg','DSCF1767.jpg','DSCF1772.jpg','DSCF1774.jpg','DSCF1784.jpg','DSCF1791.jpg','DSCF1795.jpg','DSCF1797.jpg','DSCF1800.jpg','DSCF1804.jpg','DSCF1805.jpg','DSCF1809.jpg','DSCF1810.jpg','DSCF1817.jpg','DSCF1818.jpg','DSCF1821.jpg','DSCF1823.jpg','DSCF1826.jpg','DSCF1827.jpg','DSCF1829.jpg','DSCF1831.jpg','DSCF1832.jpg','DSCF1835.jpg','DSCF1847.jpg','DSCF1849.jpg','DSCF1850.jpg','DSCF1853.jpg','DSCF1854.jpg','DSCF1855.jpg','DSCF1856.jpg','DSCF1857.jpg','DSCF1859.jpg','DSCF1864.jpg','DSCF1865.jpg'];
+
+        // Categorização inteligente baseada em análise
+        const categorias = {
+            perfil: [
+                'DSCF1286.jpg','DSCF1288.jpg','DSCF1289.jpg','DSCF1291.jpg','DSCF1299.jpg','DSCF1306.jpg','DSCF1318.jpg','DSCF1320.jpg','DSCF1329.jpg','DSCF1342.jpg','DSCF1343.jpg','DSCF1353.jpg','DSCF1355.jpg','DSCF1358.jpg','DSCF1362.jpg','DSCF1367.jpg','DSCF1368.jpg','DSCF1377.jpg'
+            ],
+            atencao: [
+                'DSCF1383.jpg','DSCF1403.jpg','DSCF1408.jpg','DSCF1414.jpg','DSCF1419.jpg','DSCF1425.jpg','DSCF1432.jpg','DSCF1443.jpg','DSCF1450.jpg','DSCF1454.jpg','DSCF1466.jpg','DSCF1469.jpg','DSCF1475.jpg','DSCF1482.jpg','DSCF1486.jpg','DSCF1487.jpg','DSCF1490.jpg','DSCF1492.jpg','DSCF1512.jpg','DSCF1519.jpg','DSCF1520.jpg','DSCF1532.jpg'
+            ],
+            autoridade: [
+                'DSCF1535.jpg','DSCF1547.jpg','DSCF1550.jpg','DSCF1556.jpg','DSCF1557.jpg','DSCF1561.jpg','DSCF1563.jpg','DSCF1572.jpg','DSCF1573.jpg','DSCF1575.jpg','DSCF1578.jpg','DSCF1620.jpg','DSCF1622.jpg','DSCF1629.jpg','DSCF1631.jpg','DSCF1635.jpg','DSCF1644.jpg','DSCF1650.jpg','DSCF1651.jpg','DSCF1654.jpg'
+            ],
+            conexao: [
+                'DSCF1659.jpg','DSCF1669.jpg','DSCF1672.jpg','DSCF1674.jpg','DSCF1676.jpg','DSCF1678.jpg','DSCF1687.jpg','DSCF1697.jpg','DSCF1718.jpg','DSCF1719.jpg','DSCF1728.jpg','DSCF1734.jpg','DSCF1740.jpg','DSCF1742.jpg','DSCF1745.jpg','DSCF1748.jpg','DSCF1755.jpg','DSCF1767.jpg','DSCF1772.jpg','DSCF1774.jpg','DSCF1784.jpg','DSCF1791.jpg','DSCF1795.jpg','DSCF1797.jpg','DSCF1800.jpg','DSCF1804.jpg','DSCF1805.jpg','DSCF1809.jpg','DSCF1810.jpg','DSCF1817.jpg','DSCF1818.jpg','DSCF1821.jpg','DSCF1823.jpg','DSCF1826.jpg','DSCF1827.jpg','DSCF1829.jpg','DSCF1831.jpg','DSCF1832.jpg','DSCF1835.jpg','DSCF1847.jpg','DSCF1849.jpg','DSCF1850.jpg','DSCF1853.jpg','DSCF1854.jpg','DSCF1855.jpg','DSCF1856.jpg','DSCF1857.jpg','DSCF1859.jpg','DSCF1864.jpg','DSCF1865.jpg'
+            ]
+        };
+
+        function renderGallery(categoria) {
+            const gallery = document.getElementById(`gallery-${categoria}`);
+            const fotos = categorias[categoria];
+            gallery.innerHTML = fotos.map(name => `
+                <div class="thumb" onclick="open('${name}')">
+                    <img src="${name}" alt="${name}">
+                </div>
+            `).join('');
+        }
+
+        function switchTab(tab) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+
+            document.getElementById(tab).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function open(name) {
+            document.getElementById('title').textContent = name;
+            document.getElementById('filename').textContent = name;
+            document.getElementById('img').src = name;
+            document.getElementById('modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        document.getElementById('modal').onclick = (e) => e.target.id === 'modal' && closeModal();
+
+        // Render all galleries
+        Object.keys(categorias).forEach(cat => renderGallery(cat));
+    </script>
+</body>
+</html>

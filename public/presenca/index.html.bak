@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presença que Vende Transforme sua imagem em autoridade</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:       #070604;
+  --bg1:      #0B0A08;
+  --bg2:      #0F0E0B;
+  --card:     #141210;
+  --card2:    #191714;
+  --border:   #1E1C17;
+  --border2:  #2A271F;
+  --gold:     #BF9B4E;
+  --gold2:    #D4AF6A;
+  --gold3:    #E8C97A;
+  --golddim:  #4A3B1E;
+  --white:    #EDE8DC;
+  --off:      #9A9080;
+  --muted:    #524D43;
+  --danger:   #C84B3C;
+}
+
+html{scroll-behavior:smooth;background:var(--bg)}
+body{
+  font-family:'Syne',sans-serif;
+  color:var(--white);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  background:var(--bg);
+  cursor:default;
+}
+
+/* GRAIN */
+body::after{
+  content:'';position:fixed;inset:0;
+  pointer-events:none;z-index:9000;
+  opacity:.045;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:160px;
+}
+
+/* KEYFRAMES */
+@keyframes up{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
+@keyframes in{from{opacity:0}to{opacity:1}}
+@keyframes pulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.04)}}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes linein{from{transform:scaleX(0);transform-origin:left}to{transform:scaleX(1);transform-origin:left}}
+@keyframes glow{0%,100%{opacity:.3}50%{opacity:.6}}
+
+.au{animation:up .95s cubic-bezier(.16,1,.3,1) both}
+.ai{animation:in 1.2s ease both}
+.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.42s}
+.d4{animation-delay:.58s}.d5{animation-delay:.74s}.d6{animation-delay:.9s}
+
+/* ══ NAV ══ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 64px;
+  background:linear-gradient(to bottom,rgba(7,6,4,.97) 0%,transparent 100%);
+  backdrop-filter:blur(1px);
+}
+.nav-logo{
+  font-family:'Cormorant',serif;
+  font-size:17px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--white);
+}
+.nav-logo em{color:var(--gold);font-style:italic}
+.nav-r{display:flex;align-items:center;gap:32px}
+.nav-link{
+  font-size:11px;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--off);text-decoration:none;
+  transition:.2s;
+}
+.nav-link:hover{color:var(--white)}
+.nav-btn{
+  font-size:10px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;
+  background:var(--gold);color:var(--bg);
+  padding:12px 26px;text-decoration:none;
+  transition:.2s;
+}
+.nav-btn:hover{background:var(--gold2)}
+
+/* ══ URGENCY BAR ══ */
+.urgency-bar{
+  background:var(--danger);
+  padding:10px 0;
+  text-align:center;
+  position:relative;z-index:400;
+  margin-top:0;
+}
+.urgency-bar p{
+  font-size:12px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:#fff;
+}
+.urgency-bar strong{
+  background:rgba(255,255,255,.15);
+  padding:2px 10px;margin:0 6px;
+}
+
+/* ══ HERO ══ */
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:52% 48%;
+  position:relative;overflow:hidden;
+}
+
+/* ambient orb */
+.hero::before{
+  content:'';position:absolute;
+  top:-10%;left:-5%;
+  width:60vw;height:60vw;
+  background:radial-gradient(circle,rgba(191,155,78,.055) 0%,transparent 65%);
+  animation:glow 8s ease-in-out infinite;
+  pointer-events:none;
+}
+
+.hero-left{
+  display:flex;flex-direction:column;
+  justify-content:center;
+  padding:160px 64px 120px 80px;
+  position:relative;z-index:2;
+}
+
+.hero-overline{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:36px;
+}
+.h-line{
+  width:36px;height:1px;
+  background:var(--gold);
+  animation:linein .8s ease .2s both;
+}
+.h-tag{
+  font-size:10px;font-weight:600;
+  letter-spacing:.32em;text-transform:uppercase;
+  color:var(--gold);
+}
+
+/* BIG HEADLINE */
+.hero-h1{
+  font-family:'Cormorant',serif;
+  font-size:clamp(58px,6.2vw,92px);
+  font-weight:300;
+  line-height:.95;
+  letter-spacing:-.025em;
+  margin-bottom:0;
+}
+.h1-normal{display:block;color:var(--white)}
+.h1-italic{
+  display:block;
+  font-style:italic;font-weight:300;
+  color:var(--gold);
+  font-size:1.08em;
+}
+.h1-bold{
+  display:block;
+  font-weight:700;font-style:normal;
+  color:var(--white);
+  font-size:.78em;
+  letter-spacing:.02em;
+  text-transform:uppercase;
+}
+
+.hero-div{
+  width:48px;height:1px;
+  background:linear-gradient(to right,var(--gold),transparent);
+  margin:28px 0;
+}
+
+/* SUBHEAD dor + promessa */
+.hero-sub{
+  font-size:16px;font-weight:400;
+  line-height:1.6;color:var(--off);
+  max-width:430px;margin-bottom:48px;
+}
+.hero-sub strong{color:var(--white);font-weight:600}
+.hero-sub em{
+  font-style:normal;
+  border-bottom:1px solid var(--golddim);
+  color:var(--gold2);
+}
+
+/* SOCIAL PROOF mini */
+.hero-proof{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:40px;padding:14px 20px;
+  border:1px solid var(--border2);
+  background:var(--card);
+  width:fit-content;
+}
+.proof-avatars{display:none}
+.proof-av{
+  width:34px;height:34px;
+  border-radius:50%;
+  border:2px solid var(--bg);
+  background:var(--card2);
+  margin-left:-10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;color:var(--muted);
+  overflow:hidden;
+}
+.proof-av img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center center;
+  display:block;
+}
+.proof-av:first-child{margin-left:0}
+.proof-txt{
+  font-size:12px;font-weight:500;
+  color:var(--off);
+}
+.proof-txt strong{color:var(--white)}
+
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-main{
+  font-size:13px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  background:var(--gold);color:var(--bg);
+  padding:22px 48px;text-decoration:none;
+  display:inline-block;transition:.25s;
+}
+.btn-main:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-sec{
+  font-size:11px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--off);border:1px solid var(--border2);
+  padding:18px 32px;text-decoration:none;
+  display:inline-block;transition:.25s;
+}
+.btn-sec:hover{border-color:var(--golddim);color:var(--white)}
+
+/* hero right duo portrait */
+.hero-right{position:relative;overflow:hidden;display:flex}
+
+.hero-portrait{
+  flex:1;position:relative;overflow:hidden;
+  min-height:100%;
+}
+.hero-portrait img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:top center;
+  display:block;
+  filter:brightness(.88) contrast(1.06);
+  transition:transform .6s ease;
+}
+.hero-portrait:hover img{transform:scale(1.03)}
+
+/* name label on portrait */
+.portrait-label{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:32px 20px 20px;
+  background:linear-gradient(to top,rgba(7,6,4,.92) 0%,transparent 100%);
+  z-index:4;
+}
+.portrait-name{
+  font-family:'Cormorant',serif;
+  font-size:16px;font-weight:500;
+  letter-spacing:.08em;color:var(--white);
+  margin-bottom:2px;
+}
+.portrait-role{
+  font-size:9px;font-weight:600;
+  letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);
+}
+
+/* separator between two portraits */
+.hero-portrait + .hero-portrait{
+  border-left:1px solid rgba(7,6,4,.6);
+}
+
+/* "substituir" badge for dev */
+.portrait-replace{
+  position:absolute;top:12px;right:12px;
+  background:rgba(7,6,4,.7);
+  border:1px solid var(--border2);
+  font-size:8px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);padding:4px 10px;
+  z-index:5;
+}
+
+/* left blend */
+.hero-right::after{
+  content:'';position:absolute;
+  top:0;left:0;width:180px;height:100%;
+  background:linear-gradient(to right,var(--bg) 0%,transparent 100%);
+  z-index:10;pointer-events:none;
+}
+
+/* STATS ROW */
+.hero-stats{
+  position:absolute;bottom:0;left:0;right:0;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--border);
+  z-index:10;
+  background:rgba(7,6,4,.88);
+  backdrop-filter:blur(16px);
+}
+.hstat{
+  padding:22px 28px;
+  border-right:1px solid var(--border);
+}
+.hstat:last-child{border-right:none}
+.hstat-val{
+  font-family:'Cormorant',serif;
+  font-size:30px;font-weight:500;
+  color:var(--gold);line-height:1;margin-bottom:4px;
+}
+.hstat-lbl{font-size:11px;font-weight:400;color:var(--off)}
+
+/* ══ TICKER ══ */
+.ticker{
+  background:var(--card);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:14px 0;overflow:hidden;
+}
+.ticker-track{
+  display:flex;gap:0;
+  animation:ticker 22s linear infinite;
+  width:max-content;
+}
+.ticker-item{
+  font-size:11px;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);
+  padding:0 36px;white-space:nowrap;
+}
+.ticker-item span{color:var(--gold);margin-right:36px}
+
+/* ══ WRAP ══ */
+.wrap{max-width:1160px;margin:0 auto;padding:0 64px}
+
+/* ══ SECTION TAG ══ */
+.stag{
+  display:inline-flex;align-items:center;gap:0;
+  margin-bottom:16px;
+}
+.stag::before{content:'';width:22px;height:1px;background:var(--gold)}
+.stag span{
+  font-size:10px;font-weight:700;
+  letter-spacing:.32em;text-transform:uppercase;
+  color:var(--gold);
+}
+
+.sec-h{
+  font-family:'Cormorant',serif;
+  font-size:clamp(38px,4.2vw,62px);
+  font-weight:300;line-height:1.06;
+  color:var(--white);
+}
+.sec-h em{font-style:italic;color:var(--gold)}
+.sec-h strong{font-weight:700;font-style:normal;color:var(--white)}
+
+/* ══ AGITAÇÃO Por que você precisa disso ══ */
+.agit{
+  padding:128px 0;
+  border-bottom:1px solid var(--border);
+}
+.agit-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:96px;align-items:center;
+}
+.agit-copy{margin-top:24px}
+.agit-lede{
+  font-size:18px;font-weight:400;
+  line-height:1.8;color:var(--off);
+  margin-bottom:28px;
+}
+.agit-lede strong{color:var(--white);font-weight:600}
+
+/* pull quote */
+.agit-quote{
+  border-left:2px solid var(--gold);
+  padding:20px 28px;
+  background:var(--card);
+  margin:32px 0;
+}
+.agit-quote p{
+  font-family:'Cormorant',serif;
+  font-size:22px;font-style:italic;
+  font-weight:400;line-height:1.5;
+  color:var(--white);
+}
+
+/* stats cards */
+.agit-stats{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2px;
+}
+.astat{
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:36px 28px;
+  position:relative;overflow:hidden;
+}
+.astat::before{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,var(--gold),transparent);
+  opacity:0;transition:.3s;
+}
+.astat:hover::before{opacity:1}
+.astat-n{
+  font-family:'Cormorant',serif;
+  font-size:52px;font-weight:300;
+  color:var(--gold);line-height:1;
+  margin-bottom:10px;
+}
+.astat-t{
+  font-size:13px;font-weight:500;
+  color:var(--white);margin-bottom:4px;
+}
+.astat-s{
+  font-size:12px;font-weight:400;
+  color:var(--off);line-height:1.55;
+}
+
+/* ══ PACOTES ══ */
+.pacotes{
+  padding:128px 0;
+  background:var(--bg1);
+  border-bottom:1px solid var(--border);
+}
+.pac-head{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:end;
+  margin-bottom:72px;
+}
+.pac-lead{
+  font-size:15px;font-weight:400;
+  line-height:1.6;color:var(--off);
+  margin-top:20px;
+}
+.pac-lead strong{color:var(--white);font-weight:500}
+
+/* anchor note */
+.pac-anchor{
+  display:flex;align-items:center;gap:10px;
+  margin-top:20px;
+  font-size:12px;font-weight:500;
+  color:var(--muted);
+}
+.pac-anchor::before{
+  content:'';width:14px;height:1px;background:var(--muted)
+}
+
+/* CARDS */
+.pac-cards{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2px;
+}
+
+.pcard{
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:52px 48px 44px;
+  position:relative;overflow:hidden;
+  transition:border-color .3s;
+}
+.pcard:hover{border-color:var(--golddim)}
+
+/* top bar accent */
+.pcard::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(to right,var(--gold) 0%,transparent 60%);
+  opacity:0;transition:.4s;
+}
+.pcard:hover::before{opacity:1}
+
+.pcard.best{border-color:var(--golddim)}
+.pcard.best::before{opacity:1}
+
+.best-badge{
+  position:absolute;top:0;right:0;
+  background:var(--gold);
+  color:var(--bg);
+  font-size:9px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;
+  padding:7px 18px;
+}
+
+.pc-num{
+  font-size:9px;font-weight:700;
+  letter-spacing:.3em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:20px;
+}
+.pc-title{
+  font-family:'Cormorant',serif;
+  font-size:38px;font-weight:300;
+  line-height:1.05;color:var(--white);
+  margin-bottom:6px;
+}
+.pc-title em{font-style:italic;color:var(--gold)}
+.pc-tagline{
+  font-size:13px;font-weight:400;
+  color:var(--off);line-height:1.65;
+  margin-bottom:36px;
+  padding-bottom:32px;
+  border-bottom:1px solid var(--border);
+}
+
+/* partner block header */
+.pc-partner{
+  display:flex;align-items:center;gap:10px;
+  margin:24px 0 12px;
+}
+.pc-partner:first-of-type{margin-top:0}
+.pc-pav{
+  width:22px;height:22px;border-radius:50%;
+  background:var(--golddim);
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:700;color:var(--gold2);
+  flex-shrink:0;
+}
+.pc-pname{
+  font-size:9px;font-weight:700;
+  letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);
+}
+.pc-prole{
+  font-size:9px;font-weight:400;
+  color:var(--muted);margin-left:auto;
+  letter-spacing:.08em;
+}
+
+/* items */
+.pc-items{list-style:none;margin-bottom:0}
+.pc-item{
+  display:flex;gap:14px;align-items:start;
+  padding:11px 0;
+  border-bottom:1px solid var(--border);
+}
+.pc-item:last-child{border-bottom:none}
+.pc-check{
+  width:16px;height:16px;
+  border:1px solid var(--golddim);
+  flex-shrink:0;margin-top:2px;
+  display:flex;align-items:center;justify-content:center;
+}
+.pc-item-t{
+  font-size:13px;font-weight:500;
+  color:var(--white);margin-bottom:1px;
+}
+.pc-item-s{
+  font-size:11px;font-weight:400;
+  color:var(--off);line-height:1.5;
+}
+
+.pc-div{
+  height:1px;
+  background:linear-gradient(to right,var(--border2),transparent);
+  margin:20px 0;
+}
+
+/* price block */
+.pc-price-wrap{
+  display:flex;align-items:flex-end;
+  justify-content:space-between;
+  padding-top:32px;
+  border-top:1px solid var(--border);
+  margin-top:32px;
+  flex-wrap:wrap;gap:16px;
+}
+.pc-price{
+  font-family:'Cormorant',serif;
+  font-size:56px;font-weight:500;
+  color:var(--white);line-height:1;
+}
+.pc-price sup{
+  font-size:.3em;font-family:'Syne',sans-serif;
+  font-weight:400;color:var(--off);
+  vertical-align:super;margin-right:3px;
+}
+.pc-price-note{
+  font-size:11px;font-weight:400;
+  color:var(--muted);margin-top:5px;
+}
+.btn-pac{
+  font-size:10px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:15px 28px;text-decoration:none;
+  display:inline-block;transition:.25s;
+  white-space:nowrap;
+}
+.pcard .btn-pac{
+  border:1px solid var(--golddim);color:var(--gold);
+}
+.pcard .btn-pac:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.pcard.best .btn-pac{background:var(--gold);color:var(--bg);border:1px solid var(--gold)}
+.pcard.best .btn-pac:hover{background:var(--gold2)}
+
+/* ══ GARANTIA ══ */
+.garantia{
+  padding:72px 0;
+  background:var(--card);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.garantia-inner{
+  display:flex;align-items:center;gap:48px;
+  flex-wrap:wrap;
+}
+.garantia-icon{
+  width:72px;height:72px;flex-shrink:0;
+  border:1px solid var(--golddim);
+  display:flex;align-items:center;justify-content:center;
+}
+.garantia-copy{}
+.garantia-title{
+  font-family:'Cormorant',serif;
+  font-size:26px;font-weight:500;
+  color:var(--white);margin-bottom:8px;
+}
+.garantia-body{
+  font-size:14px;font-weight:400;
+  color:var(--off);line-height:1.75;
+  max-width:700px;
+}
+.garantia-body strong{color:var(--white);font-weight:500}
+
+/* ══ COMO FUNCIONA ══ */
+.como{
+  padding:128px 0;
+  border-bottom:1px solid var(--border);
+}
+.como-head{margin-bottom:72px}
+
+.como-steps{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  position:relative;
+}
+.como-steps::before{
+  content:'';position:absolute;
+  top:27px;left:14%;right:14%;
+  height:1px;background:var(--border);
+}
+
+.cstep{padding:0 20px;position:relative;z-index:1}
+
+.cstep-n{
+  width:54px;height:54px;
+  border:1px solid var(--border2);
+  background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:28px;
+  transition:.3s;
+}
+.cstep:hover .cstep-n{border-color:var(--gold);background:var(--card)}
+.cstep-nv{
+  font-family:'Cormorant',serif;
+  font-size:20px;font-weight:500;
+  color:var(--muted);transition:.3s;
+}
+.cstep:hover .cstep-nv{color:var(--gold)}
+
+.cstep-t{
+  font-size:12px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--white);margin-bottom:10px;
+}
+.cstep-b{
+  font-size:12px;font-weight:400;
+  color:var(--off);line-height:1.7;
+}
+
+/* ══ PROVA SOCIAL ══ */
+.prova{
+  padding:128px 0;
+  background:var(--bg2);
+  border-bottom:1px solid var(--border);
+}
+.prova-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2px;margin-top:64px;
+}
+.test-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:36px 32px;
+  position:relative;
+}
+.test-stars{
+  display:flex;gap:3px;margin-bottom:20px;
+}
+.star{
+  font-size:14px;color:var(--gold);
+}
+.test-text{
+  font-family:'Cormorant',serif;
+  font-size:18px;font-style:italic;
+  font-weight:300;line-height:1.65;
+  color:var(--white);margin-bottom:24px;
+}
+.test-author{
+  display:flex;align-items:center;gap:14px;
+  padding-top:20px;
+  border-top:1px solid var(--border);
+}
+.test-av{
+  width:40px;height:40px;
+  background:var(--card2);
+  border:1px solid var(--border2);
+  border-radius:50%;
+  display:none;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.test-av-ph{
+  font-size:9px;font-weight:500;
+  letter-spacing:.1em;color:var(--muted);
+  text-align:center;line-height:1.3;
+}
+.test-name{
+  font-size:13px;font-weight:600;
+  color:var(--white);margin-bottom:2px;
+}
+.test-role{
+  font-size:11px;font-weight:400;
+  color:var(--muted);
+}
+
+/* ══ QUEM ENTREGA ══ */
+.quem{
+  padding:128px 0;
+  border-bottom:1px solid var(--border);
+}
+.quem-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2px;margin-top:64px;
+}
+.qcard{
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:52px 48px;
+  display:grid;grid-template-columns:110px 1fr;
+  gap:32px;align-items:start;
+  transition:border-color .3s;
+}
+.qcard:hover{border-color:var(--golddim)}
+.qphoto{
+  width:110px;height:140px;
+  background:var(--bg2);
+  border:1px solid var(--border2);
+  overflow:hidden;
+  flex-shrink:0;
+}
+.qphoto img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:top center;
+  filter:brightness(.85) contrast(1.06) saturate(.8);
+  display:block;
+}
+.qph-lbl{display:none}
+.qrole{
+  font-size:9px;font-weight:700;
+  letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:8px;
+}
+.qname{
+  font-family:'Cormorant',serif;
+  font-size:26px;font-weight:500;
+  color:var(--white);margin-bottom:14px;line-height:1.1;
+}
+.qbio{
+  font-size:13px;font-weight:400;
+  color:var(--off);line-height:1.8;
+}
+
+/* ══ FAQ ══ */
+.faq{
+  padding:128px 0;
+  background:var(--bg1);
+  border-bottom:1px solid var(--border);
+}
+.faq-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;margin-top:64px;align-items:start;
+}
+.faq-list{display:flex;flex-direction:column;gap:0}
+.faq-item{
+  border-bottom:1px solid var(--border);
+  overflow:hidden;
+}
+.faq-q{
+  width:100%;background:none;border:none;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 0;cursor:pointer;gap:20px;
+  text-align:left;
+}
+.faq-q-txt{
+  font-size:14px;font-weight:600;
+  color:var(--white);font-family:'Syne',sans-serif;
+  line-height:1.4;
+}
+.faq-icon{
+  width:20px;height:20px;flex-shrink:0;
+  border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);font-size:14px;
+  transition:.3s;
+}
+.faq-item.open .faq-icon{transform:rotate(45deg);border-color:var(--golddim)}
+.faq-a{
+  max-height:0;overflow:hidden;
+  transition:max-height .35s ease;
+}
+.faq-item.open .faq-a{max-height:300px}
+.faq-a-txt{
+  font-size:13px;font-weight:400;
+  color:var(--off);line-height:1.8;
+  padding-bottom:22px;
+}
+.faq-a-txt strong{color:var(--white);font-weight:500}
+
+/* faq right CTA */
+.faq-cta-box{
+  background:var(--card);
+  border:1px solid var(--golddim);
+  padding:48px 40px;
+  position:sticky;top:120px;
+}
+.faq-cta-tag{
+  font-size:9px;font-weight:700;
+  letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;
+}
+.faq-cta-title{
+  font-family:'Cormorant',serif;
+  font-size:32px;font-weight:300;
+  color:var(--white);line-height:1.15;
+  margin-bottom:16px;
+}
+.faq-cta-title em{font-style:italic;color:var(--gold)}
+.faq-cta-body{
+  font-size:13px;font-weight:400;
+  color:var(--off);line-height:1.75;
+  margin-bottom:32px;
+}
+.faq-cta-prices{
+  display:flex;flex-direction:column;gap:10px;
+  margin-bottom:28px;
+}
+.faq-price-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 14px;background:var(--bg);
+  border:1px solid var(--border);
+}
+.faq-pr-name{
+  font-size:12px;font-weight:600;color:var(--white)
+}
+.faq-pr-val{
+  font-family:'Cormorant',serif;
+  font-size:22px;font-weight:500;color:var(--gold);
+}
+.btn-faq{
+  display:block;width:100%;
+  font-size:13px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  background:var(--gold);color:var(--bg);
+  padding:16px;text-align:center;
+  text-decoration:none;transition:.25s;
+}
+.btn-faq:hover{background:var(--gold2)}
+.btn-faq-ghost{
+  display:block;width:100%;
+  font-size:11px;font-weight:400;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--off);border:1px solid var(--border2);
+  padding:14px;text-align:center;
+  text-decoration:none;transition:.25s;
+  margin-top:10px;
+}
+.btn-faq-ghost:hover{border-color:var(--golddim);color:var(--white)}
+
+/* ══ CTA FINAL ══ */
+.cta-final{
+  padding:180px 0;
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.cta-final::before{
+  content:'';position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:900px;height:600px;
+  background:radial-gradient(ellipse,rgba(191,155,78,.07) 0%,transparent 65%);
+  pointer-events:none;
+  animation:glow 7s ease-in-out infinite;
+}
+.cta-pre{
+  font-size:10px;font-weight:700;
+  letter-spacing:.38em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:24px;
+}
+.cta-h{
+  font-family:'Cormorant',serif;
+  font-size:clamp(46px,6vw,86px);
+  font-weight:300;line-height:1.02;
+  color:var(--white);margin-bottom:20px;
+}
+.cta-h em{font-style:italic;color:var(--gold)}
+.cta-sub{
+  font-size:16px;font-weight:400;
+  color:var(--off);max-width:520px;
+  margin:0 auto 52px;line-height:1.6;
+}
+.cta-sub strong{color:var(--white);font-weight:500}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
+.btn-cta{
+  font-size:12px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  background:var(--gold);color:var(--bg);
+  padding:20px 56px;text-decoration:none;
+  display:inline-block;transition:.25s;
+}
+.btn-cta:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-cta-o{
+  font-size:12px;font-weight:400;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--off);border:1px solid var(--border2);
+  padding:20px 40px;text-decoration:none;
+  display:inline-block;transition:.25s;
+}
+.btn-cta-o:hover{border-color:var(--golddim);color:var(--white)}
+.cta-note{
+  font-size:12px;font-weight:400;
+  color:var(--muted);letter-spacing:.06em;
+}
+/* urgency countdown */
+.cta-urgency{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(200,75,60,.1);
+  border:1px solid rgba(200,75,60,.25);
+  padding:10px 20px;margin-bottom:36px;
+  font-size:12px;font-weight:600;
+  color:#e06055;letter-spacing:.1em;
+}
+.cta-urgency::before{
+  content:'●';color:var(--danger);
+  animation:pulse 2s ease-in-out infinite;
+}
+
+/* ══ FOOTER ══ */
+footer{
+  border-top:1px solid var(--border);
+  padding:36px 64px;
+  display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;gap:20px;
+  background:var(--bg2);
+}
+.ft-brand{
+  font-family:'Cormorant',serif;
+  font-size:16px;font-weight:500;
+  letter-spacing:.1em;color:var(--white);
+}
+.ft-brand em{color:var(--gold);font-style:italic}
+.ft-tag{
+  font-size:11px;font-weight:400;
+  font-style:italic;color:var(--muted);margin-top:3px;
+}
+.ft-links{display:flex;gap:28px;list-style:none}
+.ft-links a{
+  font-size:11px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:.2s;
+}
+.ft-links a:hover{color:var(--off)}
+
+/* ══ GALERIA ══ */
+.galeria{
+  background:var(--bg);
+  border-bottom:1px solid var(--border);
+  overflow:hidden;
+}
+.galeria-strip{
+  display:flex;
+  height:350px;
+  gap:0;
+  position:relative;
+  overflow:hidden;
+  animation:scroll-left 100s linear infinite;
+  align-items:center;
+  
+}
+.galeria-strip::before{
+  content:'';position:absolute;
+  left:0;top:0;bottom:0;width:250px;
+  background:linear-gradient(90deg, var(--bg) 0%, transparent 100%);
+  z-index:20;pointer-events:none;
+}
+.galeria-strip::after{
+  content:'';position:absolute;
+  right:0;top:0;bottom:0;width:250px;
+  background:linear-gradient(270deg, var(--bg) 0%, transparent 100%);
+  z-index:20;pointer-events:none;
+}
+@keyframes scroll-left{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+.galeria-strip:hover{
+  animation-play-state:paused;
+}
+.gal-item{
+  flex:0 0 auto;width:197px;height:350px;
+  aspect-ratio:9/16;
+  position:relative;overflow:hidden;
+  flex-shrink:0;
+}
+.gal-item img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center center;
+  display:block;
+  filter:brightness(.82) contrast(1.08) saturate(.85);
+  transition:transform .7s ease, filter .4s ease;
+}
+.gal-item:hover img{
+  transform:scale(1.05);
+  filter:brightness(.9) contrast(1.06) saturate(.9);
+}
+
+.gal-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(7,6,4,.5) 0%,transparent 50%);
+  z-index:2;pointer-events:none;
+  opacity:0;transition:.3s;
+}
+.gal-item:hover .gal-overlay{opacity:1}
+.gal-replace{
+  position:absolute;bottom:10px;left:10px;
+  font-size:8px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);
+  background:rgba(7,6,4,.7);
+  border:1px solid var(--border2);
+  padding:3px 8px;
+}
+
+.galeria-caption{
+  text-align:center;
+  padding:12px 0;
+  border-top:1px solid var(--border);
+  font-size:10px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+ .btn-main,.btn-cta{min-height:48px;padding:16px 24px;font-size:12px;width:100%;}
+ .hero-btns{flex-direction:column;gap:10px}
+}
+@media(max-width:980px){
+  nav{padding:16px 24px}
+  .nav-r .nav-link{display:none}
+  .wrap{padding:0 24px}
+  .hero{grid-template-columns:1fr}
+  .hero-left{padding:130px 24px 60px}
+  .hero-right{height:55vw;min-height:240px}
+  .hero-right::after{display:none}
+  .hero-stats{position:static;grid-template-columns:repeat(2,1fr)}
+  .galeria-strip{height:250px}
+  .gal-tall{flex:1}
+  .agit-grid,.pac-head,.quem-grid,.faq-grid{grid-template-columns:1fr;gap:48px}
+  .agit-stats{grid-template-columns:1fr 1fr}
+  .pac-cards{grid-template-columns:1fr}
+  .como-steps{grid-template-columns:1fr 1fr}
+  .como-steps::before{display:none}
+  .cstep{padding:0 0 40px}
+  .prova-grid{grid-template-columns:1fr}
+  .qcard{grid-template-columns:1fr}
+  .garantia-inner{flex-direction:column;gap:24px}
+  .faq-cta-box{position:static}
+  footer{flex-direction:column;align-items:flex-start;padding:24px}
+}
+@media(max-width:560px){
+  .como-steps,.agit-stats{grid-template-columns:1fr}
+  .hero-stats{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Roncolato <em>&</em> Thaynara</div>
+  <div class="nav-r">
+    <a href="#pacotes" class="nav-link">Pacotes</a>
+    <a href="#como" class="nav-link">Como funciona</a>
+    <a href="#faq" class="nav-link">Dúvidas</a>
+    <a href="#contato" class="nav-btn">Garantir minha vaga</a>
+  </div>
+</nav>
+
+<!-- URGENCY BAR -->
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <h1 class="hero-h1 au d2">
+      <span class="h1-normal">Presença</span>
+      <span class="h1-italic">que Vende</span>
+    </h1>
+
+    <div class="hero-div au d3"></div>
+
+    <p class="hero-sub au d3">
+      Sua imagem é a primeira coisa que as pessoas veem. Antes de qualquer conversa, antes de qualquer proposta.<br><br>
+      <strong>Nós transformamos sua presença visual em autoridade, confiança e vendas reais.</strong><br><br>
+      Em uma tarde sai com fotos profissionais, consultoria de estilo e um guia prático de posicionamento.
+    </p>
+
+    <div class="hero-proof au d4">
+      <div class="proof-avatars">
+        <div class="proof-av"><img src="../ensaio/retratos_01_1x.webp" alt="Cliente"/></div>
+        <div class="proof-av"><img src="../ensaio/retratos_07_1x.webp" alt="Cliente"/></div>
+        <div class="proof-av"><img src="../ensaio/retratos_09_1x.webp" alt="Cliente"/></div>
+        <div class="proof-av"><img src="../ensaio/retratos_11_1x.webp" alt="Cliente"/></div>
+      </div>
+      <span class="proof-txt"><strong>+40 empresários</strong> já transformaram sua presença</span>
+    </div>
+
+    <div class="hero-btns au d5">
+      <a href="#pacotes" class="btn-main">Quero transformar minha imagem</a>
+      <a href="#como" class="btn-sec">Como funciona</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <!-- RETRATO 1 Rodrigo (substituir pela sua foto) -->
+    <div class="hero-portrait">
+      <img
+        src="/assets/IMG/site/links-bg.jpg.jpg"
+        alt="Retrato profissional Rodrigo Roncolato"
+      />
+      <div class="portrait-replace">Rodrigo</div>
+      <div class="portrait-label">
+        <div class="portrait-name">Rodrigo Roncolato</div>
+        <div class="portrait-role">Fotografia · Estratégia de Marca</div>
+      </div>
+    </div>
+    <!-- RETRATO 2 Thaynara (substituir pela foto dela) -->
+    <div class="hero-portrait">
+      <img
+        src="/assets/IMG/site/thaynara.jpg"
+        alt="Retrato profissional Thaynara"
+      />
+      <div class="portrait-replace">Thaynara</div>
+      <div class="portrait-label">
+        <div class="portrait-name">Thaynara</div>
+        <div class="portrait-role">Consultoria de Imagem · Estilo</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-stats ai d6">
+    <div class="hstat">
+      <div class="hstat-val">20+</div>
+      <div class="hstat-lbl">Anos de experiência</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-val">1 tarde</div>
+      <div class="hstat-lbl">Do briefing à entrega</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-val">2</div>
+      <div class="hstat-lbl">Especialistas dedicados</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-val">4 vagas</div>
+      <div class="hstat-lbl">Disponíveis este mês</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item"><span>✦</span> Fotografia Corporativa</span>
+    <span class="ticker-item"><span>✦</span> Consultoria de Imagem</span>
+    <span class="ticker-item"><span>✦</span> Autoridade Visual</span>
+    <span class="ticker-item"><span>✦</span> Maquiagem Profissional</span>
+    <span class="ticker-item"><span>✦</span> Guia Estratégico</span>
+    <span class="ticker-item"><span>✦</span> Vídeos de Conteúdo</span>
+    <span class="ticker-item"><span>✦</span> Posicionamento de Mercado</span>
+    <span class="ticker-item"><span>✦</span> Fotografia Corporativa</span>
+    <span class="ticker-item"><span>✦</span> Consultoria de Imagem</span>
+    <span class="ticker-item"><span>✦</span> Autoridade Visual</span>
+    <span class="ticker-item"><span>✦</span> Maquiagem Profissional</span>
+    <span class="ticker-item"><span>✦</span> Guia Estratégico</span>
+    <span class="ticker-item"><span>✦</span> Vídeos de Conteúdo</span>
+    <span class="ticker-item"><span>✦</span> Posicionamento de Mercado</span>
+  </div>
+</div>
+
+<!-- AGITAÇÃO -->
+<section class="agit">
+  <div class="wrap">
+    <div class="agit-grid">
+      <div>
+        <div class="stag"><span>O problema real</span></div>
+        <h2 class="sec-h">Sua foto já está<br><em>custando negócios.</em></h2>
+        <div class="agit-copy">
+          <p class="agit-lede">
+            Antes de qualquer reunião, antes do seu pitch, antes da sua proposta <strong>as pessoas te pesquisam.</strong> Veem sua foto. Formam uma opinião em segundos.
+          </p>
+          <div class="agit-quote">
+            <p>"Sua foto fala mais alto que suas palavras. O que ela está dizendo sobre você?"</p>
+          </div>
+          <p class="agit-lede">
+            No BNI, no LinkedIn, no Instagram, no WhatsApp você está sendo julgado pela sua imagem o tempo inteiro. <strong>A questão não é se sua imagem fala por você. É o que ela está dizendo.</strong>
+          </p>
+        </div>
+      </div>
+      <div class="agit-stats">
+        <div class="astat">
+          <div class="astat-n">7s</div>
+          <div class="astat-t">A primeira impressão</div>
+          <div class="astat-s">É o tempo que alguém leva para formar uma opinião sobre você antes de você falar qualquer coisa</div>
+        </div>
+        <div class="astat">
+          <div class="astat-n">93%</div>
+          <div class="astat-t">Comunicação não-verbal</div>
+          <div class="astat-s">Da percepção que as pessoas têm de você é formada pela imagem, postura e presença visual</div>
+        </div>
+        <div class="astat">
+          <div class="astat-n">3×</div>
+          <div class="astat-t">Mais engajamento</div>
+          <div class="astat-s">Perfis com foto profissional geram até 3x mais conexões e oportunidades no LinkedIn</div>
+        </div>
+        <div class="astat">
+          <div class="astat-n">1ª</div>
+          <div class="astat-t">Impressão é permanente</div>
+          <div class="astat-s">Você não tem uma segunda chance de causar uma primeira impressão poderosa</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO_TEMP -->
+<section class="como" id="como">
+  <div class="wrap">
+    <div class="como-head">
+      <div class="stag"><span>Como funciona</span></div>
+      <h2 class="sec-h">Simples. Dirigido.<br><em>Transformador.</em></h2>
+    </div>
+    <div class="como-steps">
+      <div class="cstep">
+        <div class="cstep-n"><span class="cstep-nv">01</span></div>
+        <div class="cstep-t">Reunião de briefing</div>
+        <div class="cstep-b">30 minutos online. Entendemos seus objetivos, mercado e como sua imagem precisa comunicar. Sem achismo tudo estratégico.</div>
+      </div>
+      <div class="cstep">
+        <div class="cstep-n"><span class="cstep-nv">02</span></div>
+        <div class="cstep-t">Diagnóstico + looks</div>
+        <div class="cstep-b">Thaynara define seu diagnóstico de imagem e planeja os 3 looks. Você recebe o checklist pré-ensaio e chega no dia sem dúvidas.</div>
+      </div>
+      <div class="cstep">
+        <div class="cstep-n"><span class="cstep-nv">03</span></div>
+        <div class="cstep-t">Dia do ensaio</div>
+        <div class="cstep-b">Aproximadamente 1 hora no estúdio. Maquiagem profissional (15-20 min) + ensaio dirigido por Rodrigo, com Thaynara orientando presença em tempo real. Capturamos 4 tipos de fotos: retrato executivo, meia-altura, corpo inteiro e contextuais.</div>
+      </div>
+      <div class="cstep">
+        <div class="cstep-n"><span class="cstep-nv">04</span></div>
+        <div class="cstep-t">Entrega completa</div>
+        <div class="cstep-b">Em até 7 dias úteis: fotos tratadas + guia de imagem personalizado (PDF) + guia estratégico de uso por canal. Sua nova presença, pronta.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- GALERIA DE RETRATOS -->
+<section class="galeria">
+  <div class="galeria-strip">
+    <div class="gal-item"><img src="../ensaio/retratos_01_1x.webp" alt="Retrato cliente"/><div class="gal-overlay"><span class="gal-replace">Cliente real</span></div></div>
+    <div class="gal-item"><img src="../ensaio/retratos_05_1x.webp" alt="Retrato cliente"/><div class="gal-overlay"><span class="gal-replace">Cliente real</span></div></div>
+    <div class="gal-item"><img src="../ensaio/retratos_07_1x.webp" alt="Retrato cliente"/><div class="gal-overlay"><span class="gal-replace">Cliente real</span></div></div>
+    <div class="gal-item"><img src="../ensaio/retratos_09_1x.webp" alt="Retrato cliente"/><div class="gal-overlay"><span class="gal-replace">Cliente real</span></div></div>
+    <div class="gal-item"><img src="../ensaio/retratos_11_1x.webp" alt="Retrato cliente"/><div class="gal-overlay"><span class="gal-replace">Cliente real</span></div></div>
+    <div class="gal-item"><img src="../ensaio/retratos_12_1x.webp" alt="Retrato cliente"/><div class="gal-overlay"><span class="gal-replace">Cliente real</span></div></div>
+    <div class="gal-item"><img src="../ensaio/retratos_13_1x.webp" alt="Retrato cliente"/><div class="gal-overlay"><span class="gal-replace">Cliente real</span></div></div>
+    <div class="gal-item"><img src="../ensaio/retratos_15_1x.webp" alt="Retrato cliente"/><div class="gal-overlay"><span class="gal-replace">Cliente real</span></div></div>
+    <div class="gal-item"><img src="../ensaio/retratos_16_1x.webp" alt="Retrato cliente"/><div class="gal-overlay"><span class="gal-replace">Cliente real</span></div></div>
+    <div class="gal-item"><img src="../ensaio/retratos_17_1x.webp" alt="Retrato cliente"/><div class="gal-overlay"><span class="gal-replace">Cliente real</span></div></div>
+    <div class="gal-item"><img src="../ensaio/retratos_18_1x.webp" alt="Retrato cliente"/><div class="gal-overlay"><span class="gal-replace">Cliente real</span></div></div>
+    <div class="gal-item"><img src="../ensaio/retratos_20_1x.webp" alt="Retrato cliente"/><div class="gal-overlay"><span class="gal-replace">Cliente real</span></div></div>
+    <div class="gal-item"><img src="../ensaio/retratos_21_1x.webp" alt="Retrato cliente"/><div class="gal-overlay"><span class="gal-replace">Cliente real</span></div></div>
+    <div class="gal-item"><img src="../ensaio/retratos_22_1x.webp" alt="Retrato cliente"/><div class="gal-overlay"><span class="gal-replace">Cliente real</span></div></div>
+    <div class="gal-item"><img src="../ensaio/retratos_24_1x.webp" alt="Retrato cliente"/><div class="gal-overlay"><span class="gal-replace">Cliente real</span></div></div>
+    <div class="gal-item"><img src="../ensaio/retratos_01_1x.webp" alt="Retrato cliente"/><div class="gal-overlay"><span class="gal-replace">Cliente real</span></div></div>
+  </div>
+</section>
+<section class="pacotes" id="pacotes">
+  <div class="wrap">
+    <div class="pac-head">
+      <div>
+        <div class="stag"><span>Pacotes</span></div>
+        <h2 class="sec-h">Escolha como você<br>quer <em>aparecer</em></h2>
+      </div>
+      <div>
+        <p class="pac-lead">
+          Dois pacotes completos <strong>ambos incluem tudo</strong> que você precisa para sair com uma imagem profissional real: consultoria, maquiagem, estúdio e direção criativa. A diferença está no volume e profundidade.
+        </p>
+        <div class="pac-anchor">Já inclui estúdio, maquiagem e consultoria de estilo em ambos</div>
+      </div>
+    </div>
+
+    <div class="pac-cards">
+
+      <!-- PACOTE 1 -->
+      <div class="pcard">
+        <div class="pc-num">Pacote 01 Essencial</div>
+        <h3 class="pc-title">Presença<br><em>Essencial</em></h3>
+        <p class="pc-tagline">Para quem quer uma imagem de autoridade sólida e consistente em todas as plataformas. Ideal para quem está começando a investir em posicionamento visual.</p>
+
+        <!-- RODRIGO -->
+        <div class="pc-partner">
+          <div class="pc-pav">R</div>
+          <span class="pc-pname">Rodrigo Roncolato</span>
+          <span class="pc-prole">Fotografia</span>
+        </div>
+        <ul class="pc-items">
+          <li class="pc-item">
+            <div class="pc-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#BF9B4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-item-t">Ensaio de 1 hora</div><div class="pc-item-s">Estúdio profissional com direção criativa completa</div></div>
+          </li>
+          <li class="pc-item">
+            <div class="pc-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#BF9B4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-item-t">20 fotos tratadas</div><div class="pc-item-s">Seleção e edição profissional das melhores imagens</div></div>
+          </li>
+          <li class="pc-item">
+            <div class="pc-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#BF9B4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-item-t">Maquiagem profissional</div><div class="pc-item-s">Preparo completo no estúdio antes do ensaio</div></div>
+          </li>
+          <li class="pc-item">
+            <div class="pc-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#BF9B4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-item-t">Estúdio incluso</div><div class="pc-item-s">Locação, iluminação e infraestrutura profissional</div></div>
+          </li>
+          <li class="pc-item">
+            <div class="pc-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#BF9B4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-item-t">Guia de uso estratégico</div><div class="pc-item-s">Como aplicar suas imagens em cada canal</div></div>
+          </li>
+        </ul>
+
+        <div class="pc-div"></div>
+
+        <!-- THAYNARA -->
+        <div class="pc-partner">
+          <div class="pc-pav">T</div>
+          <span class="pc-pname">Thaynara</span>
+          <span class="pc-prole">Consultoria de Imagem</span>
+        </div>
+        <ul class="pc-items">
+          <li class="pc-item">
+            <div class="pc-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#BF9B4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-item-t">Diagnóstico de imagem</div><div class="pc-item-s">Análise do objetivo estratégico e identidade visual pessoal</div></div>
+          </li>
+          <li class="pc-item">
+            <div class="pc-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#BF9B4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-item-t">Planejamento de 3 looks</div><div class="pc-item-s">Seleção estratégica de conjuntos para o ensaio</div></div>
+          </li>
+          <li class="pc-item">
+            <div class="pc-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#BF9B4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-item-t">Direção completa no ensaio</div><div class="pc-item-s">Presente no dia postura, expressão e estilo em tempo real</div></div>
+          </li>
+          <li class="pc-item">
+            <div class="pc-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#BF9B4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-item-t">Guia de imagem personalizado</div><div class="pc-item-s">PDF exclusivo com sua identidade visual definida</div></div>
+          </li>
+          <li class="pc-item">
+            <div class="pc-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#BF9B4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-item-t">Checklist pré-ensaio</div><div class="pc-item-s">Tudo o que você precisa preparar antes do dia</div></div>
+          </li>
+        </ul>
+
+        <div class="pc-price-wrap">
+          <div>
+            <div class="pc-price"><sup>R$</sup>2.500</div>
+            <div class="pc-price-note">Investimento único · à vista</div>
+          </div>
+          <a href="#contato" class="btn-pac">Quero este pacote</a>
+        </div>
+      </div>
+
+      <!-- PACOTE 2 -->
+      <div class="pcard best">
+        <div class="best-badge">Mais completo</div>
+        <div class="pc-num">Pacote 02 Premium</div>
+        <h3 class="pc-title">Presença<br><em>Premium</em></h3>
+        <p class="pc-tagline">Para quem quer dominar todos os canais com vídeos de conteúdo editados incluídos. A escolha de quem leva posicionamento a sério.</p>
+
+        <!-- RODRIGO -->
+        <div class="pc-partner">
+          <div class="pc-pav">R</div>
+          <span class="pc-pname">Rodrigo Roncolato</span>
+          <span class="pc-prole">Fotografia + Vídeo</span>
+        </div>
+        <ul class="pc-items">
+          <li class="pc-item">
+            <div class="pc-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#BF9B4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-item-t">Ensaio de 1 hora</div><div class="pc-item-s">Estúdio profissional com direção criativa completa + vídeos</div></div>
+          </li>
+          <li class="pc-item">
+            <div class="pc-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#BF9B4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-item-t">60 fotos tratadas</div><div class="pc-item-s">Seleção ampla para múltiplos canais e contextos</div></div>
+          </li>
+          <li class="pc-item">
+            <div class="pc-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#BF9B4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-item-t">Maquiagem profissional</div><div class="pc-item-s">Preparo completo no estúdio antes do ensaio</div></div>
+          </li>
+          <li class="pc-item">
+            <div class="pc-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#BF9B4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-item-t">Estúdio incluso</div><div class="pc-item-s">Locação, iluminação e infraestrutura profissional</div></div>
+          </li>
+          <li class="pc-item">
+            <div class="pc-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#BF9B4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-item-t">2 vídeos de conteúdo</div><div class="pc-item-s">Gravados e editados prontos para Instagram e LinkedIn</div></div>
+          </li>
+          <li class="pc-item">
+            <div class="pc-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#BF9B4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-item-t">Guia de uso estratégico</div><div class="pc-item-s">Como aplicar imagens e vídeos em cada canal</div></div>
+          </li>
+        </ul>
+
+        <div class="pc-div"></div>
+
+        <!-- THAYNARA -->
+        <div class="pc-partner">
+          <div class="pc-pav">T</div>
+          <span class="pc-pname">Thaynara</span>
+          <span class="pc-prole">Consultoria de Imagem</span>
+        </div>
+        <ul class="pc-items">
+          <li class="pc-item">
+            <div class="pc-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#BF9B4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-item-t">Diagnóstico de imagem</div><div class="pc-item-s">Análise do objetivo estratégico e identidade visual pessoal</div></div>
+          </li>
+          <li class="pc-item">
+            <div class="pc-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#BF9B4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-item-t">Planejamento de 3 looks</div><div class="pc-item-s">Seleção estratégica de conjuntos para o ensaio</div></div>
+          </li>
+          <li class="pc-item">
+            <div class="pc-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#BF9B4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-item-t">Direção completa no ensaio</div><div class="pc-item-s">Presente no dia postura, expressão e estilo em tempo real</div></div>
+          </li>
+          <li class="pc-item">
+            <div class="pc-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#BF9B4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-item-t">Guia de imagem personalizado</div><div class="pc-item-s">PDF exclusivo com sua identidade visual definida</div></div>
+          </li>
+          <li class="pc-item">
+            <div class="pc-check"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#BF9B4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pc-item-t">Checklist pré-ensaio</div><div class="pc-item-s">Tudo o que você precisa preparar antes do dia</div></div>
+          </li>
+        </ul>
+
+        <div class="pc-price-wrap">
+          <div>
+            <div class="pc-price"><sup>R$</sup>3.500</div>
+            <div class="pc-price-note">Investimento único · à vista</div>
+          </div>
+          <a href="#contato" class="btn-pac">Garantir minha vaga</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- GARANTIA -->
+<section class="garantia">
+  <div class="wrap">
+    <div class="garantia-inner">
+      <div class="garantia-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#BF9B4E" stroke-width="1">
+          <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7l-9-5z"/>
+          <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="garantia-copy">
+        <div class="garantia-title">Compromisso de entrega</div>
+        <p class="garantia-body">
+          Trabalhamos com <strong>vagas limitadas por mês</strong> justamente para garantir que cada cliente receba atenção total. Não somos uma fábrica de fotos somos estrategistas de imagem. Se por qualquer motivo o resultado não refletir o que foi alinhado no briefing, <strong>refazemos sem custo adicional.</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- PROVA SOCIAL -->
+<section class="prova">
+  <div class="wrap">
+    <div class="stag"><span>O que dizem</span></div>
+    <h2 class="sec-h">Resultados que<br><em>falam por si</em></h2>
+    <div class="prova-grid">
+      <div class="test-card">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Depois do ensaio, meu LinkedIn mudou completamente. Em 2 semanas fechei 3 reuniões com clientes que me encontraram lá e todos comentaram na foto."</p>
+        <div class="test-author">
+          <div class="test-av"><span class="test-av-ph">Foto</span></div>
+          <div>
+            <div class="test-name">Marcus Tavares</div>
+            <div class="test-role">Empresário · Goiânia</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"A Thaynara me ajudou a entender o que minha imagem precisava comunicar antes mesmo de eu entrar no estúdio. O resultado foi muito além das fotos."</p>
+        <div class="test-author">
+          <div class="test-av"><span class="test-av-ph">Foto</span></div>
+          <div>
+            <div class="test-name">Fernanda Lopes</div>
+            <div class="test-role">CEO de Agência Digital · Goiânia</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Tinha medo de não saber posar. Mas o Rodrigo dirige tudo você só precisa aparecer. As fotos pareciam de revista, mas eram eu mesmo."</p>
+        <div class="test-author">
+          <div class="test-av"><span class="test-av-ph">Foto</span></div>
+          <div>
+            <div class="test-name">Camila Souza</div>
+            <div class="test-role">Psicóloga & Coach · Goiânia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUEM SOMOS -->
+<section class="quem">
+  <div class="wrap">
+    <div class="stag"><span>Quem entrega</span></div>
+    <h2 class="sec-h">Dois especialistas.<br><em>Uma visão.</em></h2>
+    <div class="quem-grid">
+      <div class="qcard">
+        <div class="qphoto">
+          <img src="/assets/IMG/site/links-bg.jpg.jpg" alt="Rodrigo Roncolato"/>
+        </div>
+        <div>
+          <div class="qrole">Fotografia · Estratégia de Marca</div>
+          <div class="qname">Rodrigo Roncolato</div>
+          <p class="qbio">Estrategista de marca e fotógrafo corporativo com mais de 20 anos de experiência. Trabalha na interseção de fotografia e posicionamento transformando identidade em imagem e imagem em autoridade de mercado.</p>
+        </div>
+      </div>
+      <div class="qcard">
+        <div class="qphoto">
+          <img src="/assets/IMG/site/thaynara.jpg" alt="Thaynara"/>
+        </div>
+        <div>
+          <div class="qrole">Consultoria de Imagem · Estilo</div>
+          <div class="qname">Thaynara</div>
+          <p class="qbio">Consultora de imagem especializada em executivos e empresários. Faz o diagnóstico estratégico de imagem, planeja os looks e dirige a presença pessoal no ensaio garantindo que cada detalhe comunique autoridade.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="stag"><span>Dúvidas frequentes</span></div>
+    <h2 class="sec-h">Antes de decidir,<br><em>leia isso.</em></h2>
+    <div class="faq-grid">
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-txt">Preciso saber posar para fazer o ensaio?</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-a"><p class="faq-a-txt">Não. Essa é exatamente a razão de ter <strong>direção criativa no ensaio</strong>. Rodrigo dirige cada posição e Thaynara orienta sua presença em tempo real. Sua única função é aparecer o resto é com a gente.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-txt">Quanto tempo dura o dia do ensaio?</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-a"><p class="faq-a-txt">O ensaio dura aproximadamente <strong>1 hora no total</strong>, incluindo maquiagem profissional (15-20 minutos) + ensaio fotográfico dirigido (40-45 minutos). Rápido, eficiente e com resultado profissional.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-txt">Em quanto tempo recebo as fotos?</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-a"><p class="faq-a-txt">As fotos editadas e o guia de imagem personalizado são entregues em até <strong>7 dias úteis</strong> após o ensaio. Você recebe tudo em alta resolução pronto para uso imediato.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-txt">O estúdio fica onde?</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-a"><p class="faq-a-txt">O ensaio acontece em <strong>estúdio profissional em Goiânia-Goias</strong>. O local específico é <strong>definido em conjunto com você</strong> conforme sua preferência e disponibilidade. O estúdio e toda a infraestrutura já estão incluídos nos pacotes.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-txt">Qual a diferença real entre os pacotes?</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-a"><p class="faq-a-txt">Os <strong>entregáveis da Thaynara são idênticos</strong> nos dois pacotes. A diferença está no volume fotográfico (20 vs 60 fotos), no tempo de ensaio (1h vs 2h) e na inclusão de <strong>2 vídeos de conteúdo editados</strong> no Premium.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-txt">Posso parcelar o investimento?</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-a"><p class="faq-a-txt">Entre em contato e <strong>verificamos as possibilidades</strong> conforme sua situação. O mais importante é que você não deixe sua imagem esperando entre em contato e a gente encontra um formato que funcione.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-txt">Que tipos de fotos são capturados no ensaio?</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-a"><p class="faq-a-txt">Capturamos <strong>4 tipos de fotos</strong>: retrato executivo (headshot), meia-altura (mais natural), corpo inteiro e fotos contextuais. Isso garante que você tem imagens versáteis para <strong>LinkedIn, Instagram, website, mídia e apresentações</strong>.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-txt">A maquiagem está incluída?</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-a"><p class="faq-a-txt">Sim! A <strong>maquiagem profissional está 100% incluída</strong> nos dois pacotes. Duramos aproximadamente <strong>15-20 minutos</strong> na maquiagem (estilo natural/executivo) para você parecer apresentável e seguro diante das câmeras.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-txt">O que devo levar/usar no dia do ensaio?</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-a"><p class="faq-a-txt">Você recebe um <strong>briefing completo antes da data</strong> com recomendações de vestuário, cores que funcionam bem e o que evitar. O importante é vir confortável e confiante. A gente cuida do resto da transformação.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-txt">Quantas fotos recebo na entrega?</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-a"><p class="faq-a-txt">Pacote Essencial: <strong>20 fotos editadas em alta resolução</strong>. Pacote Premium: <strong>60 fotos</strong> + 2 vídeos de conteúdo editados. Todas as fotos vêm otimizadas para diferentes canais (redes sociais, website, mídia).</p></div>
+        </div>
+
+      </div>
+
+      <!-- FAQ CTA BOX -->
+      <div class="faq-cta-box">
+        <div class="faq-cta-tag">Vagas limitadas · Este mês</div>
+        <div class="faq-cta-title">Pronto para<br><em>aparecer do jeito certo?</em></div>
+        <p class="faq-cta-body">Solicite sua vaga agora. Em 30 minutos de conversa, você já sai com data marcada e o processo claro.</p>
+        <div class="faq-cta-prices">
+          <div class="faq-price-row">
+            <span class="faq-pr-name">Pacote Essencial</span>
+            <span class="faq-pr-val">R$ 2.500</span>
+          </div>
+          <div class="faq-price-row">
+            <span class="faq-pr-name">Pacote Premium</span>
+            <span class="faq-pr-val">R$ 3.500</span>
+          </div>
+        </div>
+        <a href="#contato" class="btn-faq">Garantir minha vaga</a>
+        <a href="#" class="btn-faq-ghost">Falar no WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final" id="contato">
+  <div class="wrap">
+    <div class="cta-urgency">Apenas 4 vagas disponíveis para o próximo mês</div>
+    <div class="cta-pre">A decisão mais simples que você vai tomar hoje</div>
+    <h2 class="cta-h">Sua imagem nova<br><em>começa agora.</em></h2>
+    <p class="cta-sub">
+      Cada semana que passa é mais uma semana com uma imagem que não representa quem você é. <strong>Não deixe sua presença visual para depois.</strong>
+    </p>
+    <div class="cta-btns">
+      <a href="#" class="btn-cta">Garantir minha vaga agora</a>
+      <a href="#" class="btn-cta-o">Falar no WhatsApp</a>
+    </div>
+    <div class="cta-note">Pacote Essencial R$ 2.500 · Pacote Premium R$ 3.500 · Goiânia-Goias · Vagas limitadas</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="ft-brand">Roncolato <em>&</em> Thaynara</div>
+    <div class="ft-tag">Transformar identidade em imagem e imagem em posicionamento.</div>
+  </div>
+  <ul class="ft-links">
+    <li><a href="#pacotes">Pacotes</a></li>
+    <li><a href="#como">Como funciona</a></li>
+    <li><a href="#faq">Dúvidas</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</footer>
+
+<script>
+function toggleFaq(btn){
+  const item=btn.parentElement;
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>{
+    i.classList.remove('open');
+    i.querySelector('.faq-icon').textContent='+';
+  });
+  if(!isOpen){
+    item.classList.add('open');
+    btn.querySelector('.faq-icon').textContent='×';
+  }
+}
+</script>
+
+</body>
+<!-- LAZY LOAD SPRINT 3 -->
+<script>
+document.querySelectorAll("img").forEach(img => img.loading = "lazy");
+</script>
+</html>

@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presença que Vende — Roncolato + Thaynara</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #0C0B09;
+  --bg2:      #111009;
+  --bg3:      #161410;
+  --surface:  #1C1A15;
+  --border:   #2A2720;
+  --gold:     #C9A84C;
+  --gold-dim: #7A6530;
+  --white:    #F2EFE8;
+  --off:      #B8B2A7;
+  --muted:    #6A6458;
+  --rule:     #252219;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── GRAIN ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.anim-up  { animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both; }
+.anim-in  { animation: fadeIn 1.2s ease both; }
+.d1 { animation-delay: 0.1s; }
+.d2 { animation-delay: 0.25s; }
+.d3 { animation-delay: 0.4s; }
+.d4 { animation-delay: 0.55s; }
+.d5 { animation-delay: 0.7s; }
+
+/* ══════════════════════════════
+   NAV
+══════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 60px;
+  background: linear-gradient(to bottom, rgba(12,11,9,0.95) 0%, rgba(12,11,9,0) 100%);
+  backdrop-filter: blur(2px);
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.nav-logo span {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--off);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--white); }
+
+.nav-cta {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--gold);
+  padding: 11px 24px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.nav-cta:hover { opacity: 0.85; }
+
+/* ══════════════════════════════
+   HERO
+══════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+/* left panel */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 140px 60px 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.eyebrow-line {
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+  transform-origin: left;
+  animation: lineGrow 0.8s ease 0.2s both;
+}
+
+.eyebrow-text {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(56px, 6.5vw, 88px);
+  font-weight: 300;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+  color: var(--white);
+}
+
+.hero-title em {
+  display: block;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+}
+
+.hero-sub {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--off);
+  max-width: 400px;
+  margin-bottom: 52px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--gold);
+  padding: 16px 36px;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+  display: inline-block;
+}
+
+.btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+.btn-ghost {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--off);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 3px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.btn-ghost:hover { color: var(--white); border-color: var(--gold); }
+
+/* hero right — image */
+.hero-right {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-img-placeholder {
+  position: absolute;
+  inset: 0;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.hero-img-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--bg3) 0%, var(--surface) 50%, var(--bg3) 100%);
+}
+
+.placeholder-icon {
+  position: relative;
+  z-index: 1;
+  opacity: 0.2;
+}
+
+.placeholder-label {
+  position: relative;
+  z-index: 1;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* hero gradient overlay left */
+.hero-right::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 180px;
+  height: 100%;
+  background: linear-gradient(to right, var(--bg) 0%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* hero bottom stats */
+.hero-stats {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  display: flex;
+  border-top: 1px solid var(--border);
+  z-index: 10;
+}
+
+.stat-item {
+  flex: 1;
+  padding: 28px 40px;
+  border-right: 1px solid var(--border);
+  background: rgba(12,11,9,0.85);
+  backdrop-filter: blur(8px);
+}
+
+.stat-item:last-child { border-right: none; }
+
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--off);
+  letter-spacing: 0.05em;
+}
+
+/* ══════════════════════════════
+   SECTION COMMONS
+══════════════════════════════ */
+section { position: relative; }
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.s-line { width: 28px; height: 1px; background: var(--gold); }
+
+.s-tag {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 4.5vw, 60px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--white);
+}
+
+.section-title em { font-style: italic; color: var(--gold); }
+
+/* ══════════════════════════════
+   INTRO — "O que é"
+══════════════════════════════ */
+.intro {
+  padding: 130px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.intro-left {}
+
+.intro-body {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--off);
+  margin-top: 32px;
+}
+
+.intro-body strong {
+  color: var(--white);
+  font-weight: 500;
+}
+
+.intro-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.intro-img {
+  aspect-ratio: 3/4;
+  background: var(--surface);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-img.tall {
+  grid-row: span 2;
+  aspect-ratio: auto;
+}
+
+.intro-img::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--bg3), var(--surface));
+}
+
+.intro-img-label {
+  position: relative;
+  z-index: 1;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ══════════════════════════════
+   PRODUTOS
+══════════════════════════════ */
+.produtos {
+  padding: 130px 0;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--rule);
+}
+
+.produtos-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 72px;
+}
+
+.produtos-lead {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--off);
+  margin-top: 20px;
+}
+
+/* produto cards */
+.produtos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.produto-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 48px 44px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.produto-card:hover { border-color: var(--gold-dim); }
+
+.produto-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 0;
+  background: var(--gold);
+  transition: height 0.4s ease;
+}
+
+.produto-card:hover::before { height: 100%; }
+
+.produto-tag {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.produto-tag::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.produto-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px;
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.produto-title em { font-style: italic; color: var(--gold); }
+
+.produto-desc {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--off);
+  margin-bottom: 36px;
+}
+
+.produto-includes {
+  list-style: none;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.produto-includes li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--off);
+  line-height: 1.5;
+}
+
+.produto-includes li::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.produto-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.produto-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1;
+}
+
+.produto-price sup {
+  font-size: 0.38em;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  color: var(--muted);
+  vertical-align: super;
+}
+
+.produto-price .consulta {
+  font-size: 22px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  color: var(--off);
+}
+
+.btn-card {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border: 1px solid var(--gold-dim);
+  padding: 12px 22px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-card:hover {
+  background: var(--gold);
+  color: var(--bg);
+  border-color: var(--gold);
+}
+
+/* ══════════════════════════════
+   COMO FUNCIONA
+══════════════════════════════ */
+.como {
+  padding: 130px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.como-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 72px;
+  border: 1px solid var(--border);
+}
+
+.como-step {
+  padding: 40px 32px;
+  border-right: 1px solid var(--border);
+  position: relative;
+  transition: background 0.3s;
+}
+
+.como-step:last-child { border-right: none; }
+.como-step:hover { background: var(--surface); }
+
+.step-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px;
+  font-weight: 300;
+  color: var(--border);
+  line-height: 1;
+  margin-bottom: 24px;
+  transition: color 0.3s;
+}
+
+.como-step:hover .step-num { color: var(--gold-dim); }
+
+.step-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--white);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.step-desc {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--off);
+  line-height: 1.7;
+}
+
+.step-connector {
+  position: absolute;
+  top: 44px;
+  right: -12px;
+  width: 24px;
+  height: 24px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  font-size: 10px;
+  color: var(--gold);
+}
+
+.como-step:last-child .step-connector { display: none; }
+
+/* ══════════════════════════════
+   PARCEIROS — QUEM SOMOS
+══════════════════════════════ */
+.parceiros {
+  padding: 130px 0;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--rule);
+}
+
+.parceiros-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-top: 72px;
+}
+
+.parceiro-card {
+  background: var(--surface);
+  padding: 52px 48px;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 36px;
+  align-items: start;
+  border: 1px solid var(--border);
+}
+
+.parceiro-photo {
+  width: 140px;
+  height: 140px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.parceiro-photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--bg3), var(--surface));
+}
+
+.photo-placeholder {
+  position: relative;
+  z-index: 1;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+}
+
+.parceiro-info {}
+
+.parceiro-role {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.parceiro-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+
+.parceiro-bio {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--off);
+  line-height: 1.75;
+}
+
+/* ══════════════════════════════
+   CTA FINAL
+══════════════════════════════ */
+.cta-section {
+  padding: 160px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-pre {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+
+.cta-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(44px, 6vw, 80px);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+
+.cta-title em { font-style: italic; color: var(--gold); }
+
+.cta-sub {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--off);
+  max-width: 500px;
+  margin: 0 auto 52px;
+  line-height: 1.75;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-large {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--gold);
+  padding: 18px 48px;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+  display: inline-block;
+}
+
+.btn-large:hover { opacity: 0.88; transform: translateY(-2px); }
+
+.btn-outline {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--off);
+  border: 1px solid var(--border);
+  padding: 18px 48px;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+  display: inline-block;
+}
+
+.btn-outline:hover { border-color: var(--gold-dim); color: var(--white); }
+
+.cta-note {
+  margin-top: 24px;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 40px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  background: var(--bg2);
+}
+
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--white);
+}
+
+.footer-brand span { color: var(--gold); font-style: italic; }
+
+.footer-tagline {
+  font-size: 11px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.footer-links a {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--off); }
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+@media (max-width: 900px) {
+  nav { padding: 20px 28px; }
+  .nav-links { display: none; }
+  .container { padding: 0 28px; }
+
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 120px 28px 60px; }
+  .hero-right { height: 50vw; min-height: 300px; }
+  .hero-right::after { display: none; }
+  .hero-stats { position: static; flex-wrap: wrap; }
+  .stat-item { padding: 20px 28px; }
+
+  .intro-grid,
+  .produtos-header,
+  .parceiros-grid { grid-template-columns: 1fr; gap: 48px; }
+
+  .intro-right { grid-template-columns: 1fr 1fr; }
+  .intro-img.tall { grid-row: span 1; }
+
+  .produtos-grid { grid-template-columns: 1fr; }
+  .como-grid { grid-template-columns: 1fr 1fr; }
+  .parceiro-card { grid-template-columns: 1fr; }
+
+  footer { flex-direction: column; align-items: flex-start; padding: 32px 28px; }
+  .footer-links { flex-wrap: wrap; gap: 20px; }
+}
+
+@media (max-width: 600px) {
+  .como-grid { grid-template-columns: 1fr; }
+  .intro-right { grid-template-columns: 1fr; }
+  .step-connector { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Roncolato <span>&</span> Thaynara</div>
+  <ul class="nav-links">
+    <li><a href="#produtos">Produtos</a></li>
+    <li><a href="#como">Como funciona</a></li>
+    <li><a href="#parceiros">Quem somos</a></li>
+  </ul>
+  <a href="#contato" class="nav-cta">Solicitar proposta</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow anim-in d1">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Imagem · Estilo · Fotografia</span>
+    </div>
+
+    <h1 class="hero-title anim-up d2">
+      Presença<br>
+      <em>que Vende</em>
+    </h1>
+
+    <p class="hero-sub anim-up d3">
+      Sua imagem é o argumento mais poderoso antes de você abrir a boca. Em uma tarde, você sai com presença, fotos e clareza de como se apresentar ao mercado.
+    </p>
+
+    <div class="hero-actions anim-up d4">
+      <a href="#produtos" class="btn-primary">Ver os produtos</a>
+      <a href="#como" class="btn-ghost">Como funciona</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-img-placeholder">
+      <svg class="placeholder-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#3A3530" stroke-width="0.8">
+        <rect x="3" y="3" width="18" height="18" rx="1"/>
+        <circle cx="8.5" cy="8.5" r="1.5"/>
+        <path d="M21 15l-5-5L5 21"/>
+      </svg>
+      <div class="placeholder-label">Foto hero — substituir</div>
+    </div>
+  </div>
+
+  <div class="hero-stats anim-up d5">
+    <div class="stat-item">
+      <div class="stat-num">20+</div>
+      <div class="stat-label">Anos de experiência</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1 tarde</div>
+      <div class="stat-label">Do briefing à imagem</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">2</div>
+      <div class="stat-label">Especialistas em você</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Impacto na sua autoridade</div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro" id="sobre">
+  <div class="container">
+    <div class="intro-grid">
+      <div class="intro-left">
+        <div class="section-eyebrow">
+          <div class="s-line"></div>
+          <span class="s-tag">O que é</span>
+        </div>
+        <h2 class="section-title">Imagem que<br><em>trabalha por você</em></h2>
+        <p class="intro-body">
+          <strong>Presença que Vende</strong> é um programa completo de construção de imagem profissional — unindo fotografia corporativa de alto nível com consultoria de estilo personalizada.<br><br>
+          Desenvolvido para empresários e executivos que entendem que <strong>imagem não é vaidade — é ferramenta comercial.</strong> Quem vê sua foto antes de te conhecer já formou uma opinião. A gente garante que ela seja a certa.
+        </p>
+      </div>
+
+      <div class="intro-right">
+        <div class="intro-img tall">
+          <span class="intro-img-label">Foto vertical — executivo</span>
+        </div>
+        <div class="intro-img">
+          <span class="intro-img-label">Detalhe / ambiente</span>
+        </div>
+        <div class="intro-img">
+          <span class="intro-img-label">Bastidor / processo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUTOS -->
+<section class="produtos" id="produtos">
+  <div class="container">
+    <div class="produtos-header">
+      <div>
+        <div class="section-eyebrow">
+          <div class="s-line"></div>
+          <span class="s-tag">Produtos</span>
+        </div>
+        <h2 class="section-title">Dois formatos,<br><em>um resultado</em></h2>
+      </div>
+      <p class="produtos-lead">
+        Para quem quer investir na própria imagem ou para empresas que querem alinhar toda a equipe a uma identidade visual coesa e profissional.
+      </p>
+    </div>
+
+    <div class="produtos-grid">
+
+      <!-- PRODUTO 1 -->
+      <div class="produto-card">
+        <div class="produto-tag">Produto 01 — Individual</div>
+        <h3 class="produto-title">Presença<br><em>que Vende</em></h3>
+        <p class="produto-desc">Para executivos e empresários que precisam de uma imagem que comunique autoridade, confiança e posicionamento.</p>
+        <ul class="produto-includes">
+          <li>Reunião de alinhamento de objetivos e mercado</li>
+          <li>Consultoria de estilo com Thaynara — paleta e presença pessoal</li>
+          <li>Preparo profissional com maquiagem no estúdio</li>
+          <li>Ensaio corporativo de 1h em estúdio profissional</li>
+          <li>Guia de uso estratégico das imagens por canal</li>
+        </ul>
+        <div class="produto-footer">
+          <div class="produto-price"><sup>R$</sup> 2.500</div>
+          <a href="#contato" class="btn-card">Quero este</a>
+        </div>
+      </div>
+
+      <!-- PRODUTO 2 -->
+      <div class="produto-card">
+        <div class="produto-tag">Produto 02 — Empresarial</div>
+        <h3 class="produto-title">Imagem<br><em>Corporativa</em></h3>
+        <p class="produto-desc">Para empresas que precisam alinhar a identidade visual da equipe ao posicionamento da marca. Do CEO ao time comercial.</p>
+        <ul class="produto-includes">
+          <li>Briefing estratégico com a liderança da empresa</li>
+          <li>Consultoria de imagem individual para cada colaborador</li>
+          <li>Ensaio fotográfico individual — estúdio profissional</li>
+          <li>Fotos de equipe e ambientes corporativos</li>
+          <li>Guia de identidade fotográfica e manual de uso</li>
+          <li>Modalidades: Time Executivo · Empresa Completa · Programa Anual</li>
+        </ul>
+        <div class="produto-footer">
+          <div class="produto-price"><span class="consulta">Sob consulta</span></div>
+          <a href="#contato" class="btn-card">Solicitar diagnóstico</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="como" id="como">
+  <div class="container">
+    <div class="section-eyebrow">
+      <div class="s-line"></div>
+      <span class="s-tag">Como funciona</span>
+    </div>
+    <h2 class="section-title">Em uma tarde,<br><em>tudo muda</em></h2>
+
+    <div class="como-grid">
+      <div class="como-step">
+        <div class="step-num">01</div>
+        <div class="step-title">Alinhamento</div>
+        <div class="step-desc">Reunião online para entender seus objetivos, mercado e como sua imagem precisa comunicar.</div>
+        <div class="step-connector">→</div>
+      </div>
+      <div class="como-step">
+        <div class="step-num">02</div>
+        <div class="step-title">Consultoria</div>
+        <div class="step-desc">Thaynara orienta paleta de cores, guarda-roupa e presença pessoal antes do dia do ensaio.</div>
+        <div class="step-connector">→</div>
+      </div>
+      <div class="como-step">
+        <div class="step-num">03</div>
+        <div class="step-title">Ensaio</div>
+        <div class="step-desc">Maquiagem profissional + 1h de ensaio dirigido no estúdio com Rodrigo Roncolato.</div>
+        <div class="step-connector">→</div>
+      </div>
+      <div class="como-step">
+        <div class="step-num">04</div>
+        <div class="step-title">Entrega</div>
+        <div class="step-desc">Fotos editadas + guia visual estratégico de como aplicar sua nova imagem em todos os canais.</div>
+        <div class="step-connector">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARCEIROS -->
+<section class="parceiros" id="parceiros">
+  <div class="container">
+    <div class="section-eyebrow">
+      <div class="s-line"></div>
+      <span class="s-tag">Quem entrega</span>
+    </div>
+    <h2 class="section-title">Dois especialistas,<br><em>uma visão</em></h2>
+
+    <div class="parceiros-grid">
+
+      <div class="parceiro-card">
+        <div class="parceiro-photo">
+          <span class="photo-placeholder">Foto<br>Rodrigo</span>
+        </div>
+        <div class="parceiro-info">
+          <div class="parceiro-role">Fotografia & Estratégia de Marca</div>
+          <div class="parceiro-name">Rodrigo Roncolato</div>
+          <p class="parceiro-bio">Estrategista de marca e fotógrafo corporativo com mais de 20 anos de experiência. Especialista em transformar identidade em imagem e imagem em posicionamento de mercado.</p>
+        </div>
+      </div>
+
+      <div class="parceiro-card">
+        <div class="parceiro-photo">
+          <span class="photo-placeholder">Foto<br>Thaynara</span>
+        </div>
+        <div class="parceiro-info">
+          <div class="parceiro-role">Consultoria de Imagem & Estilo</div>
+          <div class="parceiro-name">Thaynara</div>
+          <p class="parceiro-bio">Consultora de imagem especializada em executivos e empresários. Trabalha paleta de cores, guarda-roupa e presença pessoal para que cada detalhe comunique autoridade.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section" id="contato">
+  <div class="container">
+    <div class="cta-pre">Vagas limitadas por mês</div>
+    <h2 class="cta-title">Sua imagem está<br><em>pronta para vender?</em></h2>
+    <p class="cta-sub">Solicite uma conversa. Em 30 minutos entendemos o que sua imagem precisa comunicar e como podemos construir isso juntos.</p>
+    <div class="cta-buttons">
+      <a href="#" class="btn-large">Solicitar proposta</a>
+      <a href="#" class="btn-outline">Falar no WhatsApp</a>
+    </div>
+    <div class="cta-note">Produto Individual · R$ 2.500 · Empresarial sob consulta</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Roncolato <span>&</span> Thaynara</div>
+    <div class="footer-tagline">Transformar identidade em imagem e imagem em posicionamento.</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#produtos">Produtos</a></li>
+    <li><a href="#como">Como funciona</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>

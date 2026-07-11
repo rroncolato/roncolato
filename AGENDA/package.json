@@ -1,0 +1,32 @@
+{
+  "name": "gcal-notion-sync",
+  "version": "2.0.0",
+  "description": "Sincronização bidirecional completa entre Google Calendar e Notion",
+  "private": true,
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "sync": "node AGENDA/sync-full.js",
+    "sync-simple": "node AGENDA/sync-agenda.js",
+    "test-notion": "node AGENDA/test-notion.js",
+    "setup-cron": "bash AGENDA/setup-cron.sh",
+    "logs": "tail -f /var/log/gcal-notion-sync.log",
+    "deploy": "vercel --prod --yes"
+  },
+  "keywords": [
+    "calendar",
+    "notion",
+    "sync",
+    "google-calendar",
+    "automation"
+  ],
+  "author": "Rodrigo Roncolato",
+  "dependencies": {
+    "@notionhq/client": "^5.15.0",
+    "dotenv": "^16.0.3",
+    "googleapis": "^130.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

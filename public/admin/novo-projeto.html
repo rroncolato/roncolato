@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novo Projeto — Admin Roncolato</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles-admin.css">
+  <style>
+    .editor-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .editor-header {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      align-items: center;
+    }
+
+    .editor-header button {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+
+    .editor-content {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+    }
+
+    .editor-main textarea {
+      width: 100%;
+      min-height: 200px;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+
+    .editor-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .sidebar-box {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 16px;
+    }
+
+    .sidebar-box h3 {
+      margin: 0 0 12px 0;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #666;
+    }
+
+    .sidebar-box label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .sidebar-box input,
+    .sidebar-box select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      font-size: 13px;
+      font-family: var(--font);
+      margin-bottom: 12px;
+    }
+
+    .category-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .category-btn {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      background: #fff;
+      border-radius: 3px;
+      cursor: pointer;
+      text-align: left;
+      font-size: 13px;
+      transition: all 200ms;
+    }
+
+    .category-btn:hover {
+      background: #f0f0f0;
+    }
+
+    .category-btn.selected {
+      background: #F5C518;
+      border-color: #F5C518;
+      color: #000;
+      font-weight: 600;
+    }
+
+    .image-upload {
+      border: 2px dashed #ddd;
+      border-radius: 4px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 200ms;
+    }
+
+    .image-upload:hover {
+      border-color: #F5C518;
+      background: #fffaf0;
+    }
+
+    .image-upload.dragover {
+      border-color: #F5C518;
+      background: #fffaf0;
+    }
+
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .image-item {
+      position: relative;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .image-item img {
+      width: 100%;
+      height: 80px;
+      object-fit: cover;
+    }
+
+    .image-item-remove {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background: #f44;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .editor-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="wp-admin">
+
+<div id="wpwrap">
+
+  <!-- ADMIN BAR -->
+  <div id="wpadminbar">
+    <div class="ab-logo">
+      <img src="/assets/IMG/rr-simbolo.png" alt="Roncolato" class="ab-logo-img">
+      <span class="ab-site-name">Roncolato</span>
+    </div>
+    <div class="ab-links">
+      <a href="/" target="_blank" class="ab-link">Ver Site ↗</a>
+    </div>
+    <div class="ab-right">
+      <div class="ab-user">
+        <span class="ab-user-avatar" id="userAvatar">R</span>
+        <span class="ab-user-name" id="userDisplay">Carregando...</span>
+      </div>
+      <button class="ab-logout" id="logoutBtn">Sair</button>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <ul id="adminmenu">
+    <li class="menu-item" data-nav="dashboard">
+      <span class="menu-icon">⊞</span>
+      <span class="menu-label">Dashboard</span>
+    </li>
+    <li class="menu-separator">Conteúdo</li>
+    <li class="menu-item" data-nav="blog">
+      <span class="menu-icon">✦</span>
+      <span class="menu-label">Blog</span>
+    </li>
+    <li class="menu-item active" data-nav="portfolio">
+      <span class="menu-icon">◈</span>
+      <span class="menu-label">Portfólio</span>
+    </li>
+    <li class="menu-separator">Gerenciar</li>
+    <li class="menu-item" data-nav="agenda">
+      <span class="menu-icon">◷</span>
+      <span class="menu-label">Agenda</span>
+    </li>
+    <li class="menu-item" data-nav="pages">
+      <span class="menu-icon">◫</span>
+      <span class="menu-label">Páginas</span>
+    </li>
+    <li class="menu-item" data-nav="propostas">
+      <span class="menu-icon">◧</span>
+      <span class="menu-label">Propostas</span>
+    </li>
+    <li class="menu-divider"></li>
+    <li class="menu-item" data-nav="settings">
+      <span class="menu-icon">⚙</span>
+      <span class="menu-label">Configurações</span>
+    </li>
+  </ul>
+
+  <!-- MAIN CONTENT -->
+  <div id="wpcontent">
+    <div id="wpbody">
+      <div id="wpbody-content">
+
+        <div class="wrap editor-container">
+          <div class="editor-header">
+            <h1 class="wp-heading-inline">Novo Projeto</h1>
+            <button type="button" class="button" onclick="window.location.href='/admin/dashboard.html?tab=portfolio'">← Voltar</button>
+          </div>
+
+          <div class="editor-content">
+            <!-- MAIN EDITOR -->
+            <div class="editor-main">
+              <div class="postbox">
+                <div class="postbox-header">
+                  <h2 class="hndle">Informações do Projeto</h2>
+                </div>
+                <div class="inside">
+                  <div class="form-group">
+                    <label for="pTitle">Título do Projeto</label>
+                    <input type="text" id="pTitle" class="regular-text" placeholder="Nome do projeto">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="pClient">Cliente</label>
+                    <input type="text" id="pClient" class="regular-text" placeholder="Nome do cliente">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="pYear">Ano</label>
+                    <input type="number" id="pYear" class="regular-text" placeholder="2026">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="pDeliverable">Entrega</label>
+                    <input type="text" id="pDeliverable" class="regular-text" placeholder="Ex: 150+ fotos, identidade visual">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="pDescription">Descrição do Projeto</label>
+                    <textarea id="pDescription" rows="6" placeholder="Descrição detalhada do projeto..."></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="pLink">Link do Projeto</label>
+                    <input type="text" id="pLink" class="regular-text" placeholder="https://exemplo.com">
+                  </div>
+
+                  <button type="button" class="button button-primary button-large" id="submitBtn" style="width:100%;margin-top:16px;">📦 Publicar Projeto</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- SIDEBAR -->
+            <div class="editor-sidebar">
+              <!-- Categoria -->
+              <div class="sidebar-box">
+                <h3>Categoria</h3>
+                <div class="category-list" id="categoryList">
+                  <button type="button" class="category-btn" data-category="Personal Branding">Personal Branding</button>
+                  <button type="button" class="category-btn" data-category="Fotografia Executiva">Fotografia Executiva</button>
+                  <button type="button" class="category-btn" data-category="Eventos">Eventos</button>
+                  <button type="button" class="category-btn" data-category="Branding">Branding</button>
+                </div>
+              </div>
+
+              <!-- Imagens do Projeto -->
+              <div class="sidebar-box">
+                <h3>Imagens do Projeto</h3>
+                <div class="image-upload" id="imageDropZone">
+                  <p style="margin:0;font-size:12px;color:#666;">Clique ou arraste imagens</p>
+                  <input type="file" id="pImages" accept="image/*" multiple style="display:none;">
+                </div>
+                <div class="image-gallery" id="imageGallery"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="components.js"></script>
+<script>
+  // AUTH CHECK
+  const token = localStorage.getItem('adminToken');
+  const user  = localStorage.getItem('adminUser');
+
+  if (!token || !user) {
+    window.location.href = '/admin/login.html';
+  } else {
+    document.getElementById('userDisplay').textContent = user;
+    const avatar = document.getElementById('userAvatar');
+    if (avatar) avatar.textContent = user.charAt(0).toUpperCase();
+  }
+
+  // MENU NAVIGATION
+  document.querySelectorAll('[data-nav]').forEach(item => {
+    item.addEventListener('click', (e) => {
+      const nav = item.dataset.nav;
+      if (nav === 'dashboard') {
+        window.location.href = '/admin/dashboard.html';
+      } else {
+        window.location.href = `/admin/dashboard.html?tab=${nav}`;
+      }
+    });
+  });
+
+  // LOGOUT
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    localStorage.removeItem('adminToken');
+    localStorage.removeItem('adminUser');
+    window.location.href = '/admin/login.html';
+  });
+
+  // CATEGORY SELECTION
+  let selectedCategory = null;
+  document.querySelectorAll('.category-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedCategory = btn.dataset.category;
+    });
+  });
+
+  // IMAGE UPLOAD
+  const imageDropZone = document.getElementById('imageDropZone');
+  const imageInput = document.getElementById('pImages');
+  const uploadedImages = [];
+
+  imageDropZone.addEventListener('click', () => imageInput.click());
+
+  imageDropZone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    imageDropZone.classList.add('dragover');
+  });
+
+  imageDropZone.addEventListener('dragleave', () => {
+    imageDropZone.classList.remove('dragover');
+  });
+
+  imageDropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    imageDropZone.classList.remove('dragover');
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      Array.from(files).forEach(file => handleImageUpload(file));
+    }
+  });
+
+  imageInput.addEventListener('change', (e) => {
+    Array.from(e.target.files).forEach(file => handleImageUpload(file));
+  });
+
+  function handleImageUpload(file) {
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const base64Data = e.target.result;
+
+      try {
+        const response = await fetch('/api/admin/upload', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            file: base64Data,
+            type: 'portfolio'
+          })
+        });
+
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Erro ao enviar imagem');
+
+        uploadedImages.push({
+          path: data.path,
+          preview: base64Data
+        });
+
+        renderGallery();
+        Toast.show('✓ Imagem adicionada', 'success');
+      } catch (error) {
+        Toast.show(error.message, 'error');
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function renderGallery() {
+    const gallery = document.getElementById('imageGallery');
+    gallery.innerHTML = uploadedImages.map((img, idx) => `
+      <div class="image-item">
+        <img src="${img.preview}" alt="Projeto">
+        <button type="button" class="image-item-remove" onclick="removeImage(${idx})">×</button>
+      </div>
+    `).join('');
+  }
+
+  function removeImage(idx) {
+    uploadedImages.splice(idx, 1);
+    renderGallery();
+  }
+
+  // FORM SUBMISSION
+  document.getElementById('submitBtn').addEventListener('click', async () => {
+    const title = document.getElementById('pTitle').value.trim();
+    const client = document.getElementById('pClient').value.trim();
+    const year = document.getElementById('pYear').value;
+    const deliverable = document.getElementById('pDeliverable').value.trim();
+    const description = document.getElementById('pDescription').value.trim();
+    const link = document.getElementById('pLink').value.trim();
+
+    if (!title || !client || !selectedCategory) {
+      Toast.show('Preencha todos os campos obrigatórios', 'error');
+      return;
+    }
+
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="loading"></span> Publicando...';
+
+    try {
+      const response = await fetch('/api/admin/add-project', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          title,
+          client,
+          category: selectedCategory,
+          year,
+          deliverable,
+          description,
+          link: link || null,
+          images: uploadedImages.map(img => img.path)
+        })
+      });
+
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Erro ao publicar');
+
+      Toast.show('✓ Projeto publicado com sucesso!', 'success');
+      setTimeout(() => {
+        window.location.href = '/admin/dashboard.html?tab=portfolio';
+      }, 1000);
+    } catch (error) {
+      Toast.show(error.message, 'error');
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '📦 Publicar Projeto';
+    }
+  });
+</script>
+
+</body>
+</html>

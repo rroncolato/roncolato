@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Cliente - Roncolato</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-white: #FFFFFF;
+            --color-black: #1A1A1A;
+            --color-yellow: #F5C518;
+            --color-gray-50: #F9F9F9;
+            --color-gray-100: #F3F3F3;
+            --color-gray-200: #E8E8E8;
+            --color-gray-500: #909090;
+            --color-gray-600: #666666;
+            --font-family: 'Jost', 'Segoe UI', sans-serif;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 40px;
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: var(--font-family);
+            background: linear-gradient(135deg, var(--color-yellow) 0%, rgba(245, 197, 24, 0.8) 100%);
+        }
+
+        .container {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+        }
+
+        .content-box {
+            background: var(--color-white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            max-width: 520px;
+            padding: var(--space-2xl) var(--space-lg);
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 48px;
+            margin-bottom: var(--space-lg);
+            font-weight: 700;
+        }
+
+        h1 {
+            color: var(--color-black);
+            margin-bottom: var(--space-md);
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        p {
+            color: var(--color-gray-600);
+            margin-bottom: var(--space-2xl);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .button-group {
+            display: grid;
+            gap: var(--space-md);
+        }
+
+        .btn {
+            padding: 12px var(--space-lg);
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 200ms ease-out;
+            text-decoration: none;
+            display: inline-block;
+            font-family: var(--font-family);
+        }
+
+        .btn-primary {
+            background: var(--color-yellow);
+            color: var(--color-black);
+        }
+
+        .btn-primary:hover {
+            background: #FFD700;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: var(--color-gray-100);
+            color: var(--color-black);
+            border: 2px solid var(--color-gray-200);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-yellow);
+            background: var(--color-gray-50);
+            color: var(--color-yellow);
+        }
+
+        .features {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-2xl);
+            border-top: 1px solid var(--color-gray-200);
+            text-align: left;
+        }
+
+        .features-title {
+            color: var(--color-black);
+            margin-bottom: var(--space-xl);
+            text-align: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .feature {
+            display: flex;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
+            padding: var(--space-lg);
+            background: var(--color-gray-50);
+            border-radius: 8px;
+            transition: all 200ms ease-out;
+        }
+
+        .feature:hover {
+            background: var(--color-gray-100);
+            transform: translateX(4px);
+        }
+
+        .feature-icon {
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .feature h3 {
+            color: var(--color-black);
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+
+        .feature p {
+            font-size: 14px;
+            color: var(--color-gray-500);
+            margin: 0;
+        }
+
+        @media (max-width: 480px) {
+            .content-box {
+                padding: var(--space-xl) var(--space-md);
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .logo {
+                font-size: 40px;
+            }
+
+            .feature {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--space-md);
+            }
+
+            .feature-icon {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content-box">
+            <div class="logo">◆</div>
+            <h1>Área do Cliente</h1>
+            <p>Acompanhe seus projetos em tempo real, veja o status das tarefas e cronogramas.</p>
+
+            <div class="button-group">
+                <a href="/customer/login.html" class="btn btn-primary">
+                    → Acessar Dashboard
+                </a>
+                <a href="/" class="btn btn-secondary">
+                    ← Voltar ao Site
+                </a>
+            </div>
+
+            <div class="features">
+                <h3 class="features-title">O que você pode fazer:</h3>
+
+                <div class="feature">
+                    <div class="feature-icon">📈</div>
+                    <div>
+                        <h3>Acompanhar Progresso</h3>
+                        <p>Veja o percentual de conclusão do seu projeto em tempo real</p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <div>
+                        <h3>Gerenciar Tarefas</h3>
+                        <p>Visualize todas as tarefas organizadas por status e prioridade</p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">📅</div>
+                    <div>
+                        <h3>Cronograma</h3>
+                        <p>Acompanhe as datas e etapas do seu projeto</p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <div>
+                        <h3>Próximos Passos</h3>
+                        <p>Saiba sempre qual é a próxima tarefa importante</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Redirecionar se já tem token
+        window.addEventListener('load', () => {
+            const token = localStorage.getItem('customer_token');
+            if (token) {
+                window.location.href = '/customer/dashboard.html';
+            }
+        });
+    </script>
+</body>
+</html>

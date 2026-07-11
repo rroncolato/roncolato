@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Referências - Portfolios Dentários & GitHub</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --light-bg: #f8f9fa;
+            --dark-text: #212529;
+            --border-color: #dee2e6;
+            --spacing: 1rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%);
+            color: white;
+            padding: 3rem var(--spacing);
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: var(--spacing);
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        nav a, nav button {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        nav button.active, nav a.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        nav a:hover, nav button:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Tabs */
+        .tabs {
+            display: none;
+        }
+
+        .tabs.active {
+            display: block;
+        }
+
+        .tabs.fade-in {
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Tables */
+        .table-wrapper {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tr:hover {
+            background-color: var(--light-bg);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Badge & Tags */
+        .badge {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge-primary {
+            background: #cce5ff;
+            color: var(--primary-color);
+        }
+
+        .badge-success {
+            background: #d4edda;
+            color: var(--success-color);
+        }
+
+        .badge-danger {
+            background: #f8d7da;
+            color: var(--danger-color);
+        }
+
+        .stars {
+            color: #ffc107;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Links */
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        a:hover {
+            opacity: 0.7;
+            text-decoration: underline;
+        }
+
+        /* Section Headers */
+        .section-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%);
+            color: white;
+            padding: 1.5rem;
+            margin: 2rem 0 1rem 0;
+            border-radius: 8px;
+        }
+
+        .section-header h2 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        /* Checklist */
+        .checklist {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .checklist ul {
+            list-style: none;
+        }
+
+        .checklist li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .checklist li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            nav {
+                flex-direction: column;
+            }
+
+            nav a, nav button {
+                width: 100%;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem var(--spacing);
+            color: var(--secondary-color);
+            margin-top: 3rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #e7f3ff 0%, #fff7e6 100%);
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .summary-box ol {
+            margin-left: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .summary-box li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🌐 Dashboard de Referências Profissionais</h1>
+            <p>Análise Completa: Portfolios Dentários Internacionais & Melhores Repositórios GitHub</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav>
+            <button class="nav-btn active" data-tab="portfolios">🦷 Portfolios Dentários</button>
+            <button class="nav-btn" data-tab="github">🚀 GitHub Repositories</button>
+            <button class="nav-btn" data-tab="practices">✨ Melhores Práticas</button>
+            <button class="nav-btn" data-tab="implementation">🛠️ Implementação</button>
+            <button class="nav-btn" data-tab="checklist">📋 Checklist</button>
+        </nav>
+
+        <!-- TAB 1: PORTFOLIOS -->
+        <div id="portfolios" class="tabs active">
+            <div class="section-header">
+                <h2>🦷 Melhores Portfolios Dentários do Mundo</h2>
+            </div>
+
+            <div class="summary-box">
+                <h3>Resumo Executivo</h3>
+                <ol>
+                    <li><strong>SmileBar Boston:</strong> Design boutique luxuoso com foco em Invisalign premium</li>
+                    <li><strong>SmileDesign Boston:</strong> Profissionalismo limpo com forte call-to-action</li>
+                    <li><strong>Jackson Family Dental:</strong> Video-first approach humanizando a prática</li>
+                    <li><strong>Rancho Del Rey Oral:</strong> Balance profissionalismo + caloridade</li>
+                    <li><strong>Lotus Dental:</strong> Minimalismo calmo com foco em acessibilidade</li>
+                    <li><strong>Beehive Dental:</strong> Design moderno e energético com ícones</li>
+                    <li><strong>SIOMS Dental:</strong> Premium design com whitespace estratégico</li>
+                </ol>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nome</th>
+                            <th>URL</th>
+                            <th>Destaque Visual</th>
+                            <th>Abordagem UX</th>
+                            <th>Performance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>SmileBar Boston</strong></td>
+                            <td><a href="https://www.smilebar.com" target="_blank">smilebar.com</a></td>
+                            <td>Boutique minimalista, paleta sofisticada, fotografia premium</td>
+                            <td>Patient-centric, experiência premium, agendamento fácil</td>
+                            <td><span class="badge badge-success">Otimizado</span></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>SmileDesign Boston</strong></td>
+                            <td><a href="https://www.smiledesignboston.com" target="_blank">smiledesignboston.com</a></td>
+                            <td>Limpo e profissional, hierarquia clara, tipografia moderna</td>
+                            <td>Educação paciente, CTAs proeminentes, navegação intuitiva</td>
+                            <td><span class="badge badge-success">Otimizado</span></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>Jackson Family Dental</strong></td>
+                            <td>jacksondentalclinics.com</td>
+                            <td>Vídeos full-width profissionais, tons quentes, respiração visual</td>
+                            <td>Video-first, "parte da família", foco relacional</td>
+                            <td><span class="badge badge-success">Excelente</span></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><strong>Rancho Del Rey</strong></td>
+                            <td>ranchodel.com</td>
+                            <td>Sofisticado, profissionalismo + caloridade, fotografia alta qualidade</td>
+                            <td>Profissional + warm, tranquilidade paciente, conteúdo educacional</td>
+                            <td><span class="badge badge-success">Otimizado</span></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><strong>Lotus Dental</strong></td>
+                            <td>lotusdental.com</td>
+                            <td>Calmo minimalista, elementos florais sutis, paleta suave</td>
+                            <td>Acessível, informação clara, pathway agendamento direto</td>
+                            <td><span class="badge badge-success">Otimizado</span></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><strong>Beehive Dental</strong></td>
+                            <td>beehivedentalgroup.com</td>
+                            <td>Moderno com acentos vibrantes, ícones customizados, grid limpo</td>
+                            <td>Energia + profissionalismo, descoberta serviços fácil, CTAs fortes</td>
+                            <td><span class="badge badge-success">Otimizado</span></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td><strong>SIOMS Dental</strong></td>
+                            <td>siomsdental.com</td>
+                            <td>Premium minimalista, whitespace estratégico, tipografia elegante</td>
+                            <td>Luxury positioning, tiering serviços, VIP experience</td>
+                            <td><span class="badge badge-success">Otimizado</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section-header">
+                <h2>🎨 Padrões Comuns Encontrados</h2>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>✅ Calming Color Palettes</h3>
+                    <p>Azuis, verdes e neutros predominam. Acentos em cores quentes para CTAs. Paletas transmitem confiança em saúde dental.</p>
+                </div>
+                <div class="card">
+                    <h3>✅ Professional Photography</h3>
+                    <p>Fotografias de altíssima qualidade são padrão. Mostram ambiente, equipe e tecnologia. Builds instant credibility.</p>
+                </div>
+                <div class="card">
+                    <h3>✅ Clear Navigation</h3>
+                    <p>Estrutura intuitiva de menu. Serviços bem categorizados. Antes/depois ou portfolio visível rapidamente.</p>
+                </div>
+                <div class="card">
+                    <h3>✅ Sticky CTA Buttons</h3>
+                    <p>"Book Now" ou "Schedule Appointment" buttons sempre visíveis durante scroll. Conversão é prioridade máxima.</p>
+                </div>
+                <div class="card">
+                    <h3>✅ Testimonials & Social Proof</h3>
+                    <p>Avaliações com estrelas, nomes e fotos de pacientes. Reduz fricção na decisão. Crucial para healthcare.</p>
+                </div>
+                <div class="card">
+                    <h3>✅ Video Content</h3>
+                    <p>Vídeos demonstrando tecnologia ou equipe. Humaniza a prática. Video engagement é 10x melhor que texto.</p>
+                </div>
+                <div class="card">
+                    <h3>✅ Mobile-First Responsivity</h3>
+                    <p>Todos os sites testados são perfeitos em mobile. 70%+ do tráfego dental vem de mobile/tablet.</p>
+                </div>
+                <div class="card">
+                    <h3>✅ Service Pages</h3>
+                    <p>Cada serviço tem página dedicada com informação detalhada, benefícios e pricing (quando aplicável).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: GITHUB REPOSITORIES -->
+        <div id="github" class="tabs">
+            <div class="section-header">
+                <h2>🚀 Melhores Repositórios GitHub de Referência</h2>
+            </div>
+
+            <div class="summary-box">
+                <h3>Padrão de Qualidade</h3>
+                <ol>
+                    <li><strong>174k+ stars:</strong> Bootstrap - Padrão de ouro para responsive design</li>
+                    <li><strong>92k+ stars:</strong> Material UI - Referência React + design system</li>
+                    <li><strong>29.5k+ stars:</strong> Foundation - Acessibilidade built-in</li>
+                    <li><strong>13.2k+ stars:</strong> Pico CSS - Semantic HTML puro (zero classes)</li>
+                    <li><strong>10.8k stars:</strong> Material Web - Componentes web puros</li>
+                    <li><strong>38k+ stars:</strong> Design Resources - Curated collection (útil para discovery)</li>
+                </ol>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Repositório</th>
+                            <th>URL</th>
+                            <th>Linguagens</th>
+                            <th>Stars</th>
+                            <th>Razão de Referência</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>twbs/bootstrap</strong></td>
+                            <td><a href="https://github.com/twbs/bootstrap" target="_blank">GitHub</a></td>
+                            <td>HTML, CSS, JavaScript, SCSS</td>
+                            <td><span class="stars">⭐ 174k</span></td>
+                            <td>Padrão de ouro. Mobile-first, componentes testados, documentação exemplar. Acessibilidade WCAG 2.2.</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>mui/material-ui</strong></td>
+                            <td><a href="https://github.com/mui/material-ui" target="_blank">GitHub</a></td>
+                            <td>React, TypeScript, CSS-in-JS (Emotion)</td>
+                            <td><span class="stars">⭐ 92k</span></td>
+                            <td>Referência React components. Material Design implementation. Theme customization. WCAG compliance.</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>foundation/foundation-sites</strong></td>
+                            <td><a href="https://github.com/foundation/foundation-sites" target="_blank">GitHub</a></td>
+                            <td>HTML, CSS, JavaScript, SCSS</td>
+                            <td><span class="stars">⭐ 29.5k+</span></td>
+                            <td>Accessibility-first. Keyboard navigation. Screen reader friendly. Responsive grid avançado.</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><strong>picocss/pico</strong></td>
+                            <td><a href="https://github.com/picocss/pico" target="_blank">GitHub</a></td>
+                            <td>CSS3, SCSS</td>
+                            <td><span class="stars">⭐ 13.2k</span></td>
+                            <td>Semantic HTML pure (zero classes). Revolucionário. Dark mode automático. Minimalista.</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><strong>material-components/material-components-web</strong></td>
+                            <td><a href="https://github.com/material-components/material-components-web" target="_blank">GitHub</a></td>
+                            <td>HTML, CSS, JavaScript, TypeScript</td>
+                            <td><span class="stars">⭐ 10.8k</span></td>
+                            <td>Official Google Material Design. Web components. Modular architecture. Extensively documented.</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><strong>bradtraversy/design-resources-for-developers</strong></td>
+                            <td><a href="https://github.com/bradtraversy/design-resources-for-developers" target="_blank">GitHub</a></td>
+                            <td>Curated Links (Multiple)</td>
+                            <td><span class="stars">⭐ 38k+</span></td>
+                            <td>Discover resources. Stock photos, templates, frameworks. Community-driven curation. Always updated.</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td><strong>troxler/awesome-css-frameworks</strong></td>
+                            <td><a href="https://github.com/troxler/awesome-css-frameworks" target="_blank">GitHub</a></td>
+                            <td>Curated Comparisons</td>
+                            <td><span class="stars">⭐ 10k+</span></td>
+                            <td>Framework comparisons. 2026 standards updated. Pros/cons analysis. Use case guidance.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section-header">
+                <h2>🎯 Padrões Implementados em Top Repos</h2>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>📦 Modular Architecture</h3>
+                    <p>Componentes separados, cada um com responsabilidade única. Facilita reutilização, testes e manutenção.</p>
+                    <span class="badge badge-primary">Bootstrap</span>
+                    <span class="badge badge-primary">Material UI</span>
+                </div>
+                <div class="card">
+                    <h3>♿ Accessibility First</h3>
+                    <p>WCAG 2.2 AA compliance obrigatório. Keyboard navigation. Screen reader support. Contrast ratios 4.5:1+.</p>
+                    <span class="badge badge-success">Foundation</span>
+                    <span class="badge badge-success">Bootstrap</span>
+                </div>
+                <div class="card">
+                    <h3>🎨 Theme System</h3>
+                    <p>CSS Variables ou design tokens para fácil customização. Dark/light modes. Brand color flexibility.</p>
+                    <span class="badge badge-primary">Material UI</span>
+                    <span class="badge badge-primary">Bootstrap</span>
+                </div>
+                <div class="card">
+                    <h3>📱 Mobile-First</h3>
+                    <p>Base styles para mobile, media queries progressivas. Responsive breakpoints 320px → 1440px+.</p>
+                    <span class="badge badge-success">Bootstrap</span>
+                    <span class="badge badge-success">Foundation</span>
+                </div>
+                <div class="card">
+                    <h3>📚 Comprehensive Docs</h3>
+                    <p>Storybook ou similar. Live examples. API reference. Migration guides. Community support.</p>
+                    <span class="badge badge-primary">Bootstrap</span>
+                    <span class="badge badge-primary">Material UI</span>
+                </div>
+                <div class="card">
+                    <h3>⚡ Performance Optimized</h3>
+                    <p>Tree-shakeable imports. Small bundle sizes. GPU-accelerated animations. Lazy loading.</p>
+                    <span class="badge badge-success">Material UI</span>
+                    <span class="badge badge-success">Pico CSS</span>
+                </div>
+                <div class="card">
+                    <h3>🧪 Thoroughly Tested</h3>
+                    <p>Unit tests, integration tests, E2E tests. CI/CD pipelines. Cross-browser testing.</p>
+                    <span class="badge badge-primary">Bootstrap</span>
+                    <span class="badge badge-primary">Material UI</span>
+                </div>
+                <div class="card">
+                    <h3>📝 Semantic HTML</h3>
+                    <p>&lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;article&gt;, &lt;footer&gt; usage correto. Proper heading hierarchy.</p>
+                    <span class="badge badge-success">Pico CSS</span>
+                    <span class="badge badge-success">Bootstrap</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: MELHORES PRÁTICAS -->
+        <div id="practices" class="tabs">
+            <div class="section-header">
+                <h2>✨ Compilação de Melhores Práticas Extraídas</h2>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin: 2rem 0 1rem;">🎯 Design Patterns Modernos 2025-2026</h3>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Mobile-First Design</h3>
+                    <p><strong>O que:</strong> Começar com design para mobile (320px), expandindo para tablet e desktop.</p>
+                    <p><strong>Por que:</strong> 70%+ do tráfego vem de mobile. Garante experiência otimizada.</p>
+                    <p><strong>Como:</strong> Base CSS para 320px, media queries em min-width: 768px, 1024px, 1440px</p>
+                </div>
+                <div class="card">
+                    <h3>Semantic HTML5</h3>
+                    <p><strong>O que:</strong> &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;article&gt;, &lt;footer&gt;, &lt;section&gt;</p>
+                    <p><strong>Por que:</strong> Acessibilidade, SEO, manutenibilidade, futuro-proof</p>
+                    <p><strong>Como:</strong> Escolha semântica sobre div soup. Heading hierarchy H1→H2→H3</p>
+                </div>
+                <div class="card">
+                    <h3>Glassmorphism Effect</h3>
+                    <p><strong>O que:</strong> Efeito de vidro fosco com blur e transparência</p>
+                    <p><strong>Por que:</strong> Design moderno, premium feel, depth visual</p>
+                    <p><strong>Como:</strong> backdrop-filter: blur(10px), RGBA colors, border semi-transparent</p>
+                </div>
+                <div class="card">
+                    <h3>Micro-interactions</h3>
+                    <p><strong>O que:</strong> Pequenas animações em resposta a ações (hover, click, focus)</p>
+                    <p><strong>Por que:</strong> Feedback visual, engagement, polish profissional</p>
+                    <p><strong>Como:</strong> CSS transitions em opacity/transform, subtle timing (0.3s)</p>
+                </div>
+                <div class="card">
+                    <h3>Component-Based Design</h3>
+                    <p><strong>O que:</strong> Descompor interface em componentes reusáveis</p>
+                    <p><strong>Por que:</strong> Escalabilidade, manutenção, consistency</p>
+                    <p><strong>Como:</strong> Design system com components documentados em Storybook</p>
+                </div>
+                <div class="card">
+                    <h3>Dark Mode Support</h3>
+                    <p><strong>O que:</strong> Interface que adapta para preferência do usuário (prefers-color-scheme)</p>
+                    <p><strong>Por que:</strong> Expectativa moderna, reduz eye strain, premium feel</p>
+                    <p><strong>Como:</strong> CSS Variables + @media (prefers-color-scheme: dark)</p>
+                </div>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin: 2rem 0 1rem;">💡 UI/UX Principles Aplicados</h3>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Visual Hierarchy</h3>
+                    <p>H1 maior que H2, H2 maior que H3. Tamanho implica importância. Whitespace separa seções.</p>
+                </div>
+                <div class="card">
+                    <h3>Calming Palettes</h3>
+                    <p>Azuis, verdes, neutros (primária). Acentos quentes para CTAs. Trust + profissionalismo.</p>
+                </div>
+                <div class="card">
+                    <h3>Clear Navigation</h3>
+                    <p>Menu intuitivo. Serviços categorizados. Breadcrumbs. Footer navigation. Wayfinding obvious.</p>
+                </div>
+                <div class="card">
+                    <h3>Strong CTAs</h3>
+                    <p>"Book Now" sticky. Contraste de cor. Clear hover states. Conversão é objetivo.</p>
+                </div>
+                <div class="card">
+                    <h3>Professional Images</h3>
+                    <p>Fotografia alta qualidade. Ambiente, equipe, tecnologia. Builds instant credibility.</p>
+                </div>
+                <div class="card">
+                    <h3>Social Proof</h3>
+                    <p>Testimonials com foto/nome. Star ratings. Case studies. Reduz fricção paciente novo.</p>
+                </div>
+                <div class="card">
+                    <h3>Whitespace</h3>
+                    <p>Espaço respeitoso. Visual cleanliness. Easy scanning. Premium feel.</p>
+                </div>
+                <div class="card">
+                    <h3>Video Content</h3>
+                    <p>Demonstra tecnologia. Humaniza equipe. 10x melhor engagement que texto.</p>
+                </div>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin: 2rem 0 1rem;">⚡ Performance Optimization Techniques</h3>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Image Optimization</h3>
+                    <p><span class="badge badge-success">Impact: -40% LCP</span></p>
+                    <p>WebP format, lazy loading, responsive srcset, compression <100KB.</p>
+                </div>
+                <div class="card">
+                    <h3>Code Minification</h3>
+                    <p><span class="badge badge-success">Impact: -30% bundle</span></p>
+                    <p>Minify CSS/JS via webpack/gulp. Tree-shake unused code. CDN delivery.</p>
+                </div>
+                <div class="card">
+                    <h3>Lazy Loading</h3>
+                    <p><span class="badge badge-success">Impact: -25% LCP</span></p>
+                    <p>loading="lazy", IntersectionObserver, dynamic imports para scripts não-critical.</p>
+                </div>
+                <div class="card">
+                    <h3>Efficient Caching</h3>
+                    <p><span class="badge badge-success">Impact: -70% repeat visits</span></p>
+                    <p>Browser cache headers. Versioned assets. Service workers. CDN caching.</p>
+                </div>
+                <div class="card">
+                    <h3>Critical CSS</h3>
+                    <p><span class="badge badge-success">Impact: -25% FCP</span></p>
+                    <p>Inline critical above-the-fold CSS. Async load non-critical.</p>
+                </div>
+                <div class="card">
+                    <h3>Third-Party Management</h3>
+                    <p><span class="badge badge-success">Impact: -50% INP</span></p>
+                    <p>Async ads/analytics. Deferred scripts. Never block rendering.</p>
+                </div>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin: 2rem 0 1rem;">♿ Accessibility Standards (WCAG 2.2)</h3>
+
+            <div class="checklist">
+                <ul>
+                    <li>Semantic HTML5 structure with proper heading hierarchy</li>
+                    <li>Alt text for all images (descriptive, not "image of...")</li>
+                    <li>Keyboard navigation on ALL interactive elements (Tab, Enter, Arrow keys)</li>
+                    <li>Color contrast minimum 4.5:1 (text), 3:1 (graphics) - WCAG AA</li>
+                    <li>&lt;label&gt; elements properly associated with form inputs</li>
+                    <li>ARIA attributes only when semantic HTML insufficient</li>
+                    <li>Focus visible states (outline or custom indicator)</li>
+                    <li>Skip links for keyboard users to jump to main content</li>
+                    <li>Form validation with clear error messages</li>
+                    <li>Video with captions and transcripts</li>
+                </ul>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin: 2rem 0 1rem;">📱 Responsive Design Breakpoints</h3>
+
+            <div class="code-block">
+/* Mobile-First Strategy */
+/* Base: 320px (mobile) */
+
+/* Tablet */
+@media (min-width: 768px) { ... }
+
+/* Desktop */
+@media (min-width: 1024px) { ... }
+
+/* Wide Desktop */
+@media (min-width: 1440px) { ... }
+
+/* Flexible units instead of px */
+font-size: clamp(1rem, 2vw, 2rem);
+width: 100%;
+max-width: 1200px;
+
+/* Flexbox for 1D, Grid for 2D */
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 1rem;
+
+/* Touch targets minimum 44x44px */
+button { min-height: 44px; min-width: 44px; }
+            </div>
+        </div>
+
+        <!-- TAB 4: IMPLEMENTAÇÃO -->
+        <div id="implementation" class="tabs">
+            <div class="section-header">
+                <h2>🛠️ Guia de Implementação para HTML5 Primoroso</h2>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin: 2rem 0 1rem;">1️⃣ Estrutura HTML5 Semântica</h3>
+
+            <div class="code-block">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta name="description" content="Descrição para SEO (155 caracteres)"&gt;
+    &lt;title&gt;Título Otimizado para SEO&lt;/title&gt;
+
+    &lt;!-- Open Graph para redes sociais --&gt;
+    &lt;meta property="og:title" content="Título"&gt;
+    &lt;meta property="og:image" content="1200x630px image URL"&gt;
+
+    &lt;!-- Preconnect para performance --&gt;
+    &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header role="banner"&gt;
+        &lt;nav role="navigation" aria-label="Principal"&gt; ... &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main id="main-content"&gt;
+        &lt;article&gt;
+            &lt;h1&gt;Título Principal&lt;/h1&gt;
+            &lt;section&gt;
+                &lt;h2&gt;Subtítulo&lt;/h2&gt;
+            &lt;/section&gt;
+        &lt;/article&gt;
+    &lt;/main&gt;
+
+    &lt;footer role="contentinfo"&gt; ... &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </div>
+
+            <h3 style="color: var(--primary-color); margin: 2rem 0 1rem;">2️⃣ CSS3 Moderno com Design Tokens</h3>
+
+            <div class="code-block">
+:root {
+    --color-primary: #007bff;
+    --color-secondary: #6c757d;
+    --spacing-unit: 1rem;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto;
+    --breakpoint-tablet: 768px;
+    --breakpoint-desktop: 1024px;
+}
+
+/* Reset + Base */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Flexible Typography */
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+
+/* Grid Responsive */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-unit);
+}
+
+/* Glassmorphism */
+.glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+}
+
+/* GPU-Accelerated Animations */
+button { transition: opacity 0.3s, transform 0.3s; }
+button:hover { opacity: 0.9; transform: translateY(-2px); }
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    body { background: #1a1a1a; color: #e0e0e0; }
+}
+            </div>
+
+            <h3 style="color: var(--primary-color); margin: 2rem 0 1rem;">3️⃣ JavaScript Moderno (Vanilla + Best Practices)</h3>
+
+            <div class="code-block">
+// Intersection Observer para Lazy Loading
+const images = document.querySelectorAll('img[data-src]');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.src = entry.target.dataset.src;
+            observer.unobserve(entry.target);
+        }
+    });
+});
+images.forEach(img => observer.observe(img));
+
+// Debounced Resize Handler (Performance)
+function debounce(func, delay) {
+    let timeout;
+    return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func(...args), delay);
+    };
+}
+
+window.addEventListener('resize', debounce(() => {
+    console.log('Resize');
+}, 250));
+
+// Accessibility: Smooth Scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(anchor.getAttribute('href'))
+            .scrollIntoView({ behavior: 'smooth' });
+    });
+});
+            </div>
+
+            <h3 style="color: var(--primary-color); margin: 2rem 0 1rem;">4️⃣ Stack Recomendado para Roncolato Dental</h3>
+
+            <div class="card-grid">
+                <div class="card" style="border-left-color: var(--success-color);">
+                    <h3>Frontend Framework</h3>
+                    <p><strong>Next.js 15+</strong> com React 18+ e TypeScript</p>
+                    <p>Ou HTML5 puro com JavaScript vanilla para maior simplicidade.</p>
+                </div>
+                <div class="card" style="border-left-color: var(--success-color);">
+                    <h3>Styling</h3>
+                    <p><strong>Tailwind CSS</strong> + custom CSS Variables</p>
+                    <p>Design tokens centralizados. Dark mode automático.</p>
+                </div>
+                <div class="card" style="border-left-color: var(--success-color);">
+                    <h3>Animations</h3>
+                    <p><strong>Framer Motion</strong> (se React) ou CSS puro</p>
+                    <p>Micro-interactions profissionais. GPU-accelerated.</p>
+                </div>
+                <div class="card" style="border-left-color: var(--success-color);">
+                    <h3>Hosting</h3>
+                    <p><strong>Vercel</strong> (Next.js) ou Netlify</p>
+                    <p>CDN global, Analytics integrado, auto-deploy Git.</p>
+                </div>
+                <div class="card" style="border-left-color: var(--success-color);">
+                    <h3>Design System</h3>
+                    <p><strong>Figma</strong> (design) + <strong>Storybook</strong> (documentation)</p>
+                    <p>Components documentados, isolated development.</p>
+                </div>
+                <div class="card" style="border-left-color: var(--success-color);">
+                    <h3>Monitoring</h3>
+                    <p><strong>Web Vitals.js</strong> + Google Analytics 4</p>
+                    <p>Track performance, user behavior, conversions.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: CHECKLIST -->
+        <div id="checklist" class="tabs">
+            <div class="section-header">
+                <h2>📋 Checklist de Implementação</h2>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin: 2rem 0 1rem;">HTML5 & Semantics</h3>
+            <div class="checklist">
+                <ul>
+                    <li>DOCTYPE html5 presente</li>
+                    <li>Meta tags (charset, viewport, description, OG tags)</li>
+                    <li>Semantic HTML tags (&lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;article&gt;, &lt;footer&gt;, &lt;section&gt;)</li>
+                    <li>Proper heading hierarchy (H1 → H2 → H3, nunca pular níveis)</li>
+                    <li>Alt text em todas as imagens (descritivo, não "imagem de...")</li>
+                    <li>Form labels properly associated with inputs</li>
+                    <li>Favicon presente</li>
+                    <li>Language attribute on &lt;html&gt; tag</li>
+                </ul>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin: 2rem 0 1rem;">CSS & Design</h3>
+            <div class="checklist">
+                <ul>
+                    <li>CSS Variables para design tokens (colors, spacing, typography)</li>
+                    <li>Mobile-first approach (base CSS para mobile)</li>
+                    <li>Media queries para tablet (min-width: 768px) e desktop (1024px+)</li>
+                    <li>Responsive images (srcset, sizes, picture element)</li>
+                    <li>Flexible layouts (Flexbox para 1D, Grid para 2D)</li>
+                    <li>Smooth transitions em animações (opacity, transform)</li>
+                    <li>Dark mode support (@media prefers-color-scheme)</li>
+                    <li>Font optimization (system fonts preferred, Google Fonts subseted)</li>
+                    <li>CSS minified em produção</li>
+                </ul>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin: 2rem 0 1rem;">Performance Optimization</h3>
+            <div class="checklist">
+                <ul>
+                    <li>Images compressed (<100KB cada), WebP format</li>
+                    <li>Lazy loading implemented (loading="lazy")</li>
+                    <li>Critical CSS inlined, non-critical async</li>
+                    <li>JavaScript minified, tree-shaken, async/defer</li>
+                    <li>Third-party scripts (ads, analytics) async e non-blocking</li>
+                    <li>Caching strategy (versioned assets, cache headers)</li>
+                    <li>LCP < 2.5 segundos</li>
+                    <li>INP < 200 milissegundos</li>
+                    <li>CLS < 0.1</li>
+                    <li>Bundle size < 200KB gzipped</li>
+                </ul>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin: 2rem 0 1rem;">Accessibility (WCAG 2.2 AA)</h3>
+            <div class="checklist">
+                <ul>
+                    <li>Color contrast mínimo 4.5:1 para texto</li>
+                    <li>Keyboard navigation completa (Tab, Enter, Arrow keys)</li>
+                    <li>Focus visible states em todos elementos interativos</li>
+                    <li>Forms com labels, error messages claros</li>
+                    <li>Video com captions e transcripts</li>
+                    <li>Skip links para conteúdo principal</li>
+                    <li>ARIA attributes quando HTML semântico insuficiente</li>
+                    <li>Screen reader friendly structure</li>
+                    <li>No color as only indicator (use icons, text também)</li>
+                </ul>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin: 2rem 0 1rem;">Mobile & Responsive</h3>
+            <div class="checklist">
+                <ul>
+                    <li>Viewport meta tag presente</li>
+                    <li>Touch targets mínimo 44x44px</li>
+                    <li>No horizontal scroll em mobile</li>
+                    <li>Text readable sem zoom (16px+ base)</li>
+                    <li>Testado em múltiplos devices (iPhone, iPad, Android)</li>
+                    <li>Responsive breakpoints (320px, 768px, 1024px, 1440px)</li>
+                    <li>Flexible fonts (clamp, vw units)</li>
+                    <li>No fixed widths (use 100%, max-width)</li>
+                </ul>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin: 2rem 0 1rem;">SEO & Meta</h3>
+            <div class="checklist">
+                <ul>
+                    <li>Meta description (155 caracteres)</li>
+                    <li>Open Graph tags (og:title, og:description, og:image)</li>
+                    <li>Structured data (Schema.org JSON-LD)</li>
+                    <li>Sitemap.xml presente</li>
+                    <li>Robots.txt presente</li>
+                    <li>Canonical tags (se duplicates existem)</li>
+                    <li>Hreflang tags (se multi-idioma)</li>
+                    <li>Page titles otimizados (único, keyword relevante)</li>
+                    <li>Internal linking estratégico</li>
+                </ul>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin: 2rem 0 1rem;">UX & Conversão (Específico Dental)</h3>
+            <div class="checklist">
+                <ul>
+                    <li>"Book Now" ou "Schedule Appointment" CTA sticky/always visible</li>
+                    <li>Appointment form simples (máximo 5 campos)</li>
+                    <li>Before/After photo gallery com lightbox</li>
+                    <li>Testimonials com foto, nome, rating (5 stars)</li>
+                    <li>Professional photography de ambiente, equipe, tecnologia</li>
+                    <li>Video demonstrando procedimentos ou equipe</li>
+                    <li>Calming color palette (azuis, verdes, neutros)</li>
+                    <li>Service pages com informação clara e benefícios</li>
+                    <li>FAQ section respondendo dúvidas comuns</li>
+                    <li>Contact info (phone, email, address, directions)</li>
+                </ul>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin: 2rem 0 1rem;">Security & Privacy</h3>
+            <div class="checklist">
+                <ul>
+                    <li>HTTPS obrigatório (HTTP upgrade automático)</li>
+                    <li>CSP (Content Security Policy) headers</li>
+                    <li>GDPR compliant (cookie banner se aplicável)</li>
+                    <li>Privacy policy página presente</li>
+                    <li>Terms of service página presente</li>
+                    <li>Form data encrypted em transmissão</li>
+                    <li>No sensitive data em localStorage</li>
+                </ul>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin: 2rem 0 1rem;">Testing & Monitoring</h3>
+            <div class="checklist">
+                <ul>
+                    <li>Lighthouse score >= 90 (Performance, Accessibility, Best Practices, SEO)</li>
+                    <li>Web Vitals monitorados (LCP, INP, CLS)</li>
+                    <li>Cross-browser testing (Chrome, Firefox, Safari, Edge)</li>
+                    <li>Mobile testing (iOS Safari, Android Chrome)</li>
+                    <li>Form validation testado</li>
+                    <li>Links internos funcionando</li>
+                    <li>External links verificados</li>
+                    <li>Analytics implementado (GA4)</li>
+                    <li>Error tracking setup (Sentry ou similar)</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Pesquisa Profissional de Referências Frontend & Dental Portfolios</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">Documento compilado: 30 de Março, 2026 | Especialista em Desenvolvimento Web & Frontend</p>
+    </footer>
+
+    <script>
+        // Tab switching functionality
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const tabs = document.querySelectorAll('.tabs');
+
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                tabs.forEach(tab => {
+                    tab.classList.remove('active');
+                    tab.classList.remove('fade-in');
+                });
+
+                // Add active to clicked
+                button.classList.add('active');
+                const tabId = button.dataset.tab;
+                const activeTab = document.getElementById(tabId);
+                activeTab.classList.add('active');
+                activeTab.classList.add('fade-in');
+            });
+        });
+
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', e => {
+                if (anchor.href.includes('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(anchor.getAttribute('href'));
+                    target?.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

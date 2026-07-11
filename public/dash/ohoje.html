@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O Hoje — Gestão de Projeto | Roncolato 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f0f4f8;
+      --surface: #ffffff;
+      --surface2: #f8fafc;
+      --border: #e2e8f0;
+      --brand: #003f7f;
+      --brand-light: #1e6bbd;
+      --politica: #c8001f;
+      --judiciario: #0a2458;
+      --economia: #00796b;
+      --warn: #d97706;
+      --text: #111827;
+      --text2: #374151;
+      --muted: #6b7280;
+      --green: #16a34a;
+      --radius: 10px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
+
+    /* ── LAYOUT ── */
+    .wrapper { max-width: 1280px; margin: 0 auto; padding: 0 24px 60px; }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: var(--brand);
+      padding: 16px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .topbar-left { display: flex; align-items: center; gap: 16px; }
+    .topbar-logo { font-family: 'PT Serif', serif; font-size: 22px; color: white; letter-spacing: 1px; }
+    .topbar-logo span { color: #7eb8f7; }
+    .topbar-tag { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 1px; }
+    .topbar-right { display: flex; gap: 12px; align-items: center; }
+    .chip { padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
+    .chip-green { background: rgba(22,163,74,0.2); color: #6ee7b7; }
+    .chip-blue { background: rgba(126,184,247,0.15); color: #7eb8f7; }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--muted); margin: 36px 0 14px;
+    }
+
+    /* ── HERO STATS ── */
+    .hero-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 16px; margin-top: 28px; }
+    .stat-card {
+      background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border);
+      padding: 24px; box-shadow: var(--shadow);
+    }
+    .stat-card.accent { background: var(--brand); border-color: var(--brand); }
+    .stat-card.accent * { color: white !important; }
+    .stat-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 10px; }
+    .stat-value { font-size: 38px; font-weight: 800; color: var(--brand); line-height: 1; }
+    .stat-sub { font-size: 12px; color: var(--muted); margin-top: 6px; }
+    .stat-card.accent .stat-label { color: rgba(255,255,255,0.65) !important; }
+    .stat-card.accent .stat-sub { color: rgba(255,255,255,0.65) !important; }
+
+    /* ── CONTRACT TIMELINE ── */
+    .timeline-card {
+      background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border);
+      padding: 28px 32px; box-shadow: var(--shadow); margin-bottom: 16px;
+    }
+    .timeline-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .timeline-title { font-family: 'PT Serif', serif; font-size: 18px; font-weight: 700; color: var(--brand); }
+    .timeline-meta { font-size: 13px; color: var(--muted); }
+    .months-track { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-bottom: 20px; }
+    .month-block {
+      border-radius: 6px; padding: 10px 8px; text-align: center;
+      border: 1px solid var(--border); font-size: 11px; font-weight: 700; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .5px; position: relative;
+    }
+    .month-block.done { background: var(--brand); border-color: var(--brand); color: white; }
+    .month-block.active { background: #dbeafe; border-color: var(--brand-light); color: var(--brand); }
+    .month-block .month-theme { font-size: 10px; font-weight: 400; margin-top: 3px; opacity: .8; }
+    .bar-wrap { height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 4px; transition: width 1s ease; }
+
+    /* ── SPRINTS ── */
+    .sprints-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .sprint-card {
+      background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border);
+      padding: 24px; box-shadow: var(--shadow);
+    }
+    .sprint-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+    .sprint-name { font-weight: 700; font-size: 15px; color: var(--text); }
+    .sprint-period { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .sprint-badge { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+    .badge-done { background: #dcfce7; color: #15803d; }
+    .badge-active { background: #dbeafe; color: #1d4ed8; }
+    .badge-next { background: #f3f4f6; color: var(--muted); }
+    .sprint-progress-label { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px; color: var(--text2); font-weight: 600; }
+    .tasks-list { margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
+    .task-row { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+    .task-dot { width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; font-size: 9px; font-weight: 800; }
+    .dot-done { background: var(--green); color: white; }
+    .dot-active { background: var(--warn); color: white; }
+    .dot-pending { background: var(--border); color: var(--muted); border: 1px solid #cbd5e1; }
+    .task-text { color: var(--text2); flex: 1; }
+    .task-text.done-text { text-decoration: line-through; color: var(--muted); }
+    .task-row.clickable { cursor: pointer; border-radius: 6px; padding: 4px 6px; margin: 0 -6px; transition: background .15s; }
+    .task-row.clickable:hover { background: #f0f9ff; }
+    .task-row.clickable:hover .task-text { color: var(--brand); }
+    .task-row.clickable .task-text::after { content: ' →'; font-size: 11px; opacity: 0; transition: opacity .15s; }
+    .task-row.clickable:hover .task-text::after { opacity: 1; }
+
+    /* ── DRAWER ── */
+    .drawer-overlay {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(3px); z-index: 900;
+    }
+    .drawer-overlay.open { display: block; }
+    .drawer {
+      position: fixed; top: 0; right: -600px; width: 560px; max-width: 95vw;
+      height: 100vh; background: var(--surface); z-index: 1000;
+      box-shadow: -8px 0 40px rgba(0,0,0,0.15);
+      transition: right .3s cubic-bezier(.4,0,.2,1);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    .drawer.open { right: 0; }
+    .drawer-header {
+      padding: 24px 28px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+      flex-shrink: 0;
+    }
+    .drawer-title { font-family: 'PT Serif', serif; font-size: 20px; font-weight: 700; color: var(--brand); line-height: 1.3; }
+    .drawer-meta { font-size: 12px; color: var(--muted); margin-top: 4px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .drawer-meta-tag { background: var(--surface2); border: 1px solid var(--border); border-radius: 20px; padding: 2px 10px; font-weight: 600; }
+    .drawer-close {
+      width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border);
+      background: transparent; cursor: pointer; font-size: 16px; color: var(--muted);
+      display: grid; place-items: center; flex-shrink: 0; transition: .15s;
+    }
+    .drawer-close:hover { background: var(--bg); color: var(--text); }
+    .drawer-body { padding: 24px 28px; overflow-y: auto; flex: 1; }
+    .drawer-section { margin-bottom: 24px; }
+    .drawer-section-title {
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--muted); margin-bottom: 12px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .drawer-callout {
+      background: #eff6ff; border-left: 4px solid var(--brand-light); border-radius: 0 8px 8px 0;
+      padding: 14px 16px; font-size: 13px; color: var(--text2); line-height: 1.6;
+      margin-bottom: 16px; font-style: italic;
+    }
+    .drawer-callout.green { background: #f0fdf4; border-color: var(--green); }
+    .drawer-callout.orange { background: #fff7ed; border-color: var(--warn); }
+    .drawer-callout.red { background: #fef2f2; border-color: var(--politica); }
+    .dim-row {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 13px;
+    }
+    .dim-row:last-child { border-bottom: none; }
+    .dim-label { font-weight: 700; color: var(--text); min-width: 120px; flex-shrink: 0; }
+    .dim-value { color: var(--text2); flex: 1; line-height: 1.5; }
+    .dim-badge { padding: 2px 8px; border-radius: 20px; font-size: 10px; font-weight: 700; text-transform: uppercase; margin-left: 8px; white-space: nowrap; }
+    .dim-urgente { background: #fee2e2; color: #b91c1c; }
+    .dim-medio { background: #fef9c3; color: #92400e; }
+    .quote-block {
+      background: var(--brand); border-radius: 8px; padding: 20px 24px;
+      font-family: 'PT Serif', serif; font-size: 16px; color: white;
+      line-height: 1.7; font-style: italic; margin: 16px 0;
+    }
+    .pitch-block {
+      background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+      padding: 16px 20px; margin-bottom: 12px;
+    }
+    .pitch-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px; }
+    .pitch-text { font-size: 14px; color: var(--text2); line-height: 1.7; font-style: italic; }
+    .pilar-card {
+      border-radius: 8px; padding: 16px 18px; margin-bottom: 10px;
+      border-left: 5px solid;
+    }
+    .pilar-politica { background: #fef2f2; border-color: var(--politica); }
+    .pilar-judiciario { background: #eff3ff; border-color: var(--judiciario); }
+    .pilar-economia { background: #f0fdf4; border-color: var(--economia); }
+    .pilar-apoio { background: var(--surface2); border-color: var(--border); }
+    .pilar-name { font-weight: 800; font-size: 13px; margin-bottom: 4px; }
+    .pilar-politica .pilar-name { color: var(--politica); }
+    .pilar-judiciario .pilar-name { color: var(--judiciario); }
+    .pilar-economia .pilar-name { color: var(--economia); }
+    .pilar-desc { font-size: 12px; color: var(--text2); line-height: 1.5; }
+    .rule-block {
+      background: #fafafa; border: 1.5px dashed var(--border); border-radius: 8px;
+      padding: 14px 18px; font-size: 13px; color: var(--text2); line-height: 1.6; margin-top: 12px;
+    }
+    .rule-block strong { color: var(--brand); }
+
+    /* ── TABS ── */
+    .tab-bar { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 5px; box-shadow: var(--shadow); width: fit-content; margin-bottom: 20px; }
+    .tab-btn { padding: 8px 18px; border-radius: 7px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; background: transparent; color: var(--muted); transition: .15s; }
+    .tab-btn.active { background: var(--brand); color: white; }
+
+    /* ── COMPETITORS ── */
+    .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .comp-card {
+      background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border);
+      box-shadow: var(--shadow); overflow: hidden;
+    }
+    .comp-header { padding: 18px 22px 14px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; }
+    .comp-name { font-weight: 800; font-size: 16px; color: var(--text); display: flex; align-items: center; gap: 8px; }
+    .comp-tier { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 3px 8px; border-radius: 4px; }
+    .tier-local { background: #fef3c7; color: #92400e; }
+    .tier-national { background: #e0e7ff; color: #3730a3; }
+    .comp-model { font-size: 12px; color: var(--muted); margin-top: 3px; }
+    .comp-body { padding: 18px 22px; }
+    .comp-row { display: flex; gap: 8px; margin-bottom: 10px; align-items: flex-start; }
+    .comp-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+    .comp-detail { font-size: 13px; color: var(--text2); line-height: 1.5; }
+    .comp-detail strong { color: var(--text); }
+    .comp-swot { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; border-top: 1px solid var(--border); padding-top: 14px; }
+    .swot-cell { border-radius: 6px; padding: 10px 12px; }
+    .swot-s { background: #f0fdf4; border-left: 3px solid var(--green); }
+    .swot-w { background: #fef2f2; border-left: 3px solid var(--politica); }
+    .swot-o { background: #eff6ff; border-left: 3px solid var(--brand-light); }
+    .swot-t { background: #fefce8; border-left: 3px solid var(--warn); }
+    .swot-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 4px; }
+    .swot-s .swot-label { color: var(--green); }
+    .swot-w .swot-label { color: var(--politica); }
+    .swot-o .swot-label { color: var(--brand-light); }
+    .swot-t .swot-label { color: var(--warn); }
+    .swot-text { font-size: 12px; color: var(--text2); line-height: 1.4; }
+    .comp-exploit { margin-top: 12px; background: #f0f9ff; border-left: 3px solid var(--brand); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 12px; color: var(--brand); line-height: 1.5; }
+    .comp-exploit strong { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 3px; }
+
+    /* social chips */
+    .social-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; }
+    .social-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 20px; padding: 3px 10px; font-size: 11px; font-weight: 600; color: var(--text2); display: flex; align-items: center; gap: 4px; }
+
+    /* ── POSITION MAP ── */
+    .position-map-card {
+      background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border);
+      padding: 32px; box-shadow: var(--shadow);
+    }
+    .matrix { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .matrix-cell { border-radius: 8px; padding: 20px; border: 1.5px dashed var(--border); text-align: center; }
+    .matrix-cell.highlight { background: var(--brand); border: none; }
+    .matrix-cell.highlight * { color: white !important; }
+    .matrix-cell-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px; }
+    .matrix-cell-players { font-size: 13px; color: var(--text2); line-height: 1.8; }
+
+    /* ── DIFFERENTIALS ── */
+    .diff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .diff-card {
+      background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border);
+      padding: 24px; box-shadow: var(--shadow); border-top: 4px solid var(--brand);
+    }
+    .diff-card:nth-child(2) { border-top-color: var(--green); }
+    .diff-card:nth-child(3) { border-top-color: var(--brand-light); }
+    .diff-title { font-weight: 800; font-size: 14px; color: var(--text); margin-bottom: 8px; }
+    .diff-o-hoje { font-size: 14px; font-weight: 700; color: var(--brand); margin-bottom: 12px; }
+    .diff-vs { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+    /* ── ONBOARDING ── */
+    .onboarding-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .access-card {
+      background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border);
+      padding: 18px 20px; display: flex; align-items: center; gap: 14px; box-shadow: var(--shadow);
+    }
+    .access-icon { font-size: 22px; flex-shrink: 0; }
+    .access-name { font-size: 13px; font-weight: 700; color: var(--text); }
+    .access-desc { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .access-status { margin-left: auto; }
+    .status-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .status-dot.pending { background: #f59e0b; }
+    .status-dot.done { background: var(--green); }
+
+    /* ── PHRASE ── */
+    .phrase-card {
+      background: var(--brand); border-radius: var(--radius); padding: 32px 40px;
+      text-align: center; box-shadow: 0 8px 30px rgba(0,63,127,0.25);
+    }
+    .phrase-text { font-family: 'PT Serif', serif; font-size: 20px; color: white; line-height: 1.6; font-style: italic; }
+    .phrase-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.5); margin-top: 16px; }
+
+    footer { text-align: center; color: var(--muted); font-size: 12px; padding: 30px 20px 10px; }
+
+    /* ── WIP MODAL ── */
+    .wip-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(6px);
+      z-index: 1100;
+      align-items: center; justify-content: center;
+    }
+    .wip-overlay.open { display: flex; }
+    .wip-modal {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 48px 40px;
+      text-align: center;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.2);
+      position: relative;
+      animation: wip-in .25s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes wip-in {
+      from { opacity: 0; transform: scale(.92) translateY(12px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .wip-icon { font-size: 48px; margin-bottom: 20px; }
+    .wip-badge {
+      display: inline-block;
+      background: #dbeafe; color: #1d4ed8;
+      font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px;
+      padding: 5px 14px; border-radius: 20px; margin-bottom: 18px;
+    }
+    .wip-title {
+      font-family: 'PT Serif', serif;
+      font-size: 22px; font-weight: 700;
+      color: var(--brand); margin-bottom: 12px; line-height: 1.3;
+    }
+    .wip-desc {
+      font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 28px;
+    }
+    .wip-task-name {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px 16px;
+      font-size: 13px; font-weight: 600; color: var(--text2);
+      margin-bottom: 28px; line-height: 1.4;
+    }
+    .wip-close {
+      background: var(--brand); color: white;
+      border: none; border-radius: 8px;
+      padding: 12px 32px; font-size: 14px; font-weight: 700;
+      cursor: pointer; transition: .15s;
+    }
+    .wip-close:hover { background: var(--brand-light); }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr 1fr; }
+      .sprints-grid, .comp-grid, .diff-grid, .onboarding-grid, .matrix { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- WIP MODAL -->
+<div class="wip-overlay" id="wipOverlay" onclick="closeWip(event)">
+  <div class="wip-modal" id="wipModal">
+    <div class="wip-icon">⏳</div>
+    <div class="wip-badge">Em Andamento</div>
+    <div class="wip-title">Entregável em produção</div>
+    <div class="wip-task-name" id="wipTaskName"></div>
+    <div class="wip-desc">
+      Este entregável está sendo desenvolvido no Sprint 2.<br>
+      O conteúdo completo estará disponível assim que a tarefa for concluída.
+    </div>
+    <button class="wip-close" onclick="closeWip()">Entendido</button>
+  </div>
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-logo">O HOJE<span>.com.br</span></div>
+    <div class="topbar-tag">Gestão de Projeto · Roncolato Estrategista de Marca</div>
+  </div>
+  <div class="topbar-right">
+    <a href="kpis.html" style="padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;background:rgba(255,255,255,0.12);color:white;text-decoration:none;">📊 KPIs</a>
+    <div class="chip chip-green">● Projeto Ativo</div>
+    <div class="chip chip-blue">Contrato 6 Meses · Abr → Out 2026</div>
+  </div>
+</div>
+
+<div class="wrapper">
+
+  <!-- HERO STATS -->
+  <div class="hero-grid">
+    <div class="stat-card accent">
+      <div class="stat-label">Objetivo do Projeto</div>
+      <div class="stat-value" style="font-size:24px; margin-top:4px; font-family:'PT Serif',serif;">Da Invisibilidade à Máquina de Receita</div>
+      <div class="stat-sub" style="margin-top:12px;">Reposicionamento estratégico do portal O Hoje: autoridade em Política, Judiciário e Economia de Goiás com acesso 100% livre e democrático.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Semana Atual</div>
+      <div class="stat-value">06</div>
+      <div class="stat-sub">de 24 semanas de contrato</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Entregáveis Sprint 2</div>
+      <div class="stat-value" style="color:var(--brand-light)">4<span style="font-size:18px;color:var(--muted)">/5</span></div>
+      <div class="stat-sub">1 entregável em andamento</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Progresso Contrato</div>
+      <div class="stat-value" style="color:var(--brand-light)">25<span style="font-size:18px;color:var(--muted)">%</span></div>
+      <div class="stat-sub">Mês 2 de 6 · Fase Identidade</div>
+    </div>
+  </div>
+
+  <!-- CONTRACT TIMELINE -->
+  <div class="section-label">Linha do Tempo — Contrato 6 Meses</div>
+  <div class="timeline-card">
+    <div class="timeline-header">
+      <div class="timeline-title">Roadmap Estratégico</div>
+      <div class="timeline-meta">Início: Abril 2026 · Encerramento: Outubro 2026</div>
+    </div>
+    <div class="months-track">
+      <div class="month-block done">
+        Mês 1
+        <div class="month-theme">Fundação</div>
+      </div>
+      <div class="month-block active">
+        Mês 2
+        <div class="month-theme">Identidade</div>
+      </div>
+      <div class="month-block">
+        Mês 3
+        <div class="month-theme">Ativação</div>
+      </div>
+      <div class="month-block">
+        Mês 4
+        <div class="month-theme">Escala</div>
+      </div>
+      <div class="month-block">
+        Mês 5
+        <div class="month-theme">Monetização</div>
+      </div>
+      <div class="month-block">
+        Mês 6
+        <div class="month-theme">Consolidação</div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px;">
+      <span>Progresso geral do contrato</span>
+      <span style="color:var(--brand)">25% concluído — Semana 6 de 24</span>
+    </div>
+    <div class="bar-wrap">
+      <div class="bar-fill" style="width:25%; background:var(--brand);"></div>
+    </div>
+  </div>
+
+  <!-- SPRINTS -->
+  <div class="section-label">Sprints — Mês 1 (Fundação)</div>
+  <div class="sprints-grid">
+
+    <div class="sprint-card">
+      <div class="sprint-head">
+        <div>
+          <div class="sprint-name">Sprint 1 — Diagnóstico & Posicionamento</div>
+          <div class="sprint-period">Semanas 1 e 2 · Abr 2026</div>
+        </div>
+        <div class="sprint-badge badge-done">Concluído</div>
+      </div>
+      <div class="sprint-progress-label"><span>Progresso</span><span>100%</span></div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:100%; background:var(--green);"></div></div>
+      <div class="tasks-list">
+        <div class="task-row clickable" onclick="openDrawer('t01')"><div class="task-dot dot-done">✓</div><div class="task-text done-text">01 — Diagnóstico de Marca completo (6 dimensões avaliadas)</div></div>
+        <div class="task-row clickable" onclick="openDrawer('t02')"><div class="task-dot dot-done">✓</div><div class="task-text done-text">02 — Mapa de Concorrentes (análise aprofundada — 7 players, SWOT, redes sociais)</div></div>
+        <div class="task-row clickable" onclick="openDrawer('t03')"><div class="task-dot dot-done">✓</div><div class="task-text done-text">03 — Positioning Statement definido</div></div>
+        <div class="task-row clickable" onclick="openDrawer('t04')"><div class="task-dot dot-done">✓</div><div class="task-text done-text">04 — Hierarquia de Mensagem (pitch 10s / 30s / 2min)</div></div>
+        <div class="task-row clickable" onclick="openDrawer('t05')"><div class="task-dot dot-done">✓</div><div class="task-text done-text">05 — 3 Pilares Editoriais definidos (Política, Judiciário, Economia)</div></div>
+        <div class="task-row clickable" onclick="openDrawer('t06')"><div class="task-dot dot-done">✓</div><div class="task-text done-text">06 — GA4 Setup + 7 KPIs monitorados</div></div>
+      </div>
+    </div>
+
+    <div class="sprint-card">
+      <div class="sprint-head">
+        <div>
+          <div class="sprint-name">Sprint 2 — Identidade & Narrativa</div>
+          <div class="sprint-period">Semanas 3 e 4 · Abr/Mai 2026</div>
+        </div>
+        <div class="sprint-badge badge-done">Concluído</div>
+      </div>
+      <div class="sprint-progress-label"><span>Progresso</span><span>100%</span></div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:100%; background:var(--green);"></div></div>
+      <div class="tasks-list">
+        <div class="task-row clickable" onclick="openDrawer('s2t01')"><div class="task-dot dot-done">✓</div><div class="task-text done-text">📖 Brandbook Fase 1: Tom de Voz, Persona do Leitor e Identidade Verbal</div></div>
+        <div class="task-row clickable" onclick="openDrawer('s2t02')"><div class="task-dot dot-done">✓</div><div class="task-text done-text">🔓 Conceito da Campanha Livre Acesso: Peças Criativas e Briefing de Anúncios</div></div>
+        <div class="task-row clickable" onclick="openDrawer('s2t03')"><div class="task-dot dot-done">✓</div><div class="task-text done-text">📋 Documento Estratégico Executivo: Reposicionamento para Aprovação do Cliente</div></div>
+        <div class="task-row clickable" onclick="openDrawer('s2t04')"><div class="task-dot dot-done">✓</div><div class="task-text done-text">📊 Dashboard de Dados: GA4 com os 7 KPIs Monitorados</div></div>
+        <div class="task-row clickable" onclick="openDrawer('s2t05')"><div class="task-dot dot-done">✓</div><div class="task-text done-text">🗞️ Alinhamento Editorial com a Redação: Guia dos 3 Pilares</div></div>
+      </div>
+    </div>
+
+    <div class="sprint-card">
+      <div class="sprint-head">
+        <div>
+          <div class="sprint-name">Sprint 3 — Ativação de Marca</div>
+          <div class="sprint-period">Mês 2 · Mai 2026</div>
+        </div>
+        <div class="sprint-badge badge-active">Em Andamento</div>
+      </div>
+      <div class="sprint-progress-label"><span>Progresso</span><span>50%</span></div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:50%; background:var(--brand-light);"></div></div>
+      <div class="tasks-list">
+        <div class="task-row clickable" onclick="openDrawer('s3t01')"><div class="task-dot dot-active">↻</div><div class="task-text active-text">🔍 Pesquisa de Audiência: Qualificação e Personas dos Leitores</div></div>
+        <div class="task-row clickable" onclick="openDrawer('s3t02')"><div class="task-dot dot-active">↻</div><div class="task-text active-text">Peças da campanha "Livre Acesso" (ads + redes)</div></div>
+        <div class="task-row"><div class="task-dot dot-pending">—</div><div class="task-text">Estratégia de conteúdo para os 3 pilares</div></div>
+        <div class="task-row"><div class="task-dot dot-pending">—</div><div class="task-text">Primeiro relatório de performance</div></div>
+      </div>
+    </div>
+
+    <div class="sprint-card" style="opacity:.4">
+      <div class="sprint-head">
+        <div>
+          <div class="sprint-name">Sprints 4–6 — Escala & Monetização</div>
+          <div class="sprint-period">Meses 3 a 6 · Jun → Out 2026</div>
+        </div>
+        <div class="sprint-badge badge-next">Planejado</div>
+      </div>
+      <div class="sprint-progress-label"><span>Progresso</span><span>0%</span></div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:0%;"></div></div>
+      <div class="tasks-list">
+        <div class="task-row"><div class="task-dot dot-pending">—</div><div class="task-text">Proposta comercial para patrocinadores</div></div>
+        <div class="task-row"><div class="task-dot dot-pending">—</div><div class="task-text">Estratégia de SEO e crescimento orgânico</div></div>
+        <div class="task-row"><div class="task-dot dot-pending">—</div><div class="task-text">Modelo de monetização consolidado</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- COMPETITIVE ANALYSIS -->
+  <div class="section-label">Análise Competitiva — 7 Players</div>
+
+  <div class="tab-bar" id="tabBar">
+    <button class="tab-btn active" onclick="setTab('local')">Goiás (Tier 1)</button>
+    <button class="tab-btn" onclick="setTab('national')">Nacionais (Tier 2)</button>
+    <button class="tab-btn" onclick="setTab('map')">Mapa + Diferenciais</button>
+  </div>
+
+  <!-- TAB: LOCAL -->
+  <div id="tab-local">
+    <div class="comp-grid">
+
+      <!-- O POPULAR -->
+      <div class="comp-card">
+        <div class="comp-header">
+          <div>
+            <div class="comp-name">🔴 O Popular</div>
+            <div class="comp-model">Paywall + assinatura digital (híbrido)</div>
+          </div>
+          <div class="comp-tier tier-local">Goiás · Direto</div>
+        </div>
+        <div class="comp-body">
+          <div class="comp-row"><div class="comp-icon">📊</div><div class="comp-detail"><strong>Audiência:</strong> ~7,6 milhões de views/mês (H1/2024)</div></div>
+          <div class="comp-row"><div class="comp-icon">📍</div><div class="comp-detail"><strong>Praça:</strong> Goiás — cobertura estadual. Goiânia como epicentro editorial</div></div>
+          <div class="comp-row">
+            <div class="comp-icon">📱</div>
+            <div class="comp-detail">
+              <strong>Redes Sociais:</strong>
+              <div class="social-row" style="margin-top:6px">
+                <div class="social-chip">📸 Instagram 697K</div>
+                <div class="social-chip">📘 Facebook ativo</div>
+                <div class="social-chip">📱 App próprio</div>
+                <div class="social-chip" style="opacity:.5">TikTok ausente</div>
+              </div>
+            </div>
+          </div>
+          <div class="comp-row"><div class="comp-icon">⭐</div><div class="comp-detail"><strong>Diferencial:</strong> Marca mais reconhecida de Goiás. Credibilidade histórica de décadas. Único portal local com assinatura paga funcionando. Mídia kit robusto para anunciantes.</div></div>
+          <div class="comp-row"><div class="comp-icon">⚠️</div><div class="comp-detail"><strong>Deficiências:</strong> Paywall exclui leitores jovens. Linguagem herdada do impresso. UX datada. Sem TikTok/Reels. Conteúdo pago = menor alcance orgânico.</div></div>
+          <div class="comp-swot">
+            <div class="swot-cell swot-s"><div class="swot-label">Força</div><div class="swot-text">Credibilidade histórica, audiência fiel, marca líder em GO</div></div>
+            <div class="swot-cell swot-w"><div class="swot-label">Fraqueza</div><div class="swot-text">Paywall restritivo, linguagem antiquada, UX envelhecida</div></div>
+            <div class="swot-cell swot-o"><div class="swot-label">Oportunidade</div><div class="swot-text">Monetização via assinatura tem espaço para crescer</div></div>
+            <div class="swot-cell swot-t"><div class="swot-label">Ameaça</div><div class="swot-text">Portais livres roubando audiência jovem continuamente</div></div>
+          </div>
+          <div class="comp-exploit"><strong>Como O Hoje explora</strong>Comunicar "livre acesso" ativamente contra o paywall. Série: "Você não precisa pagar para saber isso."</div>
+        </div>
+      </div>
+
+      <!-- JORNAL OPÇÃO -->
+      <div class="comp-card">
+        <div class="comp-header">
+          <div>
+            <div class="comp-name">🟠 Jornal Opção</div>
+            <div class="comp-model">Acesso livre · publicidade · +49 anos</div>
+          </div>
+          <div class="comp-tier tier-local">Goiás · Direto</div>
+        </div>
+        <div class="comp-body">
+          <div class="comp-row"><div class="comp-icon">📊</div><div class="comp-detail"><strong>Audiência:</strong> Não divulgada — estimada média-alta em Goiás</div></div>
+          <div class="comp-row"><div class="comp-icon">📍</div><div class="comp-detail"><strong>Praça:</strong> Goiás — foco em Goiânia, política estadual e economia</div></div>
+          <div class="comp-row">
+            <div class="comp-icon">📱</div>
+            <div class="comp-detail">
+              <strong>Redes Sociais:</strong>
+              <div class="social-row" style="margin-top:6px">
+                <div class="social-chip">📸 Instagram 239K</div>
+                <div class="social-chip">📘 Facebook 44K</div>
+                <div class="social-chip">🧵 Threads 15,8K</div>
+                <div class="social-chip">🐦 X ativo</div>
+                <div class="social-chip" style="opacity:.5">TikTok ausente</div>
+              </div>
+            </div>
+          </div>
+          <div class="comp-row"><div class="comp-icon">⭐</div><div class="comp-detail"><strong>Diferencial:</strong> Maior autoridade editorial em política goiana. Acesso livre. Público formador de opinião. Tom analítico — não só notícia, mas interpretação.</div></div>
+          <div class="comp-row"><div class="comp-icon">⚠️</div><div class="comp-detail"><strong>Deficiências:</strong> Visual e UX extremamente datados. Sem TikTok/vídeo. Instagram com baixo engajamento. Sem distribuição multiplataforma. Não atrai público jovem.</div></div>
+          <div class="comp-swot">
+            <div class="swot-cell swot-s"><div class="swot-label">Força</div><div class="swot-text">Autoridade política, acesso livre, público qualificado e influente</div></div>
+            <div class="swot-cell swot-w"><div class="swot-label">Fraqueza</div><div class="swot-text">Design datado, sem vídeo, ausência em redes jovens</div></div>
+            <div class="swot-cell swot-o"><div class="swot-label">Oportunidade</div><div class="swot-text">Audiência política em crescimento em todo o estado</div></div>
+            <div class="swot-cell swot-t"><div class="swot-label">Ameaça</div><div class="swot-text">Portais modernos com os mesmos temas e experiência superior</div></div>
+          </div>
+          <div class="comp-exploit"><strong>Como O Hoje explora</strong>Disputar a audiência política qualificada com identidade moderna, UX mobile superior e forte presença em Instagram/TikTok. O Opção do século XXI.</div>
+        </div>
+      </div>
+
+      <!-- G1 GOIÁS -->
+      <div class="comp-card">
+        <div class="comp-header">
+          <div>
+            <div class="comp-name">🟡 G1 Goiás (Globo)</div>
+            <div class="comp-model">Acesso livre · ecossistema Globo · TV Anhanguera</div>
+          </div>
+          <div class="comp-tier tier-local">Goiás · Direto</div>
+        </div>
+        <div class="comp-body">
+          <div class="comp-row"><div class="comp-icon">📊</div><div class="comp-detail"><strong>Audiência:</strong> ~17,7M views/mês em Goiás (H1/2024 — 2º maior do estado)</div></div>
+          <div class="comp-row"><div class="comp-icon">📍</div><div class="comp-detail"><strong>Praça:</strong> Goiás — cobertura estadual + interior, vinculada à TV Anhanguera</div></div>
+          <div class="comp-row">
+            <div class="comp-icon">📱</div>
+            <div class="comp-detail">
+              <strong>Redes Sociais:</strong>
+              <div class="social-row" style="margin-top:6px">
+                <div class="social-chip">📸 Instagram 622K</div>
+                <div class="social-chip">📘 Facebook alto</div>
+                <div class="social-chip">💬 WhatsApp canal ativo</div>
+                <div class="social-chip">▶️ YouTube (TV)</div>
+                <div class="social-chip">📱 App G1 nacional</div>
+              </div>
+            </div>
+          </div>
+          <div class="comp-row"><div class="comp-icon">⭐</div><div class="comp-detail"><strong>Diferencial:</strong> Maior audiência local. Força de marca Globo. Redação profissional integrada à TV. Alto volume de pauta e cobertura do interior.</div></div>
+          <div class="comp-row"><div class="comp-icon">⚠️</div><div class="comp-detail"><strong>Deficiências:</strong> Identidade genérica — voz de Brasília com endereço em GO. Editorial centralizado em SP/RJ. Superficial em política estadual. Geração Z sem lealdade à Globo.</div></div>
+          <div class="comp-swot">
+            <div class="swot-cell swot-s"><div class="swot-label">Força</div><div class="swot-text">Audiência massiva, infraestrutura Globo, confiança 50+</div></div>
+            <div class="swot-cell swot-w"><div class="swot-label">Fraqueza</div><div class="swot-text">Sem identidade local, editorial centralizado, genérico</div></div>
+            <div class="swot-cell swot-o"><div class="swot-label">Oportunidade</div><div class="swot-text">Dominará audiência geral por inércia de marca ainda por anos</div></div>
+            <div class="swot-cell swot-t"><div class="swot-label">Ameaça</div><div class="swot-text">Millennial e Gen Z sem lealdade à marca Globo</div></div>
+          </div>
+          <div class="comp-exploit"><strong>Como O Hoje explora</strong>Ser a alternativa com voz goiana genuína. Toda pauta que o G1 cobre raso, O Hoje cobre fundo.</div>
+        </div>
+      </div>
+
+      <!-- MAIS GOIÁS -->
+      <div class="comp-card">
+        <div class="comp-header">
+          <div>
+            <div class="comp-name">🟢 Mais Goiás</div>
+            <div class="comp-model">Acesso livre · publicidade digital</div>
+          </div>
+          <div class="comp-tier tier-local">Goiás · Direto</div>
+        </div>
+        <div class="comp-body">
+          <div class="comp-row"><div class="comp-icon">📊</div><div class="comp-detail"><strong>Audiência:</strong> Crescente — ascensão nos últimos 2 anos</div></div>
+          <div class="comp-row"><div class="comp-icon">📍</div><div class="comp-detail"><strong>Praça:</strong> Goiânia, Anápolis e interior de Goiás</div></div>
+          <div class="comp-row">
+            <div class="comp-icon">📱</div>
+            <div class="comp-detail">
+              <strong>Redes Sociais:</strong>
+              <div class="social-row" style="margin-top:6px">
+                <div class="social-chip">📸 Instagram 523K</div>
+                <div class="social-chip">📘 Facebook 401K</div>
+                <div class="social-chip" style="opacity:.5">TikTok ausente</div>
+                <div class="social-chip" style="opacity:.5">YouTube ausente</div>
+              </div>
+            </div>
+          </div>
+          <div class="comp-row"><div class="comp-icon">⭐</div><div class="comp-detail"><strong>Diferencial:</strong> Linguagem popular, acessível. Alta frequência de publicação. Boa presença Facebook para público 35–55 anos.</div></div>
+          <div class="comp-row"><div class="comp-icon">⚠️</div><div class="comp-detail"><strong>Deficiências:</strong> Sem posicionamento editorial claro. Conteúdo raso. Sem colunistas ou vozes reconhecidas. Identidade visual inconsistente. Sem vídeo.</div></div>
+          <div class="comp-swot">
+            <div class="swot-cell swot-s"><div class="swot-label">Força</div><div class="swot-text">Alcance Facebook, linguagem popular, presença local sólida</div></div>
+            <div class="swot-cell swot-w"><div class="swot-label">Fraqueza</div><div class="swot-text">Sem profundidade, sem posicionamento, sem vídeo</div></div>
+            <div class="swot-cell swot-o"><div class="swot-label">Oportunidade</div><div class="swot-text">Audiência popular de Goiás em crescimento constante</div></div>
+            <div class="swot-cell swot-t"><div class="swot-label">Ameaça</div><div class="swot-text">Qualquer portal com mais qualidade pode roubar sua base</div></div>
+          </div>
+          <div class="comp-exploit"><strong>Como O Hoje explora</strong>Disputar o mesmo público popular com profundidade e identidade. Ser o Mais Goiás para quem quer ir além da manchete.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TAB: NATIONAL -->
+  <div id="tab-national" style="display:none">
+    <div class="comp-grid">
+
+      <!-- METRÓPOLES -->
+      <div class="comp-card">
+        <div class="comp-header">
+          <div>
+            <div class="comp-name">🔵 Metrópoles</div>
+            <div class="comp-model">Acesso livre · publicidade + branded content</div>
+          </div>
+          <div class="comp-tier tier-national">Nacional · Indireto</div>
+        </div>
+        <div class="comp-body">
+          <div class="comp-row"><div class="comp-icon">📊</div><div class="comp-detail"><strong>Audiência:</strong> 78,82M visitantes únicos/mês (Comscore Jan/2025) — <strong>1º portal de notícias do Brasil</strong></div></div>
+          <div class="comp-row"><div class="comp-icon">📍</div><div class="comp-detail"><strong>Praça:</strong> Nacional — sucursais em Brasília, SP, RJ e Goiás</div></div>
+          <div class="comp-row">
+            <div class="comp-icon">📱</div>
+            <div class="comp-detail">
+              <strong>Redes Sociais:</strong>
+              <div class="social-row" style="margin-top:6px">
+                <div class="social-chip">🎵 TikTok 13,2M — 1º América Latina</div>
+                <div class="social-chip">▶️ YouTube 3,8M inscritos</div>
+                <div class="social-chip">📸 Instagram forte</div>
+                <div class="social-chip">📘 Facebook alto volume</div>
+                <div class="social-chip">🧵 Threads ativo</div>
+              </div>
+              <div style="margin-top:8px; font-size:12px; color:var(--brand); font-weight:700;">8,7 bilhões de impressões/mês (Dez/2025)</div>
+            </div>
+          </div>
+          <div class="comp-row"><div class="comp-icon">⭐</div><div class="comp-detail"><strong>Diferencial:</strong> Escala inalcançável. Liderança absoluta em TikTok na América Latina. Colunistas de altíssimo perfil (Leo Dias, Noblat, Rodrigo Rangel, Guilherme Amado). SEO dominante.</div></div>
+          <div class="comp-row"><div class="comp-icon">⚠️</div><div class="comp-detail"><strong>Deficiências:</strong> Superficialidade editorial intencional. Política de Goiás é marginal. Hard news investigativo não é prioridade. Leitor goiano não sente que é "deles".</div></div>
+          <div class="comp-swot">
+            <div class="swot-cell swot-s"><div class="swot-label">Força</div><div class="swot-text">Escala, tecnologia, colunistas, TikTok dominante na LATAM</div></div>
+            <div class="swot-cell swot-w"><div class="swot-label">Fraqueza</div><div class="swot-text">Superficialidade editorial, sem identidade local em GO</div></div>
+            <div class="swot-cell swot-o"><div class="swot-label">Oportunidade</div><div class="swot-text">Continuar crescendo como portal nacional dominante</div></div>
+            <div class="swot-cell swot-t"><div class="swot-label">Ameaça</div><div class="swot-text">Regulação de plataformas pode afetar distribuição orgânica</div></div>
+          </div>
+          <div class="comp-exploit"><strong>Como O Hoje explora</strong>No nicho de política + judiciário + economia de Goiás, Metrópoles é irrelevante. O Hoje compete por uma audiência que eles nunca vão atender.</div>
+        </div>
+      </div>
+
+      <!-- ESTADÃO -->
+      <div class="comp-card">
+        <div class="comp-header">
+          <div>
+            <div class="comp-name">⬛ Estadão</div>
+            <div class="comp-model">Paywall metered · 20 artigos gratuitos/mês</div>
+          </div>
+          <div class="comp-tier tier-national">Nacional · Referência</div>
+        </div>
+        <div class="comp-body">
+          <div class="comp-row"><div class="comp-icon">📊</div><div class="comp-detail"><strong>Audiência:</strong> 389,5K assinantes digitais pagos (2024 — 2º maior do Brasil)</div></div>
+          <div class="comp-row"><div class="comp-icon">📍</div><div class="comp-detail"><strong>Praça:</strong> Nacional — SP e Brasília como epicentros. Goiás praticamente ausente</div></div>
+          <div class="comp-row">
+            <div class="comp-icon">📱</div>
+            <div class="comp-detail">
+              <strong>Redes Sociais:</strong>
+              <div class="social-row" style="margin-top:6px">
+                <div class="social-chip">📸 Instagram 3M</div>
+                <div class="social-chip">📸 Cultura 178K</div>
+                <div class="social-chip">📸 Esporte 61K</div>
+                <div class="social-chip">📘 Facebook alto</div>
+                <div class="social-chip">▶️ YouTube ativo</div>
+                <div class="social-chip" style="opacity:.5">TikTok limitado</div>
+              </div>
+            </div>
+          </div>
+          <div class="comp-row"><div class="comp-icon">⭐</div><div class="comp-detail"><strong>Diferencial:</strong> 148 anos de história. Jornalismo investigativo de altíssima qualidade. 2º maior base de assinantes digitais do Brasil. Autoridade máxima em política nacional e judiciário federal.</div></div>
+          <div class="comp-row"><div class="comp-icon">⚠️</div><div class="comp-detail"><strong>Deficiências:</strong> Paywall limita alcance orgânico. Goiás ausente da cobertura. Público envelhecendo. UX com excesso de anúncios. TikTok fraco.</div></div>
+          <div class="comp-swot">
+            <div class="swot-cell swot-s"><div class="swot-label">Força</div><div class="swot-text">148 anos de história, assinantes pagos, jornalismo investigativo</div></div>
+            <div class="swot-cell swot-w"><div class="swot-label">Fraqueza</div><div class="swot-text">Paywall, público envelhecendo, sem presença em GO</div></div>
+            <div class="swot-cell swot-o"><div class="swot-label">Oportunidade</div><div class="swot-text">Mercado de assinaturas digitais ainda em crescimento</div></div>
+            <div class="swot-cell swot-t"><div class="swot-label">Ameaça</div><div class="swot-text">Portais livres com qualidade roubando leitores jovens</div></div>
+          </div>
+          <div class="comp-exploit"><strong>Como O Hoje explora</strong>"O jornalismo do Estadão, sobre Goiás, sem paywall." — Benchmark editorial que O Hoje pode usar como referência de qualidade.</div>
+        </div>
+      </div>
+
+      <!-- FOLHA -->
+      <div class="comp-card">
+        <div class="comp-header">
+          <div>
+            <div class="comp-name">⬛ Folha de S.Paulo</div>
+            <div class="comp-model">Paywall metered · 1º jornal BR a adotar paywall (2012)</div>
+          </div>
+          <div class="comp-tier tier-national">Nacional · Referência</div>
+        </div>
+        <div class="comp-body">
+          <div class="comp-row"><div class="comp-icon">📊</div><div class="comp-detail"><strong>Audiência:</strong> 813K assinantes digitais pagos (2024 — <strong>maior base do Brasil</strong>)</div></div>
+          <div class="comp-row"><div class="comp-icon">📍</div><div class="comp-detail"><strong>Praça:</strong> Nacional — São Paulo e Brasília. Goiás praticamente ausente da agenda</div></div>
+          <div class="comp-row">
+            <div class="comp-icon">📱</div>
+            <div class="comp-detail">
+              <strong>Redes Sociais:</strong>
+              <div class="social-row" style="margin-top:6px">
+                <div class="social-chip">📘 Facebook 5,6M</div>
+                <div class="social-chip">📸 Instagram alto</div>
+                <div class="social-chip">▶️ YouTube análises</div>
+                <div class="social-chip">🐦 X alto engajamento</div>
+                <div class="social-chip" style="opacity:.5">TikTok limitado</div>
+              </div>
+            </div>
+          </div>
+          <div class="comp-row"><div class="comp-icon">⭐</div><div class="comp-detail"><strong>Diferencial:</strong> Maior base de assinantes digitais do Brasil. Autoridade máxima em jornalismo político nacional. Alto investimento em checagem de fatos e jornalismo de dados.</div></div>
+          <div class="comp-row"><div class="comp-icon">⚠️</div><div class="comp-detail"><strong>Deficiências:</strong> Goiás praticamente inexistente. Paywall como barreira alta. Percebida como "elitista" fora de SP. Público envelhecendo. TikTok fraco.</div></div>
+          <div class="comp-swot">
+            <div class="swot-cell swot-s"><div class="swot-label">Força</div><div class="swot-text">Maior base de assinantes BR, autoridade máxima, jornalismo de dados</div></div>
+            <div class="swot-cell swot-w"><div class="swot-label">Fraqueza</div><div class="swot-text">Paywall, foco em SP/BSB, sem presença em GO, percepção elitista</div></div>
+            <div class="swot-cell swot-o"><div class="swot-label">Oportunidade</div><div class="swot-text">Modelo de assinatura como referência para o setor jornalístico</div></div>
+            <div class="swot-cell swot-t"><div class="swot-label">Ameaça</div><div class="swot-text">Perda de leitores jovens para portais gratuitos de qualidade</div></div>
+          </div>
+          <div class="comp-exploit"><strong>Como O Hoje explora</strong>Para o leitor goiano que respeita a Folha mas não assina: "A mesma profundidade analítica sobre os temas que importam para Goiás — sem cobrar nada."</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TAB: MAP -->
+  <div id="tab-map" style="display:none">
+    <div class="position-map-card" style="margin-bottom:16px">
+      <div class="section-label" style="margin-top:0">Mapa de Posicionamento</div>
+      <div style="display:grid;grid-template-columns:120px 1fr 1fr;grid-template-rows:40px 1fr 1fr;gap:8px;align-items:center;">
+        <div></div>
+        <div style="text-align:center;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">PAYWALL / PAGO</div>
+        <div style="text-align:center;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;">ACESSO LIVRE</div>
+        <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;text-align:right;padding-right:12px;">Especializado</div>
+        <div class="matrix-cell" style="background:#f8fafc">
+          <div class="matrix-cell-label">Pago + Profundo</div>
+          <div class="matrix-cell-players">O Popular (GO)<br>Estadão · Folha</div>
+        </div>
+        <div class="matrix-cell highlight">
+          <div class="matrix-cell-label" style="color:rgba(255,255,255,0.7)">✅ Quadrante Vago</div>
+          <div class="matrix-cell-players" style="font-weight:800;font-size:16px;">O HOJE<br><span style="font-size:12px;font-weight:400;opacity:.8">Livre + Profundo + Local + Moderno</span></div>
+          <div style="font-size:11px;margin-top:8px;opacity:.7">Jornal Opção (datado)</div>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;text-align:right;padding-right:12px;">Generalista</div>
+        <div class="matrix-cell">
+          <div class="matrix-cell-label">Pago + Geral</div>
+          <div class="matrix-cell-players">CNN Brasil<br>UOL+</div>
+        </div>
+        <div class="matrix-cell">
+          <div class="matrix-cell-label">Livre + Geral</div>
+          <div class="matrix-cell-players">G1 Goiás · Mais Goiás<br>Metrópoles</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">Os 3 Vetores de Diferenciação do O Hoje</div>
+    <div class="diff-grid">
+      <div class="diff-card">
+        <div class="diff-title">🎯 Especialização</div>
+        <div class="diff-o-hoje">Política + Judiciário + Economia de Goiás</div>
+        <div class="diff-vs"><strong>Concorrência local:</strong> Opção (datado), G1 (raso), Mais Goiás (superficial)<br><br><strong>Concorrência nacional:</strong> Estadão/Folha cobrem SP/BSB. Metrópoles foca em entretenimento.</div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-title">🔓 Acesso 100% Livre</div>
+        <div class="diff-o-hoje">Sem paywall · Sem registro · Sem barreira</div>
+        <div class="diff-vs"><strong>Quem cobra:</strong> O Popular, Estadão, Folha de S.Paulo, CNN Brasil<br><br><strong>Quem é livre:</strong> G1, Opção, Mais Goiás — mas nenhum com a profundidade editorial do O Hoje</div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-title">💡 Identidade Digital</div>
+        <div class="diff-o-hoje">Moderna · Multiplataforma · Voz própria de Goiás</div>
+        <div class="diff-vs"><strong>Jornal Opção:</strong> Mesmo nicho, mas visual datado e sem vídeo<br><br><strong>G1 Goiás:</strong> Alto alcance, mas sem identidade local — voz da Globo, não de Goiás</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ONBOARDING -->
+  <div class="section-label">Onboarding — Acessos Necessários</div>
+  <div class="onboarding-grid">
+    <div class="access-card">
+      <div class="access-icon">📊</div>
+      <div><div class="access-name">Google Analytics 4</div><div class="access-desc">Acesso de administrador</div></div>
+      <div class="access-status"><div class="status-dot pending"></div></div>
+    </div>
+    <div class="access-card">
+      <div class="access-icon">🔍</div>
+      <div><div class="access-name">Search Console</div><div class="access-desc">Acesso de proprietário</div></div>
+      <div class="access-status"><div class="status-dot pending"></div></div>
+    </div>
+    <div class="access-card">
+      <div class="access-icon">📱</div>
+      <div><div class="access-name">Redes Sociais</div><div class="access-desc">Admin Instagram + Facebook</div></div>
+      <div class="access-status"><div class="status-dot pending"></div></div>
+    </div>
+    <div class="access-card">
+      <div class="access-icon">🖥️</div>
+      <div><div class="access-name">CMS / Painel do Site</div><div class="access-desc">Para auditoria editorial e SEO</div></div>
+      <div class="access-status"><div class="status-dot pending"></div></div>
+    </div>
+    <div class="access-card">
+      <div class="access-icon">🗞️</div>
+      <div><div class="access-name">Editor-Chefe</div><div class="access-desc">Alinhamento dos 3 pilares editoriais</div></div>
+      <div class="access-status"><div class="status-dot pending"></div></div>
+    </div>
+    <div class="access-card">
+      <div class="access-icon">🎨</div>
+      <div><div class="access-name">Identidade Visual</div><div class="access-desc">Logos, paleta, manual de marca</div></div>
+      <div class="access-status"><div class="status-dot pending"></div></div>
+    </div>
+  </div>
+
+  <!-- FRASE -->
+  <div style="margin-top:32px">
+    <div class="phrase-card">
+      <div class="phrase-text">"Enquanto O Popular cobra pelo que importa, o G1 não se importa com Goiás, e a Folha nunca vai cobrir o que acontece aqui — O Hoje entrega o jornalismo que a cidade precisa, sem cobrar um centavo."</div>
+      <div class="phrase-label">Frase de Posicionamento Competitivo · Uso Interno e Comercial</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>Roncolato Estrategista de Marca · O Hoje · Abril 2026</footer>
+
+<!-- DRAWER OVERLAY -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+
+<!-- DRAWER PANEL -->
+<div class="drawer" id="drawer">
+  <div class="drawer-header">
+    <div>
+      <div class="drawer-title" id="drawerTitle"></div>
+      <div class="drawer-meta" id="drawerMeta"></div>
+    </div>
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+</div>
+
+<script>
+  /* ── TABS ── */
+  function setTab(tab) {
+    ['local','national','map'].forEach(t => {
+      document.getElementById('tab-'+t).style.display = t === tab ? 'block' : 'none';
+    });
+    document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+      btn.classList.toggle('active', ['local','national','map'][i] === tab);
+    });
+  }
+
+  /* ── DRAWER DATA ── */
+  const drawerData = {
+
+    t01: {
+      title: '01 — Diagnóstico de Marca',
+      meta: ['Sprint 1', 'Concluído ✓', 'Alta Prioridade'],
+      body: `
+        <div class="drawer-callout">
+          Análise completa da situação atual da marca O Hoje, avaliando 6 dimensões críticas com grau de urgência para cada uma.
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">6 Dimensões Avaliadas</div>
+          <div class="dim-row">
+            <div class="dim-label">Posicionamento</div>
+            <div class="dim-value">Difuso — cobre "tudo", dilui autoridade institucional</div>
+            <span class="dim-badge dim-urgente">Urgente</span>
+          </div>
+          <div class="dim-row">
+            <div class="dim-label">Narrativa</div>
+            <div class="dim-value">Ausente — não há história central que conecte o leitor à marca</div>
+            <span class="dim-badge dim-urgente">Urgente</span>
+          </div>
+          <div class="dim-row">
+            <div class="dim-label">Diferencial</div>
+            <div class="dim-value">Invisível — o "livre acesso" existe mas é tratado como padrão, não como valor</div>
+            <span class="dim-badge dim-urgente">Urgente</span>
+          </div>
+          <div class="dim-row">
+            <div class="dim-label">Editorial</div>
+            <div class="dim-value">Genérico — entretenimento compete com portais maiores sem vantagem</div>
+            <span class="dim-badge dim-medio">Médio</span>
+          </div>
+          <div class="dim-row">
+            <div class="dim-label">Analytics</div>
+            <div class="dim-value">Subutilizados — sem KPIs claros para guiar decisões editoriais</div>
+            <span class="dim-badge dim-medio">Médio</span>
+          </div>
+          <div class="dim-row">
+            <div class="dim-label">Audiência</div>
+            <div class="dim-value">Ativo real, mas sem monetização estratégica definida</div>
+            <span class="dim-badge dim-medio">Médio</span>
+          </div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Conclusão do Diagnóstico</div>
+          <div class="quote-block">
+            "O Hoje não tem problema de audiência. Tem problema de <strong style="color:#7eb8f7">invisibilidade estratégica</strong>. A audiência existe, o conteúdo é relevante, mas a marca ainda não aprendeu a narrar sua própria grandeza."
+          </div>
+        </div>
+      `
+    },
+
+    t02: {
+      title: '02 — Mapa de Concorrentes',
+      meta: ['Sprint 1', 'Concluído ✓', '7 Players · SWOT · Redes Sociais'],
+      body: `
+        <div class="drawer-callout">
+          Análise competitiva aprofundada do mercado de portais de notícias em Goiás e nacional. Dados: Comscore Jan/2025 · Ranking H1/2024 · Perfis públicos.
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Tier 1 — Goiás (Diretos)</div>
+          <div class="dim-row"><div class="dim-label">🔴 O Popular</div><div class="dim-value">Paywall · 7,6M views/mês · Instagram 697K · Força: credibilidade histórica · Fraqueza: paywall exclui jovens</div></div>
+          <div class="dim-row"><div class="dim-label">🟠 Jornal Opção</div><div class="dim-value">Livre · +49 anos · Instagram 239K / Facebook 44K · Força: autoridade política · Fraqueza: UX datada, sem vídeo</div></div>
+          <div class="dim-row"><div class="dim-label">🟡 G1 Goiás</div><div class="dim-value">Livre (Globo) · 17,7M views/mês · Instagram 622K · Força: maior audiência local · Fraqueza: sem identidade goiana</div></div>
+          <div class="dim-row"><div class="dim-label">🟢 Mais Goiás</div><div class="dim-value">Livre · Instagram 523K / Facebook 401K · Força: linguagem popular · Fraqueza: sem profundidade editorial</div></div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Tier 2 — Nacionais</div>
+          <div class="dim-row"><div class="dim-label">🔵 Metrópoles</div><div class="dim-value">Livre · 78,8M visitantes/mês · TikTok 13,2M (1º LATAM) · 8,7Bi impressões/mês · Fraqueza: política de GO é marginal</div></div>
+          <div class="dim-row"><div class="dim-label">⬛ Estadão</div><div class="dim-value">Paywall · 389,5K assinantes · Instagram 3M · Força: autoridade máxima · Fraqueza: GO ausente da cobertura</div></div>
+          <div class="dim-row"><div class="dim-label">⬛ Folha SP</div><div class="dim-value">Paywall · 813K assinantes (1º BR) · Facebook 5,6M · Força: maior base de assinantes · Fraqueza: GO inexistente na agenda</div></div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Oportunidade Estratégica</div>
+          <div class="quote-block">
+            "Nenhum concorrente ocupa o espaço de jornalismo político + judiciário + economia de Goiás, com acesso 100% livre, identidade moderna e forte presença digital. <strong style="color:#7eb8f7">Esse espaço está vago.</strong>"
+          </div>
+        </div>
+      `
+    },
+
+    t03: {
+      title: '03 — Positioning Statement',
+      meta: ['Sprint 1', 'Concluído ✓', 'Alta Prioridade'],
+      body: `
+        <div class="drawer-callout green">
+          Definição do posicionamento estratégico central da marca O Hoje — guia toda a comunicação, campanhas e decisões editoriais dos próximos 6 meses.
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Positioning Statement Oficial</div>
+          <div class="quote-block">
+            "Para o cidadão e líder goiano que precisa de informação política, jurídica e econômica de qualidade para tomar decisões conscientes, <strong style="color:#7eb8f7">O Hoje é o portal de jornalismo de referência</strong> que entrega profundidade e credibilidade com acesso 100% livre. Diferente dos concorrentes que cobram pelo que importa, O Hoje acredita que informação de qualidade é um direito — não um privilégio."
+          </div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Pilares do Diferencial</div>
+          <div class="dim-row">
+            <div class="dim-label">Livre Acesso</div>
+            <div class="dim-value">Tratado como escolha democrática ativa — não como padrão de mercado. É a bandeira da marca.</div>
+          </div>
+          <div class="dim-row">
+            <div class="dim-label">Especialização</div>
+            <div class="dim-value">Foco em Política, Judiciário e Economia — os temas dos tomadores de decisão em Goiás.</div>
+          </div>
+          <div class="dim-row">
+            <div class="dim-label">Profundidade</div>
+            <div class="dim-value">Credibilidade e aprofundamento vs. volume e entretenimento superficial dos concorrentes.</div>
+          </div>
+        </div>
+      `
+    },
+
+    t06: {
+      title: '06 — GA4 Setup + 7 KPIs monitorados',
+      meta: ['Sprint 1', 'Concluído ✓', 'GA4 + Search Console'],
+      body: `
+        <div class="drawer-callout green">
+          GA4 e Search Console confirmados. Baseline dos 7 KPIs em coleta. Meta Business Suite agendado para Semana 4 junto à Campanha Livre Acesso.
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Status dos Acessos</div>
+          <div class="dim-row"><div class="dim-label">Google Analytics 4</div><div class="dim-value">✅ Acesso confirmado — coleta ativa</div></div>
+          <div class="dim-row"><div class="dim-label">Search Console</div><div class="dim-value">✅ Acesso confirmado — dados de SEO disponíveis</div></div>
+          <div class="dim-row"><div class="dim-label">Meta Business Suite</div><div class="dim-value">⏳ Semana 4 — junto ao início da Campanha Livre Acesso</div></div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Os 7 KPIs Prioritários</div>
+          <div class="dim-row"><div class="dim-label">1. Tempo na página</div><div class="dim-value">Meta: acima de 2min30s</div></div>
+          <div class="dim-row"><div class="dim-label">2. Taxa de retorno</div><div class="dim-value">Meta: acima de 35%</div></div>
+          <div class="dim-row"><div class="dim-label">3. Páginas/sessão</div><div class="dim-value">Meta: acima de 2,5</div></div>
+          <div class="dim-row"><div class="dim-label">4. Tráfego orgânico</div><div class="dim-value">Meta: acima de 45%</div></div>
+          <div class="dim-row"><div class="dim-label">5. CTR redes sociais</div><div class="dim-value">Meta: acima de 3%</div></div>
+          <div class="dim-row"><div class="dim-label">6. Artigos por pilar</div><div class="dim-value">Baseline inicial</div></div>
+          <div class="dim-row"><div class="dim-label">7. Tráfego por editoria</div><div class="dim-value">Baseline inicial</div></div>
+        </div>
+      `
+    },
+
+    t04: {
+      title: '04 — Hierarquia de Mensagem',
+      meta: ['Sprint 1', 'Concluído ✓', 'Pitches 10s · 30s · 2min'],
+      body: `
+        <div class="drawer-callout orange">
+          Três níveis de narrativa prontos para uso em redes sociais, eventos, apresentações institucionais e reuniões de venda de patrocínio.
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Pitches por Contexto</div>
+
+          <div class="pitch-block">
+            <div class="pitch-label">⚡ Pitch de 10 segundos — Redes Sociais e Eventos</div>
+            <div class="pitch-text">"O Hoje é o único portal de Goiás que entrega jornalismo político, jurídico e econômico de verdade — sem cobrar por isso."</div>
+          </div>
+
+          <div class="pitch-block">
+            <div class="pitch-label">🎙️ Elevator Pitch de 30 segundos — Venda de Patrocinadores</div>
+            <div class="pitch-text">"O Hoje nasceu para democratizar a informação de qualidade em Goiás. Enquanto outros portais colocam barreiras de pagamento, nós acreditamos que o leitor que entende política, judiciário e economia não deveria precisar pagar para se informar. Nossa audiência é formada por quem decide — e esse é o nosso maior ativo."</div>
+          </div>
+
+          <div class="pitch-block">
+            <div class="pitch-label">📄 Proposta de Valor — 2 minutos (Apresentação Institucional)</div>
+            <div class="pitch-text">"Em um cenário onde a mídia tradicional se fragmenta, O Hoje emerge como o contraponto: jornalismo robusto sobre os temas que de fato movem Goiás. Política estadual, grandes processos, economia real. Tudo sem paywall — porque democratizar o acesso à informação não é fraqueza, é posicionamento. Para nossos patrocinadores, isso significa acesso direto a uma audiência qualificada que busca compreender o mundo ao redor."</div>
+          </div>
+        </div>
+      `
+    },
+
+    t05: {
+      title: '05 — 3 Pilares Editoriais',
+      meta: ['Sprint 1', 'Concluído ✓', '70% produção nos pilares'],
+      body: `
+        <div class="drawer-callout">
+          Nova arquitetura editorial do O Hoje: concentração de 70% da produção nos 3 pilares principais que definem autoridade e atraem anunciantes e leitores premium.
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Os 3 Pilares Principais — 70% da produção</div>
+
+          <div class="pilar-card pilar-politica">
+            <div class="pilar-name">🏛️ POLÍTICA</div>
+            <div class="pilar-desc">Governo estadual · Assembleia Legislativa · Municípios · Eleições e bastidores do poder em Goiás</div>
+          </div>
+
+          <div class="pilar-card pilar-judiciario">
+            <div class="pilar-name">⚖️ JUDICIÁRIO</div>
+            <div class="pilar-desc">Grandes processos · Decisões do STJ · Investigações · CPIs · O que acontece nos tribunais de Goiás</div>
+          </div>
+
+          <div class="pilar-card pilar-economia">
+            <div class="pilar-name">📈 ECONOMIA</div>
+            <div class="pilar-desc">Mercado local de Goiás · Negócios · Emprego e renda · Grandes movimentos econômicos do estado</div>
+          </div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Conteúdos de Apoio — 30% da produção</div>
+          <div class="pilar-card pilar-apoio">
+            <div class="pilar-name" style="color:var(--muted)">Cultura · Esporte · Saúde</div>
+            <div class="pilar-desc">Ampliam alcance e atraem novos leitores para os pilares principais. Devem sempre ter conexão com ao menos um dos 3 pilares.</div>
+          </div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Regra Editorial Obrigatória</div>
+          <div class="rule-block">
+            <strong>Todo conteúdo de apoio deve ter gancho ou conexão com ao menos um dos 3 pilares principais.</strong> Evitar entretenimento puro sem âncora estratégica de marca. A produção diária deve refletir a proporção 70/30.
+          </div>
+        </div>
+      `
+    }
+
+    ,
+
+    s2t01: {
+      title: '📖 Brandbook Fase 1: Tom de Voz, Persona do Leitor e Identidade Verbal',
+      meta: ['Sprint 2', 'Concluído', 'Estratégico · Prioridade 1ª'],
+      body: `
+        <div class="drawer-callout green">
+          Documento fundacional da identidade verbal do O Hoje. Define como o portal fala, para quem fala e com qual linguagem — em todos os canais: site, redes sociais, newsletters e comunicados internos.
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Personas do Leitor (a validar com pesquisa · Sprint 3)</div>
+          <div class="dim-row">
+            <div class="dim-label">Perfil A</div>
+            <div class="dim-value"><strong>O Profissional Conectado</strong> — 30–45 anos, advogado/empresário/servidor em Goiânia. Acompanha política e judiciário por impacto profissional. Compartilha no WhatsApp do trabalho. Canal: site direto e Google.</div>
+          </div>
+          <div class="dim-row">
+            <div class="dim-label">Perfil B</div>
+            <div class="dim-value"><strong>O Jovem Formador de Opinião</strong> — 20–30 anos, Direito/Jornalismo/Ciências Políticas. TikTok e Instagram. Zero tolerância a paywall. Potencial evangelizador da marca.</div>
+          </div>
+          <div class="dim-row">
+            <div class="dim-label">Perfil C</div>
+            <div class="dim-value"><strong>O Leitor de Interior</strong> — 35–55 anos, cidades médias de Goiás. Facebook e WhatsApp. Relação emocional com o "jornal de Goiás". Valoriza o livre acesso como democratização.</div>
+          </div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Tom de Voz</div>
+          <div class="quote-block">"O Hoje fala como o colega mais bem informado da sala — sem dar palestra, sem simplificar demais."</div>
+          <div class="dim-row"><div class="dim-label">Clareza</div><div class="dim-value"><strong>É:</strong> Direto, sem jargão &nbsp;·&nbsp; <strong>Não é:</strong> Hermético, técnico demais</div></div>
+          <div class="dim-row"><div class="dim-label">Autoridade</div><div class="dim-value"><strong>É:</strong> Seguro, bem apurado &nbsp;·&nbsp; <strong>Não é:</strong> Arrogante, impositivo</div></div>
+          <div class="dim-row"><div class="dim-label">Proximidade</div><div class="dim-value"><strong>É:</strong> Goiano, regional &nbsp;·&nbsp; <strong>Não é:</strong> Genérico, nacional sem contexto</div></div>
+          <div class="dim-row"><div class="dim-label">Comprometimento</div><div class="dim-value"><strong>É:</strong> Transparente sobre livre acesso &nbsp;·&nbsp; <strong>Não é:</strong> Silencioso sobre o diferencial</div></div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Identidade Verbal</div>
+          <div class="pitch-block">
+            <div class="pitch-label">Slogan de posicionamento</div>
+            <div class="pitch-text">"Informação sem bloqueio. Goiás sem filtro."</div>
+          </div>
+          <div class="pitch-block">
+            <div class="pitch-label">Tagline de livre acesso</div>
+            <div class="pitch-text">"Sem paywall. Sem cadastro. Porque informação é um direito."</div>
+          </div>
+          <div class="pitch-block">
+            <div class="pitch-label">Assinatura editorial</div>
+            <div class="pitch-text">"Leu em outro portal e travou? Aqui não."</div>
+          </div>
+          <div class="pitch-block">
+            <div class="pitch-label">Chamada de compartilhamento</div>
+            <div class="pitch-text">"Você não precisa pagar para saber isso."</div>
+          </div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Vocabulário da Marca</div>
+          <div class="dim-row"><div class="dim-label">Usamos</div><div class="dim-value">apurado · direto · aberto · goiano · acessível · real · profundo</div></div>
+          <div class="dim-row"><div class="dim-label">Evitamos</div><div class="dim-value">exclusivo · premium · conteúdo fechado · assinante</div></div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Aplicação por Canal</div>
+          <div class="dim-row"><div class="dim-label">Site (manchetes)</div><div class="dim-value">Direto, factual — Verbo + fato + contexto</div></div>
+          <div class="dim-row"><div class="dim-label">Instagram</div><div class="dim-value">Dinâmico, visual — "O que você precisa saber sobre X"</div></div>
+          <div class="dim-row"><div class="dim-label">TikTok</div><div class="dim-value">Coloquial, rápido — Gancho + explicação + CTA</div></div>
+          <div class="dim-row"><div class="dim-label">WhatsApp</div><div class="dim-value">Pessoal, confiável — Resumo de 3 linhas + link</div></div>
+          <div class="dim-row"><div class="dim-label">Séries Editoriais</div><div class="dim-value">Aprofundado, autoridade — Título de série + edição</div></div>
+        </div>
+      `
+    },
+
+    s2t02: {
+      title: '🔓 Conceito da Campanha Livre Acesso: Peças Criativas e Briefing de Anúncios',
+      meta: ['Sprint 2', 'Concluído', 'Estratégico · Prioridade 2ª'],
+      body: `
+        <div class="drawer-callout green">
+          Conceito criativo central da campanha "Livre Acesso" — a principal bandeira do O Hoje — com briefing para produção de peças visuais e roteiros de anúncio.
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Conceito Central</div>
+          <div class="quote-block">"Enquanto a informação travou para quem não paga, aqui ela nunca parou."</div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">3 Eixos Criativos</div>
+
+          <div class="pilar-card pilar-politica">
+            <div class="pilar-name">Eixo 1 — O Contraste (Paywall vs. Livre)</div>
+            <div class="pilar-desc"><strong>Mecanismo:</strong> Mostrar o que outros cobram, o que O Hoje entrega de graça.<br><strong>Formato:</strong> Carrossel Instagram / Reels comparativo.<br><em>"Você tentou ler sobre o julgamento do STJ e travou. Aqui, você leu tudo. De graça. Agora mesmo."</em></div>
+          </div>
+          <div class="pilar-card pilar-judiciario">
+            <div class="pilar-name">Eixo 2 — A Escolha (Posicionamento de Valor)</div>
+            <div class="pilar-desc"><strong>Mecanismo:</strong> Livre acesso como escolha ativa — não falta de modelo de negócio.<br><strong>Formato:</strong> Post estático com frase de impacto · Instagram/LinkedIn.<br><em>"A gente poderia cobrar. Escolhemos não cobrar. Porque a informação sobre Goiás pertence a quem vive em Goiás."</em></div>
+          </div>
+          <div class="pilar-card pilar-economia">
+            <div class="pilar-name">Eixo 3 — O Leitor (Protagonismo da Audiência)</div>
+            <div class="pilar-desc"><strong>Mecanismo:</strong> Depoimentos reais de leitores sobre o impacto do livre acesso.<br><strong>Formato:</strong> Stories / Reels com depoimento + dado de audiência.<br><em>"Compartilhei a matéria do STJ com o grupo do trabalho. Todo mundo leu. Ninguém precisou pagar."</em></div>
+          </div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Briefing de Peças — Fase 1</div>
+          <div class="dim-row"><div class="dim-label">Selo Livre Acesso</div><div class="dim-value">Ícone PNG/SVG · todos os canais · Copy: "Livre Acesso"</div></div>
+          <div class="dim-row"><div class="dim-label">Post de Contraste</div><div class="dim-value">Carrossel 5 slides · Instagram · Eixo 1</div></div>
+          <div class="dim-row"><div class="dim-label">Post de Manifesto</div><div class="dim-value">Imagem única · Instagram/LinkedIn · Eixo 2</div></div>
+          <div class="dim-row"><div class="dim-label">Reels Comparativo</div><div class="dim-value">Vídeo 30–60s · Instagram/TikTok · Eixo 1</div></div>
+          <div class="dim-row"><div class="dim-label">Banner Site</div><div class="dim-value">1200×200px · tagline livre acesso</div></div>
+          <div class="dim-row"><div class="dim-label">Template Editorial</div><div class="dim-value">Marca d'água + selo · todos os posts</div></div>
+        </div>
+
+        <div class="drawer-callout orange">
+          Produção visual das peças inicia no Sprint 3. Conceito e briefing entregues neste Sprint 2.
+        </div>
+      `
+    },
+
+    s2t03: {
+      title: '📋 Documento Estratégico Executivo: Reposicionamento para Aprovação do Cliente',
+      meta: ['Sprint 2', '✅ Concluído', 'Estratégico · Prioridade 1ª'],
+      body: `
+        <div class="drawer-callout green">
+          Síntese executiva de tudo construído no Sprint 1 e Sprint 2 para aprovação formal da direção do O Hoje.
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Estrutura do Documento</div>
+          <div class="dim-row"><div class="dim-label">1. Diagnóstico</div><div class="dim-value">Onde O Hoje está hoje — dados, percepção, concorrência</div></div>
+          <div class="dim-row"><div class="dim-label">2. Oportunidade</div><div class="dim-value">O espaço de Top of Mind disponível em Goiás</div></div>
+          <div class="dim-row"><div class="dim-label">3. Posicionamento</div><div class="dim-value">O Hoje como líder em Livre Acesso — estratégia proposta</div></div>
+          <div class="dim-row"><div class="dim-label">4. Os 4 Movimentos</div><div class="dim-value">Síntese executiva dos movimentos estratégicos</div></div>
+          <div class="dim-row"><div class="dim-label">5. Brandbook</div><div class="dim-value">Identidade verbal aprovada no Sprint 2</div></div>
+          <div class="dim-row"><div class="dim-label">6. Campanha</div><div class="dim-value">Conceito e peças da Campanha Livre Acesso</div></div>
+          <div class="dim-row"><div class="dim-label">7. Roadmap</div><div class="dim-value">O que vem nos próximos 4 meses</div></div>
+          <div class="dim-row"><div class="dim-label">8. KPIs e Metas</div><div class="dim-value">Como vamos medir o sucesso</div></div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Formatos de Entrega</div>
+          <div class="rule-block">
+            <strong>PDF executivo</strong> (20–30 páginas) · <strong>Apresentação Canva/Figma</strong> para reunião com cliente · <strong>One-pager</strong> para distribuição interna na redação
+          </div>
+        </div>
+      `
+    },
+
+    s2t04: {
+      title: '📊 Dashboard de Dados: GA4 com os 7 KPIs Monitorados',
+      meta: ['Sprint 2', '✅ Concluído', 'Operacional · Prioridade 3ª'],
+      body: `
+        <div class="drawer-callout orange">
+          <strong>Tarefa bloqueante:</strong> aguardando acesso ao GA4 do O Hoje e permissão de visualização dos dados pelo cliente.
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Os 7 KPIs Estratégicos</div>
+          <div class="dim-row"><div class="dim-label">1. Top of Mind</div><div class="dim-value">% que cita O Hoje como 1º portal de Goiás — meta: baseline via pesquisa</div></div>
+          <div class="dim-row"><div class="dim-label">2. Pageviews únicos</div><div class="dim-value">Audiência bruta do portal — meta: +15% vs. mês anterior</div></div>
+          <div class="dim-row"><div class="dim-label">3. Taxa de retorno</div><div class="dim-value">% de leitores que voltam em 7 dias — meta: >25%</div></div>
+          <div class="dim-row"><div class="dim-label">4. Tempo na página</div><div class="dim-value">Profundidade de leitura — meta: >2min nas pautas do Eixo do Poder</div></div>
+          <div class="dim-row"><div class="dim-label">5. Origem do tráfego</div><div class="dim-value">% direto / orgânico / social / referência — meta: baseline</div></div>
+          <div class="dim-row"><div class="dim-label">6. Compartilhamento</div><div class="dim-value">Posts compartilhados / publicados — meta: baseline</div></div>
+          <div class="dim-row"><div class="dim-label">7. NPS de leitores</div><div class="dim-value">0 a 10 probabilidade de recomendar — meta: baseline via pesquisa</div></div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Ferramentas a Configurar</div>
+          <div class="rule-block">
+            Google Analytics 4 · Meta Business Suite · Google Search Console · Planilha de monitoramento semanal (Google Sheets)
+          </div>
+        </div>
+      `
+    },
+
+    s3t01: {
+      title: '🔍 Pesquisa de Audiência: Qualificação e Personas dos Leitores',
+      meta: ['Sprint 3', '📝 Fazendo', 'Estratégico · Prioridade 1ª'],
+      body: `
+        <div class="drawer-callout">
+          Pesquisa qualitativa e quantitativa para validar as 3 personas hipotéticas do O Hoje com dados reais — base para todo o plano de conteúdo e distribuição do Sprint 3 em diante.
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Personas a Validar</div>
+          <div class="dim-row"><div class="dim-label">Perfil A</div><div class="dim-value">O Profissional Conectado · 30–45 anos · Goiânia · jurídico/empresarial</div></div>
+          <div class="dim-row"><div class="dim-label">Perfil B</div><div class="dim-value">O Jovem Formador de Opinião · 20–30 anos · TikTok/Instagram</div></div>
+          <div class="dim-row"><div class="dim-label">Perfil C</div><div class="dim-value">O Leitor de Interior · 35–55 anos · Facebook/WhatsApp · cidades médias de Goiás</div></div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Metodologia Prevista</div>
+          <div class="rule-block">
+            Formulário quantitativo (mínimo 200 respostas) + 5–8 entrevistas qualitativas em profundidade. Distribuição via WhatsApp, e-mail da base e Instagram Stories do portal.
+          </div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">KPIs da Pesquisa</div>
+          <div class="dim-row"><div class="dim-label">Top of Mind espontâneo</div><div class="dim-value">% que cita O Hoje como 1º portal de Goiás — baseline para KPI #1</div></div>
+          <div class="dim-row"><div class="dim-label">NPS de leitores</div><div class="dim-value">Probabilidade de 0 a 10 de recomendar o portal — baseline para KPI #7</div></div>
+          <div class="dim-row"><div class="dim-label">Hábitos de consumo</div><div class="dim-value">Dispositivo preferido, horário de leitura, canais de acesso</div></div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Entregável</div>
+          <div class="rule-block">
+            Relatório de Audiência com perfil qualificado dos 3 segmentos, NPS baseline, mapa de hábitos e recomendações para pauta e distribuição no Sprint 3.
+          </div>
+        </div>
+      `
+    },
+
+    s2t05: {
+      title: '🗞️ Alinhamento Editorial com a Redação: Guia dos 3 Pilares',
+      meta: ['Sprint 2', '✅ Concluído', 'Tático · Prioridade 2ª'],
+      body: `
+        <div class="drawer-callout">
+          Documento para o time de redação do O Hoje — traduz a estratégia em critérios editoriais práticos para o dia a dia da cobertura.
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Pilar 1: Eixo do Poder</div>
+          <div class="pilar-card pilar-politica">
+            <div class="pilar-name">Política · Judiciário · Economia</div>
+            <div class="pilar-desc">Toda decisão, votação ou movimentação que impacta Goiás. Mais completo que qualquer portal gratuito do estado. Séries fixas: "Poder em Goiás" · "O que o STJ decidiu" · "O negócio do dia em Goiás".</div>
+          </div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Pilar 2: Livre Acesso como Narrativa</div>
+          <div class="pilar-card pilar-judiciario">
+            <div class="pilar-name">Pautas bloqueadas pelos concorrentes</div>
+            <div class="pilar-desc">Monitorar O Popular, Estadão e Folha toda manhã. Identificar pautas atrás de paywall e cobrir no O Hoje. Assinatura: "Leu em outro portal e travou? Aqui não." Frequência mínima: 3x por semana.</div>
+          </div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Pilar 3: Goiás em Profundidade</div>
+          <div class="pilar-card pilar-economia">
+            <div class="pilar-name">Coberturas especiais regionais</div>
+            <div class="pilar-desc">Pautas de impacto regional que nacionais cobrem superficialmente. Reportagens longas, entrevistas locais, infográficos regionais. Twitter/X para alcance nacional + Instagram para audiência local.</div>
+          </div>
+        </div>
+
+        <div class="drawer-section">
+          <div class="drawer-section-title">Entrega ao Editor-Chefe</div>
+          <div class="rule-block">
+            O guia será apresentado ao editor-chefe antes de distribuir para a redação. Inclui: fluxo de aprovação de pautas, template de abertura por tipo de matéria e checklist pré-publicação (livre acesso, SEO, compartilhamento).
+          </div>
+        </div>
+      `
+    }
+
+  };
+
+  /* ── DRAWER FUNCTIONS ── */
+  const s2Done = ['s2t01', 's2t02', 's2t03', 's2t04', 's2t05']; // concluídos — abrem drawer normalmente
+
+  function openDrawer(id) {
+    if ((id.startsWith('s2') && !s2Done.includes(id)) || (id.startsWith('s3') && id !== 's3t01')) {
+      const d = drawerData[id];
+      document.getElementById('wipTaskName').textContent = d ? d.title : id;
+      document.getElementById('wipOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      return;
+    }
+    const d = drawerData[id];
+    if (!d) return;
+    document.getElementById('drawerTitle').textContent = d.title;
+    document.getElementById('drawerMeta').innerHTML = d.meta.map(m => `<span class="drawer-meta-tag">${m}</span>`).join('');
+    document.getElementById('drawerBody').innerHTML = d.body;
+    document.getElementById('drawer').classList.add('open');
+    document.getElementById('drawerOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeWip(e) {
+    if (e && e.target !== document.getElementById('wipOverlay')) return;
+    document.getElementById('wipOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeDrawer() {
+    document.getElementById('drawer').classList.remove('open');
+    document.getElementById('drawerOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+</script>
+</body>
+</html>

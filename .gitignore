@@ -1,0 +1,27 @@
+.vercel
+.env
+.env.local
+.env.*.local
+node_modules/
+dist/
+build/
+*.log
+.DS_Store
+Thumbs.db
+.env*.local
+
+# Fotos e imagens grandes fora de public/
+docs/**/*.jpg
+docs/**/*.jpeg
+docs/**/*.png
+docs/**/*.avif
+docs/**/*.webp
+docs/**/*.JPG
+docs/**/*.NEF
+docs/**/*.RAF
+
+# Credenciais Google (NUNCA commitar)
+AGENDA/*.json
+SOCIAL-FRAME/config/*.json
+
+.claude/settings.local.json

@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta - Fotografia Corporativa | Estúdio Roncolato</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            background-color: #0A0A0A;
+            color: #FFFFFF;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* HEADER */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 2px solid #F5C518;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .greeting {
+            font-size: 36px;
+            font-weight: 700;
+            color: #F5C518;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #CCCCCC;
+            font-weight: 400;
+        }
+
+        /* PROPOSTA SECTION */
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #F5C518;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+        }
+
+        /* ENTREGÁVEIS */
+        .deliverables {
+            background-color: #1A1A1A;
+            padding: 30px;
+            border-left: 4px solid #F5C518;
+            margin-bottom: 30px;
+        }
+
+        .deliverable-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .deliverable-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .deliverable-icon {
+            width: 30px;
+            height: 30px;
+            background-color: #F5C518;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #0A0A0A;
+            margin-right: 20px;
+            flex-shrink: 0;
+            font-size: 16px;
+        }
+
+        .deliverable-text {
+            flex: 1;
+        }
+
+        .deliverable-text strong {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .deliverable-text span {
+            font-size: 14px;
+            color: #AAAAAA;
+        }
+
+        /* TIMELINE */
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            position: relative;
+            padding-left: 80px;
+        }
+
+        .timeline-dot {
+            width: 40px;
+            height: 40px;
+            background-color: #F5C518;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 2;
+            border: 4px solid #0A0A0A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #0A0A0A;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .timeline-content {
+            background: #1A1A1A;
+            padding: 25px 30px;
+            border-radius: 8px;
+            border-left: 4px solid #F5C518;
+            flex: 1;
+            position: relative;
+        }
+
+        .timeline-content strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #F5C518;
+            font-weight: 600;
+        }
+
+        .timeline-content span {
+            font-size: 14px;
+            color: #AAAAAA;
+            line-height: 1.5;
+        }
+
+        /* GALERIA / CARROSSEL */
+        .gallery {
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .gallery-grid {
+            display: flex;
+            gap: 15px;
+            animation: autoScroll 15s linear infinite;
+            padding: 10px 0;
+        }
+
+        .gallery-grid:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes autoScroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-50% - 7.5px));
+            }
+        }
+
+        .gallery-item {
+            aspect-ratio: 9/16;
+            background-color: #1A1A1A;
+            border: 2px solid #333333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+            width: calc(25% - 12px);
+            min-width: 120px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-placeholder {
+            text-align: center;
+            color: #666666;
+            font-size: 12px;
+            padding: 10px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* INVESTIMENTO */
+        .investment {
+            background-color: #1A1A1A;
+            padding: 40px;
+            border: 2px solid #F5C518;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .investment-label {
+            font-size: 14px;
+            color: #AAAAAA;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .investment-value {
+            font-size: 48px;
+            font-weight: 700;
+            color: #F5C518;
+            margin-bottom: 15px;
+        }
+
+        .investment-desc {
+            font-size: 14px;
+            color: #CCCCCC;
+        }
+
+        /* CTA BUTTON */
+        .cta-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            background-color: #F5C518;
+            color: #0A0A0A;
+            padding: 18px 50px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            font-family: 'Jost', sans-serif;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(245, 197, 24, 0.3);
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 2px solid #333333;
+            color: #888888;
+            font-size: 13px;
+        }
+
+        .footer-link {
+            color: #F5C518;
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        /* PARA QUEM É - LAYOUT ESPECIAL */
+        .para-quem-section {
+            margin-bottom: 50px;
+        }
+
+        .para-quem-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .para-quem-header h2 {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.3;
+            color: #FFFFFF;
+        }
+
+        .para-quem-text .highlight {
+            color: #F5C518;
+        }
+
+        .para-quem-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .para-quem-card {
+            background-color: #1A1A1A;
+            padding: 30px;
+            border-left: 6px solid #F5C518;
+            border-radius: 4px;
+        }
+
+        .para-quem-card strong {
+            display: block;
+            font-size: 18px;
+            color: #FFFFFF;
+            margin-bottom: 10px;
+        }
+
+        .para-quem-card span {
+            font-size: 14px;
+            color: #AAAAAA;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1024px) {
+            .para-quem-header {
+                flex-direction: column;
+            }
+
+            .para-quem-image {
+                flex: 0 0 100%;
+            }
+
+            .para-quem-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .para-quem-text h2 {
+                font-size: 28px;
+            }
+
+            .para-quem-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .greeting {
+                font-size: 28px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .investment-value {
+                font-size: 36px;
+            }
+
+            .gallery-item {
+                width: calc(33.33% - 11px);
+                min-width: 100px;
+            }
+
+            .timeline-item {
+                padding: 20px 0;
+            }
+
+            .timeline-dot {
+                margin-right: 20px;
+            }
+
+            .deliverables {
+                padding: 20px;
+            }
+
+            .deliverable-icon {
+                width: 26px;
+                height: 26px;
+                margin-right: 15px;
+            }
+
+            .deliverable-text strong {
+                font-size: 15px;
+            }
+
+            .deliverable-text span {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px 10px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .greeting {
+                font-size: 24px;
+            }
+
+            .section-title {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+
+            .gallery-item {
+                width: calc(50% - 8px);
+                min-width: 90px;
+            }
+
+            .investment {
+                padding: 25px 20px;
+            }
+
+            .investment-value {
+                font-size: 28px;
+            }
+
+            .investment-label,
+            .investment-desc {
+                font-size: 12px;
+            }
+
+            .whatsapp-btn {
+                padding: 16px 40px;
+                font-size: 14px;
+            }
+
+            .timeline-content strong {
+                font-size: 15px;
+            }
+
+            .timeline-content span {
+                font-size: 13px;
+            }
+
+            .header {
+                margin-bottom: 40px;
+                padding-bottom: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="logo">
+                <img src="/assets/IMG/roncolato-branco-horizontal.png" alt="Roncolato - Estrategista de Marca">
+            </div>
+            <p class="subtitle">Transformando sua imagem em autoridade</p>
+        </div>
+
+<!-- PARA QUEM É -->
+        <div class="para-quem-section">
+            <div class="para-quem-header">
+                <p style="font-size: 48px; font-weight: 700; color: #F5C518; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">
+                    Autoridade tem rosto.
+                </p>
+                <p style="font-size: 40px; font-weight: 700; color: #FFFFFF; margin-bottom: 40px; line-height: 1.3;">
+                    O seu já transmite o que você vale?
+                </p>
+                <h2>Feito para quem carrega um nome que <span class="highlight">representa valor.</span></h2>
+            </div>
+
+            <div class="para-quem-cards">
+                <div class="para-quem-card">
+                    <strong>Empresários e mentores</strong>
+                    <span>que querem elevar a percepção da própria marca</span>
+                </div>
+                <div class="para-quem-card">
+                    <strong>Profissionais</strong>
+                    <span>que cansaram de parecer "amadores" no digital</span>
+                </div>
+                <div class="para-quem-card">
+                    <strong>Marcas pessoais</strong>
+                    <span>que desejam fotos que vendem sem precisar falar</span>
+                </div>
+            </div>
+        </div>
+
+<!-- TIMELINE -->
+        <div class="section">
+            <div class="section-title">Cronograma</div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot">1</div>
+                    <div class="timeline-content">
+                        <strong>Reunião de Alinhamento</strong>
+                        <span>Você conta sua história, nós planejamos a sessão</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">2</div>
+                    <div class="timeline-content">
+                        <strong>Ensaio no Local do Cliente — aprox. 1h</strong>
+                        <span>Capturamos sua melhor versão profissional no seu espaço</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">3</div>
+                    <div class="timeline-content">
+                        <strong>Edição e Tratamento</strong>
+                        <span>Cada foto é tratada com atenção ao detalhe</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">4</div>
+                    <div class="timeline-content">
+                        <strong>Entrega Final</strong>
+                        <span>Você recebe as fotos + guia de uso estratégico</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GALERIA -->
+        <div class="section">
+            <div class="section-title">Exemplos do Nosso Trabalho</div>
+            <div class="gallery">
+                <div class="gallery-container">
+                    <div class="gallery-grid">
+                        <!-- Primeira sequência (15 fotos) -->
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_01_1x.webp" alt="Retrato corporativo 1">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_05_1x.webp" alt="Retrato corporativo 2">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_07_1x.webp" alt="Retrato corporativo 3">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_09_1x.webp" alt="Retrato corporativo 4">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_11_1x.webp" alt="Retrato corporativo 5">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_12_1x.webp" alt="Retrato corporativo 6">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_13_1x.webp" alt="Retrato corporativo 7">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_15_1x.webp" alt="Retrato corporativo 8">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_16_1x.webp" alt="Retrato corporativo 9">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_17_1x.webp" alt="Retrato corporativo 10">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_18_1x.webp" alt="Retrato corporativo 11">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_20_1x.webp" alt="Retrato corporativo 12">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_21_1x.webp" alt="Retrato corporativo 13">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_22_1x.webp" alt="Retrato corporativo 14">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_24_1x.webp" alt="Retrato corporativo 15">
+                        </div>
+
+                        <!-- Segunda sequência (duplicada para loop contínuo) -->
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_01_1x.webp" alt="Retrato corporativo 1">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_05_1x.webp" alt="Retrato corporativo 2">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_07_1x.webp" alt="Retrato corporativo 3">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_09_1x.webp" alt="Retrato corporativo 4">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_11_1x.webp" alt="Retrato corporativo 5">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_12_1x.webp" alt="Retrato corporativo 6">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_13_1x.webp" alt="Retrato corporativo 7">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_15_1x.webp" alt="Retrato corporativo 8">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_16_1x.webp" alt="Retrato corporativo 9">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_17_1x.webp" alt="Retrato corporativo 10">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_18_1x.webp" alt="Retrato corporativo 11">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_20_1x.webp" alt="Retrato corporativo 12">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_21_1x.webp" alt="Retrato corporativo 13">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_22_1x.webp" alt="Retrato corporativo 14">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/pages/proposta/retratos_24_1x.webp" alt="Retrato corporativo 15">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ENTREGÁVEIS -->
+        <div class="section">
+            <div class="section-title">O que está incluído</div>
+            <div class="deliverables">
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">1</div>
+                    <div class="deliverable-text">
+                        <strong>Reunião de Alinhamento</strong>
+                        <span>Você conta sua história, planejamos juntos a sessão</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">2</div>
+                    <div class="deliverable-text">
+                        <strong>Ensaio no Local do Cliente — aprox. 1h</strong>
+                        <span>Sessão no seu espaço, capturando autenticidade e presença</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">3</div>
+                    <div class="deliverable-text">
+                        <strong>Edição e Tratamento de Todas as Fotos</strong>
+                        <span>Cada imagem tratada com atenção ao detalhe</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">4</div>
+                    <div class="deliverable-text">
+                        <strong>Vídeo Produção de Bastidores</strong>
+                        <span>Conteúdo autêntico do processo para usar nas redes</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">5</div>
+                    <div class="deliverable-text">
+                        <strong>Link com as Fotos + Guia de Sugestão de Uso</strong>
+                        <span>Galeria online e orientações estratégicas para cada imagem</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INVESTIMENTO -->
+        <div class="investment">
+            <div class="investment-label">Investimento</div>
+            <div class="investment-value">R$ 1.200</div>
+            <div class="investment-desc">À vista via PIX ou em até 3x no cartão</div>
+            <div style="margin-top: 15px; font-size: 11px; color: #666666;">*Parcelamento sujeito a acréscimo de acordo com a plataforma</div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <p style="font-size: 16px; color: #CCCCCC; margin-bottom: 30px;">Pronto para transformar sua imagem em autoridade?</p>
+            <a href="https://wa.me/5562985928423?text=Olá%20Rodrigo!%20Tenho%20interesse%20na%20Fotografia%20Corporativa.%20Gostaria%20de%20saber%20mais!" class="whatsapp-btn">
+                Falar com Rodrigo
+            </a>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p>© 2026 Estúdio Roncolato. Todos os direitos reservados.</p>
+            <p>Transformando identidade em imagem e imagem em posicionamento.</p>
+        </div>
+    </div>
+</body>
+</html>

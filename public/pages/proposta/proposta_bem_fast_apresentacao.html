@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEM FAST — Proposta Estratégica | Estúdio Roncolato</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== DESIGN SYSTEM TOKENS ===== */
+        :root {
+            /* Cores */
+            --color-primary: #F2C94C;       /* Amarelo — CTAs e destaques */
+            --color-dark: #0A0A0A;         /* Preto — Fundo principal */
+            --color-dark-alt: #1a1a1a;     /* Cinza escuro — Fundos secundários */
+            --color-light: #F5F2EC;        /* Bege — Texto claro */
+            --color-gray-mid: #8A8A8A;     /* Cinza — Texto secundário */
+            --color-gray-light: #E8E8E8;   /* Cinza claro — Bordas e backgrounds leves */
+            --color-white: #FFFFFF;        /* Branco puro */
+            --color-success: #0d8d64;      /* Verde — Status positivos */
+            --color-error: #FF4444;        /* Vermelho — Alertas */
+            --color-warning: #FF9900;      /* Laranja — Avisos */
+
+            /* Tipografia */
+            --font-heading: 'Jost', system-ui, sans-serif;
+            --font-body: 'Jost', system-ui, sans-serif;
+
+            /* Font Sizes */
+            --fs-h1: 3.5rem;               /* 56px */
+            --fs-h2: 2.5rem;               /* 40px */
+            --fs-h3: 1.75rem;              /* 28px */
+            --fs-h4: 1.5rem;               /* 24px */
+            --fs-h5: 1.25rem;              /* 20px */
+            --fs-body-lg: 1.125rem;        /* 18px */
+            --fs-body: 1rem;               /* 16px */
+            --fs-body-sm: 0.875rem;        /* 14px */
+            --fs-xs: 0.75rem;              /* 12px */
+
+            /* Font Weights */
+            --fw-light: 300;
+            --fw-regular: 400;
+            --fw-medium: 500;
+            --fw-semibold: 600;
+            --fw-bold: 700;
+            --fw-extrabold: 800;
+
+            /* Espaçamento */
+            --spacing-xs: 0.5rem;          /* 8px */
+            --spacing-sm: 1rem;            /* 16px */
+            --spacing-md: 1.5rem;          /* 24px */
+            --spacing-lg: 2rem;            /* 32px */
+            --spacing-xl: 3rem;            /* 48px */
+            --spacing-2xl: 4rem;           /* 64px */
+            --spacing-3xl: 6rem;           /* 96px */
+
+            /* Border Radius */
+            --radius-sm: 0.25rem;          /* 4px */
+            --radius-md: 0.5rem;           /* 8px */
+            --radius-lg: 1rem;             /* 16px */
+
+            /* Transições */
+            --transition-fast: 150ms ease-in-out;
+            --transition-base: 250ms ease-in-out;
+            --transition-slow: 350ms ease-in-out;
+
+            /* Sombras */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ===== RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-dark);
+            color: var(--color-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== TIPOGRAFIA BASE ===== */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: var(--fw-bold);
+            line-height: 1.2;
+            margin-bottom: var(--spacing-md);
+        }
+
+        h1 { font-size: var(--fs-h1); }
+        h2 { font-size: var(--fs-h2); }
+        h3 { font-size: var(--fs-h3); }
+        h4 { font-size: var(--fs-h4); }
+        h5 { font-size: var(--fs-h5); }
+
+        p {
+            margin-bottom: var(--spacing-md);
+            font-size: var(--fs-body);
+        }
+
+        a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        a:hover {
+            color: var(--color-light);
+        }
+
+        /* ===== CONTAINERS ===== */
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        section {
+            padding: var(--spacing-3xl) 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== COMPONENTES: BOTÃO ===== */
+        .btn {
+            display: inline-block;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border: 2px solid;
+            border-radius: var(--radius-md);
+            font-family: var(--font-body);
+            font-weight: var(--fw-bold);
+            font-size: var(--fs-body);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            text-decoration: none;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: var(--color-dark);
+            border-color: var(--color-primary);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--color-primary);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-primary);
+            color: var(--color-dark);
+        }
+
+        /* ===== COMPONENTES: CARD ===== */
+        .card {
+            background: var(--color-dark-alt);
+            padding: var(--spacing-lg);
+            border-left: 5px solid var(--color-primary);
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-base);
+        }
+
+        .card:hover {
+            transform: translateX(var(--spacing-sm));
+        }
+
+        .card h3 {
+            color: var(--color-primary);
+            font-size: var(--fs-h4);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .card p {
+            color: var(--color-gray-mid);
+            font-size: var(--fs-body-sm);
+            line-height: 1.7;
+        }
+
+        /* ===== COMPONENTES: BADGE ===== */
+        .badge {
+            display: inline-block;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: var(--fs-xs);
+            font-weight: var(--fw-bold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .badge-primary {
+            background-color: var(--color-primary);
+            color: var(--color-dark);
+        }
+
+        .badge-success {
+            background-color: var(--color-success);
+            color: var(--color-white);
+        }
+
+        /* ===== SEÇÃO: HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-dark-alt) 100%);
+            min-height: 100vh;
+        }
+
+        .hero-content {
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-logo {
+            margin-bottom: var(--spacing-xl);
+            display: inline-block;
+        }
+
+        .hero-logo img {
+            max-width: 250px;
+            height: auto;
+            display: block;
+        }
+
+        .hero h1 {
+            color: var(--color-light);
+            margin-bottom: var(--spacing-md);
+            font-size: clamp(2.5rem, 8vw, 3.5rem);
+        }
+
+        .hero h1 .highlight {
+            color: var(--color-primary);
+        }
+
+        .hero p {
+            color: var(--color-gray-mid);
+            font-size: var(--fs-body-lg);
+            margin-bottom: var(--spacing-xl);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: var(--fw-light);
+        }
+
+        .hero .badge {
+            margin-top: var(--spacing-lg);
+        }
+
+        /* ===== SEÇÃO: APRESENTAÇÃO ===== */
+        .apresentacao {
+            background: var(--color-dark);
+            position: relative;
+        }
+
+        .apresentacao::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--color-primary);
+        }
+
+        .apresentacao h2 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .apresentacao-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        .apresentacao-item p {
+            color: var(--color-gray-mid);
+        }
+
+        .apresentacao-item strong {
+            color: var(--color-primary);
+            font-weight: var(--fw-bold);
+        }
+
+        /* ===== SEÇÃO: MERCADO ===== */
+        .mercado {
+            background: linear-gradient(180deg, var(--color-dark) 0%, var(--color-dark-alt) 100%);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .section-header h2 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .section-header p {
+            color: var(--color-gray-mid);
+            font-size: var(--fs-body-sm);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: var(--fw-bold);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .stat-card {
+            background: var(--color-dark-alt);
+            padding: var(--spacing-lg);
+            border-left: 5px solid var(--color-primary);
+            text-align: left;
+            transition: all var(--transition-base);
+        }
+
+        .stat-card:hover {
+            transform: translateX(var(--spacing-sm));
+        }
+
+        .stat-value {
+            font-size: var(--fs-h2);
+            font-weight: var(--fw-extrabold);
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .stat-label {
+            font-size: var(--fs-body);
+            font-weight: var(--fw-bold);
+            color: var(--color-light);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .stat-detail {
+            font-size: var(--fs-body-sm);
+            color: var(--color-gray-mid);
+        }
+
+        .insight-box {
+            background: var(--color-dark-alt);
+            padding: var(--spacing-xl);
+            border-left: 5px solid var(--color-primary);
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .insight-box h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .insight-box p {
+            color: var(--color-gray-mid);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .insight-box strong {
+            color: var(--color-light);
+        }
+
+        .trends-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .trend-card {
+            background: var(--color-dark-alt);
+            padding: var(--spacing-lg);
+            border-top: 4px solid var(--color-primary);
+            transition: all var(--transition-base);
+        }
+
+        .trend-card:hover {
+            transform: translateY(-var(--spacing-sm));
+        }
+
+        .trend-card strong {
+            color: var(--color-primary);
+            font-size: var(--fs-body);
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .trend-card p {
+            color: var(--color-gray-mid);
+            font-size: var(--fs-body-sm);
+        }
+
+        /* ===== SEÇÃO: FRENTES ===== */
+        .frentes {
+            background: var(--color-dark);
+        }
+
+        .frentes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        .frente-card {
+            background: var(--color-dark-alt);
+            padding: var(--spacing-xl);
+            border-top: 5px solid;
+            transition: all var(--transition-base);
+        }
+
+        .frente-card.red {
+            border-top-color: var(--color-error);
+        }
+
+        .frente-card.orange {
+            border-top-color: var(--color-warning);
+        }
+
+        .frente-card h3 {
+            font-size: var(--fs-h4);
+            margin-bottom: var(--spacing-md);
+            margin-top: 0;
+        }
+
+        .frente-card.red h3 {
+            color: var(--color-error);
+        }
+
+        .frente-card.orange h3 {
+            color: var(--color-warning);
+        }
+
+        .frente-card > p {
+            color: var(--color-gray-mid);
+            font-size: var(--fs-body-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .frente-card ol {
+            list-style: none;
+            counter-reset: item;
+        }
+
+        .frente-card li {
+            counter-increment: item;
+            margin-bottom: var(--spacing-md);
+            padding-left: 50px;
+            position: relative;
+            color: var(--color-gray-mid);
+            font-size: var(--fs-body-sm);
+            line-height: 1.7;
+        }
+
+        .frente-card li::before {
+            content: counter(item);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 35px;
+            height: 35px;
+            background: var(--color-primary);
+            color: var(--color-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: var(--fw-bold);
+            font-size: var(--fs-body-sm);
+        }
+
+        .frente-card strong {
+            color: var(--color-light);
+            font-weight: var(--fw-bold);
+        }
+
+        /* ===== SEÇÃO: ESTRUTURA ===== */
+        .estrutura {
+            background: linear-gradient(180deg, var(--color-dark) 0%, var(--color-dark-alt) 100%);
+        }
+
+        .estrutura-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .estrutura-card {
+            background: var(--color-dark-alt);
+            padding: var(--spacing-lg);
+            border-left: 5px solid var(--color-primary);
+            transition: all var(--transition-base);
+        }
+
+        .estrutura-card:hover {
+            transform: translateX(var(--spacing-sm));
+        }
+
+        .estrutura-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .estrutura-card h4 {
+            color: var(--color-primary);
+            font-size: var(--fs-h5);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .estrutura-card p {
+            color: var(--color-gray-mid);
+            font-size: var(--fs-body-sm);
+            margin-bottom: 0;
+        }
+
+        /* ===== SEÇÃO: CRONOGRAMA ===== */
+        .cronograma {
+            background: var(--color-dark);
+        }
+
+        .timeline {
+            position: relative;
+            padding: var(--spacing-xl) 0;
+            margin-top: var(--spacing-xl);
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: var(--color-primary);
+        }
+
+        .timeline-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .timeline-item {
+            background: var(--color-dark-alt);
+            padding: var(--spacing-lg);
+            border-left: 5px solid var(--color-primary);
+            position: relative;
+        }
+
+        .timeline-item h4 {
+            color: var(--color-primary);
+            font-size: var(--fs-h5);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .timeline-item ul {
+            list-style: none;
+        }
+
+        .timeline-item li {
+            color: var(--color-gray-mid);
+            font-size: var(--fs-body-sm);
+            margin-bottom: var(--spacing-sm);
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .timeline-item li::before {
+            content: '▸';
+            color: var(--color-primary);
+            position: absolute;
+            left: 0;
+        }
+
+        /* ===== SEÇÃO: IMPACTO ===== */
+        .impacto {
+            background: linear-gradient(180deg, var(--color-dark) 0%, var(--color-dark-alt) 100%);
+        }
+
+        .impacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .impacto-card {
+            background: var(--color-dark-alt);
+            padding: var(--spacing-lg);
+            border-top: 5px solid;
+            transition: all var(--transition-base);
+        }
+
+        .impacto-card.negative {
+            border-top-color: var(--color-error);
+        }
+
+        .impacto-card.positive {
+            border-top-color: var(--color-success);
+        }
+
+        .impacto-card h4 {
+            font-size: var(--fs-h5);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .impacto-card.negative h4 {
+            color: var(--color-error);
+        }
+
+        .impacto-card.positive h4 {
+            color: var(--color-success);
+        }
+
+        .impacto-card ul {
+            list-style: none;
+        }
+
+        .impacto-card li {
+            color: var(--color-gray-mid);
+            font-size: var(--fs-body-sm);
+            margin-bottom: var(--spacing-sm);
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .impacto-card li::before {
+            content: '▸';
+            color: var(--color-primary);
+            position: absolute;
+            left: 0;
+        }
+
+        /* ===== SEÇÃO: INVESTIMENTO ===== */
+        .investimento {
+            background: var(--color-dark);
+        }
+
+        .investimento-box {
+            background: var(--color-dark-alt);
+            padding: var(--spacing-xl);
+            border-left: 5px solid var(--color-primary);
+            margin-top: var(--spacing-xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .investimento-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--color-gray-light);
+        }
+
+        .investimento-item:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+
+        .investimento-label {
+            font-size: var(--fs-body);
+            font-weight: var(--fw-bold);
+            color: var(--color-light);
+        }
+
+        .investimento-value {
+            font-size: var(--fs-h4);
+            font-weight: var(--fw-extrabold);
+            color: var(--color-primary);
+        }
+
+        .investimento-highlight {
+            text-align: center;
+            margin-top: var(--spacing-lg);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--color-gray-light);
+            color: var(--color-primary);
+            font-size: var(--fs-body);
+            font-weight: var(--fw-bold);
+        }
+
+        /* ===== SEÇÃO: CTA FINAL ===== */
+        .cta-final {
+            background: var(--color-primary);
+            color: var(--color-dark);
+            text-align: center;
+        }
+
+        .cta-final h2 {
+            color: var(--color-dark);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .cta-final p {
+            color: var(--color-dark);
+            font-size: var(--fs-body-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--color-dark-alt);
+            padding: var(--spacing-lg) 0;
+            text-align: center;
+            color: var(--color-gray-mid);
+            font-size: var(--fs-body-sm);
+            border-top: 1px solid var(--color-gray-light);
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 768px) {
+            :root {
+                --fs-h1: 2rem;
+                --fs-h2: 1.75rem;
+                --fs-h3: 1.5rem;
+                --spacing-3xl: 3rem;
+                --spacing-2xl: 2rem;
+            }
+
+            section {
+                padding: var(--spacing-2xl) 0;
+            }
+
+            .container {
+                padding: 0 var(--spacing-md);
+            }
+
+            .hero h1 {
+                font-size: clamp(1.75rem, 6vw, 2rem);
+            }
+
+            .hero-logo img {
+                max-width: 180px;
+            }
+
+            .apresentacao-grid,
+            .stats-grid,
+            .trends-grid,
+            .frentes-grid,
+            .estrutura-grid,
+            .timeline-items,
+            .impacto-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 15px;
+            }
+
+            .investimento-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-md);
+            }
+
+            .investimento-value {
+                font-size: var(--fs-h5);
+            }
+
+            .stat-value {
+                font-size: var(--fs-h4);
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --spacing-xl: 2rem;
+                --spacing-lg: 1.5rem;
+                --fs-body-lg: 1rem;
+            }
+
+            .hero {
+                min-height: 70vh;
+            }
+
+            .hero-logo img {
+                max-width: 150px;
+            }
+
+            .stat-value {
+                font-size: var(--fs-h5);
+            }
+
+            .frente-card li {
+                padding-left: 45px;
+            }
+
+            .frente-card li::before {
+                width: 30px;
+                height: 30px;
+                font-size: var(--fs-xs);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-logo">
+                    <img src="../../../assets/IMG/roncolato-branco-horizontal.png" alt="Roncolato">
+                </div>
+                <h1>Consolidar <span class="highlight">BEM FAST</span><br>como Líder de Marca<br>em Beleza & Estética</h1>
+                <p>Uma estratégia de posicionamento que transforma franquias dispersas em embaixadoras de uma marca reconhecida e desejada</p>
+                <span class="badge badge-primary">📌 Proposta Estratégica 2026</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- APRESENTAÇÃO -->
+    <section class="apresentacao">
+        <div class="container">
+            <h2>O Problema de Marca</h2>
+            <div class="apresentacao-grid">
+                <div class="apresentacao-item">
+                    <p><strong>❌ Hoje: Marca Invisível</strong></p>
+                    <p>Cada franqueada é uma "empresa", sem conexão visual com BEM FAST. Não há posicionamento claro, não há reconhecimento de marca. Clientes não sabem o que diferencia BEM FAST no mercado.</p>
+                </div>
+                <div class="apresentacao-item">
+                    <p><strong>✅ Amanhã: Marca Líder</strong></p>
+                    <p>BEM FAST é um ícone reconhecido em beleza & estética. Franqueadas são embaixadoras dessa marca. Novos prospectos vêm por reconhecimento, não por acaso. Recrutamento de franqueadas é 10x mais fácil.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MERCADO -->
+    <section class="mercado">
+        <div class="container">
+            <div class="section-header">
+                <h2>O Mercado de Estética & Beleza</h2>
+                <p>Por que AGORA é o momento de investir em posicionamento</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">R$ 242,3 bi</div>
+                    <div class="stat-label">Movimentado em 2025 no Brasil</div>
+                    <div class="stat-detail">Crescimento de 11,2% vs 2024</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">4º Lugar</div>
+                    <div class="stat-label">Maior mercado de beleza do mundo</div>
+                    <div class="stat-detail">Atrás apenas de EUA, China e Japão</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">16,5%</div>
+                    <div class="stat-label">Crescimento de franquias de beleza</div>
+                    <div class="stat-detail">ABF 2024 — aceleração de expansão</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">72%</div>
+                    <div class="stat-label">Consumidores nunca param</div>
+                    <div class="stat-detail">Brasileiros nunca deixam de comprar cosméticos</div>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <h3>🎯 O Insight Crítico</h3>
+                <p><strong>Mercado CRESCENDO a dois dígitos + 170k+ novos negócios em beleza em 2024.</strong></p>
+                <p>Mas isso significa COMPETIÇÃO FEROZ por reconhecimento. Quem tem <strong>MARCA FORTE</strong> cresce 2-3x mais rápido. As franquias que prosperam têm:</p>
+                <p>✓ <strong>Identidade visual clara</strong> que diferencia no mercado<br>
+                ✓ <strong>Posicionamento único</strong> que clientes reconhecem<br>
+                ✓ <strong>Reputação consolidada</strong> que atrai novos franqueados</p>
+                <p><strong>BEM FAST tem o PRODUTO. Agora precisa de MARCA para dominar o mercado.</strong></p>
+            </div>
+
+            <div class="section-header">
+                <p>📊 Tendências Dominantes em 2026</p>
+            </div>
+
+            <div class="trends-grid">
+                <div class="trend-card">
+                    <strong>✅ Saúde + Estética</strong>
+                    <p>Não é só beleza, é bem-estar integral. Clientes buscam resultados que impactam saúde.</p>
+                </div>
+                <div class="trend-card">
+                    <strong>✅ Hiperpersonalização</strong>
+                    <p>62% dispostos a pagar mais por serviços customizados e adaptados.</p>
+                </div>
+                <div class="trend-card">
+                    <strong>✅ Inclusividade</strong>
+                    <p>55% da população Black/mixed-race quer ser representada nas marcas.</p>
+                </div>
+                <div class="trend-card">
+                    <strong>✅ Experiência Sensorial</strong>
+                    <p>Cliente quer jornada emocional, não só resultado técnico.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FRENTES -->
+    <section class="frentes">
+        <div class="container">
+            <div class="section-header">
+                <h2>Roadmap: Duas Frentes de Marca</h2>
+                <p>Construir Marca + Replicar Padrão em Toda Rede</p>
+            </div>
+
+            <div class="frentes-grid">
+                <div class="frente-card red">
+                    <h3>🔴 FRENTE 1: CRIAR MARCA</h3>
+                    <p>Construir identidade visual e posicionamento que diferencia BEM FAST no mercado</p>
+                    <ol>
+                        <li><strong>Posicionamento de Marca</strong> — Quem é BEM FAST? Por que existe?</li>
+                        <li><strong>Identidade Visual</strong> — Logo moderno, cores, tipografia</li>
+                        <li><strong>Landing Page Premium</strong> — Site com narrativa clara, CTA qualificados</li>
+                        <li><strong>Blog + Conteúdo</strong> — Posicionar como expert em mercado de beleza</li>
+                        <li><strong>Formulário Inteligente</strong> — Qualificar prospectos antes de contato</li>
+                    </ol>
+                </div>
+
+                <div class="frente-card orange">
+                    <h3>🟡 FRENTE 2: REPLICAR MARCA</h3>
+                    <p>Implementar padrão visual e mensagem em 100% das franqueadas existentes</p>
+                    <ol>
+                        <li><strong>Materiais Publicitários</strong> — Banners, flyers, templates redes sociais</li>
+                        <li><strong>Formação Contínua</strong> — Plataforma EAD com 6 módulos de treinamento</li>
+                        <li><strong>Campanhas de Conscientização</strong> — "Royalties é investimento", "Pertencimento"</li>
+                        <li><strong>Portal de Franqueada</strong> — Plataforma centralizada com materiais, aulas, fórum</li>
+                        <li><strong>Visitação & Auditoria</strong> — Mensal/bimestral com checklist e feedback</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ESTRUTURA -->
+    <section class="estrutura">
+        <div class="container">
+            <div class="section-header">
+                <h2>Estratégia de Marca BEM FAST</h2>
+                <p>Construção de Identidade + Implementação em Toda Rede</p>
+            </div>
+
+            <div class="estrutura-grid">
+                <div class="estrutura-card">
+                    <div class="estrutura-icon">🎨</div>
+                    <h4>Criação de Marca</h4>
+                    <p>Posicionamento, identidade visual (logo, cores, tipografia), guidelines de marca, tone of voice, narrativa única que diferencia BEM FAST.</p>
+                </div>
+
+                <div class="estrutura-card">
+                    <div class="estrutura-icon">📱</div>
+                    <h4>Presença Digital</h4>
+                    <p>Landing page premium, blog de autoridade, conteúdo social, SEO de marca. BEM FAST como referência no mercado de beleza & estética.</p>
+                </div>
+
+                <div class="estrutura-card">
+                    <div class="estrutura-icon">🏪</div>
+                    <h4>Implementação em Rede</h4>
+                    <p>Replicação visual em 100% das franqueadas, materiais publicitários padronizados, portal de marca, treinamento contínuo, auditoria mensal.</p>
+                </div>
+
+                <div class="estrutura-card">
+                    <div class="estrutura-icon">📊</div>
+                    <h4>Resultados Mensuráveis</h4>
+                    <p>Reconhecimento de marca, qualidade de leads de franqueados, fidelização de clientes, aumento de performance de unidades. ROI transparente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CRONOGRAMA -->
+    <section class="cronograma">
+        <div class="container">
+            <div class="section-header">
+                <h2>Cronograma Integrado</h2>
+                <p>6 Meses para Transformação Completa</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-items">
+                    <div class="timeline-item">
+                        <h4>Meses 1-2: CRIAR MARCA</h4>
+                        <ul>
+                            <li>Posicionamento e narrativa BEM FAST</li>
+                            <li>Identidade visual completa (logo, cores, tipografia)</li>
+                            <li>Brand guidelines 100% documentado</li>
+                            <li>Website premium ao vivo</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>Meses 3-4: COMUNICAR MARCA</h4>
+                        <ul>
+                            <li>Campanhas de lançamento da marca</li>
+                            <li>Conteúdo de autoridade (blog, social, vídeos)</li>
+                            <li>Treinamento de franqueadas na marca</li>
+                            <li>Primeiras implementações visuais</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>Meses 5-6: CONSOLIDAR MARCA</h4>
+                        <ul>
+                            <li>100% das franqueadas com padrão visual</li>
+                            <li>BEM FAST é reconhecida no mercado</li>
+                            <li>Novo recrutamento com base em marca</li>
+                            <li>Dados de impacto: reconhecimento, conversão, fidelização</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACTO -->
+    <section class="impacto">
+        <div class="container">
+            <div class="section-header">
+                <h2>Impacto Financeiro</h2>
+                <p>Antes × Depois em 6 Meses</p>
+            </div>
+
+            <div class="impacto-grid">
+                <div class="impacto-card negative">
+                    <h4>❌ SEM Marca Consolidada</h4>
+                    <ul>
+                        <li>BEM FAST é invisível no mercado</li>
+                        <li>Cada franqueada tem sua própria marca (confusão)</li>
+                        <li>Prospectos não sabem o diferencial BEM FAST</li>
+                        <li>Recrutamento de franqueadas é lento e caro</li>
+                        <li>Fidelização de clientes depende só da unidade</li>
+                    </ul>
+                </div>
+
+                <div class="impacto-card positive">
+                    <h4>✅ COM Marca Consolidada</h4>
+                    <ul>
+                        <li>BEM FAST é reconhecida no mercado de beleza</li>
+                        <li>Identidade visual uniforme em 100% da rede</li>
+                        <li>Clientes procuram BEM FAST, não a franqueada</li>
+                        <li>Recrutamento de franqueadas: +40% qualidade, -50% tempo</li>
+                        <li>Autoridade de marca: fidelização automática</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INVESTIMENTO -->
+    <section class="investimento">
+        <div class="container">
+            <div class="section-header">
+                <h2>Síntese do Investimento</h2>
+                <p>Modelo Alinhado de Resultado</p>
+            </div>
+
+            <div class="investimento-box">
+                <div class="investimento-item">
+                    <div class="investimento-label">Base Mensal (Estratégia + Execução)</div>
+                    <div class="investimento-value">R$ 3.000/mês</div>
+                </div>
+
+                <div class="investimento-item">
+                    <div class="investimento-label">Comissão por Franquia Vendida</div>
+                    <div class="investimento-value">+10% do valor</div>
+                </div>
+
+                <div class="investimento-highlight">
+                    Receita recorrente + upside ilimitado. Quanto mais franquias vendem, mais cresce o retorno. Incentivo totalmente alinhado com crescimento.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final">
+        <div class="container">
+            <h2>BEM FAST Tem o Produto. Agora Precisa de Marca.</h2>
+            <p>Enquanto a concorrência investe em reconhecimento de marca, BEM FAST segue invisível no mercado. Em 6 meses, podemos mudar isso. Sua marca pode ser o maior diferencial para recrutar franqueadas e fidelizar clientes.</p>
+            <button class="btn btn-secondary" onclick="alert('Obrigado pelo interesse! Em breve entraremos em contato.')">Começar Agora</button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>© 2026 Estúdio Roncolato × BEM FAST | Estratégia de Marca & Posicionamento de Imagem</p>
+        </div>
+    </footer>
+
+    <script>
+        // Observador de interseção para animações ao scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        // Aplicar observer ao carregar
+        document.querySelectorAll('.stat-card, .trend-card, .frente-card, .estrutura-card, .impacto-card, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all var(--transition-base)';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

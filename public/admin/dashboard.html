@@ -1,0 +1,2027 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio — Roncolato</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+    /* ── DESIGN SYSTEM ── */
+    :root {
+      --k:  #0A0A0A;
+      --w:  #F0F0EB;
+      --y:  #F5C518;
+      --g1: #111111;
+      --g2: #1a1a1a;
+      --g3: #242424;
+      --g4: #404040;
+      --g5: #7a7a7a;
+      --g6: #b0b0a8;
+      --red: #ef4444;
+      --green: #10b981;
+      --blue: #60a5fa;
+      --sb: 220px;
+      --nav: 52px;
+      --ease: cubic-bezier(.25,.46,.45,.94);
+      --ease2: cubic-bezier(.76,0,.24,1);
+      --font: 'Jost', sans-serif;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { font-size:13px; -webkit-font-smoothing:antialiased; }
+
+    body {
+      font-family: var(--font);
+      background: var(--k);
+      color: var(--w);
+      line-height:1.55;
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    /* grain */
+    body::before {
+      content:''; position:fixed; inset:0;
+      pointer-events:none; z-index:8000; opacity:.02;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* scrollbars */
+    ::-webkit-scrollbar { width:4px; height:4px; }
+    ::-webkit-scrollbar-track { background:transparent; }
+    ::-webkit-scrollbar-thumb { background:var(--g3); }
+
+    a { color:var(--y); text-decoration:none; }
+
+    /* ── LAYOUT ── */
+    .layout {
+      display:grid;
+      grid-template-columns: var(--sb) 1fr;
+      grid-template-rows: var(--nav) 1fr;
+      min-height:100vh;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      grid-column: 2;
+      grid-row: 1;
+      position:sticky; top:0; z-index:100;
+      background:var(--k);
+      border-bottom:1px solid var(--g2);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 32px;
+      height:var(--nav);
+    }
+
+    .topbar-left { display:flex; align-items:center; gap:8px; }
+
+    .breadcrumb {
+      display:flex; align-items:center; gap:8px;
+      font-size:11px; color:var(--g5);
+      font-weight:500; letter-spacing:.04em;
+    }
+    .breadcrumb .sep { color:var(--g3); }
+    .breadcrumb .cur { color:var(--w); font-weight:700; }
+
+    .topbar-right { display:flex; align-items:center; gap:4px; }
+
+    .topbar-btn {
+      display:flex; align-items:center; gap:8px;
+      padding:6px 14px; height:32px;
+      background:none; border:1px solid var(--g3);
+      color:var(--g5); font-family:var(--font);
+      font-size:10px; font-weight:600;
+      letter-spacing:.12em; text-transform:uppercase;
+      cursor:pointer; transition:all .15s;
+      text-decoration:none;
+    }
+    .topbar-btn:hover { border-color:var(--g5); color:var(--w); }
+    .topbar-btn.primary { background:var(--y); border-color:var(--y); color:var(--k); }
+    .topbar-btn.primary:hover { opacity:.88; }
+
+    .user-chip {
+      display:flex; align-items:center; gap:8px;
+      padding:4px 12px 4px 4px;
+      border:1px solid var(--g2);
+      margin-left:8px; cursor:pointer;
+      transition:border-color .15s;
+    }
+    .user-chip:hover { border-color:var(--g4); }
+    .user-avatar {
+      width:24px; height:24px; border-radius:50%;
+      background:var(--y); color:var(--k);
+      font-size:10px; font-weight:900;
+      display:flex; align-items:center; justify-content:center;
+      flex-shrink:0;
+    }
+    .user-name { font-size:11px; font-weight:600; color:var(--w); }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      grid-column:1; grid-row:1/3;
+      position:sticky; top:0;
+      height:100vh;
+      background:var(--g1);
+      border-right:1px solid var(--g2);
+      display:flex; flex-direction:column;
+      overflow-y:auto; overflow-x:hidden;
+    }
+
+    .sb-logo {
+      display:flex; align-items:center; gap:10px;
+      padding:0 20px;
+      height:var(--nav);
+      border-bottom:1px solid var(--g2);
+      flex-shrink:0;
+    }
+    .sb-logo img { height:16px; display:block; }
+    .sb-badge {
+      font-size:8px; font-weight:700;
+      letter-spacing:.16em; text-transform:uppercase;
+      color:var(--k); background:var(--y);
+      padding:2px 7px; flex-shrink:0;
+    }
+
+    .sb-section {
+      padding:20px 16px 6px;
+      font-size:9px; font-weight:700;
+      letter-spacing:.2em; text-transform:uppercase;
+      color:var(--g4); flex-shrink:0;
+    }
+
+    .sb-item {
+      display:flex; align-items:center; gap:10px;
+      padding:9px 16px;
+      font-size:12px; font-weight:500;
+      color:var(--g5);
+      cursor:pointer;
+      transition:color .15s, background .15s;
+      border-left:2px solid transparent;
+      user-select:none;
+      flex-shrink:0;
+    }
+    .sb-item:hover { color:var(--w); background:var(--g2); }
+    .sb-item.active { color:var(--y); background:rgba(245,197,24,.05); border-left-color:var(--y); }
+    .sb-item .ic { width:16px; text-align:center; flex-shrink:0; opacity:.55; font-size:13px; }
+    .sb-item.active .ic { opacity:1; }
+
+    .sb-divider { height:1px; background:var(--g2); margin:6px 0; flex-shrink:0; }
+    .sb-spacer { flex:1; }
+
+    .sb-footer {
+      padding:16px;
+      border-top:1px solid var(--g2);
+      flex-shrink:0;
+    }
+    .sb-logout {
+      display:flex; align-items:center; gap:8px;
+      width:100%; padding:8px 10px;
+      background:none; border:1px solid var(--g3);
+      color:var(--g5); font-family:var(--font);
+      font-size:10px; font-weight:600;
+      letter-spacing:.12em; text-transform:uppercase;
+      cursor:pointer; transition:all .15s;
+    }
+    .sb-logout:hover { border-color:var(--red); color:#f87171; background:rgba(239,68,68,.06); }
+
+    /* ── MAIN ── */
+    .main {
+      grid-column:2; grid-row:2;
+      min-height:calc(100vh - var(--nav));
+      padding:32px;
+    }
+
+    /* ── TAB PANELS ── */
+    .tab-panel { display:none; }
+    .tab-panel.active { display:block; }
+
+    /* ── PAGE HEADER ── */
+    .ph {
+      display:flex; align-items:flex-end; justify-content:space-between;
+      margin-bottom:32px; gap:20px; flex-wrap:wrap;
+    }
+    .ph-eyebrow {
+      font-size:9px; font-weight:700;
+      letter-spacing:.28em; text-transform:uppercase;
+      color:var(--y); display:flex; align-items:center; gap:12px;
+      margin-bottom:6px;
+    }
+    .ph-eyebrow::before { content:''; width:20px; height:1px; background:var(--y); }
+    .ph-title {
+      font-size:clamp(24px,3vw,36px); font-weight:900;
+      letter-spacing:-.04em; text-transform:uppercase;
+      color:var(--w); line-height:.92;
+    }
+    .ph-actions { display:flex; gap:8px; flex-shrink:0; }
+
+    /* ── KPI CARDS ── */
+    .kpis {
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:2px; background:var(--g2);
+      border:1px solid var(--g2);
+      margin-bottom:32px;
+    }
+    @media(max-width:900px){ .kpis{ grid-template-columns:1fr 1fr; } }
+
+    .kpi {
+      background:var(--g1);
+      padding:24px;
+      display:flex; flex-direction:column;
+      gap:4px;
+      transition:background .2s; cursor:default;
+    }
+    .kpi:hover { background:var(--g2); }
+    .kpi-val {
+      font-size:40px; font-weight:900;
+      letter-spacing:-.04em; line-height:1;
+      color:var(--w);
+    }
+    .kpi-val em { font-style:normal; color:var(--y); }
+    .kpi-val.green { color:var(--green); }
+    .kpi-val.blue  { color:var(--blue); }
+    .kpi-lbl {
+      font-size:9px; font-weight:700;
+      letter-spacing:.2em; text-transform:uppercase;
+      color:var(--g5); margin-top:6px;
+    }
+    .kpi-sub {
+      font-size:10px; color:var(--g4);
+      letter-spacing:.04em; margin-top:2px;
+    }
+
+    /* ── GRID 2 COLUNAS ── */
+    .grid2 {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:2px; background:var(--g2);
+      margin-bottom:32px;
+    }
+    @media(max-width:900px){ .grid2{ grid-template-columns:1fr; } }
+
+    /* ── CARD ── */
+    .card {
+      background:var(--g1);
+      padding:24px;
+    }
+    .card-hdr {
+      display:flex; align-items:center; justify-content:space-between;
+      margin-bottom:20px;
+    }
+    .card-title {
+      font-size:9px; font-weight:700;
+      letter-spacing:.22em; text-transform:uppercase;
+      color:var(--g5);
+    }
+    .card-action {
+      font-size:10px; font-weight:600;
+      letter-spacing:.1em; text-transform:uppercase;
+      color:var(--y); cursor:pointer;
+      background:none; border:none;
+      font-family:var(--font); transition:opacity .15s;
+    }
+    .card-action:hover { opacity:.7; }
+
+    /* ── QUICK ACTIONS ── */
+    .qa-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:8px;
+    }
+    .qa-btn {
+      display:flex; align-items:center; gap:10px;
+      padding:14px 16px;
+      background:var(--g2); border:1px solid var(--g3);
+      color:var(--w); font-family:var(--font);
+      font-size:11px; font-weight:600;
+      cursor:pointer; transition:all .15s;
+      text-align:left;
+    }
+    .qa-btn:hover { border-color:var(--y); background:rgba(245,197,24,.05); color:var(--y); }
+    .qa-btn .qa-ic { font-size:16px; flex-shrink:0; }
+    .qa-btn .qa-txt { display:flex; flex-direction:column; gap:2px; }
+    .qa-btn .qa-label { font-size:11px; font-weight:700; }
+    .qa-btn .qa-sub { font-size:9px; color:var(--g5); letter-spacing:.06em; font-weight:400; }
+    .qa-btn:hover .qa-sub { color:var(--y); opacity:.7; }
+
+    /* ── ACTIVITY LIST ── */
+    .act-list { display:flex; flex-direction:column; }
+    .act-row {
+      display:flex; align-items:center; gap:12px;
+      padding:10px 0;
+      border-bottom:1px solid var(--g2);
+    }
+    .act-row:last-child { border-bottom:none; }
+    .act-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+    .act-dot.y { background:var(--y); }
+    .act-dot.g { background:var(--green); }
+    .act-dot.b { background:var(--blue); }
+    .act-dot.r { background:var(--red); }
+    .act-text { font-size:12px; color:var(--g6); flex:1; line-height:1.4; }
+    .act-text strong { color:var(--w); font-weight:600; }
+    .act-time { font-size:10px; color:var(--g4); flex-shrink:0; }
+
+    /* ── PROPOSTAS GRID ── */
+    .prop-list { display:flex; flex-direction:column; gap:2px; background:var(--g2); }
+    .prop-row {
+      display:flex; align-items:center; gap:16px;
+      padding:14px 20px; background:var(--g1);
+      transition:background .15s;
+    }
+    .prop-row:hover { background:var(--g2); }
+    .prop-client { font-size:13px; font-weight:600; color:var(--w); flex:1; }
+    .prop-service { font-size:11px; color:var(--g5); flex:1; }
+    .prop-date { font-size:10px; color:var(--g4); flex-shrink:0; }
+    .prop-status {
+      font-size:9px; font-weight:700;
+      letter-spacing:.12em; text-transform:uppercase;
+      padding:3px 10px; flex-shrink:0;
+    }
+    .prop-status.sent { color:var(--blue); background:rgba(96,165,250,.1); }
+    .prop-status.viewed { color:var(--y); background:rgba(245,197,24,.1); }
+    .prop-status.approved { color:var(--green); background:rgba(16,185,129,.1); }
+    .prop-link {
+      display:flex; align-items:center; gap:6px;
+      font-size:10px; font-weight:600;
+      letter-spacing:.1em; text-transform:uppercase;
+      color:var(--g5); text-decoration:none;
+      transition:color .15s;
+    }
+    .prop-link:hover { color:var(--y); }
+
+    /* ── DATA TABLE ── */
+    .data-table-wrap { overflow-x:auto; }
+    table.dt {
+      width:100%; border-collapse:collapse;
+    }
+    table.dt thead th {
+      padding:10px 16px;
+      font-size:9px; font-weight:700;
+      letter-spacing:.2em; text-transform:uppercase;
+      color:var(--g4); border-bottom:1px solid var(--g2);
+      text-align:left; white-space:nowrap;
+    }
+    table.dt tbody tr {
+      border-bottom:1px solid var(--g2);
+      transition:background .15s;
+    }
+    table.dt tbody tr:hover { background:var(--g2); }
+    table.dt tbody td {
+      padding:12px 16px; color:var(--g6);
+      vertical-align:middle;
+    }
+    table.dt .td-title { font-size:13px; font-weight:600; color:var(--w); }
+    table.dt .td-tag {
+      display:inline-block;
+      font-size:9px; font-weight:700;
+      letter-spacing:.12em; text-transform:uppercase;
+      color:var(--y); background:rgba(245,197,24,.1);
+      padding:2px 8px;
+    }
+    table.dt .row-acts {
+      display:flex; gap:6px; justify-content:flex-end;
+    }
+    table.dt .btn-sm {
+      padding:4px 12px;
+      font-size:9px; font-weight:700;
+      letter-spacing:.1em; text-transform:uppercase;
+      cursor:pointer; border:1px solid var(--g3);
+      background:none; color:var(--g5);
+      font-family:var(--font); transition:all .15s;
+    }
+    table.dt .btn-sm:hover { border-color:var(--y); color:var(--y); }
+    table.dt .btn-sm.danger:hover { border-color:var(--red); color:#f87171; }
+
+    /* ── EMPTY STATE ── */
+    .empty {
+      padding:64px 32px;
+      text-align:center;
+      color:var(--g4);
+      font-size:12px; letter-spacing:.06em;
+    }
+    .empty .empty-icon { font-size:32px; display:block; margin-bottom:12px; opacity:.3; }
+    .empty p { margin-top:6px; }
+
+    /* ── SECTION TOGGLES ── */
+    .section-list { display:flex; flex-direction:column; }
+    .section-row {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0; border-bottom:1px solid var(--g2);
+    }
+    .section-row:last-child { border-bottom:none; }
+    .section-info { display:flex; flex-direction:column; gap:2px; }
+    .section-name { font-size:13px; font-weight:600; color:var(--w); }
+    .section-desc { font-size:11px; color:var(--g5); }
+
+    /* Toggle switch */
+    .sw { position:relative; width:36px; height:20px; flex-shrink:0; }
+    .sw input { opacity:0; width:0; height:0; }
+    .sw-track {
+      position:absolute; inset:0;
+      background:var(--g3); cursor:pointer; transition:background .2s;
+    }
+    .sw-track::before {
+      content:''; position:absolute;
+      height:14px; width:14px;
+      left:3px; top:3px;
+      background:var(--g5); transition:all .2s;
+    }
+    .sw input:checked + .sw-track { background:rgba(245,197,24,.25); }
+    .sw input:checked + .sw-track::before { transform:translateX(16px); background:var(--y); }
+
+    /* ── PROJETOS ── */
+    .proj-grid {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+      gap:16px; margin-bottom:32px;
+    }
+    .proj-card {
+      background:var(--g1); border:1px solid var(--g2);
+      padding:20px; cursor:pointer; transition:border-color .2s, transform .2s;
+      position:relative; overflow:hidden;
+    }
+    .proj-card:hover { border-color:var(--g4); transform:translateY(-2px); }
+    .proj-card-accent {
+      position:absolute; top:0; left:0; width:3px; height:100%;
+    }
+    .proj-card-hdr {
+      display:flex; justify-content:space-between; align-items:flex-start;
+      margin-bottom:12px;
+    }
+    .proj-card-title {
+      font-size:13px; font-weight:700; color:var(--w);
+      letter-spacing:-.01em; line-height:1.3;
+      flex:1; margin-right:8px;
+    }
+    .proj-card-client {
+      font-size:10px; color:var(--g5);
+      letter-spacing:.06em; margin-bottom:12px;
+    }
+    .proj-card-meta {
+      display:flex; gap:8px; flex-wrap:wrap; align-items:center;
+      margin-bottom:14px;
+    }
+    .proj-type {
+      font-size:9px; font-weight:700; letter-spacing:.15em; text-transform:uppercase;
+      padding:3px 8px; border:1px solid var(--g3); color:var(--g5);
+    }
+    .proj-deadline {
+      font-size:10px; color:var(--g5);
+    }
+    .proj-deadline.soon { color:#fb923c; }
+    .proj-deadline.overdue { color:var(--red); }
+    .proj-progress {
+      height:2px; background:var(--g3); margin-top:2px;
+    }
+    .proj-progress-bar {
+      height:100%; background:var(--y); transition:width .4s;
+    }
+    .proj-card-footer {
+      display:flex; justify-content:space-between; align-items:center;
+      margin-top:12px;
+    }
+    .proj-task-count {
+      font-size:10px; color:var(--g5);
+    }
+    .proj-card-menu {
+      display:flex; gap:4px;
+    }
+    .proj-card-btn {
+      background:none; border:1px solid transparent; color:var(--g4);
+      width:24px; height:24px; font-size:10px; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      transition:all .15s;
+    }
+    .proj-card-btn:hover { border-color:var(--g3); color:var(--w); }
+
+    /* ── KANBAN ── */
+    .kanban {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:16px; align-items:start;
+    }
+    .kanban-col {
+      background:var(--g1); border:1px solid var(--g2);
+    }
+    .kanban-col-hdr {
+      padding:12px 16px;
+      border-bottom:1px solid var(--g2);
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .kanban-col-title {
+      font-size:9px; font-weight:700; letter-spacing:.2em; text-transform:uppercase;
+      display:flex; align-items:center; gap:8px;
+    }
+    .kanban-col-title::before {
+      content:''; width:6px; height:6px; border-radius:50%;
+    }
+    .kanban-col.todo .kanban-col-title::before { background:var(--g4); }
+    .kanban-col.doing .kanban-col-title::before { background:#60a5fa; }
+    .kanban-col.done .kanban-col-title::before { background:var(--green); }
+    .kanban-count {
+      font-size:9px; font-weight:700;
+      background:var(--g2); border:1px solid var(--g3);
+      padding:1px 6px; color:var(--g5);
+    }
+    .kanban-body {
+      padding:8px;
+      min-height:120px;
+      display:flex; flex-direction:column; gap:6px;
+    }
+    .kanban-card {
+      background:var(--g2); border:1px solid var(--g3);
+      padding:12px 14px; cursor:pointer;
+      transition:border-color .15s, transform .15s;
+    }
+    .kanban-card:hover { border-color:var(--g5); transform:translateY(-1px); }
+    .kanban-card-title {
+      font-size:12px; font-weight:600; color:var(--w);
+      margin-bottom:6px; line-height:1.35;
+    }
+    .kanban-card-meta {
+      display:flex; align-items:center; gap:6px; flex-wrap:wrap;
+    }
+    .k-tag {
+      font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+      padding:2px 6px; border:1px solid;
+    }
+    .k-tag.alta { border-color:rgba(239,68,68,.4); color:#fca5a5; background:rgba(239,68,68,.08); }
+    .k-tag.média { border-color:rgba(251,146,60,.4); color:#fdba74; background:rgba(251,146,60,.08); }
+    .k-tag.baixa { border-color:rgba(96,165,250,.4); color:#93c5fd; background:rgba(96,165,250,.08); }
+    .k-proj {
+      font-size:9px; color:var(--g5); letter-spacing:.04em;
+    }
+    .k-date {
+      font-size:9px; color:var(--g5); margin-left:auto;
+    }
+    .k-date.overdue { color:var(--red); }
+    .kanban-card-actions {
+      display:flex; gap:4px; margin-top:8px; padding-top:8px;
+      border-top:1px solid var(--g3);
+    }
+    .k-btn {
+      flex:1; background:none; border:1px solid var(--g3); color:var(--g5);
+      font-family:var(--font); font-size:9px; font-weight:700;
+      letter-spacing:.1em; text-transform:uppercase;
+      padding:4px 8px; cursor:pointer; transition:all .15s;
+    }
+    .k-btn:hover { border-color:var(--y); color:var(--y); }
+    .k-btn.move { border-color:transparent; }
+    .k-btn.del:hover { border-color:var(--red); color:var(--red); }
+
+    /* FILTER BAR */
+    .filter-bar {
+      display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+      margin-bottom:20px;
+    }
+    .filter-select {
+      background:var(--g1); border:1px solid var(--g2); color:var(--g6);
+      font-family:var(--font); font-size:10px; font-weight:600;
+      letter-spacing:.08em; padding:7px 12px; outline:none; cursor:pointer;
+      transition:border-color .15s; -webkit-appearance:none;
+    }
+    .filter-select:focus { border-color:var(--y); }
+    .filter-select option { background:var(--g2); }
+
+    /* ── NOTICE ── */
+    .notice {
+      padding:12px 16px; border-left:3px solid var(--g4);
+      background:var(--g2); border-top:1px solid var(--g3);
+      border-right:1px solid var(--g3); border-bottom:1px solid var(--g3);
+      font-size:12px; color:var(--g6);
+      display:flex; align-items:center; gap:10px;
+      margin-bottom:24px;
+    }
+    .notice.warning { border-left-color:var(--y); color:var(--y); }
+    .notice.info { border-left-color:var(--blue); color:var(--blue); }
+    .notice.success { border-left-color:var(--green); color:var(--green); }
+    .notice p { margin:0; }
+
+    /* ── MODAL (drawer direita) ── */
+    .modal-overlay {
+      position:fixed; inset:0; z-index:1000;
+      background:rgba(0,0,0,.7); backdrop-filter:blur(8px);
+      opacity:0; pointer-events:none; transition:opacity .3s;
+    }
+    .modal-overlay.open { opacity:1; pointer-events:all; }
+
+    .modal-drawer {
+      position:fixed; top:0; right:0; bottom:0; z-index:1001;
+      width:min(640px,100vw);
+      background:var(--g1);
+      border-left:1px solid var(--g2);
+      display:flex; flex-direction:column;
+      transform:translateX(100%);
+      transition:transform .35s var(--ease2);
+    }
+    .modal-overlay.open .modal-drawer { transform:translateX(0); }
+
+    .modal-hdr {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 24px;
+      border-bottom:1px solid var(--g2);
+      flex-shrink:0;
+    }
+    .modal-title {
+      font-size:10px; font-weight:700;
+      letter-spacing:.22em; text-transform:uppercase;
+      color:var(--y); display:flex; align-items:center; gap:12px;
+    }
+    .modal-title::before { content:''; width:16px; height:1px; background:var(--y); }
+    .modal-close {
+      width:32px; height:32px;
+      background:none; border:1px solid var(--g3);
+      color:var(--g5); font-size:14px; font-family:monospace;
+      cursor:pointer; display:flex; align-items:center; justify-content:center;
+      transition:all .15s;
+    }
+    .modal-close:hover { border-color:var(--y); color:var(--y); }
+
+    .modal-body {
+      flex:1; overflow-y:auto;
+      padding:24px;
+      display:flex; flex-direction:column; gap:20px;
+    }
+
+    .modal-footer {
+      padding:16px 24px;
+      border-top:1px solid var(--g2);
+      display:flex; gap:8px;
+      flex-shrink:0;
+    }
+
+    /* ── FORM FIELDS ── */
+    .fld { display:flex; flex-direction:column; gap:6px; }
+    .fld-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .fld label {
+      font-size:9px; font-weight:700;
+      letter-spacing:.2em; text-transform:uppercase; color:var(--g4);
+    }
+    .fld input, .fld textarea, .fld select {
+      background:var(--g2) !important;
+      border:1px solid var(--g3) !important;
+      color:var(--w) !important; -webkit-text-fill-color:var(--w) !important;
+      font-family:var(--font); font-size:13px; font-weight:400;
+      padding:10px 14px; outline:none; width:100%;
+      transition:border-color .2s; -webkit-appearance:none; appearance:none;
+      border-radius:0;
+    }
+    .fld input:focus, .fld textarea:focus, .fld select:focus { border-color:var(--y) !important; }
+    .fld input:-webkit-autofill { -webkit-box-shadow:0 0 0 1000px var(--g2) inset !important; }
+    .fld input::placeholder, .fld textarea::placeholder { color:var(--g4) !important; }
+    .fld textarea { resize:vertical; min-height:100px; line-height:1.6; }
+    .fld select option { background:var(--g2); color:var(--w); }
+    .fld-hint { font-size:10px; color:var(--g5); line-height:1.5; }
+
+    /* Category pills */
+    .cat-pills { display:flex; flex-wrap:wrap; gap:6px; }
+    .cat-pill {
+      padding:5px 14px;
+      background:var(--g2); border:1px solid var(--g3);
+      color:var(--g5); font-family:var(--font);
+      font-size:10px; font-weight:600;
+      letter-spacing:.1em; text-transform:uppercase;
+      cursor:pointer; transition:all .15s;
+    }
+    .cat-pill:hover { border-color:var(--g5); color:var(--w); }
+    .cat-pill.selected { background:rgba(245,197,24,.1); border-color:var(--y); color:var(--y); }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 24px;
+      font-family:var(--font); font-size:10px; font-weight:700;
+      letter-spacing:.14em; text-transform:uppercase;
+      cursor:pointer; transition:all .15s;
+      border:1px solid var(--g3); background:var(--g2); color:var(--g6);
+    }
+    .btn:hover { border-color:var(--w); color:var(--w); }
+    .btn.primary { background:var(--y); border-color:var(--y); color:var(--k); }
+    .btn.primary:hover { opacity:.88; transform:translateY(-1px); }
+    .btn.ghost { background:none; }
+    .btn:disabled { opacity:.4; cursor:not-allowed; transform:none !important; }
+
+    /* ── TOAST ── */
+    #toastWrap {
+      position:fixed; bottom:28px; right:28px;
+      z-index:9999; display:flex; flex-direction:column;
+      align-items:flex-end; gap:8px; pointer-events:none;
+    }
+    .toast {
+      background:var(--g1); border:1px solid var(--g2);
+      border-left:3px solid var(--y);
+      padding:12px 20px; font-size:12px; font-weight:500;
+      color:var(--w); min-width:260px; pointer-events:all;
+      animation:tin .25s var(--ease) forwards;
+    }
+    .toast.success { border-left-color:var(--green); }
+    .toast.error { border-left-color:var(--red); color:#fca5a5; }
+    @keyframes tin { from{opacity:0;transform:translateX(16px)} to{opacity:1;transform:none} }
+
+    /* ── CONFIRM DIALOG ── */
+    .confirm-overlay {
+      position:fixed; inset:0; z-index:2000;
+      background:rgba(0,0,0,.75); backdrop-filter:blur(6px);
+      display:flex; align-items:center; justify-content:center;
+    }
+    .confirm-box {
+      background:var(--g1); border:1px solid var(--g2);
+      padding:32px; max-width:400px; width:90%;
+    }
+    .confirm-box h3 { font-size:16px; font-weight:700; color:var(--w); margin-bottom:8px; }
+    .confirm-box p { font-size:13px; color:var(--g5); margin-bottom:24px; line-height:1.6; }
+    .confirm-acts { display:flex; gap:8px; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:860px) {
+      .layout { grid-template-columns:1fr; }
+      .sidebar { display:none; }
+      .topbar { grid-column:1; }
+      .main { grid-column:1; padding:20px 16px; }
+      .kpis { grid-template-columns:1fr 1fr; }
+      .grid2 { grid-template-columns:1fr; }
+      .fld-row { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="sidebar">
+    <div class="sb-logo">
+      <img src="/assets/IMG/roncolato-branco-horizontal.png" alt="Roncolato">
+      <span class="sb-badge">Studio</span>
+    </div>
+
+    <div style="flex:1;overflow-y:auto;padding-bottom:8px;">
+      <div class="sb-section">Principal</div>
+      <div class="sb-item active" data-tab="dashboard">
+        <span class="ic">▣</span> Dashboard
+      </div>
+
+      <div class="sb-section">Conteúdo</div>
+      <div class="sb-item" data-tab="blog">
+        <span class="ic">✦</span> Blog
+      </div>
+      <div class="sb-item" data-tab="portfolio">
+        <span class="ic">◈</span> Portfólio
+      </div>
+
+      <div class="sb-section">Gestão</div>
+      <div class="sb-item" data-tab="projetos">
+        <span class="ic">◈</span> Projetos
+      </div>
+      <div class="sb-item" data-tab="tarefas">
+        <span class="ic">☑</span> Tarefas
+      </div>
+
+      <div class="sb-section">Comercial</div>
+      <div class="sb-item" data-tab="propostas">
+        <span class="ic">◧</span> Propostas
+      </div>
+      <div class="sb-item" data-tab="agenda">
+        <span class="ic">◷</span> Agenda
+      </div>
+
+      <div class="sb-section">Sistema</div>
+      <div class="sb-item" data-tab="pages">
+        <span class="ic">◫</span> Visibilidade
+      </div>
+      <div class="sb-item" data-tab="settings">
+        <span class="ic">⚙</span> Configurações
+      </div>
+    </div>
+
+    <div class="sb-footer">
+      <button class="sb-logout" id="logoutBtn">
+        <span>←</span> Sair da conta
+      </button>
+    </div>
+  </aside>
+
+  <!-- ══ TOPBAR ══ -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="breadcrumb">
+        <span>Studio Roncolato</span>
+        <span class="sep">/</span>
+        <span class="cur" id="breadcrumb-cur">Dashboard</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <a href="/" target="_blank" class="topbar-btn">Ver site ↗</a>
+      <button class="topbar-btn primary" id="topbar-new-btn" onclick="AdminUI.quickNew()">+ Novo</button>
+      <div class="user-chip">
+        <div class="user-avatar" id="userAvatar">R</div>
+        <span class="user-name" id="userDisplay">—</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══ MAIN ══ -->
+  <main class="main">
+
+    <!-- ════ DASHBOARD ════ -->
+    <div id="tab-dashboard" class="tab-panel active">
+      <div class="ph">
+        <div>
+          <p class="ph-eyebrow">Visão Geral</p>
+          <h1 class="ph-title">Dashboard</h1>
+        </div>
+      </div>
+
+      <!-- KPIs -->
+      <div class="kpis">
+        <div class="kpi">
+          <div class="kpi-val" id="kpi-projects">—</div>
+          <div class="kpi-lbl">Projetos no portfólio</div>
+          <div class="kpi-sub">Casos publicados</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-val" id="kpi-articles">—</div>
+          <div class="kpi-lbl">Artigos no blog</div>
+          <div class="kpi-sub">Conteúdo publicado</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-val" id="kpi-propostas">06</div>
+          <div class="kpi-lbl">Propostas enviadas</div>
+          <div class="kpi-sub">Últ. 90 dias</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-val green">✓</div>
+          <div class="kpi-lbl">Status do sistema</div>
+          <div class="kpi-sub">Online · Vercel</div>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <!-- Ações Rápidas -->
+        <div class="card">
+          <div class="card-hdr">
+            <span class="card-title">Ações Rápidas</span>
+          </div>
+          <div class="qa-grid">
+            <button class="qa-btn" onclick="AdminUI.openBlogModal()">
+              <span class="qa-ic">✦</span>
+              <span class="qa-txt">
+                <span class="qa-label">Novo Artigo</span>
+                <span class="qa-sub">Publicar no blog</span>
+              </span>
+            </button>
+            <button class="qa-btn" onclick="AdminUI.openPortfolioModal()">
+              <span class="qa-ic">◈</span>
+              <span class="qa-txt">
+                <span class="qa-label">Novo Projeto</span>
+                <span class="qa-sub">Adicionar ao portfólio</span>
+              </span>
+            </button>
+            <button class="qa-btn" onclick="AdminApp.switchTab('propostas')">
+              <span class="qa-ic">◧</span>
+              <span class="qa-txt">
+                <span class="qa-label">Propostas</span>
+                <span class="qa-sub">Ver links enviados</span>
+              </span>
+            </button>
+            <button class="qa-btn" onclick="AdminApp.switchTab('pages')">
+              <span class="qa-ic">◫</span>
+              <span class="qa-txt">
+                <span class="qa-label">Visibilidade</span>
+                <span class="qa-sub">Seções do site</span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Atividade recente -->
+        <div class="card">
+          <div class="card-hdr">
+            <span class="card-title">Atividade Recente</span>
+            <button class="card-action" onclick="AdminApp.switchTab('blog')">Ver tudo</button>
+          </div>
+          <div class="act-list" id="recentActivities">
+            <div class="act-row">
+              <span class="act-dot y"></span>
+              <span class="act-text"><strong>Post6</strong> — artigo publicado no blog</span>
+              <span class="act-time">Hoje</span>
+            </div>
+            <div class="act-row">
+              <span class="act-dot g"></span>
+              <span class="act-text"><strong>Proposta Única</strong> — enviada ao cliente</span>
+              <span class="act-time">Ontem</span>
+            </div>
+            <div class="act-row">
+              <span class="act-dot b"></span>
+              <span class="act-text"><strong>Raro Investimentos</strong> — adicionado ao portfólio</span>
+              <span class="act-time">3d atrás</span>
+            </div>
+            <div class="act-row">
+              <span class="act-dot y"></span>
+              <span class="act-text"><strong>Site</strong> — atualização publicada no Vercel</span>
+              <span class="act-time">5d atrás</span>
+            </div>
+            <div class="act-row">
+              <span class="act-dot g"></span>
+              <span class="act-text"><strong>Attila Personal</strong> — fotos adicionadas ao portfólio</span>
+              <span class="act-time">1 sem</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Propostas rápidas -->
+      <div class="card" style="margin-bottom:32px;">
+        <div class="card-hdr">
+          <span class="card-title">Propostas Recentes</span>
+          <button class="card-action" onclick="AdminApp.switchTab('propostas')">Ver todas</button>
+        </div>
+        <div class="prop-list">
+          <div class="prop-row">
+            <span class="prop-client">Única Contábil</span>
+            <span class="prop-service">Estratégia de Marca</span>
+            <span class="prop-status viewed">Visualizada</span>
+            <span class="prop-date">Mai 2026</span>
+            <a href="/proposta/unica" target="_blank" class="prop-link">Abrir ↗</a>
+          </div>
+          <div class="prop-row">
+            <span class="prop-client">Fotografia Corporativa</span>
+            <span class="prop-service">Pacote Executiva</span>
+            <span class="prop-status sent">Enviada</span>
+            <span class="prop-date">Mai 2026</span>
+            <a href="/proposta/fotografia-corporativa" target="_blank" class="prop-link">Abrir ↗</a>
+          </div>
+          <div class="prop-row">
+            <span class="prop-client">Bem Fast</span>
+            <span class="prop-service">Franquia Digital</span>
+            <span class="prop-status approved">Aprovada</span>
+            <span class="prop-date">Abr 2026</span>
+            <a href="/proposta/bemfast" target="_blank" class="prop-link">Abrir ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ BLOG ════ -->
+    <div id="tab-blog" class="tab-panel">
+      <div class="ph">
+        <div>
+          <p class="ph-eyebrow">Conteúdo</p>
+          <h1 class="ph-title">Blog</h1>
+        </div>
+        <div class="ph-actions">
+          <button class="btn primary" id="newBlogBtn" onclick="AdminUI.openBlogModal()">+ Novo Artigo</button>
+        </div>
+      </div>
+      <div id="blogNotice" class="notice" style="display:none;"></div>
+      <div class="card" style="padding:0;">
+        <div class="data-table-wrap" id="blogItemList">
+          <div class="empty">
+            <span class="empty-icon">✦</span>
+            <strong>Nenhum artigo publicado</strong>
+            <p>Crie seu primeiro artigo clicando em "+ Novo Artigo"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ PORTFOLIO ════ -->
+    <div id="tab-portfolio" class="tab-panel">
+      <div class="ph">
+        <div>
+          <p class="ph-eyebrow">Conteúdo</p>
+          <h1 class="ph-title">Portfólio</h1>
+        </div>
+        <div class="ph-actions">
+          <button class="btn primary" id="newProjectBtn" onclick="AdminUI.openPortfolioModal()">+ Novo Projeto</button>
+        </div>
+      </div>
+      <div id="portfolioNotice" class="notice" style="display:none;"></div>
+      <div class="card" style="padding:0;">
+        <div class="data-table-wrap" id="portfolioItemList">
+          <div class="empty">
+            <span class="empty-icon">◈</span>
+            <strong>Nenhum projeto publicado</strong>
+            <p>Adicione seu primeiro projeto de portfólio</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ PROJETOS ════ -->
+    <div id="tab-projetos" class="tab-panel">
+      <div class="ph">
+        <div>
+          <p class="ph-eyebrow">Gestão</p>
+          <h1 class="ph-title">Projetos</h1>
+        </div>
+        <div class="ph-actions">
+          <button class="btn primary" onclick="StudioMgr.openProjectModal()">+ Novo Projeto</button>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <select class="filter-select" id="projFilterStatus" onchange="StudioMgr.renderProjects()">
+          <option value="">Todos os status</option>
+          <option value="em-andamento">Em andamento</option>
+          <option value="aguardando">Aguardando</option>
+          <option value="concluido">Concluído</option>
+          <option value="pausado">Pausado</option>
+        </select>
+        <select class="filter-select" id="projFilterType" onchange="StudioMgr.renderProjects()">
+          <option value="">Todos os tipos</option>
+          <option value="fotografia">Fotografia</option>
+          <option value="branding">Branding</option>
+          <option value="site">Site</option>
+          <option value="video">Vídeo</option>
+          <option value="outro">Outro</option>
+        </select>
+      </div>
+
+      <div class="proj-grid" id="projGrid">
+        <div class="empty" style="grid-column:1/-1;">
+          <span class="empty-icon">◈</span>
+          <strong>Nenhum projeto</strong>
+          <p>Clique em "+ Novo Projeto" para começar</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ TAREFAS ════ -->
+    <div id="tab-tarefas" class="tab-panel">
+      <div class="ph">
+        <div>
+          <p class="ph-eyebrow">Gestão</p>
+          <h1 class="ph-title">Tarefas</h1>
+        </div>
+        <div class="ph-actions">
+          <button class="btn primary" onclick="StudioMgr.openTaskModal()">+ Nova Tarefa</button>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <select class="filter-select" id="taskFilterProject" onchange="StudioMgr.renderTasks()">
+          <option value="">Todos os projetos</option>
+        </select>
+        <select class="filter-select" id="taskFilterPriority" onchange="StudioMgr.renderTasks()">
+          <option value="">Todas as prioridades</option>
+          <option value="alta">Alta</option>
+          <option value="média">Média</option>
+          <option value="baixa">Baixa</option>
+        </select>
+      </div>
+
+      <div class="kanban">
+        <!-- A Fazer -->
+        <div class="kanban-col todo">
+          <div class="kanban-col-hdr">
+            <span class="kanban-col-title">A Fazer</span>
+            <span class="kanban-count" id="count-todo">0</span>
+          </div>
+          <div class="kanban-body" id="kanban-todo"></div>
+        </div>
+        <!-- Em Andamento -->
+        <div class="kanban-col doing">
+          <div class="kanban-col-hdr">
+            <span class="kanban-col-title">Em Andamento</span>
+            <span class="kanban-count" id="count-doing">0</span>
+          </div>
+          <div class="kanban-body" id="kanban-doing"></div>
+        </div>
+        <!-- Concluído -->
+        <div class="kanban-col done">
+          <div class="kanban-col-hdr">
+            <span class="kanban-col-title">Concluído</span>
+            <span class="kanban-count" id="count-done">0</span>
+          </div>
+          <div class="kanban-body" id="kanban-done"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ PROPOSTAS ════ -->
+    <div id="tab-propostas" class="tab-panel">
+      <div class="ph">
+        <div>
+          <p class="ph-eyebrow">Comercial</p>
+          <h1 class="ph-title">Propostas</h1>
+        </div>
+      </div>
+      <div class="card" style="padding:0;">
+        <div class="prop-list">
+          <div class="prop-row">
+            <span class="prop-client">Única Contábil</span>
+            <span class="prop-service">Estratégia de Marca + Posicionamento</span>
+            <span class="prop-status viewed">Visualizada</span>
+            <span class="prop-date">Mai 2026</span>
+            <a href="/proposta/unica" target="_blank" class="prop-link">Abrir ↗</a>
+          </div>
+          <div class="prop-row">
+            <span class="prop-client">Fotografia Corporativa</span>
+            <span class="prop-service">Pacote Executiva + Personal Branding</span>
+            <span class="prop-status sent">Enviada</span>
+            <span class="prop-date">Mai 2026</span>
+            <a href="/proposta/fotografia-corporativa" target="_blank" class="prop-link">Abrir ↗</a>
+          </div>
+          <div class="prop-row">
+            <span class="prop-client">Bem Fast</span>
+            <span class="prop-service">Franquia Digital</span>
+            <span class="prop-status approved">Aprovada</span>
+            <span class="prop-date">Abr 2026</span>
+            <a href="/proposta/bemfast" target="_blank" class="prop-link">Abrir ↗</a>
+          </div>
+          <div class="prop-row">
+            <span class="prop-client">Renata Rosa</span>
+            <span class="prop-service">Personal Branding</span>
+            <span class="prop-status approved">Aprovada</span>
+            <span class="prop-date">Mar 2026</span>
+            <a href="/proposta/renata" target="_blank" class="prop-link">Abrir ↗</a>
+          </div>
+          <div class="prop-row">
+            <span class="prop-client">Raro Investimentos</span>
+            <span class="prop-service">Fotografia Institucional</span>
+            <span class="prop-status approved">Aprovada</span>
+            <span class="prop-date">Out 2023</span>
+            <a href="/proposta/raro" target="_blank" class="prop-link">Abrir ↗</a>
+          </div>
+          <div class="prop-row">
+            <span class="prop-client">Taruмá</span>
+            <span class="prop-service">Evento + Branding</span>
+            <span class="prop-status approved">Aprovada</span>
+            <span class="prop-date">2023</span>
+            <a href="/proposta/taruma" target="_blank" class="prop-link">Abrir ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ AGENDA ════ -->
+    <div id="tab-agenda" class="tab-panel">
+      <div class="ph">
+        <div>
+          <p class="ph-eyebrow">Comercial</p>
+          <h1 class="ph-title">Agenda</h1>
+        </div>
+      </div>
+      <div class="notice warning">⚡ Integração com Google Calendar em implementação.</div>
+      <div class="card">
+        <div class="empty">
+          <span class="empty-icon">◷</span>
+          <strong>Agenda em breve</strong>
+          <p>A integração com Google Calendar será ativada em breve</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ VISIBILIDADE ════ -->
+    <div id="tab-pages" class="tab-panel">
+      <div class="ph">
+        <div>
+          <p class="ph-eyebrow">Sistema</p>
+          <h1 class="ph-title">Visibilidade</h1>
+        </div>
+      </div>
+      <div class="notice info">ℹ Controle quais seções ficam visíveis no site público.</div>
+      <div class="card">
+        <div class="section-list" id="sectionsContainer">
+          <div class="section-row">
+            <div class="section-info">
+              <span class="section-name">Hero</span>
+              <span class="section-desc">Seção principal com foto de destaque</span>
+            </div>
+            <label class="sw"><input type="checkbox" checked><span class="sw-track"></span></label>
+          </div>
+          <div class="section-row">
+            <div class="section-info">
+              <span class="section-name">Portfólio</span>
+              <span class="section-desc">Grid com casos de clientes</span>
+            </div>
+            <label class="sw"><input type="checkbox" checked><span class="sw-track"></span></label>
+          </div>
+          <div class="section-row">
+            <div class="section-info">
+              <span class="section-name">Blog</span>
+              <span class="section-desc">Artigos e conteúdo editorial</span>
+            </div>
+            <label class="sw"><input type="checkbox" checked><span class="sw-track"></span></label>
+          </div>
+          <div class="section-row">
+            <div class="section-info">
+              <span class="section-name">Sobre</span>
+              <span class="section-desc">Página institucional com bio</span>
+            </div>
+            <label class="sw"><input type="checkbox" checked><span class="sw-track"></span></label>
+          </div>
+          <div class="section-row">
+            <div class="section-info">
+              <span class="section-name">Serviços</span>
+              <span class="section-desc">Cards de serviços oferecidos</span>
+            </div>
+            <label class="sw"><input type="checkbox" checked><span class="sw-track"></span></label>
+          </div>
+          <div class="section-row">
+            <div class="section-info">
+              <span class="section-name">Depoimentos</span>
+              <span class="section-desc">Carrossel de testemunhos</span>
+            </div>
+            <label class="sw"><input type="checkbox" checked><span class="sw-track"></span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ SETTINGS ════ -->
+    <div id="tab-settings" class="tab-panel">
+      <div class="ph">
+        <div>
+          <p class="ph-eyebrow">Sistema</p>
+          <h1 class="ph-title">Configurações</h1>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="card">
+          <div class="card-hdr"><span class="card-title">Conta</span></div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div class="fld">
+              <label>Usuário atual</label>
+              <input type="text" id="settings-user" value="" readonly style="opacity:.5;">
+            </div>
+            <div class="fld">
+              <label>Nova senha</label>
+              <input type="password" placeholder="••••••••">
+            </div>
+            <div class="fld">
+              <label>Confirmar senha</label>
+              <input type="password" placeholder="••••••••">
+            </div>
+            <button class="btn primary" style="align-self:flex-start;">Salvar Senha</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-hdr"><span class="card-title">Informações do Studio</span></div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div class="fld">
+              <label>Nome do Studio</label>
+              <input type="text" value="Studio Roncolato">
+            </div>
+            <div class="fld">
+              <label>E-mail de contato</label>
+              <input type="email" value="contato@rroncolato.com.br">
+            </div>
+            <div class="fld">
+              <label>WhatsApp</label>
+              <input type="tel" placeholder="+55 (62) 9 0000-0000">
+            </div>
+            <div class="fld">
+              <label>Cidade</label>
+              <input type="text" value="Goiânia-GO, Brasil">
+            </div>
+            <button class="btn primary" style="align-self:flex-start;">Salvar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ══ MODAIS ══ -->
+
+<!-- Blog Modal -->
+<div class="modal-overlay" id="blogModal">
+  <div class="modal-drawer">
+    <div class="modal-hdr">
+      <span class="modal-title" id="blogModalTitle">Novo Artigo</span>
+      <button class="modal-close" onclick="AdminUI.closeBlogModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="blogForm" style="display:contents;">
+        <div class="fld">
+          <label>Título *</label>
+          <input type="text" id="bTitle" placeholder="Título do artigo" required>
+        </div>
+        <div class="fld">
+          <label>Categoria *</label>
+          <div class="cat-pills" id="blogCategories"></div>
+        </div>
+        <div class="fld-row">
+          <div class="fld">
+            <label>Data de publicação *</label>
+            <input type="date" id="bDate" required>
+          </div>
+          <div class="fld">
+            <label>Tempo de leitura</label>
+            <input type="text" id="bReadTime" placeholder="5 min" value="5 min">
+          </div>
+        </div>
+        <div class="fld">
+          <label>Resumo *</label>
+          <textarea id="bExcerpt" rows="3" placeholder="Um resumo breve do artigo" required></textarea>
+        </div>
+        <div class="fld">
+          <label>Conteúdo *</label>
+          <textarea id="bContent" rows="10" placeholder="Conteúdo completo do artigo..." required></textarea>
+        </div>
+        <div class="fld">
+          <label>URL da imagem de destaque</label>
+          <input type="text" id="bImage" placeholder="/assets/IMG/site/post-capa.jpg">
+          <span class="fld-hint">Caminho relativo ou URL externa da imagem de capa</span>
+        </div>
+        <div id="bImagePreview" style="display:none;">
+          <img id="bImageThumb" src="" alt="Preview" style="max-width:120px;height:80px;object-fit:cover;display:block;">
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn ghost" onclick="AdminUI.closeBlogModal()">Cancelar</button>
+      <button class="btn primary" id="blogSubmit" onclick="AdminApp.handleBlogSubmit(event)">Publicar Artigo</button>
+    </div>
+  </div>
+</div>
+
+<!-- Portfolio Modal -->
+<div class="modal-overlay" id="portfolioModal">
+  <div class="modal-drawer">
+    <div class="modal-hdr">
+      <span class="modal-title" id="portfolioModalTitle">Novo Projeto</span>
+      <button class="modal-close" onclick="AdminUI.closePortfolioModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="portfolioForm" style="display:contents;">
+        <div class="fld">
+          <label>Título do Projeto *</label>
+          <input type="text" id="pTitle" placeholder="Nome do projeto" required>
+        </div>
+        <div class="fld-row">
+          <div class="fld">
+            <label>Cliente *</label>
+            <input type="text" id="pClient" placeholder="Nome do cliente" required>
+          </div>
+          <div class="fld">
+            <label>Ano *</label>
+            <input type="number" id="pYear" placeholder="2025" min="2000" max="2100" required>
+          </div>
+        </div>
+        <div class="fld">
+          <label>Categoria *</label>
+          <div class="cat-pills" id="portfolioCategories"></div>
+        </div>
+        <div class="fld">
+          <label>Entregável *</label>
+          <input type="text" id="pDeliverable" placeholder="Ex: Fotos + Identidade Visual" required>
+        </div>
+        <div class="fld">
+          <label>Descrição *</label>
+          <textarea id="pDescription" rows="5" placeholder="Descreva o projeto, desafio e resultado..." required></textarea>
+        </div>
+        <div class="fld">
+          <label>Link do projeto</label>
+          <input type="url" id="pLink" placeholder="https://...">
+        </div>
+        <div class="fld">
+          <label>Imagens (caminhos separados por vírgula)</label>
+          <textarea id="pImages" rows="3" placeholder="assets/IMG/cliente/foto1.jpg, assets/IMG/cliente/foto2.jpg"></textarea>
+          <span class="fld-hint">Caminhos relativos a partir da pasta public/</span>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn ghost" onclick="AdminUI.closePortfolioModal()">Cancelar</button>
+      <button class="btn primary" id="portfolioSubmit" onclick="AdminApp.handlePortfolioSubmit(event)">Adicionar Projeto</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Projeto -->
+<div class="modal-overlay" id="projectModal">
+  <div class="modal-drawer">
+    <div class="modal-hdr">
+      <span class="modal-title" id="projectModalTitle">Novo Projeto</span>
+      <button class="modal-close" onclick="StudioMgr.closeProjectModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="projId">
+      <div class="fld">
+        <label>Título do Projeto *</label>
+        <input type="text" id="projTitle" placeholder="Ex: Fotografia Corporativa — Cliente X" required>
+      </div>
+      <div class="fld-row">
+        <div class="fld">
+          <label>Cliente *</label>
+          <input type="text" id="projClient" placeholder="Nome do cliente" required>
+        </div>
+        <div class="fld">
+          <label>Tipo *</label>
+          <select id="projType">
+            <option value="fotografia">Fotografia</option>
+            <option value="branding">Branding</option>
+            <option value="site">Site</option>
+            <option value="video">Vídeo</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+      </div>
+      <div class="fld-row">
+        <div class="fld">
+          <label>Status</label>
+          <select id="projStatus">
+            <option value="em-andamento">Em andamento</option>
+            <option value="aguardando">Aguardando</option>
+            <option value="concluido">Concluído</option>
+            <option value="pausado">Pausado</option>
+          </select>
+        </div>
+        <div class="fld">
+          <label>Prioridade</label>
+          <select id="projPriority">
+            <option value="alta">Alta</option>
+            <option value="média">Média</option>
+            <option value="baixa">Baixa</option>
+          </select>
+        </div>
+      </div>
+      <div class="fld">
+        <label>Prazo</label>
+        <input type="date" id="projDeadline">
+      </div>
+      <div class="fld">
+        <label>Descrição</label>
+        <textarea id="projDesc" rows="3" placeholder="Contexto, escopo e observações do projeto..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn ghost" onclick="StudioMgr.closeProjectModal()">Cancelar</button>
+      <button class="btn primary" onclick="StudioMgr.saveProject()">Salvar Projeto</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Tarefa -->
+<div class="modal-overlay" id="taskModal">
+  <div class="modal-drawer">
+    <div class="modal-hdr">
+      <span class="modal-title" id="taskModalTitle">Nova Tarefa</span>
+      <button class="modal-close" onclick="StudioMgr.closeTaskModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="taskId">
+      <div class="fld">
+        <label>Título *</label>
+        <input type="text" id="taskTitle" placeholder="O que precisa ser feito?" required>
+      </div>
+      <div class="fld">
+        <label>Projeto vinculado</label>
+        <select id="taskProject">
+          <option value="">— Tarefa independente —</option>
+        </select>
+      </div>
+      <div class="fld-row">
+        <div class="fld">
+          <label>Prioridade</label>
+          <select id="taskPriority">
+            <option value="alta">Alta</option>
+            <option value="média">Média</option>
+            <option value="baixa">Baixa</option>
+          </select>
+        </div>
+        <div class="fld">
+          <label>Status</label>
+          <select id="taskStatus">
+            <option value="todo">A Fazer</option>
+            <option value="doing">Em Andamento</option>
+            <option value="done">Concluído</option>
+          </select>
+        </div>
+      </div>
+      <div class="fld">
+        <label>Prazo</label>
+        <input type="date" id="taskDue">
+      </div>
+      <div class="fld">
+        <label>Descrição</label>
+        <textarea id="taskDesc" rows="3" placeholder="Detalhes, contexto ou checklist..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn ghost" onclick="StudioMgr.closeTaskModal()">Cancelar</button>
+      <button class="btn primary" onclick="StudioMgr.saveTask()">Salvar Tarefa</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toastWrap"></div>
+
+<!-- Confirm -->
+<div id="confirmModal" style="display:none;"></div>
+
+<script>
+// ── AUTH ──
+const _tok = localStorage.getItem('adminToken');
+const _usr = localStorage.getItem('adminUser');
+if (!_tok || !_usr) { window.location.href = '/admin/login.html'; }
+else {
+  document.getElementById('userDisplay').textContent = _usr;
+  document.getElementById('userAvatar').textContent = _usr.charAt(0).toUpperCase();
+  const su = document.getElementById('settings-user');
+  if(su) su.value = _usr;
+}
+
+document.getElementById('logoutBtn').addEventListener('click', () => {
+  localStorage.removeItem('adminToken');
+  localStorage.removeItem('adminUser');
+  window.location.href = '/admin/login.html';
+});
+
+// ── UI HELPERS ──
+const AdminUI = {
+  openBlogModal() {
+    const m = document.getElementById('blogModal');
+    m.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('bDate').value = today;
+  },
+  closeBlogModal() {
+    document.getElementById('blogModal').classList.remove('open');
+    document.body.style.overflow = '';
+    document.getElementById('blogForm').reset();
+    if(AdminApp.state) { AdminApp.state.formData.blogCategory = null; AdminApp.state.formData.editingArticleSlug = null; }
+    document.querySelectorAll('#blogCategories .cat-pill').forEach(b => b.classList.remove('selected'));
+  },
+  openPortfolioModal() {
+    document.getElementById('portfolioModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('pYear').value = new Date().getFullYear();
+  },
+  closePortfolioModal() {
+    document.getElementById('portfolioModal').classList.remove('open');
+    document.body.style.overflow = '';
+    document.getElementById('portfolioForm').reset();
+    if(AdminApp.state) { AdminApp.state.formData.portfolioCategory = null; AdminApp.state.formData.editingProjectKey = null; }
+    document.querySelectorAll('#portfolioCategories .cat-pill').forEach(b => b.classList.remove('selected'));
+  },
+  quickNew() {
+    const tab = AdminApp.state?.currentTab || 'dashboard';
+    if(tab === 'blog') this.openBlogModal();
+    else if(tab === 'portfolio') this.openPortfolioModal();
+    else this.openBlogModal();
+  }
+};
+
+// Close modals on overlay click
+document.getElementById('blogModal').addEventListener('click', e => {
+  if(e.target === document.getElementById('blogModal')) AdminUI.closeBlogModal();
+});
+document.getElementById('portfolioModal').addEventListener('click', e => {
+  if(e.target === document.getElementById('portfolioModal')) AdminUI.closePortfolioModal();
+});
+
+// ── TABS ──
+const breadcrumbs = {
+  dashboard:'Dashboard', blog:'Blog', portfolio:'Portfólio',
+  projetos:'Projetos', tarefas:'Tarefas',
+  propostas:'Propostas', agenda:'Agenda', pages:'Visibilidade', settings:'Configurações'
+};
+function switchTab(name) {
+  document.querySelectorAll('.sb-item[data-tab]').forEach(i => {
+    i.classList.toggle('active', i.dataset.tab === name);
+  });
+  document.querySelectorAll('.tab-panel').forEach(p => {
+    p.classList.toggle('active', p.id === 'tab-'+name);
+  });
+  document.getElementById('breadcrumb-cur').textContent = breadcrumbs[name] || name;
+  if(AdminApp.state) AdminApp.state.currentTab = name;
+  if(name === 'blog' && AdminApp.loadBlogList) AdminApp.loadBlogList();
+  if(name === 'portfolio' && AdminApp.loadPortfolioList) AdminApp.loadPortfolioList();
+  if(name === 'projetos') StudioMgr.load();
+  if(name === 'tarefas') StudioMgr.load();
+}
+document.querySelectorAll('.sb-item[data-tab]').forEach(i => {
+  i.addEventListener('click', () => switchTab(i.dataset.tab));
+});
+// expose for app.js
+if(!window.AdminApp) window.AdminApp = {};
+window.AdminApp.switchTab = switchTab;
+
+// ── TOAST ──
+window.Toast = {
+  show(msg, type='info') {
+    const w = document.getElementById('toastWrap');
+    const t = document.createElement('div');
+    t.className = 'toast ' + type;
+    t.textContent = msg;
+    w.appendChild(t);
+    setTimeout(() => t.remove(), 3500);
+  }
+};
+
+// ── MODAL (compat com app.js) ──
+window.Modal = class {
+  constructor(title, msg, actions) { this.title=title; this.msg=msg; this.actions=actions; }
+  show() {
+    const el = document.getElementById('confirmModal');
+    el.innerHTML = `<div class="confirm-overlay"><div class="confirm-box">
+      <h3>${this.title}</h3><p>${this.msg}</p>
+      <div class="confirm-acts">
+        ${this.actions.map((a,i)=>`<button class="btn ${i===this.actions.length-1?'primary':''}" data-idx="${i}">${a.text}</button>`).join('')}
+      </div></div></div>`;
+    el.style.display = 'flex';
+    el.querySelectorAll('[data-idx]').forEach(b => {
+      b.addEventListener('click', () => {
+        this.actions[+b.dataset.idx].action();
+        el.style.display='none'; el.innerHTML='';
+      });
+    });
+  }
+};
+
+// ── TABLE (compat com app.js) ──
+window.Table = class {
+  constructor(containerId, cols, rows, actions) {
+    this.containerId=containerId; this.cols=cols; this.rows=rows; this.actions=actions;
+  }
+  render() {
+    const c = document.getElementById(this.containerId);
+    if(!c) return;
+    if(!this.rows.length) {
+      c.innerHTML='<div class="empty"><span class="empty-icon">—</span><strong>Nenhum item encontrado</strong></div>';
+      return;
+    }
+    const ths = this.cols.map(col=>`<th>${col.label}</th>`).join('') + '<th style="text-align:right;">Ações</th>';
+    const trs = this.rows.map(row => {
+      const tds = this.cols.map((col,i) => {
+        const val = row[col.key] || '—';
+        if(i===0) return `<td><span class="td-title">${val}</span></td>`;
+        if(col.key==='tag'||col.key==='category') return `<td><span class="td-tag">${val}</span></td>`;
+        return `<td>${val}</td>`;
+      }).join('');
+      const acts = `<td><div class="row-acts">${
+        this.actions.map(a=>`<button class="btn-sm ${a.name==='delete'?'danger':''}" data-action="${a.name}">${a.label}</button>`).join('')
+      }</div></td>`;
+      return `<tr>${tds}${acts}</tr>`;
+    }).join('');
+    c.innerHTML = `<table class="dt"><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table>`;
+    c.querySelectorAll('[data-action]').forEach((btn, bIdx) => {
+      const rowIdx = Math.floor(bIdx / this.actions.length);
+      const actName = btn.dataset.action;
+      const action = this.actions.find(a=>a.name===actName);
+      if(action) btn.addEventListener('click', () => action.callback(this.rows[rowIdx]));
+    });
+  }
+};
+
+// ── FORM VALIDATOR (compat) ──
+window.FormValidator = {
+  rules: {
+    required: val => (!val || !val.trim()) ? 'Campo obrigatório' : null,
+    maxLength: n => val => (val && val.length > n) ? `Máx ${n} caracteres` : null
+  },
+  validate(form, rules) {
+    let ok = true;
+    Object.entries(rules).forEach(([id, fns]) => {
+      const el = document.getElementById(id);
+      if(!el) return;
+      const val = el.value;
+      for(const fn of fns) {
+        const err = fn(val);
+        if(err) { ok=false; el.style.borderColor='var(--red)'; break; }
+        else el.style.borderColor='';
+      }
+    });
+    return ok;
+  },
+  showErrors() {}
+};
+</script>
+
+<script>
+// ══════════════════════════════════════════
+// STUDIO MANAGER — Projetos & Tarefas
+// ══════════════════════════════════════════
+const StudioMgr = (() => {
+  let _data = { projects: [], tasks: [] };
+  const TOKEN = () => localStorage.getItem('adminToken') || '';
+
+  const STATUS_LABEL = { 'em-andamento':'Em andamento','aguardando':'Aguardando','concluido':'Concluído','pausado':'Pausado' };
+  const STATUS_COLOR = { 'em-andamento':'#60a5fa','aguardando':'#F5C518','concluido':'#10b981','pausado':'#7a7a7a' };
+  const TYPE_LABEL   = { fotografia:'Fotografia', branding:'Branding', site:'Site', video:'Vídeo', outro:'Outro' };
+
+  async function load() {
+    try {
+      const r = await fetch('/api/studio/tasks');
+      _data = await r.json();
+    } catch(e) { _data = { projects:[], tasks:[] }; }
+    renderProjects();
+    renderTasks();
+    _populateProjectSelects();
+  }
+
+  function _populateProjectSelects() {
+    ['taskProject','projFilterProject','taskFilterProject'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const first = el.options[0];
+      el.innerHTML = '';
+      el.appendChild(first || Object.assign(document.createElement('option'), { value:'', textContent:'— Tarefa independente —' }));
+      _data.projects.forEach(p => {
+        const o = document.createElement('option');
+        o.value = p.id; o.textContent = p.title;
+        el.appendChild(o);
+      });
+    });
+  }
+
+  function _taskCountForProject(projId) {
+    return _data.tasks.filter(t => t.projectId === projId).length;
+  }
+  function _doneCountForProject(projId) {
+    return _data.tasks.filter(t => t.projectId === projId && t.status === 'done').length;
+  }
+  function _progressForProject(projId) {
+    const total = _taskCountForProject(projId);
+    if (!total) return 0;
+    return Math.round((_doneCountForProject(projId) / total) * 100);
+  }
+  function _deadlineClass(date) {
+    if (!date) return '';
+    const d = new Date(date), now = new Date();
+    const diff = (d - now) / 86400000;
+    if (diff < 0) return 'overdue';
+    if (diff < 7) return 'soon';
+    return '';
+  }
+
+  function renderProjects() {
+    const grid = document.getElementById('projGrid');
+    if (!grid) return;
+    const stF = document.getElementById('projFilterStatus')?.value || '';
+    const tyF = document.getElementById('projFilterType')?.value || '';
+    let list = _data.projects.filter(p =>
+      (!stF || p.status === stF) && (!tyF || p.type === tyF)
+    );
+    if (!list.length) {
+      grid.innerHTML = `<div class="empty" style="grid-column:1/-1;"><span class="empty-icon">◈</span><strong>Nenhum projeto encontrado</strong><p>Clique em "+ Novo Projeto" para começar</p></div>`;
+      return;
+    }
+    grid.innerHTML = list.map(p => {
+      const prog = _progressForProject(p.id);
+      const tc = _taskCountForProject(p.id);
+      const color = STATUS_COLOR[p.status] || '#7a7a7a';
+      const dlClass = _deadlineClass(p.deadline);
+      const dlText = p.deadline ? new Date(p.deadline).toLocaleDateString('pt-BR', {day:'2-digit',month:'short'}) : '—';
+      return `
+      <div class="proj-card" onclick="StudioMgr.editProject('${p.id}')">
+        <div class="proj-card-accent" style="background:${color};"></div>
+        <div class="proj-card-hdr">
+          <div class="proj-card-title">${p.title}</div>
+          <span class="k-tag ${p.priority||'média'}">${p.priority||'média'}</span>
+        </div>
+        <div class="proj-card-client">${p.client}</div>
+        <div class="proj-card-meta">
+          <span class="proj-type">${TYPE_LABEL[p.type]||p.type}</span>
+          <span class="proj-deadline ${dlClass}">Prazo: ${dlText}</span>
+        </div>
+        <div class="proj-progress"><div class="proj-progress-bar" style="width:${prog}%"></div></div>
+        <div class="proj-card-footer">
+          <span class="proj-task-count">${tc} tarefa${tc!==1?'s':''} · ${prog}% concluído</span>
+          <div class="proj-card-menu">
+            <button class="proj-card-btn" title="Editar" onclick="event.stopPropagation();StudioMgr.editProject('${p.id}')">✎</button>
+            <button class="proj-card-btn" title="Excluir" onclick="event.stopPropagation();StudioMgr.deleteProject('${p.id}')">✕</button>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function renderTasks() {
+    const projF = document.getElementById('taskFilterProject')?.value || '';
+    const priF  = document.getElementById('taskFilterPriority')?.value || '';
+    let list = _data.tasks.filter(t =>
+      (!projF || t.projectId === projF) && (!priF || t.priority === priF)
+    );
+    const cols = { todo:[], doing:[], done:[] };
+    list.forEach(t => { if(cols[t.status]) cols[t.status].push(t); });
+
+    ['todo','doing','done'].forEach(st => {
+      const el = document.getElementById('kanban-'+st);
+      const cnt = document.getElementById('count-'+st);
+      if (!el) return;
+      cnt.textContent = cols[st].length;
+      if (!cols[st].length) {
+        el.innerHTML = `<div style="padding:16px;text-align:center;font-size:10px;color:var(--g4);">Nenhuma tarefa</div>`;
+        return;
+      }
+      el.innerHTML = cols[st].map(t => {
+        const projName = t.projectId ? (_data.projects.find(p=>p.id===t.projectId)?.title || '—') : null;
+        const dlClass = _deadlineClass(t.dueDate);
+        const dlText = t.dueDate ? new Date(t.dueDate).toLocaleDateString('pt-BR',{day:'2-digit',month:'short'}) : '';
+        const nextStatus = st==='todo'?'doing': st==='doing'?'done': 'todo';
+        const nextLabel  = st==='todo'?'Iniciar': st==='doing'?'Concluir': 'Reabrir';
+        return `
+        <div class="kanban-card">
+          <div class="kanban-card-title">${t.title}</div>
+          <div class="kanban-card-meta">
+            <span class="k-tag ${t.priority||'média'}">${t.priority||'média'}</span>
+            ${projName ? `<span class="k-proj">↳ ${projName.split('—')[0].trim()}</span>` : ''}
+            ${dlText ? `<span class="k-date ${dlClass}">${dlText}</span>` : ''}
+          </div>
+          <div class="kanban-card-actions">
+            <button class="k-btn move" onclick="StudioMgr.moveTask('${t.id}','${nextStatus}')">${nextLabel} →</button>
+            <button class="k-btn" onclick="StudioMgr.editTask('${t.id}')">✎</button>
+            <button class="k-btn del" onclick="StudioMgr.deleteTask('${t.id}')">✕</button>
+          </div>
+        </div>`;
+      }).join('');
+    });
+  }
+
+  // ── MODAL PROJETO ──
+  function openProjectModal(proj) {
+    const m = document.getElementById('projectModal');
+    document.getElementById('projectModalTitle').textContent = proj ? 'Editar Projeto' : 'Novo Projeto';
+    document.getElementById('projId').value = proj?.id || '';
+    document.getElementById('projTitle').value = proj?.title || '';
+    document.getElementById('projClient').value = proj?.client || '';
+    document.getElementById('projType').value = proj?.type || 'fotografia';
+    document.getElementById('projStatus').value = proj?.status || 'em-andamento';
+    document.getElementById('projPriority').value = proj?.priority || 'média';
+    document.getElementById('projDeadline').value = proj?.deadline || '';
+    document.getElementById('projDesc').value = proj?.description || '';
+    m.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeProjectModal() {
+    document.getElementById('projectModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function editProject(id) {
+    const p = _data.projects.find(x => x.id === id);
+    openProjectModal(p);
+  }
+  async function saveProject() {
+    const id = document.getElementById('projId').value;
+    const payload = {
+      title: document.getElementById('projTitle').value.trim(),
+      client: document.getElementById('projClient').value.trim(),
+      type: document.getElementById('projType').value,
+      status: document.getElementById('projStatus').value,
+      priority: document.getElementById('projPriority').value,
+      deadline: document.getElementById('projDeadline').value,
+      description: document.getElementById('projDesc').value.trim(),
+    };
+    if (!payload.title || !payload.client) {
+      Toast.show('Preencha título e cliente', 'error'); return;
+    }
+    try {
+      const url = id ? `/api/studio/projects/${id}` : '/api/studio/projects';
+      const method = id ? 'PATCH' : 'POST';
+      const r = await fetch(url, { method, headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+      if (!r.ok) throw new Error();
+      const saved = await r.json();
+      if (id) { const idx = _data.projects.findIndex(p=>p.id===id); _data.projects[idx]=saved; }
+      else _data.projects.push(saved);
+      closeProjectModal();
+      renderProjects();
+      _populateProjectSelects();
+      Toast.show(id ? 'Projeto atualizado' : 'Projeto criado', 'success');
+    } catch(e) { Toast.show('Erro ao salvar projeto', 'error'); }
+  }
+  async function deleteProject(id) {
+    if (!confirm('Excluir este projeto? As tarefas vinculadas também serão removidas.')) return;
+    await fetch(`/api/studio/projects/${id}`, { method:'DELETE' });
+    _data.projects = _data.projects.filter(p=>p.id!==id);
+    _data.tasks = _data.tasks.filter(t=>t.projectId!==id);
+    renderProjects();
+    renderTasks();
+    _populateProjectSelects();
+    Toast.show('Projeto excluído', 'success');
+  }
+
+  // ── MODAL TAREFA ──
+  function openTaskModal(task) {
+    _populateProjectSelects();
+    const m = document.getElementById('taskModal');
+    document.getElementById('taskModalTitle').textContent = task ? 'Editar Tarefa' : 'Nova Tarefa';
+    document.getElementById('taskId').value = task?.id || '';
+    document.getElementById('taskTitle').value = task?.title || '';
+    document.getElementById('taskProject').value = task?.projectId || '';
+    document.getElementById('taskPriority').value = task?.priority || 'média';
+    document.getElementById('taskStatus').value = task?.status || 'todo';
+    document.getElementById('taskDue').value = task?.dueDate || '';
+    document.getElementById('taskDesc').value = task?.description || '';
+    m.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeTaskModal() {
+    document.getElementById('taskModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function editTask(id) {
+    const t = _data.tasks.find(x => x.id === id);
+    openTaskModal(t);
+  }
+  async function saveTask() {
+    const id = document.getElementById('taskId').value;
+    const payload = {
+      title: document.getElementById('taskTitle').value.trim(),
+      projectId: document.getElementById('taskProject').value || null,
+      priority: document.getElementById('taskPriority').value,
+      status: document.getElementById('taskStatus').value,
+      dueDate: document.getElementById('taskDue').value,
+      description: document.getElementById('taskDesc').value.trim(),
+    };
+    if (!payload.title) { Toast.show('Preencha o título da tarefa', 'error'); return; }
+    try {
+      const url = id ? `/api/studio/tasks/${id}` : '/api/studio/tasks';
+      const method = id ? 'PATCH' : 'POST';
+      const r = await fetch(url, { method, headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+      if (!r.ok) throw new Error();
+      const saved = await r.json();
+      if (id) { const idx = _data.tasks.findIndex(t=>t.id===id); _data.tasks[idx]=saved; }
+      else _data.tasks.push(saved);
+      closeTaskModal();
+      renderTasks();
+      Toast.show(id ? 'Tarefa atualizada' : 'Tarefa criada', 'success');
+    } catch(e) { Toast.show('Erro ao salvar tarefa', 'error'); }
+  }
+  async function moveTask(id, newStatus) {
+    const r = await fetch(`/api/studio/tasks/${id}`, {
+      method:'PATCH', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ status: newStatus })
+    });
+    if (r.ok) {
+      const saved = await r.json();
+      const idx = _data.tasks.findIndex(t=>t.id===id);
+      _data.tasks[idx] = saved;
+      renderTasks();
+      renderProjects();
+    }
+  }
+  async function deleteTask(id) {
+    if (!confirm('Excluir esta tarefa?')) return;
+    await fetch(`/api/studio/tasks/${id}`, { method:'DELETE' });
+    _data.tasks = _data.tasks.filter(t=>t.id!==id);
+    renderTasks();
+    renderProjects();
+    Toast.show('Tarefa excluída', 'success');
+  }
+
+  // Close on overlay click
+  ['projectModal','taskModal'].forEach(id => {
+    document.getElementById(id)?.addEventListener('click', e => {
+      if (e.target.id === id) {
+        if (id === 'projectModal') closeProjectModal();
+        else closeTaskModal();
+      }
+    });
+  });
+
+  return { load, renderProjects, renderTasks, openProjectModal, closeProjectModal, editProject, saveProject, deleteProject, openTaskModal, closeTaskModal, editTask, saveTask, moveTask, deleteTask };
+})();
+</script>
+
+<script src="components.js"></script>
+<script src="app.js"></script>
+
+<script>
+// Inicializa app após carregar os scripts
+document.addEventListener('DOMContentLoaded', () => {
+  // Carrega dados de projetos/tarefas já na abertura
+  StudioMgr.load();
+
+  if(window.AdminApp && AdminApp.init) {
+    AdminApp.setupModalHandling && AdminApp.setupModalHandling();
+    AdminApp.init();
+    // popula KPIs após carregar dados
+    setTimeout(() => {
+      if(AdminApp.state) {
+        const p = document.getElementById('kpi-projects');
+        const a = document.getElementById('kpi-articles');
+        if(p && AdminApp.state.portfolio?.length) p.textContent = AdminApp.state.portfolio.length;
+        if(a && AdminApp.state.blog?.length) a.textContent = AdminApp.state.blog.length;
+      }
+    }, 2000);
+  }
+  // Renderiza categorias como pills
+  const pCats = ['Personal Branding','Fotografia Executiva','Eventos','Branding'];
+  const bCats = ['Personal Branding','Fotografia Executiva','Bastidores','Equipamento','Mercado'];
+  ['portfolioCategories','blogCategories'].forEach(id => {
+    const c = document.getElementById(id);
+    if(!c) return;
+    const cats = id==='portfolioCategories' ? pCats : bCats;
+    c.innerHTML = cats.map(cat =>
+      `<button type="button" class="cat-pill category-option" data-category="${cat}">${cat}</button>`
+    ).join('');
+    c.querySelectorAll('.cat-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        c.querySelectorAll('.cat-pill').forEach(b=>b.classList.remove('selected'));
+        btn.classList.add('selected');
+        if(window.AdminApp && AdminApp.state) {
+          if(id==='portfolioCategories') AdminApp.state.formData.portfolioCategory = btn.dataset.category;
+          else AdminApp.state.formData.blogCategory = btn.dataset.category;
+        }
+      });
+    });
+  });
+});
+</script>
+</body>
+</html>

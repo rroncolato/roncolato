@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protetic — Laboratório de Excelência Odontológica</title>
+    <meta name="description" content="Precisão que protege a sua reputação. Laboratório de prótese dentária com excelência técnica e responsabilidade.">
+
+    <!-- Google Fonts: Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        /* ========================================
+           DESIGN TOKENS (CSS Custom Properties)
+           ======================================== */
+        :root {
+            /* Colors - Premium Dark Theme */
+            --obsidian: #090909;
+            --onyx: #101010;
+            --carbon: #181818;
+            --graphite: #242424;
+            --smoke: #383838;
+            --ash: #7A7A72;
+            --bone: #C4C0B4;
+            --ivory: #E8E4DA;
+            --white: #F9F8F5;
+
+            --gold: #B8945A;
+            --gold-l: #CFA96E;
+            --gold-p: #E8CE96;
+            --gold-d: #6E5630;
+            --gold-u: #3A2D18;
+
+            /* Color Aliases */
+            --color-primary: var(--obsidian);
+            --color-secondary: var(--carbon);
+            --color-accent: var(--gold);
+            --color-accent-light: var(--gold-l);
+            --color-success: var(--gold);
+            --color-neutral-light: var(--ivory);
+            --color-neutral-medium: var(--bone);
+            --color-neutral-dark: var(--ash);
+            --color-text-primary: var(--ivory);
+            --color-text-secondary: var(--bone);
+            --color-white: var(--white);
+
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+            --spacing-3xl: 6rem;
+
+            /* Typography */
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --font-primary: var(--font-sans);
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.25rem;
+            --font-size-xl: 1.5rem;
+            --font-size-2xl: 2rem;
+            --font-size-3xl: 2.5rem;
+            --font-size-4xl: 3.5rem;
+
+            /* Border Radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+
+            /* Transitions */
+            --transition-fast: 150ms ease-in-out;
+            --transition-base: 300ms ease-in-out;
+            --transition-slow: 500ms ease-in-out;
+
+            /* Box Shadow */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ========================================
+           RESET & BASE STYLES
+           ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--ivory);
+            background-color: var(--obsidian);
+            line-height: 1.6;
+            font-size: var(--font-size-base);
+        }
+
+        /* ========================================
+           HEADER & NAVIGATION
+           ======================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(9, 9, 9, 0.92) 0%, rgba(9, 9, 9, 0.85) 100%);
+            backdrop-filter: blur(30px);
+            border-bottom: 1px solid rgba(184, 148, 90, 0.15);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(184, 148, 90, 0.08);
+            transition: all var(--transition-base);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing-md) var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            font-family: var(--font-serif);
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        nav {
+            display: flex;
+            gap: var(--spacing-2xl);
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--ivory);
+            text-decoration: none;
+            font-size: var(--font-size-sm);
+            transition: color var(--transition-fast);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 300;
+        }
+
+        nav a:hover {
+            color: var(--gold-l);
+        }
+
+        .cta-button {
+            background: rgba(184, 148, 90, 0.2);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            transition: all var(--transition-fast);
+            text-decoration: none;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button:hover {
+            background: rgba(184, 148, 90, 0.3);
+            box-shadow: 0 8px 32px rgba(184, 148, 90, 0.2);
+        }
+
+        /* Mobile Menu */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+        }
+
+        /* ========================================
+           HERO SECTION
+           ======================================== */
+        .hero {
+            margin-top: 80px;
+            padding: var(--spacing-3xl) var(--spacing-lg);
+            background: linear-gradient(135deg, #090909 0%, #0f0f0f 25%, #1a1a1a 50%, #131313 75%, #090909 100%);
+            color: var(--ivory);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -25%;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(184, 148, 90, 0.15) 0%, rgba(184, 148, 90, 0.08) 30%, rgba(184, 148, 90, 0.02) 60%, transparent 100%);
+            border-radius: 50%;
+            animation: float 35s ease-in-out infinite;
+            filter: blur(40px);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -40%;
+            left: -25%;
+            width: 900px;
+            height: 900px;
+            background: radial-gradient(circle, rgba(207, 169, 110, 0.1) 0%, rgba(184, 148, 90, 0.05) 40%, transparent 80%);
+            border-radius: 50%;
+            animation: float 40s ease-in-out infinite reverse;
+            filter: blur(50px);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero-eyebrow {
+            font-size: var(--font-size-sm);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: var(--spacing-lg);
+            font-weight: 300;
+        }
+
+        .hero h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: 300;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.2;
+            letter-spacing: -1px;
+            font-family: var(--font-serif);
+        }
+
+        .hero-subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--gold-l);
+            margin-bottom: var(--spacing-xl);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-description {
+            font-size: var(--font-size-lg);
+            color: var(--bone);
+            margin-bottom: var(--spacing-2xl);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: var(--spacing-lg);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-l) 100%);
+            color: var(--obsidian);
+            padding: 1.2rem 3rem;
+            border-radius: 28px;
+            border: none;
+            cursor: pointer;
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            transition: all var(--transition-base);
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+            box-shadow: 0 10px 30px rgba(184, 148, 90, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(184, 148, 90, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .cta-primary:hover::before {
+            left: 100%;
+        }
+
+        .cta-secondary {
+            background: rgba(184, 148, 90, 0.12);
+            color: var(--ivory);
+            padding: 1.2rem 3rem;
+            border: 1.5px solid rgba(184, 148, 90, 0.4);
+            border-radius: 28px;
+            cursor: pointer;
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            transition: all var(--transition-base);
+            text-decoration: none;
+            display: inline-block;
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(184, 148, 90, 0.15);
+        }
+
+        .cta-secondary:hover {
+            background: rgba(184, 148, 90, 0.2);
+            border-color: rgba(184, 148, 90, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(184, 148, 90, 0.25), inset 0 1px 0 rgba(184, 148, 90, 0.25);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* ========================================
+           SECTIONS LAYOUT
+           ======================================== */
+        section {
+            padding: 8rem var(--spacing-lg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .section-eyebrow {
+            font-size: var(--font-size-sm);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gold);
+            margin-bottom: var(--spacing-md);
+            font-weight: 300;
+        }
+
+        .section-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 300;
+            color: var(--ivory);
+            margin-bottom: var(--spacing-lg);
+            font-family: var(--font-serif);
+        }
+
+        .section-description {
+            font-size: var(--font-size-lg);
+            color: var(--bone);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ========================================
+           QUEM SOMOS SECTION
+           ======================================== */
+        .quem-somos {
+            background: var(--obsidian);
+        }
+
+        .quem-somos-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-3xl);
+            align-items: center;
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .quem-somos-text h3 {
+            font-size: var(--font-size-2xl);
+            color: var(--ivory);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.4;
+            font-family: var(--font-serif);
+        }
+
+        .quem-somos-text p {
+            color: var(--bone);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.8;
+        }
+
+        .quem-somos-image {
+            background: linear-gradient(135deg, #D9BD7A 0%, var(--gold-l) 25%, var(--gold) 50%, var(--gold-d) 75%, #3a2d18 100%);
+            border-radius: 28px;
+            height: 520px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: var(--font-size-lg);
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(184, 148, 90, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .quem-somos-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(0, 0, 0, 0.15) 100%);
+            pointer-events: none;
+        }
+
+        .quem-somos-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .pilares {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-xl);
+        }
+
+        .pilar {
+            background: linear-gradient(135deg, rgba(24, 24, 24, 0.6) 0%, rgba(15, 15, 15, 0.4) 100%);
+            backdrop-filter: blur(25px);
+            padding: var(--spacing-xl);
+            border-radius: 24px;
+            text-align: center;
+            border: 1px solid rgba(184, 148, 90, 0.15);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(184, 148, 90, 0.1);
+            transition: all var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pilar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, rgba(184, 148, 90, 0.3) 50%, transparent 100%);
+        }
+
+        .pilar:hover {
+            transform: translateY(-8px);
+            border-color: rgba(184, 148, 90, 0.3);
+            box-shadow: 0 20px 50px rgba(184, 148, 90, 0.2), inset 0 1px 0 rgba(184, 148, 90, 0.15);
+        }
+
+        .pilar h4 {
+            font-size: var(--font-size-lg);
+            color: var(--gold);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .pilar p {
+            color: var(--bone);
+            font-size: var(--font-size-sm);
+        }
+
+        /* ========================================
+           PROPOSITO MISSAO VISAO
+           ======================================== */
+        .pmv-section {
+            background: var(--obsidian);
+        }
+
+        .pmv-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .pmv-card {
+            padding: var(--spacing-xl);
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .pmv-card.proposito {
+            background: linear-gradient(135deg, #C9A961 0%, #B8945A 30%, var(--gold-d) 60%, #3a2d18 100%);
+            color: var(--obsidian);
+            box-shadow: 0 25px 60px rgba(184, 148, 90, 0.35), inset 0 2px 0 rgba(255, 255, 255, 0.25), inset 0 -2px 2px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pmv-card.proposito::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, transparent 50%, rgba(0, 0, 0, 0.1) 100%);
+            pointer-events: none;
+        }
+
+        .pmv-card.missao {
+            background: linear-gradient(135deg, rgba(24, 24, 24, 0.7) 0%, rgba(15, 15, 15, 0.5) 100%);
+            border: 1.5px solid rgba(184, 148, 90, 0.35);
+            backdrop-filter: blur(30px);
+            color: var(--ivory);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(184, 148, 90, 0.15), inset 0 -1px 1px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pmv-card.missao::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(184, 148, 90, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .pmv-card.visao {
+            background: linear-gradient(135deg, #D9BD7A 0%, #CFA96E 30%, var(--gold) 60%, #6E5630 100%);
+            color: var(--obsidian);
+            box-shadow: 0 25px 60px rgba(184, 148, 90, 0.35), inset 0 2px 0 rgba(255, 255, 255, 0.25), inset 0 -2px 2px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pmv-card.visao::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, transparent 50%, rgba(0, 0, 0, 0.1) 100%);
+            pointer-events: none;
+        }
+
+        .pmv-card h3 {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--spacing-md);
+            font-weight: 300;
+            font-family: var(--font-serif);
+        }
+
+        .pmv-card p {
+            line-height: 1.8;
+            font-size: var(--font-size-base);
+        }
+
+        /* ========================================
+           MANIFESTO
+           ======================================== */
+        .manifesto {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 25%, #131313 50%, #1a1a1a 75%, #0f0f0f 100%);
+            color: var(--ivory);
+            padding: 6rem var(--spacing-lg);
+            text-align: center;
+            border-radius: 28px;
+            margin: 6rem 0;
+            border: 1px solid rgba(184, 148, 90, 0.2);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(184, 148, 90, 0.15), inset 0 -1px 1px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .manifesto::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(184, 148, 90, 0.12) 0%, rgba(207, 169, 110, 0.05) 40%, transparent 80%);
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(40px);
+        }
+
+        .manifesto blockquote {
+            font-size: var(--font-size-xl);
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: var(--spacing-lg);
+            font-style: italic;
+            font-family: var(--font-serif);
+        }
+
+        .manifesto-author {
+            color: var(--gold-l);
+            font-weight: 400;
+            font-size: var(--font-size-lg);
+        }
+
+        /* ========================================
+           DIFERENCIAIS
+           ======================================== */
+        .diferenciais {
+            background: var(--obsidian);
+        }
+
+        .statement {
+            text-align: center;
+            font-size: var(--font-size-lg);
+            color: var(--bone);
+            margin-bottom: var(--spacing-3xl);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .diferenciais-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .diferencial-card {
+            background: linear-gradient(135deg, rgba(24, 24, 24, 0.7) 0%, rgba(15, 15, 15, 0.5) 100%);
+            backdrop-filter: blur(25px);
+            padding: var(--spacing-xl);
+            border-radius: 24px;
+            border: 1px solid rgba(184, 148, 90, 0.15);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(184, 148, 90, 0.12), inset 0 -1px 1px rgba(0,0,0,0.2);
+            transition: all var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .diferencial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, rgba(207, 169, 110, 0.4) 50%, transparent 100%);
+        }
+
+        .diferencial-card::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(184, 148, 90, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transition: all var(--transition-slow);
+        }
+
+        .diferencial-card:hover {
+            transform: translateY(-12px);
+            border: 1px solid rgba(184, 148, 90, 0.3);
+            box-shadow: 0 25px 60px rgba(184, 148, 90, 0.25), inset 0 1px 0 rgba(184, 148, 90, 0.2), inset 0 -1px 1px rgba(0,0,0,0.3);
+        }
+
+        .diferencial-card:hover::after {
+            bottom: -30%;
+            right: -30%;
+            background: radial-gradient(circle, rgba(184, 148, 90, 0.15) 0%, transparent 70%);
+        }
+
+        .diferencial-card h3 {
+            font-size: var(--font-size-lg);
+            color: var(--ivory);
+            margin-bottom: var(--spacing-md);
+            font-weight: 300;
+            font-family: var(--font-serif);
+        }
+
+        .diferencial-card p {
+            color: var(--bone);
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           TECNOLOGIA
+           ======================================== */
+        .tecnologia {
+            background: var(--obsidian);
+        }
+
+        .tech-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-3xl);
+            align-items: center;
+        }
+
+        .tech-image {
+            background: linear-gradient(135deg, #D9BD7A 0%, var(--gold-l) 25%, var(--gold) 50%, var(--gold-d) 75%, #3a2d18 100%);
+            border-radius: 28px;
+            height: 580px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: var(--font-size-lg);
+            order: 2;
+            box-shadow: 0 40px 80px rgba(184, 148, 90, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(0, 0, 0, 0.15) 100%);
+            pointer-events: none;
+        }
+
+        .tech-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .tech-text {
+            order: 1;
+        }
+
+        .tech-text h3 {
+            font-size: var(--font-size-2xl);
+            color: var(--ivory);
+            margin-bottom: var(--spacing-lg);
+            font-family: var(--font-serif);
+        }
+
+        .tech-text p {
+            color: var(--bone);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.8;
+        }
+
+        .tech-specs {
+            list-style: none;
+            margin: var(--spacing-lg) 0;
+        }
+
+        .tech-specs li {
+            padding: var(--spacing-sm) 0;
+            padding-left: var(--spacing-lg);
+            position: relative;
+            color: var(--bone);
+        }
+
+        .tech-specs li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold-l);
+            font-weight: 700;
+        }
+
+        /* ========================================
+           FLUXO
+           ======================================== */
+        .fluxo {
+            background: var(--obsidian);
+        }
+
+        .fluxo-steps {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .step {
+            background: linear-gradient(135deg, rgba(24, 24, 24, 0.6) 0%, rgba(15, 15, 15, 0.4) 100%);
+            backdrop-filter: blur(25px);
+            padding: var(--spacing-lg);
+            border-radius: 24px;
+            text-align: center;
+            position: relative;
+            border: 1px solid rgba(184, 148, 90, 0.15);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(184, 148, 90, 0.1);
+            transition: all var(--transition-base);
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(184, 148, 90, 0.25) 50%, transparent 100%);
+        }
+
+        .step:hover {
+            transform: translateY(-8px);
+            border-color: rgba(184, 148, 90, 0.3);
+            box-shadow: 0 20px 50px rgba(184, 148, 90, 0.2), inset 0 1px 0 rgba(184, 148, 90, 0.15);
+        }
+
+        .step::after {
+            content: '';
+            position: absolute;
+            right: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        .step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .step-title {
+            font-size: var(--font-size-sm);
+            font-weight: 300;
+            color: var(--ivory);
+            margin-bottom: var(--spacing-sm);
+            font-family: var(--font-serif);
+        }
+
+        .step-description {
+            font-size: var(--font-size-sm);
+            color: var(--bone);
+            line-height: 1.6;
+        }
+
+        /* ========================================
+           EQUIPE
+           ======================================== */
+        .equipe {
+            background: var(--obsidian);
+        }
+
+        .equipe-intro {
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .equipe-intro p {
+            color: var(--bone);
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .equipe-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .stat {
+            text-align: center;
+            padding: var(--spacing-lg);
+            background: rgba(24, 24, 24, 0.5);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(184, 148, 90, 0.1);
+        }
+
+        .stat-value {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--gold-l);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .stat-label {
+            font-size: var(--font-size-sm);
+            color: var(--bone);
+            font-weight: 300;
+        }
+
+        /* ========================================
+           VALORES
+           ======================================== */
+        .valores {
+            background: var(--obsidian);
+        }
+
+        .valores-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .valor-card {
+            background: rgba(24, 24, 24, 0.5);
+            backdrop-filter: blur(20px);
+            padding: var(--spacing-xl);
+            border-radius: 20px;
+            border-left: 4px solid var(--gold);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .valor-card h3 {
+            font-size: var(--font-size-lg);
+            color: var(--ivory);
+            margin-bottom: var(--spacing-md);
+            font-weight: 300;
+            font-family: var(--font-serif);
+        }
+
+        .valor-card p {
+            color: var(--bone);
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           FINAL CTA
+           ======================================== */
+        .final-cta {
+            background: linear-gradient(135deg, var(--obsidian) 0%, var(--carbon) 100%);
+            color: var(--ivory);
+            text-align: center;
+            border-top: 1px solid rgba(184, 148, 90, 0.1);
+        }
+
+        .final-cta h2 {
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--spacing-lg);
+            font-family: var(--font-serif);
+            font-weight: 300;
+        }
+
+        .final-cta p {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-2xl);
+            color: var(--bone);
+        }
+
+        .final-ctas {
+            display: flex;
+            gap: var(--spacing-lg);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        footer {
+            background: var(--obsidian);
+            color: var(--ivory);
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            text-align: center;
+            border-top: 1px solid rgba(184, 148, 90, 0.1);
+        }
+
+        .footer-tagline {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-md);
+            color: var(--gold-l);
+        }
+
+        .footer-copy {
+            font-size: var(--font-size-sm);
+            color: var(--bone);
+        }
+
+        /* ========================================
+           RESPONSIVE DESIGN
+           ======================================== */
+        @media (max-width: 1024px) {
+            .pmv-grid,
+            .diferenciais-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .fluxo-steps {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .step::after {
+                right: -8px;
+                width: 16px;
+            }
+
+            .quem-somos-content,
+            .tech-content {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-image {
+                order: 1;
+            }
+
+            .tech-text {
+                order: 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: var(--spacing-2xl) var(--spacing-lg);
+            }
+
+            .hero {
+                margin-top: 70px;
+                padding: var(--spacing-2xl) var(--spacing-lg);
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: var(--font-size-2xl);
+            }
+
+            .section-title {
+                font-size: var(--font-size-2xl);
+            }
+
+            .fluxo-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .step::after {
+                display: none;
+            }
+
+            .pilares,
+            .equipe-stats,
+            .valores-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-ctas,
+            .final-ctas {
+                flex-direction: column;
+            }
+
+            .cta-primary,
+            .cta-secondary {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* ========================================
+           AOS ANIMATIONS
+           ======================================== */
+        [data-aos] {
+            opacity: 0;
+        }
+
+        [data-aos].aos-animate {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================
+         HEADER & NAVIGATION
+         ============================================ -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">Prot<span>etic</span></a>
+            <nav>
+                <a href="#quem-somos">Quem Somos</a>
+                <a href="#diferencial">Diferenciais</a>
+                <a href="#fluxo">Processo</a>
+                <a href="#valores">Valores</a>
+                <a href="#contato" class="cta-button">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============================================
+         HERO SECTION
+         ============================================ -->
+    <section class="hero">
+        <div class="hero-content" data-aos="fade-up" data-aos-delay="100">
+            <div class="hero-eyebrow">Laboratório de Excelência Odontológica</div>
+            <h1>Precisão que protege a sua reputação.</h1>
+            <div class="hero-subtitle">Estética · Função · Confiança</div>
+            <p class="hero-description">
+                Nascemos da inconformidade com o suficiente. Cada caso que passa pelas nossas mãos carrega o peso da reputação que você levou anos para construir.
+            </p>
+            <div class="hero-ctas">
+                <a href="#contato" class="cta-primary">Iniciar uma Parceria →</a>
+                <a href="#diferenciais" class="cta-secondary">Descubra Nossos Diferenciais</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="rgba(255,255,255,0.5)">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ============================================
+         QUEM SOMOS
+         ============================================ -->
+    <section class="quem-somos" id="quem-somos">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <div class="section-eyebrow">Nascemos de uma Convicção</div>
+                <h2 class="section-title">Quem Somos</h2>
+            </div>
+
+            <div class="quem-somos-content">
+                <div class="quem-somos-text" data-aos="fade-right">
+                    <h3>Nascemos da inconformidade com o suficiente.</h3>
+                    <p>Todos os dias, recebemos histórias dentro de caixas. Planejamentos, registros, expectativas. O que sai daqui não é apenas um trabalho concluído — é a prova viva de que você escolheu bem.</p>
+                    <p>Mais do que produzir peças, participamos da construção de algo muito mais valioso: a confiança que um paciente deposita no profissional que o olha nos olhos e diz que vai entregar o melhor.</p>
+                </div>
+                <div class="quem-somos-image" data-aos="fade-left">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173205352c3?w=1200&h=600&fit=crop" alt="Laboratório Protetic - Equipe e Infraestrutura" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </div>
+
+            <div class="pilares">
+                <div class="pilar" data-aos="fade-up" data-aos-delay="100">
+                    <h4>Precisão</h4>
+                    <p>Milímetros que carregam o peso de uma reputação construída ao longo de anos.</p>
+                </div>
+                <div class="pilar" data-aos="fade-up" data-aos-delay="200">
+                    <h4>Responsabilidade</h4>
+                    <p>Seu nome passa pelas nossas mãos antes de chegar a qualquer paciente.</p>
+                </div>
+                <div class="pilar" data-aos="fade-up" data-aos-delay="300">
+                    <h4>Respeito</h4>
+                    <p>Pelo tempo, pelo planejamento e por quem decidiu confiar em você.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         PROPÓSITO / MISSÃO / VISÃO
+         ============================================ -->
+    <section class="pmv-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <div class="section-eyebrow">Estratégia de Marca</div>
+                <h2 class="section-title">O que nos move. O que nos define.</h2>
+            </div>
+
+            <div class="pmv-grid">
+                <div class="pmv-card proposito" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Propósito</h3>
+                    <p><strong>Cuidar do que não aparece na foto</strong></p>
+                    <p style="margin-top: var(--spacing-md);">A confiança entre dentista e paciente não aparece em nenhum antes e depois. Mas é ela que sustenta cada sorriso.</p>
+                </div>
+                <div class="pmv-card missao" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Missão</h3>
+                    <p><strong>Excelência que respeita quem planeja</strong></p>
+                    <p style="margin-top: var(--spacing-md);">Entregas de alto padrão técnico, alinhadas ao seu planejamento clínico, ao tempo do seu paciente.</p>
+                </div>
+                <div class="pmv-card visao" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Visão</h3>
+                    <p><strong>Referência que protege quem escolhe</strong></p>
+                    <p style="margin-top: var(--spacing-md);">Ser o laboratório que dentistas de alto padrão escolhem para estar nos bastidores dos seus melhores casos.</p>
+                </div>
+            </div>
+
+            <div class="manifesto" data-aos="zoom-in" data-aos-delay="400">
+                <blockquote>
+                    "Na Protetic, cada sorriso é o resultado da união entre arte, ciência e propósito. Mas antes de tudo isso — é o resultado de uma escolha consciente."
+                </blockquote>
+                <div class="manifesto-author">— Manifesto Protetic</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         DIFERENCIAIS
+         ============================================ -->
+    <section class="diferenciais" id="diferenciais">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <div class="section-eyebrow">Competitive Advantage</div>
+                <h2 class="section-title">A decisão mais importante acontece antes da máquina ligar.</h2>
+            </div>
+
+            <p class="statement" data-aos="fade-up">
+                A diferença não está nas máquinas que temos. Está em como cada escolha é feita antes de qualquer processo ser iniciado.
+            </p>
+
+            <div class="diferenciais-grid">
+                <div class="diferencial-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Fluxo digital completo</h3>
+                    <p>Tecnologia de ponta integrada a processos rigorosos. Não usamos tecnologia como vitrine — usamos como garantia de que o que prometemos, entregamos.</p>
+                </div>
+                <div class="diferencial-card" data-aos="fade-up" data-aos-delay="150">
+                    <h3>Olhar clínico, não apenas técnico</h3>
+                    <p>Cada caso é lido dentro do contexto do seu planejamento. Não executamos no automático. Pensamos antes de produzir.</p>
+                </div>
+                <div class="diferencial-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Estética que não negocia naturalidade</h3>
+                    <p>Resultado seguro e resultado belo não são opostos. Cada ajuste é pensado com precisão e cuidado artístico.</p>
+                </div>
+                <div class="diferencial-card" data-aos="fade-up" data-aos-delay="250">
+                    <h3>Responsabilidade com o seu nome</h3>
+                    <p>Tudo que passa pelas nossas mãos passa, antes, pelo seu nome. Essa consciência não é protocolo — é a razão pela qual existimos.</p>
+                </div>
+                <div class="diferencial-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Parceria de alto nível</h3>
+                    <p>Quando laboratório e consultório trabalham como um só organismo, o paciente sente a diferença. Comunicação clara, sem eufemismos.</p>
+                </div>
+                <div class="diferencial-card" data-aos="fade-up" data-aos-delay="350">
+                    <h3>Excelência como hábito</h3>
+                    <p>Não fazemos excelência nos bons dias. Fazemos todos os dias — com protocolo, revisão e a obsessão silenciosa de quem sabe o que está em jogo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         TECNOLOGIA
+         ============================================ -->
+    <section class="tecnologia">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <div class="section-eyebrow">Infrastructure</div>
+                <h2 class="section-title">Tecnologia não é vitrine. É responsabilidade.</h2>
+            </div>
+
+            <div class="tech-content">
+                <div class="tech-image" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=600&fit=crop" alt="Equipamentos de Precisão - CAD/CAM e Tecnologia Dental" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="tech-text" data-aos="fade-left">
+                    <h3>Investimento contínuo em estrutura e processos.</h3>
+                    <p>Não investimos em tecnologia para parecer moderno, mas para garantir que previsibilidade e segurança façam parte de cada entrega.</p>
+
+                    <ul class="tech-specs">
+                        <li>Sistemas CAD/CAM de alta precisão</li>
+                        <li>Exocad® · 3Shape® · Smart-Prótese®</li>
+                        <li>Fresagem e impressão 3D com resolução elevada</li>
+                        <li>Fornos cerâmicos com controle fino de temperatura e cor</li>
+                        <li>Rastreabilidade total em cada etapa do processo</li>
+                    </ul>
+
+                    <p style="margin-top: var(--spacing-lg); font-size: var(--font-size-sm); color: var(--bone); font-style: italic;">
+                        Menos ajustes, mais previsibilidade clínica — e uma experiência mais fluida para você e para quem confia em você.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FLUXO / PROCESSO
+         ============================================ -->
+    <section class="fluxo" id="fluxo">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <div class="section-eyebrow">Do Recebimento à Entrega Perfeita</div>
+                <h2 class="section-title">Nosso Fluxo</h2>
+            </div>
+
+            <div class="fluxo-steps">
+                <div class="step" data-aos="fade-up" data-aos-delay="50">
+                    <div class="step-number">01</div>
+                    <div class="step-title">Recebimento & Conferência</div>
+                    <div class="step-description">Cada caso registrado com rastreabilidade total desde o primeiro contato.</div>
+                </div>
+                <div class="step" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">02</div>
+                    <div class="step-title">Planejamento Digital</div>
+                    <div class="step-description">Estrutura digital que respeita anatomia, função e visão do dentista.</div>
+                </div>
+                <div class="step" data-aos="fade-up" data-aos-delay="150">
+                    <div class="step-number">03</div>
+                    <div class="step-title">Produção de Precisão</div>
+                    <div class="step-description">Fresagem ou impressão 3D com materiais selecionados e controlados.</div>
+                </div>
+                <div class="step" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">04</div>
+                    <div class="step-title">Acabamento Estético</div>
+                    <div class="step-description">Textura, cor, brilho e harmonia com o sorriso real do paciente.</div>
+                </div>
+                <div class="step" data-aos="fade-up" data-aos-delay="250">
+                    <div class="step-number">05</div>
+                    <div class="step-title">Inspeção Final</div>
+                    <div class="step-description">Checagem minuciosa de cada detalhe antes de qualquer envio.</div>
+                </div>
+                <div class="step" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">06</div>
+                    <div class="step-title">Entrega Segura</div>
+                    <div class="step-description">Embalagem cuidadosa, apresentação impecável, prazo honrado.</div>
+                </div>
+                <div class="step" data-aos="fade-up" data-aos-delay="350">
+                    <div class="step-number">07</div>
+                    <div class="step-title">Pós-Entrega</div>
+                    <div class="step-description">Suporte contínuo e evolução constante a partir de feedback.</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: var(--spacing-2xl);">
+                <p style="font-size: var(--font-size-lg); color: var(--bone); font-style: italic;" data-aos="fade-up">
+                    "Quando o processo é sério, o resultado deixa de ser uma aposta e passa a ser uma certeza."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         EQUIPE
+         ============================================ -->
+    <section class="equipe">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">A Equipe</h2>
+                <p style="margin-top: var(--spacing-lg); color: var(--bone); font-size: var(--font-size-lg);">
+                    Por trás de cada caso, existe quem entende que milímetros carregam histórias.
+                </p>
+            </div>
+
+            <div class="equipe-intro" data-aos="fade-up">
+                <p>Nossa equipe reúne especialistas em cerâmica, planejamento digital, acabamento estético e controle de qualidade — todos com uma consciência em comum: tudo que passa pelas nossas mãos passa, antes, pelo seu nome.</p>
+            </div>
+
+            <div class="equipe-stats">
+                <div class="stat" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">Digital</div>
+                </div>
+                <div class="stat" data-aos="fade-up" data-aos-delay="150">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Tolerância ao Erro</div>
+                </div>
+                <div class="stat" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-value">∞</div>
+                    <div class="stat-label">Comprometimento</div>
+                </div>
+                <div class="stat" data-aos="fade-up" data-aos-delay="250">
+                    <div class="stat-value">1ª</div>
+                    <div class="stat-label">Impressão. Sempre.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         VALORES
+         ============================================ -->
+    <section class="valores" id="valores">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Nossos Valores</h2>
+                <p style="margin-top: var(--spacing-lg); color: var(--bone); font-size: var(--font-size-lg);">
+                    O que sustenta cada decisão que tomamos.
+                </p>
+            </div>
+
+            <div class="valores-grid">
+                <div class="valor-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Responsabilidade com o seu nome</h3>
+                    <p>Cada peça carrega o peso da reputação que você levou anos para construir. Jamais esquecemos disso — especialmente quando o prazo aperta.</p>
+                </div>
+                <div class="valor-card" data-aos="fade-up" data-aos-delay="150">
+                    <h3>Consistência técnica</h3>
+                    <p>Atualização contínua, protocolos rigorosos e um padrão elevado que não depende de qual dia da semana é. Excelência que não oscila.</p>
+                </div>
+                <div class="valor-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Respeito ao tempo e planejamento</h3>
+                    <p>Prazos não são estimativas — são compromissos. Planejamentos não são sugestões — são mapas. Tratamos ambos com a seriedade que merecem.</p>
+                </div>
+                <div class="valor-card" data-aos="fade-up" data-aos-delay="250">
+                    <h3>Transparência e parceria real</h3>
+                    <p>Comunicação clara, sem eufemismos, sem surpresas. A crença de que quando o laboratório cresce, o dentista cresce junto — e vice-versa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FINAL CTA
+         ============================================ -->
+    <section class="final-cta" id="contato">
+        <div class="container">
+            <h2 data-aos="fade-up">Seu trabalho merece um laboratório que pensa como você.</h2>
+            <p data-aos="fade-up" data-aos-delay="100">
+                Se você acredita que a escolha do laboratório é uma escolha de posicionamento — não apenas de preço — então já entendemos um ao outro. Estamos prontos para caminhar juntos.
+            </p>
+            <div class="final-ctas">
+                <a href="https://wa.me/5562999380203?text=Quero%20Saber%20Mais" class="cta-primary" data-aos="fade-up" data-aos-delay="200">
+                    Iniciar uma Parceria →
+                </a>
+                <a href="#" class="cta-secondary" data-aos="fade-up" data-aos-delay="250">
+                    Conhecer Nossos Casos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer>
+        <div class="container">
+            <div class="footer-tagline">Precisão que protege a sua reputação.</div>
+            <div class="footer-copy">© 2025 Protetic. Todos os direitos reservados. | Goiânia - GO</div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out-quad',
+            once: true,
+            offset: 100
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

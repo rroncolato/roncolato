@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Análise Responsiva - Protetic</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #090909;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            border-bottom: 4px solid #B8945A;
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            color: #B8945A;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        h3 {
+            color: #242424;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .meta {
+            color: #7A7A72;
+            font-size: 0.95em;
+            margin-bottom: 30px;
+        }
+
+        .section-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .card {
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 20px;
+            background: #fafafa;
+        }
+
+        .card h3 {
+            color: #090909;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .card ul {
+            list-style-position: inside;
+            font-size: 0.95em;
+            color: #555;
+        }
+
+        .card li {
+            margin-bottom: 5px;
+        }
+
+        .problem-block {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .critical {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+        }
+
+        .grave {
+            background: #fff3cd;
+            border-left-color: #ffc107;
+        }
+
+        .aviso {
+            background: #d1ecf1;
+            border-left-color: #17a2b8;
+        }
+
+        .solution-block {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-size: 0.85em;
+        }
+
+        .breakpoint-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .breakpoint-table th,
+        .breakpoint-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #e0e0e0;
+        }
+
+        .breakpoint-table th {
+            background: #090909;
+            color: white;
+            font-weight: bold;
+        }
+
+        .breakpoint-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .checklist {
+            list-style: none;
+        }
+
+        .checklist li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .checklist li:before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            color: #B8945A;
+            font-size: 1.2em;
+        }
+
+        .conclusion {
+            background: #e8f4f8;
+            border: 2px solid #B8945A;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 30px;
+        }
+
+        .conclusion h3 {
+            color: #090909;
+            margin-top: 0;
+        }
+
+        .grid-demo {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .grid-item {
+            background: #B8945A;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .responsive-note {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #B8945A 0%, #6E5630 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.4em;
+            }
+
+            .section-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-demo {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            body {
+                padding: 10px;
+            }
+
+            .grid-demo {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Relatório de Análise Responsiva</h1>
+        <p class="meta">
+            <strong>Site:</strong> Protetic<br>
+            <strong>Data:</strong> 16 de Março de 2026<br>
+            <strong>URL:</strong> http://127.0.0.1:8080
+        </p>
+
+        <!-- Estatísticas -->
+        <h2>📈 Estatísticas da Análise</h2>
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">13</div>
+                <div class="stat-label">Seções</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Breakpoints</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Problemas Críticos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Problemas Graves</div>
+            </div>
+        </div>
+
+        <!-- Seções -->
+        <h2>📑 Seções do Site</h2>
+        <div class="section-cards">
+            <div class="card">
+                <h3>1️⃣ Header/Navigation</h3>
+                <ul>
+                    <li>Position: Fixed</li>
+                    <li>Z-index: 999</li>
+                    <li>Transition ao scroll</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>2️⃣ Capa/Hero</h3>
+                <ul>
+                    <li>ID: capa</li>
+                    <li>Height: var(--H)</li>
+                    <li>Centralizado</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>3️⃣ Identidade</h3>
+                <ul>
+                    <li>ID: identidade</li>
+                    <li>Grid: 50%-50%</li>
+                    <li>Imagem + texto</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>4️⃣ Propósito</h3>
+                <ul>
+                    <li>ID: proposito</li>
+                    <li>2 colunas</li>
+                    <li>Responsive</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>5️⃣ Frase</h3>
+                <ul>
+                    <li>ID: frase</li>
+                    <li>50%-50% layout</li>
+                    <li>Ordem invertida</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>6️⃣ Diferenciais</h3>
+                <ul>
+                    <li>ID: diferenciais</li>
+                    <li>Grid de itens</li>
+                    <li>Variável colunas</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>7️⃣ Tecnologia</h3>
+                <ul>
+                    <li>ID: tecnologia</li>
+                    <li>Layout duplo</li>
+                    <li>Imagem estilizada</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>8️⃣ Processo</h3>
+                <ul>
+                    <li>ID: processo</li>
+                    <li>Timeline visual</li>
+                    <li>4 colunas desktop</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>9️⃣ Equipe</h3>
+                <ul>
+                    <li>ID: equipe</li>
+                    <li>Imagem + conteúdo</li>
+                    <li>Flexível</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>🔟 Depoimentos</h3>
+                <ul>
+                    <li>ID: depoimentos</li>
+                    <li>Grid responsiva</li>
+                    <li>Múltiplas linhas</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>1️⃣1️⃣ Valores</h3>
+                <ul>
+                    <li>ID: valores</li>
+                    <li>Grid layout</li>
+                    <li>Adaptável</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>1️⃣2️⃣ Contato</h3>
+                <ul>
+                    <li>ID: contato</li>
+                    <li>CTA principal</li>
+                    <li>Responsiva</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>1️⃣3️⃣ Footer</h3>
+                <ul>
+                    <li>Ano dinâmico</li>
+                    <li>ID: year</li>
+                    <li>Layout flexível</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Breakpoints -->
+        <h2>📱 Breakpoints Identificados</h2>
+        <table class="breakpoint-table">
+            <thead>
+                <tr>
+                    <th>Breakpoint</th>
+                    <th>Dispositivo</th>
+                    <th>Mudanças Principais</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>1920px</code></td>
+                    <td>Desktop</td>
+                    <td>Padrão base, layout 50%-50% em seções principais</td>
+                </tr>
+                <tr>
+                    <td><code>1200px</code></td>
+                    <td>Laptop/Tablet Grande</td>
+                    <td>Altura flexível, grids 1 coluna, padding reduzido a 64px</td>
+                </tr>
+                <tr>
+                    <td><code>768px</code></td>
+                    <td>Tablet</td>
+                    <td>Padding 40px, fonts menores, grids 1-2 colunas</td>
+                </tr>
+                <tr>
+                    <td><code>600px</code></td>
+                    <td>Mobile Grande</td>
+                    <td>Sem media query específica detectada</td>
+                </tr>
+                <tr>
+                    <td><code>480px</code></td>
+                    <td>Mobile</td>
+                    <td>Padding 20px, fonts reduzidas, elementos escondidos</td>
+                </tr>
+                <tr>
+                    <td><code>375px</code></td>
+                    <td>iPhone SE/11</td>
+                    <td><span style="color: red; font-weight: bold;">❌ SEM BREAKPOINT!</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Problemas Críticos -->
+        <h2>🚨 Problemas Críticos</h2>
+
+        <div class="problem-block critical">
+            <strong>1. Sem Breakpoint para 375px (iPhone SE/11)</strong>
+            <p>O site usa regras de 480px para tudo abaixo disso, deixando iPhones padrão com layout possivelmente apertado.</p>
+        </div>
+
+        <div class="problem-block critical">
+            <strong>2. Botões de Language Inacessíveis</strong>
+            <p><code>.lang-btn</code> com <code>font-size: 9px</code> em 768px é extremamente pequeno e difícil de clicar.</p>
+            <ul>
+                <li>Altura mínima: ~20px</li>
+                <li>Recomendado: mínimo 44-48px</li>
+                <li>Afeta: Seletores de idioma PT/EN/ES</li>
+            </ul>
+        </div>
+
+        <div class="problem-block critical">
+            <strong>3. Grid de Processo com 4 Colunas em 1200px</strong>
+            <p>O breakpoint 1200px mantém 4 colunas na timeline do processo, muito apertado para a resolução.</p>
+            <pre>.proc-tl { grid-template-columns: repeat(4,1fr) !important; } /* em 1200px */</pre>
+        </div>
+
+        <div class="problem-block critical">
+            <strong>4. Padding Excessivo em Desktop</strong>
+            <p>Navigation com <code>padding: 96px</code> deixa muito espaço vazio em screens > 1920px.</p>
+        </div>
+
+        <!-- Problemas Graves -->
+        <h2>⚠️ Problemas Graves</h2>
+
+        <div class="problem-block grave">
+            <strong>1. Transição Abrupta de Padding</strong>
+            <p><strong>1200px:</strong> 64px → <strong>768px:</strong> 28px (redução de 56%!)</p>
+            <p>Pode causar layout shift desconfortável ao redimensionar a janela.</p>
+        </div>
+
+        <div class="problem-block grave">
+            <strong>2. Altura de Imagens Não Responsiva</strong>
+            <p>Imagens têm altura fixa em breakpoints, sem transição suave:</p>
+            <ul>
+                <li><strong>Desktop:</strong> 100% height</li>
+                <li><strong>1200px:</strong> 520px</li>
+                <li><strong>768px:</strong> 380px</li>
+                <li><strong>Falta:</strong> Breakpoint em 600px e 375px</li>
+            </ul>
+        </div>
+
+        <div class="problem-block grave">
+            <strong>3. Grids sem Transição Intermediária</strong>
+            <p><strong>Diferenciais:</strong> Desktop (múltiplas colunas) → 1200px (2 colunas) → 768px (1 coluna)</p>
+            <p>Sem breakpoint em 600px para transição suave.</p>
+        </div>
+
+        <div class="problem-block grave">
+            <strong>4. Elemento Visual Removido em 480px</strong>
+            <p><code>.c-eye { display: none; }</code> - Logo perde elemento visual importante.</p>
+        </div>
+
+        <!-- Avisos -->
+        <h2>💡 Avisos (Verificar Implementação)</h2>
+
+        <div class="problem-block aviso">
+            <strong>1. Font-Size de Headings em Mobile</strong>
+            <p>Heading <code>.H</code> reduz de 38px (768px) para 32px (480px).</p>
+            <p>Em 375px, será 32px - verificar legibilidade.</p>
+        </div>
+
+        <div class="problem-block aviso">
+            <strong>2. Botões Potencialmente Grandes em 375px</strong>
+            <p><code>.btn-p</code> sem media query para 375px pode ficar muito grande ou com overflow.</p>
+        </div>
+
+        <div class="problem-block aviso">
+            <strong>3. Possível Horizontal Scroll</strong>
+            <p>Conteúdo com <code>overflow-x: hidden</code> pode estar ultrapassando viewport em resoluções não cobertas.</p>
+        </div>
+
+        <!-- Recomendações -->
+        <h2>✅ Recomendações de CSS Responsivo</h2>
+
+        <h3>1. Adicionar Breakpoint para 375px</h3>
+        <div class="solution-block">
+            <pre>@media (max-width: 375px) {
+  .c-mark { font-size: 48px !important; }
+  .H { font-size: 28px !important; }
+  .con-ttl { font-size: 32px !important; }
+  section { padding-left: 16px; padding-right: 16px; }
+  nav { padding: 14px 16px !important; }
+  .lang-btn { padding: 5px 8px !important; font-size: 8px !important; }
+  .id-content, .frase-content, .tech-content, .eq-content, .val-content {
+    padding: 32px 16px !important;
+  }
+}</pre>
+        </div>
+
+        <h3>2. Adicionar Breakpoint Intermediário 600px</h3>
+        <div class="solution-block">
+            <pre>@media (max-width: 600px) {
+  .diff-grid { grid-template-columns: 1fr !important; }
+  .proc-tl { grid-template-columns: 1fr !important; gap: 24px; }
+  nav { padding: 14px 20px !important; }
+  .H { font-size: 34px !important; }
+}</pre>
+        </div>
+
+        <h3>3. Corrigir Grid de Processo em 1200px</h3>
+        <div class="solution-block">
+            <pre>@media (max-width: 1200px) {
+  .proc-tl { grid-template-columns: repeat(2, 1fr) !important; }
+  /* Mudar de 4 para 2 colunas */
+}</pre>
+        </div>
+
+        <h3>4. Usar Variáveis CSS para Padding</h3>
+        <div class="solution-block">
+            <pre>:root { --p-h: 96px; --p-v: 80px; }
+@media (max-width: 1200px) { --p-h: 64px; --p-v: 72px; }
+@media (max-width: 900px) { --p-h: 48px; --p-v: 56px; }
+@media (max-width: 768px) { --p-h: 40px; --p-v: 52px; }
+@media (max-width: 480px) { --p-h: 28px; --p-v: 40px; }
+@media (max-width: 375px) { --p-h: 20px; --p-v: 32px; }
+
+section { padding: var(--p-v) var(--p-h); }</pre>
+        </div>
+
+        <h3>5. Melhorar Acessibilidade de Botões</h3>
+        <div class="solution-block">
+            <pre>.lang-btn {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px 16px;
+}
+
+.btn-p {
+  min-height: 48px;
+  padding: 12px 24px;
+}
+
+@media (max-width: 768px) {
+  .lang-btn { min-height: 40px; padding: 8px 12px; }
+  .btn-p { min-height: 44px; padding: 12px 20px; }
+}</pre>
+        </div>
+
+        <h3>6. Transição Suave de Alturas de Imagens</h3>
+        <div class="solution-block">
+            <pre>.id-img, .frase-img, .tech-img, .eq-img, .val-img {
+  height: 100%;
+}
+@media (max-width: 1200px) { height: 520px; }
+@media (max-width: 900px) { height: 450px; }
+@media (max-width: 768px) { height: 380px; }
+@media (max-width: 600px) { height: 340px; }
+@media (max-width: 480px) { height: 280px; }
+@media (max-width: 375px) { height: 240px; }</pre>
+        </div>
+
+        <!-- Checklist de Testes -->
+        <h2>✔️ Checklist de Testes</h2>
+
+        <h3>Mobile 375px (iPhone SE/11)</h3>
+        <ul class="checklist">
+            <li>Textos não ultrapassam viewport</li>
+            <li>Botões têm mínimo 44-48px</li>
+            <li>Padding respeitado em todas as seções</li>
+            <li>Imagens não quebram layout</li>
+            <li>Navigation acessível</li>
+            <li>Sem horizontal scroll</li>
+            <li>Seletores de idioma clicáveis</li>
+            <li>Fonte base legível (16px+)</li>
+        </ul>
+
+        <h3>Mobile 425px (Mais Comum)</h3>
+        <ul class="checklist">
+            <li>Layout consistente com 375px</li>
+            <li>Grids com 1 coluna apenas</li>
+            <li>Imagens responsivas (340px altura)</li>
+            <li>Padding 28px horizontal adequado</li>
+            <li>Nenhum conteúdo cortado</li>
+        </ul>
+
+        <h3>Tablet 768px</h3>
+        <ul class="checklist">
+            <li>Imagens com 380px altura</li>
+            <li>Grids 2 colunas se apropriado</li>
+            <li>Padding 40px horizontal</li>
+            <li>Fontes legíveis (38px mínimo headings)</li>
+            <li>Layout não apertado</li>
+        </ul>
+
+        <h3>Desktop 1920px</h3>
+        <ul class="checklist">
+            <li>Layout 50%-50% em seções principais</li>
+            <li>Imagens full-height funcionando</li>
+            <li>Padding 96px horizontal</li>
+            <li>Todos elementos decorativos visíveis</li>
+            <li>Sem distorção de proporções</li>
+        </ul>
+
+        <!-- Conclusão -->
+        <div class="conclusion">
+            <h3>🎯 Conclusão Final</h3>
+            <p>
+                O site <strong>Protetic</strong> possui uma estrutura CSS responsiva bem organizada com media queries em pontos estratégicos.
+                No entanto, apresenta <strong>4 problemas críticos</strong> e <strong>4 problemas graves</strong> que afetam a experiência
+                em dispositivos mobile, especialmente em:
+            </p>
+            <ul>
+                <li><strong>iPhone SE/11 (375px)</strong> - Sem breakpoint específico</li>
+                <li><strong>Botões inacessíveis</strong> - Muito pequenos em mobile</li>
+                <li><strong>Grid de processo</strong> - 4 colunas em 1200px é inacessível</li>
+                <li><strong>Transições abruptas</strong> - Mudanças de padding muito drásticas</li>
+            </ul>
+            <p style="margin-top: 15px; font-weight: bold;">
+                Implementar as recomendações acima aumentará significativamente a acessibilidade e
+                experiência do usuário em todos os dispositivos, especialmente em mobile.
+            </p>
+        </div>
+
+        <!-- Próximos Passos -->
+        <h2>📋 Próximos Passos</h2>
+        <ol>
+            <li><strong>Implementar breakpoint 375px</strong> com ajustes específicos</li>
+            <li><strong>Adicionar breakpoint 600px</strong> para transições suave</li>
+            <li><strong>Corrigir grid de processo</strong> em 1200px (4 → 2 colunas)</li>
+            <li><strong>Aumentar área de clique</strong> de botões e seletores de idioma</li>
+            <li><strong>Usar variáveis CSS</strong> para padding responsivo</li>
+            <li><strong>Testar em dispositivos reais</strong> (iPhone, Android, tablets)</li>
+            <li><strong>Otimizar imagens</strong> para diferentes resoluções</li>
+            <li><strong>Validar acessibilidade</strong> (WCAG 2.1)</li>
+        </ol>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid #e0e0e0;">
+        <p style="text-align: center; color: #7A7A72; font-size: 0.9em;">
+            Relatório gerado automaticamente em 16/03/2026<br>
+            Para visualizar o site em diferentes resoluções, use: <br>
+            <a href="https://responsively.app/" target="_blank">Responsively App</a> |
+            <a href="https://mobileresponsive.com/" target="_blank">Mobile Responsive Design Checker</a>
+        </p>
+    </div>
+</body>
+</html>

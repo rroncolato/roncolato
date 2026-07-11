@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Painel Admin — Rodrigo Roncolato</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      /* Colors */
+      --color-white: #FFFFFF;
+      --color-black: #1A1A1A;
+      --color-yellow: #F5C518;
+
+      /* Grays */
+      --color-gray-50: #F9F9F9;
+      --color-gray-100: #F3F3F3;
+      --color-gray-200: #E8E8E8;
+      --color-gray-300: #D4D4D4;
+      --color-gray-400: #BDBDBD;
+      --color-gray-500: #909090;
+      --color-gray-600: #666666;
+      --color-gray-700: #4A4A4A;
+      --color-gray-800: #2D2D2D;
+      --color-gray-900: #1A1A1A;
+
+      /* Semantic */
+      --color-success: #10B981;
+      --color-error: #EF4444;
+      --color-warning: #F59E0B;
+      --color-info: #3B82F6;
+
+      /* Backgrounds */
+      --bg-primary: #FFFFFF;
+      --bg-secondary: #F9F9F9;
+      --bg-tertiary: #F3F3F3;
+
+      /* Text */
+      --text-primary: #1A1A1A;
+      --text-secondary: #4A4A4A;
+      --text-tertiary: #909090;
+
+      /* Borders */
+      --border-color: #E8E8E8;
+      --border-color-dark: #D4D4D4;
+
+      /* Typography */
+      --font-family: 'Jost', sans-serif;
+      --font-size-xs: 11px;
+      --font-size-sm: 12px;
+      --font-size-base: 14px;
+      --font-size-lg: 16px;
+      --font-size-xl: 20px;
+      --font-size-2xl: 24px;
+      --font-size-3xl: 28px;
+      --font-size-4xl: 32px;
+
+      /* Spacing */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 40px;
+
+      /* Radius */
+      --radius-md: 4px;
+      --radius-lg: 8px;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 1px 3px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --shadow-yellow: 0 4px 12px rgba(245, 197, 24, 0.3);
+
+      /* Transitions */
+      --ease-out: cubic-bezier(0, 0, 0.2, 1);
+      --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ===== RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* ===== LAYOUT ===== */
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 280px;
+      background-color: var(--bg-primary);
+      border-right: 1px solid var(--border-color);
+      padding: var(--space-lg) 0;
+      height: 100vh;
+      overflow-y: auto;
+      position: sticky;
+      top: 0;
+    }
+
+    .sidebar-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      padding: var(--space-md);
+    }
+
+    .sidebar-toggle.active ~ .sidebar-nav {
+      display: flex;
+    }
+
+    .sidebar-logo {
+      padding: 0 var(--space-lg) var(--space-lg);
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: var(--space-lg);
+      font-size: var(--font-size-sm);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-yellow);
+    }
+
+    .sidebar-nav {
+      list-style: none;
+    }
+
+    .sidebar-nav li {
+      margin: 0;
+    }
+
+    .sidebar-nav a {
+      display: block;
+      padding: var(--space-sm) var(--space-lg);
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: var(--font-size-base);
+      transition: all 150ms var(--ease-out);
+      border-left: 3px solid transparent;
+    }
+
+    .sidebar-nav a:hover,
+    .sidebar-nav a.active {
+      background-color: var(--bg-secondary);
+      color: var(--color-yellow);
+      border-left-color: var(--color-yellow);
+      font-weight: 600;
+    }
+
+    .main {
+      flex: 1;
+      padding: var(--space-2xl);
+      overflow-y: auto;
+      background-color: var(--bg-primary);
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      margin-bottom: var(--space-2xl);
+    }
+
+    .header-title {
+      font-size: var(--font-size-4xl);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: var(--space-md);
+      line-height: 1.2;
+    }
+
+    .header-subtitle {
+      font-size: var(--font-size-base);
+      color: var(--text-tertiary);
+      margin: 0;
+    }
+
+    /* ===== SECTION ===== */
+    .section {
+      margin-bottom: var(--space-2xl);
+    }
+
+    .section-title {
+      font-size: var(--font-size-3xl);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-md);
+      border-bottom: 2px solid var(--color-yellow);
+      display: inline-block;
+    }
+
+    /* ===== CARD GRID ===== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .card {
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-sm);
+      transition: all 250ms var(--ease-in-out);
+    }
+
+    .card:hover {
+      border-color: var(--border-color-dark);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card-stat {
+      text-align: center;
+    }
+
+    .card-stat-number {
+      font-size: var(--font-size-4xl);
+      font-weight: 700;
+      color: var(--color-yellow);
+      margin-bottom: var(--space-sm);
+    }
+
+    .card-stat-label {
+      font-size: var(--font-size-base);
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .card-title {
+      font-size: var(--font-size-xl);
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: var(--space-md);
+    }
+
+    .card-description {
+      font-size: var(--font-size-base);
+      color: var(--text-secondary);
+      margin-bottom: var(--space-lg);
+      line-height: 1.6;
+    }
+
+    .card-content {
+      margin-bottom: var(--space-lg);
+    }
+
+    .card-footer {
+      display: flex;
+      gap: var(--space-md);
+      justify-content: flex-end;
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      padding: 12px 24px;
+      font-family: var(--font-family);
+      font-weight: 700;
+      font-size: var(--font-size-sm);
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 150ms var(--ease-out);
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background-color: var(--color-yellow);
+      color: var(--color-black);
+      box-shadow: var(--shadow-yellow);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+      opacity: 0.7;
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color-dark);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-tertiary);
+    }
+
+    .btn-sm {
+      padding: 8px 16px;
+      font-size: var(--font-size-xs);
+    }
+
+    /* ===== FORM ===== */
+    .form-group {
+      margin-bottom: var(--space-lg);
+    }
+
+    .form-label {
+      display: block;
+      font-size: var(--font-size-sm);
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: var(--space-md);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+      width: 100%;
+      padding: var(--space-sm) var(--space-md);
+      font-family: var(--font-family);
+      font-size: var(--font-size-base);
+      color: var(--text-primary);
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-color-dark);
+      border-radius: var(--radius-md);
+      transition: all 150ms var(--ease-out);
+    }
+
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: var(--color-yellow);
+      box-shadow: 0 0 0 3px rgba(245, 197, 24, 0.1);
+    }
+
+    .form-input::placeholder {
+      color: var(--color-gray-400);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-hint {
+      display: block;
+      font-size: var(--font-size-xs);
+      color: var(--text-tertiary);
+      margin-top: var(--space-sm);
+    }
+
+    /* ===== TABLE ===== */
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .table thead {
+      background-color: var(--bg-secondary);
+      border-bottom: 2px solid var(--border-color-dark);
+    }
+
+    .table th {
+      padding: var(--space-md) var(--space-lg);
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: var(--font-size-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .table td {
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      font-size: var(--font-size-base);
+    }
+
+    .table tbody tr:hover {
+      background-color: var(--bg-secondary);
+    }
+
+    .table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ===== ALERT ===== */
+    .alert {
+      padding: var(--space-md) var(--space-lg);
+      border-radius: var(--radius-md);
+      border: 1px solid transparent;
+      margin-bottom: var(--space-lg);
+      display: flex;
+      gap: var(--space-md);
+      align-items: flex-start;
+    }
+
+    .alert-success {
+      background-color: #ECFDF5;
+      border-color: #D1FAE5;
+      color: #047857;
+    }
+
+    .alert-title {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .alert-description {
+      font-size: var(--font-size-sm);
+      opacity: 0.9;
+    }
+
+    /* ===== BADGE ===== */
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: var(--font-size-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-success {
+      background-color: #ECFDF5;
+      color: #047857;
+    }
+
+    .badge-warning {
+      background-color: #FFFBEB;
+      color: #B45309;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .card-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        position: static;
+        padding: var(--space-md) 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .sidebar-toggle {
+        display: block;
+      }
+
+      .sidebar-logo {
+        padding: 0 var(--space-lg);
+        margin-right: var(--space-lg);
+        border-right: 1px solid var(--border-color);
+        border-bottom: none;
+        margin-bottom: 0;
+        font-size: var(--font-size-xs);
+      }
+
+      .sidebar-nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--bg-primary);
+        border-bottom: 1px solid var(--border-color);
+        width: 100%;
+        z-index: 100;
+      }
+
+      .sidebar-nav.show {
+        display: flex;
+      }
+
+      .sidebar-nav a {
+        padding: var(--space-md) var(--space-lg);
+        border-left: none;
+        border-bottom: 1px solid var(--border-color);
+        border-right: none;
+      }
+
+      .sidebar-nav a:hover,
+      .sidebar-nav a.active {
+        border-left: none;
+        border-bottom-color: var(--color-yellow);
+        background-color: var(--bg-secondary);
+      }
+
+      .main {
+        padding: var(--space-lg);
+      }
+
+      .header-title {
+        font-size: var(--font-size-3xl);
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .btn {
+        padding: 10px 16px;
+        font-size: var(--font-size-xs);
+      }
+
+      .btn-sm {
+        padding: 6px 12px;
+        font-size: 10px;
+      }
+
+      .card-footer {
+        flex-direction: column;
+        gap: var(--space-sm);
+      }
+
+      .card-footer button {
+        width: 100%;
+      }
+
+      .table {
+        font-size: var(--font-size-xs);
+      }
+
+      .table th,
+      .table td {
+        padding: var(--space-sm) var(--space-md);
+      }
+
+      .form-input,
+      .form-textarea,
+      .form-select {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-title {
+        font-size: var(--font-size-2xl);
+      }
+
+      .section-title {
+        font-size: var(--font-size-xl);
+      }
+
+      .card {
+        padding: var(--space-md);
+      }
+
+      .main {
+        padding: var(--space-md);
+      }
+
+      .card-stat-number {
+        font-size: var(--font-size-3xl);
+      }
+
+      .table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">Painel Admin</div>
+      <button class="sidebar-toggle" onclick="document.querySelector('.sidebar-nav').classList.toggle('show')">☰</button>
+      <nav class="sidebar-nav">
+        <li><a href="#" class="active">Dashboard</a></li>
+        <li><a href="#">Portfólio</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Configurações</a></li>
+        <li><a href="#">Sair</a></li>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+      <!-- Header -->
+      <div class="header">
+        <h1 class="header-title">Dashboard</h1>
+        <p class="header-subtitle">Bem-vindo de volta, Rodrigo! Aqui está o que está acontecendo com seu portfólio.</p>
+      </div>
+
+      <!-- Success Alert -->
+      <div class="alert alert-success">
+        <div>
+          <div class="alert-title">✓ Sucesso!</div>
+          <div class="alert-description">Seu projeto "Fotografia de Marca" foi publicado com sucesso.</div>
+        </div>
+      </div>
+
+      <!-- Statistics -->
+      <div class="section">
+        <div class="card-grid">
+          <div class="card card-stat">
+            <div class="card-stat-number">12</div>
+            <div class="card-stat-label">Projetos Totais</div>
+          </div>
+          <div class="card card-stat">
+            <div class="card-stat-number">8</div>
+            <div class="card-stat-label">Publicados</div>
+          </div>
+          <div class="card card-stat">
+            <div class="card-stat-number">4</div>
+            <div class="card-stat-label">Rascunhos</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Project Card -->
+      <div class="section">
+        <h2 class="section-title">Ações Rápidas</h2>
+
+        <div class="card">
+          <h3 class="card-title">Adicionar Novo Projeto</h3>
+          <p class="card-description">Preencha os detalhes abaixo para adicionar um novo projeto ao seu portfólio.</p>
+
+          <div class="card-content">
+            <div class="form-group">
+              <label for="project-name" class="form-label">Nome do Projeto *</label>
+              <input
+                type="text"
+                id="project-name"
+                class="form-input"
+                placeholder="Digite o nome do projeto"
+              >
+              <span class="form-hint">Máximo 100 caracteres</span>
+            </div>
+
+            <div class="form-group">
+              <label for="client" class="form-label">Nome do Cliente</label>
+              <input
+                type="text"
+                id="client"
+                class="form-input"
+                placeholder="Digite o nome do cliente (opcional)"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="category" class="form-label">Categoria *</label>
+              <select id="category" class="form-input">
+                <option value="">Selecione uma categoria</option>
+                <option value="corporate">Corporativo</option>
+                <option value="headshots">Retratos</option>
+                <option value="events">Eventos</option>
+                <option value="lifestyle">Lifestyle</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="description" class="form-label">Descrição *</label>
+              <textarea
+                id="description"
+                class="form-textarea"
+                placeholder="Digite a descrição do projeto"
+              ></textarea>
+              <span class="form-hint">Máximo 500 caracteres</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button class="btn btn-secondary" title="Botão de exemplo - não é funcional">Cancelar</button>
+            <button class="btn btn-primary" title="Botão de exemplo - não é funcional">Salvar Projeto</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Projects Table -->
+      <div class="section">
+        <h2 class="section-title">Projetos Recentes</h2>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nome do Projeto</th>
+              <th>Cliente</th>
+              <th>Status</th>
+              <th>Data</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Fotografia de Marca</td>
+              <td>Acme Inc.</td>
+              <td><span class="badge badge-success">Publicado</span></td>
+              <td>15 de mar de 2024</td>
+              <td>
+                <button class="btn btn-sm btn-secondary" title="Botão de exemplo">Editar</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Sessão de Retratos</td>
+              <td>TechCorp</td>
+              <td><span class="badge badge-success">Publicado</span></td>
+              <td>10 de mar de 2024</td>
+              <td>
+                <button class="btn btn-sm btn-secondary" title="Botão de exemplo">Editar</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Cobertura de Eventos</td>
+              <td>StartUp Inc.</td>
+              <td><span class="badge badge-warning">Rascunho</span></td>
+              <td>5 de mar de 2024</td>
+              <td>
+                <button class="btn btn-sm btn-secondary" title="Botão de exemplo">Editar</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Fotos da Equipe</td>
+              <td>—</td>
+              <td><span class="badge badge-warning">Rascunho</span></td>
+              <td>28 de fev de 2024</td>
+              <td>
+                <button class="btn btn-sm btn-secondary" title="Botão de exemplo">Editar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

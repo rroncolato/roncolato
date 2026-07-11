@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System — Rodrigo Roncolato</title>
+    <link rel="stylesheet" href="/assets/css/globals.css">
+    <style>
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--card);
+            border-right: 1px solid var(--border);
+            padding: 40px 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-logo {
+            padding: 0 30px 40px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+            font-weight: 900;
+            font-size: 13px;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--primary);
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin: 0;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 10px 30px;
+            color: var(--muted-foreground);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s var(--ease2);
+            border-left: 2px solid transparent;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            color: var(--primary);
+            background: var(--muted);
+            border-left-color: var(--primary);
+            padding-left: 28px;
+        }
+
+        /* Main Content */
+        .main {
+            flex: 1;
+            padding: 80px 60px;
+            max-width: 900px;
+        }
+
+        .header {
+            margin-bottom: 80px;
+        }
+
+        .header-title {
+            font-size: clamp(40px, 6vw, 80px);
+            font-weight: 900;
+            letter-spacing: -.04em;
+            margin-bottom: 10px;
+            line-height: .95;
+        }
+
+        .header-subtitle {
+            font-size: 15px;
+            color: var(--muted-foreground);
+            font-weight: 300;
+            margin-bottom: 5px;
+        }
+
+        .header-meta {
+            font-size: 12px;
+            color: var(--border);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 100px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -.02em;
+            margin-bottom: 30px;
+            color: var(--foreground);
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+        }
+
+        .section-intro {
+            color: var(--muted-foreground);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            max-width: 800px;
+        }
+
+        /* Color Grid */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2px;
+            margin-bottom: 40px;
+        }
+
+        .color-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 20px;
+            transition: all 0.3s var(--ease2);
+        }
+
+        .color-item:hover {
+            background: var(--muted);
+            border-color: var(--primary);
+        }
+
+        .color-swatch {
+            width: 100%;
+            height: 100px;
+            border-radius: 0;
+            margin-bottom: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .color-name {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .color-hex {
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .color-token {
+            font-family: monospace;
+            font-size: 11px;
+            color: var(--muted-foreground);
+            margin-bottom: 8px;
+        }
+
+        .color-usage {
+            font-size: 12px;
+            color: var(--muted-foreground);
+            line-height: 1.5;
+        }
+
+        /* Typography Grid */
+        .type-grid {
+            display: grid;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .type-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 30px;
+            transition: all 0.3s var(--ease2);
+        }
+
+        .type-item:hover {
+            background: var(--muted);
+            border-color: var(--primary);
+        }
+
+        .type-label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .type-sample {
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .type-meta {
+            font-size: 12px;
+            color: var(--muted-foreground);
+            font-family: monospace;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Component Grid */
+        .component-grid {
+            display: grid;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .component-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 30px;
+            transition: all 0.3s var(--ease2);
+        }
+
+        .component-card:hover {
+            background: var(--muted);
+            border-color: var(--primary);
+        }
+
+        .component-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--foreground);
+        }
+
+        .component-preview {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 25px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .component-code {
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: 0;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 11px;
+            color: var(--primary);
+            overflow-x: auto;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: var(--background);
+            border: none;
+            padding: 6px 12px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            transition: opacity 0.3s var(--ease2);
+        }
+
+        .copy-btn:hover {
+            opacity: 0.8;
+        }
+
+        .copy-btn.copied {
+            background: var(--muted-foreground);
+            color: var(--foreground);
+        }
+
+        /* Button Styles */
+        .btn-primary {
+            background: var(--primary);
+            color: var(--background);
+            border: none;
+            padding: 10px 24px;
+            font-family: var(--font-sans);
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s var(--ease2);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.85;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--muted-foreground);
+            border: 1px solid var(--muted-foreground);
+            padding: 10px 24px;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s var(--ease2);
+        }
+
+        .btn-outline:hover {
+            color: var(--foreground);
+            border-color: var(--foreground);
+        }
+
+        .btn-dark {
+            background: var(--background);
+            color: var(--foreground);
+            border: 1px solid var(--border);
+            padding: 10px 24px;
+            font-family: var(--font-sans);
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s var(--ease2);
+        }
+
+        .btn-dark:hover {
+            border-color: var(--foreground);
+        }
+
+        .btn-filter {
+            background: transparent;
+            color: var(--muted-foreground);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s var(--ease2);
+        }
+
+        .btn-filter:hover,
+        .btn-filter.active {
+            background: var(--primary);
+            color: var(--background);
+            border-color: var(--primary);
+        }
+
+        /* Card Styles */
+        .card-service {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s var(--ease2);
+            position: relative;
+        }
+
+        .card-service:hover {
+            background: var(--muted);
+            border-color: var(--primary);
+        }
+
+        .card-service::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary);
+            width: 0;
+            transition: width 0.5s var(--ease);
+        }
+
+        .card-service:hover::after {
+            width: 100%;
+        }
+
+        .card-number {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .card-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--foreground);
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 12px;
+            color: var(--muted-foreground);
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--foreground);
+            margin-bottom: 8px;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            background: var(--card);
+            border: none;
+            border-bottom: 1px solid var(--border);
+            color: var(--foreground);
+            font-family: var(--font-sans);
+            font-size: 14px;
+            padding: 12px 0;
+            transition: border-color 0.3s var(--ease2);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-bottom-color: var(--primary);
+        }
+
+        .form-input::placeholder {
+            color: var(--border);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+            padding: 12px 0;
+        }
+
+        /* Spacing Grid */
+        .spacing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .spacing-item {
+            text-align: center;
+        }
+
+        .spacing-demo {
+            background: var(--muted);
+            border: 1px solid var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .spacing-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--primary);
+        }
+
+        .spacing-value {
+            font-size: 12px;
+            color: var(--muted-foreground);
+            margin-top: 5px;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: 0;
+            padding: 20px;
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--primary);
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        .code-block-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted-foreground);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .main {
+                padding: 60px 40px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 30px 0;
+                position: static;
+                display: flex;
+                overflow-y: visible;
+            }
+
+            .sidebar-logo {
+                padding: 0 30px;
+                margin-bottom: 0;
+                border-bottom: none;
+                border-right: 1px solid var(--border);
+                margin-right: 20px;
+            }
+
+            .sidebar-nav {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0;
+            }
+
+            .sidebar-nav a {
+                padding: 10px 20px;
+                border-left: none;
+                border-bottom: 2px solid transparent;
+            }
+
+            .sidebar-nav a:hover,
+            .sidebar-nav a.active {
+                border-left: none;
+                border-bottom-color: var(--primary);
+                padding-left: 20px;
+                background: transparent;
+            }
+
+            .main {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main {
+                padding: 30px 20px;
+            }
+
+            .header-title {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .color-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar-nav {
+                flex-direction: column;
+            }
+
+            .sidebar-nav a {
+                padding: 10px 30px;
+                border-left: 2px solid transparent;
+                border-bottom: none;
+            }
+
+            .sidebar-nav a:hover,
+            .sidebar-nav a.active {
+                border-left-color: var(--primary);
+                border-bottom: none;
+                padding-left: 28px;
+            }
+
+            .sidebar-logo {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">Design System</div>
+            <nav class="sidebar-nav">
+                <li><a href="#brand" class="nav-link active">Brand</a></li>
+                <li><a href="#colors" class="nav-link">Cores</a></li>
+                <li><a href="#typography" class="nav-link">Tipografia</a></li>
+                <li><a href="#grid" class="nav-link">8px Grid</a></li>
+                <li><a href="#spacing" class="nav-link">Espaçamento</a></li>
+                <li><a href="#buttons" class="nav-link">Botões</a></li>
+                <li><a href="#cards" class="nav-link">Cards</a></li>
+                <li><a href="#forms" class="nav-link">Formulários</a></li>
+                <li><a href="#motion" class="nav-link">Motion</a></li>
+                <li><a href="#icons" class="nav-link">Iconografia</a></li>
+                <li><a href="#tokens" class="nav-link">Tokens CSS</a></li>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Header -->
+            <div class="header">
+                <h1 class="header-title">Design System</h1>
+                <p class="header-subtitle">Rodrigo Roncolato — Fotografia Corporativa</p>
+                <p class="header-meta">v1.0 · Março 2026</p>
+            </div>
+
+            <!-- Brand Foundation -->
+            <section id="brand">
+                <h2 class="section-title">Brand Foundation</h2>
+                <p class="section-intro">
+                    O estúdio Rodrigo Roncolato é especializado em fotografia corporativa estratégica e brand strategy.
+                    A marca reflete profissionalismo, minimalismo e impacto visual através de uma paleta escura com destaque em amarelo
+                    vibrante. Cada elemento do design system foi cuidadosamente pensado para comunicar confiança,
+                    modernidade e expertise em personal branding.
+                </p>
+
+                <!-- Logos -->
+                <div style="margin-bottom: 40px;">
+                    <p style="font-size: 13px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--primary); margin-bottom: 20px;">Símbolo Oficial — RR</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px;">
+                        <div style="background: var(--foreground); border: 1px solid var(--border); padding: 32px; text-align: center; min-height: 240px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;">
+                            <img src="/assets/IMG/rr-simbolo.png" alt="RR Símbolo - Light Version" style="width: 120px; height: 120px; object-fit: contain;">
+                            <div style="font-size: 11px; font-weight: 700; color: var(--background); letter-spacing: .12em; text-transform: uppercase;">Light Version</div>
+                            <div style="font-size: 10px; color: var(--muted-foreground);">Para fundo claro</div>
+                        </div>
+
+                        <div style="background: var(--background); border: 1px solid var(--border); padding: 32px; text-align: center; min-height: 240px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;">
+                            <img src="/assets/IMG/rr-simbolo-white.png" alt="RR Símbolo - Dark Version" style="width: 120px; height: 120px; object-fit: contain;">
+                            <div style="font-size: 11px; font-weight: 700; color: var(--foreground); letter-spacing: .12em; text-transform: uppercase;">Dark Version</div>
+                            <div style="font-size: 10px; color: var(--muted-foreground);">Para fundo escuro</div>
+                        </div>
+
+                        <div style="background: var(--primary); border: 1px solid var(--primary); padding: 32px; text-align: center; min-height: 240px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;">
+                            <img src="/assets/IMG/rr-simbolo.png" alt="RR Símbolo - Accent Version" style="width: 120px; height: 120px; object-fit: contain;">
+                            <div style="font-size: 11px; font-weight: 700; color: var(--background); letter-spacing: .12em; text-transform: uppercase;">Accent Version</div>
+                            <div style="font-size: 10px; color: var(--border);">Para fundo amarelo</div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Full Logos -->
+                <div style="margin-bottom: 40px;">
+                    <p style="font-size: 13px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--primary); margin-bottom: 20px;">Logos Completas</p>
+                    <div style="margin-bottom: 30px;">
+                        <p style="font-size: 11px; font-weight: 600; color: var(--primary); margin-bottom: 16px;">VERSÃO LIGHT (Fundo Escuro)</p>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2px;">
+                            <div style="background: var(--background); border: 1px solid var(--border); padding: 40px; text-align: center; min-height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;">
+                                <img src="/assets/IMG/roncolato-branco-horizontal.png" alt="Roncolato - Horizontal Light" style="width: 100%; max-width: 240px; height: auto; object-fit: contain;">
+                                <div style="font-size: 11px; font-weight: 700; color: var(--foreground); letter-spacing: .12em; text-transform: uppercase;">Horizontal</div>
+                                <div style="font-size: 10px; color: var(--muted-foreground);">Desktop, cabeçalho, hero</div>
+                            </div>
+
+                            <div style="background: var(--background); border: 1px solid var(--border); padding: 40px; text-align: center; min-height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;">
+                                <img src="/assets/IMG/roncolato-branco-vertical.png" alt="Roncolato - Vertical Light" style="width: 100%; max-width: 180px; height: auto; object-fit: contain;">
+                                <div style="font-size: 11px; font-weight: 700; color: var(--foreground); letter-spacing: .12em; text-transform: uppercase;">Vertical</div>
+                                <div style="font-size: 10px; color: var(--muted-foreground);">Mobile, cards, rodapé</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p style="font-size: 11px; font-weight: 600; color: var(--primary); margin-bottom: 16px;">VERSÃO DARK (Fundo Claro)</p>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2px;">
+                            <div style="background: var(--foreground); border: 1px solid var(--border); padding: 40px; text-align: center; min-height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;">
+                                <img src="/assets/IMG/roncolato-horizontal.png" alt="Roncolato - Horizontal Dark" style="width: 100%; max-width: 240px; height: auto; object-fit: contain;">
+                                <div style="font-size: 11px; font-weight: 700; color: var(--background); letter-spacing: .12em; text-transform: uppercase;">Horizontal</div>
+                                <div style="font-size: 10px; color: var(--muted-foreground);">Desktop claro, white papers</div>
+                            </div>
+
+                            <div style="background: var(--foreground); border: 1px solid var(--border); padding: 40px; text-align: center; min-height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;">
+                                <img src="/assets/IMG/roncolato-vertical.png" alt="Roncolato - Vertical Dark" style="width: 100%; max-width: 180px; height: auto; object-fit: contain;">
+                                <div style="font-size: 11px; font-weight: 700; color: var(--background); letter-spacing: .12em; text-transform: uppercase;">Vertical</div>
+                                <div style="font-size: 10px; color: var(--muted-foreground);">Impressos, cards claros</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brand Values -->
+                <div style="display: grid; gap: 20px;">
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 30px;">
+                        <p style="font-size: 13px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--primary); margin-bottom: 15px;">Valores Visuais</p>
+                        <ul style="list-style: none; gap: 12px; display: grid;">
+                            <li style="font-size: 14px; color: var(--muted-foreground);"><strong style="color: var(--foreground);">Escuro:</strong> Fundo #0A0A0A — sofisticado, moderno, reduz fadiga visual</li>
+                            <li style="font-size: 14px; color: var(--muted-foreground);"><strong style="color: var(--foreground);">Amarelo:</strong> Acento #F5C518 — energético, profissional, atrai atenção</li>
+                            <li style="font-size: 14px; color: var(--muted-foreground);"><strong style="color: var(--foreground);">Branco:</strong> Texto #F0F0EB — legibilidade, clareza, contraste</li>
+                            <li style="font-size: 14px; color: var(--muted-foreground);"><strong style="color: var(--foreground);">Cinzas:</strong> Hierarquia visual — 6 tons para diferentes contextos</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 30px;">
+                        <p style="font-size: 13px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--primary); margin-bottom: 15px;">Regras de Uso — Logo</p>
+                        <ul style="list-style: none; gap: 12px; display: grid; font-size: 12px; color: var(--muted-foreground);">
+                            <li><strong style="color: var(--foreground);">Espaço mínimo:</strong> 40px ao redor do logo (margin/padding)</li>
+                            <li><strong style="color: var(--foreground);">Tamanho mínimo:</strong> 80px (desktop), 60px (mobile)</li>
+                            <li><strong style="color: var(--foreground);">Nunca:</strong> Distorça, rotacione ou altere cores</li>
+                            <li><strong style="color: var(--foreground);">Dark bg:</strong> Use logo branco (horizontal ou icon)</li>
+                            <li><strong style="color: var(--foreground);">Light bg:</strong> Use logo preto (icon ou vertical)</li>
+                            <li><strong style="color: var(--foreground);">Mobile:</strong> Prefira icon ou logo vertical</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Colors -->
+            <section id="colors">
+                <h2 class="section-title">Paleta de Cores</h2>
+                <p class="section-intro">
+                    Sistema de cores do <code style="color:var(--primary);font-family:monospace;">globals.css</code> — tokens semânticos oklch com suporte a dark/light mode. Use sempre os tokens <code style="color:var(--primary);font-family:monospace;">--background</code>, <code style="color:var(--primary);font-family:monospace;">--primary</code>, <code style="color:var(--primary);font-family:monospace;">--card</code> etc. Nunca valores hardcoded.
+                </p>
+
+                                <div class="color-grid">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: var(--background); border: 1px solid var(--primary);"></div>
+                        <div class="color-name">Background</div>
+                        <div class="color-hex">oklch(0.1448 0 0)</div>
+                        <div class="color-token">--background</div>
+                        <div class="color-usage">Fundo principal, base da página, overlay dark</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: var(--foreground);"></div>
+                        <div class="color-name">Foreground</div>
+                        <div class="color-hex">oklch(0.9562 0.0093 106.5737)</div>
+                        <div class="color-token">--foreground</div>
+                        <div class="color-usage">Texto principal, headings, conteúdo body</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: var(--primary);"></div>
+                        <div class="color-name">Primary — Amarelo Brand</div>
+                        <div class="color-hex">oklch(0.8635 0.1747 89.6879)</div>
+                        <div class="color-token">--primary</div>
+                        <div class="color-usage">CTAs, accent, highlights, hover states</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: var(--primary-foreground);"></div>
+                        <div class="color-name">Primary Foreground</div>
+                        <div class="color-hex">oklch(0.1448 0 0)</div>
+                        <div class="color-token">--primary-foreground</div>
+                        <div class="color-usage">Texto sobre fundo amarelo (CTAs, badges)</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: var(--card);"></div>
+                        <div class="color-name">Card</div>
+                        <div class="color-hex">oklch(0.2686 0 0)</div>
+                        <div class="color-token">--card</div>
+                        <div class="color-usage">Card backgrounds, superfícies elevadas</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: var(--muted);"></div>
+                        <div class="color-name">Muted</div>
+                        <div class="color-hex">oklch(0.2393 0 0)</div>
+                        <div class="color-token">--muted</div>
+                        <div class="color-usage">Hover states, tertiary backgrounds, depth</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: var(--border);"></div>
+                        <div class="color-name">Border</div>
+                        <div class="color-hex">oklch(0.3715 0 0)</div>
+                        <div class="color-token">--border</div>
+                        <div class="color-usage">Bordas, separadores, inputs, disabled</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: var(--muted-foreground);"></div>
+                        <div class="color-name">Muted Foreground</div>
+                        <div class="color-hex">oklch(0.5271 0 0)</div>
+                        <div class="color-token">--muted-foreground</div>
+                        <div class="color-usage">Texto secundário, descrições, meta info</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: var(--destructive);"></div>
+                        <div class="color-name">Destructive</div>
+                        <div class="color-hex">oklch(0.6496 0.2362 26.9032)</div>
+                        <div class="color-token">--destructive</div>
+                        <div class="color-usage">Erros, alertas, ações irreversíveis</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8px Grid System -->
+            <section id="grid">
+                <h2 class="section-title">8px Grid System</h2>
+                <p class="section-intro">
+                    <strong>REGRA DE OURO:</strong> Todos os tamanhos, espaçamentos, fontes e dimensões devem ser múltiplos de 8px.
+                    Isso garante consistência, harmonia visual e facilita escalabilidade em qualquer breakpoint.
+                </p>
+
+                <!-- Core Rule -->
+                <div style="background: var(--primary); color: var(--background); padding: 30px; margin-bottom: 40px; border: 2px solid var(--primary);">
+                    <div style="font-size: 14px; font-weight: 900; letter-spacing: -.02em; margin-bottom: 15px;">
+                        ✓ SEMPRE múltiplos de 8
+                    </div>
+                    <div style="font-size: 13px; line-height: 1.6;">
+                        8px, 16px, 24px, 32px, 40px, 48px, 56px, 64px, 80px, 96px, 120px, 128px...
+                    </div>
+                </div>
+
+                <!-- Grid Visualization -->
+                <div style="background: var(--card); border: 1px solid var(--border); padding: 40px; margin-bottom: 40px;">
+                    <p style="font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--primary); margin-bottom: 20px;">Visualização — 8px Grid</p>
+                    <div style="background: var(--background); padding: 20px; border: 1px dashed var(--border); position: relative; height: 320px; background-image: linear-gradient(0deg, transparent 24px, rgba(245,197,24,.1) 24px, rgba(245,197,24,.1) 32px); background-size: 100% 32px;">
+                        <div style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; background-image: linear-gradient(90deg, transparent 24px, rgba(245,197,24,.1) 24px, rgba(245,197,24,.1) 32px); background-size: 32px 100%;"></div>
+                        <div style="position: relative; z-index: 1;">
+                            <div style="background: var(--primary); color: var(--background); padding: 16px 24px; margin: 16px; display: inline-block; font-weight: 700; font-size: 11px;">
+                                8×8 GRID
+                            </div>
+                        </div>
+                    </div>
+                    <div style="font-size: 11px; color: var(--muted-foreground); margin-top: 15px;">
+                        Cada quadrado = 8px × 8px. Todos os elementos se alinham à grid (margins, paddings, widths).
+                    </div>
+                </div>
+
+                <!-- Spacing Scale -->
+                <div style="background: var(--card); border: 1px solid var(--border); padding: 40px; margin-bottom: 40px;">
+                    <p style="font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--primary); margin-bottom: 25px;">Escala Completa (Múltiplos de 8)</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px;">
+                        <div>
+                            <div style="background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 100%); height: 8px; margin-bottom: 8px;"></div>
+                            <div style="font-weight: 600; color: var(--foreground); font-size: 12px;">--sp-1</div>
+                            <div style="color: var(--primary); font-family: monospace; font-size: 13px;">8px (1×)</div>
+                        </div>
+                        <div>
+                            <div style="background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 100%); height: 16px; margin-bottom: 8px;"></div>
+                            <div style="font-weight: 600; color: var(--foreground); font-size: 12px;">--sp-2</div>
+                            <div style="color: var(--primary); font-family: monospace; font-size: 13px;">16px (2×)</div>
+                        </div>
+                        <div>
+                            <div style="background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 100%); height: 24px; margin-bottom: 8px;"></div>
+                            <div style="font-weight: 600; color: var(--foreground); font-size: 12px;">--sp-3</div>
+                            <div style="color: var(--primary); font-family: monospace; font-size: 13px;">24px (3×)</div>
+                        </div>
+                        <div>
+                            <div style="background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 100%); height: 32px; margin-bottom: 8px;"></div>
+                            <div style="font-weight: 600; color: var(--foreground); font-size: 12px;">--sp-4</div>
+                            <div style="color: var(--primary); font-family: monospace; font-size: 13px;">32px (4×)</div>
+                        </div>
+                        <div>
+                            <div style="background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 100%); height: 40px; margin-bottom: 8px;"></div>
+                            <div style="font-weight: 600; color: var(--foreground); font-size: 12px;">--sp-5</div>
+                            <div style="color: var(--primary); font-family: monospace; font-size: 13px;">40px (5×)</div>
+                        </div>
+                        <div>
+                            <div style="background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 100%); height: 48px; margin-bottom: 8px;"></div>
+                            <div style="font-weight: 600; color: var(--foreground); font-size: 12px;">--sp-6</div>
+                            <div style="color: var(--primary); font-family: monospace; font-size: 13px;">48px (6×)</div>
+                        </div>
+                        <div>
+                            <div style="background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 100%); height: 64px; margin-bottom: 8px;"></div>
+                            <div style="font-weight: 600; color: var(--foreground); font-size: 12px;">--sp-8</div>
+                            <div style="color: var(--primary); font-family: monospace; font-size: 13px;">64px (8×)</div>
+                        </div>
+                        <div>
+                            <div style="background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 100%); height: 80px; margin-bottom: 8px;"></div>
+                            <div style="font-weight: 600; color: var(--foreground); font-size: 12px;">--sp-10</div>
+                            <div style="color: var(--primary); font-family: monospace; font-size: 13px;">80px (10×)</div>
+                        </div>
+                        <div>
+                            <div style="background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 100%); height: 96px; margin-bottom: 8px;"></div>
+                            <div style="font-weight: 600; color: var(--foreground); font-size: 12px;">--sp-12</div>
+                            <div style="color: var(--primary); font-family: monospace; font-size: 13px;">96px (12×)</div>
+                        </div>
+                        <div>
+                            <div style="background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 100%); height: 120px; margin-bottom: 8px;"></div>
+                            <div style="font-weight: 600; color: var(--foreground); font-size: 12px;">--sp-15</div>
+                            <div style="color: var(--primary); font-family: monospace; font-size: 13px;">120px (15×)</div>
+                        </div>
+                        <div>
+                            <div style="background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 100%); height: 128px; margin-bottom: 8px;"></div>
+                            <div style="font-weight: 600; color: var(--foreground); font-size: 12px;">--sp-16</div>
+                            <div style="color: var(--primary); font-family: monospace; font-size: 13px;">128px (16×)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Font Sizes on 8px Grid -->
+                <div style="background: var(--card); border: 1px solid var(--border); padding: 40px; margin-bottom: 40px;">
+                    <p style="font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--primary); margin-bottom: 20px;">Tamanhos de Fonte (8px Grid)</p>
+                    <div style="display: grid; gap: 15px;">
+                        <div style="display: flex; align-items: center; gap: 20px; padding: 12px; background: var(--card); border-left: 3px solid var(--primary);">
+                            <div style="font-size: 8px; font-weight: 700; color: var(--primary); min-width: 60px; text-align: right;">8px</div>
+                            <div style="color: var(--muted-foreground);">Labels, eyebrows, meta — <code style="color: var(--primary); font-family: monospace;">font-size: 8px;</code></div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 20px; padding: 12px; background: var(--card); border-left: 3px solid var(--primary);">
+                            <div style="font-size: 16px; font-weight: 700; color: var(--primary); min-width: 60px; text-align: right;">16px</div>
+                            <div style="color: var(--muted-foreground);">Body default, forms — <code style="color: var(--primary); font-family: monospace;">font-size: 16px;</code></div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 20px; padding: 12px; background: var(--card); border-left: 3px solid var(--primary);">
+                            <div style="font-size: 24px; font-weight: 700; color: var(--primary); min-width: 60px; text-align: right;">24px</div>
+                            <div style="color: var(--muted-foreground);">Card titles, subtítulos — <code style="color: var(--primary); font-family: monospace;">font-size: 24px;</code></div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 20px; padding: 12px; background: var(--card); border-left: 3px solid var(--primary);">
+                            <div style="font-size: 32px; font-weight: 700; color: var(--primary); min-width: 60px; text-align: right;">32px</div>
+                            <div style="color: var(--muted-foreground);">Headings, h2 — <code style="color: var(--primary); font-family: monospace;">font-size: 32px;</code></div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 20px; padding: 12px; background: var(--card); border-left: 3px solid var(--primary);">
+                            <div style="font-size: 40px; font-weight: 700; color: var(--primary); min-width: 60px; text-align: right;">40px</div>
+                            <div style="color: var(--muted-foreground);">Display h1, hero — <code style="color: var(--primary); font-family: monospace;">font-size: 40px;</code></div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 20px; padding: 12px; background: var(--card); border-left: 3px solid var(--primary);">
+                            <div style="font-size: 48px; font-weight: 700; color: var(--primary); min-width: 60px; text-align: right;">48px</div>
+                            <div style="color: var(--muted-foreground);">Extra large headlines — <code style="color: var(--primary); font-family: monospace;">font-size: 48px;</code></div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 20px; padding: 12px; background: var(--card); border-left: 3px solid var(--primary);">
+                            <div style="font-size: 56px; font-weight: 700; color: var(--primary); min-width: 60px; text-align: right;">56px</div>
+                            <div style="color: var(--muted-foreground);">Hero massive — <code style="color: var(--primary); font-family: monospace;">font-size: 56px;</code></div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 20px; padding: 12px; background: var(--card); border-left: 3px solid var(--primary);">
+                            <div style="font-size: 64px; font-weight: 700; color: var(--primary); min-width: 60px; text-align: right;">64px</div>
+                            <div style="color: var(--muted-foreground);">XXL display — <code style="color: var(--primary); font-family: monospace;">font-size: 64px;</code></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Component Sizes -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2px;">
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 30px;">
+                        <p style="font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--primary); margin-bottom: 15px;">Botões (8px)</p>
+                        <div style="display: grid; gap: 10px; font-size: 11px; color: var(--muted-foreground);">
+                            <div><strong style="color: var(--foreground);">Height:</strong> 32px (4×) / 40px (5×) / 48px (6×)</div>
+                            <div><strong style="color: var(--foreground);">Padding H:</strong> 16px / 24px / 32px</div>
+                            <div><strong style="color: var(--foreground);">Padding V:</strong> 8px / 12px / 16px</div>
+                            <div><strong style="color: var(--foreground);">Border:</strong> 0 ou 1px (não muda altura)</div>
+                            <div><strong style="color: var(--foreground);">Gap:</strong> 8px entre ícone + texto</div>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 30px;">
+                        <p style="font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--primary); margin-bottom: 15px;">Cards (8px)</p>
+                        <div style="display: grid; gap: 10px; font-size: 11px; color: var(--muted-foreground);">
+                            <div><strong style="color: var(--foreground);">Padding:</strong> 16px / 24px / 32px</div>
+                            <div><strong style="color: var(--foreground);">Gap (intra):</strong> 8px / 16px</div>
+                            <div><strong style="color: var(--foreground);">Border:</strong> 1px (não adiciona)</div>
+                            <div><strong style="color: var(--foreground);">Min height:</strong> 32px ou 40px</div>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 30px;">
+                        <p style="font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--primary); margin-bottom: 15px;">Inputs (8px)</p>
+                        <div style="display: grid; gap: 10px; font-size: 11px; color: var(--muted-foreground);">
+                            <div><strong style="color: var(--foreground);">Height:</strong> 40px (5×) / 48px (6×)</div>
+                            <div><strong style="color: var(--foreground);">Padding:</strong> 12px 16px (1.5× + 2×)</div>
+                            <div><strong style="color: var(--foreground);">Border:</strong> 1px ou 2px bottom</div>
+                            <div><strong style="color: var(--foreground);">Gap (grupo):</strong> 16px / 24px</div>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 30px;">
+                        <p style="font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--primary); margin-bottom: 15px;">Ícones (8px)</p>
+                        <div style="display: grid; gap: 10px; font-size: 11px; color: var(--muted-foreground);">
+                            <div><strong style="color: var(--foreground);">Tamanho:</strong> 16px, 24px, 32px, 40px</div>
+                            <div><strong style="color: var(--foreground);">Stroke:</strong> 1.5–2px (sem escalar)</div>
+                            <div><strong style="color: var(--foreground);">Gap (ícone+texto):</strong> 8px / 12px</div>
+                            <div><strong style="color: var(--foreground);">Margin:</strong> 8px, 16px, 24px</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Checklist -->
+                <div style="background: var(--card); border: 1px solid var(--border); padding: 30px; margin-top: 40px;">
+                    <p style="font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--primary); margin-bottom: 20px;">✓ Checklist — 8px Grid</p>
+                    <div style="display: grid; gap: 12px; font-size: 12px; color: var(--muted-foreground);">
+                        <div style="display: flex; gap: 10px;"><span style="color: var(--primary); font-weight: 700;">✓</span> <span>Padding: <code style="color: var(--primary); font-family: monospace;">8px, 16px, 24px, 32px...</code> (múltiplos de 8)</span></div>
+                        <div style="display: flex; gap: 10px;"><span style="color: var(--primary); font-weight: 700;">✓</span> <span>Margin: <code style="color: var(--primary); font-family: monospace;">8px, 16px, 24px, 32px...</code> (múltiplos de 8)</span></div>
+                        <div style="display: flex; gap: 10px;"><span style="color: var(--primary); font-weight: 700;">✓</span> <span>Font-size: <code style="color: var(--primary); font-family: monospace;">8px, 16px, 24px, 32px...</code> (múltiplos de 8)</span></div>
+                        <div style="display: flex; gap: 10px;"><span style="color: var(--primary); font-weight: 700;">✓</span> <span>Height/Width: <code style="color: var(--primary); font-family: monospace;">8px, 16px, 24px, 32px...</code> (múltiplos de 8)</span></div>
+                        <div style="display: flex; gap: 10px;"><span style="color: var(--primary); font-weight: 700;">✓</span> <span>Gap: <code style="color: var(--primary); font-family: monospace;">8px, 16px, 24px, 32px...</code> (múltiplos de 8)</span></div>
+                        <div style="display: flex; gap: 10px;"><span style="color: var(--primary); font-weight: 700;">✓</span> <span>Border-radius: <code style="color: var(--primary); font-family: monospace;">0, 8px, 16px</code> (ou 50% para círculos)</span></div>
+                        <div style="display: flex; gap: 10px;"><span style="color: var(--primary); font-weight: 700;">✓</span> <span>Line-height: <code style="color: var(--primary); font-family: monospace;">1, 1.25, 1.5, 1.75, 2</code> (múltiplos de .25)</span></div>
+                        <div style="display: flex; gap: 10px;"><span style="color: var(--primary); font-weight: 700;">✓</span> <span>Breakpoints: <code style="color: var(--primary); font-family: monospace;">480px, 640px, 768px, 1024px...</code> (múltiplos de 8)</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Typography -->
+            <section id="typography">
+                <h2 class="section-title">Tipografia</h2>
+                <p class="section-intro">
+                    Jost é a única familia tipográfica usada. Oferece todos os pesos (100–900) e itálico, permitindo
+                    uma hierarquia rica sem adicionar fontes extras.
+                </p>
+
+                <div class="type-grid">
+                    <div class="type-item">
+                        <div class="type-label">--text-xs (9px)</div>
+                        <div class="type-sample" style="font-size: 9px; letter-spacing: .22em; text-transform: uppercase; font-weight: 700;">LABELS, EYEBROWS, TAGS</div>
+                        <div class="type-meta">Weight: 700 | Letter-spacing: .22em | Uso: eyebrows, badges, section labels</div>
+                    </div>
+
+                    <div class="type-item">
+                        <div class="type-label">--text-sm (11px)</div>
+                        <div class="type-sample" style="font-size: 11px; font-weight: 600;">Pills, logos, meta info</div>
+                        <div class="type-meta">Weight: 600 | Uso: pills, small UI text, meta information</div>
+                    </div>
+
+                    <div class="type-item">
+                        <div class="type-label">--text-base (14–16px)</div>
+                        <div class="type-sample" style="font-size: 15px; font-weight: 300;">This is body text. Used for form labels, descriptions, and general content copy. Line-height 1.6.</div>
+                        <div class="type-meta">Weight: 300 | Line-height: 1.6 | Uso: corpo, inputs, descrições</div>
+                    </div>
+
+                    <div class="type-item">
+                        <div class="type-label">--text-lg (17px)</div>
+                        <div class="type-sample" style="font-size: 17px; font-weight: 700;">Card Titles & Service Names</div>
+                        <div class="type-meta">Weight: 700 | Uso: card titles, service names</div>
+                    </div>
+
+                    <div class="type-item">
+                        <div class="type-label">--text-xl (20–24px)</div>
+                        <div class="type-sample" style="font-size: 22px; font-weight: 600;">Subtítulos e Labels</div>
+                        <div class="type-meta">Weight: 600 | Uso: subtítulos, labels de seção</div>
+                    </div>
+
+                    <div class="type-item">
+                        <div class="type-label">--text-2xl (28–36px)</div>
+                        <div class="type-sample" style="font-size: 32px; font-weight: 800; letter-spacing: -.02em;">Headings Médios</div>
+                        <div class="type-meta">Weight: 800 | Letter-spacing: -.02em | Uso: h2, section headings</div>
+                    </div>
+
+                    <div class="type-item">
+                        <div class="type-label">--text-3xl (40px–96px fluid)</div>
+                        <div class="type-sample" style="font-size: clamp(40px, 6vw, 96px); font-weight: 900; letter-spacing: -.04em; line-height: .95;">Display Headings</div>
+                        <div class="type-meta">Weight: 900 | Letter-spacing: -.04em | clamp(40px, 6vw, 96px) | Uso: page headings</div>
+                    </div>
+
+                    <div class="type-item">
+                        <div class="type-label">--text-hero (52px–120px fluid)</div>
+                        <div class="type-sample" style="font-size: clamp(52px, 8.5vw, 120px); font-weight: 900; letter-spacing: -.04em; line-height: .87;">Hero Headline</div>
+                        <div class="type-meta">Weight: 900 | Letter-spacing: -.04em | clamp(52px, 8.5vw, 120px) | Uso: hero H1</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Spacing -->
+            <section id="spacing">
+                <h2 class="section-title">Espaçamento</h2>
+                <p class="section-intro">
+                    Escala de espaçamento baseada em 8px. Use estes tokens para padronizar gaps, paddings e margins
+                    em todo o design system.
+                </p>
+
+                <div class="spacing-grid">
+                    <div class="spacing-item">
+                        <div class="spacing-demo" style="height: 8px;"></div>
+                        <div class="spacing-label">--sp-1</div>
+                        <div class="spacing-value">8px</div>
+                    </div>
+
+                    <div class="spacing-item">
+                        <div class="spacing-demo" style="height: 16px;"></div>
+                        <div class="spacing-label">--sp-2</div>
+                        <div class="spacing-value">16px</div>
+                    </div>
+
+                    <div class="spacing-item">
+                        <div class="spacing-demo" style="height: 24px;"></div>
+                        <div class="spacing-label">--sp-3</div>
+                        <div class="spacing-value">24px</div>
+                    </div>
+
+                    <div class="spacing-item">
+                        <div class="spacing-demo" style="height: 32px;"></div>
+                        <div class="spacing-label">--sp-4</div>
+                        <div class="spacing-value">32px</div>
+                    </div>
+
+                    <div class="spacing-item">
+                        <div class="spacing-demo" style="height: 40px;"></div>
+                        <div class="spacing-label">--sp-5</div>
+                        <div class="spacing-value">40px</div>
+                    </div>
+
+                    <div class="spacing-item">
+                        <div class="spacing-demo" style="height: 48px;"></div>
+                        <div class="spacing-label">--sp-6</div>
+                        <div class="spacing-value">48px</div>
+                    </div>
+
+                    <div class="spacing-item">
+                        <div class="spacing-demo" style="height: 64px;"></div>
+                        <div class="spacing-label">--sp-8</div>
+                        <div class="spacing-value">64px</div>
+                    </div>
+
+                    <div class="spacing-item">
+                        <div class="spacing-demo" style="height: 80px;"></div>
+                        <div class="spacing-label">--sp-10</div>
+                        <div class="spacing-value">80px</div>
+                    </div>
+
+                    <div class="spacing-item">
+                        <div class="spacing-demo" style="height: 120px;"></div>
+                        <div class="spacing-label">--sp-15</div>
+                        <div class="spacing-value">120px</div>
+                    </div>
+                </div>
+
+                <div style="background: var(--card); border: 1px solid var(--border); padding: 30px; margin-top: 40px;">
+                    <p style="font-size: 13px; color: var(--muted-foreground); margin-bottom: 15px;"><strong style="color: var(--foreground);">Layout:</strong></p>
+                    <ul style="list-style: none; gap: 8px; display: grid; font-size: 12px; color: var(--muted-foreground);">
+                        <li><strong style="color: var(--foreground);">Max-width:</strong> 1360px (.wrap)</li>
+                        <li><strong style="color: var(--foreground);">Grid gap:</strong> 2px (gap-as-border via background)</li>
+                        <li><strong style="color: var(--foreground);">Section padding:</strong> 120px 0 (padrão)</li>
+                        <li><strong style="color: var(--foreground);">Content padding:</strong> 40px (wraps)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Buttons -->
+            <section id="buttons">
+                <h2 class="section-title">Botões</h2>
+                <p class="section-intro">
+                    Cinco variantes de botão cobrindo todos os casos de uso. Cada variante tem estados default,
+                    hover e active documentados.
+                </p>
+
+                <div class="component-grid">
+                    <!-- Primary -->
+                    <div class="component-card">
+                        <div class="component-title">Primary Button</div>
+                        <div class="component-preview">
+                            <button class="btn-primary">Agendar Sessão</button>
+                            <button class="btn-primary" style="opacity: 0.8;">Hover</button>
+                        </div>
+                        <div class="component-code">class="btn-primary"</div>
+                        <div style="font-size: 12px; color: var(--muted-foreground);">Amarelo fundo (#F5C518), preto texto. Usado para CTAs principais. Hover reduz opacity a 0.85.</div>
+                    </div>
+
+                    <!-- Outline -->
+                    <div class="component-card">
+                        <div class="component-title">Outline Button</div>
+                        <div class="component-preview">
+                            <button class="btn-outline">Saiba Mais</button>
+                            <button class="btn-outline" style="color: var(--foreground); border-color: var(--foreground);">Hover</button>
+                        </div>
+                        <div class="component-code">class="btn-outline"</div>
+                        <div style="font-size: 12px; color: var(--muted-foreground);">Borda cinza, texto cinza. Hover: borda + texto branco. Secundário ou complementar.</div>
+                    </div>
+
+                    <!-- Dark -->
+                    <div class="component-card">
+                        <div class="component-title">Dark Button</div>
+                        <div class="component-preview">
+                            <button class="btn-dark">Ver Portfolio</button>
+                            <button class="btn-dark" style="border-color: var(--foreground);">Hover</button>
+                        </div>
+                        <div class="component-code">class="btn-dark"</div>
+                        <div style="font-size: 12px; color: var(--muted-foreground);">Preto fundo, branco texto. Hover: borda branca. Contraste máximo.</div>
+                    </div>
+
+                    <!-- Filter -->
+                    <div class="component-card">
+                        <div class="component-title">Filter Button</div>
+                        <div class="component-preview">
+                            <button class="btn-filter">Todos</button>
+                            <button class="btn-filter active">Destaque</button>
+                            <button class="btn-filter">Portfólio</button>
+                        </div>
+                        <div class="component-code">class="btn-filter" / class="btn-filter active"</div>
+                        <div style="font-size: 12px; color: var(--muted-foreground);">Toggle com estado active. Default: borda cinza. Active: amarelo bg + preto texto.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cards -->
+            <section id="cards">
+                <h2 class="section-title">Cards</h2>
+                <p class="section-intro">
+                    Componentes card para diferentes contextos. Todos seguem o padrão dark bg + amarelo accent.
+                </p>
+
+                <div class="component-grid">
+                    <!-- Service Card -->
+                    <div class="component-card">
+                        <div class="component-title">Service Card</div>
+                        <div class="component-preview" style="justify-content: flex-start;">
+                            <div class="card-service" style="width: 240px;">
+                                <div class="card-number">01</div>
+                                <div class="card-name">Personal Branding</div>
+                                <div class="card-desc">Fotografia corporativa que vende sua marca pessoal</div>
+                            </div>
+                        </div>
+                        <div class="component-code">class="card-service"</div>
+                        <div style="font-size: 12px; color: var(--muted-foreground);">Número large, nome bold, descrição muted. Hover: bg muda cor + bottom border animada amarela (0–100%).</div>
+                    </div>
+
+                    <!-- Testimonial Card -->
+                    <div class="component-card">
+                        <div class="component-title">Testimonial Card</div>
+                        <div class="component-preview" style="justify-content: flex-start;">
+                            <div style="background: var(--card); border: 1px solid var(--border); padding: 25px; width: 280px;">
+                                <p style="font-style: italic; color: var(--muted-foreground); margin-bottom: 20px; line-height: 1.6;">"Rodrigo trouxe profissionalismo e criatividade. As fotos fizeram total diferença no meu LinkedIn."</p>
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <div style="width: 40px; height: 40px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--background); font-weight: 900;">JC</div>
+                                    <div>
+                                        <div style="font-size: 13px; font-weight: 700; color: var(--foreground);">João Correia</div>
+                                        <div style="font-size: 11px; color: var(--muted-foreground);">Executivo, LinkedIn</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="component-code">Testimonial — Quote italic + Avatar circle</div>
+                        <div style="font-size: 12px; color: var(--muted-foreground);">Avatar com initials em círculo amarelo. Quote em italics. Border amarela no hover.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Forms -->
+            <section id="forms">
+                <h2 class="section-title">Formulários</h2>
+                <p class="section-intro">
+                    Componentes de formulário com estados default, focus e validação.
+                </p>
+
+                <div class="component-card">
+                    <div class="component-title">Form Fields</div>
+                    <div style="margin: 20px 0;">
+                        <div class="form-group">
+                            <label class="form-label">Nome Completo</label>
+                            <input type="text" class="form-input" placeholder="Seu nome aqui">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">E-mail</label>
+                            <input type="email" class="form-input" placeholder="seu@email.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Mensagem</label>
+                            <textarea class="form-textarea" placeholder="Conte-nos sobre seu projeto..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Tipo de Sessão</label>
+                            <select class="form-select">
+                                <option>Selecione uma opção</option>
+                                <option>Personal Branding</option>
+                                <option>Fotografia Corporativa</option>
+                                <option>Ensaio Executivo</option>
+                            </select>
+                        </div>
+
+                        <button class="btn-primary" style="width: 100%; padding: 12px; margin-top: 20px;">Enviar Mensagem</button>
+                    </div>
+
+                    <div class="component-code">Input focus: border-bottom-color amarela (#F5C518)</div>
+                    <div style="font-size: 12px; color: var(--muted-foreground); margin-top: 15px;">Inputs e textareas com bottom-border. Focus state: amarelo. Labels uppercase small, tracking 0.12em.</div>
+                </div>
+            </section>
+
+            <!-- Motion & Animation -->
+            <section id="motion">
+                <h2 class="section-title">Motion & Animação</h2>
+                <p class="section-intro">
+                    Easing functions e durations padrão para manter consistência nas transições.
+                </p>
+
+                <div style="background: var(--card); border: 1px solid var(--border); padding: 30px; margin-bottom: 30px;">
+                    <p style="font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 20px; letter-spacing: .18em; text-transform: uppercase;">Easing Curves</p>
+
+                    <div style="display: grid; gap: 20px;">
+                        <div>
+                            <p style="font-size: 12px; color: var(--foreground); margin-bottom: 8px;"><strong>--ease</strong> (Standard)</p>
+                            <div style="font-family: monospace; color: var(--primary); font-size: 11px;">cubic-bezier(.25, .46, .45, .94)</div>
+                            <p style="font-size: 11px; color: var(--muted-foreground); margin-top: 5px;">Para transições suaves, scroll reveals, fade-ins</p>
+                        </div>
+
+                        <div>
+                            <p style="font-size: 12px; color: var(--foreground); margin-bottom: 8px;"><strong>--ease2</strong> (Sharp Deceleration)</p>
+                            <div style="font-family: monospace; color: var(--primary); font-size: 11px;">cubic-bezier(.76, 0, .24, 1)</div>
+                            <p style="font-size: 11px; color: var(--muted-foreground); margin-top: 5px;">Para efeitos snappy, hover states, cursor growth</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: var(--card); border: 1px solid var(--border); padding: 30px;">
+                    <p style="font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 20px; letter-spacing: .18em; text-transform: uppercase;">Durations Padrão</p>
+
+                    <div style="display: grid; gap: 15px; font-size: 12px; color: var(--muted-foreground);">
+                        <div><strong style="color: var(--foreground);">0.3s:</strong> Hover states, border transitions</div>
+                        <div><strong style="color: var(--foreground);">0.4s:</strong> Custom cursor expand (8px → 56px)</div>
+                        <div><strong style="color: var(--foreground);">0.5s:</strong> Service card bottom border animation</div>
+                        <div><strong style="color: var(--foreground);">0.8s:</strong> Scroll reveal (.rv elements)</div>
+                        <div><strong style="color: var(--foreground);">1.2s:</strong> Skill bars animation (about page)</div>
+                        <div><strong style="color: var(--foreground);">24s infinite:</strong> Marquee strip scroll</div>
+                        <div><strong style="color: var(--foreground);">32s infinite:</strong> Testimonials carousel auto-scroll</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Icons -->
+            <section id="icons">
+                <h2 class="section-title">Iconografia</h2>
+                <p class="section-intro">
+                    SVG inline para manter consistência visual. Todos os ícones seguem o padrão: stroke 2px,
+                    cores (#F0F0EB ou #F5C518), tamanhos padronizados (16px, 20px, 24px, 32px).
+                </p>
+
+                <!-- Icon Grid -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 2px; margin-bottom: 40px;">
+                    <!-- Arrow Right -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Arrow Right</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">CTA, nav</div>
+                    </div>
+
+                    <!-- Arrow Left -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Arrow Left</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Voltar</div>
+                    </div>
+
+                    <!-- Chevron Down -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <path d="M6 9l6 6 6-6"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Chevron Down</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Dropdown, expand</div>
+                    </div>
+
+                    <!-- Check -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <path d="M20 6L9 17l-5-5"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Check</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Sucesso, confirmado</div>
+                    </div>
+
+                    <!-- X / Close -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--muted-foreground); margin-bottom: 12px;">
+                            <path d="M18 6L6 18M6 6l12 12"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Close</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Modal, fechar</div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Phone</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Contato, WhatsApp</div>
+                    </div>
+
+                    <!-- Mail -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <path d="M22 6L12 13 2 6"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Mail</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Email, contato</div>
+                    </div>
+
+                    <!-- Instagram -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                            <path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/>
+                            <circle cx="17.5" cy="6.5" r="1.5"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Instagram</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Social link</div>
+                    </div>
+
+                    <!-- Linkedin -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                            <rect x="2" y="9" width="4" height="12"/>
+                            <circle cx="4" cy="4" r="2"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">LinkedIn</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Social link</div>
+                    </div>
+
+                    <!-- Camera -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                            <circle cx="12" cy="13" r="4"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Camera</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Foto, portfolio</div>
+                    </div>
+
+                    <!-- Map Pin -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Location</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Endereço, local</div>
+                    </div>
+
+                    <!-- Calendar -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <path d="M16 2v4M8 2v4M3 10h18"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Calendar</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Data, agenda</div>
+                    </div>
+
+                    <!-- Clock -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Clock</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Tempo, duração</div>
+                    </div>
+
+                    <!-- Star -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Star</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Rating, destaque</div>
+                    </div>
+
+                    <!-- Share -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <circle cx="18" cy="5" r="3"/>
+                            <circle cx="6" cy="12" r="3"/>
+                            <circle cx="18" cy="19" r="3"/>
+                            <path d="M8.59 13.51a3 3 0 0 0 3.82 3.82M15.41 6.49a3 3 0 0 0-3.82-3.82M15.41 17.51a3 3 0 0 0-3.82 3.82M8.59 6.49a3 3 0 0 0 3.82-3.82"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Share</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Compartilhar</div>
+                    </div>
+
+                    <!-- Aperture - Photography -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <circle cx="12" cy="12" r="1"/>
+                            <path d="M12 8V4m6.5 2.5l2.83-2.83M16 12h4m-2.5 6.5l2.83 2.83M12 16v4m-6.5-2.5l-2.83 2.83M8 12H4m2.5-6.5L1.67 1.67"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Aperture</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Fotografia, foco</div>
+                    </div>
+
+                    <!-- Zap - Energy/Impact -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Impact</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Energia, resultado</div>
+                    </div>
+
+                    <!-- People - Corporate -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Equipe</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Corporate, grupo</div>
+                    </div>
+
+                    <!-- Building - Corporate/Company -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <path d="M4 21v-7a2 2 0 0 1 2-2h4V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v7h4a2 2 0 0 1 2 2v7"/>
+                            <path d="M9 8h2M9 13h2M17 8h2M17 13h2"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Empresa</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Corporativo, B2B</div>
+                    </div>
+
+                    <!-- Target - Strategy -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <circle cx="12" cy="12" r="1"/>
+                            <circle cx="12" cy="12" r="5"/>
+                            <circle cx="12" cy="12" r="9"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Estratégia</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Meta, objetivo</div>
+                    </div>
+
+                    <!-- Palette - Branding/Color -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                            <circle cx="9" cy="9" r="1" fill="currentColor"/>
+                            <circle cx="15" cy="9" r="1" fill="currentColor"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Marca</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Branding, identidade</div>
+                    </div>
+
+                    <!-- Maximize - Image/Size -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Formato</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Dimensão, imagem</div>
+                    </div>
+
+                    <!-- Award - Expertise -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <circle cx="12" cy="8" r="7"/>
+                            <path d="M8 15s-2 2-2 4 2 2 4 2 4-2 4 0 2-2 2-4"/>
+                            <path d="M12 8v5M10 13l4 0M14 13l-4 0"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Prêmio</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Expertise, qualidade</div>
+                    </div>
+
+                    <!-- Heart -->
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 20px; text-align: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto; display: block; color: var(--primary); margin-bottom: 12px;">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--foreground); margin-bottom: 4px;">Heart</div>
+                        <div style="font-size: 10px; color: var(--muted-foreground);">Like, favorito</div>
+                    </div>
+                </div>
+
+                <!-- Icon Guidelines -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2px; margin-bottom: 40px;">
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 30px;">
+                        <div style="font-size: 12px; font-weight: 700; color: var(--primary); margin-bottom: 15px; letter-spacing: .12em; text-transform: uppercase;">Tamanhos Padrão</div>
+                        <div style="display: grid; gap: 10px; font-size: 12px; color: var(--muted-foreground);">
+                            <div><strong style="color: var(--foreground);">16px:</strong> Inline text, nav dots, metadata</div>
+                            <div><strong style="color: var(--foreground);">20px:</strong> Nav icons, small buttons</div>
+                            <div><strong style="color: var(--foreground);">24px:</strong> Default button icons, card headers</div>
+                            <div><strong style="color: var(--foreground);">32px:</strong> Hero icons, section headers</div>
+                            <div><strong style="color: var(--foreground);">40px:</strong> Large CTAs, featured sections</div>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 30px;">
+                        <div style="font-size: 12px; font-weight: 700; color: var(--primary); margin-bottom: 15px; letter-spacing: .12em; text-transform: uppercase;">Cores & Stroke</div>
+                        <div style="display: grid; gap: 10px; font-size: 12px; color: var(--muted-foreground);">
+                            <div><strong style="color: var(--foreground);">Primary:</strong> var(--primary) #F5C518 (CTAs, highlight)</div>
+                            <div><strong style="color: var(--foreground);">Secondary:</strong> var(--foreground) #F0F0EB (nav, content)</div>
+                            <div><strong style="color: var(--foreground);">Muted:</strong> var(--muted-foreground) #7a7a7a (disabled, placeholder)</div>
+                            <div><strong style="color: var(--foreground);">Stroke width:</strong> 2px (padrão SVG)</div>
+                            <div><strong style="color: var(--foreground);">Fill:</strong> none (outline preferido)</div>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 30px;">
+                        <div style="font-size: 12px; font-weight: 700; color: var(--primary); margin-bottom: 15px; letter-spacing: .12em; text-transform: uppercase;">Implementação</div>
+                        <div style="display: grid; gap: 10px; font-size: 12px; color: var(--muted-foreground);">
+                            <div><strong style="color: var(--foreground);">SVG inline:</strong> Preferido (controle de cor)</div>
+                            <div><strong style="color: var(--foreground);">currentColor:</strong> Usar em stroke/fill</div>
+                            <div><strong style="color: var(--foreground);">ViewBox:</strong> Sempre 24x24 ou 0 0 24 24</div>
+                            <div><strong style="color: var(--foreground);">Sem preenchimento:</strong> Manter transparência</div>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--card); border: 1px solid var(--border); padding: 30px;">
+                        <div style="font-size: 12px; font-weight: 700; color: var(--primary); margin-bottom: 15px; letter-spacing: .12em; text-transform: uppercase;">Casos de Uso</div>
+                        <div style="display: grid; gap: 10px; font-size: 12px; color: var(--muted-foreground);">
+                            <div><strong style="color: var(--foreground);">CTAs:</strong> Arrow, Chevron, Phone, Mail</div>
+                            <div><strong style="color: var(--foreground);">Nav:</strong> Arrow, Menu toggle, Close</div>
+                            <div><strong style="color: var(--foreground);">Social:</strong> Instagram, LinkedIn, Share</div>
+                            <div><strong style="color: var(--foreground);">Info:</strong> Map, Calendar, Clock, Phone</div>
+                            <div><strong style="color: var(--foreground);">Status:</strong> Check, Star, Heart</div>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--card); border: 2px solid var(--primary); padding: 30px;">
+                        <div style="font-size: 12px; font-weight: 700; color: var(--primary); margin-bottom: 15px; letter-spacing: .12em; text-transform: uppercase;">🎯 Fotografia Corporativa</div>
+                        <div style="display: grid; gap: 10px; font-size: 12px; color: var(--muted-foreground);">
+                            <div><strong style="color: var(--foreground);">Serviços:</strong> Camera, Aperture, People, Building</div>
+                            <div><strong style="color: var(--foreground);">Estratégia:</strong> Target, Impact (Zap), Award</div>
+                            <div><strong style="color: var(--foreground);">Branding:</strong> Palette, Award, Star</div>
+                            <div><strong style="color: var(--foreground);">Agendamento:</strong> Calendar, Clock, Phone</div>
+                            <div><strong style="color: var(--foreground);">Resultado:</strong> Impact, Award, Check</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SVG Code Template -->
+                <div style="background: var(--card); border: 1px solid var(--border); padding: 30px;">
+                    <div style="font-size: 12px; font-weight: 700; color: var(--primary); margin-bottom: 15px; letter-spacing: .12em; text-transform: uppercase;">Template SVG Padrão</div>
+                    <div style="background: var(--background); border: 1px solid var(--border); padding: 15px; font-family: monospace; font-size: 11px; color: var(--primary); overflow-x: auto; line-height: 1.6;">
+                        <div>&lt;svg width="24" height="24" viewBox="0 0 24 24"</div>
+                        <div style="margin-left: 20px;">fill="none" stroke="currentColor" stroke-width="2"&gt;</div>
+                        <div style="margin-left: 20px;">&lt;path d="M... Z"/&gt;</div>
+                        <div>&lt;/svg&gt;</div>
+                    </div>
+                    <div style="font-size: 11px; color: var(--muted-foreground); margin-top: 15px;">
+                        <strong style="color: var(--primary);">Nota:</strong> Use currentColor para herdar a cor do container (via color CSS).
+                        Mude stroke-width conforme necessário, mas mantenha em múltiplos de 1–2.5.
+                    </div>
+                </div>
+            </section>
+
+            <!-- CSS Tokens -->
+            <section id="tokens">
+                <h2 class="section-title">Variáveis CSS Completas</h2>
+                <p class="section-intro">
+                    Bloco de código copiável com TODOS os tokens para usar em novos projetos ou componentes.
+                </p>
+
+                <div style="background: var(--background); border: 1px solid var(--border); border-radius: 0; padding: 20px; font-family: monospace; font-size: 11px; color: var(--primary); overflow-x: auto; line-height: 1.8;">
+                    <div style="color: var(--muted-foreground); margin-bottom: 15px;">:root {</div>
+                    <div style="margin-left: 20px; display: grid; gap: 6px;">
+                        <div><span style="color: var(--muted-foreground);">/* Cores */</span></div>
+                        <div>--k: #0A0A0A; <span style="color: var(--muted-foreground);">/* Preto primário */</span></div>
+                        <div>--w: #F0F0EB; <span style="color: var(--muted-foreground);">/* Branco primário */</span></div>
+                        <div>--y: #F5C518; <span style="color: var(--muted-foreground);">/* Amarelo brand */</span></div>
+                        <div style="margin-top: 10px;">
+                            <div><span style="color: var(--muted-foreground);">/* Escala de Cinzas */</span></div>
+                            <div>--g1: #111;</div>
+                            <div>--g2: #1a1a1a;</div>
+                            <div>--g3: #242424;</div>
+                            <div>--g4: #404040;</div>
+                            <div>--g5: #7a7a7a;</div>
+                            <div>--g6: #b0b0a8;</div>
+                        </div>
+
+                        <div style="margin-top: 10px;">
+                            <div><span style="color: var(--muted-foreground);">/* Tipografia */</span></div>
+                            <div>--f: 'Jost', sans-serif;</div>
+                            <div style="margin-top: 6px;">--text-xs: 9px;</div>
+                            <div>--text-sm: 11px;</div>
+                            <div>--text-base: 14px;</div>
+                            <div>--text-lg: 17px;</div>
+                            <div>--text-xl: 22px;</div>
+                            <div>--text-2xl: 32px;</div>
+                            <div>--text-3xl: clamp(40px, 6vw, 96px);</div>
+                            <div>--text-hero: clamp(52px, 8.5vw, 120px);</div>
+                        </div>
+
+                        <div style="margin-top: 10px;">
+                            <div><span style="color: var(--muted-foreground);">/* Espaçamento (8px base) */</span></div>
+                            <div>--sp-1: 8px;</div>
+                            <div>--sp-2: 16px;</div>
+                            <div>--sp-3: 24px;</div>
+                            <div>--sp-4: 32px;</div>
+                            <div>--sp-5: 40px;</div>
+                            <div>--sp-6: 48px;</div>
+                            <div>--sp-8: 64px;</div>
+                            <div>--sp-10: 80px;</div>
+                            <div>--sp-15: 120px;</div>
+                        </div>
+
+                        <div style="margin-top: 10px;">
+                            <div><span style="color: var(--muted-foreground);">/* Motion */</span></div>
+                            <div>--ease: cubic-bezier(.25, .46, .45, .94);</div>
+                            <div>--ease2: cubic-bezier(.76, 0, .24, 1);</div>
+                        </div>
+
+                        <div style="margin-top: 10px;">
+                            <div><span style="color: var(--muted-foreground);">/* Layout */</span></div>
+                            <div>--max-width: 1360px;</div>
+                            <div>--grid-gap: 2px;</div>
+                            <div>--section-padding: 120px 0;</div>
+                            <div>--content-padding: 40px;</div>
+                        </div>
+                    </div>
+                    <div style="color: var(--muted-foreground); margin-top: 15px;">}</div>
+                </div>
+
+                <div style="margin-top: 20px; padding: 20px; background: var(--card); border: 1px solid var(--border);">
+                    <p style="font-size: 11px; color: var(--muted-foreground); margin-bottom: 15px;"><strong style="color: var(--primary);">Como usar:</strong></p>
+                    <ol style="list-style: decimal; margin-left: 20px; font-size: 11px; color: var(--muted-foreground); gap: 8px; display: grid;">
+                        <li>Copie o bloco de código acima</li>
+                        <li>Cole no início do seu arquivo CSS (antes de outras regras)</li>
+                        <li>Use as variáveis em toda sua estilização: <code style="color: var(--primary);">background: var(--background);</code></li>
+                        <li>Para adicionar novos tokens, mantenha a mesmo padrão de nomes</li>
+                        <li>Atualize este documento quando adicionar novos tokens</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <div style="margin-top: 100px; padding-top: 40px; border-top: 1px solid var(--border); text-align: center; color: var(--muted-foreground); font-size: 12px;">
+                <p>Design System v1.0 — Rodrigo Roncolato</p>
+                <p style="margin-top: 8px; color: var(--border);">Última atualização: Março 2026</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Smooth scroll navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                const href = link.getAttribute('href');
+                document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Update active nav on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Copy button functionality
+        const copyBtns = document.querySelectorAll('.copy-btn');
+        copyBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const codeBlock = btn.nextElementSibling;
+                const text = codeBlock.textContent;
+                navigator.clipboard.writeText(text).then(() => {
+                    btn.classList.add('copied');
+                    btn.textContent = 'Copiado!';
+                    setTimeout(() => {
+                        btn.classList.remove('copied');
+                        btn.textContent = 'Copiar';
+                    }, 2000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rodrigo Roncolato — Links</title>
+<meta name="description" content="Fotografia Executiva & Personal Branding. Transformo a sua presença visual em autoridade.">
+<meta property="og:title" content="Rodrigo Roncolato">
+<meta property="og:description" content="Fotografia Executiva & Personal Branding">
+<meta property="og:image" content="https://rroncolato.com.br/assets/IMG/site/ronco-bio.jpg">
+<meta property="og:url" content="https://rroncolato.com.br/links">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{min-height:100%;height:100%}
+
+body{
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  color:#F0F0EB;
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Fundo */
+.bg{
+  position:fixed;
+  inset:0;
+  z-index:0;
+}
+.bg img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 20%;
+  display:block;
+}
+.bg::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom, rgba(10,10,10,.55) 0%, rgba(10,10,10,.75) 50%, rgba(10,10,10,.92) 100%);
+}
+
+/* Conteúdo */
+.container{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:400px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:56px 24px 48px;
+}
+
+/* Logo */
+.logo{
+  width:180px;
+  margin-bottom:40px;
+  opacity:.95;
+}
+
+/* Tagline */
+.tagline{
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:#7a7a7a;
+  text-align:center;
+  margin-bottom:48px;
+}
+
+/* Botões */
+.links{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-bottom:56px;
+}
+
+.link-btn{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  width:100%;
+  padding:17px 22px;
+  background-color:rgba(17,17,17,.85);
+  border:1px solid #1e1e1e;
+  text-decoration:none;
+  color:#F0F0EB;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  transition:border-color .2s, background-color .2s;
+  cursor:pointer;
+}
+.link-btn:hover{
+  border-color:#F5C518;
+  background-color:rgba(22,22,22,.95);
+}
+.link-btn:hover .link-icon{
+  color:#F5C518;
+}
+.link-btn:hover .link-arrow{
+  color:#F5C518;
+}
+
+/* WhatsApp pulse */
+.link-btn.wa{
+  border-color:rgba(37,211,102,.15);
+  position:relative;
+  overflow:hidden;
+  animation:wa-glow-pulse 2.4s ease-in-out infinite;
+}
+.link-btn.wa::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg, transparent, rgba(37,211,102,.3), transparent);
+  animation:wa-shine 2s ease-in-out infinite;
+  pointer-events:none;
+}
+.link-btn.wa .link-icon{
+  color:rgba(37,211,102,.6);
+  animation:wa-pulse 2.4s ease-in-out infinite;
+}
+.link-btn.wa:hover{
+  border-color:#25D366;
+  background-color:rgba(37,211,102,.07);
+}
+.link-btn.wa:hover .link-icon{
+  color:#25D366;
+  animation:none;
+}
+@keyframes wa-pulse{
+  0%,100%{opacity:.5;transform:scale(1)}
+  50%{opacity:1;transform:scale(1.15)}
+}
+
+@keyframes wa-glow-pulse{
+  0%,100%{box-shadow:0 0 10px rgba(37,211,102,.1)}
+  50%{box-shadow:0 0 30px rgba(37,211,102,.4)}
+}
+
+@keyframes wa-shine{
+  0%{transform:translateX(-100%)}
+  100%{transform:translateX(100%)}
+}
+
+.link-icon{
+  flex-shrink:0;
+  color:#3a3a3a;
+  transition:color .2s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:20px;
+}
+
+.link-label{
+  flex:1;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+
+.link-arrow{
+  flex-shrink:0;
+  color:#2a2a2a;
+  transition:color .2s;
+}
+
+/* Footer */
+.foot{
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#2a2a2a;
+}
+</style>
+</head>
+<body>
+
+<!-- Fundo -->
+<div class="bg">
+  <img src="../IMG/site/links-bg.jpg.jpg" alt="">
+</div>
+
+<div class="container">
+
+  <!-- Logo -->
+  <img class="logo" src="../IMG/site/roncolato_logo_horizontal.webp" alt="Rodrigo Roncolato">
+
+  <!-- Tagline -->
+  <div class="tagline">Fotografia Executiva & Personal Branding</div>
+
+  <!-- Links -->
+  <div class="links">
+
+    <!-- Site -->
+    <a class="link-btn" href="https://rroncolato.com.br" target="_blank">
+      <span class="link-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </span>
+      <span class="link-label">Site</span>
+      <svg class="link-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6h10M6 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+    </a>
+
+    <!-- Instagram -->
+    <a class="link-btn" href="https://instagram.com/rroncolato" target="_blank">
+      <span class="link-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+      </span>
+      <span class="link-label">Instagram</span>
+      <svg class="link-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6h10M6 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+    </a>
+
+    <!-- LinkedIn -->
+    <a class="link-btn" href="https://linkedin.com/in/rroncolato" target="_blank">
+      <span class="link-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M7 10v7M7 7v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11 17v-3.5a2.5 2.5 0 0 1 5 0V17M11 10v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </span>
+      <span class="link-label">LinkedIn</span>
+      <svg class="link-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6h10M6 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+    </a>
+
+    <!-- WhatsApp -->
+    <a class="link-btn wa" href="https://wa.me/5562985928423?text=Olá%20Roncolato%20gostaria%20de%20receber%20minhas%20fotos%20da%20*Imersão%20Oratória%20para%20Negócios*" target="_blank">
+      <span class="link-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="link-label">WhatsApp</span>
+      <svg class="link-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6h10M6 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+    </a>
+
+  </div>
+
+  <div class="foot">© 2025 Rodrigo Roncolato</div>
+
+</div>
+
+</body>
+</html>

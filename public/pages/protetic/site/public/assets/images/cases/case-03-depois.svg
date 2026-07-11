@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#141010"/>
+      <stop offset="100%" stop-color="#060404"/>
+    </radialGradient>
+    <radialGradient id="gG" cx="50%" cy="0%" r="100%">
+      <stop offset="0%" stop-color="#d06575"/>
+      <stop offset="100%" stop-color="#9a3545"/>
+    </radialGradient>
+    <radialGradient id="tw" cx="32%" cy="8%" r="85%">
+      <stop offset="0%" stop-color="#f5f1ea"/>
+      <stop offset="55%" stop-color="#ece5d5"/>
+      <stop offset="100%" stop-color="#d5ccb8"/>
+    </radialGradient>
+    <radialGradient id="shn" cx="28%" cy="5%" r="55%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.8)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </radialGradient>
+    <filter id="sh"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="rgba(0,0,0,0.6)"/></filter>
+    <filter id="b2"><feGaussianBlur stdDeviation="2"/></filter>
+    <clipPath id="tc"><ellipse cx="400" cy="262" rx="230" ry="58"/></clipPath>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <radialGradient id="vig" cx="50%" cy="50%" r="65%">
+    <stop offset="40%" stop-color="transparent"/>
+    <stop offset="100%" stop-color="rgba(0,0,0,0.75)"/>
+  </radialGradient>
+  <rect width="800" height="500" fill="url(#vig)"/>
+  <radialGradient id="gold" cx="50%" cy="60%" r="40%">
+    <stop offset="0%" stop-color="rgba(184,148,90,0.07)"/>
+    <stop offset="100%" stop-color="transparent"/>
+  </radialGradient>
+  <rect width="800" height="500" fill="url(#gold)"/>
+
+  <rect x="20" y="20" width="100" height="30" rx="2" fill="rgba(184,148,90,0.18)" stroke="rgba(184,148,90,0.3)" stroke-width="1"/>
+  <text x="70" y="39" font-family="Montserrat, sans-serif" font-size="11" fill="#CFA96E" text-anchor="middle" letter-spacing="3">DEPOIS</text>
+
+  <!-- Boca sorrindo -->
+  <path d="M125 220 Q400 175 675 220 Q645 310 400 330 Q155 310 125 220Z" fill="#6a1e18" filter="url(#sh)"/>
+  <path d="M125 220 Q400 194 675 220" fill="#8a2a22"/>
+  <ellipse cx="400" cy="264" rx="232" ry="60" fill="#080303"/>
+
+  <!-- Gengiva saudável -->
+  <ellipse cx="400" cy="226" rx="226" ry="30" fill="url(#gG)"/>
+
+  <!-- Dentes restaurados E.max - altura recuperada, alinhados -->
+  <g clip-path="url(#tc)">
+    <rect x="175" y="220" width="28" height="46" rx="4" fill="url(#tw)"/>
+    <rect x="177" y="220" width="12" height="19" rx="2" fill="url(#shn)" opacity="0.6"/>
+    <line x1="203" y1="220" x2="203" y2="266" stroke="rgba(180,160,120,0.2)" stroke-width="1"/>
+
+    <rect x="205" y="216" width="31" height="50" rx="4" fill="url(#tw)"/>
+    <rect x="207" y="216" width="13" height="21" rx="2" fill="url(#shn)" opacity="0.65"/>
+    <line x1="236" y1="216" x2="236" y2="266" stroke="rgba(180,160,120,0.2)" stroke-width="1"/>
+
+    <!-- incisivo esquerdo restaurado - altura corrigida -->
+    <rect x="238" y="210" width="35" height="56" rx="5" fill="url(#tw)"/>
+    <rect x="240" y="210" width="15" height="23" rx="2" fill="url(#shn)" opacity="0.7"/>
+    <line x1="273" y1="210" x2="273" y2="266" stroke="rgba(180,160,120,0.18)" stroke-width="1"/>
+
+    <!-- central esquerdo -->
+    <rect x="275" y="207" width="38" height="59" rx="5" fill="url(#tw)"/>
+    <rect x="277" y="207" width="16" height="25" rx="2" fill="url(#shn)" opacity="0.75"/>
+    <line x1="313" y1="207" x2="313" y2="266" stroke="rgba(180,160,120,0.18)" stroke-width="1"/>
+
+    <!-- central direito -->
+    <rect x="315" y="207" width="38" height="59" rx="5" fill="url(#tw)"/>
+    <rect x="317" y="207" width="16" height="25" rx="2" fill="url(#shn)" opacity="0.75"/>
+    <line x1="353" y1="207" x2="353" y2="266" stroke="rgba(180,160,120,0.18)" stroke-width="1"/>
+
+    <!-- incisivo lateral -->
+    <rect x="355" y="207" width="38" height="59" rx="5" fill="url(#tw)"/>
+    <rect x="357" y="207" width="16" height="25" rx="2" fill="url(#shn)" opacity="0.75"/>
+    <line x1="393" y1="207" x2="393" y2="266" stroke="rgba(180,160,120,0.18)" stroke-width="1"/>
+
+    <rect x="395" y="207" width="38" height="59" rx="5" fill="url(#tw)"/>
+    <rect x="397" y="207" width="16" height="25" rx="2" fill="url(#shn)" opacity="0.75"/>
+    <line x1="433" y1="207" x2="433" y2="266" stroke="rgba(180,160,120,0.18)" stroke-width="1"/>
+
+    <rect x="435" y="207" width="38" height="59" rx="5" fill="url(#tw)"/>
+    <rect x="437" y="207" width="16" height="25" rx="2" fill="url(#shn)" opacity="0.75"/>
+    <line x1="473" y1="207" x2="473" y2="266" stroke="rgba(180,160,120,0.18)" stroke-width="1"/>
+
+    <rect x="475" y="210" width="35" height="56" rx="5" fill="url(#tw)"/>
+    <rect x="477" y="210" width="15" height="23" rx="2" fill="url(#shn)" opacity="0.7"/>
+    <line x1="510" y1="210" x2="510" y2="266" stroke="rgba(180,160,120,0.2)" stroke-width="1"/>
+
+    <rect x="512" y="216" width="31" height="50" rx="4" fill="url(#tw)"/>
+    <rect x="514" y="216" width="13" height="21" rx="2" fill="url(#shn)" opacity="0.65"/>
+    <line x1="543" y1="216" x2="543" y2="266" stroke="rgba(180,160,120,0.2)" stroke-width="1"/>
+
+    <rect x="545" y="220" width="28" height="46" rx="4" fill="url(#tw)"/>
+    <rect x="547" y="220" width="12" height="19" rx="2" fill="url(#shn)" opacity="0.6"/>
+    <line x1="573" y1="220" x2="573" y2="266" stroke="rgba(180,160,120,0.2)" stroke-width="1"/>
+
+    <rect x="575" y="223" width="25" height="43" rx="4" fill="url(#tw)"/>
+    <rect x="577" y="223" width="11" height="18" rx="2" fill="url(#shn)" opacity="0.55"/>
+
+    <ellipse cx="400" cy="218" rx="200" ry="10" fill="rgba(255,255,255,0.06)" filter="url(#b2)"/>
+  </g>
+
+  <ellipse cx="400" cy="267" rx="212" ry="13" fill="rgba(0,0,0,0.38)"/>
+  <line x1="175" y1="267" x2="600" y2="267" stroke="rgba(184,148,90,0.1)" stroke-width="1"/>
+
+  <circle cx="720" cy="60" r="28" fill="rgba(184,148,90,0.15)" stroke="rgba(184,148,90,0.35)" stroke-width="1.5"/>
+  <path d="M707 60 L716 70 L733 50" stroke="#B8945A" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="50" y="420" width="700" height="52" rx="4" fill="rgba(184,148,90,0.06)" stroke="rgba(184,148,90,0.18)" stroke-width="1"/>
+  <text x="400" y="441" font-family="Montserrat, sans-serif" font-size="10" fill="#B8945A" text-anchor="middle" letter-spacing="2">RESULTADO FINAL</text>
+  <text x="400" y="460" font-family="Montserrat, sans-serif" font-size="12" fill="#C4C0B4" text-anchor="middle">4 coroas E.max monolíticas — altura restaurada, resistência e estética natural</text>
+</svg>

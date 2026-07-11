@@ -1,0 +1,19 @@
+# Robots.txt para rroncolato.com.br
+# Permite que todos os rastreadores acessem o site
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /node_modules/
+Disallow: /protetic/
+Disallow: /proposta/
+
+# Google Bot - pode rastrear tudo
+User-agent: Googlebot
+Allow: /
+
+# Arquivo sitemap
+Sitemap: https://rroncolato.com.br/sitemap.xml
+
+# Tempo de espera entre requisições (em segundos)
+Crawl-delay: 1

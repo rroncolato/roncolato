@@ -1,0 +1,12 @@
+# Google Service Account (NUNCA commita)
+config/*.json
+
+# Dependências
+node_modules/
+
+# Arquivos temporários
+*.tmp
+.DS_Store
+
+# Logs
+*.log

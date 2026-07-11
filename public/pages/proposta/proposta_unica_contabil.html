@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Única Contábil · Proposta Estratégica | Estúdio Roncolato</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== DESIGN SYSTEM TOKENS ===== */
+        :root {
+            --color-primary: #F5C518;
+            --color-accent: #F5C518;
+            --color-dark: #0A0A0A;
+            --color-dark-alt: #141414;
+            --color-dark-card: #1a1a1a;
+            --color-light: #F5F2EC;
+            --color-gray-mid: #8A8A8A;
+            --color-gray-light: #E8E8E8;
+            --color-white: #FFFFFF;
+            --color-success: #0d8d64;
+
+            --font-heading: 'Jost', system-ui, sans-serif;
+            --font-body: 'Jost', system-ui, sans-serif;
+
+            --fs-h1: clamp(2.5rem, 6vw, 4rem);
+            --fs-h2: clamp(1.8rem, 4vw, 2.75rem);
+            --fs-h3: clamp(1.4rem, 2.5vw, 2rem);
+            --fs-h4: clamp(1.1rem, 2vw, 1.5rem);
+            --fs-h5: 1.125rem;
+            --fs-body-lg: 1.125rem;
+            --fs-body: 1rem;
+            --fs-body-sm: 0.875rem;
+            --fs-xs: 0.75rem;
+
+            --fw-light: 300;
+            --fw-regular: 400;
+            --fw-medium: 500;
+            --fw-semibold: 600;
+            --fw-bold: 700;
+            --fw-extrabold: 800;
+
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+            --spacing-3xl: 6rem;
+
+            --radius-sm: 0.25rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 1rem;
+
+            --transition-fast: 150ms ease-in-out;
+            --transition-base: 250ms ease-in-out;
+            --transition-slow: 350ms ease-in-out;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-dark);
+            color: var(--color-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: var(--fw-bold);
+            line-height: 1.2;
+            margin-bottom: var(--spacing-md);
+        }
+
+        h1 { font-size: var(--fs-h1); }
+        h2 { font-size: var(--fs-h2); }
+        h3 { font-size: var(--fs-h3); }
+        h4 { font-size: var(--fs-h4); }
+
+        p { margin-bottom: var(--spacing-md); font-size: var(--fs-body); }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        section {
+            padding: var(--spacing-3xl) 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0A0A0A 0%, #111111 60%, #1a1009 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(233,116,50,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(42,51,131,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-logo {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .hero-logo img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .hero-eyebrow {
+            font-size: var(--fs-xs);
+            font-weight: var(--fw-bold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+            display: block;
+        }
+
+        .hero h1 {
+            color: var(--color-white);
+            margin-bottom: var(--spacing-md);
+            font-weight: var(--fw-extrabold);
+        }
+
+        .hero h1 .highlight { color: var(--color-primary); }
+
+        .hero-subtitle {
+            color: var(--color-gray-mid);
+            font-size: var(--fs-body-lg);
+            max-width: 680px;
+            margin: 0 auto var(--spacing-xl);
+            font-weight: var(--fw-light);
+            line-height: 1.8;
+        }
+
+        .badge-row {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: var(--spacing-lg);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: var(--radius-sm);
+            font-size: var(--fs-xs);
+            font-weight: var(--fw-bold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .badge-primary { background: var(--color-primary); color: var(--color-dark); }
+        .badge-accent  { background: var(--color-accent);  color: var(--color-white); }
+        .badge-outline { border: 1px solid rgba(233,116,50,0.4); color: var(--color-primary); }
+
+        .divider-line {
+            width: 60px;
+            height: 3px;
+            background: var(--color-primary);
+            margin: var(--spacing-xl) auto;
+        }
+
+        .hero-para {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero-para-label {
+            font-size: var(--fs-xs);
+            font-weight: var(--fw-bold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--color-gray-mid);
+        }
+
+        .hero-para img {
+            max-width: 180px;
+            height: auto;
+            opacity: .85;
+        }
+
+        /* ===== SECTION HEADER ===== */
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .section-header .eyebrow {
+            font-size: var(--fs-xs);
+            font-weight: var(--fw-bold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--color-primary);
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .section-header h2 { color: var(--color-white); }
+
+        .section-header p {
+            color: var(--color-gray-mid);
+            font-size: var(--fs-body-lg);
+            max-width: 620px;
+            margin: 0 auto;
+            font-weight: var(--fw-light);
+        }
+
+        /* ===== APRESENTAÇÃO ===== */
+        .apresentacao {
+            background: var(--color-dark-alt);
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .apresentacao-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-3xl);
+            align-items: center;
+        }
+
+        .apresentacao-text h2 {
+            color: var(--color-white);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .apresentacao-text h2 span { color: var(--color-primary); }
+
+        .apresentacao-text p {
+            color: var(--color-gray-mid);
+            line-height: 1.9;
+            font-size: var(--fs-body-lg);
+        }
+
+        .apresentacao-text strong { color: var(--color-light); }
+
+        .apresentacao-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            margin-top: var(--spacing-lg);
+        }
+
+        .stat-box {
+            background: var(--color-dark-card);
+            padding: var(--spacing-lg);
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .stat-box .num {
+            font-size: 2.5rem;
+            font-weight: var(--fw-extrabold);
+            color: var(--color-primary);
+            letter-spacing: -.04em;
+            line-height: 1;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .stat-box .label {
+            font-size: var(--fs-body-sm);
+            color: var(--color-gray-mid);
+            font-weight: var(--fw-medium);
+        }
+
+        /* ===== DIAGNÓSTICO ===== */
+        .diagnostico {
+            background: var(--color-dark);
+        }
+
+        .diagnostico-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            margin-top: var(--spacing-xl);
+        }
+
+        .diag-card {
+            background: var(--color-dark-card);
+            padding: var(--spacing-xl);
+            border-top: 4px solid;
+            transition: transform var(--transition-base);
+        }
+
+        .diag-card:hover { transform: translateY(-4px); }
+
+        .diag-card.problema    { border-color: #c0392b; }
+        .diag-card.oportunidade { border-color: var(--color-primary); }
+
+        .diag-card .tag {
+            font-size: var(--fs-xs);
+            font-weight: var(--fw-bold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: var(--spacing-md);
+            display: block;
+        }
+
+        .diag-card.problema .tag    { color: #c0392b; }
+        .diag-card.oportunidade .tag { color: var(--color-primary); }
+
+        .diag-card h4 { color: var(--color-white); margin-bottom: var(--spacing-sm); }
+
+        .diag-card p { color: var(--color-gray-mid); font-size: var(--fs-body-sm); line-height: 1.8; margin-bottom: 0; }
+
+        .insight-box {
+            background: var(--color-dark-card);
+            padding: var(--spacing-xl);
+            border-left: 5px solid var(--color-primary);
+            margin-top: var(--spacing-xl);
+        }
+
+        .insight-box p {
+            color: var(--color-gray-mid);
+            font-size: var(--fs-body-lg);
+            line-height: 1.9;
+            margin-bottom: 0;
+            font-style: italic;
+        }
+
+        .insight-box strong { color: var(--color-primary); font-style: normal; font-weight: var(--fw-semibold); }
+
+        /* ===== PILARES ===== */
+        .solucao {
+            background: var(--color-dark-alt);
+        }
+
+        .pilares-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            margin-top: var(--spacing-xl);
+        }
+
+        .pilar-card {
+            background: var(--color-dark);
+            padding: var(--spacing-xl);
+            border-top: 5px solid var(--color-primary);
+            position: relative;
+            overflow: hidden;
+            transition: background var(--transition-base);
+        }
+
+        .pilar-card:hover { background: rgba(255,255,255,0.02); }
+
+        .pilar-num {
+            font-size: 5rem;
+            font-weight: var(--fw-extrabold);
+            color: rgba(233,116,50,0.07);
+            position: absolute;
+            top: -8px;
+            right: 16px;
+            line-height: 1;
+            letter-spacing: -.04em;
+            pointer-events: none;
+        }
+
+        .pilar-card h3 {
+            color: var(--color-primary);
+            font-size: var(--fs-h4);
+            margin-bottom: var(--spacing-xs);
+            position: relative;
+            z-index: 1;
+        }
+
+        .pilar-card .pilar-sub {
+            font-size: var(--fs-xs);
+            font-weight: var(--fw-bold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-gray-mid);
+            margin-bottom: var(--spacing-md);
+            display: block;
+        }
+
+        .pilar-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .pilar-card li {
+            color: var(--color-gray-mid);
+            font-size: var(--fs-body-sm);
+            line-height: 1.7;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .pilar-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+            font-weight: var(--fw-bold);
+        }
+
+        /* ===== ROADMAP ===== */
+        .roadmap {
+            background: var(--color-dark);
+        }
+
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            margin-top: var(--spacing-xl);
+        }
+
+        .rm-card {
+            background: var(--color-dark-card);
+            padding: var(--spacing-xl) var(--spacing-lg);
+            border-top: 3px solid;
+            transition: background var(--transition-base);
+        }
+
+        .rm-card:hover { background: rgba(255,255,255,0.03); }
+
+        .rm-card:nth-child(1) { border-color: var(--color-primary); }
+        .rm-card:nth-child(2) { border-color: rgba(233,116,50,.65); }
+        .rm-card:nth-child(3) { border-color: rgba(233,116,50,.4); }
+        .rm-card:nth-child(4) { border-color: rgba(233,116,50,.4); }
+        .rm-card:nth-child(5) { border-color: rgba(233,116,50,.65); }
+        .rm-card:nth-child(6) { border-color: var(--color-primary); }
+
+        .rm-mes {
+            font-size: 2.25rem;
+            font-weight: var(--fw-extrabold);
+            color: var(--color-primary);
+            letter-spacing: -.04em;
+            line-height: 1;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .rm-titulo {
+            font-size: var(--fs-body-sm);
+            font-weight: var(--fw-bold);
+            color: var(--color-white);
+            margin-bottom: var(--spacing-md);
+            letter-spacing: .02em;
+        }
+
+        .rm-card ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+
+        .rm-card li {
+            font-size: var(--fs-xs);
+            color: var(--color-gray-mid);
+            line-height: 1.6;
+            padding-left: 12px;
+            position: relative;
+        }
+
+        .rm-card li::before {
+            content: '·';
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+            font-weight: var(--fw-extrabold);
+        }
+
+        /* ===== MODELO ===== */
+        .modelo {
+            background: var(--color-dark-alt);
+        }
+
+        .modelo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            margin-top: var(--spacing-xl);
+        }
+
+        .mod-card {
+            background: var(--color-dark);
+            padding: var(--spacing-xl);
+            border-left: 4px solid var(--color-primary);
+            transition: transform var(--transition-base);
+        }
+
+        .mod-card:hover { transform: translateX(6px); }
+
+        .mod-card .num {
+            font-size: var(--fs-xs);
+            font-weight: var(--fw-bold);
+            letter-spacing: .18em;
+            color: var(--color-primary);
+            display: block;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .mod-card h4 { color: var(--color-white); font-size: var(--fs-h5); margin-bottom: var(--spacing-sm); }
+
+        .mod-card p { color: var(--color-gray-mid); font-size: var(--fs-body-sm); line-height: 1.9; margin-bottom: 0; }
+
+        /* ===== INVESTIMENTO ===== */
+        .investimento {
+            background: var(--color-dark);
+        }
+
+        .inv-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-3xl);
+            align-items: start;
+        }
+
+        .inv-left p {
+            color: var(--color-gray-mid);
+            font-size: var(--fs-body-lg);
+            font-weight: var(--fw-light);
+            line-height: 1.9;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .inv-left strong { color: var(--color-light); }
+
+        .inv-card {
+            background: var(--color-dark-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: var(--spacing-2xl) var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .inv-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+        }
+
+        .inv-eyebrow {
+            font-size: var(--fs-xs);
+            font-weight: var(--fw-bold);
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--color-gray-mid);
+            display: block;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .inv-valor {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: var(--fw-extrabold);
+            color: var(--color-primary);
+            letter-spacing: -.04em;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .inv-periodo {
+            font-size: var(--fs-body-sm);
+            color: var(--color-gray-mid);
+            font-weight: var(--fw-light);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .inv-rule {
+            width: 32px;
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .inv-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .inv-list li {
+            font-size: var(--fs-body-sm);
+            font-weight: var(--fw-light);
+            color: var(--color-gray-mid);
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .inv-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+            font-weight: var(--fw-bold);
+            font-size: var(--fs-xs);
+        }
+
+        .inv-obs {
+            font-size: var(--fs-xs);
+            font-weight: var(--fw-light);
+            color: rgba(138,138,138,0.6);
+            line-height: 1.7;
+        }
+
+        /* ===== CTA ===== */
+        .cta-final {
+            background: var(--color-dark-alt);
+            border-top: 1px solid rgba(255,255,255,0.04);
+            text-align: center;
+        }
+
+        .cta-final h2 { color: var(--color-white); margin-bottom: var(--spacing-md); }
+        .cta-final h2 span { color: var(--color-primary); }
+        .cta-final p { color: var(--color-gray-mid); font-size: var(--fs-body-lg); max-width: 520px; margin: 0 auto var(--spacing-xl); font-weight: var(--fw-light); }
+
+        .btn-cta {
+            display: inline-block;
+            padding: var(--spacing-md) var(--spacing-2xl);
+            background: var(--color-primary);
+            color: var(--color-dark);
+            font-family: var(--font-body);
+            font-weight: var(--fw-extrabold);
+            font-size: var(--fs-xs);
+            text-transform: uppercase;
+            letter-spacing: .18em;
+            text-decoration: none;
+            transition: opacity var(--transition-fast);
+        }
+
+        .btn-cta:hover { opacity: .85; }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: var(--spacing-xl) 0;
+            background: var(--color-dark);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .footer img { height: 20px; width: auto; opacity: .45; }
+
+        .footer p {
+            font-size: var(--fs-xs);
+            color: var(--color-gray-mid);
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .container { padding: 0 24px; }
+            section { padding: 64px 0; }
+            .apresentacao-grid,
+            .inv-wrap          { grid-template-columns: 1fr; gap: 48px; }
+            .diagnostico-grid,
+            .pilares-grid      { grid-template-columns: 1fr; }
+            .roadmap-grid,
+            .modelo-grid       { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .roadmap-grid,
+            .modelo-grid       { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-logo">
+                <img src="../../assets/IMG/roncolato-branco-horizontal.png" alt="Estúdio Roncolato">
+            </div>
+            <span class="hero-eyebrow">Proposta Estratégica · 2025</span>
+            <h1>
+                Da operação ao<br>
+                <span class="highlight">posicionamento de autoridade.</span>
+            </h1>
+            <p class="hero-subtitle">
+                Uma proposta de parceria estratégica para a Única Contábil elevar sua percepção de valor, construir marca sólida e criar previsibilidade de crescimento com clientes de maior ticket.
+            </p>
+            <div class="badge-row">
+                <span class="badge badge-accent">Única Contábil</span>
+                <span class="badge badge-outline">Branding & Estratégia</span>
+                <span class="badge badge-outline">6 Meses</span>
+                <span class="badge badge-outline">Goiânia · GO</span>
+            </div>
+            <div class="divider-line"></div>
+            <div class="hero-para">
+                <span class="hero-para-label">Preparado para</span>
+                <img src="https://unicacontabil.com.br/wp-content/uploads/2025/11/Logotipo-unica-contabil-contabilidade-empresarial-goiania-goias-brasil-branco-laranja.webp" alt="Única Contábil">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════ APRESENTAÇÃO ═══════ -->
+<section class="apresentacao">
+    <div class="container">
+        <div class="apresentacao-grid">
+            <div class="apresentacao-text">
+                <span class="section-header eyebrow" style="text-align:left; display:block; margin-bottom: var(--spacing-sm);">Quem somos</span>
+                <h2>Estratégia visual e<br><span>narrativa de marca.</span></h2>
+                <p>
+                    O <strong>Estúdio Roncolato</strong> combina fotografia estratégica, branding e comunicação para transformar empresas em referências visuais dentro do seu mercado.
+                </p>
+                <p>
+                    Trabalhamos com negócios que entendem que <strong>imagem é posicionamento</strong>, e que cada peça de comunicação precisa gerar percepção de valor, não apenas presença.
+                </p>
+                <p style="margin-bottom:0;">
+                    A Única Contábil já tem o que mais escasseia: base de clientes, estrutura e reputação. Nossa missão é transformar isso em <strong>marca consistente e crescimento qualificado.</strong>
+                </p>
+            </div>
+            <div class="apresentacao-stats">
+                <div class="stat-box">
+                    <span class="num">6+</span>
+                    <span class="label">Anos posicionando marcas de serviços</span>
+                </div>
+                <div class="stat-box">
+                    <span class="num">100%</span>
+                    <span class="label">Foco em orgânico e relacionamento</span>
+                </div>
+                <div class="stat-box">
+                    <span class="num">B2B</span>
+                    <span class="label">Especialidade em empresas e profissionais liberais</span>
+                </div>
+                <div class="stat-box">
+                    <span class="num">↑</span>
+                    <span class="label">Ticket médio elevado sem ruptura de base</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════ DIAGNÓSTICO ═══════ -->
+<section class="diagnostico">
+    <div class="container">
+        <div class="section-header">
+            <span class="eyebrow">O cenário</span>
+            <h2>O que identificamos na Única</h2>
+            <p>Diagnóstico honesto do ponto de partida: o que trava e o que já está a favor.</p>
+        </div>
+
+        <div class="diagnostico-grid">
+            <div class="diag-card problema">
+                <span class="tag">Desafio</span>
+                <h4>Ausência de estratégia de marca</h4>
+                <p>A equipe produz conteúdo, mas sem narrativa central e direcionamento estratégico. O resultado é presença sem posicionamento, esforço sem diferenciação percebida.</p>
+            </div>
+            <div class="diag-card problema">
+                <span class="tag">Desafio</span>
+                <h4>Ticket baixo em parte relevante da carteira</h4>
+                <p>Clientes antigos travam o reequilíbrio da base. Sem comunicação que justifique valor premium, aumentar preço gera resistência e risco de churn.</p>
+            </div>
+            <div class="diag-card oportunidade">
+                <span class="tag">Oportunidade</span>
+                <h4>Base estabelecida + reputação real</h4>
+                <p>A Única já tem o que leva anos para construir: clientes ativos, estrutura operacional e reputação positiva. É o alicerce ideal para reposicionamento estratégico.</p>
+            </div>
+            <div class="diag-card oportunidade">
+                <span class="tag">Oportunidade</span>
+                <h4>Autoridade do Emerson como ativo</h4>
+                <p>Personal branding bem construído gera indicações qualificadas e reduz fricção comercial. Contadores com voz ativa no mercado são raros, e isso é uma vantagem competitiva real.</p>
+            </div>
+        </div>
+
+        <div class="insight-box">
+            <p>"A Única não precisa mudar o que faz. Precisa <strong>comunicar melhor o valor do que já entrega.</strong> O trabalho é de narrativa, consistência e posicionamento, não de reconstrução."</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════ PILARES ═══════ -->
+<section class="solucao">
+    <div class="container">
+        <div class="section-header">
+            <span class="eyebrow">A Solução</span>
+            <h2>4 pilares estratégicos</h2>
+            <p>Um trabalho integrado que constrói marca, audiência e conversão de forma consistente e sustentável.</p>
+        </div>
+
+        <div class="pilares-grid">
+            <div class="pilar-card">
+                <span class="pilar-num">01</span>
+                <h3>Diagnóstico & Posicionamento</h3>
+                <span class="pilar-sub">Marca · Identidade · Mensagem</span>
+                <ul>
+                    <li>Mapeamento da percepção atual junto a clientes</li>
+                    <li>Definição de posicionamento e proposta de valor única</li>
+                    <li>Arquétipos e personalidade de marca</li>
+                    <li>Tom de voz e diretrizes de comunicação</li>
+                    <li>Narrativa central da Única e do Emerson como autoridade</li>
+                </ul>
+            </div>
+            <div class="pilar-card">
+                <span class="pilar-num">02</span>
+                <h3>Conteúdo & Presença</h3>
+                <span class="pilar-sub">Estratégia · Produção · Consistência</span>
+                <ul>
+                    <li>Calendário editorial com lógica de "programa" (quadros recorrentes)</li>
+                    <li>Conteúdo denso (vídeo / podcast) com reaproveitamento em múltiplos formatos</li>
+                    <li>Padrões visuais e rotina de produção com a equipe interna</li>
+                    <li>Estratégia para segmento saúde e expansão B2B</li>
+                    <li>Diretrizes de qualidade e aprovação de conteúdo</li>
+                </ul>
+            </div>
+            <div class="pilar-card">
+                <span class="pilar-num">03</span>
+                <h3>Infraestrutura & Conversão</h3>
+                <span class="pilar-sub">Site · SEO · Jornada · Leads</span>
+                <ul>
+                    <li>Diagnóstico e recomendações para site e blog</li>
+                    <li>Estrutura de CTAs e geração de leads orgânicos</li>
+                    <li>Automações e fluxos de WhatsApp e Instagram</li>
+                    <li>Jornada transmídia alinhada ao ciclo comercial</li>
+                    <li>SEO básico para posicionamento orgânico local em Goiânia</li>
+                </ul>
+            </div>
+            <div class="pilar-card">
+                <span class="pilar-num">04</span>
+                <h3>Relacionamento & Retenção</h3>
+                <span class="pilar-sub">Fidelização · Premium · Indicações</span>
+                <ul>
+                    <li>Plano de comunicação de relacionamento com a base atual</li>
+                    <li>Pesquisa de satisfação e gatilhos de fidelização</li>
+                    <li>Benefícios e comunicação diferenciada para clientes premium</li>
+                    <li>Programa estruturado de estímulo a indicações qualificadas</li>
+                    <li>Comunicações de aniversário de parceria e marcos</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════ ROADMAP ═══════ -->
+<section class="roadmap">
+    <div class="container">
+        <div class="section-header">
+            <span class="eyebrow">Como vamos trabalhar</span>
+            <h2>Roadmap de 6 meses</h2>
+            <p>Resultados estratégicos exigem consistência. Este é o ritmo proposto para construir a nova marca Única.</p>
+        </div>
+
+        <div class="roadmap-grid">
+            <div class="rm-card">
+                <span class="rm-mes">Mês 1</span>
+                <div class="rm-titulo">Diagnóstico & Base</div>
+                <ul>
+                    <li>Entrevistas com clientes e equipe</li>
+                    <li>Mapeamento de percepção atual</li>
+                    <li>Definição de posicionamento</li>
+                    <li>Arquétipos e tom de voz</li>
+                </ul>
+            </div>
+            <div class="rm-card">
+                <span class="rm-mes">Mês 2</span>
+                <div class="rm-titulo">Identidade & Narrativa</div>
+                <ul>
+                    <li>Proposta de valor finalizada</li>
+                    <li>Guia de comunicação e marca</li>
+                    <li>Narrativa da Única + Emerson</li>
+                    <li>Primeiros conteúdos pilares</li>
+                </ul>
+            </div>
+            <div class="rm-card">
+                <span class="rm-mes">Mês 3</span>
+                <div class="rm-titulo">Conteúdo & Presença</div>
+                <ul>
+                    <li>Calendário editorial rodando</li>
+                    <li>Primeiro formato denso gravado</li>
+                    <li>Padrão visual aplicado</li>
+                    <li>Site: diagnóstico e ajustes iniciais</li>
+                </ul>
+            </div>
+            <div class="rm-card">
+                <span class="rm-mes">Mês 4</span>
+                <div class="rm-titulo">Infraestrutura & Jornada</div>
+                <ul>
+                    <li>CTAs e jornada transmídia ativa</li>
+                    <li>Automações WhatsApp e Instagram</li>
+                    <li>SEO e blog estruturado</li>
+                    <li>Geração de leads orgânicos</li>
+                </ul>
+            </div>
+            <div class="rm-card">
+                <span class="rm-mes">Mês 5</span>
+                <div class="rm-titulo">Relacionamento & Premium</div>
+                <ul>
+                    <li>Programa de fidelização ativo</li>
+                    <li>Comunicação premium diferenciada</li>
+                    <li>Estímulo a indicações qualificadas</li>
+                    <li>Pesquisa de satisfação aplicada</li>
+                </ul>
+            </div>
+            <div class="rm-card">
+                <span class="rm-mes">Mês 6</span>
+                <div class="rm-titulo">Consolidação & Escala</div>
+                <ul>
+                    <li>Revisão e otimização de todos os pilares</li>
+                    <li>Análise de resultados e métricas</li>
+                    <li>Plano de continuidade</li>
+                    <li>Entrega do playbook estratégico completo</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════ MODELO ═══════ -->
+<section class="modelo">
+    <div class="container">
+        <div class="section-header">
+            <span class="eyebrow">Premissas</span>
+            <h2>Como trabalhamos juntos</h2>
+            <p>Clareza sobre o modelo de colaboração garante resultado.</p>
+        </div>
+
+        <div class="modelo-grid">
+            <div class="mod-card">
+                <span class="num">01 · Orgânico primeiro</span>
+                <h4>Base antes de tráfego</h4>
+                <p>Tráfego pago não é prioridade neste momento. O trabalho é ajustar a base: posicionamento, site, conteúdo e processos, para que qualquer investimento futuro tenha retorno real.</p>
+            </div>
+            <div class="mod-card">
+                <span class="num">02 · Parceria ativa</span>
+                <h4>Co-criação, não fornecimento</h4>
+                <p>Reuniões quinzenais de alinhamento, acesso à equipe interna e co-criação constante são parte do processo. Estratégia sem execução próxima vira documento esquecido.</p>
+            </div>
+            <div class="mod-card">
+                <span class="num">03 · Evolução gradual</span>
+                <h4>Sem rupturas disruptivas</h4>
+                <p>A Única não precisa reinventar a roda. O objetivo é potencializar o que já funciona, corrigir lacunas e preparar o terreno para aumentar ticket com menos resistência da base.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════ INVESTIMENTO ═══════ -->
+<section class="investimento">
+    <div class="container">
+        <div class="inv-wrap">
+            <div class="inv-left">
+                <span style="font-size:var(--fs-xs); font-weight:var(--fw-bold); text-transform:uppercase; letter-spacing:3px; color:var(--color-primary); display:block; margin-bottom:var(--spacing-sm);">Investimento</span>
+                <h2 style="color:var(--color-white); margin-bottom:var(--spacing-lg);">Proposta de valor</h2>
+                <p>Um retainer mensal com escopo completo e dedicação real ao projeto, do diagnóstico até o playbook final entregue.</p>
+                <p>O modelo de retainer garante <strong>continuidade estratégica</strong> e comprometimento com os resultados. Diferente de projetos pontuais que não sustentam mudança de percepção de mercado.</p>
+                <p style="margin-bottom:0; font-size:var(--fs-body-sm);">Indicação segue como canal forte e será potencializada ao longo do processo.</p>
+            </div>
+            <div class="inv-right">
+                <div class="inv-card">
+                    <span class="inv-eyebrow">Retainer mensal · Contrato 6 meses</span>
+                    <div class="inv-valor">R$ 5.200</div>
+                    <p class="inv-periodo">por mês · contrato com condição especial para 6 meses, podendo ser renovado ao fim do período</p>
+                    <div class="inv-rule"></div>
+                    <ul class="inv-list">
+                        <li>Diagnóstico completo de posicionamento e marca</li>
+                        <li>Guia de comunicação, tom de voz e narrativa</li>
+                        <li>Estratégia e calendário editorial mensal</li>
+                        <li>Acompanhamento de produção de conteúdo + treinamento do time interno</li>
+                        <li>Até 2 episódios de podcast por mês (roteiro, gravação e edição)</li>
+                        <li>Estrutura de CTAs, jornada e automações</li>
+                        <li>Plano de relacionamento e retenção</li>
+                        <li>Reuniões quinzenais de alinhamento</li>
+                        <li>Playbook estratégico entregue ao final</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════ CTA ═══════ -->
+<section class="cta-final">
+    <div class="container">
+        <h2>Próximo passo:<br><span>uma conversa.</span></h2>
+        <p>Essa proposta é um ponto de partida. O melhor trabalho nasce do alinhamento, e estamos prontos para esse papo.</p>
+        <a href="https://wa.me/5562985928423" class="btn-cta" target="_blank">Falar com Roncolato →</a>
+    </div>
+</section>
+
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="footer">
+    <div class="footer-inner">
+        <img src="../../assets/IMG/roncolato-branco-horizontal.png" alt="Estúdio Roncolato">
+        <p>Estúdio Roncolato · Proposta Única Contábil · 2026</p>
+        <p>rroncolato.com.br</p>
+    </div>
+</footer>
+
+</body>
+</html>

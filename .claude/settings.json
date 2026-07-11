@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \":*)",
+      "Bash(node download_imgs.js)",
+      "Bash(npm run dev)",
+      "Bash(xargs grep:*)",
+      "WebSearch",
+      "Bash(grep \"\\\\.jpg$\")",
+      "Bash(pdftotext '/c/Users/rodri/Desktop/GERAL/PDF/GuiadeImagem-Ronaldo.pdf' -)",
+      "Bash(python3 -c \"import PIL; print\\(''PIL available''\\)\")"
+    ]
+  }
+}

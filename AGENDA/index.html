@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agendar Reunião — Rodrigo Roncolato</title>
+<link rel="icon" type="image/png" href="https://rodrigoroncolato.com.br/IMG/site/rr-simbolo.png">
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --k:#0A0A0A;--w:#ffffff;--y:#F5C518;
+  --g2:#1a1a1a;--g3:#242424;--g4:#404040;--g5:#7a7a7a;
+  --f:'Jost',sans-serif;
+  --ease2:cubic-bezier(.76,0,.24,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  width:100%;background:#0A0A0A;color:#fff;
+  font-family:'Jost',sans-serif;font-weight:300;
+  line-height:1.6;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+*{background-color:inherit}
+button{-webkit-appearance:none;appearance:none;font-family:'Jost',sans-serif}
+
+/* CURSOR */
+@media(pointer:fine){
+  body{cursor:none}
+  #cur{
+    position:fixed;z-index:9999;pointer-events:none;
+    width:8px;height:8px;background:#F5C518;border-radius:50%;
+    transform:translate(-50%,-50%);
+    transition:width .35s var(--ease2),height .35s var(--ease2);
+    mix-blend-mode:difference;
+  }
+  #cur.big{width:52px;height:52px}
+}
+
+/* GRAIN */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:8000;opacity:.03;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  height:72px;background:#0A0A0A;border-bottom:1px solid #1a1a1a;
+  display:flex;align-items:center;
+}
+.nav-inner{
+  width:100%;max-width:1100px;margin:0 auto;padding:0 40px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nlogo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nlogo img{width:28px;height:28px;object-fit:contain;background:transparent!important}
+.nlogo-text{font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:#fff}
+.nlogo-text em{font-style:normal;color:#F5C518}
+.nback{
+  font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:#7a7a7a;text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s;
+}
+.nback:hover{color:#fff}
+.nback svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+@media(max-width:520px){.nlogo-text{display:none}.nav-inner{padding:0 20px}}
+
+/* LAYOUT */
+main{padding-top:72px;min-height:100vh}
+.wrap{max-width:1100px;margin:0 auto;padding:60px 40px 80px}
+@media(max-width:520px){.wrap{padding:40px 20px 60px}}
+
+/* HEADING */
+.head{margin-bottom:48px}
+.head-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;margin-bottom:16px;
+  font-size:9px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#F5C518;
+}
+.head-eyebrow::before{content:'';width:18px;height:1px;background:#F5C518}
+.head h1{
+  font-size:clamp(36px,5vw,64px);font-weight:900;letter-spacing:-.03em;
+  text-transform:uppercase;color:#fff;line-height:.95;
+}
+
+/* MAIN GRID */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;align-items:start}
+@media(max-width:720px){.grid{grid-template-columns:1fr;gap:32px}}
+
+/* CALENDAR */
+.cal{background:#111;padding:32px}
+.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+.cal-month{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff}
+.cal-btn{
+  width:32px;height:32px;background:transparent!important;border:1px solid #242424;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s;
+}
+.cal-btn:hover{border-color:#F5C518}
+.cal-btn:disabled{opacity:.25;pointer-events:none}
+.cal-btn svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2}
+
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-dow{
+  text-align:center;font-size:9px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#404040;padding:6px 0 10px;
+}
+.day{
+  aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:500;color:#7a7a7a;cursor:pointer;
+  position:relative;transition:color .15s;border-radius:50%;
+}
+.day:hover:not(.off):not(.empty){background:#1a1a1a;color:#fff}
+.day.today{
+  background:#F5C518!important;color:#0A0A0A!important;
+  font-weight:900;border-radius:50%;
+}
+.day.sel:not(.today){
+  background:#fff!important;color:#0A0A0A!important;
+  font-weight:700;border-radius:50%;
+}
+.day.off{color:#242424;cursor:not-allowed;pointer-events:none}
+.day.empty{pointer-events:none}
+
+/* TIME SLOTS */
+.times{background:#111;padding:32px}
+.times-label{
+  font-size:9px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+  color:#F5C518;margin-bottom:20px;display:flex;align-items:center;gap:10px;
+}
+.times-label::before{content:'';width:16px;height:1px;background:#F5C518}
+.times-empty{font-size:13px;color:#404040}
+
+.tgroup-title{
+  font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:#404040;margin-bottom:8px;
+}
+.tgroup-title+.tgroup-title{margin-top:20px}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:0}
+.tslot{
+  padding:11px 0;text-align:center;border:1px solid #1a1a1a;
+  font-size:13px;font-weight:600;color:#7a7a7a;cursor:pointer;
+  background:#0A0A0A!important;transition:all .15s;
+}
+.tslot:hover:not(.busy){border-color:#404040;color:#fff}
+.tslot.sel{border-color:#F5C518;color:#F5C518;background:#111!important}
+.tslot.busy{color:#242424;cursor:not-allowed;pointer-events:none;opacity:.5}
+
+/* FORMAT */
+.format{margin-top:2px;background:#111;padding:32px;grid-column:1/-1}
+.format-label{
+  font-size:9px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+  color:#F5C518;margin-bottom:20px;display:flex;align-items:center;gap:10px;
+}
+.format-label::before{content:'';width:16px;height:1px;background:#F5C518}
+.format-cards{display:flex;gap:2px}
+.fcard{
+  flex:1;padding:24px 20px;border:1px solid #1a1a1a;cursor:pointer;
+  display:flex;align-items:center;gap:16px;transition:border-color .2s;
+  background:#0A0A0A!important;
+}
+.fcard:hover{border-color:#404040}
+.fcard.sel{border-color:#F5C518;background:#0d0d0d!important}
+.fcard-icon{flex-shrink:0;color:#404040;transition:color .2s}
+.fcard.sel .fcard-icon{color:#F5C518}
+.fcard-icon svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.5}
+.fcard-text{}
+.fcard-name{font-size:14px;font-weight:700;color:#7a7a7a;transition:color .2s;margin-bottom:2px}
+.fcard.sel .fcard-name{color:#fff}
+.fcard-desc{font-size:11px;color:#404040;font-weight:300}
+
+/* CONFIRM */
+.confirm-row{margin-top:2px;grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.summary-text{font-size:12px;color:#404040;line-height:1.8}
+.summary-text strong{color:#fff;font-weight:600}
+
+.btn-confirm{
+  padding:15px 36px;background:#F5C518!important;color:#0A0A0A!important;
+  -webkit-text-fill-color:#0A0A0A!important;
+  font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  border:none;cursor:pointer;transition:opacity .2s;
+  display:flex;align-items:center;gap:10px;white-space:nowrap;flex-shrink:0;
+}
+.btn-confirm:hover{opacity:.85}
+.btn-confirm:disabled{opacity:.3;cursor:not-allowed;pointer-events:none}
+.btn-confirm svg{width:16px;height:16px;stroke:#0A0A0A;fill:none;stroke-width:2.5}
+
+/* FOOTER */
+footer{
+  border-top:1px solid #1a1a1a;padding:28px 40px;
+  max-width:1100px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+}
+footer p{font-size:11px;color:#404040}
+footer a{color:#404040;text-decoration:none;transition:color .2s}
+footer a:hover{color:#F5C518}
+@media(max-width:520px){footer{flex-direction:column;gap:8px;padding:24px 20px;text-align:center}}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="https://rodrigoroncolato.com.br" class="nlogo">
+      <img src="https://rodrigoroncolato.com.br/IMG/site/rr-simbolo.png" alt="RR">
+      <span class="nlogo-text">Rodrigo <em>Roncolato</em></span>
+    </a>
+    <a href="https://rodrigoroncolato.com.br" class="nback">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5M5 12l7 7M5 12l7-7"/></svg>
+      Voltar ao site
+    </a>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+
+  <div class="head">
+    <div class="head-eyebrow">Agendamento</div>
+    <h1>Vamos<br>conversar</h1>
+  </div>
+
+  <div class="grid">
+
+    <!-- CALENDÁRIO -->
+    <div class="cal">
+      <div class="cal-nav">
+        <button class="cal-btn" id="prev" onclick="nav(-1)">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="cal-month" id="month-label"></div>
+        <button class="cal-btn" id="next" onclick="nav(1)">
+          <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="cal-grid" id="cal-grid">
+        <div class="cal-dow">Dom</div>
+        <div class="cal-dow">Seg</div>
+        <div class="cal-dow">Ter</div>
+        <div class="cal-dow">Qua</div>
+        <div class="cal-dow">Qui</div>
+        <div class="cal-dow">Sex</div>
+        <div class="cal-dow">Sáb</div>
+      </div>
+    </div>
+
+    <!-- HORÁRIOS -->
+    <div class="times">
+      <div class="times-label">Horário</div>
+      <div id="times-body">
+        <div class="times-empty">Selecione uma data</div>
+      </div>
+    </div>
+
+    <!-- FORMATO -->
+    <div class="format">
+      <div class="format-label">Formato</div>
+      <div class="format-cards">
+        <div class="fcard" data-f="Presencial" onclick="selectFormat(this)">
+          <div class="fcard-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="fcard-text">
+            <div class="fcard-name">Presencial</div>
+            <div class="fcard-desc">Goiânia — GO</div>
+          </div>
+        </div>
+        <div class="fcard" data-f="Online" onclick="selectFormat(this)">
+          <div class="fcard-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div class="fcard-text">
+            <div class="fcard-name">Online</div>
+            <div class="fcard-desc">Google Meet ou Zoom</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONFIRMAR -->
+    <div class="confirm-row">
+      <div class="summary-text" id="summary">Escolha uma data, horário e formato.</div>
+      <button class="btn-confirm" id="btn-ok" disabled onclick="abrirModal()">
+        Confirmar
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL -->
+<div id="modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:9000;backdrop-filter:blur(4px)"></div>
+<div id="modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9001;background:#0A0A0A;border:1px solid #1a1a1a;border-radius:8px;width:90%;max-width:420px;padding:40px">
+  <h2 style="font-size:22px;font-weight:700;margin-bottom:24px;color:#fff">Finalize seu agendamento</h2>
+
+  <form id="form-booking" onsubmit="submeterAgendamento(event)">
+    <div style="margin-bottom:20px">
+      <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7a7a7a;margin-bottom:8px">Nome</label>
+      <input type="text" id="inp-nome" placeholder="Seu nome completo" required style="width:100%;padding:12px 16px;background:#111;border:1px solid #1a1a1a;border-radius:4px;color:#fff;font-family:inherit;font-size:14px;transition:border-color .2s" onfocus="this.style.borderColor='#404040'" onblur="this.style.borderColor='#1a1a1a'">
+    </div>
+
+    <div style="margin-bottom:20px">
+      <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7a7a7a;margin-bottom:8px">E-mail</label>
+      <input type="email" id="inp-email" placeholder="seu.email@exemplo.com" required style="width:100%;padding:12px 16px;background:#111;border:1px solid #1a1a1a;border-radius:4px;color:#fff;font-family:inherit;font-size:14px;transition:border-color .2s" onfocus="this.style.borderColor='#404040'" onblur="this.style.borderColor='#1a1a1a'">
+    </div>
+
+    <div style="margin-bottom:24px">
+      <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7a7a7a;margin-bottom:8px">WhatsApp</label>
+      <input type="tel" id="inp-tel" placeholder="(XX) 99999-9999" required style="width:100%;padding:12px 16px;background:#111;border:1px solid #1a1a1a;border-radius:4px;color:#fff;font-family:inherit;font-size:14px;transition:border-color .2s" onfocus="this.style.borderColor='#404040'" onblur="this.style.borderColor='#1a1a1a'">
+    </div>
+
+    <div style="margin-bottom:24px">
+      <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7a7a7a;margin-bottom:8px">Empresa (opcional)</label>
+      <input type="text" id="inp-empresa" placeholder="Sua empresa" style="width:100%;padding:12px 16px;background:#111;border:1px solid #1a1a1a;border-radius:4px;color:#fff;font-family:inherit;font-size:14px;transition:border-color .2s" onfocus="this.style.borderColor='#404040'" onblur="this.style.borderColor='#1a1a1a'">
+    </div>
+
+    <div style="margin-bottom:28px">
+      <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7a7a7a;margin-bottom:8px">Mensagem (opcional)</label>
+      <textarea id="inp-msg" placeholder="Sua mensagem aqui..." style="width:100%;padding:12px 16px;background:#111;border:1px solid #1a1a1a;border-radius:4px;color:#fff;font-family:inherit;font-size:14px;transition:border-color .2s;resize:vertical;min-height:80px;font-family:'Jost',sans-serif" onfocus="this.style.borderColor='#404040'" onblur="this.style.borderColor='#1a1a1a'"></textarea>
+    </div>
+
+    <div style="display:flex;gap:12px">
+      <button type="button" onclick="fecharModal()" style="flex:1;padding:12px 20px;background:transparent;border:1px solid #1a1a1a;color:#fff;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:border-color .2s;border-radius:4px" onmouseenter="this.style.borderColor='#404040'" onmouseleave="this.style.borderColor='#1a1a1a'">Cancelar</button>
+      <button type="submit" id="btn-submit" style="flex:1;padding:12px 20px;background:#F5C518;color:#0A0A0A;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:none;border-radius:4px;transition:opacity .2s" onmouseenter="this.style.opacity='.85'" onmouseleave="this.style.opacity='1'">Agendar</button>
+    </div>
+  </form>
+
+  <div id="modal-loading" style="display:none;text-align:center;padding:20px">
+    <div style="font-size:14px;color:#F5C518;margin-bottom:12px">Agendando...</div>
+    <div style="width:30px;height:30px;border:2px solid #1a1a1a;border-top-color:#F5C518;border-radius:50%;margin:0 auto;animation:spin 1s linear infinite" id="spinner"></div>
+  </div>
+
+  <div id="modal-sucesso" style="display:none;text-align:center;padding:20px">
+    <div style="font-size:18px;color:#F5C518;margin-bottom:12px;font-weight:700">✓ Agendamento confirmado!</div>
+    <p style="color:#7a7a7a;margin-bottom:20px">Você receberá uma confirmação por e-mail e WhatsApp.</p>
+    <button type="button" onclick="fecharModal()" style="padding:12px 32px;background:#F5C518;color:#0A0A0A;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:none;border-radius:4px">Fechar</button>
+  </div>
+</div>
+
+<style>
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+
+<footer>
+  <p>© <span id="yr"></span> Rodrigo Roncolato</p>
+  <a href="https://rodrigoroncolato.com.br">rodrigoroncolato.com.br</a>
+</footer>
+</main>
+
+<script>
+/* CURSOR */
+(()=>{
+  const c=document.getElementById('cur');
+  if(!c)return;
+  document.addEventListener('mousemove',e=>{c.style.left=e.clientX+'px';c.style.top=e.clientY+'px'});
+  document.querySelectorAll('button,.fcard,.tslot,.day,.nback').forEach(el=>{
+    el.addEventListener('mouseenter',()=>c.classList.add('big'));
+    el.addEventListener('mouseleave',()=>c.classList.remove('big'));
+  });
+})();
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* STATE */
+const S = { data:'', dataFmt:'', hora:'', formato:'' };
+
+const TODAY = new Date(); TODAY.setHours(0,0,0,0);
+let cy = TODAY.getFullYear(), cm = TODAY.getMonth();
+const MONTHS = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+
+/* CALENDAR */
+function renderCal(){
+  document.getElementById('month-label').textContent = MONTHS[cm]+' '+cy;
+
+  const minView = new Date(TODAY.getFullYear(), TODAY.getMonth(), 1);
+  const maxView = new Date(TODAY.getFullYear(), TODAY.getMonth()+3, 1);
+  const curView = new Date(cy, cm, 1);
+  document.getElementById('prev').disabled = curView <= minView;
+  document.getElementById('next').disabled = curView >= maxView;
+
+  const grid = document.getElementById('cal-grid');
+  grid.querySelectorAll('.day').forEach(d=>d.remove());
+
+  const firstDow = new Date(cy, cm, 1).getDay();
+  const daysIn   = new Date(cy, cm+1, 0).getDate();
+
+  for(let i=0;i<firstDow;i++){
+    const e=document.createElement('div');e.className='day empty';grid.appendChild(e);
+  }
+  for(let d=1;d<=daysIn;d++){
+    const date = new Date(cy,cm,d);
+    const dow  = date.getDay();
+    const el   = document.createElement('div');
+    el.className='day';
+    el.textContent=d;
+
+    const isToday   = date.getTime()===TODAY.getTime();
+    const isPast    = date < TODAY;
+    const isWeekend = dow===0||dow===6;
+    const dateStr   = `${cy}-${String(cm+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+
+    if(isToday) el.classList.add('today');
+    if(isPast||isWeekend) el.classList.add('off');
+    if(S.data===dateStr&&!isToday) el.classList.add('sel');
+
+    if(!isPast&&!isWeekend){
+      el.addEventListener('click',()=>{
+        grid.querySelectorAll('.day').forEach(x=>x.classList.remove('sel'));
+        if(!isToday) el.classList.add('sel');
+        S.data    = dateStr;
+        S.dataFmt = date.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});
+        S.hora = '';
+        renderSlots();
+        updateSummary();
+      });
+    }
+    grid.appendChild(el);
+  }
+}
+
+function nav(dir){
+  cm+=dir;
+  if(cm<0){cm=11;cy--}
+  if(cm>11){cm=0;cy++}
+  renderCal();
+}
+
+/* SLOTS */
+async function renderSlots(){
+  const body = document.getElementById('times-body');
+  if(!S.data){ body.innerHTML='<div class="times-empty">Selecione uma data</div>'; return; }
+
+  body.innerHTML='<div class="times-empty" style="opacity:.6">Carregando horários do Google Calendar...</div>';
+
+  try {
+    // Fetch availability from Google Calendar API
+    const res = await fetch(`/api/horarios-disponiveis?data=${S.data}`);
+    const data = await res.json();
+    const horarios = data.horarios || [];
+
+    if(horarios.length === 0) {
+      body.innerHTML='<div class="times-empty" style="color:#F5C518">Sem horários disponíveis neste dia</div>';
+      return;
+    }
+
+    // Separar manhã e tarde
+    const manha = horarios.filter(h => {
+      const hora = parseInt(h.hora.split(':')[0]);
+      return hora < 12;
+    });
+
+    const tarde = horarios.filter(h => {
+      const hora = parseInt(h.hora.split(':')[0]);
+      return hora >= 14; // Depois do almoço
+    });
+
+    let html = '';
+
+    if(manha.length > 0) {
+      html += '<div class="tgroup-title">Manhã</div><div class="tgrid">';
+      manha.forEach(h => {
+        const isSelected = S.hora === h.hora ? 'sel' : '';
+        html += `<div class="tslot ${isSelected}" data-t="${h.hora}">${h.hora}</div>`;
+      });
+      html += '</div>';
+    }
+
+    if(tarde.length > 0) {
+      html += '<div class="tgroup-title" style="margin-top:20px">Tarde</div><div class="tgrid">';
+      tarde.forEach(h => {
+        const isSelected = S.hora === h.hora ? 'sel' : '';
+        html += `<div class="tslot ${isSelected}" data-t="${h.hora}">${h.hora}</div>`;
+      });
+      html += '</div>';
+    }
+
+    body.innerHTML = html;
+
+    body.querySelectorAll('.tslot').forEach(sl=>{
+      sl.addEventListener('click',()=>{
+        body.querySelectorAll('.tslot').forEach(x=>x.classList.remove('sel'));
+        sl.classList.add('sel');
+        S.hora = sl.dataset.t;
+        updateSummary();
+      });
+    });
+  } catch(e) {
+    console.error('Erro ao carregar disponibilidade:', e);
+    body.innerHTML='<div class="times-empty" style="color:#e55">Erro ao carregar horários disponíveis</div>';
+  }
+}
+
+/* FORMAT */
+function selectFormat(el){
+  document.querySelectorAll('.fcard').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  S.formato = el.dataset.f;
+  updateSummary();
+}
+
+/* SUMMARY + BUTTON */
+function updateSummary(){
+  const ok = S.data && S.hora && S.formato;
+  document.getElementById('btn-ok').disabled = !ok;
+  if(ok){
+    document.getElementById('summary').innerHTML =
+      `<strong>${S.dataFmt}</strong> às <strong>${S.hora}</strong> · <strong>${S.formato}</strong>`;
+  } else {
+    document.getElementById('summary').textContent = 'Escolha uma data, horário e formato.';
+  }
+}
+
+renderCal();
+
+/* MODAL */
+function abrirModal(){
+  if(!S.data || !S.hora || !S.formato) return;
+  document.getElementById('modal-overlay').style.display='block';
+  document.getElementById('modal').style.display='block';
+  document.body.style.overflow='hidden';
+}
+
+function fecharModal(){
+  document.getElementById('modal-overlay').style.display='none';
+  document.getElementById('modal').style.display='none';
+  document.getElementById('form-booking').style.display='block';
+  document.getElementById('modal-loading').style.display='none';
+  document.getElementById('modal-sucesso').style.display='none';
+  document.body.style.overflow='auto';
+  document.getElementById('form-booking').reset();
+}
+
+document.getElementById('modal-overlay').addEventListener('click', fecharModal);
+
+async function submeterAgendamento(e){
+  e.preventDefault();
+
+  const nome = document.getElementById('inp-nome').value.trim();
+  const email = document.getElementById('inp-email').value.trim();
+  const tel = document.getElementById('inp-tel').value.trim();
+  const empresa = document.getElementById('inp-empresa').value.trim();
+  const msg = document.getElementById('inp-msg').value.trim();
+
+  if(!nome || !email || !tel) {
+    alert('Por favor, preencha todos os campos obrigatórios');
+    return;
+  }
+
+  // Mostrar carregamento
+  document.getElementById('form-booking').style.display='none';
+  document.getElementById('modal-loading').style.display='block';
+
+  try {
+    const res = await fetch('/api/agendar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nome,
+        email,
+        tel,
+        empresa: empresa || 'Não informado',
+        msg: msg || '',
+        servico: 'Fotografia Executiva', // você pode deixar como padrão ou fazer selecionável
+        data: S.data,
+        dataFmt: S.dataFmt,
+        hora: S.hora
+      })
+    });
+
+    const result = await res.json();
+
+    if(res.ok && result.ok) {
+      document.getElementById('modal-loading').style.display='none';
+      document.getElementById('modal-sucesso').style.display='block';
+
+      // Limpar state para próximo agendamento
+      S.data = ''; S.hora = ''; S.formato = '';
+      renderCal();
+      renderSlots();
+      updateSummary();
+    } else {
+      throw new Error(result.error || 'Erro ao agendar');
+    }
+  } catch(err) {
+    document.getElementById('modal-loading').style.display='none';
+    document.getElementById('form-booking').style.display='block';
+    alert('Erro ao agendar: ' + err.message);
+  }
+}
+</script>
+</body>
+</html>

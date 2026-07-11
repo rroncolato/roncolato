@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start \"C:\\\\Users\\\\rodri\\\\Downloads\\\\SITE RONCOLATO\\\\presencavende\\\\lp-presenca-v4-otimizada.html\")",
+      "Bash(vercel --prod --yes)"
+    ]
+  }
+}

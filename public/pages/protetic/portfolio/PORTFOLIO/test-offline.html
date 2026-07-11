@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste de Fontes - Protetic</title>
+  <link href="./fonts/fonts.css" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #090909;
+      color: #E8E4DA;
+      padding: 40px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      margin-bottom: 20px;
+      color: #B8945A;
+    }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      color: #CFA96E;
+    }
+    .test-section {
+      background: #181818;
+      padding: 20px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    .font-demo {
+      font-size: 18px;
+      margin-bottom: 10px;
+      padding: 10px;
+      background: #242424;
+      border-left: 4px solid #B8945A;
+    }
+    .success { color: #4CAF50; }
+    .error { color: #FF6B6B; }
+    .info { color: #64B5F6; }
+    code {
+      background: #242424;
+      padding: 2px 6px;
+      border-radius: 2px;
+      font-family: 'Courier New', monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Teste de Fontes - Protetic</h1>
+
+    <div class="test-section">
+      <h2 class="success">✓ Teste de Carregamento</h2>
+      <p>Se você está vendo este texto com as fontes corretas, as fontes locais estão funcionando!</p>
+    </div>
+
+    <div class="test-section">
+      <h2>Fontes Montserrat (Regular)</h2>
+      <div class="font-demo" style="font-weight: 200;">
+        Montserrat 200 - The quick brown fox jumps over the lazy dog
+      </div>
+      <div class="font-demo" style="font-weight: 300;">
+        Montserrat 300 - The quick brown fox jumps over the lazy dog
+      </div>
+      <div class="font-demo" style="font-weight: 400;">
+        Montserrat 400 - The quick brown fox jumps over the lazy dog
+      </div>
+      <div class="font-demo" style="font-weight: 500;">
+        Montserrat 500 - The quick brown fox jumps over the lazy dog
+      </div>
+    </div>
+
+    <div class="test-section">
+      <h2>Fontes Cormorant Garamond</h2>
+      <div class="font-demo" style="font-family: 'Cormorant Garamond', serif; font-weight: 300;">
+        Cormorant Garamond 300 - The quick brown fox jumps over the lazy dog
+      </div>
+      <div class="font-demo" style="font-family: 'Cormorant Garamond', serif; font-weight: 400;">
+        Cormorant Garamond 400 - The quick brown fox jumps over the lazy dog
+      </div>
+      <div class="font-demo" style="font-family: 'Cormorant Garamond', serif; font-weight: 500;">
+        Cormorant Garamond 500 - The quick brown fox jumps over the lazy dog
+      </div>
+      <div class="font-demo" style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic;">
+        Cormorant Garamond 300 Italic - The quick brown fox jumps over the lazy dog
+      </div>
+      <div class="font-demo" style="font-family: 'Cormorant Garamond', serif; font-weight: 400; font-style: italic;">
+        Cormorant Garamond 400 Italic - The quick brown fox jumps over the lazy dog
+      </div>
+      <div class="font-demo" style="font-family: 'Cormorant Garamond', serif; font-weight: 500; font-style: italic;">
+        Cormorant Garamond 500 Italic - The quick brown fox jumps over the lazy dog
+      </div>
+    </div>
+
+    <div class="test-section">
+      <h2>Informações Técnicas</h2>
+      <p><span class="info">CSS de fontes:</span> <code>./fonts/fonts.css</code></p>
+      <p><span class="info">Total de fontes:</span> 10 arquivos .ttf</p>
+      <p><span class="info">Tamanho total:</span> ~2.8 MB (incluindo HTML)</p>
+      <p><span class="info">Modo:</span> Offline completo</p>
+    </div>
+
+    <div class="test-section">
+      <h2 class="success">Próximos Passos</h2>
+      <ul style="margin-left: 20px;">
+        <li>Se as fontes aparecem corretamente, clique <a href="./index.html" style="color: #B8945A; text-decoration: underline;">aqui</a> para visualizar o site completo</li>
+        <li>Se as fontes NÃO aparecerem, verifique se os arquivos estão no diretório <code>./fonts/</code></li>
+        <li>Abra o console do navegador (F12) para verificar se há erros</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Log de verificação
+    console.log('✓ Página de teste carregada');
+    console.log('✓ Fonts CSS:', document.querySelector('link[href*="fonts.css"]'));
+
+    // Verificar se as fontes foram carregadas
+    document.fonts.ready.then(() => {
+      console.log('✓ Todas as fontes foram carregadas com sucesso!');
+      document.documentElement.style.setProperty('--fonts-loaded', '1');
+    }).catch((err) => {
+      console.error('✗ Erro ao carregar fontes:', err);
+    });
+  </script>
+</body>
+</html>

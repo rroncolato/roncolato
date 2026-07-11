@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Estratégica — RG Entulhos × Roncolato</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --yellow: #F5C518;
+            --black: #0C0C0C;
+            --black-2: #141414;
+            --black-3: #1C1C1C;
+            --white: #FFFFFF;
+            --white-off: #F0F0F0;
+            --gray: #7A7A7A;
+            --gray-2: #3A3A3A;
+            --border: rgba(255,255,255,0.07);
+            --border-y: rgba(245,200,66,0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background: var(--black);
+        }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: 'Jost', sans-serif;
+            font-weight: 400;
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ═══ HERO ═══ */
+        .hero {
+            min-height: auto;
+            display: grid;
+            grid-template-rows: auto auto auto;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
+            background-size: 72px 72px;
+            opacity: 0;
+            animation: fadeIn 2s ease 0.6s forwards;
+            pointer-events: none;
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: -300px;
+            right: -300px;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(245,200,66,0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 16px;
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+            border-bottom: 1px solid var(--border);
+            opacity: 0;
+            animation: fadeIn 0.6s ease 0.2s forwards;
+        }
+
+        .hero-nav img {
+            height: 20px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-badge {
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            font-weight: 400;
+        }
+
+        .hero-main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px 16px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 500;
+            margin-bottom: 12px;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.4s forwards;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            width: 28px;
+            height: 1px;
+            background: var(--yellow);
+        }
+
+        .hero-title {
+            font-family: 'Jost', sans-serif;
+            font-size: clamp(32px, 8vw, 80px);
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -2px;
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.55s forwards;
+            margin: 0;
+        }
+
+        .hero-title .line2 {
+            display: block;
+            color: rgba(255,255,255,0.45);
+            -webkit-text-stroke: none;
+        }
+
+        .hero-bottom {
+            padding: 20px 16px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.8s forwards;
+        }
+
+        .hero-desc {
+            font-size: 16px;
+            color: var(--gray);
+            max-width: 440px;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        .hero-meta-group {
+            display: flex;
+            gap: 48px;
+        }
+
+        .hero-meta-item .mlabel {
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .hero-meta-item .mval {
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* ═══ SECTIONS ═══ */
+        .section {
+            padding: 48px 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .s-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 10px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 500;
+            margin-bottom: 32px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards;
+        }
+
+        .s-label::before {
+            content: '';
+            width: 28px;
+            height: 1px;
+            background: var(--yellow);
+        }
+
+        .s-title {
+            font-size: clamp(48px, 7vw, 80px);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 48px;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.1s forwards;
+        }
+
+        .s-title em {
+            font-style: italic;
+            color: var(--yellow);
+        }
+
+        .s-text {
+            font-size: 24px;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.2s forwards;
+        }
+
+        .s-text strong {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .pillar {
+            padding: 32px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.3s forwards;
+        }
+
+        .pillar-title {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            margin-bottom: 12px;
+        }
+
+        .pillar-desc {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .timeline-item {
+            padding: 24px;
+            background: rgba(255,255,255,0.02);
+            border-left: 3px solid var(--yellow);
+            opacity: 0;
+            animation: fadeUp 0.7s ease forwards;
+        }
+
+        .timeline-item:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .timeline-item:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .timeline-item:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .timeline-year {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--yellow);
+            margin-bottom: 8px;
+        }
+
+        .timeline-label {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 12px;
+        }
+
+        .timeline-desc {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .steps-wrap {
+            margin-top: 96px;
+        }
+
+        .step-row {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 32px;
+            margin-bottom: 48px;
+            opacity: 0;
+            animation: fadeUp 0.7s ease forwards;
+            align-items: flex-start;
+        }
+
+        .step-row:nth-child(2) { animation-delay: 0.1s; }
+        .step-row:nth-child(3) { animation-delay: 0.2s; }
+        .step-row:nth-child(4) { animation-delay: 0.3s; }
+
+        .step-number {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--yellow);
+        }
+
+        .step-content h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--white);
+        }
+
+        .step-content p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .cta-box {
+            background: rgba(245,200,66,0.08);
+            border: 1px solid var(--border-y);
+            padding: 48px;
+            text-align: center;
+            margin-top: 96px;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.4s forwards;
+        }
+
+        .cta-box h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .cta-box p {
+            font-size: 16px;
+            color: var(--gray);
+            margin-bottom: 32px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 48px;
+            background: var(--yellow);
+            color: var(--black);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+        }
+
+        /* ═══ FOOTER ═══ */
+        footer {
+            padding: 40px 16px;
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        footer h3 {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 16px;
+        }
+
+        footer p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        footer a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--yellow);
+        }
+
+        /* ═══ RESPONSIVE — MOBILE FIRST ═══ */
+
+        /* BASE: MOBILE (320px+) */
+        @media (max-width: 767px) {
+            .hero-nav {
+                padding: 16px;
+                gap: 12px;
+            }
+
+            .hero-nav img {
+                height: 32px;
+            }
+
+            .hero-main {
+                padding: 32px 16px 24px 16px;
+            }
+
+            .hero-eyebrow {
+                font-size: 9px;
+                letter-spacing: 3px;
+                margin-bottom: 20px;
+            }
+
+            .hero-title {
+                font-size: 32px;
+                letter-spacing: -1px;
+                line-height: 1.1;
+            }
+
+            .hero-bottom {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+                padding: 20px 16px;
+            }
+
+            .hero-desc {
+                font-size: 14px;
+                max-width: 100%;
+            }
+
+            .hero-meta-group {
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+            }
+
+            .hero-meta-item .mval {
+                font-size: 12px;
+            }
+
+            .section {
+                padding: 48px 16px;
+            }
+
+            .s-label {
+                font-size: 9px;
+                letter-spacing: 3px;
+            }
+
+            .s-title {
+                font-size: 28px;
+                margin-bottom: 24px;
+            }
+
+            .s-text {
+                font-size: 16px;
+            }
+
+            .pillars,
+            .timeline,
+            footer {
+                grid-template-columns: 1fr;
+            }
+
+            .pillar,
+            .timeline-item {
+                padding: 20px;
+            }
+
+            footer {
+                padding: 40px 16px;
+                gap: 32px;
+            }
+        }
+
+        /* TABLET (768px+) */
+        @media (min-width: 768px) {
+            .hero-nav {
+                padding: 24px 48px;
+            }
+
+            .hero-nav img {
+                height: 40px;
+            }
+
+            .hero-main {
+                padding: 60px 48px 40px 48px;
+            }
+
+            .hero-title {
+                font-size: 64px;
+            }
+
+            .hero-bottom {
+                padding: 24px 48px;
+            }
+
+            .section {
+                padding: 64px 48px;
+            }
+
+            .s-title {
+                font-size: 56px;
+            }
+
+            .s-text {
+                font-size: 18px;
+            }
+
+            .pillars,
+            .timeline {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* DESKTOP (1024px+) */
+        @media (min-width: 1024px) {
+            .hero-nav {
+                padding: 28px 72px;
+            }
+
+            .hero-nav img {
+                height: 50px;
+            }
+
+            .hero-main {
+                padding: 80px 72px 48px 72px;
+            }
+
+            .hero-title {
+                font-size: clamp(72px, 10vw, 140px);
+            }
+
+            .hero-bottom {
+                padding: 28px 72px;
+            }
+
+            .section {
+                padding: 96px 72px;
+            }
+
+            .s-title {
+                font-size: clamp(48px, 7vw, 80px);
+            }
+
+            .s-text {
+                font-size: 24px;
+            }
+
+            .pillars,
+            .timeline {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+
+            footer {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+
+    <!-- NAV -->
+    <div class="hero-nav">
+        <img src="./assets/roncolato-branco-horizontal.png" alt="Roncolato Studio" style="height: 50px; width: auto; display: block;">
+        <span class="nav-badge">Proposta Estratégica</span>
+    </div>
+
+    <!-- MAIN -->
+    <div class="hero-main">
+        <div class="hero-eyebrow">RG Entulhos</div>
+        <h1 class="hero-title">
+            Usina de Reciclagem<br>
+            <span class="line2">Para uma Goiânia Sustentável</span>
+        </h1>
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="hero-bottom">
+        <p class="hero-desc">
+            Uma estratégia de posicionamento que transforma resíduo em oportunidade, conectando inovação, sustentabilidade e impacto social para uma cidade.
+        </p>
+        <div class="hero-meta-group">
+            <div class="hero-meta-item">
+                <span class="mlabel">Investimento</span>
+                <span class="mval">R$ 15 Milhões</span>
+            </div>
+            <div class="hero-meta-item">
+                <span class="mlabel">Concessão</span>
+                <span class="mval">30 Anos</span>
+            </div>
+            <div class="hero-meta-item">
+                <span class="mlabel">Operação</span>
+                <span class="mval">2027</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SEÇÃO 1: CONTEXTO -->
+<section class="section">
+    <div class="s-label">Contexto</div>
+    <h2 class="s-title">1.300 toneladas por <em>dia</em></h2>
+    <p class="s-text">Goiânia produz 1.300 toneladas diárias de resíduo inerte — entulho de construção civil que, hoje, não tem destinação adequada. Esse volume representa um <strong>problema urbano urgente</strong> e, simultaneamente, uma <strong>oportunidade de negócio transformadora</strong>.</p>
+    <p class="s-text">A RG Entulhos identifica nessa realidade mais do que um desafio. Identifica a chance de posicionar Goiânia como <strong>referência em sustentabilidade e economia circular</strong>, gerando valor para o município, para o mercado de construção e para a população.</p>
+</section>
+
+<!-- SEÇÃO 2: OBJETIVO -->
+<section class="section">
+    <div class="s-label">Objetivo</div>
+    <h2 class="s-title">Estruturar para <em>crescer</em></h2>
+    <p class="s-text">A usina de reciclagem modular da RG Entulhos transforma resíduo em matéria-prima de valor — areia, brita 0, 1, 2 e 3 — prontos para <strong>calçadas, meios-fios, muros de arrimo e base de pavimentação</strong>.</p>
+    <p class="s-text">Mais que isso: a RG Entulhos traz para Goiânia uma inovação que já funciona em grandes centros. A <strong>trituração de pneus para uso em pavimentação</strong> — que reduz trincas e aumenta durabilidade de estradas — posiciona RG como empresa que domina tecnologia de ponta.</p>
+
+    <div class="pillars">
+        <div class="pillar">
+            <div class="pillar-title">Pilar 1: Viabilidade</div>
+            <div class="pillar-desc">Modelo de negócio comprovado em outras regiões. Mercado ativo. Demanda clara.</div>
+        </div>
+        <div class="pillar">
+            <div class="pillar-title">Pilar 2: Impacto Social</div>
+            <div class="pillar-desc">20% da produção retorna ao município em materiais para obras sociais e infraestrutura.</div>
+        </div>
+        <div class="pillar">
+            <div class="pillar-title">Pilar 3: Inovação</div>
+            <div class="pillar-desc">Tecnologia de reciclagem de pneus. Economia circular. Sustentabilidade real.</div>
+        </div>
+    </div>
+</section>
+
+<!-- SEÇÃO 3: PROCESSO RONCOLATO -->
+<section class="section">
+    <div class="s-label">Nosso Processo</div>
+    <h2 class="s-title">Do briefing à <em>entrega</em></h2>
+    <p class="s-text">Roncolato Studio trabalha em fases claras, cada uma entregando valor tangível. Nada de promessas vazias — apenas execução comprovada.</p>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-year">01</div>
+            <div class="timeline-label">Extração de Conteúdo</div>
+            <div class="timeline-desc">Pesquisa profunda. Entendimento do DNA de RG. Coleta de dados, visão, expertise. Tudo que faz sua empresa única.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-year">02</div>
+            <div class="timeline-label">Análise & Estratégia</div>
+            <div class="timeline-desc">Transformamos informação em estratégia. Posicionamento claro. Diferencial competitivo. A narrativa que vai encantar.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-year">03</div>
+            <div class="timeline-label">Execução</div>
+            <div class="timeline-desc">Criação dos materiais: PowerPoint épico, vídeo institucional, landing page. Cada detalhe alinhado com a estratégia.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-year">04</div>
+            <div class="timeline-label">Entrega & Manutenção</div>
+            <div class="timeline-desc">Você recebe tudo pronto. Manutenções sob medida conforme feedback. Suporte contínuo até você estar 100% satisfeito.</div>
+        </div>
+    </div>
+</section>
+
+<!-- SEÇÃO 4: MODELO DE PARCERIA -->
+<section class="section">
+    <div class="s-label">Modelo de Negócio</div>
+    <h2 class="s-title">Clareza e <em>controle</em><br>no escopo</h2>
+
+    <p class="s-text"><strong>Opção 1: PPP com Prefeitura</strong><br>
+    A Prefeitura cede as duas áreas (região sul, próximo ao autódromo; região noroeste, próximo ao aterro). RG Entulhos investe R$ 15 milhões, constrói e opera a usina. Como contrapartida, 20% da produção retorna ao município em materiais — para calçadas, obras sociais, infraestrutura. Concessão de 30 anos.</p>
+
+    <p class="s-text"><strong>Opção 2: Investimento Privado</strong><br>
+    Se a Prefeitura não aceitar a parceria, RG Entulhos busca investidor privado. Adquire área própria. Mantém o modelo operacional e de negócio. Busca financiamento BNDES.</p>
+
+    <div class="steps-wrap">
+        <div class="step-row">
+            <div class="step-number">01</div>
+            <div class="step-content">
+                <h3>Posicionamento de Marca</h3>
+                <p>Estratégia clara do posicionamento RG Entulhos. Diferencial no mercado. Narrativa que reforça inovação, sustentabilidade e impacto.</p>
+            </div>
+        </div>
+        <div class="step-row">
+            <div class="step-number">02</div>
+            <div class="step-content">
+                <h3>Ativos Visuais</h3>
+                <p>Apresentação PowerPoint épica. Vídeo institucional animado. Landing page. Todos os materiais alinhados em uma narrativa única.</p>
+            </div>
+        </div>
+        <div class="step-row">
+            <div class="step-number">03</div>
+            <div class="step-content">
+                <h3>Linguagem do Decisor</h3>
+                <p>Apresentação feita na linguagem do Prefeito. Foco em empreendedorismo, inovação, reeleição. "Isso vai me reeleger" — é o que ele vai pensar.</p>
+            </div>
+        </div>
+        <div class="step-row">
+            <div class="step-number">04</div>
+            <div class="step-content">
+                <h3>Suporte Estratégico</h3>
+                <p>Consultoria em sprints. Ajustes contínuos. Preparação para apresentação ao Prefeito. Você não enfrenta isso sozinho.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SEÇÃO 5: PROPOSTA DE VALOR -->
+<section class="section">
+    <div class="s-label">Investimento em Estratégia</div>
+    <h2 class="s-title">Duas estratégias, um <em>objetivo</em></h2>
+
+    <p class="s-text">A apresentação que você vai fazer ao Prefeito é a diferença entre ganhar a concessão ou perder. <strong>Uma apresentação medíocre custa R$ 15 milhões em oportunidade perdida.</strong> Uma apresentação épica abre portas, gera confiança e convence.</p>
+    <p class="s-text">Roncolato Studio entrega <strong>26 anos de expertise em estratégia + 16 anos de resultados comprovados</strong> — transformando visão em impacto real. Escolha o nível de investimento que alinha com sua urgência:</p>
+
+    <div class="pillars" style="margin-top: 64px;">
+        <!-- PLANO INICIAL -->
+        <div class="pillar" style="border-left: 4px solid var(--yellow); padding-left: 28px;">
+            <div style="font-size: 28px; font-weight: 900; color: var(--yellow); margin-bottom: 8px;">R$ 8.000</div>
+            <div style="font-size: 12px; color: var(--gray); margin-bottom: 16px;"><strong>À vista:</strong> R$ 7.200 (10% desc.) | <strong>Parcelado:</strong> Asas ou Mercado Pago</div>
+            <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--white);">Plano Inicial</h3>
+            <p style="font-size: 13px; color: var(--gray); margin-bottom: 24px; line-height: 1.8;"><strong>Foundations:</strong> Estratégia clara e apresentação profissional.</p>
+            <ul style="list-style: none; margin: 0; padding: 0; font-size: 13px; color: var(--gray); line-height: 1.9;">
+                <li>✓ Extração de conteúdo e análise</li>
+                <li>✓ Diagnóstico estratégico de marca RG</li>
+                <li>✓ Posicionamento e diferencial competitivo</li>
+                <li>✓ Apresentação PowerPoint (15-20 slides)</li>
+                <li>✓ Vídeo conceitual (1 minuto)</li>
+                <li>✓ Documentação de estratégia</li>
+                <li>✓ Manutenções sob medida (ajustes finais)</li>
+            </ul>
+        </div>
+
+        <!-- PLANO ROBUSTO -->
+        <div class="pillar" style="border-left: 4px solid var(--yellow); padding-left: 28px; background: rgba(245,200,66,0.05);">
+            <div style="display: inline-block; background: var(--yellow); color: var(--black); padding: 6px 14px; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px;">Recomendado</div>
+            <div style="font-size: 28px; font-weight: 900; color: var(--yellow); margin-bottom: 8px;">R$ 15.000</div>
+            <div style="font-size: 12px; color: var(--gray); margin-bottom: 16px;"><strong>À vista:</strong> R$ 13.500 (10% desc.) | <strong>Parcelado:</strong> Asas ou Mercado Pago</div>
+            <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--white);">Plano Robusto</h3>
+            <p style="font-size: 13px; color: var(--gray); margin-bottom: 24px; line-height: 1.8;"><strong>Campanha Integrada:</strong> Posicionamento completo + múltiplos formatos + consultoria estratégica.</p>
+            <ul style="list-style: none; margin: 0; padding: 0; font-size: 13px; color: var(--gray); line-height: 1.9;">
+                <li>✓ Extração profunda de conteúdo</li>
+                <li>✓ Análise estratégica completa</li>
+                <li>✓ Arquitetura de marca RG</li>
+                <li>✓ Apresentação PowerPoint épica (25-30 slides)</li>
+                <li>✓ Vídeo institucional produzido (2-3 min)</li>
+                <li>✓ Landing page responsiva</li>
+                <li>✓ Manutenções sob medida (refinamentos contínuos)</li>
+                <li>✓ Acompanhamento estratégico completo</li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="margin-top: 64px; padding: 32px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-left: 4px solid var(--yellow);">
+        <h3 style="font-size: 14px; font-weight: 700; color: var(--yellow); margin-bottom: 16px; letter-spacing: 2px; text-transform: uppercase;">Por Que Vale a Pena</h3>
+        <p style="font-size: 14px; color: var(--gray); line-height: 1.8;">
+            <strong>Contexto:</strong> Você está buscando R$ 15 milhões em investimento (concessão ou BNDES). A qualidade da apresentação é o vetor crítico de sucesso. Roncolato Studio domina a arte de transformar números em narrativa, dados em desejo, propostas em aprovação. <strong>26 anos fazendo isso.</strong> 16 anos deliverando resultado. Isso não é marketing — é expertise que se paga sozinha na primeira reunião com o Prefeito.
+        </p>
+    </div>
+</section>
+
+<!-- SEÇÃO 6: IMPACTO -->
+<section class="section">
+    <div class="s-label">Benefícios</div>
+    <h2 class="s-title">Para Goiânia, para RG, <em>para todos</em></h2>
+
+    <p class="s-text"><strong>Para o Município:</strong><br>
+    Resolve o problema de 1.300 toneladas diárias de entulho. Gera material para obras sociais e infraestrutura (20% da produção). Reduz custos de areia e brita — hoje vindo de Faina, a 250-300km. Posiciona Goiânia como cidade inovadora em sustentabilidade.</p>
+
+    <p class="s-text"><strong>Para a RG Entulhos:</strong><br>
+    Domina um segmento de mercado de alto volume e margens previsíveis. Concessão garantida por 30 anos. Diferencial competitivo real (tecnologia de reciclagem de pneus). Posicionamento como empresa de classe A em seu segmento.</p>
+
+    <p class="s-text"><strong>Para a Cidade e Região:</strong><br>
+    Infraestrutura melhorada com custos reduzidos. Benefício social (materiais para obras comunitárias). Redução do passivo ambiental. Sustentabilidade como modelo de negócio, não como marketing.</p>
+</section>
+
+<!-- CTA -->
+<section class="section">
+    <div class="cta-box">
+        <h2>Pronto para encantar o Prefeito?</h2>
+        <p>Vamos construir a apresentação que faz o Prefeito falar: "Onde é que eu assino?"<br>
+        Escolha seu investimento e vamos começar.</p>
+        <div style="margin-top: 32px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+            <a href="https://wa.me/5562985928423?text=Quero%20o%20Plano%20Inicial%20-%20R%24%208.000" class="btn">Plano Inicial — R$ 8k</a>
+            <a href="https://wa.me/5562985928423?text=Quero%20o%20Plano%20Robusto%20-%20R%24%2015.000" class="btn" style="background: var(--yellow); opacity: 1;">Plano Robusto — R$ 15k</a>
+        </div>
+        <p style="margin-top: 24px; font-size: 12px; color: var(--gray);">Ou agende uma conversa para esclarecer dúvidas. Quinta-feira, 9h.</p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div>
+        <h3>Roncolato Studio</h3>
+        <p>Goiânia, GO<br>
+        <a href="mailto:rodrigo@rroncolato.com">rodrigo@rroncolato.com</a><br>
+        <a href="https://rroncolato.com.br">rroncolato.com.br</a></p>
+    </div>
+    <div>
+        <h3>Próximos Passos</h3>
+        <p>Esta proposta é o primeiro passo. Reunião na quinta-feira para alinhamento. Entregas modulares até primeira semana de agosto. Ajustes contínuos conforme feedback.</p>
+    </div>
+</footer>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.s-label, .s-title, .s-text, .pillar, .timeline-item, .step-row, .cta-box').forEach(el => {
+        observer.observe(el);
+    });
+</script>
+
+</body>
+</html>

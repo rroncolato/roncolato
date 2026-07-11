@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Testes Práticos - Protetic</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #090909 0%, #181818 100%);
+            color: #E8E4DA;
+            padding: 20px;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #101010;
+            border: 2px solid #B8945A;
+            border-radius: 8px;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #B8945A;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            color: #CFA96E;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #B8945A;
+        }
+
+        h3 {
+            color: #E8CE96;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .test-section {
+            background: rgba(36, 36, 36, 0.5);
+            border-left: 4px solid #B8945A;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .test-item {
+            background: rgba(24, 24, 24, 0.8);
+            border: 1px solid #383838;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .test-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #B8945A;
+            border-radius: 4px;
+            cursor: pointer;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .test-checkbox:hover {
+            background: rgba(184, 148, 90, 0.1);
+        }
+
+        .test-checkbox input {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            accent-color: #B8945A;
+        }
+
+        .test-content {
+            flex: 1;
+        }
+
+        .test-content p {
+            margin: 5px 0;
+            color: #C4C0B4;
+        }
+
+        .test-hint {
+            color: #7A7A72;
+            font-size: 0.9em;
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        .device-group {
+            background: rgba(110, 86, 48, 0.1);
+            border: 1px solid #6E5630;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        .device-header {
+            font-size: 1.3em;
+            color: #CFA96E;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .code-block {
+            background: #242424;
+            border: 1px solid #383838;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            color: #E8CE96;
+            overflow-x: auto;
+            margin: 15px 0;
+            line-height: 1.4;
+        }
+
+        .warning {
+            background: rgba(220, 53, 69, 0.1);
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            color: #ff6b6b;
+        }
+
+        .success {
+            background: rgba(40, 167, 69, 0.1);
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            color: #51cf66;
+        }
+
+        .info {
+            background: rgba(23, 162, 184, 0.1);
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            color: #39f;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #B8945A;
+            color: #090909;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .button-test {
+            background: #B8945A;
+            color: #090909;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 10px 5px 10px 0;
+            transition: all 0.3s;
+            font-size: 1em;
+        }
+
+        .button-test:hover {
+            background: #CFA96E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(184, 148, 90, 0.3);
+        }
+
+        .viewport-demo {
+            border: 2px dashed #B8945A;
+            padding: 20px;
+            margin: 15px 0;
+            background: rgba(184, 148, 90, 0.05);
+            border-radius: 4px;
+            text-align: center;
+            color: #B8945A;
+            font-weight: 600;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: #181818;
+            border: 1px solid #383838;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #383838;
+        }
+
+        .comparison-table th {
+            background: #242424;
+            color: #B8945A;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(184, 148, 90, 0.05);
+        }
+
+        .comparison-table .problem {
+            color: #ff6b6b;
+        }
+
+        .comparison-table .ok {
+            color: #51cf66;
+        }
+
+        .video-link {
+            display: inline-block;
+            background: rgba(184, 148, 90, 0.2);
+            border: 1px solid #B8945A;
+            color: #B8945A;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin: 10px 5px 10px 0;
+            transition: all 0.3s;
+        }
+
+        .video-link:hover {
+            background: rgba(184, 148, 90, 0.3);
+        }
+
+        .score {
+            display: inline-block;
+            background: #B8945A;
+            color: #090909;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin: 5px 5px 5px 0;
+        }
+
+        .score.pass {
+            background: #51cf66;
+        }
+
+        .score.fail {
+            background: #ff6b6b;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.4em;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                background: white;
+                color: #333;
+                border: none;
+            }
+
+            h1, h2, h3 {
+                color: #333;
+            }
+
+            .test-item {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Guia de Testes Práticos - Protetic</h1>
+        <p style="color: #7A7A72; margin-bottom: 30px;">
+            Manual interativo para testar a responsividade do site em diferentes resoluções
+        </p>
+
+        <!-- Teste 1: Desktop -->
+        <h2>1. Testes em Desktop (1920px)</h2>
+
+        <div class="device-group">
+            <div class="device-header">💻 Desktop Padrão - 1920x1080</div>
+
+            <div class="test-section">
+                <h3>Visual & Layout</h3>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Logo/Marca visível e completa</strong></p>
+                        <p class="test-hint">Verificar: .c-eye deve estar visível, marca com tamanho apropriado (~100px)</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Navegação com padding 96px</strong></p>
+                        <p class="test-hint">Abrir DevTools (F12) → Inspecionar nav → Verificar padding: 28px 96px</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Seções em layout 50%-50%</strong></p>
+                        <p class="test-hint">Identidade, Frase, Equipe devem ter 2 colunas lado a lado</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Imagens com altura 100% (full viewport)</strong></p>
+                        <p class="test-hint">Scroll suave, sem cortes de imagem</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Processo com 4 colunas</strong></p>
+                        <p class="test-hint">Timeline deve mostrar 4 passos lado a lado</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Nenhum elemento decorativo escondido</strong></p>
+                        <p class="test-hint">Elementos como .c-eye, .frase-bg-txt devem estar visíveis</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="test-section">
+                <h3>Performance & Animações</h3>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Scroll suave funcionando</strong></p>
+                        <p class="test-hint">Verificar: scroll-behavior: smooth; está funcionando</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Navigation transition ao scroll</strong></p>
+                        <p class="test-hint">Rolar página: nav deve ter background escuro e padding reduzido</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Sem CLS (Cumulative Layout Shift)</strong></p>
+                        <p class="test-hint">Layout não deve pular ao carregar. F12 → Lighthouse para verificar</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Teste 2: Tablet Grande -->
+        <h2>2. Testes em Tablet Grande (1200px)</h2>
+
+        <div class="device-group">
+            <div class="device-header">📱 Tablet/Laptop Pequeno - 1200x800</div>
+
+            <div class="info">
+                <strong>⚠️ Este é um breakpoint problemático!</strong><br>
+                Verificar se as correções propostas funcionam corretamente.
+            </div>
+
+            <div class="test-section">
+                <h3>Problemas a Verificar (ANTES da implementação)</h3>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>⚠️ PROBLEMA: Processo com 4 colunas MUITO APERTADO</strong></p>
+                        <p class="test-hint">Resultado esperado: Texto quebrado, ilegível, ~280px por coluna</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>⚠️ PROBLEMA: Layout shift ao redimensionar</strong></p>
+                        <p class="test-hint">Redimensionar janela 1920px → 1200px: layout deve pular</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>⚠️ PROBLEMA: Padding reduzido abruptamente</strong></p>
+                        <p class="test-hint">Padding muda de ~96px (1920px) para 40px (1200px) = 56% de redução</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="success">
+                <strong>✅ Após implementar melhorias:</strong><br>
+                • Processo com 2 colunas (não 4)<br>
+                • Padding suave: 96px → 64px → 48px (transição em 900px)<br>
+                • Layout stable, sem shifts abruptos
+            </div>
+
+            <div class="test-section">
+                <h3>Testes Pós-Implementação</h3>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Processo com 2 colunas (NÃO 4)</strong></p>
+                        <p class="test-hint">Deve alternar para 2 colunas em 1200px</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Imagens com 520px altura</strong></p>
+                        <p class="test-hint">Proporção de imagem vs texto deve ser balanceada</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Diferenciais com 2 colunas</strong></p>
+                        <p class="test-hint">Grid deve mostrar 2 itens por linha</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Teste 3: Tablet -->
+        <h2>3. Testes em Tablet (768px)</h2>
+
+        <div class="device-group">
+            <div class="device-header">📱 Tablet Médio - 768x1024 (iPad)</div>
+
+            <div class="test-section">
+                <h3>Layout & Responsividade</h3>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Navigation com padding 40px horizontal</strong></p>
+                        <p class="test-hint">DevTools: F12 → nav → padding: 16px 24px (ou 40px conforme media query)</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Imagens com 380px altura</strong></p>
+                        <p class="test-hint">Proporção equilibrada entre imagem e texto</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Diferenciais em 1 coluna</strong></p>
+                        <p class="test-hint">Grid deve alternar para 1 item por linha</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Processo em 2 colunas</strong></p>
+                        <p class="test-hint">Timeline com 2 passos por linha</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Fontes legíveis (.H = 38px)</strong></p>
+                        <p class="test-hint">Headings devem ser fáceis de ler sem zoom</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="test-section">
+                <h3>Acessibilidade</h3>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Botões de language com altura mínima</strong></p>
+                        <p class="test-hint">ANTES: 9px (muito pequeno) | DEPOIS: 40px mínimo</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>CTA buttons clicáveis</strong></p>
+                        <p class="test-hint">Mínimo 44-48px de altura</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Teste 4: Mobile Médio -->
+        <h2>4. Testes em Mobile Médio (600px)</h2>
+
+        <div class="device-group">
+            <div class="device-header">📱 Smartphone Médio - 600x800</div>
+
+            <div class="warning">
+                <strong>⚠️ ATENÇÃO: Este breakpoint NÃO existe no CSS original!</strong><br>
+                Será adicionado na implementação de melhorias.
+            </div>
+
+            <div class="test-section">
+                <h3>Testes Pós-Implementação</h3>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Imagens com 340px altura</strong></p>
+                        <p class="test-hint">Gradação: 380px (768px) → 340px (600px) → 280px (480px)</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Processo em 1 coluna</strong></p>
+                        <p class="test-hint">Timeline empilhada verticalmente</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Padding 32px horizontal</strong></p>
+                        <p class="test-hint">Transição suave entre 768px (40px) e 480px (24px)</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Fontes reduzidas mas legíveis</strong></p>
+                        <p class="test-hint">.H = 34px, bom compromisso entre legibilidade e espaço</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Teste 5: Mobile Padrão -->
+        <h2>5. Testes em Mobile Padrão (480px)</h2>
+
+        <div class="device-group">
+            <div class="device-header">📱 Smartphone Padrão - 480x812 (Galaxy S10)</div>
+
+            <div class="test-section">
+                <h3>Layout & Espaçamento</h3>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Sem horizontal scroll</strong></p>
+                        <p class="test-hint">Conteúdo deve caber em 480px sem overflow</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Imagens com 280px altura</strong></p>
+                        <p class="test-hint">Adequado para mobile, deixa espaço para texto</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Padding 24px horizontal</strong></p>
+                        <p class="test-hint">DevTools: F12 → Inspecionar section → padding: 36px 24px</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Fontes ajustadas</strong></p>
+                        <p class="test-hint">.H = 32px, .c-mark = 52px</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Processo em 1 coluna</strong></p>
+                        <p class="test-hint">Timeline empilhada, cada passo em uma linha</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Logo com elemento visual (c-eye)</strong></p>
+                        <p class="test-hint">ANTES: display:none | DEPOIS: visível (reduzido)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="test-section">
+                <h3>Acessibilidade</h3>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Botões com altura mínima 44px</strong></p>
+                        <p class="test-hint">Toque confortável sem erros</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Seletores de idioma clicáveis</strong></p>
+                        <p class="test-hint">ANTES: 9px (inacessível) | DEPOIS: 40px mínimo</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Sem necessidade de zoom</strong></p>
+                        <p class="test-hint">Texto base 14px+, heading 28px+</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Teste 6: iPhone Pequeno -->
+        <h2>6. Testes em iPhone Pequeno (375px) - ⚠️ CRÍTICO</h2>
+
+        <div class="device-group">
+            <div class="device-header">📱 iPhone SE/11 - 375x812 (NOVO BREAKPOINT)</div>
+
+            <div class="warning">
+                <strong>🚨 CRÍTICO: Este é o breakpoint FALTANTE!</strong><br>
+                Será adicionado na implementação.<br>
+                ANTES: Usa regras de 480px (muito grande)<br>
+                DEPOIS: Regras específicas para 375px
+            </div>
+
+            <div class="test-section">
+                <h3>Problemas Atuais (ANTES da implementação)</h3>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>⚠️ PROBLEMA: Fontes muito grandes</strong></p>
+                        <p class="test-hint">.c-mark = 52px (usa regra de 480px) → quebra em múltiplas linhas</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>⚠️ PROBLEMA: Imagens muito altas</strong></p>
+                        <p class="test-hint">280px em viewport de 375px = 75% da altura</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>⚠️ PROBLEMA: Botões inacessíveis</strong></p>
+                        <p class="test-hint">Language buttons muito pequenos, difícil clicar</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>⚠️ PROBLEMA: Possível horizontal scroll</strong></p>
+                        <p class="test-hint">Conteúdo pode ultrapassar 335px (375 - 40px padding)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="success">
+                <strong>✅ Após implementar breakpoint 375px:</strong><br>
+                • .c-mark reduzido a 48px<br>
+                • .H reduzido a 28px<br>
+                • Imagens reduzidas a 240px<br>
+                • Padding 20px horizontal<br>
+                • Botões com altura mínima 40px<br>
+                • Sem horizontal scroll
+            </div>
+
+            <div class="test-section">
+                <h3>Testes Pós-Implementação</h3>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Logo com fonte 48px (reduzida de 52px)</strong></p>
+                        <p class="test-hint">Deve quebrar apenas 1 linha, não 2-3</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Imagens com 240px altura</strong></p>
+                        <p class="test-hint">Proporção melhor: 64% da altura em vez de 75%</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Padding reduzido a 20px horizontal</strong></p>
+                        <p class="test-hint">Espaço disponível: 335px (muito melhor que ~240px)</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Botões com 40px mínimo de altura</strong></p>
+                        <p class="test-hint">WCAG compliant, fácil de clicar com dedos</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Sem horizontal scroll</strong></p>
+                        <p class="test-hint">Todos elementos dentro do viewport</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Logo com elemento visual visível</strong></p>
+                        <p class="test-hint">.c-eye mantém com tamanho reduzido (~70px)</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Processo em 1 coluna</strong></p>
+                        <p class="test-hint">Timeline vertical, fácil de navegar</p>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="test-checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="test-content">
+                        <p><strong>Sem necessidade de zoom</strong></p>
+                        <p class="test-hint">Texto base legível, heading 28px mínimo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testes Cross-Browser -->
+        <h2>7. Testes Cross-Browser</h2>
+
+        <div class="test-section">
+            <h3>Navegadores Desktop</h3>
+
+            <div class="test-item">
+                <div class="test-checkbox">
+                    <input type="checkbox">
+                </div>
+                <div class="test-content">
+                    <p><strong>Chrome 90+</strong></p>
+                    <p class="test-hint">Browser principal, suporte completo</p>
+                </div>
+            </div>
+
+            <div class="test-item">
+                <div class="test-checkbox">
+                    <input type="checkbox">
+                </div>
+                <div class="test-content">
+                    <p><strong>Firefox 88+</strong></p>
+                    <p class="test-hint">Verificar grid layout, flexbox</p>
+                </div>
+            </div>
+
+            <div class="test-item">
+                <div class="test-checkbox">
+                    <input type="checkbox">
+                </div>
+                <div class="test-content">
+                    <p><strong>Safari 14+</strong></p>
+                    <p class="test-hint">Verificar media queries, transitions</p>
+                </div>
+            </div>
+
+            <div class="test-item">
+                <div class="test-checkbox">
+                    <input type="checkbox">
+                </div>
+                <div class="test-content">
+                    <p><strong>Edge 90+</strong></p>
+                    <p class="test-hint">Baseado em Chromium, similar ao Chrome</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>Navegadores Mobile</h3>
+
+            <div class="test-item">
+                <div class="test-checkbox">
+                    <input type="checkbox">
+                </div>
+                <div class="test-content">
+                    <p><strong>Safari iOS (iPhone)</strong></p>
+                    <p class="test-hint">Testar em iPhone SE, 11, 12 (375px, 390px)</p>
+                </div>
+            </div>
+
+            <div class="test-item">
+                <div class="test-checkbox">
+                    <input type="checkbox">
+                </div>
+                <div class="test-content">
+                    <p><strong>Chrome Android</strong></p>
+                    <p class="test-hint">Testar em Pixel 5 (393px), Galaxy S10 (360px)</p>
+                </div>
+            </div>
+
+            <div class="test-item">
+                <div class="test-checkbox">
+                    <input type="checkbox">
+                </div>
+                <div class="test-content">
+                    <p><strong>Firefox Mobile</strong></p>
+                    <p class="test-hint">Verificar viewport, media queries</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ferramentas de Teste -->
+        <h2>8. Ferramentas de Teste Recomendadas</h2>
+
+        <div class="test-section">
+            <h3>DevTools Emulation</h3>
+
+            <div class="code-block">
+F12 → Device Toolbar (Ctrl+Shift+M)
+
+Dispositivos Pré-configurados:
+• iPhone SE (375x667)
+• iPhone 12 (390x844)
+• Pixel 5 (393x851)
+• iPad (768x1024)
+• iPad Pro (1024x1366)
+
+Custom Breakpoints:
+• 375px (Largura mínima testada)
+• 425px (Mobile médio)
+• 600px (Novo breakpoint)
+• 768px (Tablet)
+• 900px (Novo breakpoint)
+• 1200px (Breakpoint crítico)
+• 1920px (Desktop padrão)
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>Ferramentas Online</h3>
+
+            <div class="test-item">
+                <div class="test-checkbox">
+                    <input type="checkbox">
+                </div>
+                <div class="test-content">
+                    <p><strong>Responsively App</strong></p>
+                    <p class="test-hint"><a href="https://responsively.app/" target="_blank" class="video-link">Baixar</a> - Simular múltiplos dispositivos simultaneamente</p>
+                </div>
+            </div>
+
+            <div class="test-item">
+                <div class="test-checkbox">
+                    <input type="checkbox">
+                </div>
+                <div class="test-content">
+                    <p><strong>Mobile Responsive Design Checker</strong></p>
+                    <p class="test-hint"><a href="https://mobileresponsive.com/" target="_blank" class="video-link">Acessar</a> - Testar URL em múltiplas resoluções</p>
+                </div>
+            </div>
+
+            <div class="test-item">
+                <div class="test-checkbox">
+                    <input type="checkbox">
+                </div>
+                <div class="test-content">
+                    <p><strong>Google Lighthouse</strong></p>
+                    <p class="test-hint">DevTools → Lighthouse - Performance, SEO, Accessibility</p>
+                </div>
+            </div>
+
+            <div class="test-item">
+                <div class="test-checkbox">
+                    <input type="checkbox">
+                </div>
+                <div class="test-content">
+                    <p><strong>Google Mobile-Friendly Test</strong></p>
+                    <p class="test-hint"><a href="https://search.google.com/test/mobile-friendly" target="_blank" class="video-link">Acessar</a> - Verificar otimização para mobile</p>
+                </div>
+            </div>
+
+            <div class="test-item">
+                <div class="test-checkbox">
+                    <input type="checkbox">
+                </div>
+                <div class="test-content">
+                    <p><strong>WAVE Web Accessibility Evaluation Tool</strong></p>
+                    <p class="test-hint"><a href="https://wave.webaim.org/" target="_blank" class="video-link">Acessar</a> - Verificar acessibilidade WCAG</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Score Card -->
+        <h2>9. Score Card de Teste</h2>
+
+        <div class="test-section">
+            <h3>Antes da Implementação</h3>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Resolução</th>
+                    <th>Status</th>
+                    <th>Score</th>
+                    <th>Problemas</th>
+                </tr>
+                <tr>
+                    <td>Desktop 1920px</td>
+                    <td class="ok">✓ OK</td>
+                    <td><span class="score pass">A+</span></td>
+                    <td>Nenhum</td>
+                </tr>
+                <tr>
+                    <td>Tablet 1200px</td>
+                    <td class="problem">✗ PROBLEMÁTICO</td>
+                    <td><span class="score fail">D</span></td>
+                    <td>Processo 4 cols, transição abrupta</td>
+                </tr>
+                <tr>
+                    <td>Tablet 768px</td>
+                    <td class="ok">~ OK</td>
+                    <td><span class="score pass">B</span></td>
+                    <td>Sem 600px intermediário</td>
+                </tr>
+                <tr>
+                    <td>Mobile 480px</td>
+                    <td class="ok">✓ OK</td>
+                    <td><span class="score pass">B+</span></td>
+                    <td>Botões pequenos, sem 375px</td>
+                </tr>
+                <tr>
+                    <td>iPhone 375px</td>
+                    <td class="problem">✗ CRÍTICO</td>
+                    <td><span class="score fail">F</span></td>
+                    <td>Sem breakpoint, layout quebrado</td>
+                </tr>
+            </table>
+
+            <h3 style="margin-top: 30px;">Após Implementação das Melhorias</h3>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Resolução</th>
+                    <th>Status</th>
+                    <th>Score</th>
+                    <th>Melhorias</th>
+                </tr>
+                <tr>
+                    <td>Desktop 1920px</td>
+                    <td class="ok">✓ OK</td>
+                    <td><span class="score pass">A+</span></td>
+                    <td>Sem mudança (já bom)</td>
+                </tr>
+                <tr>
+                    <td>Laptop 1200px</td>
+                    <td class="ok">✓ CORRIGIDO</td>
+                    <td><span class="score pass">A</span></td>
+                    <td>Processo 2 cols, padding gradual</td>
+                </tr>
+                <tr>
+                    <td>Tablet 900px (NOVO)</td>
+                    <td class="ok">✓ NOVO</td>
+                    <td><span class="score pass">A</span></td>
+                    <td>Transição suave 1200px → 768px</td>
+                </tr>
+                <tr>
+                    <td>Tablet 768px</td>
+                    <td class="ok">✓ MELHORADO</td>
+                    <td><span class="score pass">A</span></td>
+                    <td>Imagens 380px, grids adequados</td>
+                </tr>
+                <tr>
+                    <td>Mobile 600px (NOVO)</td>
+                    <td class="ok">✓ NOVO</td>
+                    <td><span class="score pass">A</span></td>
+                    <td>Transição suave, imagens 340px</td>
+                </tr>
+                <tr>
+                    <td>Mobile 480px</td>
+                    <td class="ok">✓ MELHORADO</td>
+                    <td><span class="score pass">A</span></td>
+                    <td>Botões 40px+, padding adequado</td>
+                </tr>
+                <tr>
+                    <td>iPhone 375px (NOVO)</td>
+                    <td class="ok">✓ CORRIGIDO</td>
+                    <td><span class="score pass">A</span></td>
+                    <td>Breakpoint específico, layout OK</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Conclusão -->
+        <h2>10. Próximas Ações</h2>
+
+        <div class="test-section">
+            <div class="test-item">
+                <span class="step-number">1</span>
+                <div class="test-content">
+                    <p><strong>Revisar este guia</strong></p>
+                    <p>Entender cada teste e por que é importante</p>
+                </div>
+            </div>
+
+            <div class="test-item">
+                <span class="step-number">2</span>
+                <div class="test-content">
+                    <p><strong>Implementar melhorias</strong></p>
+                    <p>Seguir GUIA_IMPLEMENTACAO.md</p>
+                </div>
+            </div>
+
+            <div class="test-item">
+                <span class="step-number">3</span>
+                <div class="test-content">
+                    <p><strong>Executar este checklist</strong></p>
+                    <p>Marcar cada item após verificar</p>
+                </div>
+            </div>
+
+            <div class="test-item">
+                <span class="step-number">4</span>
+                <div class="test-content">
+                    <p><strong>Testar em dispositivos reais</strong></p>
+                    <p>iPhone, Android, tablets</p>
+                </div>
+            </div>
+
+            <div class="test-item">
+                <span class="step-number">5</span>
+                <div class="test-content">
+                    <p><strong>Deploy & Monitor</strong></p>
+                    <p>Verificar métricas após deploy</p>
+                </div>
+            </div>
+        </div>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid #383838;">
+
+        <p style="text-align: center; color: #7A7A72;">
+            <strong>Guia de Testes Práticos - Protetic</strong><br>
+            16/03/2026 | Versão 1.0 | Pronto para Uso
+        </p>
+    </div>
+</body>
+</html>

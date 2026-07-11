@@ -1,0 +1,702 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Design System Colors */
+    --k: #0A0A0A;
+    --w: #F0F0EB;
+    --y: #F5C518;
+    --g1: #111;
+    --g2: #1a1a1a;
+    --g3: #242424;
+    --g4: #404040;
+    --g5: #7a7a7a;
+    --g6: #b0b0a8;
+
+    /* Font */
+    --f: 'Jost', sans-serif;
+
+    /* Easing */
+    --ease: cubic-bezier(.25, .46, .45, .94);
+    --ease2: cubic-bezier(.76, 0, .24, 1);
+
+    /* Aliases for page */
+    --primary-bg: var(--k);
+    --secondary-bg: var(--g2);
+    --accent-color: var(--y);
+    --text-primary: var(--w);
+    --text-secondary: var(--g6);
+    --text-muted: var(--g5);
+    --text-placeholder: var(--g5);
+    --border-color: rgba(245, 197, 24, 0.1);
+    --input-bg: var(--g1);
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-color: var(--primary-bg);
+    color: var(--text-secondary);
+    font-family: var(--f);
+    line-height: 1.6;
+    overflow-x: hidden;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.page-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    background-color: var(--primary-bg);
+}
+
+/* Background Gradients */
+.background-gradients {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    background:
+        radial-gradient(ellipse 400px 250px at 10% 50%, rgba(245, 166, 35, 0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 400px 250px at 90% 80%, rgba(245, 166, 35, 0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 300px 200px at 50% 20%, rgba(26, 26, 26, 0.4) 0%, transparent 70%);
+}
+
+/* Logo Section */
+.logo-section {
+    margin-bottom: 1.5rem;
+}
+
+.logo-brand {
+    height: auto;
+    width: 180px;
+    display: block;
+    object-fit: contain;
+}
+
+/* Main Content - Two Column Layout */
+.main-content {
+    position: relative;
+    z-index: 5;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Content Column - Left */
+.content-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.headline-section h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+.headline-section .subheadline {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+}
+
+.headline-section .highlight {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.headline-section .subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+/* Benefits Compact */
+.benefits-compact {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.benefit-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1rem;
+    background-color: rgba(26, 26, 26, 0.3);
+    border-left: 3px solid var(--accent-color);
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.benefit-item:hover {
+    background-color: rgba(26, 26, 26, 0.5);
+    transform: translateX(4px);
+}
+
+.benefit-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.benefit-item > div {
+    flex: 1;
+}
+
+.benefit-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.benefit-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+/* Form Column - Right */
+.form-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.capture-form {
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    overflow: hidden;
+}
+
+.form-header {
+    margin-bottom: 0.5rem;
+}
+
+.form-header h2 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+}
+
+.form-header p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+/* Form Groups */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Form Row - Two columns */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    width: 100%;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.form-group input {
+    padding: 0.75rem 1rem;
+    background-color: var(--input-bg);
+    border: 1px solid #364153;
+    border-radius: 0.5rem;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input::placeholder {
+    color: var(--text-placeholder);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.1);
+}
+
+/* Submit Button */
+.submit-btn {
+    padding: 0.85rem 1.5rem;
+    background-color: var(--accent-color);
+    color: #000;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    margin-top: 0.5rem;
+}
+
+.submit-btn:hover {
+    background-color: #f59a0b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(245, 166, 35, 0.3);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Form Disclaimer */
+.form-disclaimer {
+    font-size: 0.8rem;
+    color: var(--text-placeholder);
+    text-align: center;
+    line-height: 1.5;
+    margin-top: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .main-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem 1.5rem;
+    }
+
+    .headline-section h1 {
+        font-size: 2rem;
+    }
+
+    .content-column {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-container {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .main-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1.5rem;
+        overflow-y: visible;
+        flex: unset;
+    }
+
+    .logo-section {
+        margin-bottom: 1rem;
+    }
+
+    .logo-brand {
+        height: 50px;
+    }
+
+    .headline-section h1 {
+        font-size: 1.75rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .headline-section .subheadline {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .benefits-compact {
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .benefit-item {
+        padding: 1rem;
+        gap: 0.75rem;
+    }
+
+    .benefit-icon {
+        font-size: 1.25rem;
+        flex-shrink: 0;
+    }
+
+    .benefit-title {
+        font-size: 0.9rem;
+    }
+
+    .benefit-text {
+        font-size: 0.85rem;
+    }
+
+    .capture-form {
+        padding: 2rem 1.5rem;
+        max-width: 100%;
+        border-radius: 1rem;
+        overflow: hidden;
+        gap: 1.5rem;
+    }
+
+    .form-header h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-header p {
+        font-size: 0.9rem;
+    }
+
+    .form-group {
+        gap: 0.4rem;
+    }
+
+    .form-group label {
+        font-size: 0.8rem;
+    }
+
+    .form-group input {
+        padding: 0.6rem 0.8rem;
+        font-size: 16px;
+        border-radius: 0.4rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        width: 100%;
+    }
+
+    .submit-btn {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.9rem;
+        margin-top: 0.25rem;
+    }
+
+    .form-disclaimer {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+
+    .logo-brand {
+        height: 40px;
+    }
+
+    .headline-section h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .headline-section .subheadline {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+    }
+
+    .benefits-compact {
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .benefit-item {
+        padding: 0.75rem;
+        border-radius: 0.4rem;
+    }
+
+    .benefit-icon {
+        font-size: 1.1rem;
+        min-width: 28px;
+    }
+
+    .benefit-item > div {
+        flex: 1;
+    }
+
+    .benefit-title {
+        font-size: 0.85rem;
+        margin-bottom: 0.15rem;
+    }
+
+    .benefit-text {
+        font-size: 0.8rem;
+    }
+
+    .capture-form {
+        padding: 1.75rem 1.25rem;
+        gap: 1.3rem;
+        border-radius: 0.75rem;
+        overflow: hidden;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .form-header h2 {
+        font-size: 1.25rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .form-header p {
+        font-size: 0.85rem;
+    }
+
+    .form-group {
+        gap: 0.35rem;
+    }
+
+    .form-group label {
+        font-size: 0.75rem;
+    }
+
+    .form-group input {
+        padding: 0.6rem 0.8rem;
+        font-size: 16px;
+        border-radius: 0.35rem;
+    }
+
+    .form-group input::placeholder {
+        font-size: 0.85rem;
+    }
+
+    .submit-btn {
+        padding: 0.7rem 1rem;
+        font-size: 0.85rem;
+        margin-top: 0.2rem;
+    }
+
+    .form-disclaimer {
+        font-size: 0.7rem;
+        line-height: 1.4;
+    }
+}
+
+/* Form Success State */
+.capture-form.submitted {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.success-message {
+    display: none;
+    background-color: rgba(34, 197, 94, 0.1);
+    border: 1px solid #22c55e;
+    color: #86efac;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.success-message.show {
+    display: block;
+    animation: slideIn 0.3s ease;
+}
+
+.error-message-alert {
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid #ef4444;
+    color: #fca5a5;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Popup Modal */
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-overlay.show {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+.popup-modal {
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.popup-icon {
+    width: 80px;
+    height: 80px;
+    background-color: rgba(34, 197, 94, 0.1);
+    border: 2px solid #22c55e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: #22c55e;
+    animation: popIn 0.5s ease;
+}
+
+.popup-modal h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.popup-modal p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.popup-btn {
+    padding: 1rem 2rem;
+    background-color: var(--accent-color);
+    color: #000;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    width: 100%;
+}
+
+.popup-btn:hover {
+    background-color: #f59a0b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(245, 166, 35, 0.3);
+}
+
+.popup-btn:active {
+    transform: translateY(0);
+}
+
+.popup-btn-secondary {
+    padding: 0.75rem 2rem;
+    background-color: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    width: 100%;
+}
+
+.popup-btn-secondary:hover {
+    color: var(--text-secondary);
+    border-color: var(--text-secondary);
+    background-color: rgba(26, 26, 26, 0.5);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

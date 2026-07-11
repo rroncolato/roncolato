@@ -1,0 +1,111 @@
+================================================================================
+                    ✅ SITE RONCOLATO - REORGANIZAÇÃO COMPLETA
+================================================================================
+
+RAIZ (Arquivos principais apenas):
+├── 📄 index.html (homepage)
+├── 📄 robots.txt
+├── 📄 README.md ⭐ (novo - documentação de estrutura)
+├── 📄 package.json
+├── 📄 package-lock.json
+├── 📄 vercel.json (.vercelignore)
+└── .env, .env.local, .env.production
+
+PASTAS PRINCIPAIS:
+│
+├── 📂 public/ ..................... Arquivos públicos (servidos)
+│   ├── index.html
+│   ├── 404.html
+│   ├── assets/
+│   │   ├── IMG/ ................... Imagens do projeto
+│   │   ├── design-system.html
+│   │   ├── css/
+│   │   └── js/
+│   ├── blog/ ...................... Artigos de blog
+│   │   ├── fotografia-executiva.html
+│   │   └── *.md
+│   └── pages/ ..................... Páginas temáticas
+│       ├── presenca/
+│       ├── oratoria/
+│       ├── proposta/
+│       └── protetic/
+│
+├── 📂 src/ ......................... Código-fonte (Backend/Admin)
+│   ├── server.js .................. Servidor principal
+│   ├── server-customer.js ......... Servidor cliente
+│   ├── admin/ ..................... Sistema de administração
+│   │   ├── app.js
+│   │   ├── login.html
+│   │   ├── dashboard.html
+│   │   ├── components.js
+│   │   └── styles-admin.css
+│   ├── api/ ....................... Rotas de API
+│   ├── customer/ .................. Dashboard cliente
+│   └── dashboard/ ................. Dashboard interno
+│
+├── 📂 docs/ ........................ Documentação técnica
+│   ├── 00_LEIA_PRIMEIRO.md ........ ⭐ Comece aqui!
+│   ├── RESUMO_EXECUTIVO.md
+│   ├── INDICE_COMPLETO.md
+│   ├── admin/ ..................... Documentação do admin
+│   │   ├── ADMIN_INDEX.md
+│   │   ├── ADMIN_QUICK_START.md
+│   │   ├── ADMIN_BACKEND_IMPLEMENTATION.md
+│   │   └── ...
+│   ├── architecture/ .............. Arquitetura do projeto
+│   │   ├── ARCHITECTURE_INDEX.md
+│   │   └── ...
+│   ├── setup/ ..................... Guias de configuração
+│   │   ├── GUIA_IMPLEMENTACAO_PRATICO.md
+│   │   └── ...
+│   └── fotos-* / .................. Assets de referência
+│
+├── 📂 scripts/ ..................... Scripts utilitários
+│   ├── add-article.js ............. Criar novo artigo
+│   ├── add-project.js ............. Criar novo projeto
+│   ├── download_imgs.js
+│   ├── fetch_blog_imgs.js
+│   ├── update_portfolio.js
+│   └── ...
+│
+├── 📂 data/ ........................ Dados estruturados
+│   └── sections-config.json
+│
+├── 📂 ARCHIVE/ ..................... Conteúdo descontinuado
+│   ├── LINKS/
+│   ├── PROPOSTAS/
+│   ├── ensaio/
+│   ├── presenca_old/
+│   └── ...
+│
+├── 📂 AGENDA/ ...................... Sincronização Google Calendar
+│   └── (Arquivo de configuração)
+│
+├── 📂 .claude/ ..................... Configuração Claude Code
+├── 📂 .git/ ........................ Controle de versão
+├── 📂 .vercel/ ..................... Deploy Vercel
+└── 📂 node_modules/ ................ Dependências npm
+
+================================================================================
+                              🎯 BENEFÍCIOS
+================================================================================
+
+✅ Separação clara entre público e privado
+✅ Código-fonte organizado por módulo
+✅ Documentação centralizada e estruturada
+✅ Scripts e dados em pastas dedicadas
+✅ Conteúdo antigo arquivado
+✅ Raiz mais limpa e legível
+✅ Melhor manutenção futura
+
+================================================================================
+                         🚀 PRÓXIMOS PASSOS
+================================================================================
+
+1. ✅ Estrutura reorganizada
+2. → Revisar importações em src/server.js (se necessário)
+3. → Testar servidor: npm install && node src/server.js
+4. → Acessar admin: http://localhost:3011/admin/login.html
+5. → Fazer commit: git add . && git commit -m "refactor: reorganizar estrutura de pastas"
+
+================================================================================

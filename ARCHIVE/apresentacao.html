@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O Hoje — Estratégia de Marca 2026 | Roncolato</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --dark: #050d1a;
+      --dark2: #0a1628;
+      --dark3: #0f1f3d;
+      --brand: #003f7f;
+      --brand-light: #1e6bbd;
+      --blue-glow: #2d8cff;
+      --accent: #f59e0b;
+      --accent2: #ef4444;
+      --green: #10b981;
+      --white: #ffffff;
+      --white70: rgba(255,255,255,0.7);
+      --white40: rgba(255,255,255,0.4);
+      --white15: rgba(255,255,255,0.15);
+      --white08: rgba(255,255,255,0.08);
+      --glass: rgba(255,255,255,0.06);
+      --glass-border: rgba(255,255,255,0.12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV DOTS ── */
+    .nav-dots {
+      position: fixed; right: 28px; top: 50%; transform: translateY(-50%);
+      z-index: 1000; display: flex; flex-direction: column; gap: 10px;
+    }
+    .nav-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--white40); cursor: pointer; transition: all .3s;
+      border: none; outline: none;
+    }
+    .nav-dot.active, .nav-dot:hover { background: var(--blue-glow); transform: scale(1.4); }
+
+    /* ── NAV TOP ── */
+    .topnav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      padding: 16px 40px; display: flex; justify-content: space-between; align-items: center;
+      background: linear-gradient(to bottom, rgba(5,13,26,0.95), transparent);
+      backdrop-filter: blur(10px);
+    }
+    .topnav-logo { font-family: 'PT Serif', serif; font-size: 20px; color: white; letter-spacing: 1px; }
+    .topnav-logo span { color: var(--blue-glow); }
+    .topnav-right { display: flex; gap: 8px; }
+    .topnav-tag { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--white40); }
+    .back-btn {
+      color: var(--white40); font-size: 12px; text-decoration: none;
+      border: 1px solid var(--white15); border-radius: 20px; padding: 6px 14px;
+      transition: .2s;
+    }
+    .back-btn:hover { color: white; border-color: var(--white40); }
+
+    /* ── SECTIONS ── */
+    section {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 100px 60px; position: relative; overflow: hidden;
+    }
+    .section-inner { max-width: 1100px; width: 100%; margin: 0 auto; }
+
+    /* ── BG EFFECTS ── */
+    .bg-glow {
+      position: absolute; border-radius: 50%; filter: blur(120px); pointer-events: none;
+    }
+    .glow-blue { background: rgba(45,140,255,0.12); width: 600px; height: 600px; }
+    .glow-accent { background: rgba(245,158,11,0.08); width: 400px; height: 400px; }
+
+    /* ── SECTION LABEL ── */
+    .s-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px;
+      color: var(--blue-glow); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+    }
+    .s-label::before { content: ''; display: block; width: 32px; height: 2px; background: var(--blue-glow); }
+
+    /* ── TYPOGRAPHY ── */
+    .headline-xl {
+      font-family: 'PT Serif', serif; font-size: clamp(52px, 7vw, 88px);
+      font-weight: 700; line-height: 1.05; letter-spacing: -1px;
+    }
+    .headline-lg {
+      font-family: 'PT Serif', serif; font-size: clamp(36px, 5vw, 58px);
+      font-weight: 700; line-height: 1.1;
+    }
+    .headline-md {
+      font-family: 'PT Serif', serif; font-size: clamp(24px, 3.5vw, 38px);
+      font-weight: 700; line-height: 1.2;
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #fff 0%, var(--blue-glow) 60%, var(--accent) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .text-accent { color: var(--accent); }
+    .text-blue { color: var(--blue-glow); }
+    .text-green { color: var(--green); }
+    .text-muted { color: var(--white40); }
+    .body-lg { font-size: 18px; line-height: 1.7; color: var(--white70); }
+    .body-md { font-size: 15px; line-height: 1.7; color: var(--white70); }
+
+    /* ── GLASS CARD ── */
+    .glass-card {
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: 16px; padding: 28px 32px; backdrop-filter: blur(10px);
+    }
+    .glass-card.accent-border { border-color: rgba(245,158,11,0.3); }
+    .glass-card.blue-border { border-color: rgba(45,140,255,0.3); }
+    .glass-card.green-border { border-color: rgba(16,185,129,0.3); }
+
+    /* ── BIG NUMBER ── */
+    .big-num {
+      font-size: clamp(48px, 7vw, 80px); font-weight: 900; line-height: 1;
+      font-family: 'Inter', sans-serif; letter-spacing: -2px;
+    }
+    .big-num-label { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--white40); margin-top: 6px; }
+
+    /* ── GRID ── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+    /* ── DIVIDER ── */
+    .divider { width: 64px; height: 3px; background: linear-gradient(90deg, var(--blue-glow), var(--accent)); border-radius: 2px; margin: 24px 0; }
+
+    /* ── QUOTE ── */
+    .quote-block {
+      border-left: 4px solid var(--blue-glow); padding: 20px 28px;
+      background: var(--white08); border-radius: 0 12px 12px 0; margin: 24px 0;
+    }
+    .quote-block p { font-family: 'PT Serif', serif; font-size: 20px; line-height: 1.6; color: white; font-style: italic; }
+
+    /* ── TAG ── */
+    .tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 14px; border-radius: 20px; font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    .tag-blue { background: rgba(45,140,255,0.15); color: var(--blue-glow); border: 1px solid rgba(45,140,255,0.3); }
+    .tag-accent { background: rgba(245,158,11,0.15); color: var(--accent); border: 1px solid rgba(245,158,11,0.3); }
+    .tag-green { background: rgba(16,185,129,0.15); color: var(--green); border: 1px solid rgba(16,185,129,0.3); }
+    .tag-red { background: rgba(239,68,68,0.15); color: var(--accent2); border: 1px solid rgba(239,68,68,0.3); }
+
+    /* ── MOVEMENT CARD ── */
+    .movement-card {
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: 16px; padding: 28px; position: relative; overflow: hidden;
+      transition: transform .3s, border-color .3s;
+    }
+    .movement-card:hover { transform: translateY(-4px); border-color: var(--blue-glow); }
+    .movement-num {
+      font-size: 72px; font-weight: 900; color: var(--white08);
+      position: absolute; top: -10px; right: 16px; line-height: 1;
+      font-family: 'Inter', sans-serif; pointer-events: none;
+    }
+    .movement-icon { font-size: 28px; margin-bottom: 14px; }
+    .movement-title { font-size: 16px; font-weight: 800; color: white; margin-bottom: 8px; }
+    .movement-desc { font-size: 13px; color: var(--white70); line-height: 1.6; }
+    .movement-copy {
+      margin-top: 14px; padding: 12px 16px; background: var(--white08);
+      border-radius: 8px; font-size: 12px; color: var(--blue-glow); font-style: italic;
+      border-left: 3px solid var(--blue-glow);
+    }
+
+    /* ── PERSONA CARD ── */
+    .persona-card {
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: 16px; overflow: hidden; transition: .3s;
+    }
+    .persona-card:hover { transform: translateY(-4px); }
+    .persona-header { padding: 24px 24px 16px; }
+    .persona-avatar { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; font-size: 24px; margin-bottom: 14px; }
+    .persona-a .persona-avatar { background: rgba(45,140,255,0.2); }
+    .persona-b .persona-avatar { background: rgba(245,158,11,0.2); }
+    .persona-c .persona-avatar { background: rgba(16,185,129,0.2); }
+    .persona-a { border-top: 3px solid var(--blue-glow); }
+    .persona-b { border-top: 3px solid var(--accent); }
+    .persona-c { border-top: 3px solid var(--green); }
+    .persona-name { font-size: 16px; font-weight: 800; color: white; margin-bottom: 4px; }
+    .persona-age { font-size: 12px; color: var(--white40); }
+    .persona-body { padding: 0 24px 24px; border-top: 1px solid var(--glass-border); padding-top: 16px; }
+    .persona-trait { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+    .persona-trait-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+    .persona-trait-text { font-size: 13px; color: var(--white70); line-height: 1.5; }
+
+    /* ── KPI ROW ── */
+    .kpi-row {
+      display: flex; align-items: center; gap: 20px; padding: 18px 0;
+      border-bottom: 1px solid var(--white08);
+    }
+    .kpi-row:last-child { border-bottom: none; }
+    .kpi-num-small { font-size: 28px; font-weight: 900; min-width: 100px; }
+    .kpi-label-row { flex: 1; }
+    .kpi-label-row strong { font-size: 14px; font-weight: 700; color: white; display: block; margin-bottom: 2px; }
+    .kpi-label-row span { font-size: 12px; color: var(--white40); }
+    .kpi-bar-outer { width: 160px; height: 6px; background: var(--white08); border-radius: 3px; overflow: hidden; }
+    .kpi-bar-inner { height: 100%; border-radius: 3px; }
+    .kpi-tag { min-width: 80px; text-align: right; }
+
+    /* ── TIMELINE ── */
+    .timeline { display: flex; gap: 0; position: relative; }
+    .timeline::before {
+      content: ''; position: absolute; top: 24px; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--blue-glow), var(--accent), var(--green));
+    }
+    .tl-item { flex: 1; padding-top: 50px; padding-right: 16px; position: relative; }
+    .tl-dot {
+      position: absolute; top: 16px; left: 0; width: 18px; height: 18px;
+      border-radius: 50%; border: 2px solid var(--blue-glow); background: var(--dark);
+      transform: translateX(-50%);
+    }
+    .tl-dot.done { background: var(--blue-glow); }
+    .tl-dot.active { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 12px var(--accent); }
+    .tl-sprint { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--blue-glow); margin-bottom: 6px; }
+    .tl-title { font-size: 14px; font-weight: 700; color: white; margin-bottom: 6px; }
+    .tl-items { font-size: 12px; color: var(--white40); line-height: 1.8; }
+
+    /* ── COPY CARD ── */
+    .copy-card {
+      background: var(--dark3); border: 1px solid var(--glass-border);
+      border-radius: 12px; padding: 20px 24px; position: relative;
+    }
+    .copy-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--white40); margin-bottom: 10px; }
+    .copy-text { font-size: 16px; color: white; line-height: 1.6; font-style: italic; }
+    .copy-channel { position: absolute; top: 16px; right: 16px; }
+
+    /* ── EIXO CARD ── */
+    .eixo-card {
+      background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px;
+      padding: 24px; display: flex; gap: 20px; align-items: flex-start;
+    }
+    .eixo-num { font-size: 32px; font-weight: 900; color: var(--blue-glow); min-width: 40px; line-height: 1; }
+    .eixo-body { flex: 1; }
+    .eixo-title { font-size: 15px; font-weight: 800; color: white; margin-bottom: 6px; }
+    .eixo-desc { font-size: 13px; color: var(--white70); line-height: 1.6; margin-bottom: 12px; }
+    .eixo-copy { font-size: 13px; color: var(--blue-glow); font-style: italic; }
+
+    /* ── CTA SECTION ── */
+    .cta-action {
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: 16px; padding: 28px 32px; display: flex; gap: 20px; align-items: flex-start;
+      transition: .3s; cursor: default;
+    }
+    .cta-action:hover { border-color: var(--blue-glow); background: rgba(45,140,255,0.06); }
+    .cta-icon { font-size: 28px; flex-shrink: 0; }
+    .cta-title { font-size: 16px; font-weight: 800; color: white; margin-bottom: 6px; }
+    .cta-desc { font-size: 13px; color: var(--white70); line-height: 1.6; }
+
+    /* ── ANIMATIONS ── */
+    .fade-up { opacity: 0; transform: translateY(32px); transition: opacity .7s ease, transform .7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up-2 { transition-delay: .15s; }
+    .fade-up-3 { transition-delay: .3s; }
+    .fade-up-4 { transition-delay: .45s; }
+
+    /* ── COUNTER ── */
+    .counter { display: inline-block; }
+
+    /* ── SEPARATOR ── */
+    .section-sep { width: 100%; height: 1px; background: var(--white08); }
+
+    @media (max-width: 900px) {
+      section { padding: 80px 28px; }
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .headline-xl { font-size: 42px; }
+      .nav-dots { display: none; }
+      .timeline { flex-direction: column; }
+      .timeline::before { display: none; }
+      .tl-item { padding-top: 0; padding-bottom: 24px; border-left: 2px solid var(--blue-glow); padding-left: 20px; }
+      .tl-dot { top: 0; left: -10px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="topnav-logo">O <span>Hoje</span></div>
+  <div class="topnav-right">
+    <span class="topnav-tag">Estratégia de Marca · Abr 2026</span>
+    <a href="ohoje.html" class="back-btn">← Dashboard</a>
+  </div>
+</nav>
+
+<!-- NAV DOTS -->
+<div class="nav-dots" id="navDots"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     01 · CAPA
+════════════════════════════════════════════════════ -->
+<section id="s01" data-label="Capa" style="background: radial-gradient(ellipse at 30% 50%, rgba(0,63,127,0.4) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(45,140,255,0.1) 0%, transparent 50%), var(--dark);">
+  <div class="bg-glow glow-blue" style="top:-100px; left:-100px;"></div>
+  <div class="bg-glow glow-accent" style="bottom:-50px; right:0;"></div>
+  <div class="section-inner" style="text-align:center;">
+    <div class="s-label fade-up" style="justify-content:center;">Parceria Estratégica 6 Meses · Sprint 1 + 2</div>
+    <h1 class="headline-xl fade-up fade-up-2" style="margin-bottom:24px;">
+      <span class="text-gradient">Informação sem bloqueio.</span><br>
+      Goiás sem filtro.
+    </h1>
+    <p class="body-lg fade-up fade-up-3" style="max-width:640px; margin:0 auto 40px;">
+      Um portal de jornalismo goiano está prestes a se tornar a primeira resposta mental quando alguém pergunta: <em>"onde me informar sobre o que acontece em Goiás?"</em>
+    </p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;" class="fade-up fade-up-4">
+      <span class="tag tag-blue">Sprint 1 · Diagnóstico</span>
+      <span class="tag tag-accent">Sprint 2 · Identidade</span>
+      <span class="tag tag-green">Baseline GA4 · Abr/2026</span>
+    </div>
+    <div style="margin-top:64px; display:flex; align-items:center; justify-content:center; gap:8px; color:var(--white40); font-size:13px;" class="fade-up fade-up-4">
+      <span>Role para explorar</span>
+      <span style="animation: bounce 2s infinite;">↓</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     02 · O CENÁRIO
+════════════════════════════════════════════════════ -->
+<section id="s02" data-label="Cenário" style="background: var(--dark2);">
+  <div class="section-inner">
+    <div class="s-label fade-up">01 · Diagnóstico</div>
+    <h2 class="headline-lg fade-up fade-up-2" style="margin-bottom:16px;">O mercado que<br><span class="text-gradient">ninguém está dominando.</span></h2>
+    <p class="body-lg fade-up fade-up-3" style="max-width:600px; margin-bottom:48px;">Em Goiás, nenhum portal de notícias tem o <strong style="color:white;">livre acesso como identidade de marca</strong>. Todos tratam a gratuidade como padrão de mercado. Ninguém a transformou em bandeira.</p>
+
+    <div class="grid-2 fade-up fade-up-3" style="gap:24px; margin-bottom:32px;">
+      <div class="glass-card">
+        <div style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent2); margin-bottom:16px;">❌ O que existe hoje</div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex; align-items:center; gap:12px; padding:12px; background:rgba(239,68,68,0.06); border-radius:8px; border:1px solid rgba(239,68,68,0.15);">
+            <span style="font-size:18px;">🔒</span>
+            <div><div style="font-size:14px; font-weight:700; color:white;">Paywall disfarçado</div><div style="font-size:12px; color:var(--white40);">G1, Estadão, O Popular premium</div></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; padding:12px; background:rgba(239,68,68,0.06); border-radius:8px; border:1px solid rgba(239,68,68,0.15);">
+            <span style="font-size:18px;">📋</span>
+            <div><div style="font-size:14px; font-weight:700; color:white;">Cadastro obrigatório</div><div style="font-size:12px; color:var(--white40);">Folha, UOL, portais nacionais</div></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; padding:12px; background:rgba(239,68,68,0.06); border-radius:8px; border:1px solid rgba(239,68,68,0.15);">
+            <span style="font-size:18px;">🎯</span>
+            <div><div style="font-size:14px; font-weight:700; color:white;">Sem identidade regional forte</div><div style="font-size:12px; color:var(--white40);">Cobertura genérica de Goiás</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card green-border">
+        <div style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--green); margin-bottom:16px;">✅ O espaço que O Hoje vai ocupar</div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex; align-items:center; gap:12px; padding:12px; background:rgba(16,185,129,0.06); border-radius:8px; border:1px solid rgba(16,185,129,0.15);">
+            <span style="font-size:18px;">🔓</span>
+            <div><div style="font-size:14px; font-weight:700; color:white;">Livre Acesso como bandeira</div><div style="font-size:12px; color:var(--white40);">Escolha ativa, não padrão</div></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; padding:12px; background:rgba(16,185,129,0.06); border-radius:8px; border:1px solid rgba(16,185,129,0.15);">
+            <span style="font-size:18px;">🏛️</span>
+            <div><div style="font-size:14px; font-weight:700; color:white;">Eixo do Poder de Goiás</div><div style="font-size:12px; color:var(--white40);">Política · Judiciário · Economia</div></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; padding:12px; background:rgba(16,185,129,0.06); border-radius:8px; border:1px solid rgba(16,185,129,0.15);">
+            <span style="font-size:18px;">🧠</span>
+            <div><div style="font-size:14px; font-weight:700; color:white;">Top of Mind espontâneo</div><div style="font-size:12px; color:var(--white40);">Primeira resposta mental em Goiás</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-block fade-up fade-up-4">
+      <p>"O Hoje não compete pelo leitor. O Hoje compete pela <strong>mente do leitor</strong>. É esse espaço que O Hoje vai ocupar."</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     03 · OS NÚMEROS (GA4 BASELINE)
+════════════════════════════════════════════════════ -->
+<section id="s03" data-label="Números" style="background: var(--dark);">
+  <div class="bg-glow glow-blue" style="top:50%; right:-200px; transform:translateY(-50%);"></div>
+  <div class="section-inner">
+    <div class="s-label fade-up">02 · Baseline GA4 · 16 Abr 2026</div>
+    <h2 class="headline-lg fade-up fade-up-2" style="margin-bottom:8px;">O ponto zero.<br><span class="text-gradient">A partir daqui, construímos.</span></h2>
+    <p class="body-md fade-up fade-up-2" style="margin-bottom:48px; max-width:540px;">Dados coletados dos últimos 28 dias via Google Analytics 4. Estes são os números reais do O Hoje hoje — e a base que vamos superar.</p>
+
+    <div class="grid-4 fade-up fade-up-3" style="margin-bottom:40px;">
+      <div class="glass-card blue-border" style="text-align:center; padding:32px 20px;">
+        <div class="big-num text-blue"><span class="counter" data-target="107">0</span>K</div>
+        <div class="big-num-label">Usuários ativos / mês</div>
+        <div style="margin-top:10px; font-size:12px; color:var(--green);">Meta: +15%</div>
+      </div>
+      <div class="glass-card" style="text-align:center; padding:32px 20px;">
+        <div class="big-num text-blue"><span class="counter" data-target="182">0</span>K</div>
+        <div class="big-num-label">Visualizações / mês</div>
+        <div style="margin-top:10px; font-size:12px; color:var(--white40);">28 dias</div>
+      </div>
+      <div class="glass-card accent-border" style="text-align:center; padding:32px 20px;">
+        <div class="big-num text-accent"><span class="counter" data-target="22">0</span>.4%</div>
+        <div class="big-num-label">Taxa de retorno WAU/MAU</div>
+        <div style="margin-top:10px; font-size:12px; color:var(--accent);">Meta: &gt;25%</div>
+      </div>
+      <div class="glass-card" style="text-align:center; padding:32px 20px; border-color:rgba(239,68,68,0.3);">
+        <div class="big-num" style="color:var(--accent2);">25<span style="font-size:32px;">s</span></div>
+        <div class="big-num-label">Tempo médio engajamento</div>
+        <div style="margin-top:10px; font-size:12px; color:var(--accent2);">Meta: &gt;2min ⚠</div>
+      </div>
+    </div>
+
+    <div class="glass-card fade-up fade-up-4" style="padding:28px 32px;">
+      <div style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--white40); margin-bottom:20px;">Origem do tráfego · 28 dias</div>
+      <div style="display:flex; flex-direction:column; gap:0;">
+
+        <div class="kpi-row">
+          <div class="kpi-num-small text-blue">48,2%</div>
+          <div class="kpi-label-row"><strong>Tráfego Direto</strong><span>Audiência fidelizada — digita O Hoje diretamente</span></div>
+          <div class="kpi-bar-outer"><div class="kpi-bar-inner" style="width:48%; background:var(--blue-glow);"></div></div>
+          <div class="kpi-tag"><span class="tag tag-green">Sólido</span></div>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi-num-small text-green">47,3%</div>
+          <div class="kpi-label-row"><strong>Orgânico (Google/Bing)</strong><span>Boa indexação — SEO funcionando</span></div>
+          <div class="kpi-bar-outer"><div class="kpi-bar-inner" style="width:47%; background:var(--green);"></div></div>
+          <div class="kpi-tag"><span class="tag tag-green">Sólido</span></div>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi-num-small text-accent">3,8%</div>
+          <div class="kpi-label-row"><strong>Social (Instagram / Facebook)</strong><span>Enorme espaço de crescimento</span></div>
+          <div class="kpi-bar-outer"><div class="kpi-bar-inner" style="width:3.8%; background:var(--accent);"></div></div>
+          <div class="kpi-tag"><span class="tag tag-accent">Oportunidade</span></div>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi-num-small" style="color:var(--white40);">0,9%</div>
+          <div class="kpi-label-row"><strong>Referral</strong><span>Links externos e parceiros</span></div>
+          <div class="kpi-bar-outer"><div class="kpi-bar-inner" style="width:0.9%; background:var(--white40);"></div></div>
+          <div class="kpi-tag"><span class="tag" style="background:var(--white08); color:var(--white40); border-color:var(--white08);">Baseline</span></div>
+        </div>
+
+      </div>
+      <div style="margin-top:20px; padding:14px 18px; background:rgba(16,185,129,0.08); border-radius:10px; border:1px solid rgba(16,185,129,0.2); font-size:14px; color:var(--green);">
+        ✦ <strong>95,5% do tráfego</strong> vem de direto + orgânico — independência total de redes sociais. Base extremamente saudável.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     04 · O POSICIONAMENTO
+════════════════════════════════════════════════════ -->
+<section id="s04" data-label="Posicionamento" style="background: radial-gradient(ellipse at center, rgba(0,63,127,0.3) 0%, var(--dark2) 60%);">
+  <div class="section-inner" style="text-align:center;">
+    <div class="s-label fade-up" style="justify-content:center;">03 · Posicionamento</div>
+    <h2 class="headline-xl fade-up fade-up-2" style="margin-bottom:32px;">
+      A aposta<br><span class="text-gradient">que muda tudo.</span>
+    </h2>
+    <div class="quote-block fade-up fade-up-3" style="text-align:left; max-width:760px; margin:0 auto 40px;">
+      <p>"Transformar o <strong>'livre acesso'</strong> — que hoje é tratado como padrão de mercado — em uma <strong>identidade de marca</strong>, uma bandeira, um símbolo. O jornal que escolheu estar do lado do leitor."</p>
+    </div>
+
+    <div class="grid-3 fade-up fade-up-4" style="max-width:900px; margin:0 auto; text-align:left;">
+      <div class="glass-card blue-border" style="text-align:center; padding:32px 24px;">
+        <div style="font-size:36px; margin-bottom:14px;">🔓</div>
+        <div style="font-size:15px; font-weight:800; color:white; margin-bottom:8px;">Livre Acesso</div>
+        <div style="font-size:13px; color:var(--white70);">Sem paywall. Sem cadastro. Porque informação é um direito.</div>
+      </div>
+      <div class="glass-card" style="text-align:center; padding:32px 24px; border-color:rgba(245,158,11,0.3);">
+        <div style="font-size:36px; margin-bottom:14px;">🏛️</div>
+        <div style="font-size:15px; font-weight:800; color:white; margin-bottom:8px;">Eixo do Poder</div>
+        <div style="font-size:13px; color:var(--white70);">Política · Judiciário · Economia de Goiás em profundidade.</div>
+      </div>
+      <div class="glass-card green-border" style="text-align:center; padding:32px 24px;">
+        <div style="font-size:36px; margin-bottom:14px;">🧠</div>
+        <div style="font-size:15px; font-weight:800; color:white; margin-bottom:8px;">Top of Mind</div>
+        <div style="font-size:13px; color:var(--white70);">A primeira resposta quando alguém pensa em notícias de Goiás.</div>
+      </div>
+    </div>
+
+    <div class="divider fade-up" style="margin:48px auto;"></div>
+
+    <div class="fade-up" style="max-width:700px; margin:0 auto;">
+      <div style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--white40); margin-bottom:16px;">Slogan de posicionamento</div>
+      <div style="font-family:'PT Serif',serif; font-size:clamp(24px,4vw,40px); color:white; font-style:italic; line-height:1.3;">
+        "Informação sem bloqueio.<br>Goiás sem filtro."
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     05 · OS 4 MOVIMENTOS
+════════════════════════════════════════════════════ -->
+<section id="s05" data-label="Movimentos" style="background: var(--dark);">
+  <div class="section-inner">
+    <div class="s-label fade-up">04 · Estratégia</div>
+    <h2 class="headline-lg fade-up fade-up-2" style="margin-bottom:12px;">Os 4 movimentos<br><span class="text-gradient">que constroem o Top of Mind.</span></h2>
+    <p class="body-md fade-up fade-up-3" style="margin-bottom:48px; max-width:560px;">Não é sobre fazer mais — é sobre fazer diferente. Cada movimento amplifica o anterior e cria um efeito composto de memória de marca.</p>
+
+    <div class="grid-2 fade-up fade-up-3" style="gap:20px;">
+
+      <div class="movement-card">
+        <div class="movement-num">1</div>
+        <div class="movement-icon">🚩</div>
+        <div class="movement-title">Tornar o Livre Acesso uma Bandeira</div>
+        <div class="movement-desc">Em toda publicação, em todo post, em todo vídeo: o livre acesso é comunicado como uma escolha ativa — não como ausência de paywall.</div>
+        <div class="movement-copy">"Leu em outro portal e travou? Aqui não."</div>
+      </div>
+
+      <div class="movement-card">
+        <div class="movement-num">2</div>
+        <div class="movement-icon">🏛️</div>
+        <div class="movement-title">Dominar o Eixo do Poder de Goiás</div>
+        <div class="movement-desc">Política estadual, judiciário e economia — O Hoje se torna o portal de referência mais profundo disponível de forma gratuita em Goiás.</div>
+        <div class="movement-copy">"Poder em Goiás" · "O que o STJ decidiu" · "O negócio do dia"</div>
+      </div>
+
+      <div class="movement-card">
+        <div class="movement-num">3</div>
+        <div class="movement-icon">📱</div>
+        <div class="movement-title">Construir Autoridade nas Redes Sociais</div>
+        <div class="movement-desc">Instagram e TikTok como canais de aquisição de audiência jovem. Identidade visual consistente que é reconhecível no feed antes de ler o nome.</div>
+        <div class="movement-copy">"O que você precisa saber sobre [pauta] — em 60 segundos"</div>
+      </div>
+
+      <div class="movement-card">
+        <div class="movement-num">4</div>
+        <div class="movement-icon">💰</div>
+        <div class="movement-title">Monetização via Audiência Qualificada</div>
+        <div class="movement-desc">Não via paywall — via patrocínio de conteúdo. O leitor do O Hoje é formador de opinião: empresário, advogado, servidor, político.</div>
+        <div class="movement-copy">"Você paga para chegar ao leitor que decide, não ao consumidor de entretenimento."</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     06 · QUEM É O LEITOR
+════════════════════════════════════════════════════ -->
+<section id="s06" data-label="Leitor" style="background: var(--dark2);">
+  <div class="bg-glow glow-accent" style="bottom:-100px; left:-100px;"></div>
+  <div class="section-inner">
+    <div class="s-label fade-up">05 · Personas</div>
+    <h2 class="headline-lg fade-up fade-up-2" style="margin-bottom:12px;">Três perfis.<br><span class="text-gradient">Uma audiência que decide.</span></h2>
+    <p class="body-md fade-up fade-up-3" style="margin-bottom:48px; max-width:560px;">Hipóteses a validar com pesquisa no Sprint 3. O posicionamento e o tom de voz do Brandbook foram calibrados para cobrir os três perfis simultaneamente.</p>
+
+    <div class="grid-3 fade-up fade-up-3">
+
+      <div class="persona-card persona-a">
+        <div class="persona-header">
+          <div class="persona-avatar">👔</div>
+          <div class="persona-name">O Profissional Conectado</div>
+          <div class="persona-age">30–45 anos · Goiânia</div>
+        </div>
+        <div class="persona-body">
+          <div class="persona-trait"><span class="persona-trait-icon">💼</span><span class="persona-trait-text">Advogado, empresário ou servidor público</span></div>
+          <div class="persona-trait"><span class="persona-trait-icon">📰</span><span class="persona-trait-text">Acompanha política e judiciário por impacto profissional</span></div>
+          <div class="persona-trait"><span class="persona-trait-icon">📲</span><span class="persona-trait-text">Compartilha no WhatsApp do trabalho</span></div>
+          <div class="persona-trait"><span class="persona-trait-icon">🔍</span><span class="persona-trait-text">Chega via Google e acesso direto</span></div>
+          <div style="margin-top:14px;"><span class="tag tag-blue">Alta tolerância a conteúdo denso</span></div>
+        </div>
+      </div>
+
+      <div class="persona-card persona-b">
+        <div class="persona-header">
+          <div class="persona-avatar">📱</div>
+          <div class="persona-name">O Jovem Formador de Opinião</div>
+          <div class="persona-age">20–30 anos · TikTok / Instagram</div>
+        </div>
+        <div class="persona-body">
+          <div class="persona-trait"><span class="persona-trait-icon">🎓</span><span class="persona-trait-text">Direito, Jornalismo, Ciências Políticas</span></div>
+          <div class="persona-trait"><span class="persona-trait-icon">🚫</span><span class="persona-trait-text">Zero tolerância a paywall</span></div>
+          <div class="persona-trait"><span class="persona-trait-icon">📣</span><span class="persona-trait-text">Potencial evangelizador da marca</span></div>
+          <div class="persona-trait"><span class="persona-trait-icon">🎬</span><span class="persona-trait-text">Descobre via Reels e Stories</span></div>
+          <div style="margin-top:14px;"><span class="tag tag-accent">Principal alvo da Campanha</span></div>
+        </div>
+      </div>
+
+      <div class="persona-card persona-c">
+        <div class="persona-header">
+          <div class="persona-avatar">📻</div>
+          <div class="persona-name">O Leitor de Interior</div>
+          <div class="persona-age">35–55 anos · Cidades médias de GO</div>
+        </div>
+        <div class="persona-body">
+          <div class="persona-trait"><span class="persona-trait-icon">🏘️</span><span class="persona-trait-text">Anápolis, Rio Verde, Catalão e região</span></div>
+          <div class="persona-trait"><span class="persona-trait-icon">❤️</span><span class="persona-trait-text">Relação emocional com "jornal de Goiás"</span></div>
+          <div class="persona-trait"><span class="persona-trait-icon">💬</span><span class="persona-trait-text">Facebook e WhatsApp como canais principais</span></div>
+          <div class="persona-trait"><span class="persona-trait-icon">🔓</span><span class="persona-trait-text">Valoriza o livre acesso como democratização</span></div>
+          <div style="margin-top:14px;"><span class="tag tag-green">Maior base atual</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     07 · TOM DE VOZ
+════════════════════════════════════════════════════ -->
+<section id="s07" data-label="Brandbook" style="background: var(--dark);">
+  <div class="section-inner">
+    <div class="s-label fade-up">06 · Brandbook · Tom de Voz</div>
+    <h2 class="headline-lg fade-up fade-up-2" style="margin-bottom:12px;">Como o O Hoje fala.<br><span class="text-gradient">E o que nunca fala.</span></h2>
+    <p class="body-md fade-up fade-up-3" style="margin-bottom:48px; max-width:560px;">A identidade verbal define a linguagem reconhecível do portal — em todos os canais, em todas as plataformas. Quando o leitor sente "isso é O Hoje" sem ver o logo, a marca está construída.</p>
+
+    <div class="grid-2 fade-up fade-up-3" style="gap:24px; margin-bottom:32px;">
+      <div>
+        <div style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--green); margin-bottom:16px;">✅ O Hoje É</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; align-items:center; gap:14px; padding:14px 18px; background:rgba(16,185,129,0.06); border-radius:10px; border:1px solid rgba(16,185,129,0.15);">
+            <span style="font-size:18px;">🎯</span><div><div style="font-weight:700; color:white; font-size:14px;">Direto, sem jargão</div><div style="font-size:12px; color:var(--white40);">Clareza antes da sofisticação</div></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:14px; padding:14px 18px; background:rgba(16,185,129,0.06); border-radius:10px; border:1px solid rgba(16,185,129,0.15);">
+            <span style="font-size:18px;">💪</span><div><div style="font-weight:700; color:white; font-size:14px;">Seguro, bem apurado</div><div style="font-size:12px; color:var(--white40);">Autoridade sem arrogância</div></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:14px; padding:14px 18px; background:rgba(16,185,129,0.06); border-radius:10px; border:1px solid rgba(16,185,129,0.15);">
+            <span style="font-size:18px;">🌎</span><div><div style="font-weight:700; color:white; font-size:14px;">Goiano, regional</div><div style="font-size:12px; color:var(--white40);">Contexto que Brasília não tem</div></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:14px; padding:14px 18px; background:rgba(16,185,129,0.06); border-radius:10px; border:1px solid rgba(16,185,129,0.15);">
+            <span style="font-size:18px;">🔓</span><div><div style="font-weight:700; color:white; font-size:14px;">Transparente sobre o livre acesso</div><div style="font-size:12px; color:var(--white40);">Comunica o diferencial toda semana</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent2); margin-bottom:16px;">❌ O Hoje Nunca É</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; align-items:center; gap:14px; padding:14px 18px; background:rgba(239,68,68,0.06); border-radius:10px; border:1px solid rgba(239,68,68,0.15);">
+            <span style="font-size:18px;">🚫</span><div><div style="font-weight:700; color:white; font-size:14px;">Hermético, técnico demais</div><div style="font-size:12px; color:var(--white40);">Jargão sem explicação</div></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:14px; padding:14px 18px; background:rgba(239,68,68,0.06); border-radius:10px; border:1px solid rgba(239,68,68,0.15);">
+            <span style="font-size:18px;">🚫</span><div><div style="font-weight:700; color:white; font-size:14px;">Arrogante, impositivo</div><div style="font-size:12px; color:var(--white40);">Tom de quem sabe mais que o leitor</div></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:14px; padding:14px 18px; background:rgba(239,68,68,0.06); border-radius:10px; border:1px solid rgba(239,68,68,0.15);">
+            <span style="font-size:18px;">🚫</span><div><div style="font-weight:700; color:white; font-size:14px;">Genérico, sem contexto regional</div><div style="font-size:12px; color:var(--white40);">Nacional sem "por que isso importa em Goiás"</div></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:14px; padding:14px 18px; background:rgba(239,68,68,0.06); border-radius:10px; border:1px solid rgba(239,68,68,0.15);">
+            <span style="font-size:18px;">🚫</span><div><div style="font-weight:700; color:white; font-size:14px;">Palavras: exclusivo, premium, assinante</div><div style="font-size:12px; color:var(--white40);">Vocabulário de quem cobra para informar</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-block fade-up fade-up-4">
+      <p>"O Hoje fala como o colega mais bem informado da sala — sem dar palestra, sem simplificar demais."</p>
+    </div>
+
+    <div class="grid-2 fade-up fade-up-4" style="gap:16px; margin-top:28px;">
+      <div class="copy-card">
+        <div class="copy-label">Tagline · Livre Acesso</div>
+        <div class="copy-text">"Sem paywall. Sem cadastro. Porque informação é um direito."</div>
+        <div class="copy-channel"><span class="tag tag-blue">Todos os canais</span></div>
+      </div>
+      <div class="copy-card">
+        <div class="copy-label">Assinatura editorial</div>
+        <div class="copy-text">"Leu em outro portal e travou? Aqui não."</div>
+        <div class="copy-channel"><span class="tag tag-green">Site · Redes</span></div>
+      </div>
+      <div class="copy-card">
+        <div class="copy-label">Chamada de compartilhamento</div>
+        <div class="copy-text">"Você não precisa pagar para saber isso."</div>
+        <div class="copy-channel"><span class="tag tag-accent">WhatsApp · IG</span></div>
+      </div>
+      <div class="copy-card">
+        <div class="copy-label">Manifesto do Livre Acesso</div>
+        <div class="copy-text">"A gente poderia cobrar. Escolhemos não cobrar. Porque a informação sobre Goiás pertence a quem vive em Goiás."</div>
+        <div class="copy-channel"><span class="tag tag-blue">LinkedIn · IG</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     08 · CAMPANHA LIVRE ACESSO
+════════════════════════════════════════════════════ -->
+<section id="s08" data-label="Campanha" style="background: var(--dark2);">
+  <div class="bg-glow glow-blue" style="top:-100px; right:-200px;"></div>
+  <div class="section-inner">
+    <div class="s-label fade-up">07 · Campanha Livre Acesso</div>
+    <h2 class="headline-lg fade-up fade-up-2" style="margin-bottom:12px;">Enquanto a informação travou,<br><span class="text-gradient">aqui ela nunca parou.</span></h2>
+    <p class="body-md fade-up fade-up-3" style="margin-bottom:48px; max-width:580px;">A campanha transforma o diferencial em movimento. Três eixos criativos que se complementam — do contraste com a concorrência ao protagonismo do próprio leitor.</p>
+
+    <div style="display:flex; flex-direction:column; gap:16px;" class="fade-up fade-up-3">
+
+      <div class="eixo-card">
+        <div class="eixo-num">01</div>
+        <div class="eixo-body">
+          <div class="eixo-title">O Contraste — Paywall vs. Livre</div>
+          <div class="eixo-desc">Mostrar o que outros cobram vs. o que O Hoje entrega de graça. Carrossel Instagram e Reels comparativo. Ativa o senso de injustiça do leitor em relação ao paywall — e apresenta O Hoje como a solução já existente.</div>
+          <div class="eixo-copy">"Você tentou ler sobre o julgamento do STJ e travou. Aqui, você leu tudo. De graça. Agora mesmo."</div>
+        </div>
+        <div style="flex-shrink:0;"><span class="tag tag-accent">Carrossel · Reels</span></div>
+      </div>
+
+      <div class="eixo-card">
+        <div class="eixo-num">02</div>
+        <div class="eixo-body">
+          <div class="eixo-title">A Escolha — Posicionamento de Valor</div>
+          <div class="eixo-desc">O livre acesso não é ausência de modelo de negócio. É uma escolha filosófica, deliberada, de um portal que acredita que informação é direito. Post estático com frase de impacto para Instagram e LinkedIn.</div>
+          <div class="eixo-copy">"A gente poderia cobrar. Escolhemos não cobrar. Porque a informação sobre Goiás pertence a quem vive em Goiás."</div>
+        </div>
+        <div style="flex-shrink:0;"><span class="tag tag-blue">Post · LinkedIn</span></div>
+      </div>
+
+      <div class="eixo-card">
+        <div class="eixo-num">03</div>
+        <div class="eixo-body">
+          <div class="eixo-title">O Leitor — Protagonismo da Audiência</div>
+          <div class="eixo-desc">Depoimentos reais de leitores sobre o impacto do livre acesso. Stories e Reels com dado de audiência. Transforma o leitor em embaixador orgânico da marca — sem pagar por isso.</div>
+          <div class="eixo-copy">"Compartilhei a matéria do STJ com o grupo do trabalho. Todo mundo leu. Ninguém precisou pagar."</div>
+        </div>
+        <div style="flex-shrink:0;"><span class="tag tag-green">Stories · Reels</span></div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:32px; padding:20px 24px; background:var(--white08); border-radius:12px; border:1px solid var(--glass-border);" class="fade-up fade-up-4">
+      <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--white40); margin-bottom:14px;">Peças planejadas · Fase 1</div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px;">
+        <span class="tag tag-blue">Selo Livre Acesso (SVG)</span>
+        <span class="tag tag-blue">Post de Contraste (Carrossel)</span>
+        <span class="tag tag-blue">Post de Manifesto</span>
+        <span class="tag tag-blue">Reels Comparativo 30–60s</span>
+        <span class="tag tag-blue">Banner Site 1200×200px</span>
+        <span class="tag tag-blue">Template Editorial</span>
+      </div>
+      <div style="margin-top:12px; font-size:12px; color:var(--white40);">Produção visual inicia no Sprint 3. Conceito e briefing entregues no Sprint 2.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     09 · ROADMAP
+════════════════════════════════════════════════════ -->
+<section id="s09" data-label="Roadmap" style="background: var(--dark);">
+  <div class="section-inner">
+    <div class="s-label fade-up">08 · Roadmap · 6 Meses</div>
+    <h2 class="headline-lg fade-up fade-up-2" style="margin-bottom:12px;">O que construímos.<br><span class="text-gradient">E o que vem a seguir.</span></h2>
+    <p class="body-md fade-up fade-up-3" style="margin-bottom:56px; max-width:560px;">Cada sprint entrega um conjunto de ativos que alimenta o próximo. O posicionamento que estamos construindo agora é o alicerce de tudo que vem.</p>
+
+    <div class="timeline fade-up fade-up-3">
+
+      <div class="tl-item">
+        <div class="tl-dot done"></div>
+        <div class="tl-sprint">Sprint 1 · Mar/Abr</div>
+        <div class="tl-title">Diagnóstico + Base Estratégica</div>
+        <div class="tl-items">
+          ✅ Análise de concorrência<br>
+          ✅ Visão de Negócio<br>
+          ✅ Design System<br>
+          ✅ Personas hipotéticas<br>
+          ✅ GA4 Baseline
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot active"></div>
+        <div class="tl-sprint">Sprint 2 · Abr/Mai</div>
+        <div class="tl-title">Identidade + Campanha</div>
+        <div class="tl-items">
+          🔄 Brandbook Fase 1<br>
+          🔄 Conceito Campanha<br>
+          🔄 Documento Executivo<br>
+          🔄 Guia Editorial<br>
+          ✅ Dashboard KPIs
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-sprint">Sprint 3 · Mai/Jun</div>
+        <div class="tl-title">Produção + Pesquisa</div>
+        <div class="tl-items">
+          · Peças visuais da campanha<br>
+          · Pesquisa de audiência<br>
+          · Personas validadas<br>
+          · Mídia Kit<br>
+          · Séries editoriais
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-sprint">Sprint 4 · Jun/Jul</div>
+        <div class="tl-title">Lançamento + Distribuição</div>
+        <div class="tl-items">
+          · Campanha Livre Acesso ao ar<br>
+          · Meta Business Suite<br>
+          · Primeiras métricas reais<br>
+          · Ajuste de tom de voz<br>
+          · Patrocínio de séries
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-sprint">Sprint 5–6 · Jul/Out</div>
+        <div class="tl-title">Escala + Top of Mind</div>
+        <div class="tl-items">
+          · Crescimento social<br>
+          · NPS e pesquisa de recall<br>
+          · Primeiros patrocinadores<br>
+          · Revisão da estratégia<br>
+          · Relatório final 6 meses
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     9.5 · SPRINT 2 CONCLUÍDO
+════════════════════════════════════════════════════ -->
+<section id="s095" data-label="Sprint 2 Concluído" style="background: var(--dark2);">
+  <div class="section-inner">
+    <div class="s-label fade-up">09 · Sprint 2 Concluído</div>
+    <h2 class="headline-lg fade-up fade-up-2" style="margin-bottom:12px;">Quatro entregas.<br><span class="text-gradient">Já validadas.</span></h2>
+    <p class="body-md fade-up fade-up-3" style="margin-bottom:56px; max-width:560px;">O Sprint 2 chegou a 80% de conclusão. Os ativos estratégicos estão prontos e incorporados na documentação do projeto.</p>
+
+    <div class="grid-2 fade-up fade-up-3" style="gap:28px;">
+
+      <div class="glass-card blue-border" style="text-align:left;">
+        <div style="display:flex; align-items:flex-start; gap:12px;">
+          <div style="font-size:24px; color:var(--green); flex-shrink:0;">✅</div>
+          <div>
+            <div style="font-size:16px; font-weight:700; color:white; margin-bottom:6px;">📖 Brandbook Fase 1</div>
+            <div style="color:var(--white70); font-size:14px; line-height:1.6;">Tom de voz, personas do leitor e identidade verbal. Definem como O Hoje fala em todos os canais: site, redes sociais, newsletters.</div>
+            <div style="margin-top:10px;"><span class="tag tag-green" style="background:rgba(16,185,129,0.15); border-color:rgba(16,185,129,0.3); color:var(--green);">✓ Concluído</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card blue-border" style="text-align:left;">
+        <div style="display:flex; align-items:flex-start; gap:12px;">
+          <div style="font-size:24px; color:var(--green); flex-shrink:0;">✅</div>
+          <div>
+            <div style="font-size:16px; font-weight:700; color:white; margin-bottom:6px;">🔓 Conceito da Campanha</div>
+            <div style="color:var(--white70); font-size:14px; line-height:1.6;">3 eixos criativos (O Contraste, A Escolha, O Leitor) + briefing de 6 peças visuais e roteiros para o Sprint 3.</div>
+            <div style="margin-top:10px;"><span class="tag tag-green" style="background:rgba(16,185,129,0.15); border-color:rgba(16,185,129,0.3); color:var(--green);">✓ Concluído</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card blue-border" style="text-align:left;">
+        <div style="display:flex; align-items:flex-start; gap:12px;">
+          <div style="font-size:24px; color:var(--green); flex-shrink:0;">✅</div>
+          <div>
+            <div style="font-size:16px; font-weight:700; color:white; margin-bottom:6px;">📊 Dashboard de KPIs</div>
+            <div style="color:var(--white70); font-size:14px; line-height:1.6;">Configuração de 7 KPIs estratégicos com baseline GA4. Infraestrutura de monitoramento ao vivo implementada.</div>
+            <div style="margin-top:10px;"><span class="tag tag-green" style="background:rgba(16,185,129,0.15); border-color:rgba(16,185,129,0.3); color:var(--green);">✓ Concluído</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card blue-border" style="text-align:left;">
+        <div style="display:flex; align-items:flex-start; gap:12px;">
+          <div style="font-size:24px; color:var(--green); flex-shrink:0;">✅</div>
+          <div>
+            <div style="font-size:16px; font-weight:700; color:white; margin-bottom:6px;">🗞️ Guia Editorial</div>
+            <div style="color:var(--white70); font-size:14px; line-height:1.6;">Alinhamento com a redação sobre 3 pilares editoriais. Critérios de pauta, templates e checklist pré-publicação.</div>
+            <div style="margin-top:10px;"><span class="tag tag-green" style="background:rgba(16,185,129,0.15); border-color:rgba(16,185,129,0.3); color:var(--green);">✓ Concluído</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     10 · PRÓXIMOS PASSOS
+════════════════════════════════════════════════════ -->
+<section id="s10" data-label="Próximos Passos" style="background: radial-gradient(ellipse at 50% 100%, rgba(0,63,127,0.4) 0%, var(--dark2) 60%);">
+  <div class="bg-glow glow-blue" style="bottom:-200px; left:50%; transform:translateX(-50%);"></div>
+  <div class="section-inner" style="text-align:center;">
+    <div class="s-label fade-up" style="justify-content:center;">10 · Roadmap de Ação</div>
+    <h2 class="headline-lg fade-up fade-up-2" style="margin-bottom:12px;">O que vem agora.<br><span class="text-gradient">Sprint 3 + Manutenção.</span></h2>
+    <p class="body-md fade-up fade-up-3" style="margin-bottom:48px; max-width:520px; margin-left:auto; margin-right:auto;">Enquanto finalizamos a Apresentação para aprovação da direção, estas são as ações prioritárias do Sprint 3 e além.</p>
+
+    <div class="grid-2 fade-up fade-up-3" style="gap:28px; margin-bottom:48px;">
+
+      <div class="glass-card accent-border" style="text-align:left;">
+        <div style="display:flex; align-items:flex-start; gap:12px;">
+          <div style="font-size:24px;">🔍</div>
+          <div>
+            <div style="font-size:15px; font-weight:700; color:white; margin-bottom:4px;">Pesquisa de Audiência</div>
+            <div style="color:var(--white70); font-size:13px;">Validar as 3 personas com dados reais. NPS baseline, hábitos de consumo, Top of Mind.</div>
+            <div style="margin-top:8px;"><span class="tag tag-accent">📝 Sprint 3</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card accent-border" style="text-align:left;">
+        <div style="display:flex; align-items:flex-start; gap:12px;">
+          <div style="font-size:24px;">🎨</div>
+          <div>
+            <div style="font-size:15px; font-weight:700; color:white; margin-bottom:4px;">Peças da Campanha Livre Acesso</div>
+            <div style="color:var(--white70); font-size:13px;">Produção visual de cards, reels e banners. Roteiros de anúncios prontos para mídia.</div>
+            <div style="margin-top:8px;"><span class="tag tag-accent">🎬 Sprint 3</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card accent-border" style="text-align:left;">
+        <div style="display:flex; align-items:flex-start; gap:12px;">
+          <div style="font-size:24px;">📰</div>
+          <div>
+            <div style="font-size:15px; font-weight:700; color:white; margin-bottom:4px;">Estratégia de Conteúdo</div>
+            <div style="color:var(--white70); font-size:13px;">Calendário editorial de 4 semanas. Distribuição por canal (site, Instagram, TikTok, WhatsApp).</div>
+            <div style="margin-top:8px;"><span class="tag tag-accent">📅 Sprint 3</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card accent-border" style="text-align:left;">
+        <div style="display:flex; align-items:flex-start; gap:12px;">
+          <div style="font-size:24px;">📊</div>
+          <div>
+            <div style="font-size:15px; font-weight:700; color:white; margin-bottom:4px;">Monitoramento de KPIs</div>
+            <div style="color:var(--white70); font-size:13px;">Relatório semanal com os 7 KPIs. Ajustes de conteúdo baseados em performance em tempo real.</div>
+            <div style="margin-top:8px;"><span class="tag tag-accent">📈 Ongoing</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="divider fade-up" style="margin:0 auto 40px;"></div>
+
+    <div class="fade-up" style="max-width:680px; margin:0 auto;">
+      <div style="font-family:'PT Serif',serif; font-size:clamp(20px,3vw,30px); color:white; line-height:1.5; margin-bottom:28px; font-style:italic;">
+        "O Hoje não compete pelo leitor.<br>O Hoje compete pela <span class="text-gradient">mente do leitor.</span><br>E mente que não conhece O Hoje, ainda não foi conquistada."
+      </div>
+      <div style="font-size:13px; color:var(--white40);">Rodrigo Roncolato · Estrategista de Marca · Abril 2026</div>
+    </div>
+
+    <div style="margin-top:48px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;" class="fade-up">
+      <a href="ohoje.html" style="padding:14px 28px; background:var(--brand); color:white; border-radius:10px; font-size:14px; font-weight:700; text-decoration:none; border:1px solid var(--blue-glow); transition:.2s;">← Dashboard do Projeto</a>
+      <a href="kpis.html" style="padding:14px 28px; background:var(--glass); color:white; border-radius:10px; font-size:14px; font-weight:700; text-decoration:none; border:1px solid var(--glass-border); transition:.2s;">📊 KPIs ao Vivo</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // ── NAV DOTS
+  const sections = document.querySelectorAll('section[id]');
+  const dotsContainer = document.getElementById('navDots');
+
+  sections.forEach((sec, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-dot';
+    btn.title = sec.dataset.label || '';
+    btn.onclick = () => sec.scrollIntoView({ behavior: 'smooth' });
+    dotsContainer.appendChild(btn);
+  });
+
+  // ── SCROLL OBSERVER (fade-up + active dot + counter)
+  const faded = document.querySelectorAll('.fade-up');
+  const dots = document.querySelectorAll('.nav-dot');
+  let countersTriggered = new Set();
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+
+  faded.forEach(el => obs.observe(el));
+
+  const secObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const idx = Array.from(sections).indexOf(e.target);
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        // trigger counters
+        e.target.querySelectorAll('.counter').forEach(counter => {
+          if (countersTriggered.has(counter)) return;
+          countersTriggered.add(counter);
+          const target = parseInt(counter.dataset.target);
+          let cur = 0;
+          const step = Math.max(1, Math.floor(target / 60));
+          const timer = setInterval(() => {
+            cur = Math.min(cur + step, target);
+            counter.textContent = cur;
+            if (cur >= target) clearInterval(timer);
+          }, 20);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(s => secObs.observe(s));
+
+  // ── BOUNCE ANIMATION
+  const style = document.createElement('style');
+  style.textContent = `@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }`;
+  document.head.appendChild(style);
+</script>
+</body>
+</html>

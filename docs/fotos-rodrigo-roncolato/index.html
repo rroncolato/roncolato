@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotos Rodrigo Roncolato — Roncolato</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --k: #0A0A0A;
+            --w: #F0F0EB;
+            --y: #F5C518;
+            --g1: #111;
+            --g2: #1a1a1a;
+            --g3: #242424;
+            --g4: #404040;
+            --g5: #7a7a7a;
+            --g6: #b0b0a8;
+            --f: 'Jost', sans-serif;
+            --ease: cubic-bezier(.25, .46, .45, .94);
+            --ease2: cubic-bezier(.76, 0, .24, 1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--k);
+            color: var(--w);
+            font-family: var(--f);
+            font-weight: 300;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        header {
+            margin-bottom: 80px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: clamp(40px, 6vw, 60px);
+            font-weight: 900;
+            letter-spacing: -.04em;
+            margin-bottom: 10px;
+            line-height: .95;
+        }
+
+        header p {
+            font-size: 15px;
+            color: var(--g5);
+            font-weight: 300;
+        }
+
+        /* Section */
+        section {
+            margin-bottom: 100px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -.02em;
+            margin-bottom: 40px;
+            color: var(--w);
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--y);
+            display: inline-block;
+        }
+
+        .section-intro {
+            color: var(--g6);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            max-width: 800px;
+            font-size: 15px;
+        }
+
+        .section-meta {
+            background: var(--g3);
+            border-left: 3px solid var(--y);
+            padding: 16px 20px;
+            margin-bottom: 40px;
+            font-size: 13px;
+            color: var(--g6);
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: var(--g3);
+            color: var(--g6);
+            border: 1px solid var(--g4);
+            border-radius: 0;
+            font-family: var(--f);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 200ms var(--ease2);
+            letter-spacing: .02em;
+            text-transform: uppercase;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--y);
+            color: var(--k);
+            border-color: var(--y);
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            gap: 24px;
+        }
+
+        /* Profile Gallery (2:3) */
+        .gallery.profile {
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        }
+
+        /* Posts Gallery (1:1) */
+        .gallery.posts {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        }
+
+        /* Stories Gallery (2:3) */
+        .gallery.stories {
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        }
+
+        .photo-card {
+            background: var(--g2);
+            border: 1px solid var(--g3);
+            overflow: hidden;
+            transition: all 200ms var(--ease2);
+        }
+
+        .photo-card:hover {
+            border-color: var(--y);
+            background: var(--g3);
+        }
+
+        .photo-wrapper {
+            width: 100%;
+            overflow: hidden;
+            background: var(--g1);
+        }
+
+        /* Aspect ratios */
+        .photo-wrapper.ratio-2-3 {
+            aspect-ratio: 2 / 3;
+        }
+
+        .photo-wrapper.ratio-1-1 {
+            aspect-ratio: 1 / 1;
+        }
+
+        .photo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 300ms var(--ease2);
+        }
+
+        .photo-card:hover .photo-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .photo-info {
+            padding: 20px;
+        }
+
+        .photo-category {
+            display: inline-block;
+            background: var(--y);
+            color: var(--k);
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .photo-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--w);
+            letter-spacing: -.01em;
+        }
+
+        .photo-description {
+            font-size: 13px;
+            color: var(--g5);
+            line-height: 1.6;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        .stat-item {
+            background: var(--g2);
+            border: 1px solid var(--g3);
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 40px;
+            font-weight: 900;
+            color: var(--y);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--g5);
+            letter-spacing: .02em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: var(--g2);
+            border: 1px solid var(--g3);
+            padding: 60px 40px;
+            text-align: center;
+            margin: 80px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: -.02em;
+        }
+
+        .cta-section p {
+            color: var(--g6);
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            background: var(--y);
+            color: var(--k);
+            border: 1px solid var(--y);
+            font-family: var(--f);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 200ms var(--ease2);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--y);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--g3);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--g5);
+            font-size: 12px;
+        }
+
+        /* Hidden */
+        .hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 16px;
+            }
+
+            header h1 {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 22px;
+            }
+
+            .gallery.profile {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+
+            .gallery.posts {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+
+            .gallery.stories {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+
+            .cta-section {
+                padding: 40px 20px;
+            }
+
+            .cta-section h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Rodrigo Roncolato</h1>
+            <p>Análise de Fotos para Marketing Digital</p>
+        </header>
+
+        <!-- STATS -->
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">173</div>
+                <div class="stat-label">Fotos Selecionadas</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Categorias</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2:3</div>
+                <div class="stat-label">Proporção Original</div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 1: FOTOS DE PERFIL -->
+        <section>
+            <h2 class="section-title">Fotos de Perfil</h2>
+            <p class="section-intro">Enquadramentos diretos e bem compostos. Ideais para foto de perfil em redes sociais, LinkedIn e apresentações profissionais.</p>
+            <div class="section-meta">
+                📐 Proporção: <strong>2:3</strong> (vertical) | Uso ideal: LinkedIn, Instagram bio, Stories destacadas, perfil profissional
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" onclick="filterCategory(this, 'profile')">Todas</button>
+                <button class="filter-btn" onclick="filterType(this, 'profile', 'frontal')">Frontal</button>
+                <button class="filter-btn" onclick="filterType(this, 'profile', 'pose')">Pose</button>
+            </div>
+
+            <div class="gallery profile" id="profileGallery">
+                <div class="photo-card" data-category="profile" data-type="frontal">
+                    <div class="photo-wrapper ratio-2-3">
+                        <img src="IMG_8592.jpg" alt="Foto de perfil frontal">
+                    </div>
+                    <div class="photo-info">
+                        <div class="photo-category">Perfil</div>
+                        <div class="photo-title">Enquadramento Frontal</div>
+                        <div class="photo-description">Posição direta, excelente para foto de capa e perfil.</div>
+                    </div>
+                </div>
+
+                <div class="photo-card" data-category="profile" data-type="pose">
+                    <div class="photo-wrapper ratio-2-3">
+                        <img src="IMG_8594.jpg" alt="Foto de perfil com pose">
+                    </div>
+                    <div class="photo-info">
+                        <div class="photo-category">Perfil</div>
+                        <div class="photo-title">Pose Elegante</div>
+                        <div class="photo-description">Composição natural com movimento subtil.</div>
+                    </div>
+                </div>
+
+                <div class="photo-card" data-category="profile" data-type="frontal">
+                    <div class="photo-wrapper ratio-2-3">
+                        <img src="IMG_8596.jpg" alt="Foto de perfil sorrindo">
+                    </div>
+                    <div class="photo-info">
+                        <div class="photo-category">Perfil</div>
+                        <div class="photo-title">Sorriso Genuíno</div>
+                        <div class="photo-description">Expressão autêntica e acessível.</div>
+                    </div>
+                </div>
+
+                <div class="photo-card" data-category="profile" data-type="pose">
+                    <div class="photo-wrapper ratio-2-3">
+                        <img src="IMG_8599.jpg" alt="Foto de perfil pose 2">
+                    </div>
+                    <div class="photo-info">
+                        <div class="photo-category">Perfil</div>
+                        <div class="photo-title">Postura Profissional</div>
+                        <div class="photo-description">Confiante e bem posicionada.</div>
+                    </div>
+                </div>
+
+                <div class="photo-card" data-category="profile" data-type="frontal">
+                    <div class="photo-wrapper ratio-2-3">
+                        <img src="IMG_8601.jpg" alt="Foto de perfil 5">
+                    </div>
+                    <div class="photo-info">
+                        <div class="photo-category">Perfil</div>
+                        <div class="photo-title">Olhar Direto</div>
+                        <div class="photo-description">Conexão visual forte e profissional.</div>
+                    </div>
+                </div>
+
+                <div class="photo-card" data-category="profile" data-type="pose">
+                    <div class="photo-wrapper ratio-2-3">
+                        <img src="IMG_8602.jpg" alt="Foto de perfil 6">
+                    </div>
+                    <div class="photo-info">
+                        <div class="photo-category">Perfil</div>
+                        <div class="photo-title">Movimento Sutil</div>
+                        <div class="photo-description">Naturidade e conforto na câmera.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 2: FOTOS PARA POSTAGENS -->
+        <section>
+            <h2 class="section-title">Fotos para Postagens</h2>
+            <p class="section-intro">Variedade de enquadramentos e contextos. Ótimas para contar histórias e criar narrativas engajantes nas redes sociais.</p>
+            <div class="section-meta">
+                📐 Proporção: <strong>1:1</strong> (quadrado) | Uso ideal: Feed Instagram/LinkedIn, Carrosséis, Posts
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" onclick="filterCategory(this, 'posts')">Todas</button>
+                <button class="filter-btn" onclick="filterType(this, 'posts', 'movimento')">Em Movimento</button>
+                <button class="filter-btn" onclick="filterType(this, 'posts', 'ambiente')">Ambiente</button>
+                <button class="filter-btn" onclick="filterType(this, 'posts', 'detalhe')">Detalhes</button>
+            </div>
+
+            <div class="gallery posts" id="postsGallery">
+                <div class="photo-card" data-category="posts" data-type="movimento">
+                    <div class="photo-wrapper ratio-1-1">
+                        <img src="IMG_8604.jpg" alt="Postagem movimento">
+                    </div>
+                    <div class="photo-info">
+                        <div class="photo-category">Postagem</div>
+                        <div class="photo-title">Dinâmica em Ação</div>
+                        <div class="photo-description">Movimento que revela profissionalismo.</div>
+                    </div>
+                </div>
+
+                <div class="photo-card" data-category="posts" data-type="ambiente">
+                    <div class="photo-wrapper ratio-1-1">
+                        <img src="IMG_8606.jpg" alt="Postagem ambiente">
+                    </div>
+                    <div class="photo-info">
+                        <div class="photo-category">Postagem</div>
+                        <div class="photo-title">Contexto Corporativo</div>
+                        <div class="photo-description">Ambiente que transmite confiança.</div>
+                    </div>
+                </div>
+
+                <div class="photo-card" data-category="posts" data-type="detalhe">
+                    <div class="photo-wrapper ratio-1-1">
+                        <img src="IMG_8608.jpg" alt="Postagem detalhe">
+                    </div>
+                    <div class="photo-info">
+                        <div class="photo-category">Postagem</div>
+                        <div class="photo-title">Close & Expressão</div>
+                        <div class="photo-description">Detalhe que mostra personalidade.</div>
+                    </div>
+                </div>
+
+                <div class="photo-card" data-category="posts" data-type="movimento">
+                    <div class="photo-wrapper ratio-1-1">
+                        <img src="IMG_8611.jpg" alt="Postagem movimento 2">
+                    </div>
+                    <div class="photo-info">
+                        <div class="photo-category">Postagem</div>
+                        <div class="photo-title">Ação Energética</div>
+                        <div class="photo-description">Transmite energia e dinamismo.</div>
+                    </div>
+                </div>
+
+                <div class="photo-card" data-category="posts" data-type="ambiente">
+                    <div class="photo-wrapper ratio-1-1">
+                        <img src="IMG_8613.jpg" alt="Postagem ambiente 2">
+                    </div>
+                    <div class="photo-info">
+                        <div class="photo-category">Postagem</div>
+                        <div class="photo-title">Espaço Profissional</div>
+                        <div class="photo-description">Contexto que reforça credibilidade.</div>
+                    </div>
+                </div>
+
+                <div class="photo-card" data-category="posts" data-type="detalhe">
+                    <div class="photo-wrapper ratio-1-1">
+                        <img src="IMG_8615.jpg" alt="Postagem detalhe 2">
+                    </div>
+                    <div class="photo-info">
+                        <div class="photo-category">Postagem</div>
+                        <div class="photo-title">Foco & Atenção</div>
+                        <div class="photo-description">Close que revela dedicação.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 3: FOTOS PARA STORIES -->
+        <section>
+            <h2 class="section-title">Fotos para Stories</h2>
+            <p class="section-intro">Imagens que funcionam bem no formato vertical e com textos sobrepostos. Ideais para criar conteúdo rápido e engajante.</p>
+            <div class="section-meta">
+                📐 Proporção: <strong>2:3</strong> (vertical) | Uso ideal: Stories, Reels, Vídeos verticais
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" onclick="filterCategory(this, 'stories')">Todas</button>
+                <button class="filter-btn" onclick="filterType(this, 'stories', 'destaque')">Destaque</button>
+                <button class="filter-btn" onclick="filterType(this, 'stories', 'contextual')">Contextual</button>
+            </div>
+
+            <div class="gallery stories" id="storiesGallery">
+                <div class="photo-card" data-category="stories" data-type="destaque">
+                    <div class="photo-wrapper ratio-2-3">
+                        <img src="IMG_8625.jpg" alt="Story destaque">
+                    </div>
+                    <div class="photo-info">
+                        <div class="photo-category">Story</div>
+                        <div class="photo-title">Forte & Direto</div>
+                        <div class="photo-description">Funciona bem com texto sobreposto.</div>
+                    </div>
+                </div>
+
+                <div class="photo-card" data-category="stories" data-type="contextual">
+                    <div class="photo-wrapper ratio-2-3">
+                        <img src="IMG_8632.jpg" alt="Story contextual">
+                    </div>
+                    <div class="photo-info">
+                        <div class="photo-category">Story</div>
+                        <div class="photo-title">Narrativa Pessoal</div>
+                        <div class="photo-description">Conta uma história por si só.</div>
+                    </div>
+                </div>
+
+                <div class="photo-card" data-category="stories" data-type="destaque">
+                    <div class="photo-wrapper ratio-2-3">
+                        <img src="IMG_8637.jpg" alt="Story destaque 2">
+                    </div>
+                    <div class="photo-info">
+                        <div class="photo-category">Story</div>
+                        <div class="photo-title">Impactante</div>
+                        <div class="photo-description">Captura atenção na primeira vista.</div>
+                    </div>
+                </div>
+
+                <div class="photo-card" data-category="stories" data-type="contextual">
+                    <div class="photo-wrapper ratio-2-3">
+                        <img src="IMG_8639.jpg" alt="Story contextual 2">
+                    </div>
+                    <div class="photo-info">
+                        <div class="photo-category">Story</div>
+                        <div class="photo-title">Background Limpo</div>
+                        <div class="photo-description">Espaço para adicionar elementos gráficos.</div>
+                    </div>
+                </div>
+
+                <div class="photo-card" data-category="stories" data-type="destaque">
+                    <div class="photo-wrapper ratio-2-3">
+                        <img src="IMG_8642.jpg" alt="Story destaque 3">
+                    </div>
+                    <div class="photo-info">
+                        <div class="photo-category">Story</div>
+                        <div class="photo-title">Olhar Conectivo</div>
+                        <div class="photo-description">Engaja com contato visual.</div>
+                    </div>
+                </div>
+
+                <div class="photo-card" data-category="stories" data-type="contextual">
+                    <div class="photo-wrapper ratio-2-3">
+                        <img src="IMG_8646.jpg" alt="Story contextual 3">
+                    </div>
+                    <div class="photo-info">
+                        <div class="photo-category">Story</div>
+                        <div class="photo-title">Ambiente Integrado</div>
+                        <div class="photo-description">Mostra contexto importante.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h2>Pronto para potencializar sua marca pessoal?</h2>
+            <p>Você tem 173 fotos incríveis. Agora é hora de contar sua história de forma estratégica.</p>
+            <button class="btn">Começar</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Roncolato Studio | Fotos de Rodrigo Roncolato | Uso exclusivamente profissional</p>
+    </footer>
+
+    <script>
+        function filterCategory(btn, category) {
+            const btns = btn.parentElement.querySelectorAll('.filter-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const gallery = document.getElementById(category + 'Gallery');
+            gallery.querySelectorAll('.photo-card').forEach(card => {
+                card.classList.remove('hidden');
+            });
+        }
+
+        function filterType(btn, category, type) {
+            const btns = btn.parentElement.querySelectorAll('.filter-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const gallery = document.getElementById(category + 'Gallery');
+            gallery.querySelectorAll('.photo-card').forEach(card => {
+                if (card.getAttribute('data-type') === type) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

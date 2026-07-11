@@ -1,0 +1,60 @@
+{
+  "projects": [
+    {
+      "id": "proj-001",
+      "title": "Fotografia Corporativa — Única Contábil",
+      "client": "Única Contábil",
+      "type": "fotografia",
+      "status": "em-andamento",
+      "priority": "alta",
+      "deadline": "2026-06-15",
+      "color": "#F5C518",
+      "description": "Sessão de fotos corporativas para equipe e espaço",
+      "createdAt": "2026-05-01"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-001",
+      "projectId": "proj-001",
+      "title": "Briefing com o cliente",
+      "description": "Reunião para alinhar expectativas e referências visuais",
+      "status": "done",
+      "priority": "alta",
+      "dueDate": "2026-05-10",
+      "tags": [
+        "reunião",
+        "briefing"
+      ],
+      "createdAt": "2026-05-01"
+    },
+    {
+      "id": "task-002",
+      "projectId": null,
+      "title": "Atualizar portfólio no site",
+      "description": "Adicionar novos casos ao portfólio público",
+      "status": "todo",
+      "priority": "média",
+      "dueDate": "2026-06-01",
+      "tags": [
+        "site",
+        "portfólio"
+      ],
+      "createdAt": "2026-05-10"
+    },
+    {
+      "id": "task-003",
+      "projectId": null,
+      "title": "Preparar proposta BEM FAST fase 2",
+      "description": "Segunda etapa do projeto de identidade visual",
+      "status": "done",
+      "priority": "alta",
+      "dueDate": "2026-05-30",
+      "tags": [
+        "proposta",
+        "comercial"
+      ],
+      "createdAt": "2026-05-15"
+    }
+  ]
+}

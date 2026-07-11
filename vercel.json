@@ -1,0 +1,70 @@
+{
+  "functions": {
+    "api/social-frame/[...route].js": {
+      "includeFiles": "SOCIAL-FRAME/catalogo.json"
+    }
+  },
+  "rewrites": [
+    { "source": "/socialframe", "destination": "/social-frame/index.html" },
+    { "source": "/socialframe/", "destination": "/social-frame/index.html" },
+    { "source": "/social-frame", "destination": "/social-frame/index.html" },
+    { "source": "/login", "destination": "/admin/login.html" },
+    { "source": "/dashboard", "destination": "/admin/dashboard.html" },
+    { "source": "/admin/:path*", "destination": "/admin/:path*" },
+    { "source": "/blog/:slug", "destination": "/api/blog/[slug]" },
+    { "source": "/links", "destination": "/LINKS/index.html" },
+    { "source": "/protetic", "destination": "/pages/protetic/index.html" },
+    { "source": "/protetic/site", "destination": "/pages/protetic/site/public/index.html" },
+    { "source": "/protetic/site/about-us.html", "destination": "/pages/protetic/site/public/about-us.html" },
+    { "source": "/protetic/site/services.html", "destination": "/pages/protetic/site/public/services.html" },
+    { "source": "/protetic/site/differentials.html", "destination": "/pages/protetic/site/public/differentials.html" },
+    { "source": "/protetic/site/contact.html", "destination": "/pages/protetic/site/public/contact.html" },
+    { "source": "/protetic/site/cases.html", "destination": "/pages/protetic/site/public/cases.html" },
+    { "source": "/protetic/portfolio", "destination": "/pages/protetic/portfolio/PORTFOLIO/index.html" },
+    { "source": "/protetic/portfolio/:path*", "destination": "/pages/protetic/portfolio/PORTFOLIO/:path*" },
+    { "source": "/ensaio", "destination": "/ensaio/index.html" },
+    { "source": "/presenca", "destination": "/presenca/index.html" },
+    { "source": "/presenca/", "destination": "/presenca/index.html" },
+    { "source": "/oratoria/:path*", "destination": "/oratoria/:path*" },
+    { "source": "/oratoria", "destination": "/oratoria/index.html" },
+    { "source": "/proposta/taruma", "destination": "/pages/proposta/taruma_proposta.html" },
+    { "source": "/proposta/bemfast", "destination": "/pages/proposta/proposta_bem_fast_apresentacao.html" },
+    { "source": "/proposta/bem-fast", "destination": "/pages/proposta/proposta_bem_fast_apresentacao.html" },
+    { "source": "/proposta/raro", "destination": "/pages/proposta/propostararo.html" },
+    { "source": "/proposta/propostararo", "destination": "/pages/proposta/propostararo.html" },
+    { "source": "/proposta/renata", "destination": "/pages/proposta/proposta_renata_rosa.html" },
+    { "source": "/proposta/renata-rosa", "destination": "/pages/proposta/proposta_renata_rosa.html" },
+    { "source": "/proposta/unica", "destination": "/pages/proposta/proposta_unica_contabil.html" },
+    { "source": "/proposta/unica-contabil", "destination": "/pages/proposta/proposta_unica_contabil.html" },
+    { "source": "/proposta/fotografia-corporativa", "destination": "/pages/proposta/proposta-fotografia-corporativa.html" },
+    { "source": "/proposta/:path*", "destination": "/proposta/:path*" },
+    { "source": "/dash/ohoje", "destination": "/pages/o-hoje-offline.html" },
+    { "source": "/dash/kpis-ohoje", "destination": "/dash/kpis-ohoje.html" },
+    { "source": "/dash/apresentacao", "destination": "/dash/apresentacao.html" },
+    { "source": "/dash/:path*", "destination": "/dash/:path*" },
+    { "source": "/dash", "destination": "/dash/index.html" },
+    { "source": "/bniconquista", "destination": "/pages/bniconquista/index.html" },
+    { "source": "/", "destination": "/index.html" }
+  ],
+  "redirects": [
+    { "source": "/whats", "destination": "https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20vi%20sua%20palestra%20e%20quero%20receber%20o%20diagn%C3%B3stico%20Gratuito%20da%20minha%20Foto", "permanent": false },
+    { "source": "/foto", "destination": "https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20vi%20sua%20palestra%20e%20quero%20receber%20o%20diagn%C3%B3stico%20Gratuito%20da%20minha%20Foto", "permanent": false },
+    { "source": "/oratoria/index.html", "destination": "/oratoria", "permanent": true },
+    { "source": "/protetic/index.html", "destination": "/protetic", "permanent": true },
+    { "source": "/ensaio/index.html", "destination": "/ensaio", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/ensaio/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
+      "source": "/proposta/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presença que Vende — Roncolato + Thaynara</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white: #FAFAF8;
+  --off: #F0EEE9;
+  --light: #E2DED7;
+  --mid: #6B6560;       /* era #C2BDB4 — agora passa 4.6:1 sobre branco */
+  --mid-dark: #E8E4DF;  /* para texto sobre fundo escuro */
+  --dark: #2A2520;      /* era #3A3530 — mais escuro, mais contraste */
+  --black: #141210;     /* era #1A1714 — ligeiramente mais profundo */
+  --accent: #2C2C2C;
+  --rule: #D0CBC3;
+}
+
+html { background: var(--white); }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--black);
+  -webkit-font-smoothing: antialiased;
+  background: var(--white);
+}
+
+/* ── PAGE LAYOUT ── */
+.page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 64px 48px 80px;
+}
+
+/* ── TOP BAR ── */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 56px;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--black);
+}
+
+.logo-sep {
+  width: 1px;
+  height: 18px;
+  background: var(--mid);
+}
+
+.logo-partner {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mid);
+  font-weight: 500;
+}
+
+.topbar-right {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+/* ── PRODUCT LABEL ── */
+.product-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 14px;
+}
+
+/* ── HERO ── */
+.hero {
+  margin-bottom: 52px;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 8vw, 76px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--black);
+  margin-bottom: 8px;
+}
+
+.hero-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--black);
+}
+
+.hero-rule {
+  width: 40px;
+  height: 1px;
+  background: var(--black);
+  margin: 24px 0;
+}
+
+.hero-sub {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--dark);
+  max-width: 520px;
+}
+
+/* ── TWO-COL LAYOUT ── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 52px;
+  align-items: start;
+}
+
+/* ── IMAGE PLACEHOLDER ── */
+.img-wrap {
+  position: relative;
+}
+
+.img-placeholder {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: var(--off);
+  border: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.img-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(135deg, var(--light) 25%, transparent 25%) -10px 0,
+    linear-gradient(225deg, var(--light) 25%, transparent 25%) -10px 0,
+    linear-gradient(315deg, var(--light) 25%, transparent 25%),
+    linear-gradient(45deg, var(--light) 25%, transparent 25%);
+  background-size: 20px 20px;
+  background-color: var(--off);
+  opacity: 0.5;
+}
+
+.img-icon {
+  position: relative;
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+  opacity: 0.3;
+}
+
+.img-label {
+  position: relative;
+  z-index: 1;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+.img-caption {
+  margin-top: 12px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mid);
+  font-weight: 400;
+}
+
+/* ── DELIVERABLES ── */
+.deliverables-block {}
+
+.block-title {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.deliverable {
+  display: flex;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.deliverable:last-child {
+  border-bottom: none;
+}
+
+.del-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--mid);
+  min-width: 20px;
+  padding-top: 1px;
+}
+
+.del-content {}
+
+.del-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 3px;
+  letter-spacing: 0.01em;
+}
+
+.del-desc {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+/* ── INVESTMENT BAR ── */
+.investment-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 36px;
+  background: var(--black);
+  color: var(--white);
+  margin-bottom: 64px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.inv-label {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mid-dark);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.inv-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  line-height: 1;
+}
+
+.inv-price sup {
+  font-size: 0.4em;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  color: var(--mid-dark);
+  vertical-align: super;
+}
+
+.inv-note {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--mid-dark);
+  max-width: 260px;
+  line-height: 1.65;
+}
+
+.inv-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.cta-btn {
+  display: inline-block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--white);
+  padding: 14px 28px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.cta-sub {
+  font-size: 10px;
+  color: var(--mid-dark);
+  letter-spacing: 0.1em;
+  font-weight: 400;
+}
+
+/* ══════════════════════════════════════
+   PRODUCT 2 — EMPRESARIAL
+══════════════════════════════════════ */
+
+.product-divider {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 0 0 64px;
+}
+
+.pd-line { flex: 1; height: 1px; background: var(--rule); }
+.pd-text {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--mid);
+  white-space: nowrap;
+}
+
+/* Empresarial hero */
+.hero-empresarial {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+  align-items: start;
+}
+
+.hero-emp-text {}
+
+.emp-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 18px;
+}
+
+.emp-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 5.5vw, 58px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--black);
+  margin-bottom: 8px;
+}
+
+.emp-title em { font-style: italic; }
+
+.emp-rule { width: 32px; height: 1px; background: var(--black); margin: 22px 0; }
+
+.emp-sub {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--dark);
+}
+
+/* Image grid empresarial */
+.emp-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 6px;
+}
+
+.emp-img-main {
+  grid-column: 1 / -1;
+}
+
+.emp-img-main .img-placeholder {
+  aspect-ratio: 16/9;
+}
+
+.emp-img-small .img-placeholder {
+  aspect-ratio: 4/3;
+}
+
+/* Modalities */
+.modalities {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-bottom: 48px;
+}
+
+.modality {
+  background: var(--off);
+  padding: 24px 20px;
+  border: 1px solid var(--rule);
+}
+
+.mod-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+.mod-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--black);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.mod-desc {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+/* Emp deliverables */
+.emp-delivers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--rule);
+  margin-bottom: 36px;
+}
+
+.emp-del-item {
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.emp-del-item:nth-child(even) { border-right: none; }
+.emp-del-item:nth-last-child(-n+2) { border-bottom: none; }
+
+.emp-check {
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--mid);
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emp-check::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--black);
+}
+
+.emp-del-text {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--black);
+  line-height: 1.5;
+}
+
+/* Emp investment bar */
+.emp-investment {
+  background: var(--off);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--black);
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 64px;
+}
+
+.emp-inv-left {}
+
+.emp-inv-tag {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.emp-inv-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px;
+  font-weight: 300;
+  color: var(--black);
+  line-height: 1;
+}
+
+.emp-inv-sub {
+  font-size: 12px;
+  color: var(--dark);
+  font-weight: 400;
+  margin-top: 4px;
+}
+
+.emp-inv-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.emp-cta {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--black);
+  padding: 14px 28px;
+  text-decoration: none;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+}
+
+.emp-cta-note {
+  font-size: 11px;
+  color: var(--mid);
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+/* ── FOOTER ── */
+.footer {
+  padding-top: 28px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--black);
+  margin-bottom: 4px;
+}
+
+.footer-tagline {
+  font-size: 12px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--mid);
+  letter-spacing: 0.04em;
+}
+
+.footer-right {
+  text-align: right;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--mid);
+  line-height: 1.9;
+  letter-spacing: 0.05em;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .page { padding: 40px 24px 60px; }
+  .two-col, .hero-empresarial, .emp-delivers { grid-template-columns: 1fr; }
+  .modalities { grid-template-columns: 1fr; }
+  .emp-img-main { grid-column: auto; }
+  .emp-images { grid-template-columns: 1fr; }
+  .investment-bar, .emp-investment { flex-direction: column; }
+  .inv-cta, .emp-inv-right { align-items: flex-start; }
+  .footer-right { text-align: left; }
+  .emp-del-item:nth-child(even) { border-right: 1px solid var(--rule); }
+  .emp-del-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule); }
+  .emp-del-item:last-child { border-bottom: none; }
+}
+
+@media print {
+  .page { padding: 32px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="logo-group">
+      <div class="logo-name">Roncolato</div>
+      <div class="logo-sep"></div>
+      <div class="logo-partner">Thaynara — Consultoria de Imagem</div>
+    </div>
+    <div class="topbar-right">Portfólio de Produtos 2025</div>
+  </div>
+
+
+  <!-- ══ PRODUTO 1 ══ -->
+  <div class="product-label">Produto 01 — Executivo Individual</div>
+
+  <div class="hero">
+    <h1 class="hero-title">Presença<br><em>que Vende</em></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">Imagem profissional completa para executivos e empresários que precisam comunicar autoridade antes mesmo de abrir a boca.</p>
+  </div>
+
+  <div class="two-col">
+    <!-- IMAGEM PLACEHOLDER -->
+    <div class="img-wrap">
+      <div class="img-placeholder">
+        <svg class="img-icon" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1">
+          <rect x="3" y="3" width="18" height="18" rx="1"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <path d="M21 15l-5-5L5 21"/>
+        </svg>
+        <div class="img-label">Foto do ensaio</div>
+      </div>
+      <div class="img-caption">Substituir pela foto real do cliente</div>
+    </div>
+
+    <!-- ENTREGÁVEIS -->
+    <div class="deliverables-block">
+      <div class="block-title">O que está incluído</div>
+
+      <div class="deliverable">
+        <div class="del-num">01</div>
+        <div class="del-content">
+          <div class="del-title">Reunião de Alinhamento</div>
+          <div class="del-desc">Diagnóstico de objetivos, mercado e como a imagem precisa comunicar.</div>
+        </div>
+      </div>
+
+      <div class="deliverable">
+        <div class="del-num">02</div>
+        <div class="del-content">
+          <div class="del-title">Alinhamento de Imagem</div>
+          <div class="del-desc">Consultoria de estilo com Thaynara — paleta, guarda-roupa e presença pessoal.</div>
+        </div>
+      </div>
+
+      <div class="deliverable">
+        <div class="del-num">03</div>
+        <div class="del-content">
+          <div class="del-title">Preparo Profissional</div>
+          <div class="del-desc">Maquiagem no estúdio no dia do ensaio.</div>
+        </div>
+      </div>
+
+      <div class="deliverable">
+        <div class="del-num">04</div>
+        <div class="del-content">
+          <div class="del-title">Ensaio Corporativo — 1h</div>
+          <div class="del-desc">Sessão em estúdio profissional com direção criativa e fotografia de autoridade.</div>
+        </div>
+      </div>
+
+      <div class="deliverable">
+        <div class="del-num">05</div>
+        <div class="del-content">
+          <div class="del-title">Guia de Uso Estratégico</div>
+          <div class="del-desc">Documento visual de como aplicar suas imagens em LinkedIn, site, Instagram e apresentações.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INVESTMENT BAR -->
+  <div class="investment-bar">
+    <div>
+      <div class="inv-label">Investimento</div>
+      <div class="inv-price"><sup>R$</sup> 2.500</div>
+    </div>
+    <div class="inv-note">
+      Inclui estúdio, maquiagem, consultoria de imagem, ensaio fotográfico e guia estratégico. Experiência completa em um único dia.
+    </div>
+    <div class="inv-cta">
+      <a class="cta-btn" href="#">Solicitar proposta</a>
+      <span class="cta-sub">Vagas limitadas por mês</span>
+    </div>
+  </div>
+
+
+  <!-- ══ DIVISOR ══ -->
+  <div class="product-divider">
+    <div class="pd-line"></div>
+    <div class="pd-text">Produto 02 — Empresarial</div>
+    <div class="pd-line"></div>
+  </div>
+
+
+  <!-- ══ PRODUTO 2 — EMPRESARIAL ══ -->
+  <div class="hero-empresarial">
+    <div class="hero-emp-text">
+      <div class="emp-eyebrow">Para empresas e equipes</div>
+      <h2 class="emp-title">Imagem<br><em>Corporativa</em><br>que Posiciona</h2>
+      <div class="emp-rule"></div>
+      <p class="emp-sub">Programa completo de identidade visual para empresas que precisam alinhar a imagem da equipe ao posicionamento da marca. Do CEO ao time de vendas — todos comunicando autoridade de forma coesa.</p>
+    </div>
+
+    <!-- GRID DE IMAGENS -->
+    <div class="emp-images">
+      <div class="emp-img-main">
+        <div class="img-placeholder">
+          <svg class="img-icon" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="1"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <div class="img-label">Foto equipe / ambiente</div>
+        </div>
+        <div class="img-caption">Foto de equipe ou ambiente corporativo</div>
+      </div>
+      <div class="emp-img-small">
+        <div class="img-placeholder">
+          <svg class="img-icon" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="1"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <div class="img-label">Executivo 1</div>
+        </div>
+      </div>
+      <div class="emp-img-small">
+        <div class="img-placeholder">
+          <svg class="img-icon" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="1"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <div class="img-label">Executivo 2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODALIDADES -->
+  <div class="block-title" style="margin-bottom:16px;">Modalidades</div>
+  <div class="modalities">
+    <div class="modality">
+      <div class="mod-num">01</div>
+      <div class="mod-title">Time Executivo</div>
+      <div class="mod-desc">Para até 5 colaboradores. Ensaios individuais + consultoria de imagem coletiva. Ideal para sócios e líderes de área.</div>
+    </div>
+    <div class="modality">
+      <div class="mod-num">02</div>
+      <div class="mod-title">Empresa Completa</div>
+      <div class="mod-desc">Para equipes de 6 a 15 pessoas. Inclui planejamento visual de marca, ensaios e guia de identidade fotográfica.</div>
+    </div>
+    <div class="modality">
+      <div class="mod-num">03</div>
+      <div class="mod-title">Programa Anual</div>
+      <div class="mod-desc">Parceria contínua com atualização de imagem periódica, cobertura de eventos e conteúdo para redes.</div>
+    </div>
+  </div>
+
+  <!-- ENTREGÁVEIS EMPRESARIAL -->
+  <div class="block-title" style="margin-bottom:0;">O que a empresa recebe</div>
+  <div class="emp-delivers">
+    <div class="emp-del-item">
+      <div class="emp-check"></div>
+      <div class="emp-del-text">Reunião de briefing estratégico com liderança</div>
+    </div>
+    <div class="emp-del-item">
+      <div class="emp-check"></div>
+      <div class="emp-del-text">Consultoria de imagem para cada colaborador</div>
+    </div>
+    <div class="emp-del-item">
+      <div class="emp-check"></div>
+      <div class="emp-del-text">Ensaio individual por pessoa — estúdio profissional</div>
+    </div>
+    <div class="emp-del-item">
+      <div class="emp-check"></div>
+      <div class="emp-del-text">Fotos de equipe e ambientes corporativos</div>
+    </div>
+    <div class="emp-del-item">
+      <div class="emp-check"></div>
+      <div class="emp-del-text">Guia de identidade fotográfica da empresa</div>
+    </div>
+    <div class="emp-del-item">
+      <div class="emp-check"></div>
+      <div class="emp-del-text">Manual de uso das imagens por canal</div>
+    </div>
+  </div>
+
+  <!-- EMPRESARIAL INVESTMENT -->
+  <div class="emp-investment">
+    <div class="emp-inv-left">
+      <div class="emp-inv-tag">Investimento a partir de</div>
+      <div class="emp-inv-price">Sob consulta</div>
+      <div class="emp-inv-sub">Proposta personalizada conforme tamanho e escopo</div>
+    </div>
+    <div class="emp-inv-right">
+      <a class="emp-cta" href="#">Solicitar diagnóstico gratuito</a>
+      <div class="emp-cta-note">Reunião de 30 min sem compromisso</div>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      <div class="footer-brand">Roncolato + Thaynara</div>
+      <div class="footer-tagline">Transformar identidade em imagem e imagem em posicionamento.</div>
+    </div>
+    <div class="footer-right">
+      <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7a1915140e1b0e153a0815141915161b0e1554191517541808">[email&#16

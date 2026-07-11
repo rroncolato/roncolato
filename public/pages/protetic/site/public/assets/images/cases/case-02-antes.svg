@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#141010"/>
+      <stop offset="100%" stop-color="#060404"/>
+    </radialGradient>
+    <radialGradient id="gumGrad" cx="50%" cy="0%" r="100%">
+      <stop offset="0%" stop-color="#c45060"/>
+      <stop offset="100%" stop-color="#8a2535"/>
+    </radialGradient>
+    <radialGradient id="t1" cx="35%" cy="10%" r="80%">
+      <stop offset="0%" stop-color="#c0aa80"/>
+      <stop offset="70%" stop-color="#9a8050"/>
+      <stop offset="100%" stop-color="#7a6030"/>
+    </radialGradient>
+    <filter id="sh"><feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="rgba(0,0,0,0.7)"/></filter>
+    <filter id="blur2"><feGaussianBlur stdDeviation="2"/></filter>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bg)"/>
+
+  <!-- Vinheta -->
+  <radialGradient id="vig" cx="50%" cy="50%" r="65%">
+    <stop offset="40%" stop-color="transparent"/>
+    <stop offset="100%" stop-color="rgba(0,0,0,0.8)"/>
+  </radialGradient>
+  <rect width="800" height="500" fill="url(#vig)"/>
+
+  <!-- Label -->
+  <rect x="20" y="20" width="90" height="30" rx="2" fill="rgba(0,0,0,0.6)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <text x="65" y="39" font-family="Montserrat, sans-serif" font-size="11" fill="#7A7A72" text-anchor="middle" letter-spacing="3">ANTES</text>
+
+  <!-- Foco: close em sorriso com diastema -->
+  <!-- Lábios -->
+  <path d="M120 220 Q400 180 680 220 Q650 310 400 330 Q150 310 120 220Z" fill="#6a1e18" filter="url(#sh)"/>
+  <path d="M120 220 Q400 195 680 220" fill="#8a2a22"/>
+
+  <!-- Abertura -->
+  <ellipse cx="400" cy="268" rx="240" ry="62" fill="#0a0404"/>
+
+  <!-- Gengiva superior visível -->
+  <ellipse cx="400" cy="225" rx="235" ry="30" fill="url(#gumGrad)"/>
+
+  <!-- Dentes superiores — com diastema central grande e manchas -->
+  <!-- Incisivo central esquerdo -->
+  <path d="M205 218 Q220 210 245 213 L248 285 Q230 290 203 286 Z" fill="url(#t1)" rx="3"/>
+  <ellipse cx="225" cy="255" rx="6" ry="10" fill="rgba(60,35,5,0.45)"/>
+
+  <!-- gap diastema -->
+
+  <!-- Incisivo lateral esquerdo -->
+  <path d="M250 213 Q265 207 288 210 L291 285 Q273 290 248 286 Z" fill="url(#t1)"/>
+  <path d="M255 218 Q265 213 284 215" stroke="#5a3a10" stroke-width="1.5" fill="none" opacity="0.5"/>
+
+  <!-- Canino esquerdo -->
+  <path d="M293 211 Q307 206 326 209 L328 284 Q311 289 291 285 Z" fill="url(#t1)"/>
+
+  <!-- DIASTEMA CENTRAL VISÍVEL -->
+  <rect x="329" y="210" width="16" height="75" fill="#0a0404"/>
+
+  <!-- Incisivo central direito -->
+  <path d="M347 209 Q362 204 381 207 L383 284 Q365 289 345 285 Z" fill="url(#t1)"/>
+  <ellipse cx="363" cy="248" rx="4" ry="7" fill="rgba(50,28,3,0.4)"/>
+
+  <!-- Incisivo lateral direito -->
+  <path d="M385 207 Q400 203 419 206 L421 284 Q403 289 383 285 Z" fill="url(#t1)"/>
+
+  <!-- Canino direito levemente girado -->
+  <path d="M423 207 Q437 203 455 207 L458 284 Q440 289 421 285 Z" fill="url(#t1)"/>
+  <path d="M426 213 Q437 209 452 212" stroke="#4a2808" stroke-width="1.5" fill="none" opacity="0.4"/>
+
+  <!-- Pré-molar -->
+  <path d="M460 208 Q474 205 490 209 L492 284 Q475 288 458 285 Z" fill="url(#t1)"/>
+  <ellipse cx="474" cy="250" rx="5" ry="9" fill="rgba(55,30,5,0.35)"/>
+
+  <!-- Pré-molar 2 -->
+  <path d="M494 210 Q508 207 522 211 L523 284 Q507 288 492 285 Z" fill="url(#t1)"/>
+
+  <!-- Molar parcial -->
+  <path d="M526 213 Q538 210 553 215 L554 283 Q539 287 524 284 Z" fill="url(#t1)"/>
+  <!-- cárie escura -->
+  <ellipse cx="539" cy="252" rx="7" ry="10" fill="rgba(40,15,2,0.55)"/>
+
+  <!-- Linha cervical com tártaro -->
+  <path d="M205 220 Q400 213 555 220" stroke="rgba(100,75,30,0.5)" stroke-width="3" fill="none"/>
+
+  <!-- Sombra embaixo -->
+  <ellipse cx="400" cy="286" rx="220" ry="15" fill="rgba(0,0,0,0.45)"/>
+
+  <!-- Indicação do diastema com seta/marcação -->
+  <line x1="337" y1="175" x2="337" y2="210" stroke="rgba(220,80,60,0.7)" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="345" y1="175" x2="345" y2="210" stroke="rgba(220,80,60,0.7)" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="341" y="168" font-family="Montserrat, sans-serif" font-size="9" fill="rgba(220,100,80,0.8)" text-anchor="middle" letter-spacing="1">DIASTEMA</text>
+
+  <!-- Texto -->
+  <rect x="50" y="420" width="700" height="52" rx="4" fill="rgba(0,0,0,0.45)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <text x="400" y="441" font-family="Montserrat, sans-serif" font-size="10" fill="#7A7A72" text-anchor="middle" letter-spacing="2">SITUAÇÃO INICIAL</text>
+  <text x="400" y="460" font-family="Montserrat, sans-serif" font-size="12" fill="#C4C0B4" text-anchor="middle">Diastema central, manchamento e irregularidades — antes das lentes de contato</text>
+</svg>

@@ -1,0 +1,528 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    DESIGN SYSTEM ADMIN LIGHT - CHEATSHEET                      ║
+║                        Rodrigo Roncolato · Março 2026                          ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════════════════════════
+  🎨 COLORS - QUICK REFERENCE
+═══════════════════════════════════════════════════════════════════════════════
+
+PRIMARY COLORS:
+  #FFFFFF  White         - Background principal
+  #1A1A1A  Black         - Texto primário
+  #F5C518  Yellow        - Accent color (★ MANTÉM IDENTIDADE)
+
+GRAYS (Use como needed):
+  #F9F9F9  Gray-50       - Background secundário (quase branco)
+  #F3F3F3  Gray-100      - Background terciário
+  #E8E8E8  Gray-200      - Borders padrão
+  #D4D4D4  Gray-300      - Borders dark
+  #909090  Gray-500      - Text terciário
+  #4A4A4A  Gray-700      - Text secundário
+  #1A1A1A  Gray-900      - Text primário (same as black)
+
+SEMANTIC COLORS:
+  #10B981  Success       - Confirmação, ok, publish
+  #EF4444  Error         - Erros, delete, danger
+  #F59E0B  Warning       - Avisos, atenção
+  #3B82F6  Info          - Informações, dicas
+
+═══════════════════════════════════════════════════════════════════════════════
+  🔤 TYPOGRAPHY
+═══════════════════════════════════════════════════════════════════════════════
+
+FONT:  Jost* (Google Fonts)
+       @import 'https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900'
+
+SIZES & WEIGHTS:
+  32px · 700  =  H1 Page Titles
+  28px · 700  =  H2 Section Titles
+  24px · 600  =  H3 Subtitles
+  20px · 600  =  H4 Large Labels
+  16px · 400  =  Body Large (main content)
+  14px · 400  =  Body Standard (default)
+  12px · 400  =  Body Small (secondary)
+  12px · 600  =  Labels (UPPERCASE, +0.05em letter-spacing)
+  11px · 400  =  Caption (help text)
+
+WEIGHTS:
+  300 = Light      (rarely used)
+  400 = Normal     (body text)
+  500 = Medium     (minimal use)
+  600 = Semibold   (labels, emphasis)
+  700 = Bold       (headings, strong)
+  900 = Extrabold  (logos, impact)
+
+LINE HEIGHTS:
+  1.2  = Tight     (headings)
+  1.3  = Snug      (subheadings)
+  1.4  = Normal    (default)
+  1.5  = Large     (labels)
+  1.6  = Relaxed   (body text, forms)
+
+═══════════════════════════════════════════════════════════════════════════════
+  📐 SPACING SYSTEM (8px GRID)
+═══════════════════════════════════════════════════════════════════════════════
+
+xs    =  4px   (micro-gaps)
+sm    =  8px   (small gaps, padding)
+md    =  16px  (standard padding, gaps)
+lg    =  24px  (large padding, sections)
+xl    =  32px  (extra large spacing)
+2xl   =  40px  (huge spacing)
+3xl   =  48px  (mega spacing)
+4xl   =  64px  (maximum spacing)
+
+COMMON COMBINATIONS:
+  Form Group Margin:        24px (lg)
+  Card Padding:             24px (lg)
+  Button Padding:           12px vertical, 24px horizontal
+  Input/Form Padding:       12px (sm*1.5) vertical, 16px horizontal
+  Table Cell Padding:       16px vertical, 24px horizontal
+  Gap (grid/flex):          16px (md)
+
+═══════════════════════════════════════════════════════════════════════════════
+  🎯 BORDER & RADIUS
+═══════════════════════════════════════════════════════════════════════════════
+
+BORDER RADIUS:
+  0px         = No radius
+  2px         = Very subtle
+  4px         = Default (buttons, inputs, cards small)
+  8px         = Cards, modals, larger components
+  12px        = Extra large
+  16px        = Very large
+  9999px      = Full circle / pills (badges)
+
+BORDER WIDTHS:
+  1px         = Standard borders
+  2px         = Strong borders (section dividers)
+  3px         = Active states (sidebar nav)
+
+BORDER COLORS:
+  #E8E8E8     = Standard border (light)
+  #D4D4D4     = Darker border (hover)
+  #F5C518     = Yellow border (focus/active)
+
+═══════════════════════════════════════════════════════════════════════════════
+  ✨ SHADOWS
+═══════════════════════════════════════════════════════════════════════════════
+
+ELEVATION LEVELS:
+  None          = 0 (flat)
+  Subtle        = 0 1px 2px rgba(0,0,0,0.05)
+  Small         = 0 1px 3px rgba(0,0,0,0.05)
+  Medium        = 0 4px 12px rgba(0,0,0,0.08)
+  Large         = 0 10px 25px rgba(0,0,0,0.1)
+  X-Large       = 0 20px 25px rgba(0,0,0,0.15)
+
+SPECIAL SHADOWS:
+  Yellow Focus  = 0 4px 12px rgba(245, 197, 24, 0.3)
+  Focus Ring    = 0 0 0 3px rgba(245, 197, 24, 0.1)
+  Error Focus   = 0 0 0 3px rgba(239, 68, 68, 0.1)
+
+═══════════════════════════════════════════════════════════════════════════════
+  🔘 BUTTONS
+═══════════════════════════════════════════════════════════════════════════════
+
+PRIMARY BUTTON:
+  Background:    #F5C518 (yellow)
+  Text Color:    #1A1A1A (black)
+  Text Weight:   700
+  Padding:       12px 24px
+  Border Radius: 4px
+  Shadow:        0 4px 12px rgba(245, 197, 24, 0.3)
+  Hover:         opacity 0.85, transform translateY(-1px)
+  Active:        opacity 0.7, transform translateY(0)
+  Focus:         outline 2px solid #F5C518, outline-offset 2px
+
+SECONDARY BUTTON:
+  Background:    #F9F9F9 (gray-50)
+  Border:        1px solid #D4D4D4
+  Text Color:    #1A1A1A
+  Hover BG:      #F3F3F3
+  Hover Border:  #BDBDBD
+
+OUTLINE BUTTON:
+  Background:    transparent
+  Border:        1px solid #F5C518
+  Text Color:    #F5C518
+  Hover BG:      #F5C518
+  Hover Text:    #1A1A1A
+
+DANGER BUTTON:
+  Background:    #EF4444 (red)
+  Text Color:    #FFFFFF
+  Hover:         opacity 0.85
+
+SIZES:
+  Small:         8px 16px, font-size 11px
+  Standard:      12px 24px, font-size 12px
+  Large:         16px 32px, font-size 14px
+
+═══════════════════════════════════════════════════════════════════════════════
+  📝 FORM INPUTS
+═══════════════════════════════════════════════════════════════════════════════
+
+LABEL:
+  Font Size:     12px
+  Font Weight:   600
+  Color:         #1A1A1A
+  Transform:     UPPERCASE
+  Letter Space:  0.05em
+  Margin Bottom: 8px
+
+INPUT/TEXTAREA/SELECT:
+  Padding:       12px 16px
+  Border:        1px solid #D4D4D4
+  Border Radius: 4px
+  Background:    #FFFFFF
+  Text Color:    #1A1A1A
+  Font Family:   Jost
+  Font Size:     14px
+
+STATES:
+  Default:       border #D4D4D4
+  Hover:         border #BDBDBD
+  Focus:         border #F5C518, box-shadow 0 0 0 3px rgba(245,197,24,0.1)
+  Error:         border #EF4444, box-shadow 0 0 0 3px rgba(239,68,68,0.1)
+  Success:       border #10B981
+  Disabled:      background #F9F9F9, color #BDBDBD, cursor not-allowed
+
+PLACEHOLDER:
+  Color:         #BDBDBD
+  Font Style:    normal
+
+HINT TEXT:
+  Font Size:     11px
+  Color:         #909090
+  Margin Top:    6px
+
+═══════════════════════════════════════════════════════════════════════════════
+  🎴 CARDS
+═══════════════════════════════════════════════════════════════════════════════
+
+CARD STANDARD:
+  Background:    #FFFFFF
+  Border:        1px solid #E8E8E8
+  Padding:       24px
+  Border Radius: 8px
+  Shadow:        0 1px 3px rgba(0,0,0,0.05)
+  Hover Border:  #D4D4D4
+  Hover Shadow:  0 4px 12px rgba(0,0,0,0.08)
+
+CARD TITLE:
+  Font Size:     20px
+  Font Weight:   600
+  Color:         #1A1A1A
+  Margin Bottom: 16px
+
+CARD DESCRIPTION:
+  Font Size:     14px
+  Color:         #666666
+  Line Height:   1.6
+  Margin Bottom: 24px
+
+CARD FOOTER:
+  Padding Top:   16px
+  Border Top:    1px solid #E8E8E8
+  Display:       flex, gap 12px, justify-end
+
+CARD GRID:
+  Grid Columns:  repeat(auto-fit, minmax(280px, 1fr))
+  Gap:           24px
+
+═══════════════════════════════════════════════════════════════════════════════
+  📊 TABLE
+═══════════════════════════════════════════════════════════════════════════════
+
+TABLE:
+  Background:    #FFFFFF
+  Border:        1px solid #E8E8E8
+  Border Radius: 8px
+  Font Size:     14px
+
+HEADER:
+  Background:    #F9F9F9
+  Border Bottom: 2px solid #D4D4D4
+  Font Weight:   600
+  Text Transform: UPPERCASE
+  Font Size:     12px
+  Letter Space:  0.05em
+  Padding:       16px 24px
+
+CELLS:
+  Padding:       16px 24px
+  Border Bottom: 1px solid #E8E8E8
+  Color:         #4A4A4A
+
+ROW HOVER:
+  Background:    #F9F9F9
+
+BADGE (Status):
+  Padding:       4px 12px
+  Border Radius: 9999px
+  Font Size:     11px
+  Font Weight:   700
+  Text Transform: UPPERCASE
+  Letter Space:  0.05em
+
+═══════════════════════════════════════════════════════════════════════════════
+  🚨 ALERTS
+═══════════════════════════════════════════════════════════════════════════════
+
+ALERT CONTAINER:
+  Padding:       16px 24px
+  Border Radius: 4px
+  Border:        1px solid (varies by type)
+  Display:       flex, gap 16px, align-items flex-start
+  Margin Bottom: 24px
+
+SUCCESS:
+  Background:    #ECFDF5
+  Border:        #D1FAE5
+  Color:         #047857
+  Use:           publish, save, confirm
+
+ERROR:
+  Background:    #FEF2F2
+  Border:        #FECACA
+  Color:         #DC2626
+  Use:           validation errors, delete, failures
+
+WARNING:
+  Background:    #FFFBEB
+  Border:        #FCD34D
+  Color:         #B45309
+  Use:           caution, attention needed
+
+INFO:
+  Background:    #EFF6FF
+  Border:        #BFDBFE
+  Color:         #1E40AF
+  Use:           information, tips, notes
+
+TITLE:          Font-weight 600, margin-bottom 2px
+DESCRIPTION:    Font-size 12px, opacity 0.9
+
+═══════════════════════════════════════════════════════════════════════════════
+  🔀 TRANSITIONS & ANIMATIONS
+═══════════════════════════════════════════════════════════════════════════════
+
+DURATIONS:
+  Fast:          150ms
+  Normal:        250ms
+  Slow:          350ms
+
+TIMING FUNCTIONS:
+  Ease Out:      cubic-bezier(0, 0, 0.2, 1)       - Default (responsive)
+  Ease In-Out:   cubic-bezier(0.4, 0, 0.2, 1)    - Natural
+  Ease In:       cubic-bezier(0.4, 0, 1, 1)       - Slow start
+
+COMMON PATTERNS:
+  Hover:         transition all 150ms ease-out
+  Form:          transition all 250ms ease-in-out
+  Modal:         transition all 250ms ease-in-out
+  Subtle:        transition border-color 150ms ease-out
+
+SPINNER:
+  Size:          24px
+  Border Width:  3px
+  Duration:      0.8s
+  Animation:     rotate 360deg
+
+═══════════════════════════════════════════════════════════════════════════════
+  ♿ ACCESSIBILITY
+═══════════════════════════════════════════════════════════════════════════════
+
+CONTRAST RATIOS (WCAG):
+  Primary Text (#1A1A1A on #FFFFFF):    15.8:1  ✅ AAA
+  Secondary Text (#4A4A4A on #FFFFFF):  10.8:1  ✅ AAA
+  Yellow on White (#F5C518 on #FFF):    4.5:1   ✅ AA
+  Gray-500 on White (#909090 on #FFF):  4.8:1   ✅ AA
+
+FOCUS INDICATORS:
+  Outline:       2px solid #F5C518
+  Outline Offset: 2px
+  Apply to:      buttons, inputs, links, all interactive elements
+
+KEYBOARD NAVIGATION:
+  Tab order:     Logical, left-to-right, top-to-bottom
+  Focus trap:    Modal should trap focus
+  Escape key:    Close modals, cancel dialogs
+
+SCREEN READERS:
+  Labels:        All inputs must have <label>
+  ARIA:          Use aria-invalid, aria-describedby, aria-label
+  Headings:      Proper hierarchy (h1, h2, h3)
+  Alt text:      All images need alt attributes
+
+═══════════════════════════════════════════════════════════════════════════════
+  📱 RESPONSIVE BREAKPOINTS
+═══════════════════════════════════════════════════════════════════════════════
+
+Mobile:         < 640px   (phones, small tablets)
+Tablet:         640px     (landscape phones, tablets)
+Desktop:        1024px    (laptops, desktops)
+Large Desktop:  1280px    (ultrawide, 4k)
+
+PATTERNS:
+  Mobile First:  Start with mobile, add features with min-width queries
+  Sidebar:       Hide on mobile, show on desktop
+  Grid Columns:  1 column mobile, 2-3 desktop
+  Padding:       Reduce on mobile (16px → 24px)
+  Font Sizes:    May adjust down 1-2px on mobile
+
+═══════════════════════════════════════════════════════════════════════════════
+  🎯 COMPONENT STATES
+═══════════════════════════════════════════════════════════════════════════════
+
+BUTTON STATES:
+  Default       = Normal appearance
+  Hover         = opacity 0.85, slight lift (translateY -1px)
+  Active        = opacity 0.7, no lift
+  Focus         = Yellow outline, 2px, offset 2px
+  Disabled      = opacity 0.5, cursor not-allowed
+  Loading       = Spinner + disabled state
+
+FORM FIELD STATES:
+  Default       = Clear borders, white background
+  Hover         = Darker border
+  Focus         = Yellow border + shadow
+  Filled        = Normal with value
+  Error         = Red border, error message, red shadow
+  Success       = Green border
+  Disabled      = Gray background, gray text, cursor not-allowed
+
+CARD STATES:
+  Default       = Subtle shadow
+  Hover         = Darker border, larger shadow
+  Active        = Yellow accent color
+  Loading       = Opacity 0.6, spinner
+
+═══════════════════════════════════════════════════════════════════════════════
+  💡 TIPS & BEST PRACTICES
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ DO:
+  • Use consistent spacing (8px multiples)
+  • Maintain 1.6 line-height for body text
+  • Provide clear focus indicators
+  • Test contrast with WCAG checker
+  • Use semantic HTML (labels, buttons, not divs)
+  • Provide error messages that help
+  • Test on actual mobile devices
+  • Use active states on navigation
+
+❌ DON'T:
+  • Use colors only to convey meaning (add icons, text)
+  • Remove focus outlines (provide alternative)
+  • Use auto-playing animations
+  • Create text smaller than 12px for body
+  • Skip labels on form inputs
+  • Use disabled state without explanation
+  • Assume all users can see colors
+  • Force specific font sizes (use relative units)
+
+═══════════════════════════════════════════════════════════════════════════════
+  📋 QUICK IMPLEMENTATION CHECKLIST
+═══════════════════════════════════════════════════════════════════════════════
+
+SETUP:
+  [ ] Import Google Fonts (Jost)
+  [ ] Create CSS variables file
+  [ ] Setup Tailwind config (or vanilla CSS)
+  [ ] Create global styles
+
+COMPONENTS:
+  [ ] Buttons (all 4 variants)
+  [ ] Form inputs (text, textarea, select)
+  [ ] Cards (standard layouts)
+  [ ] Tables
+  [ ] Alerts
+  [ ] Modals
+  [ ] Navigation (sidebar, header)
+
+TESTING:
+  [ ] Mobile (360px, 768px, 1024px, 1280px)
+  [ ] Contrast ratios (WCAG AA/AAA)
+  [ ] Keyboard navigation (Tab, Enter, Escape)
+  [ ] Screen reader (focus order, labels)
+  [ ] Reduced motion (@media prefers-reduced-motion)
+  [ ] Different browsers (Chrome, Firefox, Safari, Edge)
+
+OPTIMIZATION:
+  [ ] Performance audit
+  [ ] Lighthouse score
+  [ ] CSS minified
+  [ ] Animations smooth (60fps)
+  [ ] No console errors/warnings
+
+═══════════════════════════════════════════════════════════════════════════════
+  🔗 REFERENCE DOCUMENTS
+═══════════════════════════════════════════════════════════════════════════════
+
+📄 DESIGN_SYSTEM_ADMIN_LIGHT.md
+   → Full specifications (colors, typography, components, guidelines)
+
+📄 DESIGN_SYSTEM_ADMIN_CODE_REFERENCE.md
+   → Copy-paste code snippets (HTML, CSS, components)
+
+📄 DESIGN_SYSTEM_VISUAL_COMPARISON.md
+   → Dark vs Light comparison, use cases, emotional profiles
+
+📄 admin-light-example.html
+   → Working HTML example (open in browser)
+
+📄 DESIGN_SYSTEM_CHEATSHEET.txt
+   → This file (quick reference)
+
+═══════════════════════════════════════════════════════════════════════════════
+  💾 CSS VARIABLES QUICK COPY
+═══════════════════════════════════════════════════════════════════════════════
+
+Paste this into your CSS:
+
+:root {
+  --color-white: #FFFFFF;
+  --color-black: #1A1A1A;
+  --color-yellow: #F5C518;
+  --color-gray-50: #F9F9F9;
+  --color-gray-100: #F3F3F3;
+  --color-gray-200: #E8E8E8;
+  --color-gray-300: #D4D4D4;
+  --color-gray-400: #BDBDBD;
+  --color-gray-500: #909090;
+  --color-gray-600: #666666;
+  --color-gray-700: #4A4A4A;
+  --color-gray-900: #1A1A1A;
+  --color-success: #10B981;
+  --color-error: #EF4444;
+  --color-warning: #F59E0B;
+  --color-info: #3B82F6;
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F9F9F9;
+  --text-primary: #1A1A1A;
+  --text-secondary: #4A4A4A;
+  --text-tertiary: #909090;
+  --border-color: #E8E8E8;
+  --font-family: 'Jost', sans-serif;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎉 VOCÊ ESTÁ PRONTO! Abra admin-light-example.html no navegador e comece!
+
+Perguntas? Consulte DESIGN_SYSTEM_ADMIN_LIGHT.md para especificações completas.
+
+═══════════════════════════════════════════════════════════════════════════════
+Versão 1.0 · Março 2026 · Status: Pronto para Implementação

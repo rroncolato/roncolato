@@ -1,0 +1,29 @@
+      <div class="f4-quote">
+        <!-- PORTUGUÊS -->
+        <div class="frase-lang" data-lang="pt" style="display:block;">
+          <p class="f4-line-normal"><strong class="f4-bold">Na Protetic,</strong> cada sorriso</p>
+          <p class="f4-line-normal">é o resultado da união entre</p>
+          <p class="f4-line-gold">arte, ciência e propósito.</p>
+          <p class="f4-line-normal">Mas antes de tudo isso</p>
+          <p class="f4-line-normal">é o resultado de uma</p>
+          <p class="f4-line-normal">escolha consciente."</p>
+        </div>
+        <!-- ENGLISH -->
+        <div class="frase-lang" data-lang="en" style="display:none;">
+          <p class="f4-line-normal"><strong class="f4-bold">At Protetic,</strong> every smile</p>
+          <p class="f4-line-normal">results from the union of</p>
+          <p class="f4-line-gold">art, science, and purpose.</p>
+          <p class="f4-line-normal">But before all of that</p>
+          <p class="f4-line-normal">it results from</p>
+          <p class="f4-line-normal">a conscious choice."</p>
+        </div>
+        <!-- ESPAÑOL -->
+        <div class="frase-lang" data-lang="es" style="display:none;">
+          <p class="f4-line-normal"><strong class="f4-bold">En Protetic,</strong> cada sonrisa</p>
+          <p class="f4-line-normal">es el resultado de la unión de</p>
+          <p class="f4-line-gold">arte, ciencia y propósito.</p>
+          <p class="f4-line-normal">Pero antes que todo eso</p>
+          <p class="f4-line-normal">es el resultado de</p>
+          <p class="f4-line-normal">una elección consciente."</p>
+        </div>
+      </div>
