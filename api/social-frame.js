@@ -91,11 +91,15 @@ function escolherCapa(fotos, metadados) {
 }
 
 export default async function handler(req, res) {
-  // Parseia direto da URL: /api/social-frame/<acao>/<param>
-  const partes = (req.url || '').split('?')[0].split('/').filter(Boolean);
-  const idx = partes.indexOf('social-frame');
-  const acao = partes[idx + 1];
-  const param = partes[idx + 2];
+  // Params vêm por query (rewrites no vercel.json); fallback: parse da URL
+  let acao = req.query.acao;
+  let param = req.query.param;
+  if (!acao) {
+    const partes = (req.url || '').split('?')[0].split('/').filter(Boolean);
+    const idx = partes.indexOf('social-frame');
+    acao = partes[idx + 1];
+    param = partes[idx + 2];
+  }
 
   try {
     // GET /api/social-frame/fotos/:cliente

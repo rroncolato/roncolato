@@ -1,10 +1,12 @@
 {
   "functions": {
-    "api/social-frame/[...route].js": {
+    "api/social-frame.js": {
       "includeFiles": "SOCIAL-FRAME/catalogo.json"
     }
   },
   "rewrites": [
+    { "source": "/api/social-frame/:acao/:param", "destination": "/api/social-frame?acao=:acao&param=:param" },
+    { "source": "/api/social-frame/:acao", "destination": "/api/social-frame?acao=:acao" },
     { "source": "/socialframe", "destination": "/social-frame/index.html" },
     { "source": "/socialframe/", "destination": "/social-frame/index.html" },
     { "source": "/social-frame", "destination": "/social-frame/index.html" },
