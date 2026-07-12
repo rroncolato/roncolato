@@ -11,7 +11,7 @@ console.log('🚀 Publicando SOCIAL FRAME...\n');
 try {
   // 1. Sync (lê metadados do Drive local, atualiza catalogo.json)
   console.log('1️⃣  Sincronizando metadados...');
-  execSync(`node ${path.join(projectRoot, 'scripts', 'sync-social-frame.js')}`, {
+  execSync(`node "scripts/sync-social-frame.js"`, {
     cwd: projectRoot,
     stdio: 'inherit'
   });
