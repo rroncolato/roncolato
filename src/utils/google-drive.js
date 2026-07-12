@@ -40,6 +40,33 @@ async function listFiles(folderId) {
   }
 }
 
+async function listSubfolders(folderId) {
+  if (!drive) throw new Error('Google Drive not configured');
+
+  const response = await drive.files.list({
+    q: `'${folderId}' in parents and trashed=false and mimeType='application/vnd.google-apps.folder'`,
+    fields: 'files(id, name)',
+    pageSize: 100,
+    orderBy: 'name'
+  });
+  return response.data.files || [];
+}
+
+// Com subpastas: cada uma vira coleção e a raiz é ignorada.
+// Sem subpastas: fotos da raiz (comportamento original).
+async function getFotosCliente(folderId) {
+  const subs = await listSubfolders(folderId);
+  if (subs.length === 0) {
+    return { colecoes: [], fotos: await listFiles(folderId) };
+  }
+  const listas = await Promise.all(subs.map((s) => listFiles(s.id)));
+  const fotos = [];
+  subs.forEach((s, i) => {
+    listas[i].forEach((f) => fotos.push({ ...f, colecao: s.name }));
+  });
+  return { colecoes: subs.map((s) => s.name), fotos };
+}
+
 async function getThumbnailLink(fileId, size = 800) {
   if (!drive) throw new Error('Google Drive not configured');
 
@@ -99,6 +126,8 @@ async function downloadFile(fileId, destinationPath) {
 module.exports = {
   drive,
   listFiles,
+  listSubfolders,
+  getFotosCliente,
   getFileStream,
   getThumbnailLink,
   downloadFile,

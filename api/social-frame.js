@@ -61,6 +61,31 @@ async function listFiles(folderId) {
   return res.data.files || [];
 }
 
+async function listSubfolders(folderId) {
+  const res = await getDrive().files.list({
+    q: `'${folderId}' in parents and trashed=false and mimeType='application/vnd.google-apps.folder'`,
+    fields: 'files(id, name)',
+    pageSize: 100,
+    orderBy: 'name'
+  });
+  return res.data.files || [];
+}
+
+// Com subpastas: cada uma vira coleção e a raiz é ignorada.
+// Sem subpastas: comportamento original (fotos da raiz).
+async function getFotosCliente(folderId) {
+  const subs = await listSubfolders(folderId);
+  if (subs.length === 0) {
+    return { colecoes: [], fotos: await listFiles(folderId) };
+  }
+  const listas = await Promise.all(subs.map((s) => listFiles(s.id)));
+  const fotos = [];
+  subs.forEach((s, i) => {
+    listas[i].forEach((f) => fotos.push({ ...f, colecao: s.name }));
+  });
+  return { colecoes: subs.map((s) => s.name), fotos };
+}
+
 async function getThumbnailLink(fileId, size) {
   const res = await getDrive().files.get({ fileId, fields: 'thumbnailLink' });
   const link = res.data.thumbnailLink;
@@ -109,12 +134,13 @@ export default async function handler(req, res) {
         return res.status(404).json({ success: false, error: 'Cliente não encontrado' });
       }
 
-      const fotosGoogle = await listFiles(clienteData.folder_id);
+      const { colecoes, fotos: fotosGoogle } = await getFotosCliente(clienteData.folder_id);
       const metadados = clienteData.fotos || {};
 
       const fotos = fotosGoogle.map((f) => ({
         id: f.id,
         nome: f.name,
+        colecao: f.colecao || null,
         stars: (metadados[f.name] && metadados[f.name].stars) || 0,
         tags: (metadados[f.name] && metadados[f.name].tags) || [],
         createdTime: f.createdTime,
@@ -126,6 +152,7 @@ export default async function handler(req, res) {
         cliente: param,
         nome_completo: clienteData.nome_completo,
         aliases: clienteData.aliases || [],
+        colecoes,
         total: fotos.length,
         fotos
       });
@@ -165,7 +192,7 @@ export default async function handler(req, res) {
           let capa = null;
           let totalFotos = 0;
           try {
-            const fotos = await listFiles(catalogo[key].folder_id);
+            const { fotos } = await getFotosCliente(catalogo[key].folder_id);
             totalFotos = fotos.length;
             if (fotos.length > 0) capa = escolherCapa(fotos, catalogo[key].fotos || {});
           } catch (e) {

@@ -84,18 +84,29 @@ function sincronizarMetadadosLocais(catalogo, chave, nomePastaDrive) {
   const pastaLocal = path.join(LOCAL_PATH, nomePastaDrive);
   if (!fs.existsSync(pastaLocal)) return { lidas: 0, comMetadados: 0 };
 
-  const jpgs = fs.readdirSync(pastaLocal).filter((f) => /\.jpe?g$/i.test(f));
-  let comMetadados = 0;
+  // Raiz + 1 nível de subpastas (coleções/ensaios)
+  const arquivos = [];
+  for (const entry of fs.readdirSync(pastaLocal, { withFileTypes: true })) {
+    if (entry.isFile() && /\.jpe?g$/i.test(entry.name)) {
+      arquivos.push(path.join(pastaLocal, entry.name));
+    } else if (entry.isDirectory()) {
+      const sub = path.join(pastaLocal, entry.name);
+      for (const f of fs.readdirSync(sub)) {
+        if (/\.jpe?g$/i.test(f)) arquivos.push(path.join(sub, f));
+      }
+    }
+  }
 
-  for (const jpg of jpgs) {
-    const meta = lerMetadadosXMP(path.join(pastaLocal, jpg));
+  let comMetadados = 0;
+  for (const arquivo of arquivos) {
+    const meta = lerMetadadosXMP(arquivo);
     if (meta) {
-      catalogo[chave].fotos[jpg] = { stars: meta.stars, tags: meta.tags };
+      catalogo[chave].fotos[path.basename(arquivo)] = { stars: meta.stars, tags: meta.tags };
       comMetadados++;
     }
   }
 
-  return { lidas: jpgs.length, comMetadados };
+  return { lidas: arquivos.length, comMetadados };
 }
 
 /**

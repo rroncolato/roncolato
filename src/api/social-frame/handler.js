@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const archiver = require('archiver');
-const { listFiles, getFileStream, getThumbnailLink } = require('../../utils/google-drive');
+const { listFiles, getFotosCliente, getFileStream, getThumbnailLink } = require('../../utils/google-drive');
 const https = require('https');
 const { getCatalogo, getClienteData } = require('./catalogo');
 const { sincronizarNoLogin, iniciarAutoSync } = require('../../utils/social-frame-sync');
@@ -68,7 +68,7 @@ async function handleSocialFrameRequest(req, res, pathname, method) {
           let capa = null;
           let totalFotos = 0;
           try {
-            const fotos = await listFiles(catalogo[key].folder_id);
+            const { fotos } = await getFotosCliente(catalogo[key].folder_id);
             totalFotos = fotos.length;
             if (fotos.length > 0) capa = escolherCapa(fotos, catalogo[key].fotos || {});
           } catch (e) {
@@ -99,8 +99,8 @@ async function handleSocialFrameRequest(req, res, pathname, method) {
         return;
       }
 
-      // Lista fotos do Drive
-      const fotosGoogle = await listFiles(clienteData.folder_id);
+      // Lista fotos do Drive (subpastas viram coleções; raiz é ignorada se houver)
+      const { colecoes, fotos: fotosGoogle } = await getFotosCliente(clienteData.folder_id);
 
       // Mescla com metadados
       const fotos = fotosGoogle.map((foto) => {
@@ -108,6 +108,7 @@ async function handleSocialFrameRequest(req, res, pathname, method) {
         return {
           id: foto.id,
           nome: foto.name,
+          colecao: foto.colecao || null,
           ...metadata,
           createdTime: foto.createdTime,
           modifiedTime: foto.modifiedTime
@@ -119,6 +120,7 @@ async function handleSocialFrameRequest(req, res, pathname, method) {
         cliente,
         nome_completo: clienteData.nome_completo,
         aliases: clienteData.aliases || [],
+        colecoes,
         fotos,
         total: fotos.length
       });
@@ -185,8 +187,8 @@ async function handleSocialFrameRequest(req, res, pathname, method) {
         return;
       }
 
-      // Lista fotos do Drive
-      const fotosGoogle = await listFiles(clienteData.folder_id);
+      // Lista fotos do Drive (inclui subpastas/coleções)
+      const { fotos: fotosGoogle } = await getFotosCliente(clienteData.folder_id);
 
       if (fotosGoogle.length === 0) {
         res.writeHead(400, { 'Content-Type': 'application/json' });
