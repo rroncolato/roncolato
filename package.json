@@ -9,7 +9,8 @@
     "add-article": "node add-article.js",
     "artigos": "node add-article.js",
     "projetos": "node add-project.js",
-    "deploy": "vercel --prod --yes"
+    "deploy": "vercel --prod --yes",
+    "publicar": "node scripts/publicar-social-frame.js"
   },
   "devDependencies": {
     "live-server": "^1.2.2",
