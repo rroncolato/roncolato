@@ -30,7 +30,7 @@ const envSchema = z
     // IA
     AI_PROVIDER: z.enum(["anthropic", "demo"]).default("demo"),
     AI_API_KEY: z.string().default(""),
-    AI_MODEL: z.string().default("claude-sonnet-5"),
+    AI_MODEL: z.string().default("claude-opus-4-8"),
     AI_PROMPT_VERSION: z.string().default("1.0.0"),
     AI_TIMEOUT_MS: z.coerce.number().int().positive().default(60_000),
 

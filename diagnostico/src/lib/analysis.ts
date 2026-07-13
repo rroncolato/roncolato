@@ -1,8 +1,9 @@
 import "server-only";
 import { readFileSync } from "fs";
-import { config, isDemoMode } from "@/lib/config";
+import { config } from "@/lib/config";
 import { getStore } from "@/lib/db";
 import { DemoDiagnosticProvider } from "@/lib/ai/demo";
+import { AnthropicDiagnosticProvider } from "@/lib/ai/anthropic";
 import type { DiagnosticInput, VisionDiagnosticProvider } from "@/lib/ai/provider";
 import { DiagnosticResultSchema } from "@/lib/schemas/diagnostic-result";
 import { calculateOverallScore } from "@/lib/scoring";
@@ -10,9 +11,13 @@ import { PROMPT_VERSION } from "@/lib/ai/prompts/version";
 import { trackEvent } from "@/lib/events";
 
 function getProvider(): VisionDiagnosticProvider {
-  if (isDemoMode || config.AI_PROVIDER === "demo") return new DemoDiagnosticProvider();
-  // Adapter Anthropic entra na Fase 3.
-  throw new Error("Provider real ainda não configurado — use AI_PROVIDER=demo.");
+  // Opt-in explícito: AI_PROVIDER=anthropic + chave ativa a IA real,
+  // mesmo em DEMO_MODE (útil para testar a análise real com store local).
+  // Sem chave ou com AI_PROVIDER=demo → fixture, zero chamada externa.
+  if (config.AI_PROVIDER === "anthropic" && config.AI_API_KEY) {
+    return new AnthropicDiagnosticProvider();
+  }
+  return new DemoDiagnosticProvider();
 }
 
 /**
