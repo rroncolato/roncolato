@@ -1,80 +1,76 @@
 ---
 name: lead-page
-description: Cria uma página de captura de leads (quiz/formulário) no padrão bniconquista — captura, salva no Notion e redireciona pro WhatsApp. Use quando o Rodrigo pedir "página de captura", "quiz de captura", "landing de lead", "página pra pegar contatos".
+description: Cria uma página de captura de leads. NÃO assume um formato fixo — começa perguntando o que o projeto precisa. O que é sempre igual é o backbone (Notion como banco + proxy serverless por causa do CORS); o resto muda. Use quando o Rodrigo pedir "página de captura", "landing de lead", "quiz de captura", "formulário", "página pra pegar contatos".
 ---
 
-# Página de captura de lead (padrão bniconquista)
+# Página de captura de lead
 
-Cria uma página auto-contida que captura dados, salva no Notion e manda pro WhatsApp. O modelo de referência é `/bniconquista` (palestra BNI).
+Cada captação é diferente. Esta skill NÃO sai criando no padrão bniconquista — primeiro **descobre o que este projeto precisa**, depois monta.
 
-## Arquitetura (o padrão que funciona)
+## O que é FIXO (não muda)
 
-```
-Navegador                    Vercel (serverless)        Notion
-─────────                    ───────────────────        ──────
-public/pages/NOME/index.html → api/NOME/lead.js       → banco de captura
-   (quiz + captura)              (proxy p/ Notion)         (leads)
-        │
-        └→ redireciona pro WhatsApp (wa.me) com mensagem pronta
-```
+1. **Notion é o banco de dados dos leads.** Todo lead vai pra lá. É o que importa.
+2. **Proxy serverless obrigatório.** O navegador não pode chamar o Notion direto (bloqueio CORS). Os dados SEMPRE passam por uma função em `api/NOME/lead.js` que fala com o Notion do lado servidor. Nunca colocar o token do Notion no HTML/JS do navegador.
+3. **Página auto-contida.** HTML+CSS+JS inline em `public/pages/NOME/index.html` (Vercel serve estático, sem .js externo).
+4. **Mobile-first.** Maioria acessa por celular.
 
-**Por que o proxy serverless?** O navegador NÃO pode chamar o Notion direto (bloqueio CORS). Por isso os dados passam por uma função em `api/NOME/lead.js` que fala com o Notion do lado do servidor.
+## O que MUDA (perguntar antes de construir)
 
-## Arquivos a criar
+**Fazer estas perguntas ao Rodrigo primeiro — não presumir:**
 
-### 1. A página: `public/pages/NOME/index.html`
-- Arquivo único, auto-contido (HTML + CSS + JS inline). Nada de arquivo .js externo (Vercel serve estático).
-- Design system: fonte Jost, cores `--P:#F5C518` (amarelo), `--DB:#0A0A0A` (preto), `--LB:#F0F0EB`.
-- Mobile-first (a maioria acessa por QR code no celular): `100svh`, safe-area, alvos de toque ≥ 48px, inputs com `font-size:16px` (evita zoom no iOS).
-- `<meta name="robots" content="noindex">` se for página de evento (não indexar).
-- Logos no topo se aplicável (ex: cliente + Roncolato).
+1. **Formato:** formulário simples (poucos campos) ou quiz de várias etapas com resultado/diagnóstico?
+2. **Campos capturados:** quais? (nome, WhatsApp, e-mail, ramo, Instagram...) Quais obrigatórios?
+3. **Foto:** vai pedir upload de foto? (se sim → Cloudinary, ver abaixo)
+4. **Resultado na tela:** mostra algum resultado/score/diagnóstico pro usuário, ou só agradece?
+5. **Destino final:** redireciona pro WhatsApp? Mostra mensagem de obrigado? Outro link?
+6. **Rota:** qual URL? (ex: `/nomedapagina`)
+7. **Visual:** design system do estúdio (Jost/amarelo/preto) ou marca de um cliente/evento (logos, cores próprias)?
+8. **Indexar no Google?** Evento/campanha geralmente `noindex`.
 
-### 2. O proxy: `api/NOME/lead.js`
-Copiar a estrutura de `api/bni/lead.js`. Ele:
+Só depois de ter as respostas, construir.
+
+## Backbone técnico (a parte que se repete)
+
+### O proxy `api/NOME/lead.js`
+Copiar a estrutura de `api/bni/lead.js`:
 - Recebe POST com os dados
-- Valida campos obrigatórios
-- Monta as `properties` conforme o banco Notion
-- Chama a API do Notion com o token
+- Valida obrigatórios
+- Monta `properties` conforme o schema REAL do Notion (conferir sempre — nomes têm que bater exato)
+- Chama a API do Notion server-side
 - Retorna `{ ok: true }` ou erro
 
-### 3. A rota: `vercel.json`
-Adicionar antes da linha `{ "source": "/", ... }`:
-```json
-{ "source": "/NOME", "destination": "/pages/NOME/index.html" },
-```
-E espelhar no `server.js` (objeto `rewrites`, ~linha 155) se for testar local.
-
-## Notion — IMPORTANTE
-
-Antes de codar, **conferir o schema real do banco** (os nomes das propriedades têm que bater EXATAMENTE):
+### Conferir schema do Notion ANTES de codar
 ```bash
 node -e "fetch('https://api.notion.com/v1/databases/DB_ID',{headers:{'Authorization':'Bearer TOKEN','Notion-Version':'2022-06-28'}}).then(r=>r.json()).then(d=>{for(const[k,v]of Object.entries(d.properties))console.log('-',k,'('+v.type+')')})"
 ```
-- Banco de captura atual: `2ad273367bd880ef98f5dca1a8c70600` (DB-Captura de Dados)
-- Propriedades existentes: Nome Completo (title), Ramo de Atuação (rich_text), Telefone (phone_number), E-mail (email), Instagram (url), Funil (**select**, não multi_select), Diagnóstico (rich_text), Score (number), Nível (select), Foto de Perfil (files)
-- Se precisar de campo novo, criar via API (PATCH no database) antes de usar.
+Banco de captura atual: `2ad273367bd880ef98f5dca1a8c70600` (DB-Captura de Dados). Propriedades: Nome Completo (title), Ramo de Atuação (rich_text), Telefone (phone_number), E-mail (email), Instagram (url), Funil (**select**), Diagnóstico (rich_text), Score (number), Nível (select), Foto de Perfil (files). Cada campanha pode usar um valor diferente de `Funil` para separar as origens. Se precisar campo novo, criar via PATCH no database antes.
 
-## Foto opcional (Cloudinary)
-Se a página aceita foto: upload direto pro Cloudinary do navegador, pega a URL, manda a URL pro proxy que salva no campo `files` do Notion.
-- Cloud name: `snsctkvw`
-- Upload preset (unsigned): `fotoperfil`
+### A rota `vercel.json`
+Antes da linha `{ "source": "/", ... }`:
+```json
+{ "source": "/NOME", "destination": "/pages/NOME/index.html" },
+```
+Espelhar no `server.js` (`rewrites`, ~linha 155) se for testar local.
+
+### Foto opcional (Cloudinary) — só se o projeto pedir
+Upload direto do navegador → pega URL → manda a URL pro proxy → salva no campo `files` do Notion.
+- Cloud: `snsctkvw` | Preset unsigned: `fotoperfil`
 - Endpoint: `https://api.cloudinary.com/v1_1/snsctkvw/image/upload`
 
-## WhatsApp
-Redirect final com mensagem pré-preenchida:
+### WhatsApp — só se o projeto pedir
 ```js
-const NUM = '62985928423'; // número do Rodrigo (formato: 55 + DDD + numero pra wa.me)
-const msg = encodeURIComponent(`Olá Rodrigo, ...mensagem com os dados...`);
-window.open(`https://wa.me/55${NUM}?text=${msg}`, '_blank');
+const NUM = '5562985928423'; // formato: 55 + DDD + numero
+const msg = encodeURIComponent(`mensagem com os dados`);
+window.open(`https://wa.me/${NUM}?text=${msg}`, '_blank');
 ```
 
 ## Checklist final
-- [ ] Página criada e auto-contida
-- [ ] Proxy `api/NOME/lead.js` com propriedades batendo o schema do Notion
+- [ ] Perguntas respondidas ANTES de construir
+- [ ] Proxy com propriedades batendo o schema do Notion
 - [ ] Rota no `vercel.json`
-- [ ] Testado o fluxo completo (pode usar Playwright headless pra simular)
-- [ ] Lead de teste apareceu no Notion → depois apagar
-- [ ] Deploy com aprovação (skill `/deploy`)
+- [ ] Fluxo testado ponta a ponta (Playwright headless serve)
+- [ ] Lead de teste apareceu no Notion → apagar depois
+- [ ] Deploy com aprovação (`/deploy`)
 
-## Referência viva
-`public/pages/bniconquista/index.html` + `api/bni/lead.js` — copiar e adaptar.
+## Referência viva (um exemplo, não o molde obrigatório)
+`public/pages/bniconquista/index.html` + `api/bni/lead.js` — quiz com foto e WhatsApp. Serve de base técnica; o formato final depende das respostas das perguntas acima.
