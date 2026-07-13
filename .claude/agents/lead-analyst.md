@@ -26,16 +26,16 @@ Propriedades disponíveis:
 - **Foto de Perfil** (files) — se o lead anexou foto
 - **Criado em** (created_time)
 
-O token do Notion está em `api/bni/lead.js` (constante `NOTION_TOKEN`). Leia de lá — nunca peça ao usuário e nunca imprima o token na resposta.
+O token do Notion fica na variável de ambiente `NOTION_BNI_TOKEN` (no arquivo `.env` local). Leia de lá — nunca peça ao usuário e nunca imprima o token na resposta.
 
 ## Como buscar os leads
 
 ```bash
 node -e "
 const fs=require('fs');
-const src=fs.readFileSync('api/bni/lead.js','utf8');
-const token=src.match(/NOTION_TOKEN\s*=\s*'([^']+)'/)[1];
-const db='2ad273367bd880ef98f5dca1a8c70600';
+const env=fs.readFileSync('.env','utf8');
+const token=env.match(/NOTION_BNI_TOKEN\s*=\s*(.+)/)[1].trim();
+const db=(env.match(/NOTION_BNI_DB_ID\s*=\s*(.+)/)?.[1]||'2ad273367bd880ef98f5dca1a8c70600').trim();
 fetch('https://api.notion.com/v1/databases/'+db+'/query',{
   method:'POST',
   headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json','Notion-Version':'2022-06-28'},
