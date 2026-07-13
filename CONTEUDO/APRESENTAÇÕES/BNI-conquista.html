@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>BNI Conquista — Rodrigo Roncolato</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --P:  #F5C518;
+    --DB: #0A0A0A;
+    --LB: #F0F0EB;
+    --DIM: rgba(240,240,235,0.45);
+    --MX: 120px;
+  }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    font-family: 'Jost', sans-serif;
+    overflow: hidden;
+  }
+
+  /* ── Slideshow container ── */
+  .deck {
+    width: 1920px;
+    height: 1080px;
+    position: relative;
+    transform-origin: top left;
+  }
+
+  /* ── Individual slide ── */
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: none;
+    background: var(--DB);
+    overflow: hidden;
+  }
+  .slide.active { display: flex; }
+
+  /* ── Accent bar ── */
+  .ab {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 8px;
+    background: var(--P);
+    z-index: 10;
+  }
+
+  /* ── Brand bar ── */
+  .bb {
+    position: absolute;
+    top: 8px; right: var(--MX);
+    padding-top: 24px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.30);
+    z-index: 10;
+  }
+
+  /* ── Slide counter ── */
+  .counter {
+    position: absolute;
+    bottom: 40px; right: var(--MX);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.20);
+    z-index: 10;
+  }
+
+  /* ── Background image ── */
+  .bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+
+  /* ── Overlay ── */
+  .ov-dark {
+    position: absolute;
+    inset: 0;
+    background: rgba(10,10,10,0.78);
+    z-index: 1;
+  }
+  .ov-split {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right,
+      rgba(10,10,10,0.97) 0%,
+      rgba(10,10,10,0.92) 45%,
+      rgba(10,10,10,0.55) 72%,
+      rgba(10,10,10,0.15) 100%
+    );
+    z-index: 1;
+  }
+
+  /* ── Content ── */
+  .content {
+    position: relative;
+    z-index: 2;
+    padding: 80px var(--MX) 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .content.center {
+    align-items: center;
+    text-align: center;
+  }
+
+  .content.split {
+    max-width: 58%;
+  }
+
+  /* ── Typography ── */
+  .tag {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--P);
+    margin-bottom: 48px;
+  }
+
+  .hero {
+    font-size: 160px;
+    font-weight: 900;
+    line-height: 0.88;
+    text-transform: uppercase;
+    letter-spacing: -5px;
+    color: var(--LB);
+  }
+
+  .hero .y { color: var(--P); }
+  .hero .d { color: var(--DIM); }
+
+  .h1 {
+    font-size: 120px;
+    font-weight: 900;
+    line-height: 0.90;
+    text-transform: uppercase;
+    letter-spacing: -4px;
+    color: var(--LB);
+  }
+  .h1 .y { color: var(--P); }
+  .h1 .d { color: var(--DIM); }
+
+  .h2 {
+    font-size: 88px;
+    font-weight: 900;
+    line-height: 0.92;
+    text-transform: uppercase;
+    letter-spacing: -3px;
+    color: var(--LB);
+  }
+  .h2 .y { color: var(--P); }
+
+  .h3 {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.05;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    color: var(--LB);
+  }
+  .h3 .y { color: var(--P); }
+
+  .body {
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.55;
+    color: rgba(240,240,235,0.72);
+    max-width: 900px;
+  }
+  .body strong { color: var(--LB); font-weight: 600; }
+
+  .body-lg {
+    font-size: 46px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: rgba(240,240,235,0.75);
+    max-width: 1000px;
+  }
+  .body-lg strong { color: var(--LB); font-weight: 600; }
+
+  .rule {
+    width: 64px;
+    height: 4px;
+    background: var(--P);
+    margin: 52px 0;
+    flex-shrink: 0;
+  }
+
+  /* ── Big number ── */
+  .big-num {
+    font-size: 280px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -12px;
+    color: var(--P);
+  }
+
+  .big-num-label {
+    font-size: 44px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: var(--LB);
+    text-transform: uppercase;
+    margin-top: -16px;
+  }
+
+  /* ── Grid 3 cols (arquétipos) ── */
+  .grid3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    width: 100%;
+    margin-top: 60px;
+  }
+
+  .arch-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-top: 4px solid var(--P);
+    padding: 56px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .arch-title {
+    font-size: 52px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    color: var(--P);
+  }
+
+  .arch-role {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--DIM);
+  }
+
+  .arch-body {
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: rgba(240,240,235,0.65);
+    flex: 1;
+  }
+
+  /* ── Bullets ── */
+  .bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 56px;
+  }
+
+  .bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: rgba(240,240,235,0.75);
+  }
+
+  .bullet::before {
+    content: '→';
+    color: var(--P);
+    font-weight: 700;
+    font-size: 40px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .bullet strong { color: var(--LB); font-weight: 600; }
+
+  /* ── Highlight box ── */
+  .highlight-box {
+    background: rgba(245,197,24,0.08);
+    border: 1px solid rgba(245,197,24,0.30);
+    border-left: 6px solid var(--P);
+    padding: 48px 56px;
+    margin-top: 48px;
+  }
+
+  .highlight-box p {
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--LB);
+  }
+
+  /* ── Offer card ── */
+  .offer-card {
+    background: var(--P);
+    padding: 64px 80px;
+    margin-top: 60px;
+    max-width: 1100px;
+  }
+
+  .offer-card .offer-title {
+    font-size: 64px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    color: var(--DB);
+    line-height: 0.95;
+  }
+
+  .offer-card .offer-body {
+    font-size: 36px;
+    font-weight: 500;
+    color: rgba(10,10,10,0.75);
+    margin-top: 20px;
+    line-height: 1.4;
+  }
+
+  /* ── Contact slide ── */
+  .contact-handle {
+    font-size: 110px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -3px;
+    color: var(--P);
+    line-height: 1;
+  }
+
+  .contact-url {
+    font-size: 52px;
+    font-weight: 400;
+    color: var(--DIM);
+    margin-top: 24px;
+    letter-spacing: 1px;
+  }
+
+  .contact-label {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.20);
+    margin-top: 72px;
+  }
+
+  /* ── Nav hint ── */
+  .nav-hint {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.15);
+    text-transform: uppercase;
+    z-index: 100;
+    pointer-events: none;
+  }
+
+  /* ── Slide-in animation ── */
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .slide.active .tag,
+  .slide.active .hero,
+  .slide.active .h1,
+  .slide.active .h2,
+  .slide.active .h3 {
+    animation: slideIn 0.6s ease-out;
+  }
+
+  /* ── Highlight first bullet ── */
+  .bullets .bullet:first-child {
+    color: var(--P);
+    font-weight: 600;
+  }
+
+  .bullets .bullet:first-child strong {
+    color: var(--P);
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- S01 — HOOK -->
+  <div class="slide active" data-slide="1">
+    <div class="ab"></div>
+    <div class="bb">@rroncolato</div>
+    <div class="content center">
+      <div class="hero">
+        <span class="d">Antes de</span><br>
+        <span class="d">você falar,</span><br>
+        <span class="d">a sua imagem</span><br>
+        <span class="y">já negociou.</span>
+      </div>
+    </div>
+    <div class="counter">1 / 17</div>
+  </div>
+
+  <!-- S02 — DADO -->
+  <div class="slide" data-slide="2">
+    <div class="ab"></div>
+    <div class="bb">@rroncolato</div>
+    <div class="content" style="flex-direction:row; align-items:center; gap:120px;">
+      <div style="flex:0 0 auto;">
+        <div class="big-num">55%</div>
+        <div class="big-num-label">da comunicação<br>é visual</div>
+      </div>
+      <div style="flex:1;">
+        <div class="rule"></div>
+        <div class="body-lg">
+          <strong>38%</strong> tom de voz.<br>
+          <strong>7%</strong> palavras.<br><br>
+          Na era digital, os 55% estão <strong>congelados numa foto</strong> — rodando 24h no LinkedIn, no site, no WhatsApp.
+        </div>
+        <div style="margin-top:32px; font-size:22px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--DIM);">
+          Albert Mehrabian · UCLA
+        </div>
+      </div>
+    </div>
+    <div class="counter">2 / 17</div>
+  </div>
+
+  <!-- S03 — PROBLEMA -->
+  <div class="slide" data-slide="3">
+    <div class="ab"></div>
+    <div class="bb">@rroncolato</div>
+    <div class="content">
+      <div class="tag">O problema</div>
+      <div class="h1">
+        A sua foto está<br>
+        <span class="y">trabalhando</span><br>
+        por você agora.
+      </div>
+      <div class="rule"></div>
+      <div class="body-lg">
+        No presencial você controla o olhar, a postura, o aperto de mão.<br>
+        No digital, não. A imagem fala — <strong>com ou sem a sua permissão.</strong>
+      </div>
+    </div>
+    <div class="counter">3 / 17</div>
+  </div>
+
+  <!-- S04 — PERGUNTA -->
+  <div class="slide" data-slide="4">
+    <div class="ab"></div>
+    <div class="bb">@rroncolato</div>
+    <div class="content center">
+      <div class="tag">A pergunta que importa</div>
+      <div class="hero" style="font-size:130px; letter-spacing:-4px; max-width:1500px;">
+        A sua foto atual está<br>
+        comunicando<br>
+        <span class="y">quem você realmente é?</span>
+      </div>
+    </div>
+    <div class="counter">4 / 17</div>
+  </div>
+
+  <!-- S05 — ARQUÉTIPOS -->
+  <div class="slide" data-slide="5">
+    <div class="ab"></div>
+    <div class="bb">@rroncolato</div>
+    <div class="content" style="justify-content:flex-start; padding-top:100px;">
+      <div class="tag">Comunicação não-verbal · Arquétipos</div>
+      <div class="h2">O cliente decide antes de perguntar o preço.</div>
+      <div class="grid3">
+        <div class="arch-card">
+          <div class="arch-title">Governante</div>
+          <div class="arch-role">Advogados · Gestores</div>
+          <div class="arch-body">Autoridade, estrutura e solidez. Transmite que está no controle.</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-title">Cuidador</div>
+          <div class="arch-role">Dentistas · Terapeutas</div>
+          <div class="arch-body">Presença, segurança e cuidado. O cliente se sente protegido antes de entrar.</div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-title">Herói</div>
+          <div class="arch-role">Corretores · Construtores</div>
+          <div class="arch-body">Resultado, conquista e proteção. Transmite que entrega o que promete.</div>
+        </div>
+        <div class="arch-card" style="background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.04); border-top-color: rgba(245,197,24,0.15); opacity: 0.6;">
+          <div class="arch-title" style="color: rgba(245,197,24,0.5);">Qual é<br>o seu?</div>
+          <div class="arch-role" style="color: rgba(255,255,255,0.10);">Reflita sobre</div>
+          <div class="arch-body" style="color: rgba(255,255,255,0.30); flex: 1;">Qual arquétipo sua imagem comunica hoje?</div>
+        </div>
+      </div>
+    </div>
+    <div class="counter">5 / 17</div>
+  </div>
+
+  <!-- S06 — O QUE EU FAÇO -->
+  <div class="slide" data-slide="6">
+    <div class="ab"></div>
+    <div class="bb">@rroncolato</div>
+    <div class="content center">
+      <div class="tag">Fotografia Corporativa · Personal Branding</div>
+      <div class="hero" style="font-size:160px;">
+        <span class="d">Não faço</span><br>
+        <span class="y">foto.</span>
+      </div>
+      <div class="rule" style="margin: 52px auto;"></div>
+      <div class="body-lg" style="text-align:center; max-width:1100px;">
+        Faço <strong>posicionamento visual.</strong><br>
+        O processo começa antes de ligar a câmera.
+      </div>
+    </div>
+    <div class="counter">6 / 17</div>
+  </div>
+
+  <!-- S07 — CASO 1 SETUP -->
+  <div class="slide" data-slide="7">
+    <div class="bg" style="background-image:url('../../public/assets/IMG/site/bni-portrait-exec.jpg'); background-position: center right;"></div>
+    <div class="ov-split"></div>
+    <div class="ab"></div>
+    <div class="bb">@rroncolato</div>
+    <div class="content split">
+      <div class="tag">Caso real · 01</div>
+      <div class="h1">
+        Empresário.<br>
+        Resultado<br>
+        <span class="y">sólido.</span>
+      </div>
+      <div class="rule"></div>
+      <div class="body-lg">
+        Anos de entrega. Operação consolidada.<br>
+        <strong>Imagem que não entregava</strong> o peso do trabalho.
+      </div>
+    </div>
+    <div class="counter">7 / 17</div>
+  </div>
+
+  <!-- S08 — CASO 1 RESULTADO -->
+  <div class="slide" data-slide="8">
+    <div class="bg" style="background-image:url('../../public/assets/IMG/site/bni-portrait-exec.jpg'); background-position: center right;"></div>
+    <div class="ov-split"></div>
+    <div class="ab"></div>
+    <div class="bb">@rroncolato</div>
+    <div class="content split">
+      <div class="tag">Caso real · 01 · Resultado</div>
+      <div class="h2" style="color:var(--P);">Foi chamado<br>para palestrar.</div>
+      <div class="rule"></div>
+      <div class="body-lg">
+        Após o reposicionamento visual, passou a ser reconhecido publicamente na mesma proporção do trabalho que já entregava há anos.<br><br>
+        <strong>A competência não mudou.<br>A percepção mudou.</strong>
+      </div>
+    </div>
+    <div class="counter">8 / 17</div>
+  </div>
+
+  <!-- S09 — CASO 2 SETUP -->
+  <div class="slide" data-slide="9">
+    <div class="bg" style="background-image:url('../../public/assets/IMG/site/card-camaleao-humano.jpg'); background-position: center right;"></div>
+    <div class="ov-split"></div>
+    <div class="ab"></div>
+    <div class="bb">@rroncolato</div>
+    <div class="content split">
+      <div class="tag">Caso real · 02</div>
+      <div class="h1">
+        Terapeuta.<br>
+        Formação<br>
+        <span class="y">sólida.</span>
+      </div>
+      <div class="rule"></div>
+      <div class="body-lg">
+        Clientes satisfeitos. Resultado real.<br>
+        <strong>Imagem que não transmitia autoridade</strong> para quem chegava sem indicação.
+      </div>
+    </div>
+    <div class="counter">9 / 17</div>
+  </div>
+
+  <!-- S10 — CASO 2 RESULTADO -->
+  <div class="slide" data-slide="10">
+    <div class="bg" style="background-image:url('../../public/assets/IMG/site/card-camaleao-humano.jpg'); background-position: center right;"></div>
+    <div class="ov-split"></div>
+    <div class="ab"></div>
+    <div class="bb">@rroncolato</div>
+    <div class="content split">
+      <div class="tag">Caso real · 02 · Resultado</div>
+      <div class="h2" style="color:var(--P);">Dobrou o valor<br>dos atendimentos.</div>
+      <div class="rule"></div>
+      <div class="body-lg">
+        Passou a ser percebida como referência no segmento.<br><br>
+        <strong>Mesma profissional.<br>Percepção completamente diferente.</strong>
+      </div>
+    </div>
+    <div class="counter">10 / 17</div>
+  </div>
+
+  <!-- S11 — SÍNTESE -->
+  <div class="slide" data-slide="11">
+    <div class="ab"></div>
+    <div class="bb">@rroncolato</div>
+    <div class="content center">
+      <div class="hero" style="font-size:140px; max-width:1600px;">
+        <span class="d">Competência</span><br>
+        <span class="y">invisível</span><br>
+        <span class="d">é competência</span><br>
+        desperdiçada.
+      </div>
+    </div>
+    <div class="counter">11 / 17</div>
+  </div>
+
+  <!-- S12 — PARA QUEM -->
+  <div class="slide" data-slide="12">
+    <div class="ab"></div>
+    <div class="bb">@rroncolato</div>
+    <div class="content">
+      <div class="tag">Para quem eu sirvo</div>
+      <div class="h2">Para quem já tem resultado<br><span class="y">mas a imagem não chegou lá ainda.</span></div>
+      <div class="bullets" style="margin-top:60px;">
+        <div class="bullet">Profissional que <strong>cobra abaixo do que entrega</strong> — e a imagem é parte do motivo</div>
+        <div class="bullet">Empresário que vai <strong>palestrar, lançar ou reposicionar</strong></div>
+        <div class="bullet">Profissional cuja foto <strong>tem mais de 2 anos</strong></div>
+      </div>
+    </div>
+    <div class="counter">12 / 17</div>
+  </div>
+
+  <!-- S13 — COMO REFERENCIAR -->
+  <div class="slide" data-slide="13">
+    <div class="ab"></div>
+    <div class="bb">@rroncolato</div>
+    <div class="content">
+      <div class="tag">Como me referenciar</div>
+      <div class="h2"><span class="y">Pense em mim</span> quando:</div>
+      <div class="bullets">
+        <div class="bullet">Um cliente seu vai <strong>palestrar ou ser entrevistado</strong></div>
+        <div class="bullet">Alguém reclama que <strong>não é levado a sério</strong> apesar do resultado</div>
+        <div class="bullet">Alguém vai <strong>lançar marca pessoal</strong> ou novo posicionamento</div>
+        <div class="bullet">A foto do cliente <strong>tem mais de 2 anos</strong></div>
+      </div>
+    </div>
+    <div class="counter">13 / 17</div>
+  </div>
+
+  <!-- S14 — REFERRAL ESPECÍFICO -->
+  <div class="slide" data-slide="14">
+    <div class="bg" style="background-image:url('../../public/assets/IMG/site/bni-bg-perception.jpg');"></div>
+    <div class="ov-dark"></div>
+    <div class="ab"></div>
+    <div class="bb">@rroncolato</div>
+    <div class="content center">
+      <div class="tag">Para vocês especificamente</div>
+      <div class="h1" style="max-width:1500px;">
+        <span class="y">Contadores</span> e<br>
+        <span class="y">profissionais de marketing:</span><br>
+        vocês têm acesso direto<br>
+        a quem eu atendo.
+      </div>
+      <div class="rule" style="margin: 52px auto;"></div>
+      <div class="body-lg" style="text-align:center; max-width:1100px;">
+        Quando você me indica para um cliente,<br>
+        está <strong>entregando valor antes da sessão acontecer.</strong>
+      </div>
+    </div>
+    <div class="counter">14 / 17</div>
+  </div>
+
+  <!-- S15 — OFERTA -->
+  <div class="slide" data-slide="15">
+    <div class="ab"></div>
+    <div class="bb">@rroncolato</div>
+    <div class="content">
+      <div class="tag">Exclusivo · BNI Conquista</div>
+      <div class="h1">Para membros<br>do <span class="y">BNI Conquista:</span></div>
+      <div class="offer-card">
+        <div class="offer-title">Diagnóstico visual<br>gratuito · 15 min</div>
+        <div class="offer-body">Analiso a sua imagem atual e mostro o que ela está comunicando — antes que o seu cliente decida.</div>
+      </div>
+    </div>
+    <div class="counter">15 / 17</div>
+  </div>
+
+  <!-- S16 — CTA -->
+  <div class="slide" data-slide="16">
+    <div class="ab"></div>
+    <div class="bb">@rroncolato</div>
+    <div class="content center">
+      <div class="hero" style="font-size:110px; max-width:1600px; letter-spacing:-3px;">
+        Quem quer saber o que<br>
+        a sua imagem está<br>
+        comunicando<br>
+        <span class="y">antes que o cliente decida?</span>
+      </div>
+    </div>
+    <div class="counter">16 / 17</div>
+  </div>
+
+  <!-- S17 — CONTATO -->
+  <div class="slide" data-slide="17">
+    <div class="ab"></div>
+    <div class="bb" style="color:transparent;">@rroncolato</div>
+    <div class="content center">
+      <div class="contact-label">Fotografia Corporativa · Personal Branding</div>
+      <div class="contact-handle" style="margin-top:48px;">@rroncolato</div>
+      <div class="contact-url">rroncolato.com.br</div>
+      <div class="contact-label" style="margin-top:80px; color:var(--P); font-size:28px; letter-spacing:1px;">Agende seu diagnóstico visual</div>
+    </div>
+    <div class="counter">17 / 17</div>
+  </div>
+
+</div><!-- /deck -->
+
+<div class="nav-hint">← → Navegar &nbsp;·&nbsp; F Fullscreen &nbsp;·&nbsp; ESC Sair</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+
+  function scale() {
+    const deck = document.getElementById('deck');
+    const scaleX = window.innerWidth / 1920;
+    const scaleY = window.innerHeight / 1080;
+    const s = Math.min(scaleX, scaleY);
+    deck.style.transform = `scale(${s})`;
+    deck.style.marginLeft = `${(window.innerWidth - 1920 * s) / 2}px`;
+    deck.style.marginTop  = `${(window.innerHeight - 1080 * s) / 2}px`;
+  }
+
+  function go(n) {
+    slides[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') go(current + 1);
+    if (e.key === 'ArrowLeft'  || e.key === 'PageUp')  go(current - 1);
+    if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
+    if (e.key === 'Home') go(0);
+    if (e.key === 'End')  go(slides.length - 1);
+  });
+
+  window.addEventListener('resize', scale);
+  scale();
+</script>
+</body>
+</html>

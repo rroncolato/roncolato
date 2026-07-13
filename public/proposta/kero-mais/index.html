@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/assets/IMG/rr-simbolo-white.png">`n    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Estratégica — KERO+ × Roncolato</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --yellow: #F5C518;
+            --black: #0C0C0C;
+            --black-2: #141414;
+            --black-3: #1C1C1C;
+            --white: #FFFFFF;
+            --white-off: #F0F0F0;
+            --gray: #7A7A7A;
+            --gray-2: #3A3A3A;
+            --border: rgba(255,255,255,0.07);
+            --border-y: rgba(245,200,66,0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; background: var(--black); }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: 'Jost', sans-serif;
+            font-weight: 400;
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: var(--black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .hero-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .hero-nav img {
+            height: 32px;
+            width: auto;
+            display: block;
+        }
+
+        .hero-nav .nav-label {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gray);
+            font-weight: 600;
+        }
+
+        .hero-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px 24px 32px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 700;
+            margin-bottom: 24px;
+            animation: fadeUp 0.6s ease 0.1s both;
+        }
+
+        .hero-title {
+            font-size: clamp(48px, 12vw, 100px);
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -2px;
+            margin-bottom: 32px;
+            animation: fadeUp 0.6s ease 0.2s both;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--yellow);
+        }
+
+        .hero-sub {
+            font-size: clamp(15px, 2vw, 18px);
+            color: var(--gray);
+            max-width: 560px;
+            line-height: 1.7;
+            animation: fadeUp 0.6s ease 0.3s both;
+        }
+
+        .hero-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            border-top: 1px solid var(--border);
+            font-size: 11px;
+            color: var(--gray);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 0.6s ease 0.4s both;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* SEÇÕES */
+        .section {
+            padding: 80px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .s-label {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 700;
+            margin-bottom: 16px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease 0.1s forwards;
+        }
+
+        .s-title {
+            font-size: clamp(36px, 6vw, 64px);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease 0.2s forwards;
+        }
+
+        .s-title em {
+            font-style: italic;
+            color: var(--yellow);
+        }
+
+        .s-text {
+            font-size: 18px;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.2s forwards;
+        }
+
+        .s-text strong { color: var(--white); font-weight: 600; }
+
+        /* GRID DE DIAGNÓSTICO */
+        .diag-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 48px;
+        }
+
+        .diag-item {
+            background: var(--black-2);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--yellow);
+            padding: 24px 28px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards;
+        }
+
+        .diag-num {
+            font-size: 11px;
+            color: var(--yellow);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .diag-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .diag-desc {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* PILLARS */
+        .pillars {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .pillar {
+            background: var(--black-2);
+            border: 1px solid var(--border);
+            padding: 32px 28px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards;
+        }
+
+        /* TIMELINE */
+        .timeline {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            margin-top: 48px;
+        }
+
+        .tl-item {
+            display: flex;
+            gap: 24px;
+            padding: 28px 0;
+            border-bottom: 1px solid var(--border);
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards;
+        }
+
+        .tl-item:last-child { border-bottom: none; }
+
+        .tl-num {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--yellow);
+            letter-spacing: 2px;
+            min-width: 40px;
+            padding-top: 2px;
+        }
+
+        .tl-content {}
+        .tl-title { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+        .tl-desc { font-size: 14px; color: var(--gray); line-height: 1.7; }
+
+        /* DESTAQUE */
+        .highlight-box {
+            background: rgba(245,200,66,0.04);
+            border: 1px solid var(--border-y);
+            border-left: 4px solid var(--yellow);
+            padding: 32px 28px;
+            margin-top: 48px;
+        }
+
+        .highlight-box h3 {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--yellow);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .highlight-box p {
+            font-size: 15px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .highlight-box p strong { color: var(--white); }
+
+        /* CTA BOX */
+        .cta-box {
+            background: var(--black-2);
+            border: 1px solid var(--border);
+            padding: 48px 32px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeUp 0.7s ease forwards;
+        }
+
+        .cta-box h2 {
+            font-size: clamp(28px, 5vw, 48px);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .cta-box p { font-size: 16px; color: var(--gray); line-height: 1.7; }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--white);
+            font-family: 'Jost', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover { border-color: var(--yellow); color: var(--yellow); }
+
+        /* FOOTER */
+        footer {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            padding: 48px 24px;
+            border-top: 1px solid var(--border);
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        footer h3 { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+        footer p { font-size: 13px; color: var(--gray); line-height: 1.8; }
+        footer a { color: var(--gray); text-decoration: none; }
+        footer a:hover { color: var(--yellow); }
+
+        /* DIVISOR */
+        .divider {
+            height: 1px;
+            background: var(--border);
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* TABLET */
+        @media (min-width: 768px) {
+            .hero-nav { padding: 24px 48px; }
+            .hero-nav img { height: 40px; }
+            .hero-main { padding: 60px 48px 40px; }
+            .hero-bottom { padding: 24px 48px; }
+            .section { padding: 96px 48px; }
+            .s-text { font-size: 18px; }
+            .diag-grid { grid-template-columns: repeat(2, 1fr); }
+            .pillars { grid-template-columns: repeat(2, 1fr); }
+            footer { grid-template-columns: repeat(2, 1fr); padding: 64px 48px; }
+        }
+
+        /* DESKTOP */
+        @media (min-width: 1024px) {
+            .hero-nav { padding: 28px 72px; }
+            .hero-nav img { height: 50px; }
+            .hero-main { padding: 80px 72px 48px; }
+            .hero-bottom { padding: 28px 72px; }
+            .section { padding: 120px 72px; }
+            .s-text { font-size: 18px; }
+            .diag-grid { grid-template-columns: repeat(3, 1fr); }
+            footer { grid-template-columns: repeat(3, 1fr); padding: 80px 72px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <nav class="hero-nav">
+        <img src="./assets/roncolato-branco-horizontal.png" alt="Roncolato Studio" onerror="this.src='/assets/IMG/roncolato-branco-horizontal.png'">
+        <span class="nav-label">Proposta Estratégica</span>
+    </nav>
+
+    <div class="hero-main">
+        <span class="hero-tag">KERO+ × Roncolato Studio — 2026</span>
+        <h1 class="hero-title">O produto<br>já <em>conquista.</em><br>Agora a marca<br>precisa <em>falar.</em></h1>
+        <p class="hero-sub">Você tem 10 anos de história, produto artesanal de qualidade e 170 pessoas dedicadas a isso. O que falta é uma estratégia que leve esse valor até quem ainda não te conhece.</p>
+    </div>
+
+    <div class="hero-bottom">
+        <span>Consultoria Estratégica de Marketing — 6 meses</span>
+        <span>Confidencial · Junho 2026</span>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SEÇÃO 1: O MOMENTO -->
+<section class="section">
+    <div class="s-label">O Diagnóstico</div>
+    <h2 class="s-title">Você tem o melhor<br>produto. O mercado<br>ainda <em>não sabe.</em></h2>
+
+    <p class="s-text">A KERO+ tem uma prova social irrefutável: quando alguém experimenta, compra. A degustação fecha quase 100% dos clientes. Isso não é sorte — é produto excelente. <strong>O problema é que o produto ainda não chegou na maioria das bocas que deveriam conhecê-lo.</strong></p>
+
+    <p class="s-text">O Instagram é produto. O tráfego pago gera awareness sem direção. O vendedor chega num cliente que não sabe quem é a KERO+. <strong>A marca está sendo subaproveitada.</strong> Com 10 anos de história, 170 funcionários e um diferencial real de qualidade artesanal — vocês merecem muito mais visibilidade.</p>
+
+    <div class="diag-grid">
+        <div class="diag-item">
+            <div class="diag-num">Ponto 01</div>
+            <div class="diag-title">Falta humanização</div>
+            <div class="diag-desc">O Instagram mostra produto, mas não mostra pessoas, processos, história. Quem está por trás da KERO+? Por que vocês fazem sem essência? Essa história não está sendo contada.</div>
+        </div>
+        <div class="diag-item">
+            <div class="diag-num">Ponto 02</div>
+            <div class="diag-title">Consumidor final não te conhece</div>
+            <div class="diag-desc">O trade conhece a KERO+. Mas a dona de casa que vai ao mercado e poderia criar demanda indireta — ela ainda não te conhece. Qualy e Sadia criaram desejo no consumidor final. É esse o próximo passo.</div>
+        </div>
+        <div class="diag-item">
+            <div class="diag-num">Ponto 03</div>
+            <div class="diag-title">Marketing e comercial desalinhados</div>
+            <div class="diag-desc">O vendedor chega com catálogo físico enquanto o cliente pode nunca ter ouvido falar da KERO+. Marketing e vendas precisam falar a mesma língua — e o material digital precisa abrir portas antes do vendedor chegar.</div>
+        </div>
+        <div class="diag-item">
+            <div class="diag-num">Ponto 04</div>
+            <div class="diag-title">10 anos de história não contada</div>
+            <div class="diag-desc">Uma empresa que completa 10 anos, que cresceu sem agência, sem marketing estruturado — isso é uma narrativa poderosa. Credibilidade, resiliência, qualidade que sustenta. Essa história não está nos materiais.</div>
+        </div>
+        <div class="diag-item">
+            <div class="diag-num">Ponto 05</div>
+            <div class="diag-title">Influenciadores sem estratégia</div>
+            <div class="diag-desc">Uma influenciadora com 500k seguidores postou espontaneamente e gerou mil novos seguidores em um dia. Imagina com uma estratégia estruturada de influenciadores certos — família, alimentação, qualidade.</div>
+        </div>
+        <div class="diag-item">
+            <div class="diag-num">Ponto 06</div>
+            <div class="diag-title">Diferencial não comunicado</div>
+            <div class="diag-desc">Sem essências. Artesanal. O mesmo processo da padaria, só que congelado. Se ninguém falar que é congelado, ninguém percebe. Esse diferencial precisa ser o centro da comunicação — não um detalhe.</div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SEÇÃO 2: A SOLUÇÃO -->
+<section class="section">
+    <div class="s-label">A Solução</div>
+    <h2 class="s-title">Estratégia que<br>gera <em>desejo</em><br>e vende.</h2>
+
+    <p class="s-text">Não é sobre postar mais. É sobre construir uma marca que <strong>gera desejo no consumidor antes do vendedor chegar</strong>, que conta uma história que o mercado quer ouvir, que alinha o time comercial com uma comunicação que converte.</p>
+
+    <p class="s-text">Meu papel é simples: <strong>chegar com soluções, não com demandas.</strong> Você não vai precisar parar sua operação para escrever textos ou criar conceitos. Vocês validam, eu executo. Cada entrega modular, cada mês com resultado tangível.</p>
+
+    <div class="highlight-box">
+        <h3>O Princípio</h3>
+        <p>A degustação fecha quase 100% dos clientes que experimentam. <strong>O trabalho de marketing é criar, em escala, o mesmo efeito da degustação — antes mesmo do primeiro contato comercial.</strong> Quando o vendedor chegar, o cliente já vai saber quem é a KERO+, já vai ter sentido desejo, já vai estar meio convencido.</p>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SEÇÃO 3: INVESTIMENTO -->
+<section class="section">
+    <div class="s-label">Investimento</div>
+    <h2 class="s-title">Dois caminhos,<br>um <em>objetivo.</em></h2>
+
+    <p class="s-text">A consultoria é estruturada em 6 meses — tempo mínimo para ver resultados reais em posicionamento e geração de demanda. Os planos são modulares: começamos pelo que é mais urgente e evoluímos conforme os resultados aparecem.</p>
+
+    <div class="pillars">
+        <!-- PLANO ESTRATÉGICO -->
+        <div class="pillar" style="border-left: 4px solid var(--yellow); padding-left: 28px;">
+            <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--white);">Plano Estratégico</h3>
+            <p style="font-size: 15px; color: var(--gray); margin-bottom: 24px; line-height: 1.8;"><strong>Foundations:</strong> Posicionamento claro e presença que converte.</p>
+            <ul style="list-style: none; margin: 0; padding: 0; font-size: 15px; color: var(--gray); line-height: 2;">
+                <li>✓ Diagnóstico de marca e posicionamento</li>
+                <li>✓ Estratégia de humanização de conteúdo</li>
+                <li>✓ Direcionamento de influenciadores</li>
+                <li>✓ Material comercial digital (catálogo)</li>
+                <li>✓ Acompanhamento estratégico mensal</li>
+            </ul>
+            <div style="margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border);">
+                <div style="font-size: 13px; color: var(--gray); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">6 meses</div>
+                <div style="font-size: 32px; font-weight: 900; color: var(--yellow); margin-bottom: 4px;">R$ 3.500<span style="font-size: 16px; font-weight: 400;">/mês</span></div>
+                <div style="font-size: 13px; color: var(--gray); margin-bottom: 24px;"><strong>Total:</strong> R$ 21.000 | <strong>À vista:</strong> R$ 18.900 (10% desc.)</div>
+                <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20tenho%20interesse%20no%20Plano%20Estrat%C3%A9gico%20(R%24%203.500%2Fm%C3%AAs)%20para%20a%20KERO%2B" class="btn" style="display: block; text-align: center; text-decoration: none;">Quero o Plano Estratégico</a>
+            </div>
+        </div>
+
+        <!-- PLANO TRANSFORMAÇÃO -->
+        <div class="pillar" style="border-left: 4px solid var(--yellow); padding-left: 28px; background: rgba(245,200,66,0.05);">
+            <div style="display: inline-block; background: var(--yellow); color: var(--black); padding: 6px 14px; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px;">Recomendado</div>
+            <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--white);">Plano Transformação</h3>
+            <p style="font-size: 15px; color: var(--gray); margin-bottom: 24px; line-height: 1.8;"><strong>Campanha Integrada:</strong> Marca completa, presença digital e ações que geram demanda real.</p>
+            <ul style="list-style: none; margin: 0; padding: 0; font-size: 15px; color: var(--gray); line-height: 2;">
+                <li>✓ Diagnóstico de marca e posicionamento</li>
+                <li>✓ Estratégia de humanização de conteúdo</li>
+                <li>✓ Direcionamento de influenciadores</li>
+                <li>✓ Material comercial digital (catálogo)</li>
+                <li>✓ Identidade visual atualizada</li>
+                <li>✓ Vídeo institucional</li>
+                <li>✓ Landing page</li>
+                <li>✓ Estratégia de degustação e eventos</li>
+                <li>✓ Relatório mensal de resultados</li>
+                <li>✓ Acompanhamento estratégico mensal</li>
+            </ul>
+            <div style="margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border-y);">
+                <div style="font-size: 13px; color: var(--gray); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">6 meses</div>
+                <div style="font-size: 32px; font-weight: 900; color: var(--yellow); margin-bottom: 4px;">R$ 5.500<span style="font-size: 16px; font-weight: 400;">/mês</span></div>
+                <div style="font-size: 13px; color: var(--gray); margin-bottom: 24px;"><strong>Total:</strong> R$ 33.000 | <strong>À vista:</strong> R$ 29.700 (10% desc.)</div>
+                <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20tenho%20interesse%20no%20Plano%20Transforma%C3%A7%C3%A3o%20(R%24%205.500%2Fm%C3%AAs)%20para%20a%20KERO%2B" class="btn" style="display: block; text-align: center; text-decoration: none; background: var(--yellow); color: var(--black); border-color: var(--yellow);">Quero o Plano Transformação</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top: 48px;">
+        <h3>Por que faz sentido</h3>
+        <p>Uma empresa com 170 colaboradores, 15 caminhões e 10 anos de mercado — o custo de não ter uma estratégia de marca é muito maior que o investimento. <strong>Cada mês sem posicionamento claro é um mês em que o concorrente ocupa o espaço que deveria ser seu.</strong> Arte Trigo, Saborearte, as fábricas de Brasília — todos estão disputando atenção. Com qualidade superior, a KERO+ merece comunicação à altura.</p>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SEÇÃO 4: COMO FUNCIONA -->
+<section class="section">
+    <div class="s-label">Como Funciona</div>
+    <h2 class="s-title">6 meses,<br><em>resultado</em><br>tangível.</h2>
+
+    <p class="s-text">O trabalho é modular e progressivo. Cada fase entrega valor imediato enquanto constrói a base para o próximo passo. Vocês validam, eu executo — sem gerar mais demandas para a operação.</p>
+
+    <div class="timeline">
+        <div class="tl-item">
+            <div class="tl-num">MÊS 1</div>
+            <div class="tl-content">
+                <div class="tl-title">Imersão e Diagnóstico</div>
+                <div class="tl-desc">Levantamento profundo da KERO+: história, diferenciais, concorrência, posicionamento atual. Definição da estratégia de marca e tom de voz. Alinhamento com Pedro no comercial.</div>
+            </div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-num">MÊS 2</div>
+            <div class="tl-content">
+                <div class="tl-title">Narrativa e Materiais Base</div>
+                <div class="tl-desc">Construção da história da marca (10 anos, artesanal, sem essências). Catálogo digital para o time comercial. Diretrizes de conteúdo para humanização do Instagram.</div>
+            </div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-num">MÊS 3</div>
+            <div class="tl-content">
+                <div class="tl-title">Presença Digital e Influenciadores</div>
+                <div class="tl-desc">Estratégia de influenciadores segmentados (família, alimentação de qualidade, café da manhã). Primeiro mapeamento e abordagem. Direcionamento de conteúdo em vídeo.</div>
+            </div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-num">MÊS 4–5</div>
+            <div class="tl-content">
+                <div class="tl-title">Execução e Ajustes</div>
+                <div class="tl-desc">Ativação das estratégias definidas. Acompanhamento de resultados. Ajustes táticos conforme feedback do mercado e do time comercial.</div>
+            </div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-num">MÊS 6</div>
+            <div class="tl-content">
+                <div class="tl-title">Avaliação e Próximos Passos</div>
+                <div class="tl-desc">Relatório completo de resultados. Mapa de oportunidades para o próximo ciclo. Apresentação das conquistas e definição da continuidade.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SEÇÃO 5: POR QUE RONCOLATO -->
+<section class="section">
+    <div class="s-label">Por Que Roncolato</div>
+    <h2 class="s-title">26 anos fazendo<br>marcas <em>crescerem.</em></h2>
+
+    <p class="s-text">Comecei em gráfica, passei por agências, me formei em publicidade e há 16 anos tenho meu próprio CNPJ. Não sou agência de social media. <strong>Sou especialista em construção de marca</strong> — em entender onde uma empresa quer chegar e traçar o caminho estratégico para chegar lá.</p>
+
+    <p class="s-text">Reinaldo já viveu isso. A KERO+ tem tudo que uma grande marca precisa: produto diferenciado, time comprometido, história real. <strong>O que falta é alguém que organize isso em estratégia e execute com consistência.</strong> É exatamente esse o trabalho.</p>
+</section>
+
+<!-- CTA FINAL -->
+<section class="section" style="padding-top: 0;">
+    <div class="cta-box">
+        <h2>Pronto para a KERO+<br>crescer de <em style="color: var(--yellow);">verdade?</em></h2>
+        <p style="margin-bottom: 32px;">10 anos de história merecem uma estratégia à altura.<br>Escolha o plano e vamos começar.</p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+            <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20quero%20conversar%20sobre%20a%20proposta%20para%20a%20KERO%2B" class="btn">Falar com Rodrigo</a>
+            <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20tenho%20interesse%20no%20Plano%20Transforma%C3%A7%C3%A3o%20para%20a%20KERO%2B" class="btn" style="background: var(--yellow); color: var(--black); border-color: var(--yellow); opacity: 1;">Plano Transformação — R$ 5.500/mês</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div>
+        <h3>Roncolato Studio</h3>
+        <p>Goiânia, GO<br>
+        <a href="mailto:rodrigo@rroncolato.com">rodrigo@rroncolato.com</a><br>
+        <a href="https://rroncolato.com.br">rroncolato.com.br</a></p>
+    </div>
+    <div>
+        <h3>Próximos Passos</h3>
+        <p>Reunião de alinhamento para tirar dúvidas e definir o plano. Início da imersão na semana seguinte. Primeiras entregas ao final do mês 1.</p>
+    </div>
+    <div>
+        <h3>Validade</h3>
+        <p>Esta proposta é válida por 15 dias a partir da data de envio. Os valores são fixos durante todo o período de 6 meses contratado.</p>
+    </div>
+</footer>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.s-label, .s-title, .s-text, .pillar, .diag-item, .tl-item, .cta-box').forEach(el => {
+        observer.observe(el);
+    });
+</script>
+
+</body>
+</html>
+

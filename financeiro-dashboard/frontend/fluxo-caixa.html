@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluxo de Caixa — Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Jost', system-ui, sans-serif;
+            background: #f5f5f7;
+            color: #1d1d1f;
+            min-height: 100vh;
+            padding: 40px 24px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            margin-bottom: 50px;
+        }
+
+        .title {
+            font-size: 56px;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            font-weight: 400;
+            color: #86868b;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #e5e5e7;
+            padding-bottom: 0;
+        }
+
+        .tab-btn {
+            padding: 16px 24px;
+            border: none;
+            background: transparent;
+            font-family: 'Jost', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            color: #86868b;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            color: #1d1d1f;
+        }
+
+        .tab-btn.active {
+            color: #1d1d1f;
+            border-bottom-color: #1d1d1f;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 28px;
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title .material-icons {
+            font-size: 28px;
+        }
+
+        /* ━━━ FLUXO MENSAL ━━━ */
+        .fluxo-mensal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 16px;
+            margin-bottom: 60px;
+        }
+
+        .mes-card {
+            background: white;
+            border: 1px solid #e5e5e7;
+            border-radius: 12px;
+            padding: 28px;
+            transition: all 0.3s ease;
+        }
+
+        .mes-card:hover {
+            border-color: #d2d2d7;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .mes-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1d1d1f;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mes-badge {
+            background: #f5f5f7;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #86868b;
+            letter-spacing: 0.06em;
+        }
+
+        .fluxo-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f5f5f7;
+        }
+
+        .fluxo-item:last-child {
+            border-bottom: none;
+        }
+
+        .fluxo-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #86868b;
+        }
+
+        .fluxo-icon {
+            font-size: 18px;
+        }
+
+        .fluxo-valor {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .fluxo-valor.entrada {
+            color: #34c759;
+        }
+
+        .fluxo-valor.saida {
+            color: #ff3b30;
+        }
+
+        .fluxo-valor.saldo {
+            color: #1d1d1f;
+        }
+
+        .fluxo-divider {
+            border-top: 2px solid #e5e5e7;
+            margin: 16px 0;
+        }
+
+        /* ━━━ FLUXO DIÁRIO ━━━ */
+        .fluxo-diario-table {
+            background: white;
+            border: 1px solid #e5e5e7;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 60px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th {
+            background: #f5f5f7;
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #e5e5e7;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #1d1d1f;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #e5e5e7;
+            color: #1d1d1f;
+        }
+
+        tr:hover {
+            background: #f5f5f7;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-col {
+            font-weight: 600;
+            min-width: 100px;
+        }
+
+        .valor-entrada {
+            color: #34c759;
+            font-weight: 600;
+        }
+
+        .valor-saida {
+            color: #ff3b30;
+            font-weight: 600;
+        }
+
+        .valor-saldo {
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .valor-saldo.positivo {
+            color: #34c759;
+        }
+
+        .valor-saldo.negativo {
+            color: #ff3b30;
+        }
+
+        /* ━━━ RESUMO DETALHADO ━━━ */
+        .resumo-mes {
+            background: white;
+            border: 1px solid #e5e5e7;
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 40px;
+        }
+
+        .resumo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e5e5e7;
+        }
+
+        .resumo-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1d1d1f;
+        }
+
+        .resumo-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 16px;
+            background: #f5f5f7;
+            border-radius: 8px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #86868b;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .transacao-list {
+            margin-top: 20px;
+        }
+
+        .transacao-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #1d1d1f;
+        }
+
+        .transacao-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            font-size: 13px;
+            border-bottom: 1px solid #f5f5f7;
+        }
+
+        .transacao-item:last-child {
+            border-bottom: none;
+        }
+
+        .transacao-desc {
+            color: #86868b;
+        }
+
+        .transacao-valor {
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 80px 40px;
+            color: #86868b;
+        }
+
+        .spinner {
+            border: 3px solid #e5e5e7;
+            border-top: 3px solid #1d1d1f;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 24px 16px;
+            }
+
+            .title {
+                font-size: 32px;
+            }
+
+            .fluxo-mensal-grid {
+                grid-template-columns: 1fr;
+            }
+
+            th, td {
+                padding: 12px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Fluxo de Caixa</h1>
+            <p class="subtitle">Análise detalhada de entradas e saídas por dia e mês</p>
+        </div>
+
+        <!-- Abas -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="mensal">
+                <span class="material-icons" style="font-size: 18px; margin-right: 8px; display: inline;">calendar_month</span>
+                Mensal
+            </button>
+            <button class="tab-btn" data-tab="diario">
+                <span class="material-icons" style="font-size: 18px; margin-right: 8px; display: inline;">date_range</span>
+                Diário
+            </button>
+        </div>
+
+        <!-- FLUXO MENSAL -->
+        <div id="mensal" class="tab-content active">
+            <h2 class="section-title">
+                <span class="material-icons">trending_up</span>
+                Fluxo Mensal
+            </h2>
+            <div class="fluxo-mensal-grid" id="fluxoMensalContainer">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Carregando dados...
+                </div>
+            </div>
+
+            <!-- Resumo detalhado por mês -->
+            <h2 class="section-title">
+                <span class="material-icons">description</span>
+                Detalhamento Mensal
+            </h2>
+            <div id="resumoMentalContainer">
+                <div class="loading">Carregando...</div>
+            </div>
+        </div>
+
+        <!-- FLUXO DIÁRIO -->
+        <div id="diario" class="tab-content">
+            <h2 class="section-title">
+                <span class="material-icons">calendar_today</span>
+                Fluxo Diário
+            </h2>
+            <div class="fluxo-diario-table">
+                <table id="fluxoDiarioTable">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th style="text-align: right;">Entradas</th>
+                            <th style="text-align: right;">Saídas</th>
+                            <th style="text-align: right;">Saldo do Dia</th>
+                            <th>Transações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5" style="text-align: center;">Carregando...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/api/financeiro';
+
+        // Setup tabs
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const tabName = e.target.closest('.tab-btn').dataset.tab;
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                e.target.closest('.tab-btn').classList.add('active');
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(tabName).classList.add('active');
+            });
+        });
+
+        async function carregarDados() {
+            try {
+                const [fluxoMensalRes, fluxoDiarioRes] = await Promise.all([
+                    fetch(`${API_URL}/fluxo-mensal`),
+                    fetch(`${API_URL}/fluxo-diario`)
+                ]);
+
+                const fluxoMensalData = await fluxoMensalRes.json();
+                const fluxoDiarioData = await fluxoDiarioRes.json();
+
+                if (fluxoMensalData.status === 'sucesso') {
+                    renderFluxoMensal(fluxoMensalData.fluxoMensal);
+                    renderResumoMensal(fluxoMensalData.fluxoMensal);
+                }
+
+                if (fluxoDiarioData.status === 'sucesso') {
+                    renderFluxoDiario(fluxoDiarioData.fluxoDiario);
+                }
+            } catch (e) {
+                console.error('Erro:', e);
+            }
+        }
+
+        function renderFluxoMensal(fluxos) {
+            const html = fluxos.map(f => `
+                <div class="mes-card">
+                    <div class="mes-title">
+                        <span>${formatarMes(f.mes)}</span>
+                        <span class="mes-badge">${f.diasComMovimentacao} dias</span>
+                    </div>
+
+                    <div class="fluxo-item">
+                        <div class="fluxo-label">
+                            <span class="fluxo-icon material-icons">arrow_upward</span>
+                            Entradas
+                        </div>
+                        <div class="fluxo-valor entrada">R$ ${fmt(f.entradas)}</div>
+                    </div>
+
+                    <div class="fluxo-item">
+                        <div class="fluxo-label">
+                            <span class="fluxo-icon material-icons">arrow_downward</span>
+                            Saídas
+                        </div>
+                        <div class="fluxo-valor saida">R$ ${fmt(f.saidas)}</div>
+                    </div>
+
+                    <div class="fluxo-divider"></div>
+
+                    <div class="fluxo-item">
+                        <div class="fluxo-label">
+                            <span class="fluxo-icon material-icons">account_balance_wallet</span>
+                            Saldo
+                        </div>
+                        <div class="fluxo-valor saldo" style="color: ${f.saldo >= 0 ? '#34c759' : '#ff3b30'}">R$ ${fmt(f.saldo)}</div>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('fluxoMensalContainer').innerHTML = html;
+        }
+
+        function renderResumoMensal(fluxos) {
+            const html = fluxos.map(f => `
+                <div class="resumo-mes">
+                    <div class="resumo-header">
+                        <h3 class="resumo-title">${formatarMes(f.mes)}</h3>
+                        <div class="mes-badge">${f.totalTransacoes} transações</div>
+                    </div>
+
+                    <div class="resumo-stats">
+                        <div class="stat-box">
+                            <div class="stat-label">Entradas</div>
+                            <div class="stat-value" style="color: #34c759;">R$ ${fmt(f.entradas)}</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">Saídas</div>
+                            <div class="stat-value" style="color: #ff3b30;">R$ ${fmt(f.saidas)}</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">Saldo</div>
+                            <div class="stat-value" style="color: ${f.saldo >= 0 ? '#34c759' : '#ff3b30'};">R$ ${fmt(f.saldo)}</div>
+                        </div>
+                    </div>
+
+                    <div class="transacao-list">
+                        ${f.receitas.length > 0 ? `
+                            <div class="transacao-title">🟢 Entradas (${f.receitas.length})</div>
+                            ${f.receitas.map(r => `
+                                <div class="transacao-item">
+                                    <div>
+                                        <strong>${r.descricao.substring(0, 40)}</strong><br>
+                                        <span class="transacao-desc">${r.data}</span>
+                                    </div>
+                                    <div class="transacao-valor" style="color: #34c759;">+ R$ ${fmt(r.valor)}</div>
+                                </div>
+                            `).join('')}
+                        ` : ''}
+
+                        ${f.despesas.length > 0 ? `
+                            <div class="transacao-title" style="margin-top: 20px;">🔴 Saídas (${f.despesas.length})</div>
+                            ${f.despesas.map(d => `
+                                <div class="transacao-item">
+                                    <div>
+                                        <strong>${d.descricao.substring(0, 40)}</strong><br>
+                                        <span class="transacao-desc">${d.data}</span>
+                                    </div>
+                                    <div class="transacao-valor" style="color: #ff3b30;">- R$ ${fmt(d.valor)}</div>
+                                </div>
+                            `).join('')}
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('resumoMentalContainer').innerHTML = html;
+        }
+
+        function renderFluxoDiario(fluxos) {
+            const html = fluxos.map(f => `
+                <tr>
+                    <td class="data-col">${f.data}</td>
+                    <td style="text-align: right;" class="valor-entrada">+ R$ ${fmt(f.entradas)}</td>
+                    <td style="text-align: right;" class="valor-saida">- R$ ${fmt(f.saidas)}</td>
+                    <td style="text-align: right;" class="valor-saldo ${f.saldo >= 0 ? 'positivo' : 'negativo'}">R$ ${fmt(f.saldo)}</td>
+                    <td>${f.transacoes.length} txn</td>
+                </tr>
+            `).join('');
+            document.querySelector('#fluxoDiarioTable tbody').innerHTML = html;
+        }
+
+        function formatarMes(mes) {
+            const [ano, mês] = mes.split('-');
+            const meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+            return `${meses[parseInt(mês) - 1]} ${ano}`;
+        }
+
+        function fmt(v) {
+            return Math.abs(v).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+
+        carregarDados();
+    </script>
+</body>
+</html>

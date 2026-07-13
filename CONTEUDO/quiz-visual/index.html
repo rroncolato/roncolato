@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnóstico Visual — Rodrigo Roncolato</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="quiz-container">
+
+  <!-- Progress bar -->
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+    <div class="progress-label">
+      <span id="currentStep">1</span> / 3
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="quiz-header">
+    <div class="header-brand">
+      <img src="../../public/assets/IMG/roncolato-branco-horizontal.png" alt="Rodrigo Roncolato" class="brand-logo-img">
+    </div>
+    <div class="header-content">
+      <h1 class="header-title">Diagnóstico Visual</h1>
+      <p class="header-subtitle">Descubra o que sua imagem está comunicando</p>
+      <div class="header-accent"></div>
+    </div>
+  </header>
+
+  <!-- Quiz content -->
+  <div class="quiz-content">
+
+    <!-- Step 1: Dados básicos (Nome + Segmento) -->
+    <div class="quiz-step active" data-step="1">
+      <div class="step-content">
+        <h2 class="step-title">Vamos começar</h2>
+        <p class="step-subtitle">Precisamos conhecer você melhor</p>
+
+        <div class="form-group">
+          <label class="form-label">Nome Completo *</label>
+          <input type="text" id="nomeCompleto" class="form-input" placeholder="Seu nome" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Qual é seu segmento? *</label>
+          <div class="options-grid">
+            <label class="option-card">
+              <input type="radio" name="segmento" value="Advogado">
+              <span class="option-label">Advogado</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="segmento" value="Medico">
+              <span class="option-label">Médico</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="segmento" value="Terapeuta">
+              <span class="option-label">Terapeuta</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="segmento" value="Empresario">
+              <span class="option-label">Empresário</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="segmento" value="Contador">
+              <span class="option-label">Contador</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="segmento" value="Outro" onchange="document.getElementById('segmento-customizado').style.display = this.checked ? 'block' : 'none'">
+              <span class="option-label">Outro</span>
+            </label>
+          </div>
+          <input type="text" id="segmento-customizado" class="form-input" placeholder="Qual seu segmento?" style="display:none; margin-top: 16px;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Perguntas rápidas -->
+    <div class="quiz-step" data-step="2">
+      <div class="step-content">
+        <h2 class="step-title">Perguntas rápidas</h2>
+
+        <!-- P1: Foto tem quanto tempo -->
+        <div class="question-section">
+          <h3 class="question-title">A foto que você usa no seu perfil tem quanto tempo?</h3>
+          <div class="options-grid-compact">
+            <label class="option-card-compact">
+              <input type="radio" name="p1_fotoTempo" value="1">
+              <span>1 ano</span>
+            </label>
+            <label class="option-card-compact">
+              <input type="radio" name="p1_fotoTempo" value="2">
+              <span>2 anos</span>
+            </label>
+            <label class="option-card-compact">
+              <input type="radio" name="p1_fotoTempo" value="2-5">
+              <span>2-5 anos</span>
+            </label>
+            <label class="option-card-compact">
+              <input type="radio" name="p1_fotoTempo" value="5+">
+              <span>5+ anos</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- P2: Bem reconhecido -->
+        <div class="question-section">
+          <h3 class="question-title">Você é bem reconhecido pelo que você faz?</h3>
+          <div class="options-grid-compact">
+            <label class="option-card-compact">
+              <input type="radio" name="p2_reconhecido" value="Sim">
+              <span>Sim</span>
+            </label>
+            <label class="option-card-compact">
+              <input type="radio" name="p2_reconhecido" value="Nao">
+              <span>Não</span>
+            </label>
+            <label class="option-card-compact">
+              <input type="radio" name="p2_reconhecido" value="Parcial">
+              <span>Parcial</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- P3: Imagem comunica experiência -->
+        <div class="question-section">
+          <h3 class="question-title">Sua imagem comunica seu nível de experiência?</h3>
+          <div class="options-grid-compact">
+            <label class="option-card-compact">
+              <input type="radio" name="p3_experiencia" value="Sim">
+              <span>Sim</span>
+            </label>
+            <label class="option-card-compact">
+              <input type="radio" name="p3_experiencia" value="Nao">
+              <span>Não</span>
+            </label>
+            <label class="option-card-compact">
+              <input type="radio" name="p3_experiencia" value="Nao-Sei">
+              <span>Não Sei</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- P4: Arquétipo -->
+        <div class="question-section">
+          <h3 class="question-title">Você sabe qual é seu arquétipo predominante?</h3>
+          <div class="options-grid-compact">
+            <label class="option-card-compact">
+              <input type="radio" name="p4_arqTem" value="Sim" onchange="document.getElementById('arquetipo-input').style.display = this.checked ? 'block' : 'none'">
+              <span>Sim</span>
+            </label>
+            <label class="option-card-compact">
+              <input type="radio" name="p4_arqTem" value="Nao" onchange="document.getElementById('arquetipo-input').style.display = 'none'">
+              <span>Não</span>
+            </label>
+          </div>
+          <input type="text" id="arquetipo-input" class="form-input" placeholder="Qual é seu arquétipo?" style="display:none; margin-top: 16px;">
+        </div>
+
+        <!-- P5: Feedback foto -->
+        <div class="question-section">
+          <h3 class="question-title">Já recebeu feedback sobre a sua foto?</h3>
+          <div class="options-grid-compact">
+            <label class="option-card-compact">
+              <input type="radio" name="p5_feedback" value="Sim">
+              <span>Sim</span>
+            </label>
+            <label class="option-card-compact">
+              <input type="radio" name="p5_feedback" value="Nao">
+              <span>Não</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Upload foto -->
+    <div class="quiz-step" data-step="3">
+      <div class="step-content">
+        <h2 class="step-title">Anexe sua foto aqui</h2>
+        <p class="step-subtitle">Para receber um diagnóstico</p>
+
+        <div class="upload-area" id="uploadArea">
+          <div class="upload-icon">📸</div>
+          <p class="upload-text">Clique ou arraste sua foto aqui</p>
+          <p class="upload-hint">JPG ou PNG • Mín 800px • Máx 10MB</p>
+          <input type="file" id="photoInput" accept="image/jpeg,image/png" style="display:none;">
+        </div>
+
+        <div class="photo-preview" id="photoPreview" style="display:none;">
+          <img id="previewImg" src="" alt="Preview">
+          <button type="button" class="btn-change" id="changePhotoBtn">Trocar foto</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: Diagnóstico (resultado após análise) -->
+    <div class="quiz-step" data-step="4" style="display:none;">
+      <div class="step-content">
+        <div class="diagnosis-box" id="diagnosisBox" style="display:none;">
+          <h3>Seu Diagnóstico</h3>
+          <div class="analysis-text" id="analysisText"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Navigation -->
+  <div class="quiz-nav">
+    <button class="btn btn-secondary" id="prevBtn" style="display:none;">← Anterior</button>
+    <button class="btn btn-primary" id="nextBtn">Próximo →</button>
+  </div>
+
+</div>
+
+<!-- Modal captura dados -->
+<div class="modal" id="captureModal" style="display:none;">
+  <div class="modal-content">
+    <h2>Receba seu Diagnóstico</h2>
+    <p>Deixe seus contatos para acessar a análise completa</p>
+
+    <div class="form-group">
+      <label class="form-label">Nome Completo *</label>
+      <input type="text" id="modal-nome" class="form-input" placeholder="Seu nome" required>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">WhatsApp *</label>
+      <input type="tel" id="modal-whatsapp" class="form-input" placeholder="62 99999-9999" required>
+    </div>
+
+    <div style="display: flex; gap: 12px;">
+      <button class="btn btn-secondary" id="modal-cancel">Voltar</button>
+      <button class="btn btn-primary" id="modal-submit">Salvar Diagnóstico</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/quiz.js"></script>
+<script src="assets/js/analyze.js"></script>
+<script src="assets/js/submit.js"></script>
+
+</body>
+</html>

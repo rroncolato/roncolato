@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Nova Aliança Empreendimentos — Roncolato Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/assets/IMG/rr-simbolo-white.png">
+    <meta property="og:title" content="Proposta Nova Aliança Empreendimentos — Roncolato Studio">
+    <meta property="og:description" content="Site Corporativo para Nova Aliança Empreendimentos. Fusão CarvalhoEnergia + HB20 Construções.">
+    <meta property="og:image" content="/assets/IMG/avatar-fundobranco.png">
+    <meta property="og:url" content="https://rroncolato.com.br/proposta/nova-alianca">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="/assets/IMG/avatar-fundobranco.png">
+    <style>
+        :root {
+            --yellow: #F5C518;
+            --black: #0C0C0C;
+            --black-2: #141414;
+            --black-3: #1C1C1C;
+            --white: #FFFFFF;
+            --gray: #7A7A7A;
+            --gray-2: #3A3A3A;
+            --border: rgba(255,255,255,0.07);
+            --border-y: rgba(245,197,24,0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; background: var(--black); }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: 'Jost', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* HEADER */
+        header {
+            padding: 32px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo img {
+            height: 32px;
+            width: auto;
+            display: block;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 120px 24px;
+            background: linear-gradient(135deg, rgba(245,197,24,0.05) 0%, rgba(245,197,24,0.02) 100%);
+            border-bottom: 1px solid var(--border-y);
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 7vw, 72px);
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1.05;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 em { font-style: italic; color: var(--yellow); }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--gray);
+            line-height: 1.8;
+            max-width: 680px;
+            margin-bottom: 32px;
+        }
+
+        .hero-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .meta-item {
+            padding: 20px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+        }
+
+        .meta-label {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .meta-value {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        /* SECTION */
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .s-label {
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .s-title {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 900;
+            letter-spacing: -1px;
+            line-height: 1.05;
+            margin-bottom: 32px;
+        }
+
+        .s-title em { font-style: italic; color: var(--yellow); }
+
+        /* PLANOS */
+        .planos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin-top: 48px;
+        }
+
+        .plano-card {
+            background: var(--black-2);
+            border: 1px solid var(--border);
+            padding: 40px 32px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .plano-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-4px);
+        }
+
+        .plano-card.destaque {
+            background: rgba(245,197,24,0.05);
+            border-color: var(--border-y);
+        }
+
+        .plano-badge {
+            display: inline-block;
+            background: var(--yellow);
+            color: var(--black);
+            padding: 6px 14px;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            width: fit-content;
+        }
+
+        .plano-nome {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .plano-desc {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 28px;
+            flex: 1;
+        }
+
+        .plano-itens {
+            list-style: none;
+            margin-bottom: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .plano-itens li {
+            font-size: 13px;
+            color: var(--gray);
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .plano-itens li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--yellow);
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .plano-preco {
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+            margin-bottom: 24px;
+        }
+
+        .plano-preco-val {
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--yellow);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .plano-preco-desc {
+            font-size: 12px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .plano-preco-opcoes {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 16px;
+            font-size: 11px;
+            color: var(--gray);
+            line-height: 1.7;
+            margin-top: 16px;
+        }
+
+        .plano-preco-opcoes strong {
+            color: var(--yellow);
+            font-weight: 700;
+        }
+
+        .btn {
+            display: block;
+            padding: 14px 20px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--white);
+            font-family: 'Jost', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn:hover {
+            border-color: var(--yellow);
+            color: var(--black);
+            background: var(--yellow);
+        }
+
+        .btn-yellow {
+            background: var(--yellow);
+            color: var(--black);
+            border-color: var(--yellow);
+        }
+
+        .btn-yellow:hover {
+            background: transparent;
+            color: var(--yellow);
+        }
+
+        /* DELIVERABLES */
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .deliv-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            padding: 32px;
+        }
+
+        .deliv-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .deliv-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .deliv-desc {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* NOTA */
+        .nota {
+            background: rgba(245,197,24,0.05);
+            border: 1px solid var(--border-y);
+            border-left: 4px solid var(--yellow);
+            padding: 28px;
+            margin-top: 48px;
+        }
+
+        .nota p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .nota strong {
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        /* CONTACT */
+        .contact {
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .contact h2 {
+            font-size: clamp(32px, 6vw, 56px);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .contact p {
+            font-size: 16px;
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+
+        .contact-btns {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-btns .btn {
+            width: auto;
+            padding: 14px 32px;
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 48px 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 24px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="logo">
+            <img src="/assets/IMG/roncolato-branco-horizontal.png" alt="Roncolato Studio" onerror="this.src='/assets/IMG/rr-simbolo-white.png'">
+        </div>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <h1>Nova Aliança<br><em>Empreendimentos</em></h1>
+        <p>Proposta para redesign corporativo de presença digital. Um novo site que unifica as duas empresas — CarvalhoEnergia e HB20 Construções — em uma identidade forte, moderna e estratégica. Comunicação clara, estrutura para crescimento e tecnologia que escala.</p>
+
+        <div class="hero-meta">
+            <div class="meta-item">
+                <div class="meta-label">Contato</div>
+                <div class="meta-value">Ewerton Lucas</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Prazo</div>
+                <div class="meta-value">40 dias úteis</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Tecnologia</div>
+                <div class="meta-value">WordPress</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PLANOS -->
+<section>
+    <div class="container">
+        <div class="s-label">Investimento</div>
+        <h2 class="s-title">Escolha o plano<br>que atende sua <em>necessidade.</em></h2>
+
+        <div class="planos-grid">
+            <!-- PLANO 1 -->
+            <div class="plano-card">
+                <div class="plano-nome">Site Institucional</div>
+                <div class="plano-desc">Apresentação corporativa completa com identidade visual unificada.</div>
+
+                <ul class="plano-itens">
+                    <li>Design responsivo moderno</li>
+                    <li>Seções: home, sobre, serviços, diferenciais, contato</li>
+                    <li>Integração Google Maps</li>
+                    <li>Formulários de contato</li>
+                    <li>SEO básico otimizado</li>
+                    <li>Google Analytics integrado</li>
+                    <li>Redação estratégica (copy)</li>
+                    <li>WordPress gerenciável</li>
+                    <li>Treinamento admin</li>
+                </ul>
+
+                <div class="plano-preco">
+                    <div class="plano-preco-val">R$ 4.500</div>
+                    <div class="plano-preco-opcoes">
+                        <strong>À vista:</strong> R$ 4.050 (10% off)<br>
+                        <strong>Parcelado:</strong> 2x R$ 2.250 (entrada + 30d)<br>
+                        ou múltiplas vezes via link
+                    </div>
+                </div>
+
+                <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20tenho%20interesse%20no%20Plano%20Site%20Institucional%20da%20Nova%20Ali%C3%A7a%20Empreendimentos" class="btn">Solicitar Orçamento</a>
+            </div>
+
+            <!-- PLANO 2 -->
+            <div class="plano-card destaque">
+                <div class="plano-badge">Recomendado</div>
+                <div class="plano-nome">Site + Blog</div>
+                <div class="plano-desc">Presença digital completa com blog para gestão de conteúdo estratégico.</div>
+
+                <ul class="plano-itens">
+                    <li>Tudo do Plano 1</li>
+                    <li>Blog com posts ilimitados</li>
+                    <li>Categorias e tags</li>
+                    <li>Sistema de buscas integrado</li>
+                    <li>Integração redes sociais</li>
+                    <li>Newsletter pronta (opcional)</li>
+                    <li>Estrutura para tráfego orgânico</li>
+                    <li>WordPress gerenciável</li>
+                    <li>Treinamento completo admin</li>
+                </ul>
+
+                <div class="plano-preco">
+                    <div class="plano-preco-val">R$ 7.800</div>
+                    <div class="plano-preco-opcoes">
+                        <strong>À vista:</strong> R$ 7.020 (10% off)<br>
+                        <strong>Parcelado:</strong> 2x R$ 3.900 (entrada + 30d)<br>
+                        ou múltiplas vezes via link
+                    </div>
+                </div>
+
+                <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20tenho%20interesse%20no%20Plano%20Site%20%2B%20Blog%20da%20Nova%20Ali%C3%A7a%20Empreendimentos" class="btn btn-yellow">Contratar Agora</a>
+            </div>
+
+            <!-- PLANO 3 -->
+            <div class="plano-card">
+                <div class="plano-nome">Captação de Imagens</div>
+                <div class="plano-desc">Produção profissional de imagens corporativas para seu site.</div>
+
+                <ul class="plano-itens">
+                    <li>Fotos corporativas (team/office)</li>
+                    <li>Drone aéreo (se aplicável)</li>
+                    <li>Edição profissional completa</li>
+                    <li>Tratamento de cor e luz</li>
+                    <li>Entrega em alta resolução</li>
+                    <li>Direito de uso ilimitado</li>
+                    <li>Orçamento sob análise</li>
+                </ul>
+
+                <div class="plano-preco">
+                    <div class="plano-preco-val">Sob Consulta</div>
+                    <div class="plano-preco-desc">Orçamento conforme escopo<br>e quantidade de imagens</div>
+                </div>
+
+                <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20tenho%20interesse%20em%20or%C3%A7amento%20para%20Capta%C3%A7%C3%A3o%20de%20Imagens" class="btn">Solicitar Consulta</a>
+            </div>
+        </div>
+
+        <div class="nota">
+            <p><strong>Formas de Pagamento:</strong></p>
+            <p style="margin-top: 12px; font-size: 12px;">
+                • <strong>À vista:</strong> 10% de desconto<br>
+                • <strong>2x:</strong> Entrada + 30 dias<br>
+                • <strong>Acima de 3x:</strong> Via link de pagamento (parcelamento flexível em cartão de crédito)<br><br>
+                <strong>Observação:</strong> Os valores referem-se ao desenvolvimento web com WordPress. Imagens podem ser fornecidas pelo cliente ou capturadas por nossa equipe (com orçamento adicional). Treinamento admin incluído em todos os planos para garantir total autonomia na administração do site.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- DELIVERABLES -->
+<section>
+    <div class="container">
+        <div class="s-label">O que você recebe</div>
+        <h2 class="s-title">Estrutura completa<br>pronta para <em>crescer.</em></h2>
+
+        <div class="deliverables-grid">
+            <div class="deliv-card">
+                <div class="deliv-icon">✍️</div>
+                <div class="deliv-title">Copy Estratégico</div>
+                <div class="deliv-desc">Redação alinhada com identidade da Nova Aliança. Textos que vendem, palavras que posicionam, mensagens que convertem.</div>
+            </div>
+
+            <div class="deliv-card">
+                <div class="deliv-icon">🎨</div>
+                <div class="deliv-title">Design Moderno</div>
+                <div class="deliv-desc">Estrutura visual forte. Protótipos, wireframes e design system pronto para crescimento. Visual que diferencia.</div>
+            </div>
+
+            <div class="deliv-card">
+                <div class="deliv-icon">⚙️</div>
+                <div class="deliv-title">Desenvolvimento WordPress</div>
+                <div class="deliv-desc">Site responsivo, otimizado para conversão. SEO integrado, performance otimizada, escalável.</div>
+            </div>
+
+            <div class="deliv-card">
+                <div class="deliv-icon">📊</div>
+                <div class="deliv-title">Analytics & Rastreamento</div>
+                <div class="deliv-desc">Google Analytics integrado. Métricas claras de performance, dados para decisões.</div>
+            </div>
+
+            <div class="deliv-card">
+                <div class="deliv-icon">🎓</div>
+                <div class="deliv-title">Treinamento Admin</div>
+                <div class="deliv-desc">Você gerencia seu próprio site. Treinamento completo em WordPress, posts, páginas e configurações.</div>
+            </div>
+
+            <div class="deliv-card">
+                <div class="deliv-icon">🚀</div>
+                <div class="deliv-title">Suporte Inicial</div>
+                <div class="deliv-desc">30 dias de suporte técnico após entrega. Ajustes, correções e orientações.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+    <div class="container">
+        <h2>Pronto para dar um novo passo?</h2>
+        <p>Vamos conversar sobre como transformar a presença digital da Nova Aliança.</p>
+        <div class="contact-btns">
+            <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20gostaria%20de%20conversar%20sobre%20a%20proposta%20da%20Nova%20Ali%C3%A7a" class="btn btn-yellow">Conversar agora</a>
+            <a href="mailto:rodrigo@rroncolato.com" class="btn">Enviar email</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Roncolato Studio. Proposta confidencial para Nova Aliança Empreendimentos.</p>
+    </div>
+</footer>
+
+</body>
+</html>

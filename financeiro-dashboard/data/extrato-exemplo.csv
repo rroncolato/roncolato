@@ -1,0 +1,12 @@
+data,descricao,tipo,categoria,valor,saldo
+2026-06-01,Depósito - Venda Projeto XYZ,receita,vendas,5000.00,5000.00
+2026-06-02,Pagamento - Fornecedor A,despesa,despesa-operacional,-1200.00,3800.00
+2026-06-03,Depósito - Consultoria,receita,consultoria,3000.00,6800.00
+2026-06-05,Pagamento - Folha de Pagamento,despesa,folha-pagamento,-2500.00,4300.00
+2026-06-07,Pagamento - Aluguel Escritório,despesa,despesa-fixa,-1500.00,2800.00
+2026-06-10,Depósito - Serviços Adicionais,receita,serviços,1500.00,4300.00
+2026-06-12,Pagamento - IPTU,despesa,impostos,-300.00,4000.00
+2026-06-15,Pagamento - Internet/Telefone,despesa,despesa-fixa,-200.00,3800.00
+2026-06-18,Depósito - Novo Projeto,receita,vendas,4000.00,7800.00
+2026-06-20,Pagamento - Materiais,despesa,despesa-operacional,-800.00,7000.00
+2026-06-22,Pagamento - Software Licenses,despesa,infraestrutura,-500.00,6500.00

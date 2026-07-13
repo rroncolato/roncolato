@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/assets/IMG/rr-simbolo-white.png">`n    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta — Paula Ribeiro × Roncolato</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --yellow: #F5C518;
+            --black: #0C0C0C;
+            --black-2: #141414;
+            --black-3: #1C1C1C;
+            --white: #FFFFFF;
+            --gray: #7A7A7A;
+            --gray-2: #3A3A3A;
+            --border: rgba(255,255,255,0.07);
+            --border-y: rgba(245,200,66,0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; background: var(--black); }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: 'Jost', sans-serif;
+            font-weight: 400;
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: var(--black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .hero-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .hero-nav img { height: 32px; width: auto; display: block; }
+        .hero-nav .nav-label {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gray);
+            font-weight: 600;
+        }
+
+        .hero-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px 24px 32px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 700;
+            margin-bottom: 24px;
+            animation: fadeUp 0.6s ease 0.1s both;
+        }
+
+        .hero-title {
+            font-size: clamp(44px, 11vw, 96px);
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -2px;
+            margin-bottom: 32px;
+            animation: fadeUp 0.6s ease 0.2s both;
+        }
+
+        .hero-title em { font-style: italic; color: var(--yellow); }
+
+        .hero-sub {
+            font-size: clamp(15px, 2vw, 18px);
+            color: var(--gray);
+            max-width: 540px;
+            line-height: 1.7;
+            animation: fadeUp 0.6s ease 0.3s both;
+        }
+
+        .hero-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            border-top: 1px solid var(--border);
+            font-size: 11px;
+            color: var(--gray);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 0.6s ease 0.4s both;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* SEÇÕES */
+        .section {
+            padding: 80px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .s-label {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 700;
+            margin-bottom: 16px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease 0.1s forwards;
+        }
+
+        .s-title {
+            font-size: clamp(32px, 6vw, 60px);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease 0.2s forwards;
+        }
+
+        .s-title em { font-style: italic; color: var(--yellow); }
+
+        .s-text {
+            font-size: 18px;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.2s forwards;
+        }
+
+        .s-text strong { color: var(--white); font-weight: 600; }
+
+        /* ENTREGÁVEIS */
+        .entregas-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2px;
+            margin-top: 48px;
+        }
+
+        .entrega-item {
+            background: var(--black-2);
+            border: 1px solid var(--border);
+            padding: 28px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards;
+            position: relative;
+        }
+
+        .entrega-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--yellow);
+        }
+
+        .entrega-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .entrega-name {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        .entrega-price {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--yellow);
+            white-space: nowrap;
+        }
+
+        .entrega-desc {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .entrega-itens {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .entrega-itens li {
+            font-size: 13px;
+            color: var(--gray);
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .entrega-itens li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--yellow);
+            font-size: 11px;
+        }
+
+        /* BLOCO TOTAL */
+        .total-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 32px;
+            background: var(--black-3);
+            border: 1px solid var(--border);
+            margin-top: 2px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .total-label {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gray);
+            font-weight: 600;
+        }
+
+        .total-value {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--gray-2);
+            text-decoration: line-through;
+        }
+
+        /* PACOTE */
+        .pacote-box {
+            margin-top: 48px;
+            background: rgba(245,200,66,0.05);
+            border: 1px solid var(--border-y);
+            border-left: 4px solid var(--yellow);
+            padding: 40px 36px;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.3s forwards;
+        }
+
+        .pacote-tag {
+            display: inline-block;
+            background: var(--yellow);
+            color: var(--black);
+            padding: 6px 14px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .pacote-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .pacote-sub {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+
+        .pacote-bonus {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            padding: 16px 20px;
+            margin-bottom: 28px;
+        }
+
+        .pacote-bonus p {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .pacote-bonus strong { color: var(--yellow); }
+
+        .pacote-precos {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .preco-opcao {}
+        .preco-label {
+            font-size: 11px;
+            color: var(--gray);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .preco-val {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--yellow);
+            line-height: 1;
+        }
+
+        .preco-detalhe {
+            font-size: 13px;
+            color: var(--gray);
+            margin-top: 4px;
+        }
+
+        /* BTN */
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--white);
+            font-family: 'Jost', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover { border-color: var(--yellow); color: var(--yellow); }
+        .btn-yellow { background: var(--yellow); color: var(--black); border-color: var(--yellow); }
+        .btn-yellow:hover { opacity: 0.85; color: var(--black); }
+
+        /* CTA BOX */
+        .cta-box {
+            background: var(--black-2);
+            border: 1px solid var(--border);
+            padding: 48px 32px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeUp 0.7s ease forwards;
+        }
+
+        .cta-box h2 {
+            font-size: clamp(28px, 5vw, 48px);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .cta-box p { font-size: 16px; color: var(--gray); line-height: 1.7; }
+
+        /* DIVIDER */
+        .divider {
+            height: 1px;
+            background: var(--border);
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* FOOTER */
+        footer {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            padding: 48px 24px;
+            border-top: 1px solid var(--border);
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        footer h3 { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+        footer p { font-size: 13px; color: var(--gray); line-height: 1.8; }
+        footer a { color: var(--gray); text-decoration: none; }
+        footer a:hover { color: var(--yellow); }
+
+        /* TABLET */
+        @media (min-width: 768px) {
+            .hero-nav { padding: 24px 48px; }
+            .hero-nav img { height: 40px; }
+            .hero-main { padding: 60px 48px 40px; }
+            .hero-bottom { padding: 24px 48px; }
+            .section { padding: 96px 48px; }
+            .entregas-grid { grid-template-columns: 1fr; }
+            footer { grid-template-columns: repeat(2, 1fr); padding: 64px 48px; }
+        }
+
+        /* DESKTOP */
+        @media (min-width: 1024px) {
+            .hero-nav { padding: 28px 72px; }
+            .hero-nav img { height: 50px; }
+            .hero-main { padding: 80px 72px 48px; }
+            .hero-bottom { padding: 28px 72px; }
+            .section { padding: 120px 72px; }
+            footer { grid-template-columns: repeat(3, 1fr); padding: 80px 72px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <nav class="hero-nav">
+        <img src="./assets/roncolato-branco-horizontal.png" alt="Roncolato Studio" onerror="this.src='/assets/IMG/roncolato-branco-horizontal.png'">
+        <span class="nav-label">Proposta Comercial</span>
+    </nav>
+
+    <div class="hero-main">
+        <span class="hero-tag">Paula Ribeiro × Roncolato Studio — 2026</span>
+        <h1 class="hero-title">Sua imagem<br>à altura da sua<br><em>autoridade.</em></h1>
+        <p class="hero-sub">Você construiu credibilidade como psicóloga. Agora é hora de construir uma presença visual que comunica isso — com fotos, vídeos e identidade que fazem o seu público sentir antes mesmo de ler uma palavra.</p>
+    </div>
+
+    <div class="hero-bottom">
+        <span>Ensaio · Vídeo · Artes</span>
+        <span>Confidencial · Junho 2026</span>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ENTREGÁVEIS -->
+<section class="section">
+    <div class="s-label">O que está incluído</div>
+    <h2 class="s-title">Três entregas,<br>uma <em>transformação.</em></h2>
+
+    <p class="s-text">Cada entregável foi pensado para construir sua presença digital de forma completa — da primeira impressão visual até o conteúdo que sustenta sua área de membros.</p>
+
+    <div class="entregas-grid">
+
+        <!-- ENSAIO -->
+        <div class="entrega-item">
+            <div class="entrega-header">
+                <div class="entrega-name">Ensaio Fotográfico</div>
+                <div class="entrega-price">R$ 1.900</div>
+            </div>
+            <div class="entrega-desc">Sessão de 2 horas para você e sua sócia. Fotos que comunicam autoridade, acolhimento e profissionalismo — prontas para site, redes sociais e materiais de divulgação.</div>
+            <ul class="entrega-itens">
+                <li>2h de ensaio com as duas sócias</li>
+                <li>Direção de poses e expressões</li>
+                <li>Seleção e edição das melhores fotos</li>
+                <li>Entrega em alta resolução</li>
+            </ul>
+        </div>
+
+        <!-- VÍDEO -->
+        <div class="entrega-item" style="animation-delay: 0.15s;">
+            <div class="entrega-header">
+                <div class="entrega-name">Gravação de Vídeos</div>
+                <div class="entrega-price">R$ 2.000</div>
+            </div>
+            <div class="entrega-desc">4 horas de gravação em estúdio (incluso), com direção criativa e edição completa. Conteúdo direto para sua área de membros — com cara profissional, sem precisar se preocupar com nada técnico.</div>
+            <ul class="entrega-itens">
+                <li>4h de gravação em estúdio (incluso)</li>
+                <li>Direção de conteúdo e roteiro</li>
+                <li>Gravação com iluminação e audio profissional</li>
+                <li>Edição completa dos vídeos</li>
+            </ul>
+        </div>
+
+        <!-- CAPAS -->
+        <div class="entrega-item" style="animation-delay: 0.3s;">
+            <div class="entrega-header">
+                <div class="entrega-name">30 Capas — Área de Membros</div>
+                <div class="entrega-price">R$ 1.500</div>
+            </div>
+            <div class="entrega-desc">Até 30 capas desenvolvidas para sua área de membros. Design coerente com sua identidade visual, profissional e pronto para uso imediato na plataforma.</div>
+            <ul class="entrega-itens">
+                <li>Até 30 capas personalizadas</li>
+                <li>Design alinhado com sua identidade</li>
+                <li>Arquivos entregues em formato pronto para uso</li>
+                <li>Ajustes inclusos</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- TOTAL INDIVIDUAL -->
+    <div class="total-row">
+        <span class="total-label">Valor Total Individual</span>
+        <span class="total-value">R$ 5.400</span>
+    </div>
+
+    <!-- PACOTE PARCERIA -->
+    <div class="pacote-box">
+        <div class="pacote-tag">Pacote Parceria</div>
+        <div class="pacote-title">Tudo junto, com muito mais valor.</div>
+        <div class="pacote-sub">Ao fechar o pacote completo, você leva as capas e a edição dos vídeos como bônus — e ainda escolhe a melhor forma de pagamento.</div>
+
+        <div class="pacote-bonus">
+            <p><strong>Bônus incluídos:</strong> 30 capas para área de membros (R$ 1.500) + edição completa dos vídeos. Você contrata a produção, a entrega final é nossa responsabilidade.</p>
+        </div>
+
+        <div class="pacote-precos">
+            <div class="preco-opcao">
+                <div class="preco-label">À vista — 10% off</div>
+                <div class="preco-val">R$ 3.690</div>
+                <div class="preco-detalhe">pagamento único</div>
+            </div>
+            <div class="preco-opcao">
+                <div class="preco-label">Parcelado em 2×</div>
+                <div class="preco-val" style="color: var(--white);">2× R$ 2.050</div>
+                <div class="preco-detalhe">entrada para reservar a data<br>+ restante em 20 dias</div>
+            </div>
+        </div>
+
+        <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20quero%20fechar%20o%20Pacote%20Parceria%20com%20a%20Paula%20Ribeiro!" class="btn btn-yellow" style="display: block; text-align: center; text-decoration: none;">Fechar Pacote Parceria</a>
+    </div>
+
+    <!-- O QUE VOCÊ GANHA -->
+    <div style="margin-top: 48px;">
+        <div style="font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--yellow); font-weight: 700; margin-bottom: 20px;">O que fica nas suas mãos</div>
+        <div style="display: grid; grid-template-columns: 1fr; gap: 2px;">
+
+            <div style="background: var(--black-2); border: 1px solid var(--border); padding: 20px 24px; display: flex; gap: 16px; align-items: flex-start;">
+                <span style="font-size: 20px; line-height: 1; margin-top: 2px;">📸</span>
+                <div>
+                    <div style="font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 4px;">Banco de fotos profissional sem limite de uso</div>
+                    <div style="font-size: 13px; color: var(--gray); line-height: 1.7;">Fotos suas e da sócia para usar à vontade — Instagram, site, WhatsApp, apresentações, materiais de venda. Uma vez produzido, serve por anos.</div>
+                </div>
+            </div>
+
+            <div style="background: var(--black-2); border: 1px solid var(--border); padding: 20px 24px; display: flex; gap: 16px; align-items: flex-start;">
+                <span style="font-size: 20px; line-height: 1; margin-top: 2px;">🎬</span>
+                <div>
+                    <div style="font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 4px;">Vídeos editados, prontos para publicar</div>
+                    <div style="font-size: 13px; color: var(--gray); line-height: 1.7;">Você grava, nós cuidamos de tudo. Corte, edição, finalização. Chega em mãos com o arquivo pronto para subir na sua plataforma — sem precisar aprender nada técnico.</div>
+                </div>
+            </div>
+
+            <div style="background: var(--black-2); border: 1px solid var(--border); padding: 20px 24px; display: flex; gap: 16px; align-items: flex-start;">
+                <span style="font-size: 20px; line-height: 1; margin-top: 2px;">🎨</span>
+                <div>
+                    <div style="font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 4px;">30 capas com identidade visual consistente</div>
+                    <div style="font-size: 13px; color: var(--gray); line-height: 1.7;">Sua área de membros com visual profissional do início ao fim. Cada módulo, cada aula com capa que transmite cuidado e autoridade — e faz o aluno perceber o valor antes de abrir o conteúdo.</div>
+                </div>
+            </div>
+
+            <div style="background: var(--black-2); border: 1px solid var(--border); padding: 20px 24px; display: flex; gap: 16px; align-items: flex-start;">
+                <span style="font-size: 20px; line-height: 1; margin-top: 2px;">🚀</span>
+                <div>
+                    <div style="font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 4px;">Presença digital que trabalha por você</div>
+                    <div style="font-size: 13px; color: var(--gray); line-height: 1.7;">Uma produção bem feita é ativo de longo prazo. O conteúdo que criamos hoje vai gerar confiança, atrair alunos e vender sua área de membros por muito tempo — sem você precisar refazer do zero.</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- POR QUE RONCOLATO -->
+<section class="section">
+    <div class="s-label">Por que Roncolato</div>
+    <h2 class="s-title">26 anos fazendo<br>marcas <em>aparecerem.</em></h2>
+
+    <p class="s-text">Fotografia, vídeo e design não são sobre estética — são sobre <strong>comunicar autoridade e gerar confiança antes do primeiro contato.</strong> É isso que construímos juntos: uma presença que faz seu público sentir que está no lugar certo.</p>
+
+    <p class="s-text">Cada detalhe da produção — da luz ao enquadramento, do roteiro à edição — é pensado para que você não precise explicar sua credibilidade. <strong>Ela aparece.</strong></p>
+</section>
+
+<!-- CTA FINAL -->
+<section class="section" style="padding-top: 0;">
+    <div class="cta-box">
+        <h2>Pronta para aparecer<br>do jeito que <em style="color: var(--yellow);">merece?</em></h2>
+        <p style="margin-bottom: 32px;">Reservamos sua data assim que o pacote for fechado.<br>Vamos começar?</p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+            <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20quero%20fechar%20o%20Pacote%20Parceria%20-%20Paula%20Ribeiro" class="btn btn-yellow" style="text-decoration: none;">Fechar Pacote — R$ 3.690 à vista</a>
+            <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20quero%20parcelar%20em%202x%20-%20Paula%20Ribeiro" class="btn" style="text-decoration: none;">Parcelar em 2× — R$ 4.100</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div>
+        <h3>Roncolato Studio</h3>
+        <p>Goiânia, GO<br>
+        <a href="mailto:rodrigo@rroncolato.com">rodrigo@rroncolato.com</a><br>
+        <a href="https://rroncolato.com.br">rroncolato.com.br</a></p>
+    </div>
+    <div>
+        <h3>Próximos Passos</h3>
+        <p>Fechamento do pacote + entrada para reserva de data. Alinhamento de data para o ensaio e gravação. Início das capas após briefing visual.</p>
+    </div>
+    <div>
+        <h3>Validade</h3>
+        <p>Esta proposta é válida por 15 dias. Os valores e condições são garantidos durante esse período.</p>
+    </div>
+</footer>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.s-label, .s-title, .s-text, .entrega-item, .pacote-box, .cta-box').forEach(el => {
+        observer.observe(el);
+    });
+</script>
+
+</body>
+</html>
+

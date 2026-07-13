@@ -1,0 +1,11 @@
+data,descricao,tipo,categoria,valor,saldo
+2026-05-23,SALDO ANTERIOR,saldo,saldo,0.00,12.16
+2026-06-02,Tarifa Manutencao Conta,despesa,despesa-operacional,-87.00,-74.84
+2026-06-03,PIX RECEBIDO Studio R Ltda,receita,vendas,133.06,58.22
+2026-06-11,PIX RECEBIDO Kelen Cristina O S Tamura,receita,vendas,1500.00,1558.22
+2026-06-12,SISPAG FORNECEDORES,despesa,despesa-operacional,-1000.00,558.22
+2026-06-17,SISPAG FORNECEDORES PIX QR-CODE,despesa,despesa-operacional,-81.55,476.67
+2026-06-18,SISPAG FORNECEDORES PIX QR-CODE,despesa,despesa-operacional,-17.25,459.42
+2026-06-22,SISPAG TRIBUTOS,despesa,impostos,-228.80,-228.80
+2026-06-22,REND PAGO APLIC AUT APR,receita,investimentos,0.01,0.01
+2026-06-23,SALDO EM CONTA CORRENTE,saldo,saldo,0.00,230.64

@@ -1,0 +1,1535 @@
+{
+  "banco": "inter",
+  "transacoes": [
+    {
+      "data": "2026-04-01",
+      "descricao": "Google Workspace",
+      "tipo": "despesa",
+      "categoria": "infraestrutura",
+      "valor": 154,
+      "saldo": 2046,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-02",
+      "descricao": "Semintervalo Cursos E Treinamentos Ltda",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1971.16,
+      "saldo": 3896,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-02",
+      "descricao": "Janete Ines Paiva Schulz",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1900,
+      "saldo": 1996,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-02",
+      "descricao": "Maria Elisa Schulz",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 100,
+      "saldo": 1896,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-02",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 150,
+      "saldo": 2046,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-02",
+      "descricao": "Kiwify Pagamentos Tecnologia",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 76.9,
+      "saldo": 5790.26,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-03",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 4000,
+      "saldo": 1400.26,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-03",
+      "descricao": "Pagamento Fatura - Studio Roncolato",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 390,
+      "saldo": 5400.26,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-05",
+      "descricao": "Mercado Pago",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 309.75,
+      "saldo": 1090.51,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-06",
+      "descricao": "PIX Associacao Guardioes Do Amor Maior",
+      "tipo": "despesa",
+      "categoria": "doacoes",
+      "valor": 300,
+      "saldo": 790.51,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-06",
+      "descricao": "PIX Envios Internacionais Express",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1200,
+      "saldo": 1990.51,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-06",
+      "descricao": "Pagamento BANCO CSF",
+      "tipo": "despesa",
+      "categoria": "cartoes",
+      "valor": 645.31,
+      "saldo": 1345.2,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-06",
+      "descricao": "Auto Posto Pucci II",
+      "tipo": "despesa",
+      "categoria": "combustivel",
+      "valor": 100,
+      "saldo": 1245.2,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-07",
+      "descricao": "BNI Brasil",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 300,
+      "saldo": 945.2,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-08",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 145.2,
+      "saldo": 800,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-10",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 235.2,
+      "saldo": 564.8,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-10",
+      "descricao": "Groove Franquias",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 46.8,
+      "saldo": 518,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-10",
+      "descricao": "Bueno 53 Estacionamento",
+      "tipo": "despesa",
+      "categoria": "combustivel",
+      "valor": 18,
+      "saldo": 500,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-11",
+      "descricao": "PIX 63624103 Aurelio De Sousa Julio",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 55,
+      "saldo": 445,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-11",
+      "descricao": "PIX Linq Telecom",
+      "tipo": "despesa",
+      "categoria": "infraestrutura",
+      "valor": 102.17,
+      "saldo": 342.83,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-13",
+      "descricao": "PIX Fernanda Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 500,
+      "saldo": -237.07,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-13",
+      "descricao": "Pagamento MEU OFFICE COWORKING",
+      "tipo": "despesa",
+      "categoria": "despesa-fixa",
+      "valor": 79.9,
+      "saldo": 262.93,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-13",
+      "descricao": "Pagamento ASSOCIACAO COMUNIDADE ATOS",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 1047.23,
+      "saldo": -1284.3,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-13",
+      "descricao": "Pagamento CARTOES CAIXA ELO",
+      "tipo": "despesa",
+      "categoria": "cartoes",
+      "valor": 794.78,
+      "saldo": -2079.08,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-13",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 842.83,
+      "saldo": -2921.91,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-13",
+      "descricao": "PIX R E E Envio De Encomendas",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 4500,
+      "saldo": -2921.91,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-14",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 278.09,
+      "saldo": 1300,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-15",
+      "descricao": "PIX Heloisa Torres Costa Silva",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1000,
+      "saldo": 2300,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-16",
+      "descricao": "PIX Iago Silva Brito De Oliveira",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 200,
+      "saldo": 2100,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-16",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 300,
+      "saldo": 1800,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-16",
+      "descricao": "PIX Raro Assessor De Investimentos",
+      "tipo": "receita",
+      "categoria": "investimentos",
+      "valor": 6300,
+      "saldo": 8100,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-16",
+      "descricao": "Pagamento Fatura - Studio Roncolato",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 700.72,
+      "saldo": 7399.28,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-17",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 300,
+      "saldo": 7099.28,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-17",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 799.28,
+      "saldo": 6300,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-20",
+      "descricao": "PIX Lucas Felipe Fernandes",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1817.5,
+      "saldo": 7817.5,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-20",
+      "descricao": "Boleto recebido 24h",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 6300,
+      "saldo": 14117.5,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-23",
+      "descricao": "Droganna",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 54.99,
+      "saldo": 14062.51,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-23",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 517.5,
+      "saldo": 13545.01,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-23",
+      "descricao": "PIX Iago Silva Brito De Oliveira",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 600,
+      "saldo": 12945.01,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-24",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 500,
+      "saldo": 12445.01,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-25",
+      "descricao": "PIX Semintervalo",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1971.16,
+      "saldo": 14416.17,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-25",
+      "descricao": "PIX Associacao Familia Santa",
+      "tipo": "despesa",
+      "categoria": "doacoes",
+      "valor": 280,
+      "saldo": 14136.17,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-25",
+      "descricao": "Aplicacao CDB DI Liq Banco Inter",
+      "tipo": "despesa",
+      "categoria": "investimentos",
+      "valor": 6300,
+      "saldo": 7836.17,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-27",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 500,
+      "saldo": 7336.17,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-28",
+      "descricao": "Pagamento PRO-SINDICO GO II",
+      "tipo": "despesa",
+      "categoria": "despesa-fixa",
+      "valor": 643.01,
+      "saldo": 6693.16,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-28",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 2205,
+      "saldo": 4488.16,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-28",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 3000,
+      "saldo": 1488.16,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-04-29",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 488.16,
+      "saldo": 1000,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-04",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 400,
+      "saldo": 600,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-04",
+      "descricao": "PIX Nu Pagamentos Sa",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 600,
+      "saldo": 0,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-04",
+      "descricao": "PIX Fernanda Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 800,
+      "saldo": -800,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-04",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 171.16,
+      "saldo": -971.16,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-05",
+      "descricao": "PIX Semintervalo Cursos E Treinamentos",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1971.16,
+      "saldo": 1000,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-05",
+      "descricao": "Pagamento Fatura - Rodrigo Goncalves",
+      "tipo": "despesa",
+      "categoria": "cartoes",
+      "valor": 600,
+      "saldo": 400,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-06",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 3600,
+      "saldo": 2000,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-08",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 191.42,
+      "saldo": 1808.58,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-08",
+      "descricao": "PIX BNI Brasil",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 300,
+      "saldo": 1508.58,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-08",
+      "descricao": "PIX Semintervalo Cursos E Treinamentos",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1971.16,
+      "saldo": 3479.74,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-08",
+      "descricao": "Pagamento Simples Nacional",
+      "tipo": "despesa",
+      "categoria": "impostos",
+      "valor": 479.74,
+      "saldo": 3000,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-09",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 500,
+      "saldo": 2500,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-10",
+      "descricao": "PIX Nic Br",
+      "tipo": "despesa",
+      "categoria": "infraestrutura",
+      "valor": 40,
+      "saldo": 2460,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-10",
+      "descricao": "PIX Nic Br",
+      "tipo": "despesa",
+      "categoria": "infraestrutura",
+      "valor": 40,
+      "saldo": 2420,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-11",
+      "descricao": "Pagamento BANCO CSF",
+      "tipo": "despesa",
+      "categoria": "cartoes",
+      "valor": 645.31,
+      "saldo": 1774.69,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-11",
+      "descricao": "Auto Posto Barreira",
+      "tipo": "despesa",
+      "categoria": "combustivel",
+      "valor": 100,
+      "saldo": 1674.69,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-11",
+      "descricao": "PIX 61699242 Allan Povoa Rodrigues",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 150,
+      "saldo": 1524.69,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-12",
+      "descricao": "MP Associacao Agua",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 115,
+      "saldo": 1409.69,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-12",
+      "descricao": "Valori Supermercado 2",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 12,
+      "saldo": 1397.69,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-12",
+      "descricao": "Emporium Dos Sonhos",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 51.18,
+      "saldo": 1346.51,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-12",
+      "descricao": "Buriti Bebidas",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 16.5,
+      "saldo": 1330.01,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-12",
+      "descricao": "Elizangela Souza Da Silva Lino",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 44,
+      "saldo": 1286.01,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-13",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 157.88,
+      "saldo": 1128.13,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-13",
+      "descricao": "59808530 Kelvin",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 28.13,
+      "saldo": 1100,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-13",
+      "descricao": "Posto Dakar Ltda",
+      "tipo": "despesa",
+      "categoria": "combustivel",
+      "valor": 100,
+      "saldo": 1000,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-14",
+      "descricao": "Pagamento Fatura - Rodrigo Goncalves",
+      "tipo": "despesa",
+      "categoria": "cartoes",
+      "valor": 355.13,
+      "saldo": 580.87,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-14",
+      "descricao": "Associacao Familia Sa",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 64,
+      "saldo": 936,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-15",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 280.87,
+      "saldo": 218.48,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-15",
+      "descricao": "PIX Meu Office Coworking",
+      "tipo": "despesa",
+      "categoria": "despesa-fixa",
+      "valor": 81.52,
+      "saldo": 499.35,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-16",
+      "descricao": "PIX A Casa Vibe",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 100,
+      "saldo": 118.48,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-19",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 95.78,
+      "saldo": 22.7,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-19",
+      "descricao": "Pao De Queijo N Sra",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 22.7,
+      "saldo": 0,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-20",
+      "descricao": "PIX Semintervalo Cursos E Treinamentos",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 3942.32,
+      "saldo": 3942.32,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-20",
+      "descricao": "PIX Victor Augusto Alvares Vieira",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 200,
+      "saldo": 3742.32,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-21",
+      "descricao": "Lider 3D Decor",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 90,
+      "saldo": 3652.32,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-21",
+      "descricao": "Lider 3D Decor",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 648.4,
+      "saldo": 3003.92,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-21",
+      "descricao": "Posto Aguia",
+      "tipo": "despesa",
+      "categoria": "combustivel",
+      "valor": 100,
+      "saldo": 2903.92,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-21",
+      "descricao": "PIX Fernanda Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 500,
+      "saldo": 2403.92,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-21",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 1000,
+      "saldo": 1403.92,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-21",
+      "descricao": "PIX Associacao Comunidade Atos",
+      "tipo": "despesa",
+      "categoria": "doacoes",
+      "valor": 35,
+      "saldo": 1368.92,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-22",
+      "descricao": "PIX Juvenildo Moreira Santos Junior",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1300,
+      "saldo": 2668.92,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-22",
+      "descricao": "PIX Heloisa Torres Costa Silva",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1000,
+      "saldo": 3668.92,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-22",
+      "descricao": "Pagamento Fatura - Rodrigo Goncalves",
+      "tipo": "despesa",
+      "categoria": "cartoes",
+      "valor": 368.92,
+      "saldo": 3300,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-23",
+      "descricao": "PIX Cappta",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 230,
+      "saldo": 3070,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-24",
+      "descricao": "Auto Posto Barreira",
+      "tipo": "despesa",
+      "categoria": "combustivel",
+      "valor": 100,
+      "saldo": 2970,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-25",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 212.84,
+      "saldo": 2757.16,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-25",
+      "descricao": "PIX Freelahub",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 59.9,
+      "saldo": 2697.26,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-25",
+      "descricao": "PIX Editora Azul Eireli",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 3813.33,
+      "saldo": 6510.59,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-25",
+      "descricao": "PIX Speakers",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1000,
+      "saldo": 7510.59,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-25",
+      "descricao": "Pagamento HDI SEGUROS",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 310.59,
+      "saldo": 7200,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-25",
+      "descricao": "PIX Fernanda Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 200,
+      "saldo": 7000,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-26",
+      "descricao": "PIX Guardioes Do Amor Maior",
+      "tipo": "despesa",
+      "categoria": "doacoes",
+      "valor": 30,
+      "saldo": 6970,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-26",
+      "descricao": "PIX Guardioes Do Amor Maior",
+      "tipo": "despesa",
+      "categoria": "doacoes",
+      "valor": 100,
+      "saldo": 6870,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-26",
+      "descricao": "PIX E Inscricao Tecnologia",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 200,
+      "saldo": 6670,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-26",
+      "descricao": "PIX 63624103 Aurelio De Sousa",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 95,
+      "saldo": 6575,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-26",
+      "descricao": "Aplicacao CDB DI Liq",
+      "tipo": "despesa",
+      "categoria": "investimentos",
+      "valor": 640,
+      "saldo": 5935,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-26",
+      "descricao": "PIX Mercado Pago",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 600,
+      "saldo": 5335,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-26",
+      "descricao": "PIX Mercado Pago",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 246.62,
+      "saldo": 5088.38,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-26",
+      "descricao": "PIX Samara Luzia Soares",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 38.54,
+      "saldo": 5049.84,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-26",
+      "descricao": "PIX Giovana Alves Barroso",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 300,
+      "saldo": 5349.84,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-26",
+      "descricao": "Posto Dumont",
+      "tipo": "despesa",
+      "categoria": "combustivel",
+      "valor": 100,
+      "saldo": 5249.84,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-26",
+      "descricao": "PIX Drogaria Opcao",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 500,
+      "saldo": 4749.84,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-26",
+      "descricao": "PIX Pagar Me Pagamentos",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 364,
+      "saldo": 4385.84,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-27",
+      "descricao": "PIX Semintervalo Cursos E Treinamentos",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1971.16,
+      "saldo": 6357,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-27",
+      "descricao": "Pagamento Fatura - Rodrigo Goncalves",
+      "tipo": "despesa",
+      "categoria": "cartoes",
+      "valor": 210.84,
+      "saldo": 6146.16,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-27",
+      "descricao": "Pagamento Fatura - Rodrigo Goncalves",
+      "tipo": "despesa",
+      "categoria": "cartoes",
+      "valor": 200,
+      "saldo": 5946.16,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-27",
+      "descricao": "PIX Tradio",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 170,
+      "saldo": 5776.16,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-27",
+      "descricao": "PIX Cappta",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 105,
+      "saldo": 5671.16,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-27",
+      "descricao": "PIX A Casa Vibe",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 100,
+      "saldo": 5571.16,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-27",
+      "descricao": "PIX Fernanda Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 2200,
+      "saldo": 3371.16,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-28",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 860,
+      "saldo": 2411.16,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-28",
+      "descricao": "Auto Posto Barreira",
+      "tipo": "despesa",
+      "categoria": "combustivel",
+      "valor": 100,
+      "saldo": 3271.16,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-28",
+      "descricao": "Aplicacao CDB DI Liq",
+      "tipo": "despesa",
+      "categoria": "investimentos",
+      "valor": 200,
+      "saldo": 2211.16,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-29",
+      "descricao": "Tarifa Saque",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 6.4,
+      "saldo": 2204.76,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-29",
+      "descricao": "SAQUE BANCO 24H",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 300,
+      "saldo": 1904.76,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-05-30",
+      "descricao": "PIX DM Instituicao De Pagamento",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 122.7,
+      "saldo": 1782.06,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-02",
+      "descricao": "PIX Starlink Brazil",
+      "tipo": "despesa",
+      "categoria": "infraestrutura",
+      "valor": 149,
+      "saldo": 1633.06,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-03",
+      "descricao": "Tal Tabocao Alimentos",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 44,
+      "saldo": 1589.06,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-03",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 133.06,
+      "saldo": 1456,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-03",
+      "descricao": "Romeiros 5 Ltda",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 100,
+      "saldo": 1356,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-07",
+      "descricao": "Auto Posto",
+      "tipo": "despesa",
+      "categoria": "combustivel",
+      "valor": 100,
+      "saldo": 1256,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-07",
+      "descricao": "PIX Adriana Remedi Macedo",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 103,
+      "saldo": 1153,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-09",
+      "descricao": "Compra no débito",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 12,
+      "saldo": 1141,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-09",
+      "descricao": "MP Associacao Agua",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 10,
+      "saldo": 1131,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-09",
+      "descricao": "MP Associacao Agua",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 85,
+      "saldo": 1046,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-09",
+      "descricao": "PIX Hubla",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 84,
+      "saldo": 962,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-09",
+      "descricao": "PIX Raro Assessor De Investimentos",
+      "tipo": "despesa",
+      "categoria": "investimentos",
+      "valor": 6300,
+      "saldo": -5338,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-09",
+      "descricao": "Resgate CDB DI Liq",
+      "tipo": "receita",
+      "categoria": "investimentos",
+      "valor": 6300,
+      "saldo": 962,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-09",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 53,
+      "saldo": 909,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-10",
+      "descricao": "Compra no débito",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 25,
+      "saldo": 884,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-10",
+      "descricao": "Compra no débito",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 3,
+      "saldo": 881,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-11",
+      "descricao": "PIX Associacao Familia Sa",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 24,
+      "saldo": 857,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-11",
+      "descricao": "PIX Associacao Familia Sa",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 98,
+      "saldo": 759,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-11",
+      "descricao": "Compra no débito",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 57.96,
+      "saldo": 589.04,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-11",
+      "descricao": "Rede De Festa",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 57.96,
+      "saldo": 589.04,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-11",
+      "descricao": "Auto Posto Barreira",
+      "tipo": "despesa",
+      "categoria": "combustivel",
+      "valor": 100,
+      "saldo": 489.04,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-11",
+      "descricao": "Buriti Bebidas",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 16.5,
+      "saldo": 472.54,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-11",
+      "descricao": "PIX Fernanda Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 112,
+      "saldo": 647,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-12",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 500,
+      "saldo": -57.46,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-12",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "receita",
+      "categoria": "saques-pessoais",
+      "valor": 500,
+      "saldo": 442.54,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-12",
+      "descricao": "Emporium Dos Sonhos",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 22.62,
+      "saldo": 419.92,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-12",
+      "descricao": "D D Moreira Comercio",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 13.25,
+      "saldo": 406.67,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-13",
+      "descricao": "Petromix",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 100,
+      "saldo": 306.67,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-13",
+      "descricao": "Churrascaria 10",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 159.04,
+      "saldo": 147.63,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-14",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 147,
+      "saldo": 0.63,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-18",
+      "descricao": "PIX Karla Valeria Cezario",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 97,
+      "saldo": -96.37,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-18",
+      "descricao": "Aplicacao CDB DI Liq",
+      "tipo": "despesa",
+      "categoria": "investimentos",
+      "valor": 190,
+      "saldo": -286.37,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-18",
+      "descricao": "PIX Campos Porto Sociedade",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1900,
+      "saldo": 1613.63,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-18",
+      "descricao": "PIX Semintervalo Cursos E Treinamentos",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1971.16,
+      "saldo": 3584.79,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-19",
+      "descricao": "PIX Hotmart",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 222.75,
+      "saldo": 3362.04,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-19",
+      "descricao": "MP Calixto",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 240,
+      "saldo": 3122.04,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-19",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 213.63,
+      "saldo": 2908.41,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-19",
+      "descricao": "PIX Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 800,
+      "saldo": 2108.41,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-20",
+      "descricao": "Compra no débito",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 50,
+      "saldo": 2058.41,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-20",
+      "descricao": "PIX Cappta",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 630,
+      "saldo": 1428.41,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-21",
+      "descricao": "Aplicacao CDB DI Liq",
+      "tipo": "despesa",
+      "categoria": "investimentos",
+      "valor": 190,
+      "saldo": 1238.41,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-21",
+      "descricao": "PIX Mercado Pago",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 243.42,
+      "saldo": 994.99,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-21",
+      "descricao": "Compra no débito",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 20,
+      "saldo": 974.99,
+      "banco": "inter"
+    },
+    {
+      "data": "2026-06-23",
+      "descricao": "Pagamento Total Fatura Em Atraso",
+      "tipo": "despesa",
+      "categoria": "cartoes",
+      "valor": 635.23,
+      "saldo": 339.76,
+      "banco": "inter"
+    }
+  ],
+  "metricas": {
+    "totalReceita": 55000.11,
+    "totalDespesa": 61788.31,
+    "saldoLiquido": -6788.2,
+    "margemLucro": -12.34,
+    "totalTransacoes": 167,
+    "totalReceitas": 23,
+    "totalDespesas": 144,
+    "despesasPorCategoria": {
+      "infraestrutura": 485.17,
+      "saques-pessoais": 29189.899999999998,
+      "despesa-operacional": 10890.550000000001,
+      "doacoes": 745,
+      "cartoes": 4455.52,
+      "combustivel": 918,
+      "despesa-fixa": 804.43,
+      "investimentos": 13820,
+      "impostos": 479.74
+    },
+    "receitasPorCategoria": {
+      "vendas": 41900.11000000001,
+      "investimentos": 12600,
+      "saques-pessoais": 500
+    }
+  },
+  "total": 167,
+  "processedAt": "2026-07-04T02:47:08.351Z"
+}

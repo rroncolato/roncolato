@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financeiro — Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Jost', system-ui, sans-serif;
+            background: #f5f5f7;
+            color: #1d1d1f;
+            min-height: 100vh;
+            padding: 40px 24px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* ━━━ HEADER ━━━ */
+        .header {
+            margin-bottom: 50px;
+        }
+
+        .title {
+            font-size: 56px;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            font-weight: 400;
+            color: #86868b;
+        }
+
+        /* ━━━ FILTROS ━━━ */
+        .filters-section {
+            margin-bottom: 40px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #86868b;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 1.5px solid #e5e5e7;
+            background: white;
+            color: #1d1d1f;
+            font-family: 'Jost', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: #1d1d1f;
+            background: #f5f5f7;
+        }
+
+        .filter-btn.active {
+            background: #1d1d1f;
+            color: white;
+            border-color: #1d1d1f;
+        }
+
+        /* ━━━ BANK TABS ━━━ */
+        .bank-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #e5e5e7;
+            padding-bottom: 0;
+        }
+
+        .bank-tab {
+            padding: 16px 24px;
+            border: none;
+            background: transparent;
+            font-family: 'Jost', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            color: #86868b;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bank-tab:hover {
+            color: #1d1d1f;
+        }
+
+        .bank-tab.active {
+            color: #1d1d1f;
+            border-bottom-color: #1d1d1f;
+        }
+
+        .bank-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .bank-dot.inter {
+            background: #FF6B35;
+        }
+
+        .bank-dot.itau {
+            background: #FF8C00;
+        }
+
+        .bank-dot.consolidado {
+            background: #1d1d1f;
+        }
+
+        /* ━━━ METRICS ROW ━━━ */
+        .metrics-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 50px;
+        }
+
+        .metric-card {
+            background: white;
+            border: 1px solid #e5e5e7;
+            padding: 24px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            border-color: #d2d2d7;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .metric-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .metric-icon {
+            font-size: 24px;
+            color: #1d1d1f;
+        }
+
+        .metric-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #86868b;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .metric-value {
+            font-size: 40px;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+
+        .metric-value.positive {
+            color: #34c759;
+        }
+
+        .metric-value.negative {
+            color: #ff3b30;
+        }
+
+        .metric-subtext {
+            font-size: 12px;
+            color: #86868b;
+        }
+
+        /* ━━━ CHARTS SECTION ━━━ */
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 28px;
+            margin-top: 60px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title .material-icons {
+            font-size: 28px;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 16px;
+            margin-bottom: 60px;
+        }
+
+        .chart-card {
+            background: white;
+            border: 1px solid #e5e5e7;
+            padding: 24px;
+            border-radius: 12px;
+        }
+
+        .chart-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        canvas {
+            max-height: 300px !important;
+        }
+
+        /* ━━━ KPI GRID ━━━ */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-bottom: 60px;
+        }
+
+        .kpi-card {
+            background: white;
+            border: 1px solid #e5e5e7;
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .kpi-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #86868b;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+        }
+
+        .kpi-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+        }
+
+        .kpi-unit {
+            font-size: 11px;
+            color: #86868b;
+            font-weight: 500;
+        }
+
+        /* ━━━ OPPORTUNITIES & RECOMMENDATIONS ━━━ */
+        .opp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 16px;
+            margin-bottom: 60px;
+        }
+
+        .opp-card {
+            background: white;
+            border-left: 4px solid #1d1d1f;
+            padding: 24px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .opp-card.alta {
+            border-left-color: #ff3b30;
+        }
+
+        .opp-card.media {
+            border-left-color: #ff9500;
+        }
+
+        .opp-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .opp-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .opp-badge.reducao {
+            background: rgba(255, 59, 48, 0.15);
+            color: #ff3b30;
+        }
+
+        .opp-badge.crescimento {
+            background: rgba(52, 199, 89, 0.15);
+            color: #34c759;
+        }
+
+        .opp-badge.eficiencia {
+            background: rgba(0, 122, 255, 0.15);
+            color: #007aff;
+        }
+
+        .opp-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1d1d1f;
+        }
+
+        .opp-desc {
+            font-size: 14px;
+            color: #86868b;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .opp-impact {
+            font-size: 13px;
+            font-weight: 600;
+            color: #34c759;
+        }
+
+        .rec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 16px;
+            margin-bottom: 60px;
+        }
+
+        .rec-card {
+            background: white;
+            border: 1px solid #e5e5e7;
+            padding: 24px;
+            border-radius: 12px;
+        }
+
+        .rec-header {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .rec-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1d1d1f;
+        }
+
+        .rec-desc {
+            font-size: 14px;
+            color: #86868b;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .rec-acao {
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 12px;
+            background: #f5f5f7;
+            border-radius: 6px;
+            color: #1d1d1f;
+        }
+
+        /* ━━━ TABLE ━━━ */
+        .table-card {
+            background: white;
+            border: 1px solid #e5e5e7;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 60px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th {
+            background: #f5f5f7;
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #e5e5e7;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #1d1d1f;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #e5e5e7;
+            color: #1d1d1f;
+        }
+
+        tr:hover {
+            background: #f5f5f7;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-receita {
+            background: rgba(52, 199, 89, 0.15);
+            color: #34c759;
+        }
+
+        .badge-despesa {
+            background: rgba(255, 59, 48, 0.15);
+            color: #ff3b30;
+        }
+
+        /* ━━━ LOADING ━━━ */
+        .loading {
+            text-align: center;
+            padding: 80px 40px;
+            color: #86868b;
+        }
+
+        .spinner {
+            border: 3px solid #e5e5e7;
+            border-top: 3px solid #1d1d1f;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ━━━ RESPONSIVE ━━━ */
+        @media (max-width: 1024px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .title {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 24px 16px;
+            }
+
+            .title {
+                font-size: 32px;
+            }
+
+            .metrics-row {
+                grid-template-columns: 1fr;
+            }
+
+            .metric-card {
+                padding: 16px;
+            }
+
+            .metric-value {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            th, td {
+                padding: 12px;
+                font-size: 13px;
+            }
+
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .opp-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .rec-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Financeiro</h1>
+            <p class="subtitle">Dashboard visual de fluxo de caixa e análise do CNPJ</p>
+        </div>
+
+        <!-- Filtros por Período -->
+        <div class="filters-section">
+            <span class="filter-label">Período:</span>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-period="mes">Mês Atual</button>
+                <button class="filter-btn" data-period="3meses">Últimos 3 Meses</button>
+                <button class="filter-btn" data-period="6meses">Últimos 6 Meses</button>
+                <button class="filter-btn" data-period="ano">Último Ano</button>
+            </div>
+        </div>
+
+        <!-- Abas de Bancos -->
+        <div class="bank-tabs">
+            <button class="bank-tab active" data-bank="consolidado">
+                <span class="bank-dot consolidado"></span>
+                Consolidado
+            </button>
+            <button class="bank-tab" data-bank="inter">
+                <span class="bank-dot inter"></span>
+                Inter
+            </button>
+            <button class="bank-tab" data-bank="itau">
+                <span class="bank-dot itau"></span>
+                Itaú
+            </button>
+        </div>
+
+        <!-- Métricas em Linha -->
+        <div class="metrics-row" id="metricsContainer">
+            <div class="loading">
+                <div class="spinner"></div>
+                Carregando dados...
+            </div>
+        </div>
+
+        <!-- Gráficos Principais -->
+        <h2 class="section-title">
+            <span class="material-icons">trending_up</span>
+            Análise Temporal
+        </h2>
+        <div class="charts-grid">
+            <div class="chart-card">
+                <div class="chart-title">
+                    <span class="material-icons" style="font-size: 20px; color: #34c759;">arrow_upward</span>
+                    Receitas
+                </div>
+                <canvas id="receitasChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <div class="chart-title">
+                    <span class="material-icons" style="font-size: 20px; color: #ff3b30;">arrow_downward</span>
+                    Despesas
+                </div>
+                <canvas id="despesasChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Distribuição -->
+        <h2 class="section-title">
+            <span class="material-icons">pie_chart</span>
+            Distribuição
+        </h2>
+        <div class="charts-grid">
+            <div class="chart-card">
+                <div class="chart-title">
+                    <span class="material-icons" style="font-size: 20px; color: #ff3b30;">local_pizza</span>
+                    Despesas por Categoria
+                </div>
+                <canvas id="despesasDistChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <div class="chart-title">
+                    <span class="material-icons" style="font-size: 20px; color: #34c759;">local_pizza</span>
+                    Receitas por Categoria
+                </div>
+                <canvas id="receitasDistChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Tendências -->
+        <h2 class="section-title">
+            <span class="material-icons">line_axis</span>
+            Tendências (Receitas vs Despesas)
+        </h2>
+        <div class="chart-card" style="margin-bottom: 60px;">
+            <canvas id="tendenciasChart" style="max-height: 350px !important;"></canvas>
+        </div>
+
+        <!-- ANÁLISE ESTRATÉGICA (COO) -->
+        <h2 class="section-title">
+            <span class="material-icons">intelligence</span>
+            Análise Estratégica (KPIs)
+        </h2>
+        <div class="kpi-grid" id="kpisContainer">
+            <div class="loading">
+                <div class="spinner"></div>
+                Carregando análise...
+            </div>
+        </div>
+
+        <!-- Oportunidades -->
+        <h2 class="section-title">
+            <span class="material-icons">lightbulb</span>
+            Oportunidades de Crescimento
+        </h2>
+        <div class="opp-grid" id="oportunidadesContainer">
+            <div class="loading">Carregando...</div>
+        </div>
+
+        <!-- Recomendações -->
+        <h2 class="section-title">
+            <span class="material-icons">assessment</span>
+            Recomendações
+        </h2>
+        <div class="rec-grid" id="recomendacoesContainer">
+            <div class="loading">Carregando...</div>
+        </div>
+
+        <!-- Análise por Categoria -->
+        <h2 class="section-title">
+            <span class="material-icons">category</span>
+            Análise por Categoria
+        </h2>
+        <div class="table-card">
+            <table id="categoriasTable">
+                <thead>
+                    <tr>
+                        <th>Categoria</th>
+                        <th>Receitas</th>
+                        <th>Despesas</th>
+                        <th>Saldo</th>
+                        <th>%</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="5" style="text-align: center;">Carregando...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Transações -->
+        <h2 class="section-title">
+            <span class="material-icons">receipt_long</span>
+            Transações Recentes
+        </h2>
+        <div class="table-card">
+            <table id="transacoesTable">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Descrição</th>
+                        <th>Tipo</th>
+                        <th>Categoria</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="5" style="text-align: center;">Carregando...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/api/financeiro';
+        let receitasChart, despesasChart, despesasDistChart, receitasDistChart, tendenciasChart;
+        let allData = null;
+        let currentPeriod = 'mes';
+        let currentBank = 'consolidado';
+
+        // Setup period filters
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                currentPeriod = e.target.dataset.period;
+                filterAndRender();
+            });
+        });
+
+        // Setup bank tabs
+        document.querySelectorAll('.bank-tab').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.bank-tab').forEach(b => b.classList.remove('active'));
+                e.target.closest('.bank-tab').classList.add('active');
+                currentBank = e.target.closest('.bank-tab').dataset.bank;
+                filterAndRender();
+            });
+        });
+
+        async function carregarDados() {
+            try {
+                const [res, analiseRes] = await Promise.all([
+                    fetch(`${API_URL}/dashboard`),
+                    fetch(`${API_URL}/analise-estrategica`)
+                ]);
+
+                const data = await res.json();
+                const analiseData = await analiseRes.json();
+
+                if (data.status === 'sucesso') {
+                    allData = { ...data, analiseEstrategica: analiseData };
+                    filterAndRender();
+                } else {
+                    erro('Sem dados. Adicione extratos em /data/extratos/');
+                }
+            } catch (e) {
+                erro(e.message);
+            }
+        }
+
+        function filterDataByPeriod(data) {
+            if (!data || !data.transacoes) return data;
+
+            const today = new Date();
+            let startDate = new Date();
+
+            switch (currentPeriod) {
+                case 'mes':
+                    startDate = new Date(today.getFullYear(), today.getMonth(), 1);
+                    break;
+                case '3meses':
+                    startDate.setMonth(today.getMonth() - 3);
+                    break;
+                case '6meses':
+                    startDate.setMonth(today.getMonth() - 6);
+                    break;
+                case 'ano':
+                    startDate = new Date(today.getFullYear(), 0, 1);
+                    break;
+            }
+
+            const filtered = {
+                ...data,
+                transacoes: data.transacoes.filter(t => new Date(t.data) >= startDate),
+                graficoReceitas: filterChartData(data.graficoReceitas, startDate),
+                graficoDespesas: filterChartData(data.graficoDespesas, startDate),
+            };
+
+            const receitas = filtered.transacoes.filter(t => t.tipo === 'receita').reduce((s, t) => s + t.valor, 0);
+            const despesas = filtered.transacoes.filter(t => t.tipo === 'despesa').reduce((s, t) => s + t.valor, 0);
+
+            filtered.metricas = {
+                ...filtered.metricas,
+                totalReceita: receitas,
+                totalDespesa: despesas,
+                saldoLiquido: receitas - despesas,
+                margemLucro: receitas > 0 ? (receitas - despesas) / receitas * 100 : 0,
+            };
+
+            return filtered;
+        }
+
+        function filterChartData(data, startDate) {
+            return data.filter(d => new Date(d.mes + '-01') >= startDate);
+        }
+
+        function filterDataByBank(data) {
+            if (currentBank === 'consolidado') return data;
+
+            const filtered = {
+                ...data,
+                transacoes: data.transacoes.filter(t => t.banco === currentBank),
+            };
+
+            const receitas = filtered.transacoes.filter(t => t.tipo === 'receita').reduce((s, t) => s + t.valor, 0);
+            const despesas = filtered.transacoes.filter(t => t.tipo === 'despesa').reduce((s, t) => s + t.valor, 0);
+
+            filtered.metricas = {
+                ...filtered.metricas,
+                totalReceita: receitas,
+                totalDespesa: despesas,
+                saldoLiquido: receitas - despesas,
+                margemLucro: receitas > 0 ? (receitas - despesas) / receitas * 100 : 0,
+            };
+
+            return filtered;
+        }
+
+        function filterAndRender() {
+            if (!allData) return;
+
+            let filtered = filterDataByPeriod(allData);
+            filtered = filterDataByBank(filtered);
+
+            renderMetricas(filtered);
+            renderGraficos(filtered);
+            renderDistribuicao(filtered);
+            renderTendencias(filtered);
+            renderKPIs(allData.analiseEstrategica);
+            renderOportunidades(allData.analiseEstrategica.oportunidades);
+            renderRecomendacoes(allData.analiseEstrategica.recomendacoes);
+            renderCategorias(filtered.analiseCategoria);
+            renderTransacoes(filtered.transacoes.slice(0, 30));
+        }
+
+        function renderMetricas(d) {
+            const m = d.metricas;
+            const html = `
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-icon material-icons">trending_up</span>
+                        <span class="metric-label">Receitas</span>
+                    </div>
+                    <div class="metric-value positive">R$ ${fmt(m.totalReceita)}</div>
+                    <div class="metric-subtext">${d.transacoes.filter(t => t.tipo === 'receita').length} transações</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-icon material-icons">trending_down</span>
+                        <span class="metric-label">Despesas</span>
+                    </div>
+                    <div class="metric-value negative">R$ ${fmt(m.totalDespesa)}</div>
+                    <div class="metric-subtext">${d.transacoes.filter(t => t.tipo === 'despesa').length} transações</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-icon material-icons">account_balance_wallet</span>
+                        <span class="metric-label">Saldo Líquido</span>
+                    </div>
+                    <div class="metric-value ${m.saldoLiquido >= 0 ? 'positive' : 'negative'}">R$ ${fmt(m.saldoLiquido)}</div>
+                    <div class="metric-subtext">${m.saldoLiquido >= 0 ? '✓ Positivo' : '✗ Negativo'}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-icon material-icons">insights</span>
+                        <span class="metric-label">Margem</span>
+                    </div>
+                    <div class="metric-value ${m.margemLucro >= 0 ? 'positive' : 'negative'}">${m.margemLucro.toFixed(1)}%</div>
+                    <div class="metric-subtext">Meta: +25%</div>
+                </div>
+            `;
+            document.getElementById('metricsContainer').innerHTML = html;
+        }
+
+        function renderGraficos(d) {
+            const opts = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, ticks: { color: '#86868b' }, grid: { color: '#e5e5e7' } },
+                    x: { ticks: { color: '#86868b' }, grid: { display: false } }
+                }
+            };
+
+            // Destruir gráficos antigos
+            if (receitasChart) {
+                receitasChart.destroy();
+                receitasChart = null;
+            }
+            if (despesasChart) {
+                despesasChart.destroy();
+                despesasChart = null;
+            }
+
+            // Recriar gráficos
+            receitasChart = new Chart(document.getElementById('receitasChart'), {
+                type: 'bar',
+                data: {
+                    labels: d.graficoReceitas.map(r => r.mes),
+                    datasets: [{
+                        data: d.graficoReceitas.map(r => r.valor),
+                        backgroundColor: '#34c759',
+                        borderRadius: 6,
+                        borderWidth: 0
+                    }]
+                },
+                options: opts
+            });
+
+            despesasChart = new Chart(document.getElementById('despesasChart'), {
+                type: 'bar',
+                data: {
+                    labels: d.graficoDespesas.map(x => x.mes),
+                    datasets: [{
+                        data: d.graficoDespesas.map(x => x.valor),
+                        backgroundColor: '#ff3b30',
+                        borderRadius: 6,
+                        borderWidth: 0
+                    }]
+                },
+                options: opts
+            });
+        }
+
+        function renderDistribuicao(d) {
+            const despesasData = d.analiseCategoria.filter(c => c.despesas > 0).slice(0, 8);
+            const receitasData = d.analiseCategoria.filter(c => c.receitas > 0).slice(0, 8);
+
+            const despesasTotal = despesasData.reduce((s, c) => s + c.despesas, 0);
+            const receitasTotal = receitasData.reduce((s, c) => s + c.receitas, 0);
+
+            const pieOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { font: { family: "'Jost', sans-serif", size: 12 }, padding: 16, color: '#1d1d1f' } }
+                }
+            };
+
+            // Destruir gráficos antigos e recriar
+            if (despesasDistChart) {
+                despesasDistChart.destroy();
+                despesasDistChart = null;
+            }
+            if (receitasDistChart) {
+                receitasDistChart.destroy();
+                receitasDistChart = null;
+            }
+
+            despesasDistChart = new Chart(document.getElementById('despesasDistChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: despesasData.map(c => c.categoria),
+                    datasets: [{
+                        data: despesasData.map(c => (c.despesas / despesasTotal * 100).toFixed(1)),
+                        backgroundColor: ['#ff3b30', '#ff9500', '#ffcc00', '#34c759', '#00b0ff', '#0084ff', '#5856d6', '#af52de'],
+                        borderColor: '#ffffff',
+                        borderWidth: 2
+                    }]
+                },
+                options: pieOptions
+            });
+
+            receitasDistChart = new Chart(document.getElementById('receitasDistChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: receitasData.map(c => c.categoria),
+                    datasets: [{
+                        data: receitasData.map(c => (c.receitas / receitasTotal * 100).toFixed(1)),
+                        backgroundColor: ['#34c759', '#00b0ff', '#0084ff', '#5856d6', '#af52de', '#ff3b30', '#ff9500', '#ffcc00'],
+                        borderColor: '#ffffff',
+                        borderWidth: 2
+                    }]
+                },
+                options: pieOptions
+            });
+        }
+
+        function renderTendencias(d) {
+            const tendencias = [];
+            const porMes = {};
+
+            d.transacoes.forEach(t => {
+                const mes = t.data.substring(0, 7);
+                if (!porMes[mes]) {
+                    porMes[mes] = { receitas: 0, despesas: 0 };
+                }
+                if (t.tipo === 'receita') {
+                    porMes[mes].receitas += t.valor;
+                } else {
+                    porMes[mes].despesas += t.valor;
+                }
+            });
+
+            Object.entries(porMes)
+                .sort(([a], [b]) => a.localeCompare(b))
+                .forEach(([mes, dados]) => {
+                    tendencias.push({ mes, receitas: dados.receitas, despesas: dados.despesas });
+                });
+
+            // Destruir gráfico antigo e recriar
+            if (tendenciasChart) {
+                tendenciasChart.destroy();
+                tendenciasChart = null;
+            }
+
+            tendenciasChart = new Chart(document.getElementById('tendenciasChart'), {
+                type: 'line',
+                data: {
+                    labels: tendencias.map(t => t.mes),
+                    datasets: [
+                        {
+                            label: 'Receitas',
+                            data: tendencias.map(t => t.receitas),
+                            borderColor: '#34c759',
+                            backgroundColor: 'rgba(52, 199, 89, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 4,
+                            pointBackgroundColor: '#34c759',
+                            pointBorderColor: '#ffffff',
+                            pointBorderWidth: 2
+                        },
+                        {
+                            label: 'Despesas',
+                            data: tendencias.map(t => t.despesas),
+                            borderColor: '#ff3b30',
+                            backgroundColor: 'rgba(255, 59, 48, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 4,
+                            pointBackgroundColor: '#ff3b30',
+                            pointBorderColor: '#ffffff',
+                            pointBorderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: { family: "'Jost', sans-serif", size: 13, weight: 600 },
+                                padding: 16,
+                                color: '#1d1d1f',
+                                usePointStyle: true
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { color: '#86868b' },
+                            grid: { color: '#e5e5e7' }
+                        },
+                        x: {
+                            ticks: { color: '#86868b' },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderKPIs(analise) {
+            if (!analise || !analise.kpis) {
+                document.getElementById('kpisContainer').innerHTML = '<div class="loading">Sem dados de KPI</div>';
+                return;
+            }
+
+            const kpis = analise.kpis;
+            const html = `
+                <div class="kpi-card">
+                    <div class="kpi-label">Margem de Lucro</div>
+                    <div class="kpi-value" style="color: ${kpis.margemLucro >= 20 ? '#34c759' : '#ff3b30'}">${kpis.margemLucro.toFixed(1)}%</div>
+                    <div class="kpi-unit">% do faturamento</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">ROA (Retorno sobre Ativos)</div>
+                    <div class="kpi-value">${kpis.roa.toFixed(1)}%</div>
+                    <div class="kpi-unit">Eficiência dos ativos</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Custo Médio</div>
+                    <div class="kpi-value">R$ ${fmt(kpis.custoMedio)}</div>
+                    <div class="kpi-unit">Por despesa</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Receita Média</div>
+                    <div class="kpi-value">R$ ${fmt(kpis.receitaMedia)}</div>
+                    <div class="kpi-unit">Por transação</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Velocidade Faturamento</div>
+                    <div class="kpi-value">R$ ${fmt(kpis.velocidadeFaturamento)}</div>
+                    <div class="kpi-unit">Por dia</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Índice de Eficiência</div>
+                    <div class="kpi-value" style="color: ${kpis.indiceEficiencia >= 2 ? '#34c759' : '#ff9500'}">${kpis.indiceEficiencia.toFixed(2)}x</div>
+                    <div class="kpi-unit">Receita/Despesa</div>
+                </div>
+            `;
+            document.getElementById('kpisContainer').innerHTML = html;
+        }
+
+        function renderOportunidades(opps) {
+            if (!opps || opps.length === 0) {
+                document.getElementById('oportunidadesContainer').innerHTML = '<div class="loading">Sem oportunidades detectadas</div>';
+                return;
+            }
+
+            const html = opps.map(opp => `
+                <div class="opp-card ${opp.prioridade}">
+                    <div class="opp-badge ${opp.tipo}">${opp.tipo}</div>
+                    <div class="opp-title">${opp.titulo}</div>
+                    <div class="opp-desc">${opp.descricao}</div>
+                    <div class="opp-impact">💰 Impacto: R$ ${fmt(opp.impacto)}</div>
+                </div>
+            `).join('');
+            document.getElementById('oportunidadesContainer').innerHTML = html;
+        }
+
+        function renderRecomendacoes(recs) {
+            if (!recs || recs.length === 0) {
+                document.getElementById('recomendacoesContainer').innerHTML = '<div class="loading">Sem recomendações</div>';
+                return;
+            }
+
+            const html = recs.map(rec => `
+                <div class="rec-card">
+                    <div class="rec-header">${rec.icone}</div>
+                    <div class="rec-title">${rec.titulo}</div>
+                    <div class="rec-desc">${rec.descricao}</div>
+                    <div class="rec-acao">→ ${rec.acao}</div>
+                </div>
+            `).join('');
+            document.getElementById('recomendacoesContainer').innerHTML = html;
+        }
+
+        function renderCategorias(cats) {
+            const html = cats.slice(0, 10).map(c => `
+                <tr>
+                    <td><strong>${c.categoria}</strong></td>
+                    <td>R$ ${fmt(c.receitas)}</td>
+                    <td>R$ ${fmt(c.despesas)}</td>
+                    <td style="color: ${c.saldo >= 0 ? '#34c759' : '#ff3b30'}"><strong>R$ ${fmt(c.saldo)}</strong></td>
+                    <td>${((Math.abs(c.saldo) / (Math.abs(c.receitas) + Math.abs(c.despesas)) * 100) || 0).toFixed(0)}%</td>
+                </tr>
+            `).join('');
+            document.querySelector('#categoriasTable tbody').innerHTML = html;
+        }
+
+        function renderTransacoes(txns) {
+            const html = txns.map(t => `
+                <tr>
+                    <td>${t.data}</td>
+                    <td>${t.descricao.substring(0, 50)}</td>
+                    <td><span class="badge badge-${t.tipo}">${t.tipo}</span></td>
+                    <td>${t.categoria}</td>
+                    <td style="color: ${t.tipo === 'receita' ? '#34c759' : '#ff3b30'}"><strong>R$ ${fmt(t.valor)}</strong></td>
+                </tr>
+            `).join('');
+            document.querySelector('#transacoesTable tbody').innerHTML = html;
+        }
+
+        function fmt(v) {
+            return Math.abs(v).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+
+        function erro(msg) {
+            document.getElementById('metricsContainer').innerHTML = `<div style="grid-column: 1/-1; color: #ff3b30; padding: 40px; text-align: center;">${msg}</div>`;
+        }
+
+        carregarDados();
+    </script>
+</body>
+</html>

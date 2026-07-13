@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/assets/IMG/rr-simbolo-white.png">`n    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotografia Corporativa — Roncolato Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --yellow: #F5C518;
+            --black: #0C0C0C;
+            --black-2: #141414;
+            --black-3: #1C1C1C;
+            --white: #FFFFFF;
+            --gray: #7A7A7A;
+            --gray-2: #3A3A3A;
+            --border: rgba(255,255,255,0.07);
+            --border-y: rgba(245,197,24,0.25);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; background: var(--black); }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: 'Jost', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── HERO ─────────────────────────────── */
+        .hero {
+            position: relative;
+            height: 100svh;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            will-change: transform;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 110%;
+            object-fit: cover;
+            object-position: center 20%;
+            display: block;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                160deg,
+                rgba(12,12,12,0.82) 0%,
+                rgba(12,12,12,0.45) 45%,
+                rgba(12,12,12,0.9) 100%
+            );
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 80px 80px;
+            pointer-events: none;
+        }
+
+        .hero-nav {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px;
+        }
+
+        .hero-nav img { height: 28px; width: auto; }
+
+        .hero-nav-tag {
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            font-weight: 600;
+        }
+
+        .hero-body {
+            position: relative;
+            z-index: 10;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 0 24px 52px;
+            text-align: right;
+        }
+
+        .hero-body-inner {
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .hero-body-inner {
+                max-width: 62%;
+                padding-right: 6%;
+            }
+        }
+
+        .hero-sub { margin-left: auto; }
+
+        .hero-label {
+            font-size: 9px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 700;
+            margin-bottom: 18px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease 0.2s forwards;
+        }
+
+        .hero-title {
+            font-size: clamp(52px, 13vw, 120px);
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -3px;
+            margin-bottom: 28px;
+        }
+
+        .hero-title .word {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
+        }
+
+        .hero-title .word-inner {
+            display: block;
+            transform: translateY(110%);
+            animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hero-title em { font-style: italic; color: var(--yellow); }
+
+        .hero-title .word:nth-child(1) .word-inner { animation-delay: 0.3s; }
+        .hero-title .word:nth-child(2) .word-inner { animation-delay: 0.42s; }
+        .hero-title .word:nth-child(3) .word-inner { animation-delay: 0.54s; }
+        .hero-title .word:nth-child(4) .word-inner { animation-delay: 0.66s; }
+
+        .hero-sub {
+            font-size: clamp(14px, 2vw, 17px);
+            color: rgba(255,255,255,0.6);
+            max-width: 500px;
+            line-height: 1.7;
+            opacity: 0;
+            animation: fadeUp 0.7s ease 0.8s forwards;
+        }
+
+        .hero-scroll-indicator {
+            position: absolute;
+            bottom: 28px;
+            right: 24px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease 1.2s forwards;
+        }
+
+        .hero-scroll-line {
+            width: 1px;
+            height: 52px;
+            background: linear-gradient(to bottom, var(--yellow), transparent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .hero-scroll-text {
+            font-size: 8px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.25);
+            writing-mode: vertical-rl;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scaleY(1); }
+            50% { opacity: 0.3; transform: scaleY(0.5); }
+        }
+
+        @keyframes slideUp {
+            to { transform: translateY(0); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ─── LAYOUT ─────────────────────────── */
+        .section {
+            padding: 80px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--border);
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .s-label {
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .s-title {
+            font-size: clamp(32px, 6vw, 64px);
+            font-weight: 900;
+            line-height: 1.0;
+            letter-spacing: -1.5px;
+            margin-bottom: 36px;
+        }
+
+        .s-title em { font-style: italic; color: var(--yellow); }
+
+        .s-text {
+            font-size: 16px;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            max-width: 660px;
+        }
+
+        .s-text strong { color: var(--white); font-weight: 600; }
+
+        /* ─── REVEAL ─────────────────────────── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── PARA QUEM ──────────────────────── */
+        .pq-list { margin-top: 40px; }
+
+        .pq-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            padding: 22px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pq-item:last-child { border-bottom: none; }
+
+        .pq-num {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--yellow);
+            letter-spacing: 2px;
+            min-width: 28px;
+            padding-top: 2px;
+        }
+
+        .pq-name { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 3px; }
+        .pq-desc { font-size: 16px; color: var(--gray); line-height: 1.6; }
+
+        /* ─── GALERIA MASONRY ─────────────────── */
+        .gallery-masonry {
+            columns: 2;
+            column-gap: 6px;
+            margin-top: 48px;
+        }
+
+        .gm-item {
+            break-inside: avoid;
+            margin-bottom: 6px;
+            overflow: hidden;
+        }
+
+        .gm-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(15%);
+            transition: transform 0.7s cubic-bezier(0.16,1,0.3,1), filter 0.4s ease;
+        }
+
+        .gm-item:hover img {
+            transform: scale(1.06);
+            filter: grayscale(0%);
+        }
+
+        /* ─── PROCESSO ───────────────────────── */
+        .processo-item {
+            display: flex;
+            gap: 24px;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            align-items: flex-start;
+        }
+
+        .processo-item:last-child { border-bottom: none; }
+
+        .processo-num {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--yellow);
+            letter-spacing: 2px;
+            min-width: 28px;
+            padding-top: 3px;
+        }
+
+        .processo-title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+        .processo-desc { font-size: 16px; color: var(--gray); line-height: 1.6; }
+
+        /* ─── PACOTES ─────────────────────────── */
+        .pacotes-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2px;
+            margin-top: 48px;
+        }
+
+        .pacote-card {
+            background: var(--black-2);
+            border: 1px solid var(--border);
+            padding: 32px 28px;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .pacote-card:hover { border-color: rgba(245,197,24,0.3); transform: translateY(-3px); }
+
+        .pacote-card.destaque {
+            background: rgba(245,197,24,0.04);
+            border-color: var(--border-y);
+        }
+
+        .pacote-badge {
+            display: inline-block;
+            background: var(--yellow);
+            color: var(--black);
+            padding: 4px 12px;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .pacote-num { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gray); font-weight: 600; margin-bottom: 6px; }
+        .pacote-name { font-size: 18px; font-weight: 900; color: var(--white); letter-spacing: -0.5px; margin-bottom: 6px; }
+        .pacote-tagline { font-size: 16px; color: var(--gray); margin-bottom: 24px; line-height: 1.5; }
+
+        .pacote-itens {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .pacote-itens li {
+            font-size: 16px;
+            color: var(--gray);
+            padding-left: 18px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .pacote-itens li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--yellow);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .pacote-preco-area {
+            padding-top: 22px;
+            border-top: 1px solid var(--border);
+        }
+
+        .destaque .pacote-preco-area { border-top-color: var(--border-y); }
+
+        .pacote-preco-val {
+            font-size: 34px;
+            font-weight: 900;
+            color: var(--yellow);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .pacote-preco-val.consulta { font-size: 20px; color: var(--white); }
+        .pacote-preco-detail { font-size: 11px; color: var(--gray); line-height: 1.6; margin-bottom: 18px; }
+
+        /* BTN */
+        .btn {
+            display: block;
+            padding: 13px 20px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--white);
+            font-family: 'Jost', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--yellow);
+            transform: translateX(-101%);
+            transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+            z-index: 0;
+        }
+
+        .btn span { position: relative; z-index: 1; }
+
+        .btn:hover { border-color: var(--yellow); color: var(--black); }
+        .btn:hover::after { transform: translateX(0); }
+
+        .btn-yellow { background: var(--yellow); color: var(--black); border-color: var(--yellow); }
+        .btn-yellow::after { background: rgba(255,255,255,0.15); }
+        .btn-yellow:hover { opacity: 1; color: var(--black); }
+        .btn-yellow span { color: var(--black); }
+
+        /* NOTA DUO */
+        .nota-duo {
+            margin-top: 28px;
+            padding: 18px 22px;
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--yellow);
+        }
+
+        .nota-duo p { font-size: 12px; color: var(--gray); line-height: 1.7; }
+        .nota-duo strong { color: var(--white); }
+
+        /* ─── BENTO QUEM SOU ─────────────────── */
+        /* Mobile: 1 col stack */
+        .bento {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 6px;
+            margin-top: 48px;
+        }
+
+        .bento-card {
+            background: var(--black-2);
+            border: 1px solid var(--border);
+            padding: 28px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 180px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+
+        .bento-card:hover { border-color: rgba(245,197,24,0.2); }
+
+        .bento-eyebrow {
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gray);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .bento-stat-wrap { display: flex; align-items: flex-start; }
+
+        .bento-stat-prefix {
+            font-size: clamp(28px, 7vw, 44px);
+            font-weight: 900;
+            color: var(--yellow);
+            line-height: 0.9;
+            margin-top: 6px;
+        }
+
+        .bento-stat {
+            font-size: clamp(68px, 16vw, 96px);
+            font-weight: 900;
+            color: var(--yellow);
+            line-height: 0.85;
+            letter-spacing: -3px;
+        }
+
+        .bento-stat-label {
+            font-size: 12px;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-top: 14px;
+        }
+
+        .bento-icon {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 18px;
+            opacity: 0.15;
+        }
+
+        /* CARD FOTO */
+        .bento-nome {
+            padding: 0;
+            min-height: 320px;
+        }
+
+        .bento-nome img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
+        }
+
+        .bento-nome:hover img { transform: scale(1.05); }
+
+        .bento-nome-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(12,12,12,0.96) 0%, rgba(12,12,12,0.15) 55%, transparent 100%);
+        }
+
+        .bento-nome-content {
+            position: relative;
+            z-index: 2;
+            padding: 22px;
+            margin-top: auto;
+        }
+
+        .bento-nome-title {
+            font-size: clamp(22px, 5vw, 34px);
+            font-weight: 900;
+            color: var(--white);
+            letter-spacing: -0.5px;
+            line-height: 1.05;
+            margin-bottom: 6px;
+        }
+
+        .bento-nome-sub {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 600;
+        }
+
+        .bento-cta {
+            background: rgba(245,197,24,0.05);
+            border-color: var(--border-y);
+        }
+
+        .bento-cta-title {
+            font-size: clamp(17px, 3vw, 22px);
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.3;
+            margin-bottom: 24px;
+        }
+
+        .bento-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--yellow);
+            text-decoration: none;
+            transition: gap 0.2s ease;
+        }
+
+        .bento-link:hover { gap: 16px; }
+
+        .bento-text-body { font-size: 14px; color: var(--gray); line-height: 1.8; }
+        .bento-text-body strong { color: var(--white); }
+
+
+        /* ─── CTA ────────────────────────────── */
+        .cta-box {
+            position: relative;
+            background: var(--black-2);
+            border: 1px solid var(--border);
+            padding: 80px 24px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('../assets/IMG/imagem-box-camera.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.18;
+            z-index: 0;
+        }
+
+        .cta-box::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(12,12,12,0.75) 0%, rgba(12,12,12,0.55) 100%);
+            z-index: 1;
+        }
+
+        .cta-box > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-box h2 {
+            font-size: clamp(28px, 6vw, 56px);
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            line-height: 1.05;
+            margin-bottom: 14px;
+        }
+
+        .cta-box p { font-size: 15px; color: var(--gray); line-height: 1.7; margin-bottom: 32px; }
+
+        .cta-btns {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btns .btn { width: auto; padding: 13px 28px; }
+
+        /* ─── FOOTER ─────────────────────────── */
+        footer {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            padding: 48px 24px;
+            border-top: 1px solid var(--border);
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        footer h3 { font-size: 12px; font-weight: 700; margin-bottom: 10px; }
+        footer p { font-size: 12px; color: var(--gray); line-height: 1.8; }
+        footer a { color: var(--gray); text-decoration: none; }
+        footer a:hover { color: var(--yellow); }
+
+        /* ─── TABLET ──────────────────────────── */
+        @media (min-width: 768px) {
+            .hero-nav { padding: 28px 48px; }
+            .hero-nav img { height: 34px; }
+            .hero-body { padding: 0 48px 64px; }
+            .section { padding: 100px 48px; }
+            .gallery-masonry { columns: 3; column-gap: 8px; }
+            .pacotes-grid { grid-template-columns: repeat(2, 1fr); }
+            .bento { grid-template-columns: repeat(6, 1fr); }
+            .bento-row1 { grid-column: span 2; }
+            .bento-nome  { grid-column: span 2; min-height: 468px; }
+            .bento-text-card { grid-column: span 4; }
+            .bento-cta  { grid-column: span 2; }
+            footer { grid-template-columns: repeat(2, 1fr); padding: 64px 48px; }
+        }
+
+        /* ─── DESKTOP ─────────────────────────── */
+        @media (min-width: 1024px) {
+            .hero-nav { padding: 32px 72px; }
+            .hero-nav img { height: 38px; }
+            .hero-body { padding: 0 72px 72px; }
+            .hero-scroll-indicator { right: 40px; }
+            .section { padding: 120px 72px; }
+            .gallery-masonry { columns: 4; column-gap: 8px; }
+            .pacotes-grid { grid-template-columns: repeat(4, 1fr); }
+            .bento { grid-template-columns: repeat(6, 1fr); }
+            .bento-row1 { grid-column: span 2; }
+            .bento-nome  { grid-column: span 2; min-height: 520px; }
+            .bento-text-card { grid-column: span 4; }
+            .bento-cta  { grid-column: span 2; }
+            footer { grid-template-columns: repeat(3, 1fr); padding: 80px 72px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ─── HERO ─────────────────────────────────── -->
+<section class="hero">
+    <div class="hero-bg" id="heroBg">
+        <picture>
+            <source media="(min-width: 768px)" srcset="../assets/IMG/hero-desk-pagfotos-venda.png">
+            <img src="../assets/IMG/hero-mob-pagfotos-venda.jpg" alt="" aria-hidden="true">
+        </picture>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-grid"></div>
+
+    <nav class="hero-nav">
+        <img src="./roncolato-branco-horizontal.png" alt="Roncolato Studio" onerror="this.src='/assets/IMG/roncolato-branco-horizontal.png'">
+        <span class="hero-nav-tag">Fotografia Corporativa</span>
+    </nav>
+
+    <div class="hero-body">
+        <div class="hero-body-inner">
+            <span class="hero-label">Roncolato Studio — 2026</span>
+            <h1 class="hero-title" aria-label="Sua imagem fala antes de você.">
+                <span class="word"><span class="word-inner">Sua</span></span>&nbsp;<span class="word"><span class="word-inner">imagem</span></span><br>
+                <span class="word"><span class="word-inner">fala antes</span></span><br>
+                <span class="word"><span class="word-inner">de <em>você.</em></span></span>
+            </h1>
+            <p class="hero-sub">Fotografia corporativa com direção criativa e estratégia de marca. Para profissionais que entendem que autoridade se vê antes de se ouvir.</p>
+        </div>
+    </div>
+
+    <div class="hero-scroll-indicator">
+        <div class="hero-scroll-line"></div>
+        <span class="hero-scroll-text">scroll</span>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── PARA QUEM ─────────────────────────────── -->
+<section class="section">
+    <div class="s-label reveal">Para quem é</div>
+    <h2 class="s-title reveal">Feito para quem carrega<br>um nome que <em>representa valor.</em></h2>
+
+    <div class="pq-list">
+        <div class="pq-item reveal">
+            <span class="pq-num">01</span>
+            <div>
+                <div class="pq-name">Empresários e mentores</div>
+                <div class="pq-desc">Que querem elevar a percepção da própria marca no digital e nas reuniões.</div>
+            </div>
+        </div>
+        <div class="pq-item reveal">
+            <span class="pq-num">02</span>
+            <div>
+                <div class="pq-name">Profissionais liberais</div>
+                <div class="pq-desc">Que cansaram de parecer amadores no digital enquanto entregam resultados de alto nível.</div>
+            </div>
+        </div>
+        <div class="pq-item reveal">
+            <span class="pq-num">03</span>
+            <div>
+                <div class="pq-name">Marcas pessoais em construção</div>
+                <div class="pq-desc">Que querem fotos que vendem, convencem e posicionam — sem precisar explicar.</div>
+            </div>
+        </div>
+        <div class="pq-item reveal">
+            <span class="pq-num">04</span>
+            <div>
+                <div class="pq-name">Times e empresas</div>
+                <div class="pq-desc">Que precisam de identidade visual consistente para toda a equipe.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── GALERIA ───────────────────────────────── -->
+<section class="section">
+    <div class="s-label reveal">Portfólio</div>
+    <h2 class="s-title reveal">Exemplos do<br>nosso <em>trabalho.</em></h2>
+
+    <div class="gallery-masonry reveal">
+        <div class="gm-item"><img src="/ensaio/retratos_01_1x.webp" alt="Fotografia corporativa"></div>
+        <div class="gm-item"><img src="/ensaio/retratos_09_1x.webp" alt="Fotografia corporativa"></div>
+        <div class="gm-item"><img src="/ensaio/retratos_05_1x.webp" alt="Fotografia corporativa"></div>
+        <div class="gm-item"><img src="/ensaio/retratos_13_1x.webp" alt="Fotografia corporativa"></div>
+        <div class="gm-item"><img src="/ensaio/retratos_07_1x.webp" alt="Fotografia corporativa"></div>
+        <div class="gm-item"><img src="/ensaio/retratos_16_1x.webp" alt="Fotografia corporativa"></div>
+        <div class="gm-item"><img src="/ensaio/retratos_11_1x.webp" alt="Fotografia corporativa"></div>
+        <div class="gm-item"><img src="/ensaio/retratos_17_1x.webp" alt="Fotografia corporativa"></div>
+        <div class="gm-item"><img src="/ensaio/retratos_12_1x.webp" alt="Fotografia corporativa"></div>
+        <div class="gm-item"><img src="/ensaio/retratos_18_1x.webp" alt="Fotografia corporativa"></div>
+        <div class="gm-item"><img src="/ensaio/retratos_15_1x.webp" alt="Fotografia corporativa"></div>
+        <div class="gm-item"><img src="/ensaio/retratos_20_1x.webp" alt="Fotografia corporativa"></div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── PROCESSO ──────────────────────────────── -->
+<section class="section">
+    <div class="s-label reveal">Como funciona</div>
+    <h2 class="s-title reveal">Do briefing<br>à entrega <em>final.</em></h2>
+
+    <div>
+        <div class="processo-item reveal">
+            <div class="processo-num">01</div>
+            <div>
+                <div class="processo-title">Briefing e Alinhamento</div>
+                <div class="processo-desc">Conversa sobre sua história, objetivos e onde as fotos serão usadas. Definimos conceito, referências e roteiro visual.</div>
+            </div>
+        </div>
+        <div class="processo-item reveal">
+            <div class="processo-num">02</div>
+            <div>
+                <div class="processo-title">Sessão Fotográfica</div>
+                <div class="processo-desc">Direção criativa completa durante a sessão. Você não precisa saber posar — nós conduzimos cada momento.</div>
+            </div>
+        </div>
+        <div class="processo-item reveal">
+            <div class="processo-num">03</div>
+            <div>
+                <div class="processo-title">Edição e Tratamento</div>
+                <div class="processo-desc">Cada foto tratada individualmente — cor, luz, detalhe. Resultado consistente e profissional.</div>
+            </div>
+        </div>
+        <div class="processo-item reveal">
+            <div class="processo-num">04</div>
+            <div>
+                <div class="processo-title">Entrega e Orientação de Uso</div>
+                <div class="processo-desc">Fotos em alta resolução + orientação estratégica de como usar cada imagem nas suas plataformas.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── PACOTES ───────────────────────────────── -->
+<section class="section">
+    <div class="s-label reveal">Investimento</div>
+    <h2 class="s-title reveal">Escolha o nível<br>da sua <em>presença.</em></h2>
+    <p class="s-text reveal">Todos os pacotes incluem direção criativa, edição e entrega em alta resolução. <strong>5% de desconto à vista.</strong> Parcelamento via cartão. Agendamento mediante entrada.</p>
+
+    <div class="pacotes-grid">
+        <!-- P1 -->
+        <div class="pacote-card reveal">
+            <div class="pacote-num">Pacote 01</div>
+            <div class="pacote-name">Essencial</div>
+            <div class="pacote-tagline">Para começar com autoridade e consistência visual.</div>
+            <ul class="pacote-itens">
+                <li>Briefing e alinhamento</li>
+                <li>Sessão individual</li>
+                <li>Até 2 looks</li>
+                <li>20 fotos tratadas</li>
+                <li>Edição profissional</li>
+                <li>Alta resolução</li>
+            </ul>
+            <div class="pacote-preco-area">
+                <div class="pacote-preco-val">R$ 1.300</div>
+                <div class="pacote-preco-detail">À vista: R$ 1.235 (5% off)<br>Parcelado via cartão · entrada p/ reserva</div>
+                <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20tenho%20interesse%20no%20Pacote%20Essencial%20(R%24%201.300)" class="btn"><span>Quero o Essencial</span></a>
+            </div>
+        </div>
+
+        <!-- P2 -->
+        <div class="pacote-card reveal">
+            <div class="pacote-num">Pacote 02</div>
+            <div class="pacote-name">Presença</div>
+            <div class="pacote-tagline">Banco de imagens completo com variações de contexto.</div>
+            <ul class="pacote-itens">
+                <li>Briefing e alinhamento</li>
+                <li>Sessão individual</li>
+                <li>Até 3 looks</li>
+                <li>Todas as fotos da sessão</li>
+                <li>Edição profissional</li>
+                <li>Alta resolução</li>
+            </ul>
+            <div class="pacote-preco-area">
+                <div class="pacote-preco-val">R$ 2.100</div>
+                <div class="pacote-preco-detail">À vista: R$ 1.995 (5% off)<br>Parcelado via cartão · entrada p/ reserva</div>
+                <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20tenho%20interesse%20no%20Pacote%20Presen%C3%A7a%20(R%24%202.100)" class="btn"><span>Quero a Presença</span></a>
+            </div>
+        </div>
+
+        <!-- P3 -->
+        <div class="pacote-card destaque reveal">
+            <div class="pacote-badge">Mais completo</div>
+            <div class="pacote-num">Pacote 03</div>
+            <div class="pacote-name">Autoridade</div>
+            <div class="pacote-tagline">Produção completa — foto, vídeo e conteúdo estratégico.</div>
+            <ul class="pacote-itens">
+                <li>Briefing e alinhamento</li>
+                <li>Até 4h de estúdio</li>
+                <li>Até 5 looks</li>
+                <li>Todas as fotos da sessão</li>
+                <li>Vídeos roteirizados e gravados</li>
+                <li>Edição completa — foto e vídeo</li>
+                <li>Alta resolução</li>
+            </ul>
+            <div class="pacote-preco-area">
+                <div class="pacote-preco-val">R$ 3.650</div>
+                <div class="pacote-preco-detail">À vista: R$ 3.467 (5% off)<br>Parcelado via cartão · entrada p/ reserva</div>
+                <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20tenho%20interesse%20no%20Pacote%20Autoridade%20(R%24%203.650)" class="btn btn-yellow"><span>Quero a Autoridade</span></a>
+            </div>
+        </div>
+
+        <!-- P4 -->
+        <div class="pacote-card reveal">
+            <div class="pacote-num">Pacote 04</div>
+            <div class="pacote-name">Corporativo</div>
+            <div class="pacote-tagline">Times e empresas com identidade visual consistente para toda equipe.</div>
+            <ul class="pacote-itens">
+                <li>Sessão na própria empresa</li>
+                <li>Múltiplos colaboradores</li>
+                <li>Padronização visual do time</li>
+                <li>Edição profissional</li>
+                <li>Entrega por colaborador</li>
+            </ul>
+            <div class="pacote-preco-area">
+                <div class="pacote-preco-val consulta">Sob Consulta</div>
+                <div class="pacote-preco-detail">Orçamento conforme equipe e escopo.</div>
+                <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20tenho%20interesse%20no%20Pacote%20Corporativo%20para%20minha%20empresa" class="btn"><span>Solicitar Orçamento</span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="nota-duo reveal">
+        <p><strong>Ensaio em dupla (você + sócio/a):</strong> todos os pacotes são individuais. Para sessões com duas pessoas, valor definido mediante alinhamento com condições diferenciadas.</p>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── BENTO — QUEM SOU ───────────────────────── -->
+<section class="section">
+    <div class="s-label reveal">Quem assina</div>
+    <h2 class="s-title reveal">+25 anos de mercado.<br><em>+200 empresários atendidos.</em></h2>
+
+    <div class="bento">
+
+        <!-- STAT: +25 anos — Row 1, Col 1 -->
+        <div class="bento-card bento-row1 reveal">
+            <div class="bento-eyebrow">Anos de mercado</div>
+            <div>
+                <div class="bento-stat-wrap">
+                    <span class="bento-stat-prefix">+</span>
+                    <div class="bento-stat" data-target="25">25</div>
+                </div>
+                <div class="bento-stat-label">anos construindo marcas, autoridade e presença visual para profissionais e empresas</div>
+            </div>
+            <div class="bento-icon">◈</div>
+        </div>
+
+        <!-- STAT: +200 empresários — Row 1, Col 2 -->
+        <div class="bento-card bento-row1 reveal">
+            <div class="bento-eyebrow">Clientes atendidos</div>
+            <div>
+                <div class="bento-stat-wrap">
+                    <span class="bento-stat-prefix">+</span>
+                    <div class="bento-stat" data-target="200">200</div>
+                </div>
+                <div class="bento-stat-label">empresários nos mais diversos segmentos — da saúde ao varejo, do jurídico ao digital</div>
+            </div>
+            <div class="bento-icon">◈</div>
+        </div>
+
+        <!-- NOME — Row 1, Col 3 -->
+        <div class="bento-card bento-row1 bento-nome reveal">
+            <img src="../assets/IMG/foto-roncolato-bio.jpg" alt="Rodrigo Roncolato">
+            <div class="bento-nome-overlay"></div>
+            <div class="bento-nome-content">
+                <div class="bento-nome-title">Rodrigo<br>Roncolato</div>
+                <div class="bento-nome-sub">Estrategista de Marca</div>
+            </div>
+        </div>
+
+        <!-- QUEM SOU — Row 2, Col 1 -->
+        <div class="bento-card bento-row2 bento-text-card reveal">
+            <div class="bento-eyebrow">Quem sou</div>
+            <div class="bento-text-body">
+                Sou <strong>estrategista de marca</strong> que usa a câmera como ferramenta de posicionamento. Cada sessão começa onde toda boa estratégia começa: no briefing. Quem você é, onde quer chegar, quem precisa te enxergar. <strong>A foto é a última etapa. A estratégia é a primeira — e é ela que faz a diferença.</strong>
+            </div>
+        </div>
+
+        <!-- CTA — Row 2, Col 2 -->
+        <div class="bento-card bento-row2 bento-cta reveal">
+            <div class="bento-cta-title">Sua imagem já deveria estar trabalhando por você.</div>
+            <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20quero%20agendar%20uma%20sess%C3%A3o!" class="bento-link">
+                Agendar sessão →
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- ─── CTA FINAL ──────────────────────────────── -->
+<section class="section" style="padding-top: 0;">
+    <div class="cta-box reveal">
+        <h2>Sua imagem fala<br>antes de <em style="color:var(--yellow)">você.</em></h2>
+        <p>Agendamentos mediante entrada. Escolha seu pacote e reservemos sua data.</p>
+        <div class="cta-btns">
+            <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20quero%20agendar%20uma%20sess%C3%A3o%20de%20fotografia%20corporativa!" class="btn btn-yellow" style="text-decoration:none;"><span>Agendar Sessão</span></a>
+            <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20tenho%20d%C3%BAvidas%20sobre%20os%20pacotes" class="btn" style="text-decoration:none;"><span>Tirar Dúvidas</span></a>
+        </div>
+    </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────── -->
+<footer>
+    <div>
+        <h3>Roncolato Studio</h3>
+        <p>Goiânia, GO<br>
+        <a href="mailto:rodrigo@rroncolato.com">rodrigo@rroncolato.com</a><br>
+        <a href="https://rroncolato.com.br">rroncolato.com.br</a></p>
+    </div>
+    <div>
+        <h3>Agendamento</h3>
+        <p>Entrada para reservar a data.<br>Sessões sob agendamento prévio.<br>Atendimento em Goiânia e região.</p>
+    </div>
+    <div>
+        <h3>Sobre</h3>
+        <p>Estratégia de marca, identidade visual e fotografia corporativa para profissionais e empresas que querem presença de alto nível.</p>
+    </div>
+</footer>
+
+<script>
+    // ── Parallax hero ──────────────────────────
+    const heroBg = document.getElementById('heroBg');
+    let ticking = false;
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const scrollY = window.scrollY;
+                heroBg.style.transform = `translateY(${scrollY * 0.35}px)`;
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    // ── Magnetic buttons ──────────────────────
+    document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('mousemove', e => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            btn.style.transform = `translate(${x * 0.15}px, ${y * 0.25}px)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = '';
+        });
+    });
+
+    // ── Scroll reveal ─────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, entry.target.dataset.delay || 0);
+            }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+        el.dataset.delay = (i % 4) * 80;
+        observer.observe(el);
+    });
+
+    // ── Counter animation on bento stats ─────
+    function animateCounter(el, target, duration = 1400) {
+        const start = performance.now();
+        const update = (time) => {
+            const elapsed = time - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.round(eased * target);
+            if (progress < 1) requestAnimationFrame(update);
+        };
+        requestAnimationFrame(update);
+    }
+
+    const statObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const stat = entry.target.querySelector('.bento-stat[data-target]');
+                if (stat && !stat.dataset.animated) {
+                    stat.dataset.animated = true;
+                    const val = parseInt(stat.dataset.target);
+                    animateCounter(stat, val);
+                }
+            }
+        });
+    }, { threshold: 0.4 });
+
+    document.querySelectorAll('.bento-card').forEach(card => statObserver.observe(card));
+</script>
+</body>
+</html>
+

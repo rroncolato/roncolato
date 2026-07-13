@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrossel — Símbolos Arquetípicos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --P:  #F5C518;
+  --DB: #0A0A0A;
+  --LB: #F0F0EB;
+  --G:  #F5C518;
+  --F-HEAD: 'Jost', sans-serif;
+  --F-BODY: 'Jost', sans-serif;
+}
+
+body { background: #1a1a1a; padding: 40px 20px; }
+
+.toolbar {
+  display: flex; gap: 12px; justify-content: center;
+  margin-bottom: 32px;
+}
+.toolbar button {
+  font-family: var(--F-BODY); font-size: 13px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 10px 28px; border-radius: 100px; border: none; cursor: pointer;
+  background: #333; color: #888; transition: all .2s;
+}
+.toolbar button.active { background: var(--P); color: #000; }
+
+/* ── LAYOUT ── */
+.slides-wrap { display: flex; flex-direction: column; gap: 0; }
+
+.preview-mode {
+  display: grid !important;
+  grid-template-columns: repeat(3, 324px);
+  gap: 20px;
+  justify-content: center;
+}
+.preview-mode .slide {
+  transform: scale(0.30);
+  transform-origin: top left;
+  margin-bottom: calc(1350px * 0.30 - 1350px);
+  margin-right: calc(1080px * 0.30 - 1080px);
+}
+.full-mode { display: flex; flex-direction: column; }
+.full-mode .slide { margin-bottom: 24px; }
+
+.slide {
+  width: 1080px; height: 1350px;
+  position: relative; overflow: hidden;
+  font-family: var(--F-BODY);
+}
+.slide-dark  { background: var(--DB); }
+.slide-light { background: var(--LB); }
+.slide-grad  { background: var(--G); }
+.slide-capa  { background: var(--DB); }
+
+/* ── ACCENT BAR ── */
+.accent-bar {
+  position: absolute; top: 0; left: 0; right: 0; height: 7px; z-index: 10;
+  background: linear-gradient(165deg, #C49B10 0%, #F5C518 50%, #F7D84A 100%);
+}
+
+/* ── BRAND BAR ── */
+.brand-bar {
+  position: absolute; top: 7px; left: 0; right: 0;
+  padding: 28px 90px 0;
+  display: flex; justify-content: flex-end; align-items: center;
+  z-index: 10; font-family: var(--F-BODY);
+  font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+}
+.on-dark .brand-bar,
+.brand-bar.on-dark  { color: rgba(255,255,255,0.35); }
+.on-light .brand-bar,
+.brand-bar.on-light { color: rgba(15,13,12,0.35); }
+.brand-bar.on-grad  { color: rgba(0,0,0,0.35); }
+
+/* ── PROGRESS BAR ── */
+.prog {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 0 90px 30px;
+  display: flex; align-items: center; gap: 16px; z-index: 10;
+}
+.prog-track {
+  flex: 1; height: 2px; border-radius: 2px;
+}
+.on-dark  .prog-track { background: rgba(255,255,255,0.12); }
+.on-light .prog-track { background: rgba(0,0,0,0.12); }
+.on-grad  .prog-track { background: rgba(0,0,0,0.15); }
+.prog-fill { height: 100%; border-radius: 2px; background: var(--P); }
+.prog-num {
+  font-family: var(--F-BODY); font-size: 12px; font-weight: 700;
+  letter-spacing: 1.5px; white-space: nowrap;
+}
+.on-dark  .prog-num { color: rgba(255,255,255,0.25); }
+.on-light .prog-num { color: rgba(0,0,0,0.25); }
+.on-grad  .prog-num { color: rgba(0,0,0,0.35); }
+
+/* ── CHIP ── */
+.chip {
+  display: inline-block;
+  font-family: var(--F-BODY); font-size: 12px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  padding: 8px 18px; border-radius: 100px; margin-bottom: 36px;
+}
+.chip-dark  { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.55); }
+.chip-light { background: rgba(0,0,0,0.07); color: rgba(0,0,0,0.45); }
+.chip-grad  { background: rgba(0,0,0,0.12); color: rgba(0,0,0,0.55); }
+
+/* ── CAPA ── */
+.capa-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  z-index: 0;
+}
+.capa-grad {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(0,0,0,0.30) 0%,
+    rgba(0,0,0,0.20) 30%,
+    rgba(0,0,0,0.70) 60%,
+    rgba(0,0,0,0.97) 100%);
+  z-index: 1;
+}
+.capa-content {
+  position: absolute;
+  bottom: 100px; left: 90px; right: 90px;
+  z-index: 2;
+}
+.capa-eyebrow {
+  font-family: var(--F-BODY); font-size: 13px; font-weight: 700;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: var(--P); margin-bottom: 24px;
+}
+.capa-headline {
+  font-family: var(--F-HEAD); font-size: 96px; font-weight: 900;
+  line-height: 0.90; letter-spacing: -2px; text-transform: uppercase;
+  color: #fff; margin-bottom: 32px;
+}
+.capa-headline em { color: var(--P); font-style: normal; }
+.capa-divider {
+  width: 48px; height: 3px; background: var(--P);
+  margin-bottom: 28px;
+}
+.capa-sub {
+  font-family: var(--F-BODY); font-size: 28px; font-weight: 400;
+  line-height: 1.45; color: rgba(255,255,255,0.60); max-width: 820px;
+}
+.capa-sub strong { color: rgba(255,255,255,0.90); font-weight: 700; }
+
+/* ── CONTENT FLEX (slides internos) ── */
+.content-flex {
+  position: absolute;
+  top: 110px; left: 90px; right: 90px; bottom: 80px;
+  z-index: 2; display: flex; flex-direction: column; justify-content: flex-end;
+  padding-bottom: 30px;
+}
+
+/* ── BODY TEXT ── */
+.body-lg {
+  font-family: var(--F-BODY); font-size: 34px; font-weight: 400;
+  line-height: 1.52; margin-bottom: 32px;
+}
+.body-lg strong { font-weight: 700; }
+.on-dark  .body-lg { color: rgba(255,255,255,0.55); }
+.on-light .body-lg { color: rgba(15,13,12,0.65); }
+
+/* ── PULL QUOTE ── */
+.pull-quote {
+  font-family: var(--F-HEAD); font-size: 92px; font-weight: 900;
+  line-height: 0.88; letter-spacing: -2px; text-transform: uppercase;
+  border-left: 6px solid var(--P); padding-left: 32px;
+  margin-bottom: 40px;
+}
+
+/* ── GHOST NUMBER BG ── */
+.ghost-num {
+  position: absolute; right: -20px; bottom: 80px;
+  font-family: var(--F-HEAD); font-weight: 900;
+  font-size: 520px; line-height: 1; letter-spacing: -20px;
+  color: rgba(255,255,255,0.03); z-index: 1; user-select: none;
+  pointer-events: none;
+}
+.ghost-num-light {
+  position: absolute; right: -20px; bottom: 80px;
+  font-family: var(--F-HEAD); font-weight: 900;
+  font-size: 520px; line-height: 1; letter-spacing: -20px;
+  color: rgba(0,0,0,0.04); z-index: 1; user-select: none;
+  pointer-events: none;
+}
+
+/* ── LIGHT SLIDE ── */
+.light-content {
+  position: absolute;
+  top: 110px; left: 90px; right: 90px; bottom: 80px;
+  z-index: 2; display: flex; flex-direction: column; justify-content: flex-end;
+  padding-bottom: 30px;
+}
+.light-headline {
+  font-family: var(--F-HEAD); font-size: 80px; font-weight: 900;
+  line-height: 0.88; letter-spacing: -2px; text-transform: uppercase;
+  color: var(--DB); margin-bottom: 36px;
+}
+.light-headline em { color: var(--P); font-style: normal; }
+
+/* ── ARROW ITEMS (slide 6 dark) ── */
+.arrow-list { display: flex; flex-direction: column; gap: 28px; margin-bottom: 36px; }
+.arrow-item { display: flex; gap: 22px; align-items: flex-start; }
+.arrow-bullet {
+  font-family: var(--F-HEAD); font-size: 32px; font-weight: 900;
+  color: var(--P); line-height: 1; margin-top: 6px; flex-shrink: 0;
+}
+.arrow-label {
+  font-family: var(--F-BODY); font-size: 32px; font-weight: 700;
+  color: #fff; line-height: 1.2;
+}
+.arrow-sub {
+  font-family: var(--F-BODY); font-size: 26px; font-weight: 400;
+  color: rgba(255,255,255,0.40); line-height: 1.3;
+}
+
+/* ── ARCH CARDS (slide 7 light) ── */
+.arch-list { display: flex; flex-direction: column; gap: 20px; }
+.arch-card {
+  background: rgba(0,0,0,0.05); border-radius: 16px;
+  padding: 28px 32px;
+}
+.arch-trigger {
+  font-family: var(--F-BODY); font-size: 24px; font-weight: 400;
+  color: rgba(15,13,12,0.55); line-height: 1.4; margin-bottom: 10px;
+}
+.arch-result {
+  font-family: var(--F-BODY); font-size: 26px; font-weight: 700;
+  color: var(--DB); line-height: 1.3;
+}
+.arch-result em { color: var(--P); font-style: normal; }
+.arch-footnote {
+  font-family: var(--F-BODY); font-size: 28px; font-weight: 400;
+  color: rgba(15,13,12,0.50); line-height: 1.5; margin-top: 28px;
+}
+.arch-footnote strong { color: var(--DB); font-weight: 700; }
+
+/* ── GRADIENT SLIDE ── */
+.grad-content {
+  position: absolute;
+  top: 110px; left: 90px; right: 90px; bottom: 80px;
+  z-index: 2; display: flex; flex-direction: column; justify-content: flex-end;
+  padding-bottom: 30px;
+}
+.grad-headline {
+  font-family: var(--F-HEAD); font-size: 100px; font-weight: 900;
+  line-height: 0.88; letter-spacing: -3px; text-transform: uppercase;
+  color: #000; margin-bottom: 48px;
+}
+.grad-steps { display: flex; flex-direction: column; gap: 20px; }
+.grad-step { display: flex; gap: 20px; align-items: flex-start; }
+.grad-step-num {
+  font-family: var(--F-HEAD); font-size: 28px; font-weight: 900;
+  color: rgba(0,0,0,0.30); line-height: 1; margin-top: 6px; flex-shrink: 0; width: 40px;
+}
+.grad-step-text {
+  font-family: var(--F-BODY); font-size: 30px; font-weight: 500;
+  color: rgba(0,0,0,0.70); line-height: 1.4;
+}
+.grad-step-text strong { color: #000; font-weight: 700; }
+
+/* ── CTA SLIDE ── */
+.cta-stripe {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 420px;
+  background: var(--LB); z-index: 0;
+}
+.cta-content {
+  position: absolute;
+  top: 110px; left: 90px; right: 90px; bottom: 80px;
+  z-index: 2; display: flex; flex-direction: column; justify-content: space-between;
+  padding-bottom: 40px;
+}
+.cta-top-text {
+  font-family: var(--F-BODY); font-size: 30px; font-weight: 400;
+  line-height: 1.55; color: rgba(255,255,255,0.50); max-width: 780px;
+}
+.cta-top-text strong { color: rgba(255,255,255,0.90); font-weight: 700; }
+.cta-box {
+  background: var(--LB); border-radius: 24px; padding: 48px 52px;
+}
+.cta-hl {
+  font-family: var(--F-HEAD); font-size: 68px; font-weight: 900;
+  line-height: 0.92; letter-spacing: -2px; text-transform: uppercase;
+  color: var(--DB); margin-bottom: 28px;
+}
+.cta-hl em { color: var(--P); font-style: normal; }
+.cta-action {
+  font-family: var(--F-BODY); font-size: 30px; font-weight: 400;
+  line-height: 1.5; color: rgba(15,13,12,0.55); margin-bottom: 32px;
+}
+.cta-action strong { color: var(--DB); font-weight: 700; }
+.cta-footer {
+  display: flex; align-items: center; gap: 14px;
+}
+.cta-dot {
+  width: 36px; height: 36px; border-radius: 50%; background: var(--G);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 900; color: #000; font-family: var(--F-BODY);
+}
+.cta-handle { font-family: var(--F-BODY); font-size: 15px; color: rgba(15,13,12,0.40); }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button class="active" onclick="setMode('preview')" id="btn-preview">Visão geral</button>
+  <button onclick="setMode('full')" id="btn-full">Tamanho real</button>
+</div>
+
+<div class="slides-wrap preview-mode" id="wrap">
+
+  <!-- ── S1 CAPA ── -->
+  <div class="slide slide-capa on-dark" id="slide-1">
+    <div class="capa-bg" style="background-image:url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1080&q=80');background-size:cover;background-position:center;filter:grayscale(30%);"></div>
+    <div class="capa-grad"></div>
+    <div class="accent-bar"></div>
+    <div class="brand-bar on-dark"><span>@rroncolato</span></div>
+    <div class="capa-content">
+      <div class="capa-eyebrow">Marca Pessoal & Percepção</div>
+      <div class="capa-headline">O QUE<br><em>IMAGENS</em><br>ARQUETÍPICAS<br>TÊM A VER COM<br>A PERCEPÇÃO<br>QUE VOCÊ GERA</div>
+      <div class="capa-divider"></div>
+      <div class="capa-sub">Antes da sua bio. Antes do seu currículo. <strong>Antes da sua proposta.</strong></div>
+    </div>
+    <div class="prog on-dark">
+      <div class="prog-track"><div class="prog-fill" style="width:11%"></div></div>
+      <span class="prog-num">1/9</span>
+    </div>
+  </div>
+
+  <!-- ── S2 HOOK DARK ── -->
+  <div class="slide slide-dark on-dark" id="slide-2">
+    <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=1080&q=80');background-size:cover;background-position:center top;z-index:0;"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.35) 30%,rgba(0,0,0,0.80) 65%,rgba(0,0,0,0.97) 100%);z-index:1;"></div>
+    <div class="accent-bar"></div>
+    <div class="brand-bar on-dark"><span>@rroncolato</span></div>
+    <div class="content-flex">
+      <div>
+        <div class="chip chip-dark">O Problema</div>
+        <div class="pull-quote" style="color:#fff;border-left-color:var(--P)">UM EMPRESÁRIO<br>ENTRA EM UMA<br>REUNIÃO.</div>
+        <div class="body-lg">Resultado real, trajetória sólida, case comprovado. Mas a percepção na sala vai em outra direção.</div>
+        <div class="body-lg">Não foi o que ele disse. Foi o que ele <strong style="color:#fff">emitiu antes de abrir a boca</strong>. Isso tem nome.</div>
+      </div>
+    </div>
+    <div class="prog on-dark">
+      <div class="prog-track"><div class="prog-fill" style="width:22%"></div></div>
+      <span class="prog-num">2/9</span>
+    </div>
+  </div>
+
+  <!-- ── S3 CONTEXTO LIGHT ── -->
+  <div class="slide slide-light on-light" id="slide-3">
+    <div class="accent-bar"></div>
+    <div class="brand-bar on-light"><span>@rroncolato</span></div>
+    <div class="light-content">
+      <div>
+        <div class="chip chip-light">O Que São Arquétipos</div>
+        <div class="light-headline">PADRÕES QUE O<br>CÉREBRO<br>RECONHECE<br>ANTES DE<br><em>QUALQUER</em><br>ANÁLISE.</div>
+        <div class="body-lg">Carl Jung identificou que certas imagens ativam as mesmas respostas emocionais em todas as culturas — independente de idioma, época ou contexto social.</div>
+        <div class="body-lg">Ele chamou esses padrões de arquétipos. E eles operam <strong>antes da sua bio. Antes do seu currículo. Antes da sua proposta.</strong></div>
+      </div>
+    </div>
+    <div class="prog on-light">
+      <div class="prog-track"><div class="prog-fill" style="width:33%"></div></div>
+      <span class="prog-num">3/9</span>
+    </div>
+  </div>
+
+  <!-- ── S4 MECANISMO DARK ── -->
+  <div class="slide slide-dark on-dark" id="slide-4">
+    <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1509114397022-ed747cca3f65?w=1080&q=80');background-size:cover;background-position:center;filter:grayscale(60%);z-index:0;"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.60) 0%,rgba(0,0,0,0.40) 30%,rgba(0,0,0,0.85) 65%,rgba(0,0,0,0.98) 100%);z-index:1;"></div>
+    <div class="accent-bar"></div>
+    <div class="brand-bar on-dark"><span>@rroncolato</span></div>
+    <div class="content-flex">
+      <div>
+        <div class="chip chip-dark">Como Funciona</div>
+        <div class="pull-quote" style="color:#fff;border-left-color:var(--P)">13<br>MILISSEGUNDOS.</div>
+        <div class="body-lg">É o tempo que o cérebro leva para processar uma imagem. O que ele busca nesse intervalo não é informação — é <strong style="color:#fff">reconhecimento de padrão</strong>.</div>
+        <div class="body-lg">Uma foto de perfil, uma postura, um enquadramento, uma luz dominante. Cada elemento ativa um arquétipo antes de qualquer palavra. A marca que não escolhe seus símbolos ainda os emite — <strong style="color:#fff">só deixa a interpretação por conta do observador.</strong></div>
+      </div>
+    </div>
+    <div class="prog on-dark">
+      <div class="prog-track"><div class="prog-fill" style="width:44%"></div></div>
+      <span class="prog-num">4/9</span>
+    </div>
+  </div>
+
+  <!-- ── S5 PROVA LIGHT ── -->
+  <div class="slide slide-light on-light" id="slide-5">
+    <div class="accent-bar"></div>
+    <div class="brand-bar on-light"><span>@rroncolato</span></div>
+    <div class="light-content">
+      <div>
+        <div class="chip chip-light">O Que o Livro dos Símbolos Mostra</div>
+        <div class="light-headline">AS MESMAS<br>IMAGENS.<br>AS MESMAS<br><em>RESPOSTAS.</em><br>CULTURAS<br>DIFERENTES.</div>
+        <div class="body-lg">O Livro dos Símbolos documenta como imagens arquetípicas ativam as mesmas emoções em culturas separadas por séculos e oceanos. Não é coincidência. É estrutura.</div>
+        <div class="body-lg">Uma pessoa fotografada de baixo para cima comunica poder em qualquer contexto cultural. Em ambiente caótico, comunica imprevisibilidade — <strong>independente do que o texto diz sobre ela.</strong></div>
+      </div>
+    </div>
+    <div class="prog on-light">
+      <div class="prog-track"><div class="prog-fill" style="width:55%"></div></div>
+      <span class="prog-num">5/9</span>
+    </div>
+  </div>
+
+  <!-- ── S6 TRÊS CAMADAS DARK ── -->
+  <div class="slide slide-dark on-dark" id="slide-6">
+    <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1080&q=80');background-size:cover;background-position:center;filter:grayscale(40%);z-index:0;"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.70) 0%,rgba(0,0,0,0.55) 30%,rgba(0,0,0,0.90) 65%,rgba(0,0,0,0.99) 100%);z-index:1;"></div>
+    <div class="accent-bar"></div>
+    <div class="brand-bar on-dark"><span>@rroncolato</span></div>
+    <div class="content-flex">
+      <div>
+        <div class="chip chip-dark">O Que Sua Marca Emite</div>
+        <div style="font-family:var(--F-HEAD);font-size:72px;font-weight:900;line-height:0.90;letter-spacing:-2px;text-transform:uppercase;color:#fff;margin-bottom:44px;">TODA MARCA<br>PESSOAL EMITE<br><em style="color:var(--P)">TRÊS CAMADAS</em><br>SIMULTÂNEAS.</div>
+        <div class="arrow-list">
+          <div class="arrow-item">
+            <div class="arrow-bullet">→</div>
+            <div>
+              <div class="arrow-label">Imagem visual</div>
+              <div class="arrow-sub">foto, enquadramento, luz, cor dominante</div>
+            </div>
+          </div>
+          <div class="arrow-item">
+            <div class="arrow-bullet">→</div>
+            <div>
+              <div class="arrow-label">Contexto</div>
+              <div class="arrow-sub">onde aparece, com quem, em que situação</div>
+            </div>
+          </div>
+          <div class="arrow-item">
+            <div class="arrow-bullet">→</div>
+            <div>
+              <div class="arrow-label">Comportamento</div>
+              <div class="arrow-sub">o que faz, o que recusa, o que repete</div>
+            </div>
+          </div>
+        </div>
+        <div class="body-lg" style="margin-top:32px;margin-bottom:0;">Quando as três divergem, o cliente sente algo impreciso. <strong style="color:#fff">E impreciso não converte.</strong></div>
+      </div>
+    </div>
+    <div class="prog on-dark">
+      <div class="prog-track"><div class="prog-fill" style="width:66%"></div></div>
+      <span class="prog-num">6/9</span>
+    </div>
+  </div>
+
+  <!-- ── S7 APLICAÇÃO LIGHT ── -->
+  <div class="slide slide-light on-light" id="slide-7">
+    <div style="position:absolute;top:0;left:0;right:0;height:420px;background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1080&q=80');background-size:cover;background-position:center top;z-index:0;"></div>
+    <div style="position:absolute;top:0;left:0;right:0;height:420px;background:linear-gradient(to bottom,rgba(0,0,0,0.20) 0%,rgba(240,240,235,0.95) 100%);z-index:1;"></div>
+    <div class="accent-bar"></div>
+    <div class="brand-bar on-light"><span>@rroncolato</span></div>
+    <div class="light-content" style="justify-content:flex-end;top:380px;">
+      <div>
+        <div class="chip chip-light">Na Prática</div>
+        <div class="arch-list">
+          <div class="arch-card">
+            <div class="arch-trigger">Aparece só em eventos formais e ambientes institucionais</div>
+            <div class="arch-result">→ <em>Governante</em> — poder, controle, hierarquia</div>
+          </div>
+          <div class="arch-card">
+            <div class="arch-trigger">Mostra processo, bastidor e construção em andamento</div>
+            <div class="arch-result">→ <em>Criador</em> — autenticidade, visão, originalidade</div>
+          </div>
+          <div class="arch-card">
+            <div class="arch-trigger">Aparece sempre com dados, referências e análise</div>
+            <div class="arch-result">→ <em>Sábio</em> — conhecimento, precisão, confiança</div>
+          </div>
+        </div>
+        <div class="arch-footnote">O arquétipo não é escolhido no Canva. É construído no <strong>padrão do que você repete.</strong></div>
+      </div>
+    </div>
+    <div class="prog on-light">
+      <div class="prog-track"><div class="prog-fill" style="width:77%"></div></div>
+      <span class="prog-num">7/9</span>
+    </div>
+  </div>
+
+  <!-- ── S8 DIREÇÃO GRADIENT ── -->
+  <div class="slide slide-grad on-grad" id="slide-8">
+    <div class="accent-bar" style="background:rgba(0,0,0,0.10)"></div>
+    <div class="brand-bar on-grad"><span>@rroncolato</span></div>
+    <div class="grad-content">
+      <div>
+        <div class="chip chip-grad">O Ponto de Partida</div>
+        <div class="grad-headline">MAPEIE O<br>ARQUÉTIPO<br>QUE SUA<br>IMAGEM JÁ<br>ESTÁ<br>COMUNICANDO.</div>
+        <div class="grad-steps">
+          <div class="grad-step">
+            <div class="grad-step-num">01</div>
+            <div class="grad-step-text">Antes de <strong>trocar o conteúdo</strong></div>
+          </div>
+          <div class="grad-step">
+            <div class="grad-step-num">02</div>
+            <div class="grad-step-text">Antes de <strong>revisar a bio</strong></div>
+          </div>
+          <div class="grad-step">
+            <div class="grad-step-num">03</div>
+            <div class="grad-step-text">Antes de <strong>contratar um designer</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="prog on-grad" style="padding-bottom:32px">
+      <div class="prog-track"><div class="prog-fill" style="width:88%;background:rgba(0,0,0,0.25)"></div></div>
+      <span class="prog-num">8/9</span>
+    </div>
+  </div>
+
+  <!-- ── S9 CTA ── -->
+  <div class="slide on-dark" id="slide-9">
+    <div class="cta-stripe"></div>
+    <div class="accent-bar"></div>
+    <div class="brand-bar on-dark"><span>@rroncolato</span></div>
+    <div class="cta-content">
+      <div class="cta-top-text">A percepção que você gera nos clientes começa antes de qualquer palavra. Começa nos <strong>símbolos que sua marca emite</strong> — e que você nunca parou para mapear.</div>
+      <div class="cta-box">
+        <div class="cta-hl">SALVA ESTE<br>POST <em>AGORA.</em></div>
+        <div class="cta-action">É o mapa para entender o que sua marca pessoal está comunicando antes de você falar. <strong>Segue o perfil</strong> para mais análises sobre imagem, percepção e marca pessoal.</div>
+        <div class="cta-footer">
+          <div class="cta-dot">R</div>
+          <span class="cta-handle">@rroncolato</span>
+        </div>
+      </div>
+    </div>
+    <div class="prog on-light" style="z-index:3">
+      <div class="prog-track"><div class="prog-fill" style="width:100%"></div></div>
+      <span class="prog-num">9/9</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function setMode(mode) {
+  const wrap = document.getElementById('wrap');
+  const bp = document.getElementById('btn-preview');
+  const bf = document.getElementById('btn-full');
+  if (mode === 'preview') {
+    wrap.className = 'slides-wrap preview-mode';
+    bp.className = 'active'; bf.className = '';
+  } else {
+    wrap.className = 'slides-wrap full-mode';
+    bf.className = 'active'; bp.className = '';
+  }
+}
+</script>
+</body>
+</html>

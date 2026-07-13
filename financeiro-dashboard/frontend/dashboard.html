@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financeiro Dashboard - CNPJ</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .metric-label {
+            color: #666;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .metric-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .metric-trend {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .trend-positive {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .trend-negative {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .trend-neutral {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .panel {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .panel h2 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .chart-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: relative;
+            height: 300px;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #5568d3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th {
+            background: #f8f9fa;
+            padding: 10px;
+            text-align: left;
+            border-bottom: 2px solid #ddd;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .categoria-receita {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .categoria-despesa {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💰 Financeiro Dashboard</h1>
+            <p>Gestor financeiro do CNPJ - Análise e decisões estratégicas</p>
+        </header>
+
+        <!-- Métricas Principais -->
+        <div id="metricsContainer" class="metrics-grid">
+            <div class="loading">
+                <div class="spinner"></div>
+                Carregando dados...
+            </div>
+        </div>
+
+        <!-- Gráficos -->
+        <div class="charts-grid" id="chartsContainer" style="display: none;">
+            <div class="chart-container">
+                <h3>📈 Receitas por Mês</h3>
+                <canvas id="receitasChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>📉 Despesas por Mês</h3>
+                <canvas id="despesasChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Conteúdo Principal -->
+        <div class="content-grid">
+            <div class="panel">
+                <h2>📊 Análise por Categoria</h2>
+                <table id="categoriasTable">
+                    <thead>
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Receitas</th>
+                            <th>Despesas</th>
+                            <th>Saldo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="4" style="text-align: center; color: #999;">
+                                Carregando categorias...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="panel">
+                <h2>📋 Transações Recentes</h2>
+                <table id="transacoesTable">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Descrição</th>
+                            <th>Tipo</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="4" style="text-align: center; color: #999;">
+                                Carregando transações...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/api/financeiro';
+
+        async function carregarDados() {
+            try {
+                // Carregar dashboard
+                const dashboardRes = await fetch(`${API_URL}/dashboard`);
+                const dashboard = await dashboardRes.json();
+
+                if (dashboard.status === 'sucesso') {
+                    renderizarMetricas(dashboard);
+                    renderizarGraficos(dashboard);
+                    renderizarCategorias(dashboard.analiseCategoria);
+                    renderizarTransacoes(dashboard.transacoes.slice(0, 20));
+                } else {
+                    mostrarErro('Nenhum dado disponível. Adicione extratos em /data/extratos/');
+                }
+            } catch (error) {
+                mostrarErro('Erro ao carregar dados: ' + error.message);
+                console.error(error);
+            }
+        }
+
+        function renderizarMetricas(dashboard) {
+            const m = dashboard.metricas;
+            const html = `
+                <div class="metric-card">
+                    <div class="metric-label">Total de Receita</div>
+                    <div class="metric-value">R$ ${formatarMoeda(m.totalReceita)}</div>
+                    <div class="metric-trend trend-positive">✅ Período: ${dashboard.periodo.inicio} a ${dashboard.periodo.fim}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Total de Despesa</div>
+                    <div class="metric-value">R$ ${formatarMoeda(m.totalDespesa)}</div>
+                    <div class="metric-trend ${m.totalDespesa > 0 ? 'trend-negative' : 'trend-positive'}">
+                        ${m.totalDespesa > 0 ? '⚠️' : '✅'} ${m.totalTransacoes} transações
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Saldo Líquido</div>
+                    <div class="metric-value" style="color: ${m.saldoLiquido >= 0 ? '#28a745' : '#dc3545'}">
+                        R$ ${formatarMoeda(m.saldoLiquido)}
+                    </div>
+                    <div class="metric-trend ${m.saldoLiquido >= 0 ? 'trend-positive' : 'trend-negative'}">
+                        ${m.saldoLiquido >= 0 ? '📈 Positivo' : '📉 Negativo'}
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Margem de Lucro</div>
+                    <div class="metric-value" style="color: ${m.margemLucro >= 0 ? '#28a745' : '#dc3545'}">
+                        ${m.margemLucro.toFixed(1)}%
+                    </div>
+                    <div class="metric-trend ${dashboard.saude.status.includes('Crítico') ? 'trend-negative' : 'trend-positive'}">
+                        ${dashboard.saude.status}
+                    </div>
+                </div>
+            `;
+            document.getElementById('metricsContainer').innerHTML = html;
+            document.getElementById('chartsContainer').style.display = 'grid';
+        }
+
+        function renderizarGraficos(dashboard) {
+            // Gráfico Receitas
+            const receitasCtx = document.getElementById('receitasChart');
+            if (receitasCtx) {
+                new Chart(receitasCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: dashboard.graficoReceitas.map(r => r.mes),
+                        datasets: [{
+                            label: 'Receitas',
+                            data: dashboard.graficoReceitas.map(r => r.valor),
+                            backgroundColor: '#28a745',
+                            borderColor: '#1e7e34',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+            }
+
+            // Gráfico Despesas
+            const despesasCtx = document.getElementById('despesasChart');
+            if (despesasCtx) {
+                new Chart(despesasCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: dashboard.graficoDespesas.map(d => d.mes),
+                        datasets: [{
+                            label: 'Despesas',
+                            data: dashboard.graficoDespesas.map(d => d.valor),
+                            backgroundColor: '#dc3545',
+                            borderColor: '#c82333',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+            }
+        }
+
+        function renderizarCategorias(categorias) {
+            const tbody = document.querySelector('#categoriasTable tbody');
+            const html = categorias.slice(0, 10).map(cat => `
+                <tr>
+                    <td><strong>${cat.categoria}</strong></td>
+                    <td style="color: #28a745;">R$ ${formatarMoeda(cat.receitas)}</td>
+                    <td style="color: #dc3545;">R$ ${formatarMoeda(cat.despesas)}</td>
+                    <td style="color: ${cat.saldo >= 0 ? '#28a745' : '#dc3545'};">
+                        R$ ${formatarMoeda(cat.saldo)}
+                    </td>
+                </tr>
+            `).join('');
+            tbody.innerHTML = html;
+        }
+
+        function renderizarTransacoes(transacoes) {
+            const tbody = document.querySelector('#transacoesTable tbody');
+            const html = transacoes.map(t => `
+                <tr>
+                    <td>${t.data}</td>
+                    <td>${t.descricao.substring(0, 40)}</td>
+                    <td>
+                        <span class="status-badge ${t.tipo === 'receita' ? 'categoria-receita' : 'categoria-despesa'}">
+                            ${t.tipo.toUpperCase()}
+                        </span>
+                    </td>
+                    <td style="color: ${t.tipo === 'receita' ? '#28a745' : '#dc3545'};">
+                        R$ ${formatarMoeda(t.valor)}
+                    </td>
+                </tr>
+            `).join('');
+            tbody.innerHTML = html;
+        }
+
+        function formatarMoeda(valor) {
+            return Math.abs(valor).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+
+        function mostrarErro(mensagem) {
+            const container = document.getElementById('metricsContainer');
+            container.innerHTML = `<div class="error">${mensagem}</div>`;
+        }
+
+        // Carregar dados ao abrir página
+        carregarDados();
+    </script>
+</body>
+</html>

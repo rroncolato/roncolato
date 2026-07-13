@@ -1,0 +1,244 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║              RESUMO EXECUTIVO — SAÚDE FINANCEIRA DO ESTÚDIO                ║
+║                            JANEIRO — JUNHO 2026                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 🚨 STATUS: CRÍTICO                                                        ┃
+┃ Despesas > Receitas                                                       ┃
+┃ Operando com PREJUÍZO DE R$ 16.779,49                                    ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+═══════════════════════════════════════════════════════════════════════════
+  NÚMEROS CHAVE (173 dias | 6 meses)
+═══════════════════════════════════════════════════════════════════════════
+
+╭─────────────────────────────────────────────────────────────────────────╮
+│  RECEITA TOTAL                          R$ 146.737,16                   │
+│  ├─ Janeiro:  R$ 18.331,22                                              │
+│  ├─ Fevereiro: R$ 25.100,13                                             │
+│  ├─ Março:    R$ 22.837,41                                              │
+│  ├─ Abril:    R$ 25.288,16                                              │
+│  ├─ Maio:     R$ 38.087,97  ⭐ (melhor mês)                             │
+│  └─ Junho:    R$ 17.092,27  (23 dias apenas)                            │
+│                                                                         │
+│  MÉDIA POR MÊS: R$ 24.456                                               │
+│  MÉDIA POR TRANSAÇÃO: R$ 3.493,60                                       │
+╰─────────────────────────────────────────────────────────────────────────╯
+
+╭─────────────────────────────────────────────────────────────────────────╮
+│  DESPESA TOTAL                          R$ 163.516,65                   │
+│  ├─ Janeiro:  R$ 18.331,57                                              │
+│  ├─ Fevereiro: R$ 17.648,42                                             │
+│  ├─ Março:    R$ 23.411,66                                              │
+│  ├─ Abril:    R$ 28.359,95                                              │
+│  ├─ Maio:     R$ 37.816,69                                              │
+│  └─ Junho:    R$ 37.948,36  🔴 (despesa alta apesar de receita baixa)   │
+│                                                                         │
+│  MÉDIA POR MÊS: R$ 27.252                                               │
+│  MÉDIA POR TRANSAÇÃO: R$ 388,46                                         │
+╰─────────────────────────────────────────────────────────────────────────╯
+
+╭─────────────────────────────────────────────────────────────────────────╮
+│  SALDO LÍQUIDO                          -R$ 16.779,49                   │
+│  MARGEM DE LUCRO                        -11,44%                         │
+│  TRANSAÇÕES PROCESSADAS                 421                             │
+╰─────────────────────────────────────────────────────────────────────────╯
+
+
+═══════════════════════════════════════════════════════════════════════════
+  TOP 3 PROBLEMAS
+═══════════════════════════════════════════════════════════════════════════
+
+🔴 PROBLEMA #1: SAQUES PESSOAIS ALTOS
+   ├─ Valor: R$ 56.821,08 (34,7% de todas as despesas)
+   ├─ Média: R$ 9.470/mês
+   ├─ Crítico? SIM
+   └─ Solução: Limitar a R$ 5.000/mês
+      → ECONOMIA: R$ 26.821 semestral
+
+🔴 PROBLEMA #2: DESPESA OPERACIONAL DESCONTROLADA
+   ├─ Valor: R$ 32.184,62 (19,7% de todas as despesas)
+   ├─ Média: R$ 5.364/mês
+   ├─ Crítico? SIM
+   └─ Solução: Cortar 30% e renegociar
+      → ECONOMIA: R$ 6.500 semestral
+
+🔴 PROBLEMA #3: RECEITA INCONSISTENTE
+   ├─ Valor: R$ 146.737,16 (volatilidade alta)
+   ├─ Padrão: Janeiro baixo → Maio pico → Junho baixo
+   ├─ Crítico? SIM
+   └─ Solução: Aumentar em 63% com novos clientes
+      → GANHO POTENCIAL: R$ 93.000 semestral
+
+
+═══════════════════════════════════════════════════════════════════════════
+  PRINCIPAIS FONTES DE RECEITA
+═══════════════════════════════════════════════════════════════════════════
+
+📊 Clientes Principais (6 meses)
+
+  1. Semintervalo Cursos           R$ 30.521,27  (20,8% das receitas)
+     ├─ 15 repasses de jan-jun
+     └─ Receita recorrente confiável ✅
+
+  2. Maria Maurizia S N Ferreira   R$ 15.000,00  (10,2%)
+     └─ Venda única em janeiro
+
+  3. Restart Gestão Performance    R$ 7.500,00   (5,1%)
+     └─ 2 transações em março
+
+  4. Envios Internacionais Online  R$ 2.000,00   (1,4%)
+     └─ 2 transações diferentes
+
+  5. Speakers (Consultoria)        R$ 2.000,00   (1,4%)
+     └─ 1 transação em fevereiro
+
+  6. Outros (62,9%)                R$ 93.715,89
+     └─ Diversos clientes pontuais
+
+
+═══════════════════════════════════════════════════════════════════════════
+  DESPESAS POR CATEGORIA
+═══════════════════════════════════════════════════════════════════════════
+
+┌──────────────────────────────────┬─────────────┬──────┐
+│ CATEGORIA                        │ TOTAL (6m)  │ % do │
+├──────────────────────────────────┼─────────────┼──────┤
+│ 🔴 Saques Pessoais              │ R$ 56.821   │ 34%  │
+│ 🟠 Despesa Operacional          │ R$ 32.185   │ 20%  │
+│ 🟡 Investimentos (CDB/Raro)     │ R$  7.930   │  5%  │
+│ 🟡 Despesa Fixa (coworking)     │ R$  3.504   │  2%  │
+│ 🟢 Cartões (pagamento)          │ R$  3.868   │  2%  │
+│ 🟢 Infraestrutura (internet)    │ R$  1.239   │  1%  │
+│ 🟢 Combustível                  │ R$    523   │ 0.3% │
+│ 🟢 Impostos/Tributos            │ R$    381   │ 0.2% │
+│ 🟢 Doações                      │ R$    445   │ 0.3% │
+├──────────────────────────────────┼─────────────┼──────┤
+│ TOTAL                            │R$ 163.517   │ 100% │
+└──────────────────────────────────┴─────────────┴──────┘
+
+
+═══════════════════════════════════════════════════════════════════════════
+  HISTÓRICO MENSAL
+═══════════════════════════════════════════════════════════════════════════
+
+MÊS        RECEITA      DESPESA      SALDO        MARGEM
+────────────────────────────────────────────────────────────
+Jan        R$ 18.331    R$ 18.332    -R$     1    -0,01%  🔴
+Fev        R$ 25.100    R$ 17.648    +R$  7.452   +29,7%  🟡
+Mar        R$ 22.837    R$ 23.412    -R$    575   -2,5%   🔴
+Abr        R$ 25.288    R$ 28.360    -R$  3.072   -12,2%  🔴
+Mai        R$ 38.088    R$ 37.817    +R$    271   +0,7%   🔴
+Jun        R$ 17.092    R$ 37.948    -R$ 20.856   -122,0% 🔴 CRÍTICO
+────────────────────────────────────────────────────────────
+TOTAL      R$146.737    R$163.517    -R$ 16.779   -11,4%  🔴
+
+
+═══════════════════════════════════════════════════════════════════════════
+  META: 90 DIAS PARA BREAK-EVEN
+═══════════════════════════════════════════════════════════════════════════
+
+HOJE (Média/mês)              →    META (Mês 3)
+┌─────────────────────┐       ┌──────────────────────┐
+│ Receita:  R$ 24.456 │       │ Receita:  R$ 40.000  │ ↑ +63%
+│ Despesa:  R$ 27.252 │   →   │ Despesa:  R$ 18.000  │ ↓ -34%
+│ Saldo:   -R$  2.796 │       │ Saldo:   +R$ 22.000  │ ↑ +R$ 24.796
+│ Margem:    -11,44%  │       │ Margem:   +35,0%     │ ↑ +46,44p
+└─────────────────────┘       └──────────────────────┘
+
+Quebra necessária:
+  • Cortar despesas: -R$ 9.252/mês
+  • Aumentar receitas: +R$ 15.544/mês
+  • Impacto total: +R$ 24.796/mês
+
+
+═══════════════════════════════════════════════════════════════════════════
+  3 AÇÕES PRIORITÁRIAS (FAZER HOJE)
+═══════════════════════════════════════════════════════════════════════════
+
+✂️  AÇÃO 1: Limitar saques pessoais a R$ 5.000/mês
+    ├─ Tempo: 30 minutos
+    ├─ Economia imediata: R$ 4.470/mês
+    └─ Status: [ ] TODO
+
+🔍  AÇÃO 2: Cancelar 3 serviços não essenciais
+    ├─ Tempo: 1 hora
+    ├─ Economia imediata: R$ 1.200/mês
+    └─ Status: [ ] TODO
+
+📞  AÇÃO 3: Reunião com Semintervalo para aumentar volume
+    ├─ Tempo: 1 hora
+    ├─ Receita potencial: +R$ 3.000/mês
+    └─ Status: [ ] TODO
+
+
+═══════════════════════════════════════════════════════════════════════════
+  PRÓXIMOS PASSOS
+═══════════════════════════════════════════════════════════════════════════
+
+SEMANA 1 (Dias 1-7)
+  □ Ler diagnóstico completo
+  □ Implementar limite de saques
+  □ Auditar despesas
+  □ Cancelar serviços
+  □ Agendar reunião Semintervalo
+
+SEMANA 2-3 (Dias 8-21)
+  □ Reunião com Semintervalo
+  □ Negociar taxas Mercado Pago
+  □ Iniciar prospecção (20 leads)
+  □ Acompanhar saques
+
+MÊS 1 (Dias 22-30)
+  □ Fechar 1-2 novos clientes
+  □ Implementar renegociações
+  □ Revisar progresso
+  □ Ajustar plano se necessário
+
+
+═══════════════════════════════════════════════════════════════════════════
+  DOCUMENTOS DISPONÍVEIS
+═══════════════════════════════════════════════════════════════════════════
+
+📄 DIAGNOSTICO_FINANCEIRO_2026.md
+   └─ Análise detalhada com todas as categorias, gráficos e insights
+
+📄 PLANO_ACAO_FINANCEIRO.md
+   └─ Plano de 90 dias com timeline, ações e KPIs
+
+📄 RESUMO_EXECUTIVO_FINANCEIRO.txt
+   └─ Este arquivo (resumo visual)
+
+
+═══════════════════════════════════════════════════════════════════════════
+  QUESTÕES-CHAVE PARA REFLEXÃO
+═══════════════════════════════════════════════════════════════════════════
+
+❓ Por que as despesas crescem mês a mês enquanto receitas flutua?
+   → Saques pessoais são a razão principal. Sem controle = sem limite.
+
+❓ Como Maio teve R$ 38k de receita mas você ainda está no vermelho?
+   → Despesas foram R$ 37.817 (quase 100% da receita). Sem margem.
+
+❓ Semintervalo é confiável ou pode desaparecer?
+   → 15 repasses em 6 meses = confiável. Mas representa 20% das receitas.
+     → Necessário diversificar.
+
+❓ Qual é o ponto de equilíbrio?
+   → Receita média: R$ 24.456
+   → Despesa média: R$ 27.252
+   → Faltam: R$ 2.796/mês para empate
+   → Com cortes+novos clientes: +R$ 24.796/mês (viável em 90 dias)
+
+
+═══════════════════════════════════════════════════════════════════════════
+
+Última atualização: 25 de Junho de 2026
+Fonte de dados: Banco Inter (166 txn) + Itaú (9 txn) = 175 transações
+               Extratos de Janeiro a Junho 2026
+Período analisado: 173 dias
+
+STATUS: 🔴 CRÍTICO — Ação imediata necessária
+
+═══════════════════════════════════════════════════════════════════════════

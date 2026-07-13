@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financeiro — Rodrigo Roncolato</title>
+    <link rel="stylesheet" href="/assets/css/globals.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .financeiro-container {
+            padding: 40px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .financeiro-header {
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 30px;
+        }
+
+        .financeiro-title {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -.01em;
+            margin-bottom: 8px;
+            color: var(--foreground);
+        }
+
+        .financeiro-subtitle {
+            font-size: 13px;
+            color: var(--muted-foreground);
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1px;
+            margin-bottom: 40px;
+            background: var(--border);
+            padding: 1px;
+        }
+
+        .metric-card {
+            background: var(--card);
+            padding: 20px;
+            transition: all 0.2s var(--ease);
+        }
+
+        .metric-card:hover {
+            background: var(--muted);
+        }
+
+        .metric-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .metric-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--foreground);
+            margin-bottom: 8px;
+            line-height: 1.1;
+        }
+
+        .metric-trend {
+            font-size: 11px;
+            color: var(--muted-foreground);
+            font-weight: 400;
+        }
+
+        .metric-trend.positive {
+            color: var(--chart-4);
+        }
+
+        .metric-trend.negative {
+            color: var(--destructive);
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: -.01em;
+            margin-bottom: 20px;
+            color: var(--foreground);
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            display: block;
+        }
+
+        .status-message {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--primary);
+            padding: 16px;
+            margin-bottom: 30px;
+            border-radius: 2px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .status-message.critical {
+            border-left-color: var(--destructive);
+            background: rgba(220, 53, 69, 0.02);
+        }
+
+        .status-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            color: var(--primary);
+        }
+
+        .status-message.critical .status-label {
+            color: var(--destructive);
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1px;
+            margin-bottom: 50px;
+            background: var(--border);
+            padding: 1px;
+        }
+
+        .chart-container {
+            background: var(--card);
+            padding: 20px;
+            min-height: 280px;
+            transition: all 0.2s var(--ease);
+        }
+
+        .chart-container:hover {
+            background: var(--muted);
+        }
+
+        .chart-title {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            color: var(--foreground);
+        }
+
+        canvas {
+            max-height: 240px !important;
+        }
+
+        .data-table {
+            background: var(--card);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            margin-bottom: 50px;
+            font-size: 13px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: var(--muted);
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+            font-size: 11px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--primary);
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--foreground);
+        }
+
+        tr:hover {
+            background: var(--muted);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 1px;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+        .badge-receita {
+            background: rgba(70, 180, 90, 0.12);
+            color: var(--chart-4);
+        }
+
+        .badge-despesa {
+            background: rgba(220, 53, 69, 0.12);
+            color: var(--destructive);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--muted-foreground);
+            font-size: 13px;
+        }
+
+        .spinner {
+            border: 1.5px solid var(--border);
+            border-top: 1.5px solid var(--primary);
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 12px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .financeiro-container {
+                padding: 24px 16px;
+            }
+            .financeiro-title {
+                font-size: 20px;
+            }
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+            th, td {
+                padding: 10px 12px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="financeiro-container">
+        <header class="financeiro-header">
+            <h1 class="financeiro-title">Financeiro</h1>
+            <p class="financeiro-subtitle">Gestão de fluxo de caixa e análise do CNPJ</p>
+        </header>
+
+        <div id="metricsContainer" class="metrics-grid">
+            <div class="loading">
+                <div class="spinner"></div>
+                Carregando...
+            </div>
+        </div>
+
+        <div id="statusContainer"></div>
+
+        <section id="chartsSection" style="display: none;">
+            <h2 class="section-title">Análise Temporal</h2>
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <div class="chart-title">Receitas</div>
+                    <canvas id="receitasChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">Despesas</div>
+                    <canvas id="despesasChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="categoriasSection" style="display: none;">
+            <h2 class="section-title">Por Categoria</h2>
+            <div class="data-table">
+                <div class="table-responsive">
+                    <table id="categoriasTable">
+                        <thead>
+                            <tr>
+                                <th>Categoria</th>
+                                <th>Receitas</th>
+                                <th>Despesas</th>
+                                <th>Saldo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="4" style="text-align: center;">Carregando...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="transacoesSection" style="display: none;">
+            <h2 class="section-title">Transações Recentes</h2>
+            <div class="data-table">
+                <div class="table-responsive">
+                    <table id="transacoesTable">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Descrição</th>
+                                <th>Tipo</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="4" style="text-align: center;">Carregando...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/api/financeiro';
+        let receitasChart, despesasChart;
+
+        async function carregarDados() {
+            try {
+                const res = await fetch(`${API_URL}/dashboard`);
+                const d = await res.json();
+
+                if (d.status === 'sucesso') {
+                    renderMetricas(d);
+                    renderStatus(d);
+                    renderGraficos(d);
+                    renderCategorias(d.analiseCategoria);
+                    renderTransacoes(d.transacoes.slice(0, 20));
+
+                    document.getElementById('chartsSection').style.display = 'block';
+                    document.getElementById('categoriasSection').style.display = 'block';
+                    document.getElementById('transacoesSection').style.display = 'block';
+                } else {
+                    erro('Sem dados. Adicione extratos em /data/extratos/');
+                }
+            } catch (e) {
+                erro(e.message);
+            }
+        }
+
+        function renderMetricas(d) {
+            const m = d.metricas;
+            const html = `
+                <div class="metric-card">
+                    <div class="metric-label">Receitas</div>
+                    <div class="metric-value">R$ ${fmt(m.totalReceita)}</div>
+                    <div class="metric-trend">${d.periodo.dias} dias</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Despesas</div>
+                    <div class="metric-value">R$ ${fmt(m.totalDespesa)}</div>
+                    <div class="metric-trend">${m.totalTransacoes} txn</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Saldo</div>
+                    <div class="metric-value" style="color: ${m.saldoLiquido >= 0 ? 'var(--chart-4)' : 'var(--destructive)'}">
+                        R$ ${fmt(m.saldoLiquido)}
+                    </div>
+                    <div class="metric-trend ${m.saldoLiquido >= 0 ? 'positive' : 'negative'}">
+                        ${m.saldoLiquido >= 0 ? 'Positivo' : 'Crítico'}
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Margem</div>
+                    <div class="metric-value" style="color: ${m.margemLucro >= 0 ? 'var(--chart-4)' : 'var(--destructive)'}">
+                        ${m.margemLucro.toFixed(1)}%
+                    </div>
+                    <div class="metric-trend">meta +25%</div>
+                </div>
+            `;
+            document.getElementById('metricsContainer').innerHTML = html;
+        }
+
+        function renderStatus(d) {
+            const s = d.saude;
+            const isCritico = s.status.includes('Crítico');
+            const html = `
+                <div class="status-message ${isCritico ? 'critical' : ''}">
+                    <div class="status-label">${s.status}</div>
+                    <div>${d.periodo.inicio} a ${d.periodo.fim} — ${s.dicas[0]}</div>
+                </div>
+            `;
+            document.getElementById('statusContainer').innerHTML = html;
+        }
+
+        function renderGraficos(d) {
+            const opts = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, ticks: { color: 'var(--muted-foreground)' }, grid: { color: 'var(--border)' } },
+                    x: { ticks: { color: 'var(--muted-foreground)' }, grid: { color: 'var(--border)' } }
+                }
+            };
+
+            if (document.getElementById('receitasChart') && !receitasChart) {
+                receitasChart = new Chart(document.getElementById('receitasChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: d.graficoReceitas.map(r => r.mes),
+                        datasets: [{ data: d.graficoReceitas.map(r => r.valor), backgroundColor: 'var(--chart-4)', borderWidth: 0 }]
+                    },
+                    options: opts
+                });
+            }
+
+            if (document.getElementById('despesasChart') && !despesasChart) {
+                despesasChart = new Chart(document.getElementById('despesasChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: d.graficoDespesas.map(x => x.mes),
+                        datasets: [{ data: d.graficoDespesas.map(x => x.valor), backgroundColor: 'var(--destructive)', borderWidth: 0 }]
+                    },
+                    options: opts
+                });
+            }
+        }
+
+        function renderCategorias(cats) {
+            const html = cats.slice(0, 12).map(c => `
+                <tr>
+                    <td>${c.categoria}</td>
+                    <td>R$ ${fmt(c.receitas)}</td>
+                    <td>R$ ${fmt(c.despesas)}</td>
+                    <td style="color: ${c.saldo >= 0 ? 'var(--chart-4)' : 'var(--destructive)'}">R$ ${fmt(c.saldo)}</td>
+                </tr>
+            `).join('');
+            document.querySelector('#categoriasTable tbody').innerHTML = html;
+        }
+
+        function renderTransacoes(txns) {
+            const html = txns.map(t => `
+                <tr>
+                    <td>${t.data}</td>
+                    <td>${t.descricao.substring(0, 45)}</td>
+                    <td><span class="badge badge-${t.tipo}">${t.tipo.substring(0, 3)}</span></td>
+                    <td style="color: ${t.tipo === 'receita' ? 'var(--chart-4)' : 'var(--destructive)'}">R$ ${fmt(t.valor)}</td>
+                </tr>
+            `).join('');
+            document.querySelector('#transacoesTable tbody').innerHTML = html;
+        }
+
+        function fmt(v) {
+            return Math.abs(v).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+
+        function erro(msg) {
+            document.getElementById('metricsContainer').innerHTML = `<div class="status-message critical" style="grid-column: 1/-1">${msg}</div>`;
+        }
+
+        carregarDados();
+    </script>
+</body>
+</html>

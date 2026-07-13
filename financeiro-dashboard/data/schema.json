@@ -1,0 +1,48 @@
+{
+  "transactions": [
+    {
+      "id": "txn_001",
+      "date": "2026-06-23",
+      "type": "receita|despesa",
+      "category": "vendas|consultoria|despesa-fixa|despesa-variavel|impostos|investimento",
+      "description": "Descrição da transação",
+      "amount": 1000.00,
+      "status": "confirmado|pendente|cancelado",
+      "source": "banco|manual|api",
+      "bankStatement": "extrato_2026-06.csv",
+      "notes": "Observações adicionais"
+    }
+  ],
+  "categories": {
+    "receita": [
+      "vendas",
+      "consultoria",
+      "serviços",
+      "investimentos",
+      "outras"
+    ],
+    "despesa": [
+      "despesa-fixa",
+      "despesa-variavel",
+      "impostos",
+      "folha-pagamento",
+      "marketing",
+      "infraestrutura",
+      "investimento",
+      "outras"
+    ]
+  },
+  "summary": {
+    "period": "2026-06",
+    "totalReceita": 0,
+    "totalDespesa": 0,
+    "saldoLiquido": 0,
+    "margemLucro": 0,
+    "fluxoCaixa": []
+  },
+  "metrics": {
+    "ticker": "fluxo-caixa|lucro-liquido|margem|caixa-disponivel|dias-pagamento",
+    "value": 0,
+    "trend": "up|down|stable"
+  }
+}

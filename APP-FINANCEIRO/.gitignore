@@ -1,0 +1,13 @@
+# Dados financeiros — NUNCA versionar
+data/
+*.ofx
+*.csv
+
+# Credenciais e segredos
+data/.auth.json
+data/.audit.log
+.env
+
+# Node
+node_modules/
+npm-debug.log*

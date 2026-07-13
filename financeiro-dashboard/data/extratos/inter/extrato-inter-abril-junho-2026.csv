@@ -1,0 +1,169 @@
+data,descricao,tipo,categoria,valor,saldo
+2026-04-01,Google Workspace,despesa,infraestrutura,-154.00,2046.00
+2026-04-02,Semintervalo Cursos E Treinamentos Ltda,receita,vendas,1971.16,3896.00
+2026-04-02,Janete Ines Paiva Schulz,receita,vendas,1900.00,1996.00
+2026-04-02,Maria Elisa Schulz,receita,vendas,100.00,1896.00
+2026-04-02,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-150.00,2046.00
+2026-04-02,Kiwify Pagamentos Tecnologia,despesa,despesa-operacional,-76.90,5790.26
+2026-04-03,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-4000.00,1400.26
+2026-04-03,Pagamento Fatura - Studio Roncolato,despesa,despesa-operacional,-390.00,5400.26
+2026-04-05,Mercado Pago,despesa,despesa-operacional,-309.75,1090.51
+2026-04-06,PIX Associacao Guardioes Do Amor Maior,despesa,doacoes,-300.00,790.51
+2026-04-06,PIX Envios Internacionais Express,receita,vendas,1200.00,1990.51
+2026-04-06,Pagamento BANCO CSF,despesa,cartoes,-645.31,1345.20
+2026-04-06,Auto Posto Pucci II,despesa,combustivel,-100.00,1245.20
+2026-04-07,BNI Brasil,despesa,despesa-operacional,-300.00,945.20
+2026-04-08,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-145.20,800.00
+2026-04-10,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-235.20,564.80
+2026-04-10,Groove Franquias,despesa,despesa-operacional,-46.80,518.00
+2026-04-10,Bueno 53 Estacionamento,despesa,combustivel,-18.00,500.00
+2026-04-11,PIX 63624103 Aurelio De Sousa Julio,despesa,despesa-operacional,-55.00,445.00
+2026-04-11,PIX Linq Telecom,despesa,infraestrutura,-102.17,342.83
+2026-04-13,PIX Fernanda Roncolato,despesa,saques-pessoais,-500.00,-237.07
+2026-04-13,Pagamento MEU OFFICE COWORKING,despesa,despesa-fixa,-79.90,262.93
+2026-04-13,Pagamento ASSOCIACAO COMUNIDADE ATOS,despesa,despesa-operacional,-1047.23,-1284.30
+2026-04-13,Pagamento CARTOES CAIXA ELO,despesa,cartoes,-794.78,-2079.08
+2026-04-13,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-842.83,-2921.91
+2026-04-13,PIX R E E Envio De Encomendas,receita,vendas,4500.00,-2921.91
+2026-04-14,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-278.09,1300.00
+2026-04-15,PIX Heloisa Torres Costa Silva,receita,vendas,1000.00,2300.00
+2026-04-16,PIX Iago Silva Brito De Oliveira,despesa,saques-pessoais,-200.00,2100.00
+2026-04-16,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-300.00,1800.00
+2026-04-16,PIX Raro Assessor De Investimentos,receita,investimentos,6300.00,8100.00
+2026-04-16,Pagamento Fatura - Studio Roncolato,despesa,despesa-operacional,-700.72,7399.28
+2026-04-17,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-300.00,7099.28
+2026-04-17,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-799.28,6300.00
+2026-04-20,PIX Lucas Felipe Fernandes,receita,vendas,1817.50,7817.50
+2026-04-20,Boleto recebido 24h,receita,vendas,6300.00,14117.50
+2026-04-23,Droganna,despesa,despesa-operacional,-54.99,14062.51
+2026-04-23,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-517.50,13545.01
+2026-04-23,PIX Iago Silva Brito De Oliveira,despesa,saques-pessoais,-600.00,12945.01
+2026-04-24,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-500.00,12445.01
+2026-04-25,PIX Semintervalo,receita,vendas,1971.16,14416.17
+2026-04-25,PIX Associacao Familia Santa,despesa,doacoes,-280.00,14136.17
+2026-04-25,Aplicacao CDB DI Liq Banco Inter,despesa,investimentos,-6300.00,7836.17
+2026-04-27,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-500.00,7336.17
+2026-04-28,Pagamento PRO-SINDICO GO II,despesa,despesa-fixa,-643.01,6693.16
+2026-04-28,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-2205.00,4488.16
+2026-04-28,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-3000.00,1488.16
+2026-04-29,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-488.16,1000.00
+2026-05-04,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-400.00,600.00
+2026-05-04,PIX Nu Pagamentos Sa,despesa,despesa-operacional,-600.00,0.00
+2026-05-04,PIX Fernanda Roncolato,despesa,saques-pessoais,-800.00,-800.00
+2026-05-04,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-171.16,-971.16
+2026-05-05,PIX Semintervalo Cursos E Treinamentos,receita,vendas,1971.16,1000.00
+2026-05-05,Pagamento Fatura - Rodrigo Goncalves,despesa,cartoes,-600.00,400.00
+2026-05-06,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-3600.00,2000.00
+2026-05-08,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-191.42,1808.58
+2026-05-08,PIX BNI Brasil,despesa,despesa-operacional,-300.00,1508.58
+2026-05-08,PIX Semintervalo Cursos E Treinamentos,receita,vendas,1971.16,3479.74
+2026-05-08,Pagamento Simples Nacional,despesa,impostos,-479.74,3000.00
+2026-05-09,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-500.00,2500.00
+2026-05-10,PIX Nic Br,despesa,infraestrutura,-40.00,2460.00
+2026-05-10,PIX Nic Br,despesa,infraestrutura,-40.00,2420.00
+2026-05-11,Pagamento BANCO CSF,despesa,cartoes,-645.31,1774.69
+2026-05-11,Auto Posto Barreira,despesa,combustivel,-100.00,1674.69
+2026-05-11,PIX 61699242 Allan Povoa Rodrigues,despesa,despesa-operacional,-150.00,1524.69
+2026-05-12,MP Associacao Agua,despesa,despesa-operacional,-115.00,1409.69
+2026-05-12,Valori Supermercado 2,despesa,despesa-operacional,-12.00,1397.69
+2026-05-12,Emporium Dos Sonhos,despesa,despesa-operacional,-51.18,1346.51
+2026-05-12,Buriti Bebidas,despesa,despesa-operacional,-16.50,1330.01
+2026-05-12,Elizangela Souza Da Silva Lino,despesa,despesa-operacional,-44.00,1286.01
+2026-05-13,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-157.88,1128.13
+2026-05-13,59808530 Kelvin,despesa,despesa-operacional,-28.13,1100.00
+2026-05-13,Posto Dakar Ltda,despesa,combustivel,-100.00,1000.00
+2026-05-14,Pagamento Fatura - Rodrigo Goncalves,despesa,cartoes,-355.13,580.87
+2026-05-14,Associacao Familia Sa,despesa,despesa-operacional,-64.00,936.00
+2026-05-15,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-280.87,218.48
+2026-05-15,PIX Meu Office Coworking,despesa,despesa-fixa,-81.52,499.35
+2026-05-16,PIX A Casa Vibe,despesa,despesa-operacional,-100.00,118.48
+2026-05-19,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-95.78,22.70
+2026-05-19,Pao De Queijo N Sra,despesa,despesa-operacional,-22.70,0.00
+2026-05-20,PIX Semintervalo Cursos E Treinamentos,receita,vendas,3942.32,3942.32
+2026-05-20,PIX Victor Augusto Alvares Vieira,despesa,saques-pessoais,-200.00,3742.32
+2026-05-21,Lider 3D Decor,despesa,despesa-operacional,-90.00,3652.32
+2026-05-21,Lider 3D Decor,despesa,despesa-operacional,-648.40,3003.92
+2026-05-21,Posto Aguia,despesa,combustivel,-100.00,2903.92
+2026-05-21,PIX Fernanda Roncolato,despesa,saques-pessoais,-500.00,2403.92
+2026-05-21,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-1000.00,1403.92
+2026-05-21,PIX Associacao Comunidade Atos,despesa,doacoes,-35.00,1368.92
+2026-05-22,PIX Juvenildo Moreira Santos Junior,receita,vendas,1300.00,2668.92
+2026-05-22,PIX Heloisa Torres Costa Silva,receita,vendas,1000.00,3668.92
+2026-05-22,Pagamento Fatura - Rodrigo Goncalves,despesa,cartoes,-368.92,3300.00
+2026-05-23,PIX Cappta,despesa,despesa-operacional,-230.00,3070.00
+2026-05-24,Auto Posto Barreira,despesa,combustivel,-100.00,2970.00
+2026-05-25,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-212.84,2757.16
+2026-05-25,PIX Freelahub,despesa,despesa-operacional,-59.90,2697.26
+2026-05-25,PIX Editora Azul Eireli,receita,vendas,3813.33,6510.59
+2026-05-25,PIX Speakers,receita,vendas,1000.00,7510.59
+2026-05-25,Pagamento HDI SEGUROS,despesa,despesa-operacional,-310.59,7200.00
+2026-05-25,PIX Fernanda Roncolato,despesa,saques-pessoais,-200.00,7000.00
+2026-05-26,PIX Guardioes Do Amor Maior,despesa,doacoes,-30.00,6970.00
+2026-05-26,PIX Guardioes Do Amor Maior,despesa,doacoes,-100.00,6870.00
+2026-05-26,PIX E Inscricao Tecnologia,despesa,despesa-operacional,-200.00,6670.00
+2026-05-26,PIX 63624103 Aurelio De Sousa,despesa,despesa-operacional,-95.00,6575.00
+2026-05-26,Aplicacao CDB DI Liq,despesa,investimentos,-640.00,5935.00
+2026-05-26,PIX Mercado Pago,despesa,despesa-operacional,-600.00,5335.00
+2026-05-26,PIX Mercado Pago,despesa,despesa-operacional,-246.62,5088.38
+2026-05-26,PIX Samara Luzia Soares,despesa,despesa-operacional,-38.54,5049.84
+2026-05-26,PIX Giovana Alves Barroso,receita,vendas,300.00,5349.84
+2026-05-26,Posto Dumont,despesa,combustivel,-100.00,5249.84
+2026-05-26,PIX Drogaria Opcao,despesa,despesa-operacional,-500.00,4749.84
+2026-05-26,PIX Pagar Me Pagamentos,despesa,despesa-operacional,-364.00,4385.84
+2026-05-27,PIX Semintervalo Cursos E Treinamentos,receita,vendas,1971.16,6357.00
+2026-05-27,Pagamento Fatura - Rodrigo Goncalves,despesa,cartoes,-210.84,6146.16
+2026-05-27,Pagamento Fatura - Rodrigo Goncalves,despesa,cartoes,-200.00,5946.16
+2026-05-27,PIX Tradio,despesa,despesa-operacional,-170.00,5776.16
+2026-05-27,PIX Cappta,despesa,despesa-operacional,-105.00,5671.16
+2026-05-27,PIX A Casa Vibe,despesa,despesa-operacional,-100.00,5571.16
+2026-05-27,PIX Fernanda Roncolato,despesa,saques-pessoais,-2200.00,3371.16
+2026-05-28,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-860.00,2411.16
+2026-05-28,Auto Posto Barreira,despesa,combustivel,-100.00,3271.16
+2026-05-28,Aplicacao CDB DI Liq,despesa,investimentos,-200.00,2211.16
+2026-05-29,Tarifa Saque,despesa,despesa-operacional,-6.40,2204.76
+2026-05-29,SAQUE BANCO 24H,despesa,saques-pessoais,-300.00,1904.76
+2026-05-30,PIX DM Instituicao De Pagamento,despesa,despesa-operacional,-122.70,1782.06
+2026-06-02,PIX Starlink Brazil,despesa,infraestrutura,-149.00,1633.06
+2026-06-03,Tal Tabocao Alimentos,despesa,despesa-operacional,-44.00,1589.06
+2026-06-03,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-133.06,1456.00
+2026-06-03,Romeiros 5 Ltda,despesa,despesa-operacional,-100.00,1356.00
+2026-06-07,Auto Posto,despesa,combustivel,-100.00,1256.00
+2026-06-07,PIX Adriana Remedi Macedo,despesa,despesa-operacional,-103.00,1153.00
+2026-06-09,Compra no débito,despesa,despesa-operacional,-12.00,1141.00
+2026-06-09,MP Associacao Agua,despesa,despesa-operacional,-10.00,1131.00
+2026-06-09,MP Associacao Agua,despesa,despesa-operacional,-85.00,1046.00
+2026-06-09,PIX Hubla,despesa,despesa-operacional,-84.00,962.00
+2026-06-09,PIX Raro Assessor De Investimentos,despesa,investimentos,-6300.00,-5338.00
+2026-06-09,Resgate CDB DI Liq,receita,investimentos,6300.00,962.00
+2026-06-09,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-53.00,909.00
+2026-06-10,Compra no débito,despesa,despesa-operacional,-25.00,884.00
+2026-06-10,Compra no débito,despesa,despesa-operacional,-3.00,881.00
+2026-06-11,PIX Associacao Familia Sa,despesa,despesa-operacional,-24.00,857.00
+2026-06-11,PIX Associacao Familia Sa,despesa,despesa-operacional,-98.00,759.00
+2026-06-11,Compra no débito,despesa,despesa-operacional,-57.96,589.04
+2026-06-11,Rede De Festa,despesa,despesa-operacional,-57.96,589.04
+2026-06-11,Auto Posto Barreira,despesa,combustivel,-100.00,489.04
+2026-06-11,Buriti Bebidas,despesa,despesa-operacional,-16.50,472.54
+2026-06-11,PIX Fernanda Roncolato,despesa,saques-pessoais,-112.00,647.00
+2026-06-12,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-500.00,-57.46
+2026-06-12,PIX Rodrigo Goncalves Roncolato,receita,saques-pessoais,500.00,442.54
+2026-06-12,Emporium Dos Sonhos,despesa,despesa-operacional,-22.62,419.92
+2026-06-12,D D Moreira Comercio,despesa,despesa-operacional,-13.25,406.67
+2026-06-13,Petromix,despesa,despesa-operacional,-100.00,306.67
+2026-06-13,Churrascaria 10,despesa,despesa-operacional,-159.04,147.63
+2026-06-14,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-147.00,0.63
+2026-06-15,Compra no débito,despesa,despesa-operacional,0.00,147.63
+2026-06-18,PIX Karla Valeria Cezario,despesa,despesa-operacional,-97.00,-96.37
+2026-06-18,Aplicacao CDB DI Liq,despesa,investimentos,-190.00,-286.37
+2026-06-18,PIX Campos Porto Sociedade,receita,vendas,1900.00,1613.63
+2026-06-18,PIX Semintervalo Cursos E Treinamentos,receita,vendas,1971.16,3584.79
+2026-06-19,PIX Hotmart,despesa,despesa-operacional,-222.75,3362.04
+2026-06-19,MP Calixto,despesa,despesa-operacional,-240.00,3122.04
+2026-06-19,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-213.63,2908.41
+2026-06-19,PIX Rodrigo Goncalves Roncolato,despesa,saques-pessoais,-800.00,2108.41
+2026-06-20,Compra no débito,despesa,despesa-operacional,-50.00,2058.41
+2026-06-20,PIX Cappta,despesa,despesa-operacional,-630.00,1428.41
+2026-06-21,Aplicacao CDB DI Liq,despesa,investimentos,-190.00,1238.41
+2026-06-21,PIX Mercado Pago,despesa,despesa-operacional,-243.42,994.99
+2026-06-21,Compra no débito,despesa,despesa-operacional,-20.00,974.99
+2026-06-23,Pagamento Total Fatura Em Atraso,despesa,cartoes,-635.23,339.76

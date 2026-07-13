@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Preview — Carrossel Copa × Marca Pessoal</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --P:  #F5C518;
+  --PL: #F7D84A;
+  --PD: #C49B10;
+  --DB: #0A0A0A;
+  --LB: #F0F0EB;
+  --LR: #E0E0D8;
+  --G:  #F5C518;
+  --F-HEAD: 'Jost', sans-serif;
+  --F-BODY: 'Jost', sans-serif;
+}
+
+body {
+  background: #111;
+  font-family: var(--F-BODY);
+  padding: 40px 20px;
+}
+
+/* ── TOGGLE ── */
+.toolbar {
+  display: flex; justify-content: center; gap: 12px;
+  margin-bottom: 40px;
+}
+.toolbar button {
+  background: #222; color: #fff; border: 1px solid #333;
+  padding: 10px 24px; border-radius: 8px; font-size: 14px;
+  cursor: pointer; font-family: var(--F-BODY); letter-spacing: .05em;
+}
+.toolbar button.active { background: var(--P); color: #000; border-color: var(--P); }
+
+/* ── PREVIEW MODE (default) ── */
+.slides-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.slide {
+  width: 1080px;
+  height: 1350px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Preview: 30% */
+.preview-mode .slide {
+  transform: scale(0.30);
+  transform-origin: top left;
+  margin-bottom: calc(1350px * -0.70);
+  margin-right: calc(1080px * -0.70);
+}
+
+/* Full mode */
+.full-mode {
+  flex-direction: column;
+  align-items: center;
+}
+.full-mode .slide {
+  transform: none;
+  margin: 0 0 24px;
+}
+
+/* ── ELEMENTOS FIXOS ── */
+.accent-bar {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 7px; z-index: 30;
+  background: var(--G);
+}
+.accent-bar.on-grad { background: rgba(255,255,255,0.18); }
+
+.brand-bar {
+  position: absolute; top: 7px; left: 0; right: 0;
+  padding: 28px 90px 0;
+  display: flex; justify-content: flex-end; align-items: center;
+  z-index: 20;
+  font-family: var(--F-BODY);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+}
+.brand-bar.on-light { color: rgba(15,13,12,0.45); }
+.brand-bar.on-dark  { color: rgba(255,255,255,0.45); }
+.brand-bar.on-grad  { color: rgba(255,255,255,0.50); }
+
+.prog {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 0 90px 30px; z-index: 20;
+  display: flex; align-items: center; gap: 16px;
+}
+.prog-track { flex: 1; height: 3px; border-radius: 2px; overflow: hidden; }
+.prog-fill  { height: 100%; border-radius: 2px; }
+.prog-num   { font-size: 15px; font-weight: 600; font-family: var(--F-BODY); }
+.on-light .prog-track { background: rgba(0,0,0,0.08); }
+.on-light .prog-fill  { background: var(--P); }
+.on-light .prog-num   { color: rgba(0,0,0,0.22); }
+.on-dark  .prog-track { background: rgba(255,255,255,0.10); }
+.on-dark  .prog-fill  { background: #fff; }
+.on-dark  .prog-num   { color: rgba(255,255,255,0.22); }
+.on-grad  .prog-track { background: rgba(255,255,255,0.15); }
+.on-grad  .prog-fill  { background: rgba(255,255,255,0.6); }
+.on-grad  .prog-num   { color: rgba(255,255,255,0.30); }
+
+.tag {
+  font-family: var(--F-BODY);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.on-light .tag { color: var(--P); }
+.on-dark  .tag { color: var(--PL); }
+.on-grad  .tag { color: rgba(255,255,255,0.55); }
+
+.content {
+  position: absolute;
+  top: 90px; left: 90px; right: 90px; bottom: 80px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding-bottom: 40px; z-index: 2;
+}
+
+/* ── CAPA ── */
+.slide-capa { background: #000; }
+.capa-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center top;
+}
+.capa-grad {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.25) 0%,
+    rgba(0,0,0,0.05) 20%,
+    rgba(0,0,0,0.10) 35%,
+    rgba(0,0,0,0.60) 50%,
+    rgba(0,0,0,0.90) 70%,
+    rgba(0,0,0,0.99) 100%
+  );
+  z-index: 1;
+}
+.capa-headline-area {
+  position: absolute;
+  bottom: 90px; left: 0; right: 0;
+  padding: 0 90px; z-index: 10;
+}
+.capa-badge {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: rgba(0,0,0,0.40);
+  border: 1.5px solid rgba(255,255,255,0.14);
+  border-radius: 60px;
+  padding: 10px 22px 10px 10px;
+  backdrop-filter: blur(12px);
+  margin-bottom: 28px;
+}
+.badge-dot {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--G);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--F-BODY); font-size: 15px; font-weight: 900; color: #000;
+}
+.badge-handle {
+  font-family: var(--F-BODY);
+  font-size: 18px; font-weight: 700; color: #fff; letter-spacing: .3px;
+}
+.capa-headline {
+  font-family: var(--F-HEAD);
+  font-size: 96px; font-weight: 900;
+  line-height: 0.92; letter-spacing: -2px; text-transform: uppercase;
+  color: #fff;
+}
+.capa-headline em { color: var(--P); font-style: normal; }
+
+/* ── DARK ── */
+.slide-dark { background: var(--DB); }
+.dark-bg-num {
+  position: absolute; right: -8px; bottom: 40px;
+  font-family: var(--F-HEAD);
+  font-size: 380px; font-weight: 900;
+  color: rgba(255,255,255,0.04);
+  line-height: 1; letter-spacing: -14px;
+  pointer-events: none; z-index: 1; user-select: none;
+}
+.dark-body {
+  font-family: var(--F-BODY);
+  font-size: 36px; font-weight: 400;
+  line-height: 1.52; letter-spacing: -0.2px;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 34px;
+}
+.dark-body:last-child { margin-bottom: 0; }
+.dark-body strong { color: #fff; font-weight: 700; }
+.dark-body em     { color: var(--PL); font-style: normal; }
+
+/* ── LIGHT ── */
+.slide-light { background: var(--LB); }
+.light-body {
+  font-family: var(--F-BODY);
+  font-size: 36px; font-weight: 400;
+  line-height: 1.55; letter-spacing: -0.2px;
+  color: rgba(15,13,12,0.60);
+  margin-bottom: 32px;
+}
+.light-body:last-child { margin-bottom: 0; }
+.light-body strong { color: var(--DB); font-weight: 800; }
+.light-body em     { color: var(--P); font-style: normal; }
+.light-card {
+  background: #fff;
+  border-left: 7px solid var(--P);
+  border-radius: 18px; padding: 44px 48px;
+  margin-bottom: 28px;
+}
+.light-table { width: 100%; border-collapse: collapse; margin-bottom: 36px; }
+.light-table th {
+  background: var(--P); color: #000;
+  padding: 18px 24px; font-size: 14px; font-weight: 800;
+  letter-spacing: 2px; text-transform: uppercase; text-align: left;
+  font-family: var(--F-BODY);
+}
+.light-table td {
+  padding: 20px 24px; font-size: 26px; font-weight: 500;
+  border-bottom: 1px solid var(--LR);
+  font-family: var(--F-BODY); color: var(--DB); line-height: 1.3;
+  vertical-align: middle;
+}
+.light-table td:last-child { font-weight: 800; color: var(--P); white-space: nowrap; }
+.light-table tr:last-child td { border-bottom: none; }
+
+/* ── GRAD ── */
+.slide-grad { background: var(--G); }
+.grad-bg-num {
+  position: absolute; right: -12px; bottom: 40px;
+  font-family: var(--F-HEAD);
+  font-size: 420px; font-weight: 900;
+  color: rgba(255,255,255,0.06);
+  line-height: 1; letter-spacing: -16px;
+  pointer-events: none; z-index: 1; user-select: none;
+}
+.grad-h1 {
+  font-family: var(--F-HEAD);
+  font-size: 100px; font-weight: 900;
+  line-height: 0.93; letter-spacing: -3px; text-transform: uppercase;
+  color: #fff; margin-bottom: 48px;
+}
+.grad-row {
+  display: flex; align-items: flex-start; gap: 22px; margin-bottom: 30px;
+}
+.grad-arrow {
+  font-size: 34px; color: rgba(255,255,255,0.4);
+  flex-shrink: 0; margin-top: 2px; font-family: var(--F-BODY);
+}
+.grad-text {
+  font-family: var(--F-BODY);
+  font-size: 32px; font-weight: 500;
+  line-height: 1.45; color: rgba(255,255,255,0.72);
+}
+.grad-text strong { color: #fff; font-weight: 800; }
+
+/* ── CTA ── */
+.slide-cta { background: var(--LB); }
+.cta-bridge {
+  font-family: var(--F-BODY);
+  font-size: 34px; font-weight: 400;
+  line-height: 1.55; color: rgba(15,13,12,0.55);
+  margin-bottom: 40px;
+}
+.cta-bridge strong { color: var(--DB); font-weight: 800; }
+.cta-headline {
+  font-family: var(--F-HEAD);
+  font-size: 80px; font-weight: 900;
+  line-height: 0.95; letter-spacing: -2px; text-transform: uppercase;
+  color: var(--DB); margin-bottom: 36px;
+}
+.cta-headline em { color: var(--P); font-style: normal; }
+.cta-kbox {
+  background: #fff;
+  border: 3px solid rgba(245,197,24,0.30);
+  border-radius: 20px; padding: 36px 44px; margin-bottom: 28px;
+}
+.cta-kinstr {
+  font-family: var(--F-BODY); font-size: 18px; font-weight: 500;
+  color: rgba(15,13,12,0.42); margin-bottom: 10px;
+}
+.cta-kword {
+  font-family: var(--F-HEAD); font-size: 88px; font-weight: 900;
+  color: var(--P); letter-spacing: -2px; line-height: 1; margin-bottom: 14px;
+}
+.cta-kbenefit {
+  font-family: var(--F-BODY); font-size: 20px; font-weight: 500;
+  line-height: 1.5; color: rgba(15,13,12,0.50);
+}
+.cta-footer {
+  display: flex; align-items: center; gap: 14px;
+}
+.cta-footer-dot {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--G);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--F-BODY); font-size: 15px; font-weight: 900; color: #000;
+}
+.cta-footer-text {
+  font-family: var(--F-BODY); font-size: 16px; color: rgba(15,13,12,0.35);
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button class="active" onclick="setMode('preview')" id="btn-preview">Preview (visão geral)</button>
+  <button onclick="setMode('full')" id="btn-full">Tamanho real (1080×1350)</button>
+</div>
+
+<div class="slides-wrap preview-mode" id="wrap">
+
+  <!-- S1 — CAPA -->
+  <div class="slide slide-capa on-dark" id="slide-1">
+    <div class="capa-bg" style="background-image:url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=1080&q=80');"></div>
+    <div class="capa-grad"></div>
+    <div class="accent-bar"></div>
+    <div class="brand-bar on-dark">
+      <span>@rroncolato</span>
+    </div>
+    <div class="capa-headline-area">
+      <div class="capa-headline">A DIFERENÇA<br>ENTRE <em>JOGADOR</em><br>CONHECIDO E<br><em>JOGADOR</em><br>LEMBRADO</div>
+    </div>
+    <div class="prog on-dark">
+      <div class="prog-track"><div class="prog-fill" style="width:11%"></div></div>
+      <span class="prog-num">1/9</span>
+    </div>
+  </div>
+
+  <!-- S2 — HOOK DARK -->
+  <div class="slide slide-dark on-dark" id="slide-2">
+    <div class="accent-bar"></div>
+    <div class="brand-bar on-dark">
+      <span>@rroncolato</span>
+    </div>
+    <div class="dark-bg-num">2</div>
+    <div class="content">
+      <div class="tag">O PARADOXO</div>
+      <div class="dark-body">A Copa 2026 reúne os <strong>736 melhores jogadores do planeta</strong>. Daqui a dez anos, menos de 30 serão lembrados.</div>
+      <div class="dark-body">A diferença não é talento. Os eliminados na fase de grupos também tinham talento. O que separa os que ficam na memória é o que foi <em>construído fora do campo</em>.</div>
+    </div>
+    <div class="prog on-dark">
+      <div class="prog-track"><div class="prog-fill" style="width:22%"></div></div>
+      <span class="prog-num">2/9</span>
+    </div>
+  </div>
+
+  <!-- S3 — CONTEXTO LIGHT -->
+  <div class="slide slide-light on-light" id="slide-3">
+    <div class="accent-bar"></div>
+    <div class="brand-bar on-light">
+      <span>@rroncolato</span>
+    </div>
+    <div class="content">
+      <div class="tag">O QUE OS DADOS MOSTRAM</div>
+      <div class="light-body">Ronaldo Fenômeno foi eleito o melhor do mundo três vezes. CR7 venceu uma. Hoje, Cristiano assina <strong>mais contratos de marca do que todos os tricampeões somados</strong>.</div>
+      <div class="light-body">A diferença não está nos títulos — está na identidade construída de forma deliberada desde os 22 anos. Percepção é um ativo que o talento sozinho não cria.</div>
+    </div>
+    <div class="prog on-light">
+      <div class="prog-track"><div class="prog-fill" style="width:33%"></div></div>
+      <span class="prog-num">3/9</span>
+    </div>
+  </div>
+
+  <!-- S4 — MECANISMO DARK -->
+  <div class="slide slide-dark on-dark" id="slide-4">
+    <div class="accent-bar"></div>
+    <div class="brand-bar on-dark">
+      <span>@rroncolato</span>
+    </div>
+    <div class="dark-bg-num">4</div>
+    <div class="content">
+      <div class="tag">COMO FUNCIONA</div>
+      <div class="dark-body">Ser visto e ser lembrado são coisas diferentes. O jogador que performa bem e some foi <strong>visto</strong>. O que construiu uma percepção que existe fora do campo — antes, durante e depois da Copa — é <em>lembrado</em>.</div>
+      <div class="dark-body">Endrick assinou com a Nike <strong>antes de disputar uma Copa</strong>. A imagem chegou antes do resultado. Isso não foi acidente.</div>
+    </div>
+    <div class="prog on-dark">
+      <div class="prog-track"><div class="prog-fill" style="width:44%"></div></div>
+      <span class="prog-num">4/9</span>
+    </div>
+  </div>
+
+  <!-- S5 — PROVA LIGHT -->
+  <div class="slide slide-light on-light" id="slide-5">
+    <div class="accent-bar"></div>
+    <div class="brand-bar on-light">
+      <span>@rroncolato</span>
+    </div>
+    <div class="content">
+      <div class="tag">OS NÚMEROS</div>
+      <table class="light-table">
+        <tr><th>Indicador</th><th>Dado</th></tr>
+        <tr><td>Recrutadores que eliminam pelo perfil antes de ler o currículo</td><td>87%</td></tr>
+        <tr><td>Endrick: contrato Nike assinado antes da 1ª Copa</td><td>2023</td></tr>
+        <tr><td>Jogadores da Copa 2014 com contratos de marca ativos hoje</td><td>&lt;8%</td></tr>
+      </table>
+      <div class="light-body">O julgamento acontece antes da conversa, antes da proposta, antes da reunião. Quem não controla a primeira impressão entrega esse poder para o acaso.</div>
+    </div>
+    <div class="prog on-light">
+      <div class="prog-track"><div class="prog-fill" style="width:55%"></div></div>
+      <span class="prog-num">5/9</span>
+    </div>
+  </div>
+
+  <!-- S6 — EXPANSÃO DARK -->
+  <div class="slide slide-dark on-dark" id="slide-6">
+    <div class="accent-bar"></div>
+    <div class="brand-bar on-dark">
+      <span>@rroncolato</span>
+    </div>
+    <div class="dark-bg-num">6</div>
+    <div class="content">
+      <div class="tag">O PARALELO</div>
+      <div class="dark-body">A Copa é o único evento onde <strong>bilhões de pessoas julgam um profissional em 90 minutos</strong>. Executivos e empresários passam pelo mesmo processo toda vez que alguém abre o perfil deles no LinkedIn.</div>
+      <div class="dark-body">A diferença é que o jogador tem um departamento de imagem trabalhando por ele. O profissional tenta resolver isso com uma <em>foto de celular de três anos atrás</em>.</div>
+    </div>
+    <div class="prog on-dark">
+      <div class="prog-track"><div class="prog-fill" style="width:66%"></div></div>
+      <span class="prog-num">6/9</span>
+    </div>
+  </div>
+
+  <!-- S7 — APLICAÇÃO LIGHT -->
+  <div class="slide slide-light on-light" id="slide-7">
+    <div class="accent-bar"></div>
+    <div class="brand-bar on-light">
+      <span>@rroncolato</span>
+    </div>
+    <div class="content">
+      <div class="tag">NA PRÁTICA</div>
+      <div class="light-card">
+        <div class="light-body" style="margin-bottom:0">O empresário que aparece numa reunião com foto desatualizada no perfil está fazendo o equivalente ao jogador que chega <strong>sem uniforme</strong>. A competência pode estar toda lá — a percepção diz outra coisa antes de qualquer palavra ser trocada.</div>
+      </div>
+      <div class="light-body">Imagem profissional não é vaidade. É o que permite que a competência real seja <strong>julgada</strong> — e não descartada antes de chegar à mesa.</div>
+    </div>
+    <div class="prog on-light">
+      <div class="prog-track"><div class="prog-fill" style="width:77%"></div></div>
+      <span class="prog-num">7/9</span>
+    </div>
+  </div>
+
+  <!-- S8 — DIREÇÃO GRAD -->
+  <div class="slide slide-grad on-grad" id="slide-8">
+    <div class="accent-bar on-grad"></div>
+    <div class="brand-bar on-grad">
+      <span>@rroncolato</span>
+    </div>
+    <div class="grad-bg-num">8</div>
+    <div class="content">
+      <div class="tag">A REGRA</div>
+      <div class="grad-h1">CONHECIDO<br>OU<br>LEMBRADO.</div>
+      <div class="grad-row"><span class="grad-arrow">→</span><span class="grad-text">Quem controla a percepção <strong>não depende do julgamento alheio</strong></span></div>
+      <div class="grad-row"><span class="grad-arrow">→</span><span class="grad-text">Imagem construída é <strong>ativo</strong>, não gasto</span></div>
+      <div class="grad-row"><span class="grad-arrow">→</span><span class="grad-text">A Copa escolhe os seus 30. <strong>O mercado escolhe os dele.</strong></span></div>
+    </div>
+    <div class="prog on-grad">
+      <div class="prog-track"><div class="prog-fill" style="width:88%"></div></div>
+      <span class="prog-num">8/9</span>
+    </div>
+  </div>
+
+  <!-- S9 — CTA LIGHT -->
+  <div class="slide slide-cta on-light" id="slide-9">
+    <div class="accent-bar"></div>
+    <div class="brand-bar on-light">
+      <span>@rroncolato</span>
+    </div>
+    <div class="content">
+      <div class="cta-bridge">Os jogadores lembrados não foram os mais talentosos da Copa. Foram os que chegaram com uma <strong>imagem que existia antes do apito inicial</strong>.</div>
+      <div class="cta-headline">SUA <em>IMAGEM</em><br>CHEGA ANTES<br>DE VOCÊ.</div>
+      <div class="cta-kbox">
+        <div class="cta-kinstr">Comenta a palavra abaixo:</div>
+        <div class="cta-kword">IMAGEM</div>
+        <div class="cta-kbenefit">e te mando os 5 critérios que uso pra avaliar se uma imagem profissional está trabalhando a favor ou contra quem a tem</div>
+      </div>
+      <div class="cta-footer">
+        <div class="cta-footer-dot">R</div>
+        <span class="cta-footer-text">@rroncolato</span>
+      </div>
+    </div>
+    <div class="prog on-light">
+      <div class="prog-track"><div class="prog-fill" style="width:100%"></div></div>
+      <span class="prog-num">9/9</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function setMode(mode) {
+  const wrap = document.getElementById('wrap');
+  const bp = document.getElementById('btn-preview');
+  const bf = document.getElementById('btn-full');
+  if (mode === 'preview') {
+    wrap.className = 'slides-wrap preview-mode';
+    bp.className = 'active'; bf.className = '';
+  } else {
+    wrap.className = 'slides-wrap full-mode';
+    bf.className = 'active'; bp.className = '';
+  }
+}
+</script>
+</body>
+</html>

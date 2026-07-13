@@ -1,0 +1,124 @@
+data,descricao,tipo,categoria,valor,saldo
+2026-01-01,Dl*google Worksp,despesa,infraestrutura,154.00,5167.72
+2026-01-01,Com Fe Lanches,despesa,despesa-operacional,12.00,5321.72
+2026-01-02,BANCO CSF,despesa,cartoes,645.31,4345.90
+2026-01-02,Nelsonantonio,despesa,despesa-operacional,5.00,5162.72
+2026-01-02,Dom Peperone,despesa,despesa-operacional,80.00,5082.72
+2026-01-02,Precioso Do Oeste,despesa,despesa-operacional,91.51,4991.21
+2026-01-02,Rosario Restaurante E,despesa,despesa-operacional,67.00,4278.90
+2026-01-02,Auto Posto Rosario,despesa,combustivel,166.80,4112.10
+2026-01-03,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,1112.10,3000.00
+2026-01-06,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,1000.00,2000.00
+2026-01-07,Maria Maurizia S N Ferreira,receita,vendas,15000.00,17000.00
+2026-01-09,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,1000.00,16000.00
+2026-01-11,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,2000.00,14000.00
+2026-01-12,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,3403.47,10596.53
+2026-01-12,Guilherme Henrique Verissimo Vieira,despesa,despesa-operacional,596.53,10000.00
+2026-01-13,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,4300.00,5700.00
+2026-01-15,Receita Federal,despesa,impostos,53.19,5646.81
+2026-01-15,Receita Federal,despesa,impostos,327.97,5318.84
+2026-01-16,Semintervalo Cursos E Treinamentos Ltda,receita,vendas,1142.34,6461.18
+2026-01-18,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,1461.18,5000.00
+2026-01-19,Meu Office Coworking,despesa,despesa-fixa,81.63,4918.37
+2026-01-20,Strikerbar,despesa,despesa-operacional,76.80,4841.57
+2026-01-20,Fernanda Roncolato,despesa,saques-pessoais,1000.00,3841.57
+2026-01-20,Tmb Servicos Ltda,despesa,despesa-operacional,251.57,3590.00
+2026-01-20,Hotmart,despesa,despesa-operacional,174.00,3416.00
+2026-01-21,Fatura cartao Inter,despesa,cartoes,324.44,3091.56
+2026-01-21,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,416.00,2675.56
+2026-01-21,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,1000.00,1675.56
+2026-01-22,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,1849.66,174.10
+2026-01-22,Julia Dias Alves,despesa,despesa-operacional,155.00,329.10
+2026-01-22,Kiwify,despesa,despesa-operacional,170.90,500.00
+2026-01-22,Janete Ines Paiva Schulz,receita,vendas,500.00,0.00
+2026-01-30,Semintervalo Cursos E Treinamentos Ltda,receita,vendas,1688.88,1688.88
+2026-01-31,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,688.88,1000.00
+2026-02-01,Dl*google Worksp,despesa,infraestrutura,154.00,846.00
+2026-02-04,2 Tabelionato De Protestos,despesa,despesa-operacional,587.96,258.04
+2026-02-08,Meu Office Coworking,despesa,despesa-fixa,79.90,178.14
+2026-02-08,Pagamento Fatura - ESTUDIO RONCOLATO LTDA,despesa,despesa-operacional,110.45,67.69
+2026-02-12,Envios Internacionais Online Ltda,receita,vendas,1000.00,1067.69
+2026-02-13,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,132.66,935.03
+2026-02-13,Semintervalo Cursos E Treinamentos Ltda,receita,vendas,2064.97,3000.00
+2026-02-14,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,500.00,2500.00
+2026-02-14,Cinepolis Cerrado,despesa,despesa-operacional,51.00,2449.00
+2026-02-14,Lojas Americanas 1085,despesa,despesa-operacional,67.81,2381.19
+2026-02-14,Mercado Pago Instituicao De Pagamento Ltda,despesa,despesa-operacional,557.09,1824.10
+2026-02-14,Mercado Pago Instituicao De Pagamento Ltda,despesa,despesa-operacional,213.49,1610.61
+2026-02-16,Leonessouzasilva,despesa,despesa-operacional,55.13,1555.48
+2026-02-16,Ceopag *ferragista Kal,despesa,despesa-operacional,58.00,1497.48
+2026-02-16,Hotmart,despesa,despesa-operacional,124.00,1373.48
+2026-02-17,Hotmart,despesa,despesa-operacional,191.00,1182.48
+2026-02-17,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,373.48,809.00
+2026-02-18,Nic Br,despesa,infraestrutura,40.00,769.00
+2026-02-18,Pagamento Fatura - ESTUDIO RONCOLATO LTDA,despesa,despesa-operacional,100.00,669.00
+2026-02-18,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,409.00,260.00
+2026-02-19,Pagamento Fatura - ESTUDIO RONCOLATO LTDA,despesa,despesa-operacional,153.49,106.51
+2026-02-20,Semintervalo Cursos E Treinamentos Ltda,receita,vendas,1971.16,2077.67
+2026-02-20,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,106.51,1971.16
+2026-02-21,Speakers,receita,vendas,2000.00,3956.19
+2026-02-21,59808530kelvin,despesa,despesa-operacional,14.97,1956.19
+2026-02-22,Ebn*canva0480,despesa,despesa-operacional,17.50,3938.69
+2026-02-22,Supermercado Jr,despesa,despesa-operacional,7.00,3931.69
+2026-02-23,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,2000.00,1931.69
+2026-02-23,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,931.69,1000.00
+2026-02-27,Zoop Brasil,despesa,despesa-operacional,280.00,2691.16
+2026-02-27,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,200.00,2491.16
+2026-02-28,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,491.16,2000.00
+2026-03-01,Dl *google Workspacerr,despesa,infraestrutura,154.00,1846.00
+2026-03-02,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,1000.00,846.00
+2026-03-03,Restart Gestao E Performance Ltda,receita,vendas,5000.00,5846.00
+2026-03-04,Heloisa Torres Costa Silva,receita,vendas,1000.00,6846.00
+2026-03-04,Zoop Brasil,despesa,despesa-operacional,300.00,6546.00
+2026-03-04,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,2500.00,4046.00
+2026-03-05,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,3000.00,1046.00
+2026-03-06,Semintervalo Cursos E Treinamentos Ltda,receita,vendas,1971.16,3017.16
+2026-03-07,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,300.00,2717.16
+2026-03-07,Nic Br,despesa,infraestrutura,40.00,2677.16
+2026-03-08,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,927.16,1750.00
+2026-03-08,Pagamento Fatura - ESTUDIO RONCOLATO LTDA,despesa,despesa-operacional,250.00,1500.00
+2026-03-08,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,500.00,1000.00
+2026-03-10,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,200.00,800.00
+2026-03-11,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,50.00,750.00
+2026-03-11,Iago Silva Brito De Oliveira,despesa,despesa-operacional,300.00,450.00
+2026-03-12,Linq Telecom,despesa,infraestrutura,102.20,347.80
+2026-03-13,Envios Internacionais Online Ltda,receita,vendas,1000.00,1347.80
+2026-03-13,Kiwify,despesa,despesa-operacional,67.00,1280.80
+2026-03-14,Pagamento Fatura - ESTUDIO RONCOLATO LTDA,despesa,despesa-operacional,206.94,1073.86
+2026-03-15,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,273.86,800.00
+2026-03-16,63624103 Aurelio De Sousa Julio,despesa,despesa-operacional,64.00,736.00
+2026-03-17,Fernanda Roncolato,despesa,saques-pessoais,500.00,236.00
+2026-03-17,Mercearia Belem,despesa,despesa-operacional,25.92,210.08
+2026-03-17,Lorraynedeoliveir,despesa,despesa-operacional,41.00,169.08
+2026-03-17,Restart Gestao E Performance Ltda,receita,vendas,2500.00,2669.08
+2026-03-17,Elizangela Souza Da Silva Lino,despesa,despesa-operacional,20.00,2649.08
+2026-03-17,Meu Office Coworking,despesa,despesa-fixa,81.52,2567.56
+2026-03-17,Semintervalo Cursos E Treinamentos Ltda,receita,vendas,1971.16,4538.72
+2026-03-17,Emporium Dos Sonhos,despesa,despesa-operacional,30.38,4508.34
+2026-03-18,Treinando Valores,despesa,despesa-operacional,175.00,4333.34
+2026-03-18,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,508.34,3825.00
+2026-03-19,Heloisa Torres Costa Silva,receita,vendas,600.00,4425.00
+2026-03-20,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,500.00,3925.00
+2026-03-20,63745499josias,despesa,despesa-operacional,37.00,3888.00
+2026-03-20,Semintervalo Cursos E Treinamentos Ltda,receita,vendas,1971.16,5859.16
+2026-03-20,Dona Rosca,despesa,despesa-operacional,38.00,5821.16
+2026-03-20,Dona Rosca,despesa,despesa-operacional,11.00,5810.16
+2026-03-20,Sr Padeiro,despesa,despesa-operacional,18.48,5791.68
+2026-03-21,Restaurante Ipanema,despesa,despesa-operacional,67.48,5724.20
+2026-03-21,Malu Paes,despesa,despesa-operacional,13.25,5710.95
+2026-03-22,Ebn*canva0482,despesa,despesa-operacional,35.00,5675.95
+2026-03-22,Restaurante Ipanema,despesa,despesa-operacional,59.86,5616.09
+2026-03-22,Mp *malupaes,despesa,despesa-operacional,23.44,5592.65
+2026-03-23,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,3879.07,1713.58
+2026-03-23,D D Moreira Comercio D,despesa,despesa-operacional,18.58,1695.00
+2026-03-23,Johnathan Henrique Machado Silva,receita,vendas,1500.00,3195.00
+2026-03-23,Auto Posto Barreira,despesa,combustivel,100.00,3095.00
+2026-03-23,63624103 Aurelio De Sousa Julio,despesa,despesa-operacional,95.00,3000.00
+2026-03-26,Wasley Marques De Almeida,receita,vendas,200.00,3200.00
+2026-03-26,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,1000.00,2200.00
+2026-03-27,Iago Silva Brito De Oliveira,despesa,despesa-operacional,300.00,1900.00
+2026-03-27,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,700.00,1200.00
+2026-03-29,Pagamento Fatura - ESTUDIO RONCOLATO LTDA,despesa,despesa-operacional,200.00,1000.00
+2026-03-30,Semintervalo Cursos E Treinamentos Ltda,receita,vendas,1971.16,2971.16
+2026-03-31,Safe2pay Intermediacao De Negocios Ltda,despesa,despesa-operacional,200.00,2771.16
+2026-03-31,Rodrigo Goncalves Roncolato,despesa,saques-pessoais,571.16,2200.00

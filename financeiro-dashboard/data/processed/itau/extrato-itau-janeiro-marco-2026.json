@@ -1,0 +1,1135 @@
+{
+  "banco": "itau",
+  "transacoes": [
+    {
+      "data": "2026-01-01",
+      "descricao": "Dl*google Worksp",
+      "tipo": "despesa",
+      "categoria": "infraestrutura",
+      "valor": 154,
+      "saldo": 5167.72,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-01",
+      "descricao": "Com Fe Lanches",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 12,
+      "saldo": 5321.72,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-02",
+      "descricao": "BANCO CSF",
+      "tipo": "despesa",
+      "categoria": "cartoes",
+      "valor": 645.31,
+      "saldo": 4345.9,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-02",
+      "descricao": "Nelsonantonio",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 5,
+      "saldo": 5162.72,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-02",
+      "descricao": "Dom Peperone",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 80,
+      "saldo": 5082.72,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-02",
+      "descricao": "Precioso Do Oeste",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 91.51,
+      "saldo": 4991.21,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-02",
+      "descricao": "Rosario Restaurante E",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 67,
+      "saldo": 4278.9,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-02",
+      "descricao": "Auto Posto Rosario",
+      "tipo": "despesa",
+      "categoria": "combustivel",
+      "valor": 166.8,
+      "saldo": 4112.1,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-03",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 1112.1,
+      "saldo": 3000,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-06",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 1000,
+      "saldo": 2000,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-07",
+      "descricao": "Maria Maurizia S N Ferreira",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 15000,
+      "saldo": 17000,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-09",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 1000,
+      "saldo": 16000,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-11",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 2000,
+      "saldo": 14000,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-12",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 3403.47,
+      "saldo": 10596.53,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-12",
+      "descricao": "Guilherme Henrique Verissimo Vieira",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 596.53,
+      "saldo": 10000,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-13",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 4300,
+      "saldo": 5700,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-15",
+      "descricao": "Receita Federal",
+      "tipo": "despesa",
+      "categoria": "impostos",
+      "valor": 53.19,
+      "saldo": 5646.81,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-15",
+      "descricao": "Receita Federal",
+      "tipo": "despesa",
+      "categoria": "impostos",
+      "valor": 327.97,
+      "saldo": 5318.84,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-16",
+      "descricao": "Semintervalo Cursos E Treinamentos Ltda",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1142.34,
+      "saldo": 6461.18,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-18",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 1461.18,
+      "saldo": 5000,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-19",
+      "descricao": "Meu Office Coworking",
+      "tipo": "despesa",
+      "categoria": "despesa-fixa",
+      "valor": 81.63,
+      "saldo": 4918.37,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-20",
+      "descricao": "Strikerbar",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 76.8,
+      "saldo": 4841.57,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-20",
+      "descricao": "Fernanda Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 1000,
+      "saldo": 3841.57,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-20",
+      "descricao": "Tmb Servicos Ltda",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 251.57,
+      "saldo": 3590,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-20",
+      "descricao": "Hotmart",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 174,
+      "saldo": 3416,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-21",
+      "descricao": "Fatura cartao Inter",
+      "tipo": "despesa",
+      "categoria": "cartoes",
+      "valor": 324.44,
+      "saldo": 3091.56,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-21",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 416,
+      "saldo": 2675.56,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-21",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 1000,
+      "saldo": 1675.56,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-22",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 1849.66,
+      "saldo": 174.1,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-22",
+      "descricao": "Julia Dias Alves",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 155,
+      "saldo": 329.1,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-22",
+      "descricao": "Kiwify",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 170.9,
+      "saldo": 500,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-22",
+      "descricao": "Janete Ines Paiva Schulz",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 500,
+      "saldo": 0,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-30",
+      "descricao": "Semintervalo Cursos E Treinamentos Ltda",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1688.88,
+      "saldo": 1688.88,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-01-31",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 688.88,
+      "saldo": 1000,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-01",
+      "descricao": "Dl*google Worksp",
+      "tipo": "despesa",
+      "categoria": "infraestrutura",
+      "valor": 154,
+      "saldo": 846,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-04",
+      "descricao": "2 Tabelionato De Protestos",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 587.96,
+      "saldo": 258.04,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-08",
+      "descricao": "Meu Office Coworking",
+      "tipo": "despesa",
+      "categoria": "despesa-fixa",
+      "valor": 79.9,
+      "saldo": 178.14,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-08",
+      "descricao": "Pagamento Fatura - ESTUDIO RONCOLATO LTDA",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 110.45,
+      "saldo": 67.69,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-12",
+      "descricao": "Envios Internacionais Online Ltda",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1000,
+      "saldo": 1067.69,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-13",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 132.66,
+      "saldo": 935.03,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-13",
+      "descricao": "Semintervalo Cursos E Treinamentos Ltda",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 2064.97,
+      "saldo": 3000,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-14",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 500,
+      "saldo": 2500,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-14",
+      "descricao": "Cinepolis Cerrado",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 51,
+      "saldo": 2449,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-14",
+      "descricao": "Lojas Americanas 1085",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 67.81,
+      "saldo": 2381.19,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-14",
+      "descricao": "Mercado Pago Instituicao De Pagamento Ltda",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 557.09,
+      "saldo": 1824.1,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-14",
+      "descricao": "Mercado Pago Instituicao De Pagamento Ltda",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 213.49,
+      "saldo": 1610.61,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-16",
+      "descricao": "Leonessouzasilva",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 55.13,
+      "saldo": 1555.48,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-16",
+      "descricao": "Ceopag *ferragista Kal",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 58,
+      "saldo": 1497.48,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-16",
+      "descricao": "Hotmart",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 124,
+      "saldo": 1373.48,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-17",
+      "descricao": "Hotmart",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 191,
+      "saldo": 1182.48,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-17",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 373.48,
+      "saldo": 809,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-18",
+      "descricao": "Nic Br",
+      "tipo": "despesa",
+      "categoria": "infraestrutura",
+      "valor": 40,
+      "saldo": 769,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-18",
+      "descricao": "Pagamento Fatura - ESTUDIO RONCOLATO LTDA",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 100,
+      "saldo": 669,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-18",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 409,
+      "saldo": 260,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-19",
+      "descricao": "Pagamento Fatura - ESTUDIO RONCOLATO LTDA",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 153.49,
+      "saldo": 106.51,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-20",
+      "descricao": "Semintervalo Cursos E Treinamentos Ltda",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1971.16,
+      "saldo": 2077.67,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-20",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 106.51,
+      "saldo": 1971.16,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-21",
+      "descricao": "Speakers",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 2000,
+      "saldo": 3956.19,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-21",
+      "descricao": "59808530kelvin",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 14.97,
+      "saldo": 1956.19,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-22",
+      "descricao": "Ebn*canva0480",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 17.5,
+      "saldo": 3938.69,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-22",
+      "descricao": "Supermercado Jr",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 7,
+      "saldo": 3931.69,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-23",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 2000,
+      "saldo": 1931.69,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-23",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 931.69,
+      "saldo": 1000,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-27",
+      "descricao": "Zoop Brasil",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 280,
+      "saldo": 2691.16,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-27",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 200,
+      "saldo": 2491.16,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-02-28",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 491.16,
+      "saldo": 2000,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-01",
+      "descricao": "Dl *google Workspacerr",
+      "tipo": "despesa",
+      "categoria": "infraestrutura",
+      "valor": 154,
+      "saldo": 1846,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-02",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 1000,
+      "saldo": 846,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-03",
+      "descricao": "Restart Gestao E Performance Ltda",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 5000,
+      "saldo": 5846,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-04",
+      "descricao": "Heloisa Torres Costa Silva",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1000,
+      "saldo": 6846,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-04",
+      "descricao": "Zoop Brasil",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 300,
+      "saldo": 6546,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-04",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 2500,
+      "saldo": 4046,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-05",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 3000,
+      "saldo": 1046,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-06",
+      "descricao": "Semintervalo Cursos E Treinamentos Ltda",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1971.16,
+      "saldo": 3017.16,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-07",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 300,
+      "saldo": 2717.16,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-07",
+      "descricao": "Nic Br",
+      "tipo": "despesa",
+      "categoria": "infraestrutura",
+      "valor": 40,
+      "saldo": 2677.16,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-08",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 927.16,
+      "saldo": 1750,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-08",
+      "descricao": "Pagamento Fatura - ESTUDIO RONCOLATO LTDA",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 250,
+      "saldo": 1500,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-08",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 500,
+      "saldo": 1000,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-10",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 200,
+      "saldo": 800,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-11",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 50,
+      "saldo": 750,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-11",
+      "descricao": "Iago Silva Brito De Oliveira",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 300,
+      "saldo": 450,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-12",
+      "descricao": "Linq Telecom",
+      "tipo": "despesa",
+      "categoria": "infraestrutura",
+      "valor": 102.2,
+      "saldo": 347.8,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-13",
+      "descricao": "Envios Internacionais Online Ltda",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1000,
+      "saldo": 1347.8,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-13",
+      "descricao": "Kiwify",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 67,
+      "saldo": 1280.8,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-14",
+      "descricao": "Pagamento Fatura - ESTUDIO RONCOLATO LTDA",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 206.94,
+      "saldo": 1073.86,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-15",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 273.86,
+      "saldo": 800,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-16",
+      "descricao": "63624103 Aurelio De Sousa Julio",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 64,
+      "saldo": 736,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-17",
+      "descricao": "Fernanda Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 500,
+      "saldo": 236,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-17",
+      "descricao": "Mercearia Belem",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 25.92,
+      "saldo": 210.08,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-17",
+      "descricao": "Lorraynedeoliveir",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 41,
+      "saldo": 169.08,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-17",
+      "descricao": "Restart Gestao E Performance Ltda",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 2500,
+      "saldo": 2669.08,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-17",
+      "descricao": "Elizangela Souza Da Silva Lino",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 20,
+      "saldo": 2649.08,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-17",
+      "descricao": "Meu Office Coworking",
+      "tipo": "despesa",
+      "categoria": "despesa-fixa",
+      "valor": 81.52,
+      "saldo": 2567.56,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-17",
+      "descricao": "Semintervalo Cursos E Treinamentos Ltda",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1971.16,
+      "saldo": 4538.72,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-17",
+      "descricao": "Emporium Dos Sonhos",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 30.38,
+      "saldo": 4508.34,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-18",
+      "descricao": "Treinando Valores",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 175,
+      "saldo": 4333.34,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-18",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 508.34,
+      "saldo": 3825,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-19",
+      "descricao": "Heloisa Torres Costa Silva",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 600,
+      "saldo": 4425,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-20",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 500,
+      "saldo": 3925,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-20",
+      "descricao": "63745499josias",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 37,
+      "saldo": 3888,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-20",
+      "descricao": "Semintervalo Cursos E Treinamentos Ltda",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1971.16,
+      "saldo": 5859.16,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-20",
+      "descricao": "Dona Rosca",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 38,
+      "saldo": 5821.16,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-20",
+      "descricao": "Dona Rosca",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 11,
+      "saldo": 5810.16,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-20",
+      "descricao": "Sr Padeiro",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 18.48,
+      "saldo": 5791.68,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-21",
+      "descricao": "Restaurante Ipanema",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 67.48,
+      "saldo": 5724.2,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-21",
+      "descricao": "Malu Paes",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 13.25,
+      "saldo": 5710.95,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-22",
+      "descricao": "Ebn*canva0482",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 35,
+      "saldo": 5675.95,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-22",
+      "descricao": "Restaurante Ipanema",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 59.86,
+      "saldo": 5616.09,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-22",
+      "descricao": "Mp *malupaes",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 23.44,
+      "saldo": 5592.65,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-23",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 3879.07,
+      "saldo": 1713.58,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-23",
+      "descricao": "D D Moreira Comercio D",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 18.58,
+      "saldo": 1695,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-23",
+      "descricao": "Johnathan Henrique Machado Silva",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1500,
+      "saldo": 3195,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-23",
+      "descricao": "Auto Posto Barreira",
+      "tipo": "despesa",
+      "categoria": "combustivel",
+      "valor": 100,
+      "saldo": 3095,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-23",
+      "descricao": "63624103 Aurelio De Sousa Julio",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 95,
+      "saldo": 3000,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-26",
+      "descricao": "Wasley Marques De Almeida",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 200,
+      "saldo": 3200,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-26",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 1000,
+      "saldo": 2200,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-27",
+      "descricao": "Iago Silva Brito De Oliveira",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 300,
+      "saldo": 1900,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-27",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 700,
+      "saldo": 1200,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-29",
+      "descricao": "Pagamento Fatura - ESTUDIO RONCOLATO LTDA",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 200,
+      "saldo": 1000,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-30",
+      "descricao": "Semintervalo Cursos E Treinamentos Ltda",
+      "tipo": "receita",
+      "categoria": "vendas",
+      "valor": 1971.16,
+      "saldo": 2971.16,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-31",
+      "descricao": "Safe2pay Intermediacao De Negocios Ltda",
+      "tipo": "despesa",
+      "categoria": "despesa-operacional",
+      "valor": 200,
+      "saldo": 2771.16,
+      "banco": "itau"
+    },
+    {
+      "data": "2026-03-31",
+      "descricao": "Rodrigo Goncalves Roncolato",
+      "tipo": "despesa",
+      "categoria": "saques-pessoais",
+      "valor": 571.16,
+      "saldo": 2200,
+      "banco": "itau"
+    }
+  ],
+  "metricas": {
+    "totalReceita": 45051.99,
+    "totalDespesa": 50156.87,
+    "saldoLiquido": -5104.88,
+    "margemLucro": -11.33,
+    "totalTransacoes": 123,
+    "totalReceitas": 19,
+    "totalDespesas": 104,
+    "despesasPorCategoria": {
+      "infraestrutura": 644.2,
+      "despesa-operacional": 6866.529999999997,
+      "cartoes": 969.75,
+      "combustivel": 266.8,
+      "saques-pessoais": 40785.38,
+      "impostos": 381.16,
+      "despesa-fixa": 243.05
+    },
+    "receitasPorCategoria": {
+      "vendas": 45051.99000000001
+    }
+  },
+  "total": 123,
+  "processedAt": "2026-07-04T02:47:08.356Z"
+}
