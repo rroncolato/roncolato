@@ -103,6 +103,17 @@ h4 {
   outline-offset: 3px;
 }
 
+/* Impressão do relatório (salvar como PDF) */
+@media print {
+  body {
+    background: #ffffff;
+    color: #1b1b1b;
+  }
+  .gold-line {
+    background: #864919;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
