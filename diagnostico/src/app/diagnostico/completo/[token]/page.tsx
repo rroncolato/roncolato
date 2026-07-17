@@ -4,7 +4,7 @@ import { getStore } from "@/lib/db";
 import { isValidTokenFormat } from "@/lib/tokens";
 import { archetypeById } from "@/lib/archetypes";
 import { trackEvent } from "@/lib/events";
-import { config, fullReportPriceBRL } from "@/lib/config";
+import { getEffectiveSettings, formatPriceBRL } from "@/lib/settings";
 import { GoldDivider } from "@/components/ui/GoldDivider";
 import { ScoreGauge } from "@/components/diagnostic/ScoreGauge";
 import { PillarScore } from "@/components/diagnostic/PillarScore";
@@ -29,6 +29,7 @@ export default async function CompletoPage({
   const store = getStore();
   const assessment = store.getAssessmentByToken(token);
   if (!assessment || !assessment.result || assessment.overallScore === undefined) notFound();
+  const settings = getEffectiveSettings();
 
   // ── Não pago: oferta ─────────────────────────────────────────────
   if (assessment.status !== "paid") {
@@ -57,7 +58,9 @@ export default async function CompletoPage({
             </li>
           ))}
         </ul>
-        <p className="mt-8 font-display text-2xl text-ink">{fullReportPriceBRL()}</p>
+        <p className="mt-8 font-display text-2xl text-ink">
+          {formatPriceBRL(settings.fullReportPriceCents)}
+        </p>
         <div className="mt-6">
           <UpgradeButton token={token} label="Desbloquear diagnóstico completo" />
         </div>
@@ -240,8 +243,8 @@ export default async function CompletoPage({
         <div className="mt-8">
           <BookingCTA
             token={token}
-            bookingUrl={config.NEXT_PUBLIC_BOOKING_URL}
-            whatsappNumber={config.NEXT_PUBLIC_WHATSAPP_NUMBER}
+            bookingUrl={settings.bookingUrl}
+            whatsappNumber={settings.whatsappNumber}
           />
         </div>
       </section>

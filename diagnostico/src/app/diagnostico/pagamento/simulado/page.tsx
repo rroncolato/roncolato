@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
-import { isDemoMode, fullReportPriceBRL } from "@/lib/config";
+import { isDemoMode } from "@/lib/config";
+import { getEffectiveSettings, formatPriceBRL } from "@/lib/settings";
 import { GoldDivider } from "@/components/ui/GoldDivider";
 import { SimulatedCheckout } from "@/components/diagnostic/SimulatedCheckout";
 
@@ -18,7 +19,9 @@ export default async function SimuladoPage({
       <GoldDivider className="my-8" />
       <div className="border border-line bg-surface p-8">
         <p className="text-sm text-ink-muted">Diagnóstico de Expressão — Relatório Completo</p>
-        <p className="mt-2 font-display text-3xl text-ink">{fullReportPriceBRL()}</p>
+        <p className="mt-2 font-display text-3xl text-ink">
+          {formatPriceBRL(getEffectiveSettings().fullReportPriceCents)}
+        </p>
         <p className="mt-4 text-xs text-ink-muted">
           Nenhuma cobrança real. Este checkout simula o fluxo do Mercado Pago
           para testes internos.

@@ -1,5 +1,5 @@
 import "server-only";
-import { mkdirSync, readFileSync, writeFileSync, existsSync } from "fs";
+import { mkdirSync, readFileSync, writeFileSync, existsSync, unlinkSync } from "fs";
 import { join } from "path";
 import { randomUUID } from "crypto";
 import type {
@@ -16,12 +16,21 @@ import type {
  * NUNCA usar em produção.
  */
 
+export type AppSettings = {
+  fullReportPriceCents?: number;
+  bookingUrl?: string;
+  whatsappNumber?: string;
+  imageRetentionDays?: number;
+  checkoutEnabled?: boolean;
+};
+
 type StoreData = {
   leads: LeadRecord[];
   assessments: AssessmentRecord[];
   images: AssessmentImageRecord[];
   payments: PaymentRecord[];
   events: AnalyticsEventRecord[];
+  settings: AppSettings;
 };
 
 const DATA_DIR = join(process.cwd(), ".demo-data");
@@ -29,7 +38,7 @@ const DATA_FILE = join(DATA_DIR, "store.json");
 export const DEMO_UPLOADS_DIR = join(DATA_DIR, "uploads");
 
 function emptyData(): StoreData {
-  return { leads: [], assessments: [], images: [], payments: [], events: [] };
+  return { leads: [], assessments: [], images: [], payments: [], events: [], settings: {} };
 }
 
 class DemoStore {
@@ -40,6 +49,7 @@ class DemoStore {
     if (existsSync(DATA_FILE)) {
       try {
         this.data = JSON.parse(readFileSync(DATA_FILE, "utf8")) as StoreData;
+        this.data.settings ??= {}; // compatibilidade com store.json anterior a esta chave
       } catch {
         this.data = emptyData();
       }
@@ -197,6 +207,29 @@ class DemoStore {
 
   listEvents(): AnalyticsEventRecord[] {
     return [...this.data.events];
+  }
+
+  // ── settings ─────────────────────────────────────────────
+  getSettings(): AppSettings {
+    return { ...this.data.settings };
+  }
+
+  updateSettings(patch: AppSettings): AppSettings {
+    this.data.settings = { ...this.data.settings, ...patch };
+    this.persist();
+    return this.getSettings();
+  }
+
+  // ── imagens: exclusão administrativa ────────────────────
+  deleteImage(assessmentId: string): void {
+    const image = this.getImageByAssessment(assessmentId);
+    if (!image) return;
+    try {
+      unlinkSync(image.storagePath);
+    } catch {
+      // arquivo já pode ter sido removido
+    }
+    this.updateImage(image.id, { deletedAt: this.now() });
   }
 }
 

@@ -29,6 +29,8 @@ npm run deploy     # deploy Vercel produção — SÓ COM APROVAÇÃO
 
 **Importante sobre rotas locais:** o `server.js` NÃO lê o `vercel.json`. Rotas amigáveis (ex: `/bniconquista`) precisam ser espelhadas no objeto `rewrites` dentro do `server.js` (~linha 155) para funcionarem no localhost. Em produção, quem manda é o `vercel.json`.
 
+**⚠️ Existem DOIS server.js:** `npm start` roda o **`server.js` da RAIZ** — não o `src/server.js` (que é um servidor dev antigo do admin). Rotas de API novas para teste local vão no da raiz. Já perdemos horas debugando 404 por editar o arquivo errado.
+
 ---
 
 ## Mapa das pastas

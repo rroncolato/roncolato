@@ -49,6 +49,8 @@ const envSchema = z
 
     // Admin
     ADMIN_EMAIL: z.string().default(""),
+    // Login local do painel em DEMO_MODE. Em produção o Supabase Auth assume.
+    ADMIN_PASSWORD: z.string().default(""),
     APP_SECRET: z.string().default(""),
   })
   .superRefine((env, ctx) => {
@@ -87,11 +89,3 @@ function loadConfig() {
 export const config = loadConfig();
 
 export const isDemoMode = config.DEMO_MODE;
-
-/** Preço do relatório completo formatado em BRL. */
-export function fullReportPriceBRL(): string {
-  return (config.FULL_REPORT_PRICE_CENTS / 100).toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  });
-}

@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { getStore } from "@/lib/db";
 import { isValidTokenFormat } from "@/lib/tokens";
 import { createCheckout } from "@/lib/payments";
+import { getEffectiveSettings } from "@/lib/settings";
 import { rateLimit, clientKey } from "@/lib/ratelimit";
 
 export async function POST(
@@ -26,6 +27,9 @@ export async function POST(
   }
   if (assessment.status !== "free_ready") {
     return NextResponse.json({ error: "Diagnóstico ainda não concluído." }, { status: 409 });
+  }
+  if (!getEffectiveSettings().checkoutEnabled) {
+    return NextResponse.json({ error: "Checkout temporariamente indisponível." }, { status: 503 });
   }
 
   try {

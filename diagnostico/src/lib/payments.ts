@@ -4,6 +4,7 @@ import { config, isDemoMode } from "@/lib/config";
 import { getStore } from "@/lib/db";
 import { trackEvent } from "@/lib/events";
 import { recalculateLeadScore } from "@/lib/leadscoring-service";
+import { getEffectiveSettings } from "@/lib/settings";
 import type { AssessmentRecord, PaymentRecord } from "@/lib/db/types";
 
 /**
@@ -20,8 +21,7 @@ export type CheckoutResult = {
 };
 
 function getPrice(): number {
-  // Preço central: app_settings quando houver banco; fallback env.
-  return config.FULL_REPORT_PRICE_CENTS;
+  return getEffectiveSettings().fullReportPriceCents;
 }
 
 export async function createCheckout(assessment: AssessmentRecord): Promise<CheckoutResult> {
