@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Jost, Libre_Franklin } from "next/font/google";
 import "./globals.css";
+import { ServiceWorkerRegister } from "@/components/ServiceWorkerRegister";
 
 /**
  * Tipografia:
@@ -25,6 +26,10 @@ export const metadata: Metadata = {
   title: "Diagnóstico de Expressão — Estúdio Roncolato",
   description:
     "Envie sua foto de perfil e descubra o que ela comunica sobre sua expressão, autoridade e posicionamento.",
+  icons: {
+    icon: "/icons/icon-192x192.png",
+    apple: "/icons/apple-touch-icon.png",
+  },
 };
 
 export const viewport: Viewport = {
@@ -40,7 +45,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`${jost.variable} ${libre.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ServiceWorkerRegister />
+        {children}
+      </body>
     </html>
   );
 }
