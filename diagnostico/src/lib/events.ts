@@ -1,5 +1,6 @@
 import "server-only";
 import { getStore } from "@/lib/db";
+import { recalculateLeadScore } from "@/lib/leadscoring-service";
 
 export const FUNNEL_EVENTS = [
   "landing_view",
@@ -25,6 +26,13 @@ export const FUNNEL_EVENTS = [
 
 export type FunnelEvent = (typeof FUNNEL_EVENTS)[number];
 
+/** Eventos que podem mudar a temperatura do lead — disparam recálculo. */
+const SCORE_AFFECTING_EVENTS: FunnelEvent[] = [
+  "full_report_viewed",
+  "booking_clicked",
+  "whatsapp_clicked",
+];
+
 export function trackEvent(
   eventName: FunnelEvent,
   opts: {
@@ -44,6 +52,9 @@ export function trackEvent(
       sessionId: opts.sessionId,
       source: opts.source,
     });
+    if (opts.leadId && SCORE_AFFECTING_EVENTS.includes(eventName)) {
+      recalculateLeadScore(opts.leadId);
+    }
   } catch {
     // Analytics nunca derruba o fluxo principal.
   }

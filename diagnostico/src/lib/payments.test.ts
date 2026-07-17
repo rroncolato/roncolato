@@ -1,6 +1,10 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { AssessmentRecord, PaymentRecord } from "@/lib/db/types";
 
+vi.mock("@/lib/leadscoring-service", () => ({
+  recalculateLeadScore: vi.fn(),
+}));
+
 vi.mock("@/lib/config", () => ({
   config: {
     FULL_REPORT_PRICE_CENTS: 9700,

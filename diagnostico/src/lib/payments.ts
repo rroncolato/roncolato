@@ -3,6 +3,7 @@ import { MercadoPagoConfig, Preference, Payment } from "mercadopago";
 import { config, isDemoMode } from "@/lib/config";
 import { getStore } from "@/lib/db";
 import { trackEvent } from "@/lib/events";
+import { recalculateLeadScore } from "@/lib/leadscoring-service";
 import type { AssessmentRecord, PaymentRecord } from "@/lib/db/types";
 
 /**
@@ -127,6 +128,7 @@ export function approvePayment(
       leadId: assessment.leadId,
       payload: { amountCents: updated?.amountCents },
     });
+    recalculateLeadScore(assessment.leadId);
   }
   return updated;
 }

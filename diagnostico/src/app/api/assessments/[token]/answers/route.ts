@@ -4,6 +4,7 @@ import { getStore } from "@/lib/db";
 import { isValidTokenFormat } from "@/lib/tokens";
 import { rateLimit, clientKey } from "@/lib/ratelimit";
 import { trackEvent } from "@/lib/events";
+import { recalculateLeadScore } from "@/lib/leadscoring-service";
 
 export async function PATCH(
   request: NextRequest,
@@ -56,6 +57,7 @@ export async function PATCH(
     assessmentId: assessment.id,
     leadId: assessment.leadId,
   });
+  recalculateLeadScore(assessment.leadId);
 
   return NextResponse.json({ ok: true });
 }
