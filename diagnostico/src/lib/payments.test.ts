@@ -5,6 +5,10 @@ vi.mock("@/lib/leadscoring-service", () => ({
   recalculateLeadScore: vi.fn(),
 }));
 
+vi.mock("@/lib/settings", () => ({
+  getEffectiveSettings: () => ({ fullReportPriceCents: 9700 }),
+}));
+
 vi.mock("@/lib/config", () => ({
   config: {
     FULL_REPORT_PRICE_CENTS: 9700,

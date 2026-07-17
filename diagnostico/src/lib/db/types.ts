@@ -92,3 +92,22 @@ export type AnalyticsEventRecord = {
   source?: string;
   createdAt: string;
 };
+
+export type AuditAction =
+  | "lead_viewed"
+  | "photo_deleted"
+  | "status_changed"
+  | "exported"
+  | "reprocessed"
+  | "assessment_deleted"
+  | "lead_anonymized"
+  | "settings_updated";
+
+export type AuditLogRecord = {
+  id: string;
+  action: AuditAction;
+  entityType: "lead" | "assessment" | "payment" | "settings";
+  entityId?: string;
+  detail: Record<string, unknown>;
+  createdAt: string;
+};

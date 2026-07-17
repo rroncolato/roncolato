@@ -6,6 +6,7 @@ import type {
   AnalyticsEventRecord,
   AssessmentImageRecord,
   AssessmentRecord,
+  AuditLogRecord,
   LeadRecord,
   PaymentRecord,
 } from "./types";
@@ -30,6 +31,7 @@ type StoreData = {
   images: AssessmentImageRecord[];
   payments: PaymentRecord[];
   events: AnalyticsEventRecord[];
+  auditLogs: AuditLogRecord[];
   settings: AppSettings;
 };
 
@@ -38,7 +40,15 @@ const DATA_FILE = join(DATA_DIR, "store.json");
 export const DEMO_UPLOADS_DIR = join(DATA_DIR, "uploads");
 
 function emptyData(): StoreData {
-  return { leads: [], assessments: [], images: [], payments: [], events: [], settings: {} };
+  return {
+    leads: [],
+    assessments: [],
+    images: [],
+    payments: [],
+    events: [],
+    auditLogs: [],
+    settings: {},
+  };
 }
 
 class DemoStore {
@@ -49,7 +59,9 @@ class DemoStore {
     if (existsSync(DATA_FILE)) {
       try {
         this.data = JSON.parse(readFileSync(DATA_FILE, "utf8")) as StoreData;
-        this.data.settings ??= {}; // compatibilidade com store.json anterior a esta chave
+        // compatibilidade com store.json anterior a estas chaves
+        this.data.settings ??= {};
+        this.data.auditLogs ??= [];
       } catch {
         this.data = emptyData();
       }
@@ -230,6 +242,39 @@ class DemoStore {
       // arquivo já pode ter sido removido
     }
     this.updateImage(image.id, { deletedAt: this.now() });
+  }
+
+  // ── audit logs ───────────────────────────────────────────
+  recordAudit(input: Omit<AuditLogRecord, "id" | "createdAt">): AuditLogRecord {
+    const log: AuditLogRecord = { ...input, id: randomUUID(), createdAt: this.now() };
+    this.data.auditLogs.push(log);
+    this.persist();
+    return log;
+  }
+
+  listAuditLogs(): AuditLogRecord[] {
+    return [...this.data.auditLogs].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  }
+
+  // ── LGPD: anonimização e exclusão ────────────────────────
+  anonymizeLead(leadId: string): LeadRecord | undefined {
+    const lead = this.getLead(leadId);
+    if (!lead) return undefined;
+    return this.updateLead(leadId, {
+      name: "Anonimizado",
+      email: `anon-${leadId}@removido.local`,
+      whatsapp: "",
+      company: undefined,
+      instagram: undefined,
+      linkedin: undefined,
+      city: undefined,
+      anonymizedAt: this.now(),
+    });
+  }
+
+  deleteAssessment(assessmentId: string): void {
+    this.deleteImage(assessmentId);
+    this.updateAssessment(assessmentId, { status: "deleted" });
   }
 }
 
