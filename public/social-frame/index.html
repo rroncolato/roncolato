@@ -733,6 +733,7 @@
         } else {
           const nome = raw.replace(/\s+/g, '-');
           await loadCliente(nome);
+          localStorage.setItem('sf_cliente', nome);
         }
       } catch (err) {
         errEl.textContent = err.message;
@@ -741,6 +742,18 @@
         btn.textContent = raw === ADMIN_USER ? 'Entrar como admin' : 'Acessar minhas fotos';
       }
     });
+
+    // Sessão fica salva no aparelho: recarregar a página não desloga o cliente.
+    // Admin nunca é lembrado (senha não fica no navegador).
+    (async function restaurarSessao() {
+      const salvo = localStorage.getItem('sf_cliente');
+      if (!salvo) return;
+      try {
+        await loadCliente(salvo);
+      } catch (err) {
+        localStorage.removeItem('sf_cliente');
+      }
+    })();
 
     async function loadCliente(nome) {
       const r = await fetch(`${API}/fotos/${encodeURIComponent(nome)}`);
@@ -814,6 +827,7 @@
     document.getElementById('logoutBtn').addEventListener('click', () => {
       cliente = null;
       fotos = [];
+      localStorage.removeItem('sf_cliente');
       document.getElementById('galleryScreen').style.display = 'none';
       if (isAdmin) {
         document.getElementById('adminScreen').style.display = 'flex';
