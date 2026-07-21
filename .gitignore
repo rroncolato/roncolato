@@ -25,3 +25,6 @@ AGENDA/*.json
 SOCIAL-FRAME/config/*.json
 
 .claude/settings.local.json
+
+# Log do agendador SOCIAL FRAME
+scripts/auto-publicar.log
