@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Odonto Blink — Rebranding | Roncolato Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/assets/IMG/rr-simbolo-white.png">
+    <meta property="og:title" content="Proposta Odonto Blink — Rebranding | Roncolato Studio">
+    <meta property="og:description" content="Rebranding completo da Odonto Blink: estratégia, identidade visual e verbal, aplicações e site institucional. Uma nova percepção de valor.">
+    <meta property="og:image" content="/assets/IMG/avatar-fundobranco.png">
+    <meta property="og:url" content="https://rroncolato.com.br/proposta/odonto-blink">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="/assets/IMG/avatar-fundobranco.png">
+    <style>
+        :root {
+            --yellow: #F5C518;
+            --black: #0C0C0C;
+            --black-2: #141414;
+            --black-3: #1C1C1C;
+            --white: #FFFFFF;
+            --gray: #7A7A7A;
+            --gray-2: #3A3A3A;
+            --border: rgba(255,255,255,0.07);
+            --border-y: rgba(245,197,24,0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; background: var(--black); }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: 'Jost', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* HEADER */
+        header {
+            padding: 32px 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: rgba(12,12,12,0.85);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+        }
+
+        .logo img {
+            height: 32px;
+            width: auto;
+            display: block;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 130px 24px;
+            background: linear-gradient(135deg, rgba(245,197,24,0.06) 0%, rgba(245,197,24,0.02) 100%);
+            border-bottom: 1px solid var(--border-y);
+        }
+
+        .hero-tag {
+            display: inline-block;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 700;
+            border: 1px solid var(--border-y);
+            padding: 8px 16px;
+            border-radius: 40px;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 900;
+            letter-spacing: -2.5px;
+            line-height: 1.02;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 em { font-style: italic; color: var(--yellow); }
+
+        .hero p {
+            font-size: 19px;
+            color: var(--gray);
+            line-height: 1.8;
+            max-width: 700px;
+            margin-bottom: 32px;
+        }
+
+        .hero-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-top: 52px;
+        }
+
+        .meta-item {
+            padding: 22px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+        }
+
+        .meta-label {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .meta-value {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        /* SECTION */
+        section {
+            padding: 90px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .s-label {
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .s-title {
+            font-size: clamp(34px, 6vw, 56px);
+            font-weight: 900;
+            letter-spacing: -1px;
+            line-height: 1.05;
+            margin-bottom: 24px;
+        }
+
+        .s-title em { font-style: italic; color: var(--yellow); }
+
+        .s-intro {
+            font-size: 17px;
+            color: var(--gray);
+            line-height: 1.9;
+            max-width: 720px;
+        }
+
+        .s-intro strong { color: var(--white); font-weight: 600; }
+
+        /* DIAGNÓSTICO */
+        .diag-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 48px;
+        }
+
+        .diag-col {
+            padding: 36px 32px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .diag-col.now { border-left: 3px solid var(--gray-2); }
+        .diag-col.next { border-left: 3px solid var(--yellow); background: rgba(245,197,24,0.04); }
+
+        .diag-col h3 {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .diag-col.now h3 { color: var(--gray); }
+        .diag-col.next h3 { color: var(--yellow); }
+
+        .diag-col ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+
+        .diag-col li {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.6;
+            padding-left: 22px;
+            position: relative;
+        }
+
+        .diag-col.now li::before { content: '—'; position: absolute; left: 0; color: var(--gray-2); }
+        .diag-col.next li::before { content: '→'; position: absolute; left: 0; color: var(--yellow); font-weight: 700; }
+        .diag-col.next li { color: #cfcfcf; }
+
+        /* FASES / CRONOGRAMA */
+        .fases {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 48px;
+        }
+
+        .fase {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 32px;
+            padding: 36px 32px;
+            border: 1px solid var(--border);
+            background: var(--black-2);
+            transition: all 0.3s ease;
+        }
+
+        .fase:hover { border-color: var(--border-y); }
+
+        .fase-num {
+            font-size: 52px;
+            font-weight: 900;
+            color: var(--yellow);
+            line-height: 1;
+            opacity: 0.9;
+        }
+
+        .fase-mes {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .fase-title {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .fase-desc {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .fase-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .fase-tags span {
+            font-size: 11px;
+            color: var(--yellow);
+            border: 1px solid var(--border-y);
+            padding: 5px 12px;
+            border-radius: 40px;
+        }
+
+        /* PLANOS */
+        .planos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin-top: 48px;
+            align-items: stretch;
+        }
+
+        .plano-card {
+            background: var(--black-2);
+            border: 1px solid var(--border);
+            padding: 40px 32px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .plano-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-4px);
+        }
+
+        .plano-card.destaque {
+            background: rgba(245,197,24,0.05);
+            border-color: var(--yellow);
+        }
+
+        .plano-badge {
+            display: inline-block;
+            background: var(--yellow);
+            color: var(--black);
+            padding: 6px 14px;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            width: fit-content;
+        }
+
+        .plano-nome {
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .plano-desc {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 28px;
+            min-height: 44px;
+        }
+
+        .plano-itens {
+            list-style: none;
+            margin-bottom: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+            flex: 1;
+        }
+
+        .plano-itens li {
+            font-size: 13px;
+            color: #b8b8b8;
+            padding-left: 22px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .plano-itens li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--yellow);
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .plano-itens li.base { color: var(--gray); font-style: italic; }
+        .plano-itens li.base::before { content: '＋'; }
+
+        .plano-preco {
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+            margin-bottom: 24px;
+        }
+
+        .plano-preco-val {
+            font-size: 40px;
+            font-weight: 900;
+            color: var(--yellow);
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+
+        .plano-preco-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .plano-preco-opcoes {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 14px 16px;
+            font-size: 11.5px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .plano-preco-opcoes strong { color: var(--yellow); font-weight: 700; }
+
+        .btn {
+            display: block;
+            padding: 15px 20px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--white);
+            font-family: 'Jost', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn:hover { border-color: var(--yellow); color: var(--black); background: var(--yellow); }
+
+        .btn-yellow { background: var(--yellow); color: var(--black); border-color: var(--yellow); }
+        .btn-yellow:hover { background: transparent; color: var(--yellow); }
+
+        /* DELIVERABLES */
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 48px;
+        }
+
+        .deliv-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .deliv-card:hover { border-color: var(--border-y); }
+
+        .deliv-icon { font-size: 30px; margin-bottom: 16px; }
+
+        .deliv-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .deliv-desc { font-size: 13px; color: var(--gray); line-height: 1.7; }
+
+        /* NOTA */
+        .nota {
+            background: rgba(245,197,24,0.05);
+            border: 1px solid var(--border-y);
+            border-left: 4px solid var(--yellow);
+            padding: 28px;
+            margin-top: 32px;
+        }
+
+        .nota p { font-size: 14px; color: var(--gray); line-height: 1.8; }
+        .nota strong { color: var(--white); font-weight: 700; }
+
+        /* CONTACT */
+        .contact { text-align: center; padding: 100px 0; }
+
+        .contact h2 {
+            font-size: clamp(32px, 6vw, 58px);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .contact h2 em { font-style: italic; color: var(--yellow); }
+
+        .contact p { font-size: 16px; color: var(--gray); margin-bottom: 40px; }
+
+        .contact-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .contact-btns .btn { width: auto; padding: 16px 34px; }
+
+        /* FOOTER */
+        footer { border-top: 1px solid var(--border); padding: 48px 0; text-align: center; }
+        footer p { font-size: 12px; color: var(--gray); }
+
+        @media (max-width: 768px) {
+            .hero { padding: 90px 24px; }
+            .hero h1 { font-size: 40px; }
+            section { padding: 64px 0; }
+            .diag-grid { grid-template-columns: 1fr; }
+            .fase { grid-template-columns: 1fr; gap: 16px; }
+            .fase-num { font-size: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="logo">
+            <img src="/assets/IMG/roncolato-branco-horizontal.png" alt="Roncolato Studio" onerror="this.src='/assets/IMG/rr-simbolo-white.png'">
+        </div>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <span class="hero-tag">Proposta de Rebranding</span>
+        <h1>Odonto Blink<br>a próxima <em>versão da marca.</em></h1>
+        <p>A Odonto Blink já entrega excelência no consultório. O que esta proposta constrói é a percepção — fazer com que quem olha de fora enxergue, em segundos, o valor que só quem já é paciente conhece. Rebranding não é trocar o logo. É alinhar o que a clínica é, o que ela diz e como ela aparece, numa única identidade que sustenta preços melhores e pacientes mais certos.</p>
+
+        <div class="hero-meta">
+            <div class="meta-item">
+                <div class="meta-label">Cliente</div>
+                <div class="meta-value">Odonto Blink</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Escopo</div>
+                <div class="meta-value">Rebranding</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Prazo</div>
+                <div class="meta-value">3 meses</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Validade</div>
+                <div class="meta-value">15 dias</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DIAGNÓSTICO -->
+<section>
+    <div class="container">
+        <div class="s-label">O momento</div>
+        <h2 class="s-title">O consultório cresceu.<br>A <em>percepção</em> precisa alcançar.</h2>
+        <p class="s-intro">Toda clínica chega num ponto em que a marca vira teto: ela para de comunicar o nível de serviço que já é praticado. O paciente certo passa reto porque a imagem não conta a história certa. <strong>É aqui que o rebranding trabalha — não na estética, mas no posicionamento.</strong></p>
+
+        <div class="diag-grid">
+            <div class="diag-col now">
+                <h3>Onde a marca está</h3>
+                <ul>
+                    <li>Identidade que não reflete o padrão de atendimento atual</li>
+                    <li>Percepção de valor abaixo do que a clínica entrega</li>
+                    <li>Comunicação e aplicações sem um sistema único</li>
+                    <li>Presença digital que não sustenta a decisão do paciente</li>
+                </ul>
+            </div>
+            <div class="diag-col next">
+                <h3>Onde a marca vai</h3>
+                <ul>
+                    <li>Uma identidade que comunica confiança e cuidado à primeira vista</li>
+                    <li>Percepção de valor que justifica o ticket e atrai o paciente certo</li>
+                    <li>Sistema visual e verbal coeso, do Instagram à fachada</li>
+                    <li>Site institucional que posiciona e converte</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- COMO CONDUZIMOS -->
+<section>
+    <div class="container">
+        <div class="s-label">Como conduzimos</div>
+        <h2 class="s-title">Três meses,<br>três <em>etapas claras.</em></h2>
+        <p class="s-intro">Nada de entregar um logo e sumir. O processo é conduzido em fases, com você acompanhando cada decisão — porque marca boa se constrói junto, não se impõe.</p>
+
+        <div class="fases">
+            <div class="fase">
+                <div>
+                    <div class="fase-num">01</div>
+                    <div class="fase-mes">Mês 1</div>
+                </div>
+                <div>
+                    <div class="fase-title">Imersão &amp; Estratégia</div>
+                    <div class="fase-desc">Antes do primeiro traço, entender o negócio. Diagnóstico da marca atual, definição de posicionamento, público ideal, percepção de valor e a identidade verbal — o jeito da Odonto Blink falar.</div>
+                    <div class="fase-tags">
+                        <span>Diagnóstico</span><span>Posicionamento</span><span>Arquétipo</span><span>Tom de voz</span><span>Mensagens-chave</span>
+                    </div>
+                </div>
+            </div>
+            <div class="fase">
+                <div>
+                    <div class="fase-num">02</div>
+                    <div class="fase-mes">Mês 2</div>
+                </div>
+                <div>
+                    <div class="fase-title">Sistema Visual &amp; Documentação</div>
+                    <div class="fase-desc">A estratégia vira forma. Construção da marca, sistema visual completo (cores, tipografia, grafismos), papelaria e aplicações. Tudo registrado no brand book — o manual que garante consistência no dia a dia.</div>
+                    <div class="fase-tags">
+                        <span>Marca / Logo</span><span>Identidade visual</span><span>Brand book</span><span>Papelaria</span><span>Aplicações</span>
+                    </div>
+                </div>
+            </div>
+            <div class="fase">
+                <div>
+                    <div class="fase-num">03</div>
+                    <div class="fase-mes">Mês 3</div>
+                </div>
+                <div>
+                    <div class="fase-title">Ativação &amp; Presença</div>
+                    <div class="fase-desc">A marca vai pro mundo. Site institucional, estratégia e peças conceito para redes sociais, e as aplicações físicas — fachada e sinalização. A clínica passa a se apresentar, em todo ponto de contato, no novo patamar.</div>
+                    <div class="fase-tags">
+                        <span>Site institucional</span><span>Redes sociais</span><span>Fachada</span><span>Entrega final</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PLANOS -->
+<section>
+    <div class="container">
+        <div class="s-label">Investimento</div>
+        <h2 class="s-title">Escolha o alcance<br>do <em>rebranding.</em></h2>
+        <p class="s-intro">Três caminhos para a mesma direção. O <strong>Completo</strong> é o que recomendo para a Odonto Blink — entrega a marca e já coloca ela de pé no digital e no físico, sem deixar pontas soltas.</p>
+
+        <div class="planos-grid">
+            <!-- ESSENCIAL -->
+            <div class="plano-card">
+                <div class="plano-nome">Essencial</div>
+                <div class="plano-desc">A nova marca, documentada e pronta para aplicar.</div>
+                <ul class="plano-itens">
+                    <li>Imersão e estratégia de marca</li>
+                    <li>Posicionamento e percepção de valor</li>
+                    <li>Identidade verbal (tom de voz, mensagens)</li>
+                    <li>Marca / logo e sistema visual completo</li>
+                    <li>Brand book (manual da marca)</li>
+                    <li>Papelaria essencial</li>
+                    <li>Redes sociais: estratégia + peças conceito</li>
+                </ul>
+                <div class="plano-preco">
+                    <div class="plano-preco-val">6x R$ 4.033</div>
+                    <div class="plano-preco-label">ou R$ 22.000 à vista</div>
+                    <div class="plano-preco-opcoes">
+                        <strong>À vista:</strong> R$ 22.000<br>
+                        <strong>Parcelado:</strong> 6x de R$ 4.033 no cartão<br>
+                        <strong>Outras condições:</strong> via link — taxas da bandeira
+                    </div>
+                </div>
+                <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20tenho%20interesse%20no%20plano%20Essencial%20do%20rebranding%20da%20Odonto%20Blink" class="btn">Quero o Essencial</a>
+            </div>
+
+            <!-- COMPLETO -->
+            <div class="plano-card destaque">
+                <div class="plano-badge">Recomendado</div>
+                <div class="plano-nome">Completo</div>
+                <div class="plano-desc">A marca construída e já ativada no digital e no físico.</div>
+                <ul class="plano-itens">
+                    <li class="base">Tudo do Essencial</li>
+                    <li>Site institucional (design + desenvolvimento)</li>
+                    <li>Aplicações físicas: fachada e sinalização</li>
+                    <li>Papelaria ampliada (receituário, uniforme, etc.)</li>
+                    <li>Kit de lançamento da nova marca</li>
+                    <li>Sistema de templates para redes sociais</li>
+                </ul>
+                <div class="plano-preco">
+                    <div class="plano-preco-val">6x R$ 5.500</div>
+                    <div class="plano-preco-label">ou R$ 30.000 à vista</div>
+                    <div class="plano-preco-opcoes">
+                        <strong>À vista:</strong> R$ 30.000<br>
+                        <strong>Parcelado:</strong> 6x de R$ 5.500 no cartão<br>
+                        <strong>Outras condições:</strong> via link — taxas da bandeira
+                    </div>
+                </div>
+                <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20quero%20o%20plano%20Completo%20do%20rebranding%20da%20Odonto%20Blink" class="btn btn-yellow">Quero o Completo</a>
+            </div>
+
+            <!-- PREMIUM -->
+            <div class="plano-card">
+                <div class="plano-nome">Premium</div>
+                <div class="plano-desc">Rebranding completo + os primeiros meses no ar com conteúdo.</div>
+                <ul class="plano-itens">
+                    <li class="base">Tudo do Completo</li>
+                    <li>Gestão de conteúdo das redes (3 meses)</li>
+                    <li>Produção de peças mensais</li>
+                    <li>Calendário editorial estratégico</li>
+                    <li>Acompanhamento e ajustes de marca no lançamento</li>
+                </ul>
+                <div class="plano-preco">
+                    <div class="plano-preco-val">6x R$ 10.670</div>
+                    <div class="plano-preco-label">ou R$ 58.200 à vista</div>
+                    <div class="plano-preco-opcoes">
+                        <strong>À vista:</strong> R$ 58.200<br>
+                        <strong>Parcelado:</strong> 6x de R$ 10.670 no cartão<br>
+                        <strong>Outras condições:</strong> via link — taxas da bandeira
+                    </div>
+                </div>
+                <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20tenho%20interesse%20no%20plano%20Premium%20do%20rebranding%20da%20Odonto%20Blink" class="btn">Quero o Premium</a>
+            </div>
+        </div>
+
+        <div class="nota">
+            <p><strong>Condições de pagamento</strong></p>
+            <p style="margin-top: 12px; font-size: 13px;">
+                • <strong>À vista:</strong> valor cheio da tabela.<br>
+                • <strong>Parcelado:</strong> 6x iguais no cartão.<br>
+                • <strong>Outras condições:</strong> via link de pagamento, acrescido das taxas da bandeira.<br>
+                • Proposta válida por <strong>15 dias</strong> a partir do envio.<br>
+                • Os valores contemplam o escopo descrito em cada plano. Ajustes de escopo são conversados e orçados à parte, com transparência.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- DELIVERABLES -->
+<section>
+    <div class="container">
+        <div class="s-label">O que você recebe</div>
+        <h2 class="s-title">Uma marca inteira,<br>não peças <em>soltas.</em></h2>
+
+        <div class="deliverables-grid">
+            <div class="deliv-card">
+                <div class="deliv-icon">🎯</div>
+                <div class="deliv-title">Estratégia de Marca</div>
+                <div class="deliv-desc">Posicionamento, público ideal e percepção de valor definidos. A base que sustenta toda decisão visual e de comunicação.</div>
+            </div>
+            <div class="deliv-card">
+                <div class="deliv-icon">💬</div>
+                <div class="deliv-title">Identidade Verbal</div>
+                <div class="deliv-desc">Tom de voz, mensagens-chave e a forma da Odonto Blink falar — no consultório, no Instagram e no site.</div>
+            </div>
+            <div class="deliv-card">
+                <div class="deliv-icon">🎨</div>
+                <div class="deliv-title">Identidade Visual</div>
+                <div class="deliv-desc">Marca, sistema de cores, tipografia e grafismos. Um visual coeso, memorável e à altura do atendimento.</div>
+            </div>
+            <div class="deliv-card">
+                <div class="deliv-icon">📖</div>
+                <div class="deliv-title">Brand Book</div>
+                <div class="deliv-desc">O manual completo da marca — visual e verbal. Garante que tudo se mantenha consistente com o tempo e com a equipe.</div>
+            </div>
+            <div class="deliv-card">
+                <div class="deliv-icon">🖇️</div>
+                <div class="deliv-title">Papelaria &amp; Aplicações</div>
+                <div class="deliv-desc">Cartão, receituário, papelaria clínica, uniforme, fachada e sinalização. A marca vivendo em cada ponto de contato.</div>
+            </div>
+            <div class="deliv-card">
+                <div class="deliv-icon">🌐</div>
+                <div class="deliv-title">Site Institucional</div>
+                <div class="deliv-desc">Presença digital que posiciona e converte — pensada para que o paciente certo decida pela clínica. <em>(planos Completo e Premium)</em></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+    <div class="container">
+        <h2>Pronto para elevar<br>a <em>Odonto Blink?</em></h2>
+        <p>Vamos conversar sobre a nova percepção de valor da clínica.</p>
+        <div class="contact-btns">
+            <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20quero%20conversar%20sobre%20o%20rebranding%20da%20Odonto%20Blink" class="btn btn-yellow">Conversar no WhatsApp</a>
+            <a href="mailto:rodrigo@rroncolato.com" class="btn">Enviar email</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Roncolato Studio. Proposta confidencial para Odonto Blink.</p>
+    </div>
+</footer>
+
+</body>
+</html>
