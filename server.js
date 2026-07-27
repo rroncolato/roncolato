@@ -133,6 +133,57 @@ function getContentType(filePath) {
 }
 
 // ==========================================
+// REWRITES
+// ==========================================
+// O servidor local nao roda na infra da Vercel, entao as rotas amigaveis
+// (/bniconquista, /proposta/..., /socialframe) precisam ser resolvidas aqui.
+// Ler o vercel.json direto evita manter duas listas que saem de sincronia.
+
+function carregarRewrites() {
+  try {
+    const cfg = JSON.parse(fs.readFileSync(path.join(__dirname, 'vercel.json'), 'utf8'));
+    return (cfg.rewrites || [])
+      // rotas de /api sao tratadas pelos handlers acima
+      .filter(r => !r.destination.startsWith('/api/'))
+      .map(r => {
+        const params = [];
+        const padrao = r.source
+          .replace(/[.+^${}()|[\]\\]/g, '\\$&')
+          .replace(/:(\w+)\*/g, (_, nome) => { params.push(nome); return '(.*)'; })
+          .replace(/:(\w+)/g, (_, nome) => { params.push(nome); return '([^/]+)'; });
+        return { regex: new RegExp('^' + padrao + '$'), params, destination: r.destination };
+      });
+  } catch (err) {
+    console.warn('⚠️  Nao foi possivel ler os rewrites do vercel.json:', err.message);
+    return [];
+  }
+}
+
+const REWRITES = carregarRewrites();
+
+function aplicarRewrite(pathname) {
+  for (const r of REWRITES) {
+    const m = pathname.match(r.regex);
+    if (!m) continue;
+    let destino = r.destination;
+    r.params.forEach((nome, i) => {
+      destino = destino.replace(new RegExp(':' + nome + '\\*?', 'g'), m[i + 1] || '');
+    });
+    return destino;
+  }
+  return null;
+}
+
+// Caminho absoluto do arquivo, ou null se nao existir / escapar do ROOT
+function resolverArquivo(p) {
+  const limpo = p.startsWith('/') ? p.slice(1) : p;
+  const normalizado = path.normalize(path.join(ROOT, limpo));
+  if (!normalizado.startsWith(ROOT)) return null;
+  if (fs.existsSync(normalizado) && fs.statSync(normalizado).isFile()) return normalizado;
+  return null;
+}
+
+// ==========================================
 // MAIN SERVER
 // ==========================================
 
@@ -371,28 +422,21 @@ const server = http.createServer(async (req, res) => {
 
     // ========== STATIC FILES ==========
 
-    const cleanFilePath = filePath.startsWith('/') ? filePath.slice(1) : filePath;
-    const fullPath = path.join(ROOT, cleanFilePath);
-    const normalizedPath = path.normalize(fullPath);
+    // 1) arquivo estatico
+    let alvo = resolverArquivo(filePath);
 
-    // Security: prevent path traversal
-    if (!normalizedPath.startsWith(ROOT)) {
-      res.writeHead(403, { 'Content-Type': 'text/plain' });
-      return res.end('Acesso negado');
+    // 2) rewrite do vercel.json (a Vercel so aplica rewrite quando nao ha arquivo)
+    if (!alvo) {
+      const destino = aplicarRewrite(pathname);
+      if (destino) alvo = resolverArquivo(destino.split('?')[0]);
     }
 
-    // Check if file exists
-    if (fs.existsSync(normalizedPath) && fs.statSync(normalizedPath).isFile()) {
-      const content = fs.readFileSync(normalizedPath);
-      res.writeHead(200, { 'Content-Type': getContentType(normalizedPath) });
-      return res.end(content);
-    }
+    // 3) index.html da pasta
+    if (!alvo) alvo = resolverArquivo(path.posix.join(filePath, 'index.html'));
 
-    // Try index.html for directories
-    const indexPath = path.join(normalizedPath, 'index.html');
-    if (fs.existsSync(indexPath)) {
-      const content = fs.readFileSync(indexPath);
-      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    if (alvo) {
+      const content = fs.readFileSync(alvo);
+      res.writeHead(200, { 'Content-Type': getContentType(alvo) });
       return res.end(content);
     }
 
