@@ -512,9 +512,12 @@ body::before{
 .bpost-full-title{font-size:clamp(28px,4vw,52px);font-weight:900;letter-spacing:-.03em;line-height:1.05;color:#F0F0EB;margin:16px 0}
 .bpost-full-meta{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#404040;display:flex;gap:16px;align-items:center}
 .bpost-full-meta span{color:#1a1a1a}|
-.bpost-full-img{background-color:#111;overflow:hidden;margin-bottom:48px}
-.bpost-full-img{display:flex;align-items:center;justify-content:center}.bpost-full-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.bpost-full-img svg{opacity:.05;display:block;margin:80px auto}
+.bpost-full-img{
+  position:relative;background-color:#111;overflow:hidden;margin-bottom:48px;
+  aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;
+}
+.bpost-full-img img{width:100%;height:100%;object-fit:cover;display:block}
+.bpost-full-img svg{opacity:.05;display:block}
 .bpost-full-body{font-size:16px;color:#b0b0a8;line-height:1.9}
 .bpost-full-body h2{font-size:22px;font-weight:800;color:#F0F0EB;letter-spacing:-.02em;margin:40px 0 16px}
 .bpost-full-body h3{font-size:17px;font-weight:700;color:#F0F0EB;margin:32px 0 12px}
@@ -659,7 +662,7 @@ footer{background-color:#0A0A0A;border-top:1px solid #1a1a1a;padding:32px 40px;d
 
 <!-- ══ NAV ══ -->
 <nav id="nav">
-  <a href="#" class="nlogo" onclick="go('home');return false">[RR]<em>.</em></a>
+  <a href="#" class="nlogo" onclick="go('home');return false"><img src="/assets/IMG/site/roncolato_logo_horizontal.webp" alt="Roncolato" style="height:32px;width:auto"></a>
   <ul class="nmid">
     <li><a href="#" onclick="go('home');return false" class="on" id="nl-home">Início</a></li>
     <li><span class="dot"></span></li>
@@ -901,60 +904,19 @@ footer{background-color:#0A0A0A;border-top:1px solid #1a1a1a;padding:32px 40px;d
         <!-- FEATURED -->
         <div class="blog-featured rv" id="blog-featured"></div>
 
-                <!-- POST LIST -->
-        <div class="blog-list">
-          <div class="bpost rv" data-tag="Personal Branding" onclick="goPost('post10')">
-            <div class="bpost-img"><img src="/assets/IMG/site/post10-capa.jpg" alt=""></div>
-            <div class="bpost-info"><div class="bpost-tag">Personal Branding</div><div class="bpost-title">Não julgue o livro pela capa — é o pior conselho de negócios que você já recebeu</div><div class="bpost-meta">27 Jul 2026 · 6 min</div></div>
-          </div>
-          <div class="bpost rv" data-tag="Personal Branding" onclick="goPost('post6')">
-            <div class="bpost-img"><img src="/assets/IMG/site/post6-capa.jpg" alt=""></div>
-            <div class="bpost-info"><div class="bpost-tag">Personal Branding</div><div class="bpost-title">Sua imagem profissional está nas mãos de quem?</div><div class="bpost-meta">07 Mar 2026 · 8 min</div></div>
-          </div>
-          <div class="bpost rv" data-tag="Personal Branding" onclick="goPost('post1')">
-            <div class="bpost-img"><img src="/assets/IMG/site/post1-capa.jpg" alt=""></div>
-            <div class="bpost-info"><div class="bpost-tag">Personal Branding</div><div class="bpost-title">Por que a fotografia executiva é o investimento mais subestimado do seu negócio</div><div class="bpost-meta">05 Mar 2026 · 8 min</div></div>
-          </div>
-          <div class="bpost rv" data-tag="Personal Branding" onclick="goPost('post2')">
-            <div class="bpost-img"><img src="/assets/IMG/site/post2-capa.jpg" alt=""></div>
-            <div class="bpost-info"><div class="bpost-tag">Personal Branding</div><div class="bpost-title">5 erros que destroem sua identidade visual no LinkedIn</div><div class="bpost-meta">08 Jan 2025 · 5 min</div></div>
-          </div>
-          <div class="bpost rv" data-tag="Behind the Scenes" onclick="goPost('post3')">
-            <div class="bpost-img"><img src="/assets/IMG/site/post3-capa.jpg" alt=""></div>
-            <div class="bpost-info"><div class="bpost-tag">Behind the Scenes</div><div class="bpost-title">Como planejo uma sessão corporativa do zero</div><div class="bpost-meta">02 Jan 2025 · 6 min</div></div>
-          </div>
-          <div class="bpost rv" data-tag="Equipamento" onclick="goPost('post4')">
-            <div class="bpost-img"><img src="/assets/IMG/site/post4-capa.jpg" alt=""></div>
-            <div class="bpost-info"><div class="bpost-tag">Equipamento</div><div class="bpost-title">Luz natural vs. estúdio: quando usar cada uma</div><div class="bpost-meta">20 Dez 2024 · 4 min</div></div>
-          </div>
-          <div class="bpost rv" data-tag="Mercado" onclick="goPost('post5')">
-            <div class="bpost-img"><img src="/assets/IMG/site/post5-capa.jpg" alt=""></div>
-            <div class="bpost-info"><div class="bpost-tag">Mercado</div><div class="bpost-title">O que mudou na fotografia corporativa nos últimos 5 anos</div><div class="bpost-meta">10 Dez 2024 · 7 min</div></div>
-          </div>
-        </div>
-        </div>
-        </div>
+        <!-- POST LIST (renderizado por renderBlog) -->
+        <div class="blog-list" id="blog-list"></div>
+      </div>
 
       <!-- SIDEBAR -->
       <aside class="bside">
         <div class="bside-sec">
           <div class="bside-title">Categorias</div>
-          <div class="btopic"><span class="btopic-name">Personal Branding</span><span class="btopic-count">8</span></div>
-          <div class="btopic"><span class="btopic-name">Fotografia Executiva</span><span class="btopic-count">5</span></div>
-          <div class="btopic"><span class="btopic-name">Behind the Scenes</span><span class="btopic-count">4</span></div>
-          <div class="btopic"><span class="btopic-name">Equipamento</span><span class="btopic-count">3</span></div>
-          <div class="btopic"><span class="btopic-name">Mercado</span><span class="btopic-count">3</span></div>
+          <div id="blog-cats"></div>
         </div>
         <div class="bside-sec">
           <div class="bside-title">Posts recentes</div>
-          <div class="brecent">
-
-            <div class="brecent-item" onclick="goPost('post10')"><div class="brecent-img"><img src="/assets/IMG/site/post10-capa.jpg" alt=""></div><div><div class="brecent-title">Não julgue o livro pela capa — é o pior conselho</div><div class="brecent-date">27 Jul 2026</div></div></div>
-            <div class="brecent-item" onclick="goPost('post6')"><div class="brecent-img"><img src="/assets/IMG/site/post6-capa.jpg" alt=""></div><div><div class="brecent-title">Sua imagem profissional está nas mãos de quem?</div><div class="brecent-date">07 Mar 2026</div></div></div>
-                        <div class="brecent-item" onclick="goPost('post1')"><div class="brecent-img"><img src="/assets/IMG/site/post1-capa.jpg" alt=""></div><div><div class="brecent-title">Por que a fotografia executiva é o investimento mais subestimado</div><div class="brecent-date">15 Jan 2025</div></div></div>
-            <div class="brecent-item" onclick="goPost('post2')"><div class="brecent-img"><img src="/assets/IMG/site/post2-capa.jpg" alt=""></div><div><div class="brecent-title">5 erros que destroem sua identidade visual no LinkedIn</div><div class="brecent-date">08 Jan 2025</div></div></div>
-            <div class="brecent-item" onclick="goPost('post3')"><div class="brecent-img"><img src="/assets/IMG/site/post3-capa.jpg" alt=""></div><div><div class="brecent-title">Como planejo uma sessão corporativa do zero</div><div class="brecent-date">02 Jan 2025</div></div></div>
-          </div>
+          <div class="brecent" id="brecent"></div>
         </div>
         <div>
           <div class="bside-title">Fale comigo</div>
@@ -1169,149 +1131,16 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 
 // Blog post navigation
 const posts={
-  post1:{tag:'Personal Branding',date:'15 Jan 2025',title:'Por que a fotografia executiva é o investimento mais subestimado do seu negócio',body:`<p>Em um mundo onde a atenção dura menos de três segundos, sua foto de perfil pode ser a diferença entre uma oportunidade aproveitada e uma perdida. A fotografia executiva deixou de ser luxo — é infraestrutura de negócio.</p><h2>O que está em jogo</h2><p>Quando alguém te pesquisa no Google ou no LinkedIn, a primeira coisa que vê é sua imagem. Antes de qualquer palavra — sua foto já comunicou confiança ou insegurança, autoridade ou amadorismo.</p><blockquote>"A primeira impressão é a que fica. No digital, essa impressão é quase sempre visual."</blockquote><h2>Por que a maioria erra</h2><p>O erro mais comum é tratar a fotografia corporativa como custo em vez de investimento. Profissionais que faturam bem investem em sede, equipe e tecnologia — mas mantêm uma selfie pixelada como foto de perfil.</p><h2>O que uma boa sessão entrega</h2><p>Uma sessão bem planejada entrega <strong>consistência visual</strong> para todos os seus pontos de contato: LinkedIn, site, materiais de apresentação e palestras.</p>`,img:'/assets/IMG/site/post1-capa.jpg'},
-  post2:{tag:'Personal Branding',date:'08 Jan 2025',title:'5 erros que destroem sua identidade visual no LinkedIn',body:`<p>O LinkedIn se tornou o principal vitrine profissional do mundo. Mas a maioria das pessoas ainda comete erros básicos que sabotam sua credibilidade antes mesmo de qualquer conversa começar.</p><h2>1. Foto desatualizada ou de baixa qualidade</h2><p>Uma foto de 10 anos atrás ou tirada em evento com fundo caótico comunica descuido. Sua foto é sua primeira proposta de valor.</p><h2>2. Imagem de capa genérica</h2><p>O banner do LinkedIn é um espaço nobre de visibilidade. Usá-lo com a imagem padrão da plataforma é desperdiçar uma oportunidade de reforçar seu posicionamento.</p><blockquote>"No LinkedIn, você é a soma da sua foto, seu título e suas primeiras três linhas de bio."</blockquote><h2>3. Inconsistência visual entre plataformas</h2><p>Foto diferente no LinkedIn, Instagram e site cria desconexão de marca. <strong>Consistência visual gera confiança.</strong></p><h2>4. Expressão inadequada para o posicionamento</h2><p>Cada nicho tem uma linguagem visual própria. Um advogado e um coach de vida comunicam autoridades diferentes — a sessão fotográfica precisa refletir isso.</p><h2>5. Não ter um banco de imagens</h2><p>Depender de uma única foto limita sua presença de conteúdo. Com um banco estratégico você tem autonomia por meses.</p>`,img:'/assets/IMG/site/post2-capa.jpg'},
-  post3:{tag:'Behind the Scenes',date:'02 Jan 2025',title:'Como planejo uma sessão corporativa do zero',img:'/assets/IMG/site/post3-capa.jpg',body:`<p>Toda grande sessão começa muito antes da câmera. O planejamento é o que separa uma entrega mediana de um resultado que transforma a presença de alguém no mercado.</p><h2>Etapa 1: Briefing estratégico</h2><p>A primeira conversa nunca é sobre fotografia. É sobre negócio. Quem é você, para quem fala, o que quer comunicar e onde essas imagens vão aparecer. Só com esse mapa consigo criar uma estratégia visual coerente.</p><h2>Etapa 2: Referências visuais</h2><p>Coleto referências do cliente e construo um moodboard que define <strong>paleta de cores, temperatura de luz, composição e energia</strong> das imagens.</p><h2>Etapa 3: Locação e styling</h2><p>A locação não é apenas cenário — ela reforça o posicionamento. Um CEO de startup pode pedir um coworking moderno; um advogado pode preferir um escritório clássico. O styling segue a mesma lógica.</p><blockquote>"A câmera registra o que você prepara. A preparação define o resultado."</blockquote><h2>Etapa 4: Direção durante a sessão</h2><p>Na sessão, meu papel é criar um ambiente onde o cliente se sinta confortável o suficiente para ser natural — e direcionado o suficiente para ser estratégico.</p>`},
-  post4:{tag:'Equipamento',date:'20 Dez 2024',title:'Luz natural vs. estúdio: quando usar cada uma',body:`<p>Uma das perguntas mais frequentes que recebo é: "você prefere luz natural ou de estúdio?" A resposta honesta é: depende completamente do que você quer comunicar.</p><h2>Luz natural: calor, proximidade, autenticidade</h2><p>A luz natural — especialmente a luz lateral de uma janela grande — cria um visual orgânico, humano e acolhedor. É ideal para profissionais que querem transmitir <strong>proximidade, autenticidade e calor</strong>.</p><h2>Estúdio: controle, precisão, autoridade</h2><p>A iluminação de estúdio oferece controle total. Com ela, consigo criar desde um visual clean e corporativo até algo mais dramático e editorial. É a escolha certa quando o cliente precisa de <strong>consistência e versatilidade</strong> de uso.</p><blockquote>"A luz certa não ilumina apenas o rosto — ela revela a personalidade."</blockquote><h2>A combinação ideal</h2><p>Para a maioria dos pacotes de personal branding, combino os dois: sessão em locação com luz natural para imagens mais humanas e descontraídas, e alguns takes com equipamento de iluminação para garantir opções mais formais e versáteis.</p>`,img:'/assets/IMG/site/post4-capa.jpg'},
-  post5:{tag:'Mercado',date:'10 Dez 2024',title:'O que mudou na fotografia corporativa nos últimos 5 anos',body:`<p>A fotografia corporativa de 2019 e a de 2024 são quase dois produtos diferentes. O mercado evoluiu — e os profissionais que não acompanharam essa evolução estão perdendo espaço sem perceber.</p><h2>A morte do fundo branco infinito</h2><p>Durante anos, o padrão era: fundo branco, roupa escura, expressão séria. Isso ainda funciona para algumas aplicações específicas, mas perdeu espaço para um estilo mais editorial e contextualizado.</p><h2>A ascensão do ambiente como narrativa</h2><p>Hoje, onde você é fotografado conta tanto quanto como você é fotografado. O ambiente reforça seu posicionamento e humaniza sua marca pessoal.</p><blockquote>"A foto que você tira em 2024 precisa funcionar em um feed de redes sociais, em uma capa de livro e em uma apresentação de pitch. São contextos muito diferentes."</blockquote><h2>Personal branding como estratégia de negócio</h2><p>O maior fenômeno dos últimos anos é a consolidação do personal branding como estratégia genuína de negócio — não apenas de vaidade. Executivos, consultores e especialistas entenderam que <strong>sua imagem é um ativo</strong>.</p><h2>O que vem por aí</h2><p>A demanda por conteúdo visual de qualidade só aumenta. Profissionais que investirem em fotografia estratégica agora estarão posicionados muito à frente da concorrência nos próximos anos.</p>`,img:'/assets/IMG/site/post5-capa.jpg'},
-    post6:{tag:'Personal Branding',date:'07 Mar 2026',title:'Sua imagem profissional está nas mãos de quem?',body:`<p>Pense na última vez que você viu a foto de perfil de um CEO no LinkedIn. Em menos de <strong>3 segundos</strong>, você já formou uma opinião sobre aquela pessoa — competência, credibilidade, acessibilidade. Agora imagine que essa foto foi feita às pressas, com iluminação ruim e sem nenhuma direção.</p>
-<p><strong>A fotografia corporativa não é um detalhe. É um ativo estratégico.</strong> E o profissional por trás da câmera pode ser a diferença entre uma marca que transmite autoridade e uma que passa despercebida.</p>
-<p>Se você está buscando um fotógrafo para retratos executivos, eventos empresariais ou materiais institucionais, este guia vai mostrar exatamente o que avaliar — e o que perguntar — antes de contratar.</p>
-<h2>Por que a fotografia corporativa importa mais do que você imagina</h2>
-<p>A imagem é o primeiro ponto de contato com o seu público. Antes de ler seu site, antes de ouvir seu pitch, as pessoas <strong>veem</strong> você.</p>
-<ul>
-  <li><strong>92% da primeira impressão</strong> é visual, segundo estudos de percepção de marca</li>
-  <li>Perfis com fotos profissionais no LinkedIn recebem <strong>até 14x mais visualizações</strong></li>
-  <li>Empresas com identidade visual coesa transmitem <strong>até 3,5x mais confiança</strong></li>
-</ul>
-<p>Uma fotografia corporativa bem executada comunica posicionamento, valores e profissionalismo — tudo sem dizer uma palavra.</p>
-<h2>7 Critérios para Escolher o Fotógrafo Corporativo Ideal</h2>
-<h3>1. Portfólio com foco em corporativo</h3>
-<p>Fotografia de casamento é completamente diferente de fotografia corporativa. Busque um profissional que tenha <strong>experiência específica</strong> no universo empresarial — retratos executivos, ambientes corporativos, eventos, materiais para branding.</p>
-<blockquote>Peça para ver trabalhos recentes e pergunte sobre o briefing por trás de cada projeto. Um bom fotógrafo corporativo sabe explicar a <em>estratégia</em> por trás da imagem, não apenas a técnica.</blockquote>
-<h3>2. Entendimento de marca e posicionamento</h3>
-<p>O fotógrafo ideal não é apenas técnico — é <strong>estratégico</strong>. Precisa compreender quem é a sua marca, qual mensagem você quer transmitir e quem é o público que vai consumir essas imagens.</p>
-<p>Pergunte: <em>"Como você adapta o estilo fotográfico ao posicionamento da marca?"</em> e <em>"Você faz algum tipo de briefing ou imersão antes do ensaio?"</em> — Se a resposta for vaga, desconfie.</p>
-<h3>3. Direção de cena e posing</h3>
-<p>Uma das maiores diferenças entre uma foto corporativa amadora e uma profissional é a <strong>direção</strong>. Muitos executivos não se sentem confortáveis diante da câmera, e o fotógrafo precisa saber conduzir expressões, postura e linguagem corporal.</p>
-<p><strong>O resultado?</strong> Fotos que parecem naturais, mas que comunicam exatamente o que a marca precisa.</p>
-<h3>4. Qualidade técnica e equipamento</h3>
-<p>Iluminação de estúdio, lentes profissionais, edição com padrão de cor consistente — tudo isso importa. Mas o que importa <em>ainda mais</em> é como o fotógrafo usa esses recursos para entregar imagens que funcionem em <strong>todos os formatos</strong>: site institucional, redes sociais, materiais impressos e apresentações.</p>
-<h3>5. Processo claro e profissional</h3>
-<p>Desconfie de fotógrafos que não têm um processo definido. O ideal é que o profissional apresente briefing estruturado, cronograma com etapas, contrato com escopo e direitos de uso, prazo de entrega e política de revisões.</p>
-<h3>6. Pós-produção e tratamento de imagem</h3>
-<p>A <strong>edição</strong> define o padrão visual da entrega. Verifique se o fotógrafo oferece tratamento de pele sem parecer artificial, correção de cor alinhada à identidade visual e entrega em alta resolução com versões otimizadas para web.</p>
-<h3>7. Depoimentos e cases reais</h3>
-<p>Nada substitui a prova social. Procure por <strong>avaliações de clientes corporativos</strong>, pergunte por referências e verifique se o fotógrafo tem cases documentados com resultados reais.</p>
-<h2>5 Perguntas que Você Deve Fazer Antes de Contratar</h2>
-<ol>
-  <li><strong>Qual é a sua experiência com fotografia corporativa e de marca?</strong></li>
-  <li><strong>Como funciona o seu processo, do briefing à entrega?</strong></li>
-  <li><strong>Quantas fotos editadas estão incluídas no pacote?</strong></li>
-  <li><strong>Quais são os direitos de uso das imagens?</strong></li>
-  <li><strong>Você oferece direção de cena ou apenas registro?</strong></li>
-</ol>
-<blockquote>As respostas vão revelar muito mais sobre o profissional do que o portfólio sozinho.</blockquote>
-<h2>Fotografia Corporativa: Investimento, Não Custo</h2>
-<p>Muitas empresas ainda tratam a fotografia profissional como um gasto dispensável. Mas considere: uma boa foto de perfil pode abrir portas em negociações, imagens profissionais no site <strong>aumentam o tempo de permanência</strong> e a taxa de conversão, e fotos de eventos bem feitas viram material de comunicação por meses.</p>
-<p><strong>O barato sai caro.</strong> Um ensaio mal feito exige retrabalho, gera insatisfação e pode prejudicar a percepção da sua marca no mercado.</p>
-<h2>Como Saber se o Fotógrafo é o Certo para Você</h2>
-<p>O fotógrafo corporativo ideal reúne três coisas:</p>
-<p><strong>Técnica</strong> — domínio de equipamento, luz e composição.<br><strong>Estratégia</strong> — entendimento de marca, posicionamento e comunicação visual.<br><strong>Processo</strong> — organização, prazos e profissionalismo na entrega.</p>
-<p>Se o profissional que você está avaliando marca os três pontos, você provavelmente encontrou a pessoa certa.</p>`,img:'/assets/IMG/site/post6-capa.jpg'},
-
-  post7:{tag:'Personal Branding',date:'07 Mar 2026',title:'Feed bonito não posiciona ninguém',body:`<p>Se o seu Instagram está "lindo", mas as pessoas ainda perguntam o que você faz, o problema quase nunca é falta de design.</p>
-<p>O que está faltando é <strong>posicionamento</strong>.</p>
-<p>Um feed bem feito ajuda a chamar atenção, mas <strong>atenção sem clareza não vira confiança</strong>. E, sem confiança, não vira cliente.</p>
-<p>Neste artigo, você vai entender por que <strong>estética sem intenção vira só decoração</strong> e como alinhar visual e mensagem para atrair o cliente certo.</p>
-<h2>O que significa posicionamento no Instagram</h2>
-<p>Posicionamento é a forma como a sua marca é percebida. Na prática, é a resposta imediata que alguém consegue dar ao bater o olho no seu perfil:</p>
-<ul><li>Para quem é o seu trabalho</li><li>Qual problema você resolve</li><li>Qual resultado você entrega</li><li>Por que faz sentido escolher você</li></ul>
-<p>Quando isso não fica claro, a pessoa até pensa "que perfil bonito", mas sai sem entender se você resolve o que ela precisa.</p>
-<h2>Por que um feed bonito não vende sozinho</h2>
-<p>É comum ver profissionais que investem pesado em identidade visual, fotografia e templates, mas continuam com:</p>
-<ul><li>Poucos leads qualificados</li><li>Comentários genéricos do tipo "lindo!"</li><li>Dúvidas repetidas no direct</li><li>Clientes que chegam pedindo desconto, porque não enxergam valor</li></ul>
-<p>Isso acontece porque <strong>beleza não comunica intenção</strong>. Ela segura a atenção por alguns segundos. Já o posicionamento faz a pessoa pensar: <em>"é exatamente isso que eu estava procurando."</em></p>
-<h2>Estética sem intenção é decoração</h2>
-<p>Um feed impecável pode falhar se não "diz" algo antes de você explicar. Um teste simples:</p>
-<ul><li>Se a pessoa precisa ler muito para entender a imagem ou o post, a mensagem está fraca.</li><li>Se você precisa "traduzir" seu conteúdo no direct, faltou clareza.</li></ul>
-<p>A comunicação visual precisa trabalhar por você, não contra você.</p>
-<h2>O que a sua imagem precisa comunicar antes de você falar</h2>
-<p>O objetivo do visual não é ser bonito. É ser <strong>reconhecível</strong> e <strong>inequívoco</strong>. A sua comunicação visual deve deixar claro, de forma consistente:</p>
-<ol><li>Quem você atende</li><li>Qual transformação ou resultado você entrega</li><li>Qual método, diferencial ou abordagem sustenta a entrega</li></ol>
-<p>Quando isso aparece com frequência no perfil, o cliente certo entende rápido e chega mais preparado.</p>
-<h2>Como alinhar feed e posicionamento: 5 ajustes práticos</h2>
-<h3>1) Defina a promessa central em uma frase</h3>
-<p>Crie uma frase que una público + problema + resultado. Use essa promessa como filtro do seu conteúdo. Se o post não reforça a promessa, ele provavelmente está só "enchendo o feed".</p>
-<h3>2) Escolha pilares e repita sem medo</h3>
-<p>Repetição cria reconhecimento. Selecione de 3 a 5 pilares e mantenha consistência: conceitos e educação, provas e estudos de caso, bastidores e processo, opinião e posicionamento, oferta e conversão.</p>
-<h3>3) Faça o teste dos 3 segundos no seu perfil</h3>
-<p>Abra seu perfil como se fosse uma pessoa que não te conhece. Em 3 segundos, dá para entender o que você faz, para quem e por que confiar? Se a resposta for "mais ou menos", ajuste bio, destaques e posts fixados.</p>
-<h3>4) Use design para facilitar leitura, não para enfeitar</h3>
-<p>Design bom é aquele que ajuda a entender rápido, prioriza hierarquia de informação e mantém consistência sem poluir. Se o layout compete com a mensagem, a mensagem perde.</p>
-<h3>5) Mostre provas e contexto, não só resultado</h3>
-<p>Clareza cresce quando você mostra bastidores do processo, critérios de decisão, estudos de caso com contexto e antes/depois explicado. Isso transforma estética em confiança.</p>
-<h2>Exemplos do dia a dia: quando o simples vende mais</h2>
-<p>Duas cenas comuns: um feed impecável, com cara de marca grande, mas ninguém sabe exatamente o que a pessoa vende. Um perfil simples, mas objetivo, que fecha contrato antes mesmo da reunião.</p>
-<p>A diferença quase sempre está em <strong>intenção e clareza</strong>.</p>
-<h2>Conclusão</h2>
-<p>Posicionamento visual não é sobre ficar bonito. É sobre ser reconhecido pela pessoa certa, sem confusão e sem precisar se explicar.</p>
-<blockquote>Seu feed está bonito, mas está posicionando? Hoje, o seu maior desafio é imagem ou clareza?</blockquote>
-<p>Se você quer um perfil que pare de ser só "bonito" e comece a atrair o cliente certo, organize sua promessa, seus pilares e sua vitrine com foco em clareza.</p>`},
-
-  post10:{tag:'Personal Branding',date:'27 Jul 2026',title:'Não julgue o livro pela capa — é o pior conselho de negócios que você já recebeu',body:`<p>Existe um ditado que usamos para justificar superficialidade: <strong>"não julgue o livro pela capa"</strong>. É poético. É inclusivo. É também profundamente equivocado quando se trata de negócio.</p>
-<p>Porque, na realidade, <strong>em negócio, praticamente toda decisão inicial é feita pela capa</strong>. E a capa de você, em 2024, é a sua imagem.</p>
-<h2>A ilusão da meritocracia pura</h2>
-<p>Gostaríamos de acreditar que a qualidade do nosso trabalho é o que importa. Que se você é bom no que faz, as oportunidades naturalmente chegam. Que a imagem é superficial.</p>
-<p>Mas essa é a narrativa dos que já têm imagem resolvida.</p>
-<blockquote>"Você pode ter a melhor solução do mundo, mas se for apresentada de forma amadora, ninguém vai ouvir até o final."</blockquote>
-<p>Considere: quantas vezes você decidiu não clicar em um site porque a foto do CEO parecia saída de 2010? Quantas vezes sentiu desconfiança de um especialista porque suas redes sociais pareciam desleixadas?</p>
-<p>Nós julgamos pela capa. Sempre. É o primeiro filtro do cérebro.</p>
-<h2>A hierarquia invisível das decisões de compra</h2>
-<p>A jornada de compra segue uma ordem que quase nunca ninguém fala:</p>
-<ol>
-<li><strong>Impressão visual</strong> — 3 segundos</li>
-<li><strong>Percepção de autoridade</strong> — primeiros 30 segundos</li>
-<li><strong>Validação social</strong> — próximo 1 minuto</li>
-<li><strong>Avaliação técnica</strong> — a partir daí</li>
-</ol>
-<p>Se você falha nos três primeiros, ninguém chega ao quarto.</p>
-<p>Quantos clientes potenciais saíram do seu site porque a foto de perfil não transmitia confiança? Quantos nunca clicaram no seu LinkedIn porque a imagem de capa era genérica?</p>
-<h2>Imagem não é vaidade. É comunicação.</h2>
-<p>Quando você investe em uma boa fotografia corporativa, não está sendo vaidoso. Está sendo estratégico.</p>
-<p><strong>Você está dizendo:</strong> "Eu me respeito. Eu respeito meu trabalho. Eu respeito quem chega até mim o suficiente para não ser amador."</p>
-<p>Essa é a mensagem que uma imagem bem feita comunica antes mesmo de você falar.</p>
-<h2>O que mudou: de luxo a necessidade</h2>
-<p>Fotografia corporativa costumava ser exclusividade de CEOs e Fortune 500. Hoje? <strong>É base.</strong></p>
-<p>Freelancers, consultores, mentores, coaches, especialistas — todos competem em um espaço onde a imagem visual é o primeiro ponto de diferenciação.</p>
-<blockquote>Não é justo. Mas é real. E ignorar isso é pura estratégia fraca.</blockquote>
-<p>Se você quer que as pessoas levem você a sério, você precisa se apresentar de forma séria.</p>
-<h2>5 razões pelas quais sua imagem é tão importante quanto sua competência</h2>
-<ol>
-<li><strong>Você já está sendo avaliado:</strong> Como gostaria ou não, sua foto é analisada antes de sua qualidade</li>
-<li><strong>Confiança é visual:</strong> Pesquisas mostram que profissionais com fotos de qualidade ganham até 14x mais visualizações e engajamento</li>
-<li><strong>Diferencial está aqui:</strong> Com qualificações semelhantes, a imagem que transmite maior autoridade ganha</li>
-<li><strong>Conversão sobe:</strong> Sites com fotos profissionais dos líderes aumentam conversão de forma comprovada</li>
-<li><strong>Você vale a pena:</strong> Se você não acredita em si o suficiente para investir em uma boa foto, por que alguém acreditaria?</li>
-</ol>
-<h2>O novo dictado: julgue o livro pela capa. Se a capa disser algo importante.</h2>
-<p>Isso não significa que você deva se render a padrões superficiais ou alienados do seu posicionamento.</p>
-<p>Significa que <strong>sua imagem precisa estar alinhada ao que você oferece.</strong></p>
-<ul>
-<li>Um palestrante de negócios transmite uma energia diferente de um terapeuta</li>
-<li>Um advogado corporativo comunica autoridade diferente de um designer criativo</li>
-<li>Um CEO de startup vai ser visual diferente de um professor universitário</li>
-</ul>
-<p>A foto "certa" é aquela que comunica <strong>exatamente</strong> quem você é e o que você entrega.</p>
-<h2>Então: julgue sim. Mas pelo que importa.</h2>
-<p>Não julgue o livro pelos erros de ortografia. Mas julgue pela qualidade da edição, pelo design da capa, pela organização das ideias.</p>
-<p>Não julgue o profissional pela foto perfeita. Mas julgue pelo cuidado que ele dedica ao primeiro contato com você.</p>
-<p>Porque quando alguém chega até você, <strong>já julgou a capa</strong>. Se você não gerenciou bem esse julgamento, perdeu a oportunidade.</p>
-<h2>O investimento verdadeiro</h2>
-<p>Uma boa sessão fotográfica corporativa não é custo. É <strong>autorização para ser visto</strong>.</p>
-<p>É a diferença entre parecer alguém que "tira foto de si mesmo" e "alguém que sabe o valor de sua presença".</p>
-<blockquote>Seu trabalho é bom demais para ser apresentado de forma amadora. Sua imagem merece ser tão estratégica quanto sua mensagem.</blockquote>`},
-
+  post10:{tag:"Personal Branding",date:"27 Jul 2026",title:"Não julgue o livro pela capa — é o pior conselho de negócios que você já recebeu",excerpt:"A frase soa nobre. O problema é que ela descreve um mundo que não existe. No mundo real, todo mundo julga pela capa.",img:"/assets/IMG/site/post10-capa.jpg",body:`<p>"Não julgue o livro pela capa" é o pior conselho de negócios que você já recebeu.</p><p>A frase soa nobre. Ensinam ela pra criança, repetem em palestra, estampam em parede de escritório. O problema é que ela descreve um mundo que não existe. No mundo real, todo mundo julga pela capa. O tempo todo. Inclusive você.</p><h2>O julgamento que ninguém admite</h2><p>Repare no que você faz num restaurante novo, num perfil que abre pela primeira vez, num currículo que chega na sua mesa. Em segundos, antes de qualquer informação concreta, você já formou uma impressão. Não é preguiça nem superficialidade. É o cérebro fazendo aquilo que ele sempre fez pra sobreviver: decidir rápido com o pouco que tem à frente.</p><p>E é aqui que a maioria dos profissionais competentes se sabota. Eles acreditam tanto na própria entrega que tratam a imagem como detalhe. "Meu trabalho fala por si", dizem. Mas o trabalho só fala depois que alguém decide ouvir. E essa decisão acontece antes, no primeiro olhar, no território da capa.</p><h2>Sua imagem é a sua capa</h2><p>A sua imagem é a sua capa. A foto do seu perfil, a forma como você aparece, a coerência entre o que você diz que é e o que a tela mostra. Esse conjunto negocia o seu valor antes de você abrir a boca. Quando a capa não promete nada, o livro não é aberto, por melhor que seja o conteúdo.</p><p>Existe uma diferença enorme entre ser competente e parecer competente para quem ainda não te conhece. O cliente que nunca trabalhou com você não tem acesso à sua entrega. Ele tem acesso à sua imagem. E é com base nela que ele decide se vale a pena dar o próximo passo.</p><h2>Estratégia, não vaidade</h2><p>Isso não é vaidade. É estratégia. Vaidade é querer aparecer bonito. Estratégia é fazer a imagem trabalhar a favor do que você entrega, comunicar autoridade, presença e clareza antes da primeira conversa.</p><p>Depois de 25 anos construindo imagem de gente que entrega resultado de verdade, aprendi que a pergunta certa não é se vão te julgar pela capa. Vão. A pergunta é o que a sua capa está dizendo agora, enquanto você jura que o conteúdo fala por si.</p><blockquote>Seu trabalho pode ser excelente. Mas ninguém abre um livro cuja capa não prometeu nada.</blockquote>`},
+  post8:{tag:"Manifesto",date:"20 Jun 2026",title:"Manifesto: o novo posicionamento do estúdio",excerpt:"Este vídeo marca um novo capítulo. Não é só uma atualização de marca — é uma declaração de intenção sobre o que acredito, o que entrego e para quem trabalho.",img:"/assets/IMG/site/manifesto-rr.jpg",video:"XURRkxCToac",body:`<p>Este vídeo marca um novo capítulo. Não é só uma atualização de marca — é uma declaração de intenção sobre o que acredito, o que entrego e para quem trabalho.</p><h2>Por que um manifesto?</h2><p>Depois de mais de 20 anos criando imagens para marcas, empresas e pessoas que querem ser vistas com autoridade, percebi que chegou a hora de dizer em voz alta o que sempre guiou o meu trabalho.</p><p>Um manifesto é uma promessa pública. É o comprometimento de colocar <strong>intenção em cada frame</strong>, estratégia em cada sessão e resultado em cada entrega.</p><h2>O que mudou</h2><p>O estúdio evoluiu. A visão ficou mais clara. O posicionamento ficou mais afiado. E a proposta de valor ficou impossível de ignorar.</p><p>Não fotografo apenas para registrar — fotografo para <strong>posicionar, comunicar e transformar</strong> a percepção de quem aparece na foto.</p><blockquote>"Sua imagem não é vaidade. É estratégia."</blockquote><p>Assista ao manifesto e entenda o que move este estúdio.</p>`},
+  post9:{tag:"Branding",date:"20 Jun 2026",title:"Arquétipos de marca: a ferramenta que cria desejo antes de qualquer campanha",excerpt:"Existe uma razão pela qual marcas distintas causam sensações distintas mesmo vendendo produtos parecidos. Tem nome: arquétipo de marca — e a maioria das marcas usa do jeito errado.",img:"/assets/IMG/site/post9-capa.jpg",body:`<p>Existe uma razão pela qual marcas distintas causam sensações distintas mesmo quando vendem produtos parecidos. Não é só o logotipo, nem a paleta de cores, nem o copywriting. É algo mais profundo — e tem nome: <strong>arquétipo de marca</strong>.</p><p>Carl Jung identificou padrões de personalidade que se repetem em todas as culturas e épocas. No branding, esses padrões funcionam como a personalidade profunda de uma marca: definem como ela fala, o que defende, que tipo de cliente atrai e, principalmente, que emoção desperta.</p><h2>O que são arquétipos de marca</h2><p>Arquétipos não são teoria abstrata. São o mecanismo psicológico que determina se um cliente escolhe uma marca por <strong>identificação</strong> ou por preço. Quando a personalidade de uma marca é clara e consistente, ela para de competir por comparativo e começa a competir por pertencimento.</p><p>Quatro arquétipos que aparecem com frequência no mercado:</p><ul style="margin:0 0 20px;padding-left:24px;color:#b0b0a8;line-height:2"><li><strong style="color:#F0F0EB">O Herói</strong> — vence obstáculos, inspira superação. A Nike não vende tênis: vende a ideia de que qualquer pessoa pode superar seus limites. "Just Do It" é uma declaração de arquétipo, não um slogan.</li><li><strong style="color:#F0F0EB">O Criador</strong> — constrói, inova, expressa. A Apple apresenta cada produto como obra de arte, não como aparelho eletrônico.</li><li><strong style="color:#F0F0EB">O Explorador</strong> — busca liberdade, foge do comum. Jeep e Patagonia vendem a ideia de sair do lugar antes de vender o produto em si.</li><li><strong style="color:#F0F0EB">O Fora-da-lei</strong> — questiona regras, representa rebeldia com propósito. A Harley-Davidson não vende moto: vende a identidade de quem recusa o ordinário.</li></ul><h2>Por que arquétipos funcionam</h2><p>O cérebro humano não toma decisões de compra pela razão — toma pela identidade. A pergunta real que o consumidor faz não é "esse produto resolve meu problema?" mas <strong>"essa marca representa quem eu sou ou quem quero ser?"</strong></p><p>Quando uma marca tem arquétipo claro, ela para de competir por preço e começa a competir por identificação. E identificação não tem comparativo.</p><h2>O erro mais comum — e mais custoso</h2><p>O problema não é desconhecer os arquétipos: é usá-los como fantasia. Uma marca que se declara "Herói" no manual de identidade mas foge de qualquer posicionamento difícil não tem arquétipo — tem uma apresentação de PowerPoint.</p><blockquote>Arquétipo não é o que a marca diz que é. É o que a marca faz quando ninguém está olhando.</blockquote><p>Nas decisões de comunicação, nas parcerias que aceita, nas causas que defende ou ignora. A audiência percebe a inconsistência antes de conseguir nomear o que está errado. O resultado é uma sensação difusa de que "algo não bate" — e a desconexão silenciosa de quem seria o cliente ideal.</p><h2>Como identificar o arquétipo real da sua marca</h2><p>Três perguntas que revelam mais do que qualquer workshop de branding:</p><p><strong>1. Qual emoção a marca quer que o cliente sinta depois de cada contato?</strong> Inspiração, segurança, pertencimento, rebeldia, admiração? Essa emoção-alvo é o centro do arquétipo.</p><p><strong>2. Qual seria a personalidade da marca se ela fosse uma pessoa?</strong> Como ela se vestiria, o que leria, o que recusaria fazer? A resposta instintiva revela mais do que qualquer análise racional.</p><p><strong>3. Qual é o inimigo que a marca enfrenta?</strong> Não o concorrente de mercado — o obstáculo emocional ou comportamental que ela existe para derrubar. A Nike enfrenta a desistência. A Apple enfrenta a mediocridade. A Harley enfrenta a conformidade.</p><p>As respostas apontam o arquétipo. A consistência entre essas respostas e tudo que a marca comunica é o que transforma ferramenta em resultado.</p><h2>Arquétipo e imagem profissional</h2><p>Essa lógica se aplica diretamente à fotografia de marca. Uma sessão sem arquétipo definido produz imagens tecnicamente boas que não comunicam nada específico. Uma sessão construída sobre um arquétipo claro produz imagens que posicionam antes de qualquer legenda.</p><p>A pergunta que faço antes de qualquer sessão não é "que roupa você vai usar?" É "que emoção você quer que o cliente certo sinta ao te ver?"</p><blockquote>Marca com arquétipo claro atrai o cliente certo antes de qualquer campanha. Marca sem arquétipo compete por preço porque não deixou outra saída.</blockquote>`},
+  post6:{tag:"Personal Branding",date:"7 Mar 2026",title:"Sua imagem profissional está nas mãos de quem?",excerpt:"Em menos de 3 segundos, você já formou uma opinião sobre aquela pessoa. A fotografia corporativa não é um detalhe — é um ativo estratégico.",img:"/assets/IMG/site/post6-capa.jpg",body:`<p>Pense na última vez que você viu a foto de perfil de um CEO no LinkedIn. Em menos de <strong>3 segundos</strong>, você já formou uma opinião sobre aquela pessoa — competência, credibilidade, acessibilidade. Agora imagine que essa foto foi feita às pressas, com iluminação ruim e sem nenhuma direção.</p><p><strong>A fotografia corporativa não é um detalhe. É um ativo estratégico.</strong> E o profissional por trás da câmera pode ser a diferença entre uma marca que transmite autoridade e uma que passa despercebida.</p><h2>Por que a fotografia corporativa importa mais do que você imagina</h2><p>A imagem é o primeiro ponto de contato com o seu público. Antes de ler seu site, antes de ouvir seu pitch, as pessoas <strong>veem</strong> você.</p><ul><li><strong>92% da primeira impressão</strong> é visual</li><li>Perfis com fotos profissionais no LinkedIn recebem <strong>até 14x mais visualizações</strong></li><li>Empresas com identidade visual coesa transmitem <strong>até 3,5x mais confiança</strong></li></ul><p>Uma fotografia corporativa bem executada comunica posicionamento, valores e profissionalismo — tudo sem dizer uma palavra.</p>`},
+  post7:{tag:"Personal Branding",date:"07 Mar 2026",title:"Feed bonito não posiciona ninguém",excerpt:"Se o seu Instagram está lindo, mas as pessoas ainda perguntam o que você faz, o problema quase nunca é falta de design. O que está faltando é posicionamento.",img:"/assets/IMG/site/post7-capa.jpg",body:`<p>Se o seu Instagram está "lindo", mas as pessoas ainda perguntam o que você faz, o problema quase nunca é falta de design.</p><p>O que está faltando é <strong>posicionamento</strong>.</p><p>Um feed bem feito ajuda a chamar atenção, mas <strong>atenção sem clareza não vira confiança</strong>. E, sem confiança, não vira cliente.</p><h2>O que significa posicionamento no Instagram</h2><p>Posicionamento é a forma como a sua marca é percebida. Na prática, é a resposta imediata que alguém consegue dar ao bater o olho no seu perfil:</p><ul><li>Para quem é o seu trabalho</li><li>Qual problema você resolve</li><li>Qual resultado você entrega</li><li>Por que faz sentido escolher você</li></ul><h2>Por que um feed bonito não vende sozinho</h2><p>É comum ver profissionais que investem pesado em identidade visual, fotografia e templates, mas continuam com poucos leads qualificados, comentários genéricos e clientes que chegam pedindo desconto porque não enxergam valor.</p><p>Isso acontece porque <strong>beleza não comunica intenção</strong>. Ela segura a atenção por alguns segundos. Já o posicionamento faz a pessoa pensar: <em>"é exatamente isso que eu estava procurando."</em></p><h2>Como alinhar feed e posicionamento: 5 ajustes práticos</h2><ol><li><strong>Defina a promessa central em uma frase</strong></li><li><strong>Escolha pilares e repita sem medo</strong></li><li><strong>Faça o teste dos 3 segundos no seu perfil</strong></li><li><strong>Use design para facilitar leitura, não para enfeitar</strong></li><li><strong>Mostre provas e contexto, não só resultado</strong></li></ol><blockquote>Posicionamento visual não é sobre ficar bonito. É sobre ser reconhecido pela pessoa certa, sem confusão e sem precisar se explicar.</blockquote>`},
+  post1:{tag:"Personal Branding",date:"15 Jan 2025",title:"Por que a fotografia executiva é o investimento mais subestimado do seu negócio",excerpt:"Em um mundo onde a atenção dura menos de três segundos, sua foto de perfil pode ser a diferença entre uma oportunidade aproveitada e uma perdida.",img:"/assets/IMG/site/post1-capa.jpg",body:`<p>Em um mundo onde a atenção dura menos de três segundos, sua foto de perfil pode ser a diferença entre uma oportunidade aproveitada e uma perdida. A fotografia executiva deixou de ser luxo — é infraestrutura de negócio.</p><h2>O que está em jogo</h2><p>Quando alguém te pesquisa no Google ou no LinkedIn, a primeira coisa que vê é sua imagem. Antes de qualquer palavra — sua foto já comunicou confiança ou insegurança, autoridade ou amadorismo.</p><blockquote>"A primeira impressão é a que fica. No digital, essa impressão é quase sempre visual."</blockquote><h2>Por que a maioria erra</h2><p>O erro mais comum é tratar a fotografia corporativa como custo em vez de investimento. Profissionais que faturam bem investem em sede, equipe e tecnologia — mas mantêm uma selfie pixelada como foto de perfil.</p><h2>O que uma boa sessão entrega</h2><p>Uma sessão bem planejada entrega <strong>consistência visual</strong> para todos os seus pontos de contato: LinkedIn, site, materiais de apresentação e palestras.</p>`},
+  post2:{tag:"Personal Branding",date:"08 Jan 2025",title:"5 erros que destroem sua identidade visual no LinkedIn",excerpt:"O LinkedIn se tornou o principal vitrine profissional do mundo. Mas a maioria das pessoas ainda comete erros básicos que sabotam sua credibilidade.",img:"/assets/IMG/site/post2-capa.jpg",body:`<p>O LinkedIn se tornou o principal vitrine profissional do mundo. Mas a maioria das pessoas ainda comete erros básicos que sabotam sua credibilidade antes mesmo de qualquer conversa começar.</p><h2>1. Foto desatualizada ou de baixa qualidade</h2><p>Uma foto de 10 anos atrás ou tirada em evento com fundo caótico comunica descuido. Sua foto é sua primeira proposta de valor.</p><h2>2. Imagem de capa genérica</h2><p>O banner do LinkedIn é um espaço nobre de visibilidade. Usá-lo com a imagem padrão da plataforma é desperdiçar uma oportunidade de reforçar seu posicionamento.</p><blockquote>"No LinkedIn, você é a soma da sua foto, seu título e suas primeiras três linhas de bio."</blockquote><h2>3. Inconsistência visual entre plataformas</h2><p>Foto diferente no LinkedIn, Instagram e site cria desconexão de marca. <strong>Consistência visual gera confiança.</strong></p><h2>4. Expressão inadequada para o posicionamento</h2><p>Cada nicho tem uma linguagem visual própria. Um advogado e um coach de vida comunicam autoridades diferentes — a sessão fotográfica precisa refletir isso.</p><h2>5. Não ter um banco de imagens</h2><p>Depender de uma única foto limita sua presença de conteúdo. Com um banco estratégico você tem autonomia por meses.</p>`},
+  post3:{tag:"Behind the Scenes",date:"02 Jan 2025",title:"Como planejo uma sessão corporativa do zero",excerpt:"Toda grande sessão começa muito antes da câmera. O planejamento é o que separa uma entrega mediana de um resultado que transforma.",img:"/assets/IMG/site/post3-capa.jpg",body:`<p>Toda grande sessão começa muito antes da câmera. O planejamento é o que separa uma entrega mediana de um resultado que transforma a presença de alguém no mercado.</p><h2>Etapa 1: Briefing estratégico</h2><p>A primeira conversa nunca é sobre fotografia. É sobre negócio. Quem é você, para quem fala, o que quer comunicar e onde essas imagens vão aparecer. Só com esse mapa consigo criar uma estratégia visual coerente.</p><h2>Etapa 2: Referências visuais</h2><p>Coleto referências do cliente e construo um moodboard que define <strong>paleta de cores, temperatura de luz, composição e energia</strong> das imagens.</p><h2>Etapa 3: Locação e styling</h2><p>A locação não é apenas cenário — ela reforça o posicionamento. Um CEO de startup pode pedir um coworking moderno; um advogado pode preferir um escritório clássico. O styling segue a mesma lógica.</p><blockquote>"A câmera registra o que você prepara. A preparação define o resultado."</blockquote><h2>Etapa 4: Direção durante a sessão</h2><p>Na sessão, meu papel é criar um ambiente onde o cliente se sinta confortável o suficiente para ser natural — e direcionado o suficiente para ser estratégico.</p>`},
+  post4:{tag:"Equipamento",date:"20 Dez 2024",title:"Luz natural vs. estúdio: quando usar cada uma",excerpt:"Uma das perguntas mais frequentes: você prefere luz natural ou de estúdio? A resposta honesta é: depende completamente do que você quer comunicar.",img:"/assets/IMG/site/post4-capa.jpg",body:`<p>Uma das perguntas mais frequentes que recebo é: "você prefere luz natural ou de estúdio?" A resposta honesta é: depende completamente do que você quer comunicar.</p><h2>Luz natural: calor, proximidade, autenticidade</h2><p>A luz natural — especialmente a luz lateral de uma janela grande — cria um visual orgânico, humano e acolhedor. É ideal para profissionais que querem transmitir <strong>proximidade, autenticidade e calor</strong>.</p><h2>Estúdio: controle, precisão, autoridade</h2><p>A iluminação de estúdio oferece controle total. Com ela, consigo criar desde um visual clean e corporativo até algo mais dramático e editorial. É a escolha certa quando o cliente precisa de <strong>consistência e versatilidade</strong> de uso.</p><blockquote>"A luz certa não ilumina apenas o rosto — ela revela a personalidade."</blockquote><h2>A combinação ideal</h2><p>Para a maioria dos pacotes de personal branding, combino os dois: sessão em locação com luz natural para imagens mais humanas e descontraídas, e alguns takes com equipamento de iluminação para garantir opções mais formais e versáteis.</p>`},
+  post5:{tag:"Mercado",date:"10 Dez 2024",title:"O que mudou na fotografia corporativa nos últimos 5 anos",excerpt:"A fotografia corporativa de 2019 e a de 2024 são quase dois produtos diferentes. O mercado evoluiu — e os profissionais que não acompanharam estão perdendo espaço.",img:"/assets/IMG/site/post5-capa.jpg",body:`<p>A fotografia corporativa de 2019 e a de 2024 são quase dois produtos diferentes. O mercado evoluiu — e os profissionais que não acompanharam essa evolução estão perdendo espaço sem perceber.</p><h2>A morte do fundo branco infinito</h2><p>Durante anos, o padrão era: fundo branco, roupa escura, expressão séria. Isso ainda funciona para algumas aplicações específicas, mas perdeu espaço para um estilo mais editorial e contextualizado.</p><h2>A ascensão do ambiente como narrativa</h2><p>Hoje, onde você é fotografado conta tanto quanto como você é fotografado. O ambiente reforça seu posicionamento e humaniza sua marca pessoal.</p><blockquote>"A foto que você tira em 2024 precisa funcionar em um feed de redes sociais, em uma capa de livro e em uma apresentação de pitch. São contextos muito diferentes."</blockquote><h2>Personal branding como estratégia de negócio</h2><p>O maior fenômeno dos últimos anos é a consolidação do personal branding como estratégia genuína de negócio — não apenas de vaidade. Executivos, consultores e especialistas entenderam que <strong>sua imagem é um ativo</strong>.</p><h2>O que vem por aí</h2><p>A demanda por conteúdo visual de qualidade só aumenta. Profissionais que investirem em fotografia estratégica agora estarão posicionados muito à frente da concorrência nos próximos anos.</p>`}
 };
 function goPost(id){
   const p=posts[id];
@@ -1333,6 +1162,22 @@ function goPost(id){
 }
 
 
+// ── BLOG: tudo renderizado a partir do objeto `posts` (gerado de data/blog-posts.json
+//    por scripts/sync-blog-index.js). Nao escrever a lista na mao no HTML.
+var BLOG_IDS = typeof posts !== 'undefined' ? Object.keys(posts) : [];
+
+function esc(s) {
+  return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+function capaDe(p) {
+  if (!p || !p.img) return '';
+  return p.img.charAt(0) === '/' || p.img.indexOf('http') === 0 ? p.img : '/assets/IMG/site/' + p.img.split('/').pop();
+}
+function tempoLeitura(p) {
+  var txt = String(p.body || '').replace(/<[^>]*>/g, ' ');
+  return Math.max(1, Math.round(txt.split(/\s+/).length / 200)) + ' min';
+}
+
 function filterBlog(cat, el) {
   document.querySelectorAll('.btopic').forEach(function(b) { b.classList.remove('on'); });
   if (el) el.classList.add('on');
@@ -1340,18 +1185,82 @@ function filterBlog(cat, el) {
     post.style.display = (cat === 'all' || post.dataset.tag === cat) ? '' : 'none';
   });
 }
+
+// Destaque = post mais recente (posts ja vem ordenado do mais novo pro mais antigo)
 function initFeatured() {
-  var keys = Object.keys(posts);
-  var id = keys[keys.length - 1];
+  var id = BLOG_IDS[0];
   var p = posts[id];
   var el = document.getElementById('blog-featured');
   if (!p || !el) return;
-  var src = p.img ? (p.img.startsWith('/') ? p.img : '/assets/IMG/site/' + p.img.split('/').pop()) : '';
-  var imgHtml = src ? '<img src="' + src + '" style="width:100%;aspect-ratio:16/7;object-fit:cover;display:block;">' : '<div style="aspect-ratio:16/7;background:#161616"></div>';
-  el.innerHTML = '<div class="bf-img" style="position:relative;background:none;">' + imgHtml + '<div class="bf-tag">Destaque</div></div><div class="bf-body"><div class="bf-meta">' + p.date + '</div><div class="bf-title">' + p.title + '</div><span class="bf-lnk" style="display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#F5C518;cursor:pointer;">Ler artigo</span></div>';
+  var src = capaDe(p);
+  var imgHtml = src
+    ? '<img src="' + src + '" alt="' + esc(p.title) + '" style="width:100%;aspect-ratio:16/7;object-fit:cover;display:block;">'
+    : '<div style="aspect-ratio:16/7;background:#161616"></div>';
+  el.innerHTML = '<div class="bf-img" style="position:relative;background:none;">' + imgHtml + '<div class="bf-tag">Destaque</div></div>'
+    + '<div class="bf-body"><div class="bf-meta">' + esc(p.date) + ' · ' + tempoLeitura(p) + '</div>'
+    + '<div class="bf-title">' + esc(p.title) + '</div>'
+    + (p.excerpt ? '<p class="bf-exc">' + esc(p.excerpt) + '</p>' : '')
+    + '<span class="bf-lnk">Ler artigo</span></div>';
   el.onclick = function() { goPost(id); };
 }
-if (typeof posts !== 'undefined') initFeatured();
+
+// Lista principal — todos os posts menos o destaque
+function initLista() {
+  var el = document.getElementById('blog-list');
+  if (!el) return;
+  el.innerHTML = BLOG_IDS.slice(1).map(function(id) {
+    var p = posts[id];
+    var src = capaDe(p);
+    var img = src
+      ? '<img src="' + src + '" alt="' + esc(p.title) + '" loading="lazy">'
+      : '';
+    return '<div class="bpost rv" data-tag="' + esc(p.tag) + '" onclick="goPost(\'' + id + '\')">'
+      + '<div class="bpost-img">' + img + '</div>'
+      + '<div class="bpost-info"><div class="bpost-tag">' + esc(p.tag) + '</div>'
+      + '<div class="bpost-title">' + esc(p.title) + '</div>'
+      + '<div class="bpost-meta">' + esc(p.date) + ' · ' + tempoLeitura(p) + '</div></div></div>';
+  }).join('');
+}
+
+// Sidebar — 4 posts mais recentes
+function initRecentes() {
+  var el = document.getElementById('brecent');
+  if (!el) return;
+  el.innerHTML = BLOG_IDS.slice(0, 4).map(function(id) {
+    var p = posts[id];
+    var src = capaDe(p);
+    return '<div class="brecent-item" onclick="goPost(\'' + id + '\')">'
+      + '<div class="brecent-img">' + (src ? '<img src="' + src + '" alt="" loading="lazy">' : '') + '</div>'
+      + '<div><div class="brecent-title">' + esc(p.title) + '</div>'
+      + '<div class="brecent-date">' + esc(p.date) + '</div></div></div>';
+  }).join('');
+}
+
+// Categorias — contagem real
+function initCategorias() {
+  var el = document.getElementById('blog-cats');
+  if (!el) return;
+  var contagem = {};
+  BLOG_IDS.forEach(function(id) {
+    var t = posts[id].tag || 'Sem categoria';
+    contagem[t] = (contagem[t] || 0) + 1;
+  });
+  var html = '<div class="btopic on" onclick="filterBlog(\'all\', this)">'
+    + '<span class="btopic-name">Todos</span><span class="btopic-count">' + BLOG_IDS.length + '</span></div>';
+  html += Object.keys(contagem).sort(function(a, b) { return contagem[b] - contagem[a]; }).map(function(t) {
+    return '<div class="btopic" onclick="filterBlog(\'' + esc(t).replace(/'/g, "\\'") + '\', this)">'
+      + '<span class="btopic-name">' + esc(t) + '</span>'
+      + '<span class="btopic-count">' + contagem[t] + '</span></div>';
+  }).join('');
+  el.innerHTML = html;
+}
+
+if (typeof posts !== 'undefined') {
+  initFeatured();
+  initLista();
+  initRecentes();
+  initCategorias();
+}
 
 // Mobile menu
 const burger=document.getElementById('burger'),mm=document.getElementById('mm');
