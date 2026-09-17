@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta de Parceria — Vidal Gestão Tributária</title>
+<meta name="description" content="Direção estratégica de marketing e comercial e marca pessoal dos sócios para a Vidal Gestão Tributária. Proposta do Estúdio Roncolato.">
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="/assets/IMG/rr-simbolo-white.png">
+<meta property="og:title" content="Proposta de Parceria — Vidal Gestão Tributária">
+<meta property="og:description" content="Direção de marketing e comercial e marca pessoal dos sócios. Estúdio Roncolato.">
+<meta property="og:image" content="/assets/IMG/avatar-fundopreto.png">
+<meta property="og:url" content="https://rroncolato.com.br/proposta/vidal">
+<meta property="og:type" content="website">
+<meta name="robots" content="noindex">
+<style>
+:root{
+  --gold:#E6BF79;
+  --black:#0A0A0A;
+  --black-2:#121212;
+  --black-3:#171717;
+  --white:#FFFFFF;
+  --gray:#8A8A8A;
+  --gray-2:#B4B4B4;
+  --border:rgba(255,255,255,.08);
+  --border-y:rgba(230,191,121,.28);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--black);color:var(--white);
+  font-family:'Jost',sans-serif;font-weight:400;
+  -webkit-font-smoothing:antialiased;line-height:1.6;
+}
+.wrap{max-width:940px;margin:0 auto;padding:0 24px}
+
+/* ---------- TOPBAR ---------- */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,10,.88);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.topbar-in{
+  max-width:940px;margin:0 auto;padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.topbar img{height:22px;width:auto;display:block}
+.topbar .ref{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray)}
+
+/* ---------- HERO ---------- */
+.hero{padding:110px 0 90px;border-bottom:1px solid var(--border)}
+.eyebrow{
+  font-size:11px;letter-spacing:3.5px;text-transform:uppercase;
+  color:var(--gold);font-weight:700;margin-bottom:26px;
+}
+.hero h1{
+  font-size:clamp(40px,7.5vw,76px);font-weight:900;
+  letter-spacing:-2.5px;line-height:1.02;margin-bottom:28px;
+}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero .lead{
+  font-size:clamp(17px,2.4vw,21px);color:var(--gray-2);
+  max-width:640px;line-height:1.65;font-weight:300;
+}
+.hero .meta{
+  margin-top:44px;padding-top:26px;border-top:1px solid var(--border);
+  display:flex;flex-wrap:wrap;gap:36px;
+}
+.hero .meta div span{
+  display:block;font-size:10px;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--gray);margin-bottom:6px;
+}
+.hero .meta div strong{font-size:15px;font-weight:600}
+
+/* ---------- SECTIONS ---------- */
+section{padding:84px 0;border-bottom:1px solid var(--border)}
+.sec-label{
+  font-size:11px;letter-spacing:3.5px;text-transform:uppercase;
+  color:var(--gold);font-weight:700;margin-bottom:18px;
+}
+h2{
+  font-size:clamp(30px,5.4vw,50px);font-weight:900;
+  letter-spacing:-1.4px;line-height:1.06;margin-bottom:30px;
+}
+h2 em{font-style:italic;color:var(--gold)}
+h3{font-size:20px;font-weight:700;margin-bottom:12px;letter-spacing:-.3px}
+p{color:var(--gray-2);font-weight:300;margin-bottom:18px;max-width:720px}
+p strong{color:var(--white);font-weight:600}
+p:last-child{margin-bottom:0}
+.dim{color:var(--gray);font-size:14px}
+
+/* ---------- ENTENDIMENTO ---------- */
+.points{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:36px;border:1px solid var(--border)}
+.point{background:var(--black);padding:26px}
+.point .n{
+  font-size:11px;font-weight:800;color:var(--gold);
+  letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:10px;display:block;
+}
+.point p{font-size:15px;margin:0;color:var(--gray-2)}
+
+/* ---------- DESTAQUE / TESE ---------- */
+.thesis{
+  margin-top:40px;padding:34px 32px;
+  background:linear-gradient(135deg,rgba(230,191,121,.07),rgba(230,191,121,.02));
+  border:1px solid var(--border-y);border-left:3px solid var(--gold);
+}
+.thesis .big{
+  font-size:clamp(24px,4vw,36px);font-weight:900;letter-spacing:-.8px;
+  color:var(--gold);line-height:1.15;margin-bottom:14px;
+}
+.thesis p{margin-bottom:0;color:var(--gray-2)}
+
+/* ---------- BLOCOS ---------- */
+.block{
+  border:1px solid var(--border);background:var(--black-2);
+  padding:34px 30px;margin-bottom:22px;
+}
+.block-head{
+  display:flex;flex-wrap:wrap;align-items:baseline;
+  justify-content:space-between;gap:14px;margin-bottom:6px;
+}
+.block-tag{
+  font-size:10px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--gold);font-weight:800;
+}
+.block h3{font-size:clamp(22px,3.4vw,28px);font-weight:800;margin:6px 0 4px;letter-spacing:-.6px}
+.block-price{font-size:15px;font-weight:700;color:var(--white);white-space:nowrap}
+.block-price small{font-size:12px;color:var(--gray);font-weight:400}
+.block-sub{font-size:14px;color:var(--gray);margin-bottom:22px}
+ul{list-style:none;margin:0}
+ul li{
+  position:relative;padding-left:22px;margin-bottom:11px;
+  color:var(--gray-2);font-weight:300;font-size:15px;line-height:1.6;
+}
+ul li::before{
+  content:"";position:absolute;left:0;top:9px;
+  width:7px;height:7px;background:var(--gold);
+}
+ul li strong{color:var(--white);font-weight:600}
+.note{
+  margin-top:22px;padding:16px 18px;background:rgba(255,255,255,.025);
+  border-left:2px solid var(--gray-2);font-size:14px;color:var(--gray);font-weight:300;
+}
+.note strong{color:var(--white);font-weight:600}
+
+/* ---------- MODALIDADES ---------- */
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px}
+.mode{border:1px solid var(--border);background:var(--black-3);padding:24px}
+.mode.primary{border-color:var(--border-y);background:rgba(230,191,121,.04)}
+.mode h4{font-size:15px;font-weight:800;margin-bottom:4px;letter-spacing:-.2px}
+.mode .val{font-size:24px;font-weight:900;color:var(--gold);margin:10px 0 4px;letter-spacing:-1px}
+.mode .val small{font-size:13px;font-weight:500;color:var(--gray);letter-spacing:0}
+.mode .alt{font-size:13px;color:var(--gray);margin-bottom:14px;line-height:1.7}
+.mode ul li{font-size:14px;margin-bottom:9px}
+
+/* ---------- TABELAS ---------- */
+.table-scroll{overflow-x:auto;margin-top:24px;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;min-width:460px}
+th,td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--border);font-size:15px}
+th{
+  font-size:10px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--gold);font-weight:800;
+}
+td{color:var(--gray-2);font-weight:300}
+td strong{color:var(--white);font-weight:600}
+td.num{text-align:right;white-space:nowrap}
+th.num{text-align:right}
+tr.total td{
+  border-bottom:none;border-top:2px solid var(--gold);
+  font-size:17px;color:var(--white);font-weight:700;padding-top:18px;
+}
+
+/* ---------- FORA DO ESCOPO ---------- */
+.out{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:28px}
+.out div{background:var(--black);padding:20px 22px;font-size:14.5px;color:var(--gray);font-weight:300}
+.out div strong{display:block;color:var(--white);font-weight:600;margin-bottom:5px;font-size:15px}
+
+/* ---------- TIMELINE ---------- */
+.timeline{margin-top:34px;border-left:1px solid var(--border);padding-left:0}
+.tl-item{position:relative;padding:0 0 30px 30px}
+.tl-item::before{
+  content:"";position:absolute;left:-5px;top:6px;
+  width:9px;height:9px;background:var(--gold);border-radius:50%;
+}
+.tl-item:last-child{padding-bottom:0}
+.tl-when{
+  font-size:10px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--gold);font-weight:800;margin-bottom:7px;
+}
+.tl-item h4{font-size:17px;font-weight:700;margin-bottom:6px}
+.tl-item p{font-size:14.5px;margin:0;color:var(--gray)}
+
+/* ---------- CONDIÇÕES ---------- */
+.terms{margin-top:30px}
+.term{
+  padding:22px 0;border-bottom:1px solid var(--border);
+  display:grid;grid-template-columns:190px 1fr;gap:24px;
+}
+.term:last-child{border-bottom:none}
+.term dt{font-size:14px;font-weight:700;color:var(--white)}
+.term dd{font-size:14.5px;color:var(--gray);font-weight:300;line-height:1.65}
+.term dd strong{color:var(--gray-2);font-weight:600}
+
+/* ---------- CTA ---------- */
+.cta{padding:96px 0;text-align:center;border-bottom:none}
+.cta h2{margin-bottom:18px}
+.cta p{margin:0 auto 40px;color:var(--gray-2)}
+.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{
+  padding:17px 34px;font-family:'Jost',sans-serif;font-size:12px;
+  font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
+  text-decoration:none;transition:.25s;display:inline-block;
+}
+.btn-primary{background:var(--gold);color:var(--black);border:1px solid var(--gold)}
+.btn-primary:hover{background:transparent;color:var(--gold);transform:translateY(-2px)}
+.btn-secondary{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.22)}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+
+/* ---------- FOOTER ---------- */
+footer{padding:44px 0 60px;text-align:center}
+footer img{height:26px;margin-bottom:20px;opacity:.85}
+footer p{font-size:12.5px;color:var(--gray);margin:0 auto 6px;max-width:none}
+footer a{color:var(--gray-2);text-decoration:none}
+footer a:hover{color:var(--gold)}
+
+/* ---------- MOBILE ---------- */
+@media(max-width:820px){
+  .points,.out,.modes{grid-template-columns:1fr}
+  .term{grid-template-columns:1fr;gap:8px}
+  section{padding:62px 0}
+  .hero{padding:76px 0 62px}
+  .hero .meta{gap:24px}
+  .block{padding:26px 22px}
+  .cta{padding:74px 0}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <img src="/assets/IMG/roncolato-branco-horizontal.png" alt="Estúdio Roncolato" onerror="this.src='/assets/IMG/rr-simbolo-white.png'">
+    <div class="ref">Proposta · Vidal · Set 2026</div>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Proposta de Parceria</div>
+    <h1>Marketing e comercial<br>na <em>mesma direção</em>.</h1>
+    <p class="lead">
+      Direção estratégica de marketing para a Vidal, construída junto com o comercial.
+      E a marca pessoal dos três sócios tratada como ativo da empresa.
+    </p>
+    <div class="meta">
+      <div><span>Cliente</span><strong>Vidal Gestão Tributária</strong></div>
+      <div><span>Escopo</span><strong>Direção de Marketing · Marca dos Sócios</strong></div>
+      <div><span>Horizonte</span><strong>6 meses</strong></div>
+      <div><span>Data</span><strong>Setembro de 2026</strong></div>
+    </div>
+  </div>
+</header>
+
+<!-- ENTENDIMENTO -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">O que eu entendi</div>
+    <h2>Onde a Vidal<br>está <em>hoje</em></h2>
+    <p>
+      Uma empresa com resultado real. Mais de R$ 100 milhões recuperados para clientes, duas unidades,
+      três sócios que já são o rosto do negócio. E uma equipe de marketing que está começando.
+      O que existe é execução. O que falta é a direção que transforma execução em conversa comercial.
+    </p>
+
+    <div class="points">
+      <div class="point">
+        <span class="n">01</span>
+        <p>Dois profissionais de marketing em início de carreira: um em social media, outro forte em vídeo e começando na arte. Produzem. Ainda não há quem defina o que produzir, para quem e por quê.</p>
+      </div>
+      <div class="point">
+        <span class="n">02</span>
+        <p>Comercial e marketing precisam falar a mesma língua. Hoje cada um trabalha de um lado. O conhecimento de marketing precisa se alinhar à expertise do comercial, ou o conteúdo não vira reunião e a reunião não usa o que o conteúdo construiu.</p>
+      </div>
+      <div class="point">
+        <span class="n">03</span>
+        <p>Os três sócios já são o rosto da empresa. Mas rosto sem estratégia é exposição, não autoridade.</p>
+      </div>
+      <div class="point">
+        <span class="n">04</span>
+        <p>A Vidal vende um serviço de confiança extrema. Empresário só entrega os tributos da empresa a quem já parece dominar o assunto antes da primeira reunião.</p>
+      </div>
+      <div class="point">
+        <span class="n">05</span>
+        <p>Site e identidade visual estão definidos. Agora precisam falar a mesma língua do posicionamento e da estratégia de trabalho com o comercial. Ativo pronto sem uso diário é ativo parado.</p>
+      </div>
+      <div class="point">
+        <span class="n">06</span>
+        <p>O pedido do José Luiz é claro: uma parceria que traga direção. Não mais um fornecedor de peça.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEITURA ESTRATÉGICA -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Leitura estratégica</div>
+    <h2>A Vidal não vende<br>recuperação tributária.<br>Vende <em>confiança</em>.</h2>
+    <p>
+      E confiança se constrói antes da primeira reunião.
+    </p>
+
+    <div class="thesis">
+      <div class="big">Antes de o comercial falar, a imagem da Vidal já negociou.</div>
+      <p>
+        Serviço tributário de alto valor é decisão de risco. O cliente não compara por preço.
+        Compara por segurança percebida. <strong>Quem parece dominar o assunto ganha a reunião.
+        Quem parece igual aos outros disputa desconto.</strong>
+      </p>
+    </div>
+
+    <p style="margin-top:34px">
+      Marketing, nesse mercado, não é gerar alcance. É construir a percepção de autoridade que reduz
+      objeção antes de o comercial entrar na sala. Cada post, cada vídeo, cada retrato dos sócios precisa
+      fazer esse trabalho. <strong>Se não faz, é custo.</strong>
+    </p>
+    <p>
+      O ativo mais forte da Vidal já existe: três sócios com história, resultado e presença.
+      Marca pessoal de sócio em escritório tributário não é vaidade. É o que faz o empresário dizer
+      "quero falar com o Wellington", "quero falar com o Jurandir", "quero falar com o José Luiz",
+      em vez de "quero um orçamento". <strong>Nome vende mais fácil que CNPJ.</strong>
+    </p>
+    <p>
+      Há também uma questão de ordem. Primeiro posicionamento e ponte com o comercial. Depois volume.
+      Inverter é o erro mais comum que vejo: produzir muito conteúdo sem direção, não ver retorno e concluir
+      que "marketing não funciona". Não é o marketing que não funciona. É a ausência de direção.
+    </p>
+  </div>
+</section>
+
+<!-- O PAPEL -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">O papel que eu ocupo</div>
+    <h2>A mente que <em>dirige</em>,<br>não a mão que executa</h2>
+    <p>
+      Não entro para fazer post ou vídeo. A Vidal já tem quem faz. Entro para decidir o que se faz,
+      por quê, em que ordem, e como isso chega ao comercial em forma de conversa.
+    </p>
+
+    <div class="thesis">
+      <p>
+        Por isso a direção acontece com o <strong>head comercial na mesma mesa</strong>, toda semana.
+        Estratégia de marketing feita sem o comercial na sala vira arte bonita que não fecha contrato.
+        O comercial sabe o que o cliente pergunta, onde trava, o que convence. O marketing sabe como transformar
+        isso em conteúdo que constrói autoridade. <strong>Os dois falando a mesma língua</strong> é o que faz a Vidal
+        parecer uma empresa só, do primeiro post à assinatura do contrato.
+      </p>
+    </div>
+
+    <div class="points" style="margin-top:36px">
+      <div class="point">
+        <span class="n">Direção semanal</span>
+        <p>Uma manhã por semana, presencial, com o time de marketing e o head comercial. As prioridades da semana saem dali, com critério e com prazo. Entre uma manhã e outra, alinhamento remoto em horário comercial.</p>
+      </div>
+      <div class="point">
+        <span class="n">Formação do time</span>
+        <p>Os dois profissionais crescem sob direção. Em 6 meses, a meta é um time que sabe o que fazer e por quê, sem depender de mim para cada decisão.</p>
+      </div>
+      <div class="point">
+        <span class="n">Ponte com o comercial</span>
+        <p>Cada conteúdo com função no funil. Material de apoio à venda, argumentação e follow-up construídos com o que o marketing produz.</p>
+      </div>
+      <div class="point">
+        <span class="n">Imagem dentro do processo</span>
+        <p>Retratos dos sócios e fotografia da equipe feitos por mim, como parte da direção. Não é extra. Imagem é estratégia, e começa por quem representa a empresa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO TRABALHO -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Como eu proponho trabalhar</div>
+    <h2>Uma base,<br>um <em>upgrade</em> por sócio</h2>
+    <p>
+      A base é a direção de marketing e comercial da empresa. O upgrade é a estratégia de marca pessoal
+      de cada sócio, contratada individualmente. São naturezas diferentes: uma cuida da Vidal, a outra
+      cuida de quem a representa. Separar os dois deixa claro o que está sendo contratado e o que cada um entrega.
+    </p>
+
+    <!-- BLOCO 1 -->
+    <div class="block" style="margin-top:38px">
+      <div class="block-head">
+        <div>
+          <div class="block-tag">Bloco 01 · Base</div>
+          <h3>Direção de Marketing e Comercial</h3>
+        </div>
+        <div class="block-price">R$ 5.000 <small>/mês</small></div>
+      </div>
+      <div class="block-sub">6 meses · uma manhã presencial por semana · marketing e comercial na mesma mesa</div>
+      <ul>
+        <li><strong>Diagnóstico e posicionamento (mês 1).</strong> O que a Vidal defende, para quem fala, contra o que se posiciona e o que promete. O documento que orienta toda decisão daqui pra frente.</li>
+        <li><strong>Plano de 90 dias.</strong> O que fazer, em que ordem, e quais sinais observar para saber se está funcionando. Renovado a cada trimestre com os números do anterior.</li>
+        <li><strong>Sistema editorial.</strong> Pilares, pautas, linhas narrativas e a função de cada peça no funil. Nada de calendário no escuro.</li>
+        <li><strong>Direção do time.</strong> Pauta semanal, revisão e aprovação de peças, direção de arte e de vídeo. O videomaker grava e edita; o social media publica; eu dirijo.</li>
+        <li><strong>Ponte com o comercial.</strong> Desenho da jornada do lead, do primeiro contato ao diagnóstico e à proposta. Material de apoio à venda: apresentação institucional, argumentação, estrutura da proposta da Vidal.</li>
+        <li><strong>Leitura de resultado.</strong> Reunião mensal com os números na mesa. O que gerou conversa comercial, o que não gerou, o que muda no mês seguinte.</li>
+        <li><strong>Fotografia inclusa.</strong> Retrato institucional dos sócios (mês 1), equipe e ambiente (mês 2), atualização (mês 5). Feitas por mim, dentro do plano.</li>
+      </ul>
+      <div class="note">
+        <strong>Como a rotina funciona.</strong> Uma manhã presencial por semana, obrigatória nos três primeiros meses,
+        quando o time está sendo formado e o sistema está sendo implantado. Entre uma manhã e outra, reuniões remotas
+        em horário comercial para alinhamento, dúvida e decisão rápida: o trabalho não para até a semana seguinte.
+        Do mês 4 em diante, a cadência é revisada em conjunto. Presença extra além da manhã semanal é combinada antes, nunca surpresa.
+      </div>
+    </div>
+
+    <!-- BLOCO 2 -->
+    <div class="block">
+      <div class="block-head">
+        <div>
+          <div class="block-tag">Bloco 02 · Upgrade por sócio</div>
+          <h3>Estratégia de Marca Pessoal</h3>
+        </div>
+        <div class="block-price">R$ 1.000 <small>/mês por sócio</small></div>
+      </div>
+      <div class="block-sub">José Luiz · Wellington Vidal · Jurandir · contrata-se para 1, 2 ou 3 sócios</div>
+      <ul>
+        <li><strong>Arquétipo e território.</strong> Qual papel cada sócio ocupa na narrativa da Vidal, para que os três se complementem em vez de disputar o mesmo espaço.</li>
+        <li><strong>Linha editorial individual.</strong> Temas, formatos, frequência e tom de cada um. Integrada ao sistema da empresa, não paralela a ele.</li>
+        <li><strong>Direção de imagem.</strong> Retrato, presença em vídeo, postura, vestuário. O que a imagem de cada sócio precisa comunicar antes da fala.</li>
+        <li><strong>Sessão de retrato dirigida.</strong> Um ensaio individual por sócio, construído a partir do arquétipo definido. Mais que foto institucional: imagem com intenção.</li>
+        <li><strong>Acompanhamento mensal.</strong> Uma hora individual por mês com cada sócio: pauta, revisão do que saiu, ajuste de rota.</li>
+        <li><strong>Preparação para exposição.</strong> Palestra, evento, entrevista, LinkedIn. Como aparecer quando a ocasião pede o sócio, não a empresa.</li>
+      </ul>
+      <div class="note">
+        <strong>Por que por sócio.</strong> Os três já são o rosto. O que falta é cada rosto ter função. Marca pessoal de
+        sócio dá ao comercial um nome para vender, não só uma empresa. Cliente compra "o Wellington resolveu"
+        com mais facilidade do que "a Vidal resolve". E o que é construído em cima de uma pessoa não se copia.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTIMENTO -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Investimento</div>
+    <h2>Base contratada,<br>upgrade por <em>escolha</em></h2>
+    <p>
+      A base é o compromisso firme. O upgrade de marca pessoal é decidido sócio a sócio.
+    </p>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Bloco</th><th>Formato</th><th class="num">Mensal</th><th class="num">6 meses</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>01 · Direção de Marketing e Comercial</strong></td>
+            <td>Base · 6 meses</td>
+            <td class="num">R$ 5.000</td>
+            <td class="num">R$ 30.000</td>
+          </tr>
+          <tr>
+            <td><strong>02 · Marca Pessoal</strong></td>
+            <td>Por sócio · 6 meses</td>
+            <td class="num">R$ 1.000</td>
+            <td class="num">R$ 6.000</td>
+          </tr>
+          <tr class="total">
+            <td colspan="2">Total com os três sócios</td>
+            <td class="num">R$ 8.000</td>
+            <td class="num">R$ 48.000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:34px"><strong>Duas formas de pagamento.</strong> A Vidal escolhe a que fizer mais sentido para o caixa.</p>
+
+    <div class="modes">
+      <div class="mode primary">
+        <h4>Opção A · Projeto fechado</h4>
+        <div class="val">30% na assinatura <small>+ 5 parcelas mensais</small></div>
+        <div class="alt">Com os três sócios: R$ 14.400 + 5× R$ 6.720<br>Só a base: R$ 9.000 + 5× R$ 4.200</div>
+        <ul>
+          <li>A entrada cobre o mês mais pesado: diagnóstico, posicionamento, retratos e plano de 90 dias</li>
+          <li>Parcelas com vencimento no mesmo dia de cada mês</li>
+        </ul>
+      </div>
+      <div class="mode">
+        <h4>Opção B · Mensal</h4>
+        <div class="val">6 parcelas iguais</div>
+        <div class="alt">Com os três sócios: 6× R$ 8.000<br>Só a base: 6× R$ 5.000</div>
+        <ul>
+          <li>Primeira parcela na assinatura</li>
+          <li>Demais com vencimento no mesmo dia de cada mês</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORA DO ESCOPO -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Transparência</div>
+    <h2>O que <em>não</em> está incluído</h2>
+    <p>
+      Tão importante quanto listar o que entra é dizer o que fica de fora. Nada aqui está fora para
+      sempre. Está fora desta contratação, e pode ser orçado quando fizer sentido.
+    </p>
+    <div class="out">
+      <div><strong>Execução de conteúdo</strong>Post, arte, edição de vídeo, agendamento e publicação. É do time interno da Vidal. Eu dirijo, o time executa.</div>
+      <div><strong>Produção de vídeo</strong>Captação e edição. O videomaker da Vidal executa sob direção e roteiro. Fotografia, sim, está inclusa.</div>
+      <div><strong>Tráfego pago</strong>Gestão de anúncios e verba de mídia. Oriento onde e quando investir; a operação é de um gestor de tráfego.</div>
+      <div><strong>CRM e ferramentas</strong>Implantação e configuração de CRM, automação, alterações no site. Desenho o processo; a engenharia é separada.</div>
+      <div><strong>Vendas</strong>Prospecção, reunião com cliente e fechamento continuam com o comercial. Eu construo o que ele leva para a mesa.</div>
+      <div><strong>Fotografia além do plano</strong>Cobertura de evento, sessões fora das três previstas ou em Brasília são orçadas à parte.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CRONOGRAMA -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Cronograma</div>
+    <h2>Como os 6 meses <em>andam</em></h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-when">Mês 1</div>
+        <h4>Fundação</h4>
+        <p>Imersão com os sócios e o head comercial. Diagnóstico, posicionamento, arquétipo de cada sócio, retratos institucionais e plano de 90 dias. Ao fim, o documento que orienta toda decisão daqui pra frente.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Mês 2 e 3</div>
+        <h4>Implantação</h4>
+        <p>Sistema editorial no ar. Time sob direção semanal. Material de apoio à venda entregue ao comercial. Fotografia de equipe e ambiente. Sessões de retrato dos sócios contratados.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Mês 4 e 5</div>
+        <h4>Tração</h4>
+        <p>Segundo plano de 90 dias, feito com os dados do primeiro. Ajuste do funil com o comercial. Revisão da cadência presencial. Atualização de retratos.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Mês 6</div>
+        <h4>Avaliação e rota</h4>
+        <p>Números na mesa: o que gerou conversa comercial, o que não gerou. Decisão conjunta sobre continuar, mudar o formato ou ampliar o escopo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONDIÇÕES -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Condições</div>
+    <h2>As regras que fazem<br>isso <em>durar</em></h2>
+    <p>
+      Nada aqui é burocracia. É o que evita que uma parceria boa se desgaste por combinado que ficou implícito.
+    </p>
+    <dl class="terms">
+      <div class="term">
+        <dt>Vigência</dt>
+        <dd>6 meses a partir da assinatura, com <strong>revisão obrigatória no mês 6</strong>. Não há renovação automática. A continuidade é decidida em conjunto, com base no que os números mostrarem.</dd>
+      </div>
+      <div class="term">
+        <dt>Cadência</dt>
+        <dd>Uma manhã presencial por semana em Goiânia nos meses 1 a 3, mais reuniões remotas em horário comercial sempre que o alinhamento pedir. Do mês 4 ao 6, cadência revisada em conjunto. Presença extra é combinada antes. Deslocamento à unidade de Brasília é orçado à parte.</dd>
+      </div>
+      <div class="term">
+        <dt>Time interno</dt>
+        <dd>A execução é da equipe da Vidal. A direção pressupõe que o time tem <strong>tempo dedicado</strong> para executar o que for definido na manhã semanal.</dd>
+      </div>
+      <div class="term">
+        <dt>Sócios</dt>
+        <dd>O bloco de marca pessoal exige uma hora mensal de cada sócio contratado, mais disponibilidade para retrato e gravação conforme o calendário combinado.</dd>
+      </div>
+      <div class="term">
+        <dt>Imagens</dt>
+        <dd>A Vidal e os sócios recebem direito de uso das fotos entregues em todos os canais institucionais e pessoais, sem prazo. Os direitos autorais e o uso em portfólio permanecem com o <strong>Estúdio Roncolato</strong>.</dd>
+      </div>
+      <div class="term">
+        <dt>Propriedade e sigilo</dt>
+        <dd>Todo material estratégico entregue e pago é da Vidal. Números, clientes e informações internas acessados durante o trabalho ficam sob sigilo.</dd>
+      </div>
+      <div class="term">
+        <dt>Validade da proposta</dt>
+        <dd>30 dias a partir da data de envio.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <div class="sec-label">Próximo passo</div>
+    <h2>Vamos começar<br>pela <em>fundação</em>?</h2>
+    <p>
+      Se fizer sentido, o próximo passo é marcar a primeira manhã: imersão com os três sócios e o head comercial.
+      É de lá que sai o plano dos primeiros 90 dias.
+    </p>
+    <div class="btns">
+      <a class="btn btn-primary" href="https://wa.me/5562985928423?text=Rodrigo%2C%20li%20a%20proposta%20da%20Vidal.%20Vamos%20conversar%3F">Falar no WhatsApp</a>
+      <a class="btn btn-secondary" href="mailto:rodrigo@rroncolato.com?subject=Proposta%20Vidal">Responder por e-mail</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <img src="/assets/IMG/roncolato-branco-horizontal.png" alt="Estúdio Roncolato" onerror="this.src='/assets/IMG/rr-simbolo-white.png'">
+    <p>Rodrigo Roncolato · Estratégia de marca e imagem</p>
+    <p><a href="mailto:rodrigo@rroncolato.com">rodrigo@rroncolato.com</a> · <a href="https://rroncolato.com.br">rroncolato.com.br</a></p>
+    <p style="margin-top:14px;color:#5A5A5A">Proposta emitida em setembro de 2026 · válida por 30 dias</p>
+  </div>
+</footer>
+
+</body>
+</html>

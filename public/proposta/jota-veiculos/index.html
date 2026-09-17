@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta de Parceria — Jota Veículos</title>
+<meta name="description" content="Direção de marca e conteúdo para a Jota Veículos e marca pessoal de Juvenildo Jr. Proposta do Estúdio Roncolato.">
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="/assets/IMG/rr-simbolo-white.png">
+<meta property="og:title" content="Proposta de Parceria — Jota Veículos">
+<meta property="og:description" content="Direção de marca e conteúdo. Estúdio Roncolato.">
+<meta property="og:image" content="/assets/IMG/avatar-fundopreto.png">
+<meta property="og:url" content="https://rroncolato.com.br/proposta/jota-veiculos">
+<meta property="og:type" content="website">
+<style>
+:root{
+  --yellow:#F5C518;
+  --black:#0A0A0A;
+  --black-2:#121212;
+  --black-3:#171717;
+  --white:#FFFFFF;
+  --gray:#8A8A8A;
+  --gray-2:#B4B4B4;
+  --border:rgba(255,255,255,.08);
+  --border-y:rgba(245,197,24,.25);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--black);color:var(--white);
+  font-family:'Jost',sans-serif;font-weight:400;
+  -webkit-font-smoothing:antialiased;line-height:1.6;
+}
+.wrap{max-width:940px;margin:0 auto;padding:0 24px}
+
+/* ---------- TOPBAR ---------- */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,10,.88);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.topbar-in{
+  max-width:940px;margin:0 auto;padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.topbar img{height:22px;width:auto;display:block}
+.topbar .ref{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray)}
+
+/* ---------- HERO ---------- */
+.hero{padding:110px 0 90px;border-bottom:1px solid var(--border)}
+.eyebrow{
+  font-size:11px;letter-spacing:3.5px;text-transform:uppercase;
+  color:var(--yellow);font-weight:700;margin-bottom:26px;
+}
+.hero h1{
+  font-size:clamp(42px,8vw,80px);font-weight:900;
+  letter-spacing:-2.5px;line-height:1.02;margin-bottom:28px;
+}
+.hero h1 em{font-style:italic;color:var(--yellow)}
+.hero .lead{
+  font-size:clamp(17px,2.4vw,21px);color:var(--gray-2);
+  max-width:620px;line-height:1.65;font-weight:300;
+}
+.hero .meta{
+  margin-top:44px;padding-top:26px;border-top:1px solid var(--border);
+  display:flex;flex-wrap:wrap;gap:36px;
+}
+.hero .meta div span{
+  display:block;font-size:10px;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--gray);margin-bottom:6px;
+}
+.hero .meta div strong{font-size:15px;font-weight:600}
+
+/* ---------- SECTIONS ---------- */
+section{padding:84px 0;border-bottom:1px solid var(--border)}
+.sec-label{
+  font-size:11px;letter-spacing:3.5px;text-transform:uppercase;
+  color:var(--yellow);font-weight:700;margin-bottom:18px;
+}
+h2{
+  font-size:clamp(30px,5.4vw,50px);font-weight:900;
+  letter-spacing:-1.4px;line-height:1.06;margin-bottom:30px;
+}
+h2 em{font-style:italic;color:var(--yellow)}
+h3{font-size:20px;font-weight:700;margin-bottom:12px;letter-spacing:-.3px}
+p{color:var(--gray-2);font-weight:300;margin-bottom:18px;max-width:720px}
+p strong{color:var(--white);font-weight:600}
+p:last-child{margin-bottom:0}
+.dim{color:var(--gray);font-size:14px}
+
+/* ---------- ENTENDIMENTO ---------- */
+.points{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:36px;border:1px solid var(--border)}
+.point{background:var(--black);padding:26px}
+.point .n{
+  font-size:11px;font-weight:800;color:var(--yellow);
+  letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:10px;display:block;
+}
+.point p{font-size:15px;margin:0;color:var(--gray-2)}
+
+/* ---------- DESTAQUE / TESE ---------- */
+.thesis{
+  margin-top:40px;padding:34px 32px;
+  background:linear-gradient(135deg,rgba(245,197,24,.07),rgba(245,197,24,.02));
+  border:1px solid var(--border-y);border-left:3px solid var(--yellow);
+}
+.thesis .greek{
+  font-size:clamp(30px,5vw,44px);font-weight:900;letter-spacing:-1px;
+  color:var(--yellow);line-height:1.1;margin-bottom:14px;
+}
+.thesis p{margin-bottom:0;color:var(--gray-2)}
+
+/* ---------- BLOCOS ---------- */
+.block{
+  border:1px solid var(--border);background:var(--black-2);
+  padding:34px 30px;margin-bottom:22px;
+}
+.block-head{
+  display:flex;flex-wrap:wrap;align-items:baseline;
+  justify-content:space-between;gap:14px;margin-bottom:6px;
+}
+.block-tag{
+  font-size:10px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--yellow);font-weight:800;
+}
+.block h3{font-size:clamp(22px,3.4vw,28px);font-weight:800;margin:6px 0 4px;letter-spacing:-.6px}
+.block-price{font-size:15px;font-weight:700;color:var(--white);white-space:nowrap}
+.block-price s{color:var(--gray);font-weight:400;margin-right:8px}
+.block-sub{font-size:14px;color:var(--gray);margin-bottom:22px}
+ul{list-style:none;margin:0}
+ul li{
+  position:relative;padding-left:22px;margin-bottom:11px;
+  color:var(--gray-2);font-weight:300;font-size:15px;line-height:1.6;
+}
+ul li::before{
+  content:'';position:absolute;left:0;top:9px;
+  width:7px;height:7px;background:var(--yellow);
+}
+ul li strong{color:var(--white);font-weight:600}
+.note{
+  margin-top:22px;padding:16px 18px;background:rgba(255,255,255,.025);
+  border-left:2px solid var(--gray-2);font-size:14px;color:var(--gray);font-weight:300;
+}
+.note strong{color:var(--white);font-weight:600}
+
+/* ---------- MODALIDADES ---------- */
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px}
+.mode{border:1px solid var(--border);background:var(--black-3);padding:24px}
+.mode.primary{border-color:var(--border-y);background:rgba(245,197,24,.04)}
+.mode h4{font-size:15px;font-weight:800;margin-bottom:4px;letter-spacing:-.2px}
+.mode .val{font-size:26px;font-weight:900;color:var(--yellow);margin:10px 0 14px;letter-spacing:-1px}
+.mode .val small{font-size:13px;font-weight:500;color:var(--gray);letter-spacing:0}
+.mode ul li{font-size:14px;margin-bottom:9px}
+
+/* ---------- TABELAS ---------- */
+.table-scroll{overflow-x:auto;margin-top:24px;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;min-width:460px}
+th,td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--border);font-size:15px}
+th{
+  font-size:10px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--yellow);font-weight:800;
+}
+td{color:var(--gray-2);font-weight:300}
+td strong{color:var(--white);font-weight:600}
+td.num{text-align:right;white-space:nowrap}
+th.num{text-align:right}
+tr.total td{
+  border-bottom:none;border-top:2px solid var(--yellow);
+  font-size:17px;color:var(--white);font-weight:700;padding-top:18px;
+}
+
+/* ---------- FORA DO ESCOPO ---------- */
+.out{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:28px}
+.out div{background:var(--black);padding:20px 22px;font-size:14.5px;color:var(--gray);font-weight:300}
+.out div strong{display:block;color:var(--white);font-weight:600;margin-bottom:5px;font-size:15px}
+
+/* ---------- TIMELINE ---------- */
+.timeline{margin-top:34px;border-left:1px solid var(--border);padding-left:0}
+.tl-item{position:relative;padding:0 0 30px 30px}
+.tl-item::before{
+  content:'';position:absolute;left:-5px;top:6px;
+  width:9px;height:9px;background:var(--yellow);border-radius:50%;
+}
+.tl-item:last-child{padding-bottom:0}
+.tl-when{
+  font-size:10px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--yellow);font-weight:800;margin-bottom:7px;
+}
+.tl-item h4{font-size:17px;font-weight:700;margin-bottom:6px}
+.tl-item p{font-size:14.5px;margin:0;color:var(--gray)}
+
+/* ---------- CONDIÇÕES ---------- */
+.terms{margin-top:30px}
+.term{
+  padding:22px 0;border-bottom:1px solid var(--border);
+  display:grid;grid-template-columns:190px 1fr;gap:24px;
+}
+.term:last-child{border-bottom:none}
+.term dt{font-size:14px;font-weight:700;color:var(--white)}
+.term dd{font-size:14.5px;color:var(--gray);font-weight:300;line-height:1.65}
+.term dd strong{color:var(--gray-2);font-weight:600}
+
+/* ---------- CTA ---------- */
+.cta{padding:96px 0;text-align:center;border-bottom:none}
+.cta h2{margin-bottom:18px}
+.cta p{margin:0 auto 40px;color:var(--gray-2)}
+.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{
+  padding:17px 34px;font-family:'Jost',sans-serif;font-size:12px;
+  font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
+  text-decoration:none;transition:.25s;display:inline-block;
+}
+.btn-primary{background:var(--yellow);color:var(--black);border:1px solid var(--yellow)}
+.btn-primary:hover{background:transparent;color:var(--yellow);transform:translateY(-2px)}
+.btn-secondary{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.22)}
+.btn-secondary:hover{border-color:var(--yellow);color:var(--yellow);transform:translateY(-2px)}
+
+/* ---------- FOOTER ---------- */
+footer{padding:44px 0 60px;text-align:center}
+footer img{height:26px;margin-bottom:20px;opacity:.85}
+footer p{font-size:12.5px;color:var(--gray);margin:0 auto 6px;max-width:none}
+footer a{color:var(--gray-2);text-decoration:none}
+footer a:hover{color:var(--yellow)}
+
+/* ---------- MOBILE ---------- */
+@media(max-width:820px){
+  .points,.out,.modes{grid-template-columns:1fr}
+  .term{grid-template-columns:1fr;gap:8px}
+  section{padding:62px 0}
+  .hero{padding:76px 0 62px}
+  .hero .meta{gap:24px}
+  .block{padding:26px 22px}
+  .cta{padding:74px 0}
+}
+/* ---------- EXTRAS JOTA ---------- */
+.quote{
+  margin-top:36px;padding:30px 32px;border:1px solid var(--border-y);
+  background:rgba(245,197,24,.04);
+}
+.quote p{font-size:clamp(19px,2.6vw,24px);font-weight:500;color:var(--white);line-height:1.4;margin-bottom:12px;max-width:none}
+.quote span{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gray)}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:36px}
+.pillar{background:var(--black);padding:26px 22px}
+.pillar .n{font-size:11px;font-weight:800;color:var(--yellow);letter-spacing:2px;text-transform:uppercase;display:block;margin-bottom:10px}
+.pillar h4{font-size:17px;font-weight:700;margin-bottom:8px}
+.pillar p{font-size:14.5px;margin:0;color:var(--gray)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:34px}
+.two .block{margin-bottom:0}
+.sim{margin-top:26px;padding:22px 24px;border:1px solid var(--border);background:var(--black-3)}
+.sim h4{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--yellow);font-weight:800;margin-bottom:14px}
+.sim-row{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid var(--border);font-size:14.5px;color:var(--gray-2)}
+.sim-row:last-child{border-bottom:none;color:var(--white);font-weight:600}
+.sim-row span:last-child{white-space:nowrap}
+@media(max-width:820px){.pillars,.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <img src="/assets/IMG/roncolato-branco-horizontal.png" alt="Estúdio Roncolato" onerror="this.src='/assets/IMG/rr-simbolo-white.png'">
+    <div class="ref">Proposta · Jota Veículos · Set 2026</div>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Proposta de Parceria</div>
+    <h1>A voz e a<br><em>autoridade</em><br>da Jota.</h1>
+    <p class="lead">
+      A loja já tem história, método e reputação. O que falta é uma mente por trás da estratégia —
+      alguém do lado de dentro, construindo a voz da marca e transformando o dia a dia em autoridade.
+    </p>
+    <div class="meta">
+      <div><span>Cliente</span><strong>Jota Veículos · Juvenildo Jr.</strong></div>
+      <div><span>Escopo</span><strong>Direção de Marca &amp; Conteúdo</strong></div>
+      <div><span>Horizonte</span><strong>12 meses · validação em 90 dias</strong></div>
+      <div><span>Data</span><strong>Setembro de 2026</strong></div>
+    </div>
+  </div>
+</header>
+
+<!-- O QUE EU OUVI -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">O que eu ouvi</div>
+    <h2>A Jota não tem<br>problema de <em>venda</em></h2>
+    <p>
+      Vinte a vinte e cinco carros por mês com um estoque que gira em 20 dias. Um funcionário.
+      Quase trezentas avaliações cinco estrelas no Google, escritas como redação.
+      Uma história que passou por 80 funcionários, por um incêndio e por 99 dias de reconstrução.
+      <strong>O gargalo não está em vender. Está em ter o que vender.</strong>
+    </p>
+
+    <div class="points">
+      <div class="point">
+        <span class="n">01</span>
+        <p>Estoque é capital parado. Cada carro consignado que entra pela audiência é margem sem dinheiro do bolso.</p>
+      </div>
+      <div class="point">
+        <span class="n">02</span>
+        <p>Hoje cinco lojistas ligam pedindo conselho de graça. A autoridade já existe. Ela só não foi multiplicada.</p>
+      </div>
+      <div class="point">
+        <span class="n">03</span>
+        <p>Conteúdo produzido, roteirizado e caro não performou. O que performou foi bastidor, negociação real e entrega — o orgânico.</p>
+      </div>
+      <div class="point">
+        <span class="n">04</span>
+        <p>Impulsionar 45 vídeos derrubou o perfil. Tráfego de produto funciona; tráfego de marca precisa de outra lógica.</p>
+      </div>
+      <div class="point">
+        <span class="n">05</span>
+        <p>A reputação está no Google e no boca a boca. Ainda não está em formato que alguém possa acompanhar todo dia.</p>
+      </div>
+      <div class="point">
+        <span class="n">06</span>
+        <p>Você não quer agência. Quer alguém ao lado, entendendo a essência, com olhar de quem sabe o que vira história.</p>
+      </div>
+    </div>
+
+    <div class="quote">
+      <p>"Vocês estão prontos. Só precisam executar. Só precisam ter uma pessoa."</p>
+      <span>Rodrigo Belo · Loja pra Loja · na Jota, agosto de 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- LEITURA ESTRATÉGICA -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Leitura estratégica</div>
+    <h2>A Jota não precisa<br>de marketing. Precisa de<br>uma <em>voz</em>.</h2>
+    <p>
+      Marketing tenta convencer. Autoridade não precisa. A Jota tem matéria-prima todos os dias:
+      a avaliação em que o cliente descobre por que o Corolla de tabela 125 vale 95, a negociação
+      que fecha em 40 minutos, a família recebendo o carro, o pai na loja, o lojista de outra cidade
+      ligando para pedir orientação. <strong>Nada disso precisa ser criado. Precisa de uma mente por trás
+      decidindo o que vira voz da marca.</strong>
+    </p>
+    <p>
+      Esse é o papel que eu proponho. Não é câmera nem edição — isso se contrata. É a estratégia:
+      saber, no meio de um dia comum, o que constrói autoridade e o que só faz barulho. O que segura
+      o cliente que ainda não vai comprar. O que faz um lojista de Manaus enxergar método onde você
+      enxerga rotina.
+    </p>
+
+    <p>
+      Toda presença que se sustenta se apoia em três eixos. É assim que eu leio uma marca antes de
+      decidir o que ela mostra:
+    </p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <span class="n">Eixo 01</span>
+        <h4>Posição</h4>
+        <p>Contra o que a marca existe. O garageiro, o carro sem histórico, a loja que some com o dinheiro. A Jota é o oposto disso — e precisa dizer.</p>
+      </div>
+      <div class="pillar">
+        <span class="n">Eixo 02</span>
+        <h4>Origem</h4>
+        <p>De onde a marca vem. Família na loja, fé, o incêndio, os 99 dias, o irmão sócio. O que não se copia porque não se inventa.</p>
+      </div>
+      <div class="pillar">
+        <span class="n">Eixo 03</span>
+        <h4>Ofício</h4>
+        <p>O trabalho feito na frente da câmera. Avaliação, negociação, entrega, processo. É o que constrói autoridade sem pedir por ela.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:34px">
+      Duas marcas nascem do mesmo material. <strong>Jota Veículos</strong>, a loja — primeiro.
+      <strong>Juvenildo Jr.</strong>, o empresário que vende há 30 anos e ensina sem cobrar — depois,
+      quando a audiência já pedir. A ordem importa: mentor que aparece antes da prova vira mais um
+      no mato alto. Mentor que aparece depois da prova vira referência.
+    </p>
+  </div>
+</section>
+
+<!-- O PAPEL -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">O papel</div>
+    <h2>Diretor de Marca<br>&amp; <em>Conteúdo</em></h2>
+    <p>
+      Não é agência: não tem fila de clientes nem pacote de posts. Não é funcionário: não tem ponto,
+      tem resultado. É um parceiro que carrega as duas pontas — a estratégia que define para onde a
+      marca vai e a execução diária que faz ela chegar lá.
+    </p>
+
+    <div class="two">
+      <div class="block">
+        <div class="block-tag">Estratégia</div>
+        <h3>Para onde a marca vai</h3>
+        <ul>
+          <li><strong>Posicionamento da Jota</strong> — o que ela é, contra o que ela existe, para quem fala.</li>
+          <li><strong>Marca pessoal de Juvenildo Jr.</strong> — arquitetura de autoridade: história, tese, presença.</li>
+          <li><strong>Arquitetura de conteúdo</strong> — séries, formatos, eixos e calendário.</li>
+          <li><strong>Direção de tráfego</strong> — o que impulsiona, o que não impulsiona, e por quê.</li>
+          <li><strong>Roadmap método → produto</strong> — preparar o terreno para mentoria e evento, na hora certa.</li>
+        </ul>
+      </div>
+      <div class="block">
+        <div class="block-tag">Execução</div>
+        <h3>Como ela chega lá</h3>
+        <ul>
+          <li><strong>Presença na loja 3 dias por semana</strong> — acompanhando atendimento, avaliação, negociação e entrega.</li>
+          <li><strong>Construção de formato</strong> — testar, medir, ajustar até achar o jeito da Jota aparecer.</li>
+          <li><strong>Captação de bastidor</strong> — celular, microfone, o mínimo. O que importa é o momento.</li>
+          <li><strong>Edição e publicação</strong> — gancho, legenda, headline. Consistência, não produção.</li>
+          <li><strong>Acompanhamento diário</strong> — leitura de resultado todo dia; sprint semanal de 1 hora com os sócios.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Trabalho diário, presença em 3 dias.</strong> Os outros dias são de edição, planejamento,
+      publicação e leitura de resultado — feitos de onde eu estiver. A marca não para no dia em que eu
+      não estou na loja.
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Método</div>
+    <h2>Antes do volume,<br>o <em>formato</em></h2>
+    <p>
+      Quantidade de post não é estratégia. A Jota já testou volume com produção alta e o resultado
+      foi zero. O que faltou não foi frequência — foi formato construído a partir da loja real,
+      alinhado com quem manda nela, e acompanhado todo dia. <strong>É nessa ordem que o trabalho acontece.</strong>
+    </p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-when">01 · Alinhamento de estratégia</div>
+        <h4>O que a marca diz, para quem, contra o quê</h4>
+        <p>Posicionamento da Jota e de Juvenildo Jr. escritos em uma página, validados com os dois sócios. Sem isso, cada vídeo é uma aposta solta.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">02 · Construção de formato</div>
+        <h4>Achar o jeito da Jota aparecer</h4>
+        <p>Dias de loja observando o que acontece de verdade: como se avalia, como se negocia, como se entrega. Daí saem os formatos — testados em pequena escala, medidos, ajustados. O que engaja fica. O que não engaja sai.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">03 · Acompanhamento diário</div>
+        <h4>Ler, ajustar, repetir</h4>
+        <p>Todo dia: o que saiu, o que rendeu, o que a audiência respondeu. Sprint semanal de uma hora com os sócios para decidir o que muda. É o acompanhamento que transforma tentativa em método.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">04 · Volume</div>
+        <h4>Só depois que o formato existe</h4>
+        <p>Com formato validado, a quantidade vira consequência natural — um dia de loja rende conteúdo para três. A meta de volume é definida no fim da fase de formato, não antes.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:44px">
+      <strong>Hipóteses de formato para começar</strong> — o que a conversa já mostrou que tem material.
+      Nenhuma é definitiva. Todas serão testadas.
+    </p>
+
+    <div class="table-scroll">
+      <table>
+        <tr><th>Série</th><th>O que é</th><th>Eixo</th></tr>
+        <tr><td><strong>Avaliação real</strong></td><td>Por que o carro vale o que vale. Tabela versus mercado, explicado sem enrolação.</td><td>Ofício</td></tr>
+        <tr><td><strong>Bastidor da negociação</strong></td><td>A proposta que chegou, o que foi dito, como fechou (ou não).</td><td>Ofício</td></tr>
+        <tr><td><strong>A entrega</strong></td><td>O momento em que a família leva o carro. Sem roteiro.</td><td>Origem</td></tr>
+        <tr><td><strong>Antes de comprar</strong></td><td>O que o garageiro não conta. Histórico, processo, segurança.</td><td>Posição</td></tr>
+        <tr><td><strong>Jota responde lojista</strong></td><td>A ligação que já acontece todo dia, agora gravada. Base da marca pessoal.</td><td>Ofício · Autoridade</td></tr>
+        <tr><td><strong>De onde a gente veio</strong></td><td>Telecom, Vivo, 80 funcionários, o incêndio, os 99 dias. Em capítulos.</td><td>Origem</td></tr>
+      </table>
+    </div>
+
+    <div class="note" style="margin-top:28px">
+      <strong>Relatório mensal de uma página:</strong> o que foi testado, o que ficou, alcance, mensagens recebidas,
+      carros consignados que chegaram pelo digital. Decisão com dado, não com impressão.
+    </div>
+  </div>
+</section>
+
+<!-- FASES -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Fases</div>
+    <h2>Primeiro a loja.<br>Depois o <em>nome</em>.</h2>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-when">Dias 1 – 30 · Fundação</div>
+        <h4>Alinhar e observar</h4>
+        <p>Posicionamento escrito e validado com os sócios. Diagnóstico do perfil. Dias de loja observando a operação real. Primeiros testes de formato no ar, em pequena escala.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Dias 31 – 60 · Formato</div>
+        <h4>Achar o jeito da Jota</h4>
+        <p>Séries testadas e medidas. As que engajam ficam, as que não engajam saem. Meta de volume definida com base no que funcionou. Início da marca pessoal de Juvenildo Jr. com a série "responde lojista".</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Dias 61 – 90 · Autoridade</div>
+        <h4>Converter audiência em estoque</h4>
+        <p>Conteúdo dirigido a quem tem carro para consignar e a lojistas. Primeiras consignações rastreadas pelo digital. <strong>Revisão de 90 dias:</strong> números na mesa, decisão de continuidade dos dois lados.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Meses 4 – 12 · Método</div>
+        <h4>Do bastidor ao produto</h4>
+        <p>Com audiência construída, o método da Jota vira algo que pode ser ensinado: mentoria, imersão, evento. A demanda já existe hoje — a diferença é que passa a ser atendida em escala.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDICADORES -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">O que a gente mede</div>
+    <h2>Seguidor não paga<br>boleto. <em>Carro</em> paga.</h2>
+    <p>
+      Alcance e seguidores são termômetro. O que define se a parceria está dando certo é o que chega
+      na loja por causa do conteúdo.
+    </p>
+
+    <div class="table-scroll">
+      <table>
+        <tr><th>Indicador</th><th>Hoje</th><th>Direção</th></tr>
+        <tr><td><strong>Carros vendidos / mês</strong></td><td>20 – 25</td><td>50, quando o estoque acompanhar</td></tr>
+        <tr><td><strong>Carros consignados via digital</strong></td><td>não medido</td><td>medido desde o dia 1; meta construída no mês 3</td></tr>
+        <tr><td><strong>Lojistas pedindo orientação</strong></td><td>~5, informal</td><td>fila rastreada — base do produto futuro</td></tr>
+        <tr><td><strong>Engajamento orgânico do perfil</strong></td><td>em queda após impulsionamento</td><td>recuperado e crescente</td></tr>
+        <tr><td><strong>"Loja de seminovos Goiânia"</strong></td><td>reputação Google forte</td><td>reputação traduzida em conteúdo e busca</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTIMENTO -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Investimento</div>
+    <h2>Fixo que sustenta.<br>Variável que <em>cresce junto</em>.</h2>
+    <p>
+      Parceria se estrutura como parceria: um fixo que garante presença, dedicação e continuidade,
+      e um variável que cresce na mesma proporção do resultado da loja. Quando a Jota vende mais,
+      a parceria vale mais — para os dois lados. <strong>Duas formas de entrar. A escolha é sua.</strong>
+    </p>
+
+    <div class="modes">
+      <div class="mode primary">
+        <h4>Opção A · Parceiro de Marca</h4>
+        <div class="val">R$ 15.000<small>/mês fixo</small></div>
+        <ul>
+          <li><strong>0,5% do valor de venda</strong> de cada carro vendido acima de 20 no mês</li>
+          <li><strong>20%</strong> da receita líquida de produtos digitais — mentoria, imersão, curso, evento — a partir do momento em que começarem</li>
+          <li><strong>Revisão em 6 meses:</strong> o fixo é reestruturado em conjunto, com base no que os números mostrarem — sem valor pré-fixado</li>
+        </ul>
+      </div>
+      <div class="mode">
+        <h4>Opção B · Risco Compartilhado</h4>
+        <div class="val">R$ 10.000<small>/mês fixo</small></div>
+        <ul>
+          <li><strong>1% do valor de venda</strong> de cada carro vendido acima de 15 no mês</li>
+          <li><strong>30%</strong> da receita líquida de produtos digitais</li>
+          <li>Sem revisão de fixo — o variável é a revisão</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sim">
+      <h4>Simulação · Opção A · ticket médio atual de R$ 112 mil</h4>
+      <div class="sim-row"><span>Mês como hoje — 25 carros</span><span>R$ 17.800</span></div>
+      <div class="sim-row"><span>Mês de transição — 35 carros</span><span>R$ 23.400</span></div>
+      <div class="sim-row"><span>Mês de meta — 50 carros</span><span>R$ 31.800</span></div>
+    </div>
+
+    <div class="note">
+      <strong>Como se mede o variável.</strong> Carros vendidos e valor de venda: relatório do sistema de gestão da loja,
+      fechado no dia 1 de cada mês. Produtos digitais: receita líquida após custos diretos de produção e plataforma.
+      Simples de conferir dos dois lados.
+    </div>
+
+    <div class="note">
+      <strong>Fora do fixo, por conta da Jota:</strong> editor de apoio quando o volume pedir (R$ 2 a 3 mil/mês),
+      verba de tráfego pago, equipamento básico dedicado (celular, microfone, tripé), cobertura de eventos externos
+      e qualquer produção de grande porte, como documentário.
+    </div>
+  </div>
+</section>
+
+<!-- O QUE A JOTA ENTREGA -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Da parte da Jota</div>
+    <h2>O que eu preciso<br>para <em>funcionar</em></h2>
+    <div class="out">
+      <div><strong>Acesso total ao bastidor</strong>Atendimento, avaliação, negociação, entrega. Sem porta fechada.</div>
+      <div><strong>Autonomia de publicação</strong>Aprovação por linha editorial, não peça a peça. Bastidor com aprovação de cada vídeo deixa de ser bastidor.</div>
+      <div><strong>Presença dos donos</strong>Juvenildo e o irmão em frente à câmera quando o momento pedir. A marca é de vocês.</div>
+      <div><strong>Briefing do que entra</strong>Cada carro que chega no estoque é uma pauta. Saber antes rende mais.</div>
+      <div><strong>Sprint semanal</strong>Uma hora fixa. Sem cancelar no dia.</div>
+      <div><strong>Espaço de trabalho</strong>A sala oferecida na loja — aceita, e agradecida.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FORA DO ESCOPO -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Fora do escopo</div>
+    <h2>O que esta proposta<br><em>não</em> cobre</h2>
+    <div class="out">
+      <div><strong>Operação de tráfego pago</strong>A direção é minha; a operação de campanha fica com gestor de tráfego, seu ou indicado.</div>
+      <div><strong>Cobertura de evento externo</strong>Feiras, imersões e eventos fora da loja — orçamento por evento.</div>
+      <div><strong>Produção de grande porte</strong>Documentário, podcast com estrutura, filmagem com equipe — quando a estratégia pedir, à parte.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONDIÇÕES -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Condições</div>
+    <h2>Combinado antes,<br>parceria <em>depois</em></h2>
+    <dl class="terms">
+      <div class="term">
+        <dt>Vigência</dt>
+        <dd>12 meses a partir da assinatura, com <strong>revisão obrigatória aos 90 dias</strong>. Se os números não sustentarem a continuidade, qualquer um dos lados encerra sem ônus nessa revisão.</dd>
+      </div>
+      <div class="term">
+        <dt>Pagamento</dt>
+        <dd>Fixo mensal <strong>antecipado, até o dia 5</strong>. Variável apurado no fechamento do mês anterior e pago junto com o fixo seguinte.</dd>
+      </div>
+      <div class="term">
+        <dt>Formato</dt>
+        <dd>Contrato de prestação de serviços, pessoa jurídica. <strong>3 dias presenciais por semana</strong>, definidos em conjunto; demais dias remotos. Ampliação de presença só por aditivo.</dd>
+      </div>
+      <div class="term">
+        <dt>Exclusividade</dt>
+        <dd>Não atendo outra loja de veículos em <strong>Goiânia e região metropolitana</strong> durante a vigência. A Jota, por sua vez, não contrata outra direção de conteúdo no período.</dd>
+      </div>
+      <div class="term">
+        <dt>Produtos digitais</dt>
+        <dd>A participação sobre mentoria, imersão, curso e evento vale durante a vigência e por <strong>12 meses após o encerramento</strong>, sobre o que foi construído no período.</dd>
+      </div>
+      <div class="term">
+        <dt>Acervo e portfólio</dt>
+        <dd>O material bruto é da Jota. A direção criativa é minha. O trabalho pode ser apresentado como case do Estúdio Roncolato.</dd>
+      </div>
+      <div class="term">
+        <dt>Encerramento</dt>
+        <dd>Após os 90 dias, aviso prévio de <strong>30 dias</strong> por qualquer uma das partes. Reajuste anual pelo IPCA.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <div class="sec-label">Próximo passo</div>
+    <h2>Começamos<br><em>quando</em>?</h2>
+    <p>
+      Você pediu um número. Está aqui. O próximo passo é uma conversa para fechar a opção,
+      os três dias da semana e a data de início. De lá sai o plano dos primeiros 30 dias.
+    </p>
+    <div class="btns">
+      <a class="btn btn-primary" href="https://wa.me/5562985928423?text=Rodrigo%2C%20li%20a%20proposta%20da%20Jota.%20Vamos%20conversar%3F">Falar no WhatsApp</a>
+      <a class="btn btn-secondary" href="mailto:rodrigo@rroncolato.com?subject=Proposta%20Jota%20Ve%C3%ADculos">Responder por e-mail</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <img src="/assets/IMG/roncolato-branco-horizontal.png" alt="Estúdio Roncolato" onerror="this.src='/assets/IMG/rr-simbolo-white.png'">
+    <p>Rodrigo Roncolato · Estratégia de marca e imagem</p>
+    <p><a href="mailto:rodrigo@rroncolato.com">rodrigo@rroncolato.com</a> · <a href="https://rroncolato.com.br">rroncolato.com.br</a></p>
+    <p style="margin-top:14px;color:#5A5A5A">Proposta emitida em setembro de 2026 · válida por 15 dias</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta de Parceria — STOCHOS</title>
+<meta name="description" content="Fundação de marca, direção de marketing e desenvolvimento de produto para a STOCHOS. Proposta do Estúdio Roncolato.">
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="/assets/IMG/rr-simbolo-white.png">
+<meta property="og:title" content="Proposta de Parceria — STOCHOS">
+<meta property="og:description" content="Fundação de marca, direção de marketing e desenvolvimento de produto. Estúdio Roncolato.">
+<meta property="og:image" content="/assets/IMG/avatar-fundopreto.png">
+<meta property="og:url" content="https://rroncolato.com.br/proposta/stochos">
+<meta property="og:type" content="website">
+<style>
+:root{
+  --yellow:#F5C518;
+  --black:#0A0A0A;
+  --black-2:#121212;
+  --black-3:#171717;
+  --white:#FFFFFF;
+  --gray:#8A8A8A;
+  --gray-2:#B4B4B4;
+  --border:rgba(255,255,255,.08);
+  --border-y:rgba(245,197,24,.25);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--black);color:var(--white);
+  font-family:'Jost',sans-serif;font-weight:400;
+  -webkit-font-smoothing:antialiased;line-height:1.6;
+}
+.wrap{max-width:940px;margin:0 auto;padding:0 24px}
+
+/* ---------- TOPBAR ---------- */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,10,.88);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.topbar-in{
+  max-width:940px;margin:0 auto;padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.topbar img{height:22px;width:auto;display:block}
+.topbar .ref{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray)}
+
+/* ---------- HERO ---------- */
+.hero{padding:110px 0 90px;border-bottom:1px solid var(--border)}
+.eyebrow{
+  font-size:11px;letter-spacing:3.5px;text-transform:uppercase;
+  color:var(--yellow);font-weight:700;margin-bottom:26px;
+}
+.hero h1{
+  font-size:clamp(42px,8vw,80px);font-weight:900;
+  letter-spacing:-2.5px;line-height:1.02;margin-bottom:28px;
+}
+.hero h1 em{font-style:italic;color:var(--yellow)}
+.hero .lead{
+  font-size:clamp(17px,2.4vw,21px);color:var(--gray-2);
+  max-width:620px;line-height:1.65;font-weight:300;
+}
+.hero .meta{
+  margin-top:44px;padding-top:26px;border-top:1px solid var(--border);
+  display:flex;flex-wrap:wrap;gap:36px;
+}
+.hero .meta div span{
+  display:block;font-size:10px;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--gray);margin-bottom:6px;
+}
+.hero .meta div strong{font-size:15px;font-weight:600}
+
+/* ---------- SECTIONS ---------- */
+section{padding:84px 0;border-bottom:1px solid var(--border)}
+.sec-label{
+  font-size:11px;letter-spacing:3.5px;text-transform:uppercase;
+  color:var(--yellow);font-weight:700;margin-bottom:18px;
+}
+h2{
+  font-size:clamp(30px,5.4vw,50px);font-weight:900;
+  letter-spacing:-1.4px;line-height:1.06;margin-bottom:30px;
+}
+h2 em{font-style:italic;color:var(--yellow)}
+h3{font-size:20px;font-weight:700;margin-bottom:12px;letter-spacing:-.3px}
+p{color:var(--gray-2);font-weight:300;margin-bottom:18px;max-width:720px}
+p strong{color:var(--white);font-weight:600}
+p:last-child{margin-bottom:0}
+.dim{color:var(--gray);font-size:14px}
+
+/* ---------- ENTENDIMENTO ---------- */
+.points{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:36px;border:1px solid var(--border)}
+.point{background:var(--black);padding:26px}
+.point .n{
+  font-size:11px;font-weight:800;color:var(--yellow);
+  letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:10px;display:block;
+}
+.point p{font-size:15px;margin:0;color:var(--gray-2)}
+
+/* ---------- DESTAQUE / TESE ---------- */
+.thesis{
+  margin-top:40px;padding:34px 32px;
+  background:linear-gradient(135deg,rgba(245,197,24,.07),rgba(245,197,24,.02));
+  border:1px solid var(--border-y);border-left:3px solid var(--yellow);
+}
+.thesis .greek{
+  font-size:clamp(30px,5vw,44px);font-weight:900;letter-spacing:-1px;
+  color:var(--yellow);line-height:1.1;margin-bottom:14px;
+}
+.thesis p{margin-bottom:0;color:var(--gray-2)}
+
+/* ---------- BLOCOS ---------- */
+.block{
+  border:1px solid var(--border);background:var(--black-2);
+  padding:34px 30px;margin-bottom:22px;
+}
+.block-head{
+  display:flex;flex-wrap:wrap;align-items:baseline;
+  justify-content:space-between;gap:14px;margin-bottom:6px;
+}
+.block-tag{
+  font-size:10px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--yellow);font-weight:800;
+}
+.block h3{font-size:clamp(22px,3.4vw,28px);font-weight:800;margin:6px 0 4px;letter-spacing:-.6px}
+.block-price{font-size:15px;font-weight:700;color:var(--white);white-space:nowrap}
+.block-price s{color:var(--gray);font-weight:400;margin-right:8px}
+.block-sub{font-size:14px;color:var(--gray);margin-bottom:22px}
+ul{list-style:none;margin:0}
+ul li{
+  position:relative;padding-left:22px;margin-bottom:11px;
+  color:var(--gray-2);font-weight:300;font-size:15px;line-height:1.6;
+}
+ul li::before{
+  content:'';position:absolute;left:0;top:9px;
+  width:7px;height:7px;background:var(--yellow);
+}
+ul li strong{color:var(--white);font-weight:600}
+.note{
+  margin-top:22px;padding:16px 18px;background:rgba(255,255,255,.025);
+  border-left:2px solid var(--gray-2);font-size:14px;color:var(--gray);font-weight:300;
+}
+.note strong{color:var(--white);font-weight:600}
+
+/* ---------- MODALIDADES ---------- */
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px}
+.mode{border:1px solid var(--border);background:var(--black-3);padding:24px}
+.mode.primary{border-color:var(--border-y);background:rgba(245,197,24,.04)}
+.mode h4{font-size:15px;font-weight:800;margin-bottom:4px;letter-spacing:-.2px}
+.mode .val{font-size:26px;font-weight:900;color:var(--yellow);margin:10px 0 14px;letter-spacing:-1px}
+.mode .val small{font-size:13px;font-weight:500;color:var(--gray);letter-spacing:0}
+.mode ul li{font-size:14px;margin-bottom:9px}
+
+/* ---------- TABELAS ---------- */
+.table-scroll{overflow-x:auto;margin-top:24px;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;min-width:460px}
+th,td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--border);font-size:15px}
+th{
+  font-size:10px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--yellow);font-weight:800;
+}
+td{color:var(--gray-2);font-weight:300}
+td strong{color:var(--white);font-weight:600}
+td.num{text-align:right;white-space:nowrap}
+th.num{text-align:right}
+tr.total td{
+  border-bottom:none;border-top:2px solid var(--yellow);
+  font-size:17px;color:var(--white);font-weight:700;padding-top:18px;
+}
+
+/* ---------- FORA DO ESCOPO ---------- */
+.out{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:28px}
+.out div{background:var(--black);padding:20px 22px;font-size:14.5px;color:var(--gray);font-weight:300}
+.out div strong{display:block;color:var(--white);font-weight:600;margin-bottom:5px;font-size:15px}
+
+/* ---------- TIMELINE ---------- */
+.timeline{margin-top:34px;border-left:1px solid var(--border);padding-left:0}
+.tl-item{position:relative;padding:0 0 30px 30px}
+.tl-item::before{
+  content:'';position:absolute;left:-5px;top:6px;
+  width:9px;height:9px;background:var(--yellow);border-radius:50%;
+}
+.tl-item:last-child{padding-bottom:0}
+.tl-when{
+  font-size:10px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--yellow);font-weight:800;margin-bottom:7px;
+}
+.tl-item h4{font-size:17px;font-weight:700;margin-bottom:6px}
+.tl-item p{font-size:14.5px;margin:0;color:var(--gray)}
+
+/* ---------- CONDIÇÕES ---------- */
+.terms{margin-top:30px}
+.term{
+  padding:22px 0;border-bottom:1px solid var(--border);
+  display:grid;grid-template-columns:190px 1fr;gap:24px;
+}
+.term:last-child{border-bottom:none}
+.term dt{font-size:14px;font-weight:700;color:var(--white)}
+.term dd{font-size:14.5px;color:var(--gray);font-weight:300;line-height:1.65}
+.term dd strong{color:var(--gray-2);font-weight:600}
+
+/* ---------- CTA ---------- */
+.cta{padding:96px 0;text-align:center;border-bottom:none}
+.cta h2{margin-bottom:18px}
+.cta p{margin:0 auto 40px;color:var(--gray-2)}
+.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{
+  padding:17px 34px;font-family:'Jost',sans-serif;font-size:12px;
+  font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
+  text-decoration:none;transition:.25s;display:inline-block;
+}
+.btn-primary{background:var(--yellow);color:var(--black);border:1px solid var(--yellow)}
+.btn-primary:hover{background:transparent;color:var(--yellow);transform:translateY(-2px)}
+.btn-secondary{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.22)}
+.btn-secondary:hover{border-color:var(--yellow);color:var(--yellow);transform:translateY(-2px)}
+
+/* ---------- FOOTER ---------- */
+footer{padding:44px 0 60px;text-align:center}
+footer img{height:26px;margin-bottom:20px;opacity:.85}
+footer p{font-size:12.5px;color:var(--gray);margin:0 auto 6px;max-width:none}
+footer a{color:var(--gray-2);text-decoration:none}
+footer a:hover{color:var(--yellow)}
+
+/* ---------- MOBILE ---------- */
+@media(max-width:820px){
+  .points,.out,.modes{grid-template-columns:1fr}
+  .term{grid-template-columns:1fr;gap:8px}
+  section{padding:62px 0}
+  .hero{padding:76px 0 62px}
+  .hero .meta{gap:24px}
+  .block{padding:26px 22px}
+  .cta{padding:74px 0}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <img src="/assets/IMG/roncolato-branco-horizontal.png" alt="Estúdio Roncolato" onerror="this.src='/assets/IMG/rr-simbolo-white.png'">
+    <div class="ref">Proposta · Stochos · Ago 2026</div>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Proposta de Parceria</div>
+    <h1>Construir a<br><em>STOCHOS</em><br>como marca.</h1>
+    <p class="lead">
+      Marca com território próprio, arquitetura definida e presença construída
+      onde o esporte acontece.
+    </p>
+    <div class="meta">
+      <div><span>Cliente</span><strong>Stochos</strong></div>
+      <div><span>Escopo</span><strong>Marca · Marketing · Produto</strong></div>
+      <div><span>Horizonte</span><strong>6 meses</strong></div>
+      <div><span>Data</span><strong>Agosto de 2026</strong></div>
+    </div>
+  </div>
+</header>
+
+<!-- ENTENDIMENTO -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">O que eu entendi</div>
+    <h2>Onde a Stochos<br>está <em>hoje</em></h2>
+    <p>
+      Uma marca construída com critério, num esporte que quase ninguém sabe comunicar.
+      O produto existe, a comunidade começou a se formar, os atletas certos estão por perto.
+      O que ainda não existe é a camada que amarra tudo isso — e é sobre ela que essa proposta trata.
+    </p>
+
+    <div class="points">
+      <div class="point">
+        <span class="n">01</span>
+        <p>O Instagram mostra prova. Não mostra a marca, o produto, o propósito nem a vida além da pista.</p>
+      </div>
+      <div class="point">
+        <span class="n">02</span>
+        <p>Quem vê o alvo numa foto não entende o que é. Falta a camada que explica e dá valor ao produto.</p>
+      </div>
+      <div class="point">
+        <span class="n">03</span>
+        <p>Existe linha de stand e linha casual na cabeça — mas ainda não existe a regra que separa as duas.</p>
+      </div>
+      <div class="point">
+        <span class="n">04</span>
+        <p>Os produtos em desenvolvimento são copiáveis. O que não se copia é a marca em volta deles.</p>
+      </div>
+      <div class="point">
+        <span class="n">05</span>
+        <p>Os atletas colaboram por relação. Falta o sistema que transforma essa boa vontade em alcance.</p>
+      </div>
+      <div class="point">
+        <span class="n">06</span>
+        <p>A comunidade é acolhedora e fechada. Quem entra bem, entra de vez. Quem entra errado, não entra mais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEITURA ESTRATÉGICA -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Leitura estratégica</div>
+    <h2>A marca já tem<br>o <em>melhor ativo</em> que podia ter</h2>
+    <p>
+      Ele está no nome. E ainda não está sendo usado.
+    </p>
+
+    <div class="thesis">
+      <div class="greek">στόχος</div>
+      <p>
+        <strong>O alvo a ser atingido.</strong> Não o objeto pregado na parede — o ponto que alguém escolheu
+        acertar e organizou a vida em volta para conseguir. É isso que a palavra carrega em grego, e é isso
+        que a marca tem de mais valioso: <strong>a mesma palavra serve para a pista e para a vida.</strong>
+      </p>
+    </div>
+
+    <p style="margin-top:34px">
+      Quem atira sabe do que se trata. Escolher um alvo, respirar, controlar o corpo, repetir mil vezes o
+      gesto até ele ficar limpo. Só que ninguém faz isso apenas no stand. <strong>Todo mundo tem um alvo</strong> —
+      e a maioria das pessoas nunca aprendeu a mirar. É esse o ponto em que a Stochos deixa de ser uma marca
+      de tiro e passa a ser uma marca sobre <em>como se acerta o que importa</em>.
+    </p>
+    <p>
+      E aí está resolvido o maior problema estratégico do projeto. Marca de tiro que depende de mira, projétil
+      ou silhueta de pistola para ser reconhecida <strong>fica presa ao stand para sempre</strong>. Marca que
+      constrói significado em cima de alvo, precisão e propósito pode sair — sem trair a origem, porque o
+      significado nasceu lá dentro. Essa decisão, tomada uma vez, define o teto da empresa.
+    </p>
+    <p>
+      Há também uma questão de ordem. O transbordo para o casual é o objetivo certo, mas é o
+      <strong>segundo</strong> movimento. Primeiro a Stochos precisa ser inegociável dentro do stand: a marca
+      que o atleta reconhece, respeita e quer ter. É a autoridade conquistada ali dentro que dá licença
+      para a peça fazer sentido fora. Inverter essa ordem é o erro mais caro que uma marca de nicho comete.
+    </p>
+  </div>
+</section>
+
+<!-- O PAPEL -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">O papel que eu ocupo</div>
+    <h2>Sócio de <em>problema</em>,<br>não fornecedor de peça</h2>
+    <p>
+      Tem gente que contrata isso pra pedir arte e receber arte pronta. O que eu quero é sentar do seu lado
+      da mesa: entender a margem, discutir preço, opinar sobre qual produto entra primeiro e por quê, e
+      assumir junto a responsabilidade de a marca dar certo.
+    </p>
+
+    <div class="thesis">
+      <p>
+        Por isso parte da minha remuneração está atrelada ao que a Stochos vender, e não só ao que eu entregar.
+        <strong>Se o produto não girar, eu ganho menos.</strong> É o desenho que me obriga a pensar no seu resultado,
+        não no meu volume de trabalho.
+      </p>
+    </div>
+
+    <div class="points" style="margin-top:36px">
+      <div class="point">
+        <span class="n">Decisão junto</span>
+        <p>Reunião mensal de direção com os números na mesa. As prioridades do mês seguinte saem dali, não de um contrato fechado em agosto.</p>
+      </div>
+      <div class="point">
+        <span class="n">Cocriação</span>
+        <p>Os primeiros meses são de construir junto. A marca ainda está descobrindo o que consome — e o escopo acompanha isso, mês a mês.</p>
+      </div>
+      <div class="point">
+        <span class="n">Presença onde acontece</span>
+        <p>Estar na prova, ver o atleta usar o produto, ouvir o que ele reclama. Estratégia feita de longe não serve para esse esporte.</p>
+      </div>
+      <div class="point">
+        <span class="n">Risco compartilhado</span>
+        <p>Fundação com valor reduzido, royalty atrelado à venda. Eu entro apostando junto, porque acredito no que a marca pode virar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO TRABALHO -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Como eu proponho trabalhar</div>
+    <h2>Quatro frentes,<br>quatro <em>contratos</em></h2>
+    <p>
+      Marca, marketing, imagem e produto são coisas de naturezas diferentes — uma é decisão, outra é rotina,
+      outra é evento, outra é ativo. Misturar tudo num pacote só cria um acordo que ninguém consegue medir
+      depois. Então são quatro blocos independentes: você contrata o que faz sentido, na hora em que faz sentido.
+    </p>
+
+    <!-- BLOCO 1 -->
+    <div class="block" style="margin-top:38px">
+      <div class="block-head">
+        <div>
+          <div class="block-tag">Bloco 01 · Fundação</div>
+          <h3>Fundação de Marca</h3>
+        </div>
+        <div class="block-price"><s>R$ 6.000</s>R$ 2.000</div>
+      </div>
+      <div class="block-sub">Entrega única · primeiras 4 semanas · pagamento na assinatura</div>
+      <ul>
+        <li><strong>Posicionamento</strong> — o que a Stochos defende, contra o que ela se opõe, e o que ela promete a quem veste.</li>
+        <li><strong>Arquitetura de marca</strong> — como Range (produto técnico), Wear (vestuário), Team (atletas) e Award (comunidade) se organizam sem se confundir nem competir entre si.</li>
+        <li><strong>Direção do símbolo</strong> — a regra que define quando a marca aparece em volume alto (stand) e quando aparece em assinatura discreta (casual). É o que permite uma linha só atender dois usos.</li>
+        <li><strong>Plano de 90 dias</strong> — o que fazer, em que ordem, e quais sinais observar para saber se está funcionando antes de gastar mais.</li>
+      </ul>
+      <div class="note">
+        <strong>Por que R$ 2.000.</strong> O valor de tabela desta entrega é R$ 6.000. O ajuste reflete o estágio
+        da marca e a intenção de parceria de longo prazo — e vale para esta contratação.
+      </div>
+    </div>
+
+    <!-- BLOCO 2 -->
+    <div class="block">
+      <div class="block-head">
+        <div>
+          <div class="block-tag">Bloco 02 · Recorrente</div>
+          <h3>Direção de Marketing</h3>
+        </div>
+        <div class="block-price">R$ 2.000<span style="color:var(--gray);font-weight:400"> /mês</span></div>
+      </div>
+      <div class="block-sub">6 meses · 10 horas mensais de dedicação · prioridades definidas em conjunto</div>
+      <ul>
+        <li><strong>Planejamento de conteúdo</strong> — pauta do mês, pilares, linhas narrativas e o que cada peça precisa fazer. Nada de calendário no escuro.</li>
+        <li><strong>Criação de materiais do dia a dia</strong> — peças gráficas, artes de produto, conteúdo educativo sobre os alvos. Feito por mim, dentro das horas do mês.</li>
+        <li><strong>Direção e roteiro de vídeo</strong> — o que gravar, com quem, como enquadrar e qual o corte. Você e os atletas gravam; eu dou a direção.</li>
+        <li><strong>Adaptação de peças para a loja</strong> — banners, imagens de produto e ajustes de layout na Loja Integrada, para a loja falar a mesma língua da marca.</li>
+        <li><strong>Direção de arte</strong> — orientação e aprovação das peças, do vestuário à embalagem, mantendo tudo dentro do território definido na Fundação.</li>
+        <li><strong>Direção de forma dos produtos</strong> — como o canister e a bandeja devem parecer para serem reconhecidos como Stochos a três metros de distância. A função é copiável; a forma é o que fica.</li>
+        <li><strong>Reunião mensal de direção</strong> — leitura do que aconteceu, decisões do mês seguinte, ajuste de rota.</li>
+      </ul>
+      <div class="note">
+        <strong>Como as horas funcionam.</strong> Os primeiros meses são de cocriação: a gente constrói junto,
+        vê o que a marca realmente consome e ajusta a rota mês a mês — o que é prioridade em setembro pode não
+        ser em novembro. As 10 horas mensais são o espaço de dedicação; o que entra dentro delas é decidido
+        por nós dois na reunião de direção. Você recebe o relatório de horas todo mês, e o que exceder é
+        conversado antes: entra na fila do mês seguinte ou vira orçamento à parte, nunca surpresa.
+      </div>
+    </div>
+
+    <!-- BLOCO 3 -->
+    <div class="block">
+      <div class="block-head">
+        <div>
+          <div class="block-tag">Bloco 03 · Por evento</div>
+          <h3>Cobertura de Provas</h3>
+        </div>
+        <div class="block-price">a partir de R$ 600</div>
+      </div>
+      <div class="block-sub">Sob disponibilidade de agenda · confirmação até 15 dias antes</div>
+      <p style="font-size:15px;margin-bottom:24px">
+        A prova é onde a marca é vista por quem importa. Duas modalidades — você escolhe a cada evento.
+      </p>
+
+      <div class="modes">
+        <div class="mode primary">
+          <h4>Modalidade A · Parceria</h4>
+          <div class="val">R$ 600 <small>por evento</small></div>
+          <ul>
+            <li><strong>20 fotos de marca</strong> tratadas e entregues: produto em uso, atleta equipado, marca em ação, ambiente. Curadoria, não sobra de cobertura.</li>
+            <li>Direito de uso Stochos em redes e e-commerce por 12 meses</li>
+            <li><strong>Catálogo Social Frame</strong> com a marca Stochos aberto aos participantes da prova</li>
+            <li>Venda avulsa de fotos aos atletas fica com o Estúdio Roncolato</li>
+          </ul>
+        </div>
+        <div class="mode">
+          <h4>Modalidade B · Cobertura fechada</h4>
+          <div class="val">R$ 1.200 <small>local</small></div>
+          <ul>
+            <li><strong>R$ 1.800</strong> para provas fora da região, mais custos de deslocamento</li>
+            <li>Entrega ampliada: 60 a 80 fotos tratadas</li>
+            <li>Acervo integral do evento para a Stochos</li>
+            <li>Sem catálogo de venda aos participantes</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:22px">
+        <strong>Por que a Modalidade A é boa para os dois.</strong> A Stochos entra em cada prova com custo baixo e
+        sai com material de marca pronto — enquanto o catálogo circula no celular de dezenas de atletas com a marca
+        estampada. É distribuição que anúncio nenhum compra nesse meio. Do meu lado, o dia se sustenta pela venda
+        avulsa. Por isso a Modalidade A vale para os <strong>dois primeiros eventos, em caráter de teste</strong>:
+        se a venda avulsa não se sustentar, os eventos seguintes passam para a Modalidade B.
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>Venda avulsa ao atleta</th><th class="num">Valor</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1 foto</td><td class="num">R$ 25</td></tr>
+            <tr><td>3 fotos</td><td class="num">R$ 69</td></tr>
+            <tr><td>5 fotos</td><td class="num">R$ 99</td></tr>
+            <tr><td>10 fotos</td><td class="num">R$ 179</td></tr>
+            <tr><td>Todas as fotos do atleta no evento</td><td class="num">R$ 249</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- BLOCO 4 -->
+    <div class="block">
+      <div class="block-head">
+        <div>
+          <div class="block-tag">Bloco 04 · Variável</div>
+          <h3>Desenvolvimento de Produto</h3>
+        </div>
+        <div class="block-price">royalty por unidade</div>
+      </div>
+      <div class="block-sub">Ativado quando o SKU existe, com estoque e nota fiscal</div>
+      <ul>
+        <li><strong>R$ 20 por unidade</strong> vendida na linha de vestuário</li>
+        <li><strong>R$ 40 por unidade</strong> vendida na linha de hardware</li>
+        <li>Aplicável <strong>apenas aos SKUs que eu desenhar</strong> — não incide sobre produto já existente ou desenvolvido por terceiros</li>
+        <li>Vigência de <strong>24 meses por SKU</strong> a partir da primeira venda, mantida mesmo que a parceria seja encerrada antes</li>
+        <li>Apuração e pagamento trimestrais, com relatório de vendas</li>
+        <li><strong>Co-titularidade do registro de desenho industrial</strong> no INPI para as peças que eu desenhar</li>
+      </ul>
+      <div class="note" style="margin-bottom:14px">
+        <strong>Protótipos.</strong> Tenho impressoras 3D e trabalho com produção há anos. Modelagem e prototipagem
+        das peças podem ser feitas em conjunto quando fizer sentido — avaliamos caso a caso, produto a produto,
+        conforme a complexidade e o prazo. O que for além do desenho de forma é orçado separadamente, para nenhum
+        dos dois lados ficar no prejuízo.
+      </div>
+      <div class="note">
+        <strong>Recomendação.</strong> Registrar a marca Stochos e o desenho industrial das peças no INPI é rápido
+        e barato — e protege o que vocês estão desenhando agora. Vale fazer antes do lançamento.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTIMENTO -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Investimento</div>
+    <h2>O que está<br><em>contratado</em> e o que é variável</h2>
+    <p>
+      Só dois blocos são compromisso firme. Os outros dois acontecem por escolha sua, evento a evento
+      e produto a produto.
+    </p>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Bloco</th><th>Formato</th><th class="num">Valor</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>01 · Fundação de Marca</strong></td>
+            <td>Entrada, na assinatura</td>
+            <td class="num"><strong>R$ 2.000</strong></td>
+          </tr>
+          <tr>
+            <td><strong>02 · Direção de Marketing</strong></td>
+            <td>6 parcelas mensais</td>
+            <td class="num"><strong>R$ 12.000</strong></td>
+          </tr>
+          <tr class="total">
+            <td>Total contratado · 6 meses</td>
+            <td></td>
+            <td class="num">R$ 14.000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Variável</th><th>Quando acontece</th><th class="num">Valor</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>03 · Cobertura de prova</strong></td>
+            <td>A cada evento, sob agenda</td>
+            <td class="num">R$ 600 · R$ 1.200 · R$ 1.800</td>
+          </tr>
+          <tr>
+            <td><strong>04 · Royalty de produto</strong></td>
+            <td>Por unidade vendida</td>
+            <td class="num">R$ 20 · R$ 40</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note" style="margin-top:26px">
+      <strong>Pagamento.</strong> R$ 2.000 na assinatura, referentes à Fundação, mais 6 parcelas mensais de
+      R$ 2.000 da Direção de Marketing, com vencimento no mesmo dia de cada mês. Coberturas de prova são
+      faturadas por evento. Royalties são apurados a cada trimestre.
+    </div>
+  </div>
+</section>
+
+<!-- FORA DO ESCOPO -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Transparência</div>
+    <h2>O que <em>não</em> está<br>incluído</h2>
+    <p>
+      Tão importante quanto listar o que entra é dizer o que fica de fora. Nada aqui está fora para
+      sempre — está fora <em>desta</em> contratação, e pode ser orçado quando fizer sentido.
+    </p>
+
+    <div class="out">
+      <div><strong>Atendimento e comunidade</strong>Resposta de mensagem, comentário e dúvida de cliente no dia a dia. A conversa com quem compra é da Stochos — eu entrego o que se fala, não quem responde.</div>
+      <div><strong>Produção audiovisual pesada</strong>Filmagem de campanha, captação com equipe e edição longa. Direção, roteiro e sugestão de vídeo estão incluídos; a produção em si é orçada por projeto.</div>
+      <div><strong>Configuração técnica da loja</strong>Instalação da Loja Integrada, meios de pagamento, split, integrações, idiomas e logística. A adaptação visual das peças está incluída; a engenharia da plataforma, não.</div>
+      <div><strong>Engenharia e produção de vestuário</strong>Desenho técnico de produção, tolerância, homologação de fornecedor, grade, prova de cor, controle de qualidade e estoque.</div>
+      <div><strong>Registro no INPI e jurídico</strong>Marca, desenho industrial e contratos com atletas. Eu recomendo e oriento; a execução é de um profissional da área.</div>
+      <div><strong>Tráfego pago e marketing dos atletas</strong>Gestão de anúncios e o marketing pessoal de cada atleta são operações próprias, com outra dinâmica. Podem ser conversados adiante, separadamente.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CRONOGRAMA -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Cronograma</div>
+    <h2>Como os<br>6 meses <em>andam</em></h2>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-when">Semanas 1 a 4</div>
+        <h4>Fundação</h4>
+        <p>Imersão, posicionamento, arquitetura de marca, direção do símbolo e plano de 90 dias. Ao fim, você tem o documento que orienta toda decisão daqui pra frente.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Mês 2 e 3</div>
+        <h4>Implantação</h4>
+        <p>Sistema editorial no ar, primeiras peças dentro do novo território, conteúdo que explica o produto, direção de forma dos dois primeiros SKUs.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Mês 4 e 5</div>
+        <h4>Presença</h4>
+        <p>Cobertura das provas do calendário, catálogo rodando entre os atletas, marca circulando onde o público está. Ajuste do que os primeiros números mostrarem.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Mês 6</div>
+        <h4>Avaliação e rota</h4>
+        <p>Leitura do que funcionou e do que não funcionou, com números na mesa. Decisão conjunta sobre continuar, mudar o formato ou ampliar o escopo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONDIÇÕES -->
+<section>
+  <div class="wrap">
+    <div class="sec-label">Condições</div>
+    <h2>As regras que<br>fazem isso <em>durar</em></h2>
+    <p>
+      Nada aqui é burocracia. É o que evita que uma parceria boa se desgaste por combinado que ficou implícito.
+    </p>
+
+    <dl class="terms">
+      <div class="term">
+        <dt>Vigência</dt>
+        <dd>6 meses a partir da assinatura, com <strong>revisão obrigatória no mês 6</strong>. Não há renovação automática — a continuidade é decidida em conjunto, com base no que os números mostrarem.</dd>
+      </div>
+      <div class="term">
+        <dt>Teto de horas</dt>
+        <dd>10 horas mensais no Bloco 02, com relatório de uso enviado todo mês. O que exceder entra na fila do mês seguinte ou é orçado à parte, sempre com aprovação prévia.</dd>
+      </div>
+      <div class="term">
+        <dt>Agenda das provas</dt>
+        <dd>A cobertura de eventos depende de disponibilidade e é confirmada até <strong>15 dias antes</strong>. Não há exclusividade nem obrigação de cobertura — quando a agenda não permitir, indico um profissional de confiança.</dd>
+      </div>
+      <div class="term">
+        <dt>Imagens e portfólio</dt>
+        <dd>A Stochos recebe direito de uso das fotos entregues em redes e e-commerce por 12 meses. O <strong>acervo e os direitos autorais permanecem com o Estúdio Roncolato</strong>, incluindo uso em portfólio e a base de contatos gerada pela venda avulsa aos atletas.</dd>
+      </div>
+      <div class="term">
+        <dt>Atuação no segmento</dt>
+        <dd>O Estúdio Roncolato mantém liberdade para atender outros clientes do segmento de tiro esportivo, sem conflito com marcas concorrentes diretas da Stochos nas categorias em que ela atuar.</dd>
+      </div>
+      <div class="term">
+        <dt>Propriedade dos ativos</dt>
+        <dd>Todo material entregue e pago é da Stochos. As peças de produto que eu desenhar têm <strong>co-titularidade de desenho industrial</strong>, e o royalty do Bloco 04 permanece válido pelos 24 meses de vigência ainda que a parceria seja encerrada antes.</dd>
+      </div>
+      <div class="term">
+        <dt>Validade da proposta</dt>
+        <dd>30 dias a partir da data de envio.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <div class="sec-label">Próximo passo</div>
+    <h2>Vamos começar<br>pela <em>fundação</em>?</h2>
+    <p>
+      Se fizer sentido, o próximo passo é uma conversa de uma hora para alinhar o escopo da Fundação
+      e marcar o início. É de lá que sai o plano dos próximos 90 dias.
+    </p>
+    <div class="btns">
+      <a class="btn btn-primary" href="https://wa.me/5562985928423?text=Rodrigo%2C%20li%20a%20proposta%20da%20Stochos.%20Vamos%20conversar%3F">Falar no WhatsApp</a>
+      <a class="btn btn-secondary" href="mailto:rodrigo@rroncolato.com?subject=Proposta%20Stochos">Responder por e-mail</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <img src="/assets/IMG/roncolato-branco-horizontal.png" alt="Estúdio Roncolato" onerror="this.src='/assets/IMG/rr-simbolo-white.png'">
+    <p>Rodrigo Roncolato · Estratégia de marca e imagem</p>
+    <p><a href="mailto:rodrigo@rroncolato.com">rodrigo@rroncolato.com</a> · <a href="https://rroncolato.com.br">rroncolato.com.br</a></p>
+    <p style="margin-top:14px;color:#5A5A5A">Proposta emitida em agosto de 2026 · válida por 30 dias</p>
+  </div>
+</footer>
+
+</body>
+</html>

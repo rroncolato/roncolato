@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Domo Imobiliário — Marca &amp; Identidade Visual | Roncolato Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/assets/IMG/rr-simbolo-white.png">
+    <meta name="robots" content="noindex, nofollow">
+    <meta property="og:title" content="Proposta Domo Imobiliário — Marca &amp; Identidade Visual | Roncolato Studio">
+    <meta property="og:description" content="Construção da marca Domo Imobiliário: estratégia, identidade visual e verbal, papelaria e templates prontos para o dia a dia. Modular: marca agora, site depois.">
+    <meta property="og:image" content="/assets/IMG/avatar-fundobranco.png">
+    <meta property="og:url" content="https://rroncolato.com.br/proposta/domo-imobiliario">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="/assets/IMG/avatar-fundobranco.png">
+    <meta name="twitter:image" content="/assets/IMG/avatar-fundobranco.png">
+    <style>
+        :root {
+            --yellow: #F5C518;
+            --black: #0C0C0C;
+            --black-2: #141414;
+            --black-3: #1C1C1C;
+            --white: #FFFFFF;
+            --gray: #7A7A7A;
+            --gray-2: #3A3A3A;
+            --border: rgba(255,255,255,0.07);
+            --border-y: rgba(245,197,24,0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; background: var(--black); }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: 'Jost', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* HEADER */
+        header {
+            padding: 32px 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: rgba(12,12,12,0.85);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+        }
+
+        .logo img {
+            height: 32px;
+            width: auto;
+            display: block;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 130px 24px;
+            background: linear-gradient(135deg, rgba(245,197,24,0.06) 0%, rgba(245,197,24,0.02) 100%);
+            border-bottom: 1px solid var(--border-y);
+        }
+
+        .hero-tag {
+            display: inline-block;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 700;
+            border: 1px solid var(--border-y);
+            padding: 8px 16px;
+            border-radius: 40px;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 900;
+            letter-spacing: -2.5px;
+            line-height: 1.02;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 em { font-style: italic; color: var(--yellow); }
+
+        .hero p {
+            font-size: 19px;
+            color: var(--gray);
+            line-height: 1.8;
+            max-width: 700px;
+            margin-bottom: 32px;
+        }
+
+        .hero-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-top: 52px;
+        }
+
+        .meta-item {
+            padding: 22px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+        }
+
+        .meta-label {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .meta-value {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        /* SECTION */
+        section {
+            padding: 90px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .s-label {
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .s-title {
+            font-size: clamp(34px, 6vw, 56px);
+            font-weight: 900;
+            letter-spacing: -1px;
+            line-height: 1.05;
+            margin-bottom: 24px;
+        }
+
+        .s-title em { font-style: italic; color: var(--yellow); }
+
+        .s-intro {
+            font-size: 17px;
+            color: var(--gray);
+            line-height: 1.9;
+            max-width: 720px;
+        }
+
+        .s-intro strong { color: var(--white); font-weight: 600; }
+
+        /* DIAGNÓSTICO */
+        .diag-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 48px;
+        }
+
+        .diag-col {
+            padding: 36px 32px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .diag-col.now { border-left: 3px solid var(--gray-2); }
+        .diag-col.next { border-left: 3px solid var(--yellow); background: rgba(245,197,24,0.04); }
+
+        .diag-col h3 {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .diag-col.now h3 { color: var(--gray); }
+        .diag-col.next h3 { color: var(--yellow); }
+
+        .diag-col ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+
+        .diag-col li {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.6;
+            padding-left: 22px;
+            position: relative;
+        }
+
+        .diag-col.now li::before { content: '—'; position: absolute; left: 0; color: var(--gray-2); }
+        .diag-col.next li::before { content: '→'; position: absolute; left: 0; color: var(--yellow); font-weight: 700; }
+        .diag-col.next li { color: #cfcfcf; }
+
+        /* FASES / CRONOGRAMA */
+        .fases {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 48px;
+        }
+
+        .fase {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 32px;
+            padding: 36px 32px;
+            border: 1px solid var(--border);
+            background: var(--black-2);
+            transition: all 0.3s ease;
+        }
+
+        .fase:hover { border-color: var(--border-y); }
+
+        .fase-num {
+            font-size: 52px;
+            font-weight: 900;
+            color: var(--yellow);
+            line-height: 1;
+            opacity: 0.9;
+        }
+
+        .fase-mes {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .fase-title {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .fase-desc {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .fase-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .fase-tags span {
+            font-size: 11px;
+            color: var(--yellow);
+            border: 1px solid var(--border-y);
+            padding: 5px 12px;
+            border-radius: 40px;
+        }
+
+        /* PLANOS */
+        .planos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin-top: 48px;
+            align-items: stretch;
+        }
+
+        .plano-card {
+            background: var(--black-2);
+            border: 1px solid var(--border);
+            padding: 40px 32px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .plano-card:hover {
+            border-color: var(--yellow);
+            transform: translateY(-4px);
+        }
+
+        .plano-card.destaque {
+            background: rgba(245,197,24,0.05);
+            border-color: var(--yellow);
+        }
+
+        .plano-badge {
+            display: inline-block;
+            background: var(--yellow);
+            color: var(--black);
+            padding: 6px 14px;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            width: fit-content;
+        }
+
+        .plano-nome {
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .plano-desc {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 28px;
+            min-height: 44px;
+        }
+
+        .plano-itens {
+            list-style: none;
+            margin-bottom: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+            flex: 1;
+        }
+
+        .plano-itens li {
+            font-size: 13px;
+            color: #b8b8b8;
+            padding-left: 22px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .plano-itens li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--yellow);
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .plano-itens li.base { color: var(--gray); font-style: italic; }
+        .plano-itens li.base::before { content: '＋'; }
+
+        .plano-preco {
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+            margin-bottom: 24px;
+        }
+
+        .plano-preco-val {
+            font-size: 40px;
+            font-weight: 900;
+            color: var(--yellow);
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+
+        .plano-preco-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .plano-preco-opcoes {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 14px 16px;
+            font-size: 11.5px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .plano-preco-opcoes strong { color: var(--yellow); font-weight: 700; }
+
+        .btn {
+            display: block;
+            padding: 15px 20px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--white);
+            font-family: 'Jost', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn:hover { border-color: var(--yellow); color: var(--black); background: var(--yellow); }
+
+        .btn-yellow { background: var(--yellow); color: var(--black); border-color: var(--yellow); }
+        .btn-yellow:hover { background: transparent; color: var(--yellow); }
+
+        /* DELIVERABLES */
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 48px;
+        }
+
+        .deliv-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .deliv-card:hover { border-color: var(--border-y); }
+
+        .deliv-icon { font-size: 30px; margin-bottom: 16px; }
+
+        .deliv-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .deliv-desc { font-size: 13px; color: var(--gray); line-height: 1.7; }
+
+        /* NOTA */
+        .nota {
+            background: rgba(245,197,24,0.05);
+            border: 1px solid var(--border-y);
+            border-left: 4px solid var(--yellow);
+            padding: 28px;
+            margin-top: 32px;
+        }
+
+        .nota p { font-size: 14px; color: var(--gray); line-height: 1.8; }
+        .nota strong { color: var(--white); font-weight: 700; }
+
+        /* CONTACT */
+        .contact { text-align: center; padding: 100px 0; }
+
+        .contact h2 {
+            font-size: clamp(32px, 6vw, 58px);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .contact h2 em { font-style: italic; color: var(--yellow); }
+
+        .contact p { font-size: 16px; color: var(--gray); margin-bottom: 40px; }
+
+        .contact-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .contact-btns .btn { width: auto; padding: 16px 34px; }
+
+        /* FOOTER */
+        footer { border-top: 1px solid var(--border); padding: 48px 0; text-align: center; }
+        footer p { font-size: 12px; color: var(--gray); }
+
+        @media (max-width: 768px) {
+            .hero { padding: 90px 24px; }
+            .hero h1 { font-size: 40px; }
+            section { padding: 64px 0; }
+            .diag-grid { grid-template-columns: 1fr; }
+            .fase { grid-template-columns: 1fr; gap: 16px; }
+            .fase-num { font-size: 40px; }
+        }
+
+        /* extras Domo */
+        .plano-badge.soft { background: transparent; color: var(--gray); border: 1px solid var(--border); }
+        .plano-preco-sub { font-size: 12px; color: var(--gray); margin-top: 6px; line-height: 1.6; }
+        .hero p + p { margin-top: -12px; }
+
+        /* COMBO */
+        .combo {
+            margin-top: 16px;
+            border: 1px solid var(--yellow);
+            background: linear-gradient(135deg, rgba(245,197,24,0.10) 0%, rgba(245,197,24,0.03) 100%);
+            padding: 40px 32px;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .combo-nome { font-size: 26px; font-weight: 900; color: var(--white); margin-bottom: 8px; }
+        .combo-desc { font-size: 14px; color: var(--gray); line-height: 1.7; margin-bottom: 20px; }
+
+        .combo-modulos { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+        .combo-modulos span {
+            font-size: 11px;
+            color: var(--white);
+            border: 1px solid var(--border-y);
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-weight: 600;
+        }
+        .combo-modulos i { color: var(--yellow); font-style: normal; font-weight: 700; }
+
+        .combo-tabela { font-size: 12px; color: var(--gray); margin-top: 20px; }
+        .combo-tabela s { color: var(--gray-2); }
+
+        .combo-precos { display: flex; flex-direction: column; gap: 12px; }
+
+        .combo-preco {
+            background: rgba(12,12,12,0.6);
+            border: 1px solid var(--border);
+            padding: 20px 22px;
+        }
+
+        .combo-preco.best { border-color: var(--yellow); }
+
+        .combo-preco-label {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .combo-preco.best .combo-preco-label { color: var(--yellow); }
+
+        .combo-preco-val { font-size: 32px; font-weight: 900; color: var(--yellow); line-height: 1; }
+        .combo-preco-sub { font-size: 12px; color: var(--gray); margin-top: 6px; }
+
+        @media (max-width: 768px) {
+            .combo { grid-template-columns: 1fr; gap: 28px; padding: 32px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="logo">
+            <img src="/assets/IMG/roncolato-branco-horizontal.png" alt="Roncolato Studio" onerror="this.src='/assets/IMG/rr-simbolo-white.png'">
+        </div>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <span class="hero-tag">Proposta de Marca</span>
+        <h1>Domo Imobiliário<br><em>a casa que carrega o seu nome.</em></h1>
+        <p>Você já vende imóveis todos os dias. O que ainda falta é uma marca que seja sua — não da imobiliária, não emprestada, sua. Domo nasce pra isso: um nome com significado (casa, lar, abrigo) que carrega a sua forma de trabalhar.</p>
+        <p>Esta proposta cobre a construção dessa marca do zero: identidade, sistema visual, papelaria e os templates pra você aplicar sozinho, todos os dias, sem depender de designer pra cada post.</p>
+
+        <div class="hero-meta">
+            <div class="meta-item">
+                <div class="meta-label">Cliente</div>
+                <div class="meta-value">Fernando Aguiar</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Escopo</div>
+                <div class="meta-value">Marca + Identidade</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Prazo</div>
+                <div class="meta-value">45 dias</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Validade</div>
+                <div class="meta-value">15 dias</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- O MOMENTO -->
+<section>
+    <div class="container">
+        <div class="s-label">O momento</div>
+        <h2 class="s-title">Você tem experiência.<br>Falta uma marca <em>à altura dela.</em></h2>
+        <p class="s-intro">Hoje o material que chega até você vem pronto — da imobiliária, da construtora, do lançamento. Ele até funciona, mas não fala com a sua cara. Quem recebe não sente que está falando com o Fernando: sente que está recebendo um panfleto. <strong>Isso tem um custo silencioso: menos conexão, menos lembrança, menos indicação.</strong></p>
+
+        <div class="diag-grid">
+            <div class="diag-col now">
+                <h3>Onde está hoje</h3>
+                <ul>
+                    <li>Material genérico, o mesmo enviado pra dezenas de outros corretores</li>
+                    <li>Peças geradas em IA, cada uma com uma cara diferente — sem identidade fixa</li>
+                    <li>Presença que depende inteiramente da imobiliária, sem existência própria</li>
+                    <li>Nenhuma marca registrável, nenhum ativo que seja seu de fato</li>
+                </ul>
+            </div>
+            <div class="diag-col next">
+                <h3>Onde a marca vai</h3>
+                <ul>
+                    <li>Identidade visual própria, reconhecível em qualquer peça, em qualquer canal</li>
+                    <li>Templates prontos no Canva — você troca foto e texto, a marca continua consistente</li>
+                    <li>Presença que é sua, independente de onde você estiver trabalhando</li>
+                    <li>Marca pronta pra registro, um ativo que cresce com você e fica com você</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- COMO CONDUZIMOS -->
+<section>
+    <div class="container">
+        <div class="s-label">Como conduzimos</div>
+        <h2 class="s-title">Três etapas,<br><em>sem enrolação.</em></h2>
+        <p class="s-intro">Nada de processo eterno ou entregas soltas. A marca nasce em blocos claros, cada um com um objetivo específico, pra você acompanhar o avanço sem surpresa.</p>
+
+        <div class="fases">
+            <div class="fase">
+                <div>
+                    <div class="fase-num">01</div>
+                    <div class="fase-mes">Semanas 1–2</div>
+                </div>
+                <div>
+                    <div class="fase-title">Imersão &amp; Estratégia</div>
+                    <div class="fase-desc">Conversa a fundo sobre como você trabalha, quem é seu cliente e o que te diferencia. Daqui sai o posicionamento e a base verbal da marca — antes de qualquer traço ser desenhado.</div>
+                    <div class="fase-tags">
+                        <span>Briefing</span><span>Posicionamento</span><span>Tom de voz</span><span>Mensagens-chave</span>
+                    </div>
+                </div>
+            </div>
+            <div class="fase">
+                <div>
+                    <div class="fase-num">02</div>
+                    <div class="fase-mes">Semanas 3–4</div>
+                </div>
+                <div>
+                    <div class="fase-title">Marca &amp; Sistema Visual</div>
+                    <div class="fase-desc">Construção do logo, das versões de aplicação, da paleta de cores e da tipografia. É aqui que a Domo ganha cara — e essa cara vira o brand book, seu manual de uso.</div>
+                    <div class="fase-tags">
+                        <span>Logo</span><span>Paleta</span><span>Tipografia</span><span>Grafismos</span><span>Brand book</span>
+                    </div>
+                </div>
+            </div>
+            <div class="fase">
+                <div>
+                    <div class="fase-num">03</div>
+                    <div class="fase-mes">Semanas 5–6</div>
+                </div>
+                <div>
+                    <div class="fase-title">Aplicações &amp; Templates</div>
+                    <div class="fase-desc">Cartão físico e digital, e o kit de templates no Canva pronto pra você usar no dia a dia — feed, stories, apresentação de imóvel. Entrega final com todos os arquivos.</div>
+                    <div class="fase-tags">
+                        <span>Papelaria</span><span>Templates Canva</span><span>Arquivos finais</span><span>Entrega</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INVESTIMENTO -->
+<section>
+    <div class="container">
+        <div class="s-label">Investimento</div>
+        <h2 class="s-title">Modular,<br>do <em>seu jeito.</em></h2>
+        <p class="s-intro">Você foi claro: primeiro a marca, o site fica pra depois. Faz sentido, e é assim que estruturamos. Cada módulo abaixo é independente — você contrata o que precisa agora e segue quando fizer sentido. <strong>O núcleo é a Marca + Identidade Visual.</strong> É ela que resolve a dor que você trouxe: ter algo seu, consistente, que funciona sozinho.</p>
+
+        <div class="planos-grid">
+            <!-- NAMING -->
+            <div class="plano-card">
+                <div class="plano-badge soft">Opcional</div>
+                <div class="plano-nome">Naming</div>
+                <div class="plano-desc">Só entra se "Domo" tiver conflito no INPI ou se você decidir trocar o nome.</div>
+                <ul class="plano-itens">
+                    <li>Pesquisa de mercado e concorrentes</li>
+                    <li>Geração de alternativas de nome</li>
+                    <li>Filtro e curadoria das melhores opções</li>
+                    <li>Verificação prévia de disponibilidade (INPI, domínio, redes)</li>
+                    <li>Conceito e significado do nome escolhido</li>
+                </ul>
+                <div class="plano-preco">
+                    <div class="plano-preco-val">R$ 1.200</div>
+                    <div class="plano-preco-label">à vista · +10 dias no prazo</div>
+                    <div class="plano-preco-opcoes">
+                        <strong>Quando:</strong> antes da etapa de Marca<br>
+                        <strong>Necessário só se</strong> a consulta ao INPI indicar conflito no segmento imobiliário
+                    </div>
+                </div>
+                <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20tenho%20interesse%20no%20m%C3%B3dulo%20de%20Naming%20da%20proposta%20Domo%20Imobili%C3%A1rio." class="btn">Quero o Naming</a>
+            </div>
+
+            <!-- MARCA -->
+            <div class="plano-card destaque">
+                <div class="plano-badge">Recomendado</div>
+                <div class="plano-nome">Marca + Identidade Visual</div>
+                <div class="plano-desc">O núcleo do projeto: a marca Domo pronta pra usar todos os dias.</div>
+                <ul class="plano-itens">
+                    <li>Imersão e diagnóstico + posicionamento</li>
+                    <li>Identidade verbal (tom de voz, mensagens-chave)</li>
+                    <li>Marca / logo com versões (positiva, negativa, símbolo)</li>
+                    <li>Sistema visual: paleta, tipografia, grafismos</li>
+                    <li>Brand book enxuto (manual de uso)</li>
+                    <li>Papelaria: cartão de visita físico + cartão digital</li>
+                    <li>Kit de templates no Canva (feed, stories, apresentação de imóvel)</li>
+                    <li>Arquivos finais em todos os formatos (PNG, SVG, PDF)</li>
+                </ul>
+                <div class="plano-preco">
+                    <div class="plano-preco-val">6x R$ 1.000</div>
+                    <div class="plano-preco-label">ou R$ 6.000 à vista</div>
+                    <div class="plano-preco-opcoes">
+                        <strong>À vista:</strong> R$ 6.000<br>
+                        <strong>Parcelado:</strong> 6x de R$ 1.000 no cartão<br>
+                        <strong>Outras condições:</strong> via link — taxas da bandeira
+                    </div>
+                </div>
+                <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20tenho%20interesse%20no%20m%C3%B3dulo%20de%20Marca%20%2B%20Identidade%20Visual%20da%20proposta%20Domo%20Imobili%C3%A1rio." class="btn btn-yellow">Quero a Marca</a>
+            </div>
+
+            <!-- SITE -->
+            <div class="plano-card">
+                <div class="plano-badge soft">Depois da marca</div>
+                <div class="plano-nome">Site</div>
+                <div class="plano-desc">Pra quando a marca estiver rodando e você quiser presença própria além das redes.</div>
+                <ul class="plano-itens">
+                    <li>Site institucional com a identidade da Domo</li>
+                    <li>Otimizado pra ser encontrado no Google e em buscas por IA (ChatGPT)</li>
+                    <li>Blog pronto pra receber artigos</li>
+                    <li>Prazo: cerca de 30 dias após a entrega da marca</li>
+                </ul>
+                <div class="plano-preco">
+                    <div class="plano-preco-val">R$ 3.500</div>
+                    <div class="plano-preco-label">contratado separadamente</div>
+                    <div class="plano-preco-opcoes">
+                        <strong>Valor garantido</strong> se contratado em até 90 dias após a entrega da marca
+                    </div>
+                </div>
+                <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20tenho%20interesse%20no%20m%C3%B3dulo%20de%20Site%20da%20proposta%20Domo%20Imobili%C3%A1rio." class="btn">Quero o Site</a>
+            </div>
+        </div>
+
+        <!-- COMBO -->
+        <div class="combo">
+            <div>
+                <div class="plano-badge">Combo completo</div>
+                <div class="combo-nome">Naming + Marca + Site</div>
+                <div class="combo-desc">Pra quem quer resolver a marca inteira de uma vez — do nome ao site no ar — com desconto por fechar o projeto completo.</div>
+                <div class="combo-modulos">
+                    <span>Naming</span><i>+</i><span>Marca + Identidade Visual</span><i>+</i><span>Site</span>
+                </div>
+                <div class="combo-tabela">Valor dos módulos separados: <s>R$ 10.700</s></div>
+            </div>
+            <div class="combo-precos">
+                <div class="combo-preco best">
+                    <div class="combo-preco-label">À vista · 10% de desconto</div>
+                    <div class="combo-preco-val">R$ 9.630</div>
+                    <div class="combo-preco-sub">Economia de R$ 1.070</div>
+                </div>
+                <div class="combo-preco">
+                    <div class="combo-preco-label">Parcelado · 5% de desconto</div>
+                    <div class="combo-preco-val">R$ 10.165</div>
+                    <div class="combo-preco-sub">Via link de pagamento, parcelado no cartão — taxas da bandeira</div>
+                </div>
+                <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20quero%20fechar%20o%20combo%20completo%20(Naming%20%2B%20Marca%20%2B%20Site)%20da%20proposta%20Domo%20Imobili%C3%A1rio." class="btn btn-yellow">Quero o Combo Completo</a>
+            </div>
+        </div>
+
+        <div class="nota">
+            <p><strong>Condições de pagamento</strong></p>
+            <p style="margin-top: 12px; font-size: 13px;">
+                • <strong>Marca:</strong> à vista ou 6x de R$ 1.000 no cartão.<br>
+                • <strong>Naming:</strong> se necessário, cobrado à parte e feito antes da etapa de Marca — soma cerca de 10 dias ao prazo total.<br>
+                • <strong>Site:</strong> orçado aqui, contratado separadamente, quando fizer sentido pra você.<br>
+                • <strong>Combo completo:</strong> 10% de desconto à vista (R$ 9.630) ou 5% parcelado via link (R$ 10.165).<br>
+                • Proposta válida por <strong>15 dias</strong> a partir do envio.<br>
+                • Os valores contemplam o escopo descrito em cada módulo. Ajustes de escopo são conversados e orçados à parte, com transparência.
+            </p>
+            <p style="margin-top: 18px; font-size: 13px;">
+                <strong>Sobre o registro no INPI:</strong> fica fora desta proposta e é conduzido por um advogado de marcas — vou te indicar um, com consulta inicial sem custo. O registro gira em torno de R$ 1.900 a R$ 2.000, parcelável, com validade de 10 anos. A marca que a gente entrega já sai pronta pra ser protocolada.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- O QUE VOCÊ RECEBE -->
+<section>
+    <div class="container">
+        <div class="s-label">O que você recebe</div>
+        <h2 class="s-title">Uma marca completa,<br>não só <em>um logo.</em></h2>
+
+        <div class="deliverables-grid">
+            <div class="deliv-card">
+                <div class="deliv-icon">🧭</div>
+                <div class="deliv-title">Estratégia</div>
+                <div class="deliv-desc">Posicionamento claro do que te diferencia no mercado. A base que sustenta toda decisão visual depois.</div>
+            </div>
+            <div class="deliv-card">
+                <div class="deliv-icon">🗣️</div>
+                <div class="deliv-title">Identidade Verbal</div>
+                <div class="deliv-desc">Tom de voz e mensagens-chave definidos. Você sabe o que dizer e como dizer, em qualquer peça.</div>
+            </div>
+            <div class="deliv-card">
+                <div class="deliv-icon">🎨</div>
+                <div class="deliv-title">Identidade Visual</div>
+                <div class="deliv-desc">Logo com versões, paleta de cores e tipografia. A cara da Domo, consistente em qualquer aplicação.</div>
+            </div>
+            <div class="deliv-card">
+                <div class="deliv-icon">📘</div>
+                <div class="deliv-title">Brand Book</div>
+                <div class="deliv-desc">Manual enxuto de uso da marca. Referência rápida pra você ou qualquer pessoa aplicar sem errar.</div>
+            </div>
+            <div class="deliv-card">
+                <div class="deliv-icon">🪪</div>
+                <div class="deliv-title">Cartão Físico + Digital</div>
+                <div class="deliv-desc">Apresentação impressa e versão digital pra compartilhar em qualquer contato.</div>
+            </div>
+            <div class="deliv-card">
+                <div class="deliv-icon">🖼️</div>
+                <div class="deliv-title">Templates Canva</div>
+                <div class="deliv-desc">Kit pronto pra feed, stories e apresentação de imóvel. Você edita foto e texto — a marca se mantém.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+    <div class="container">
+        <h2>Vamos dar forma<br>à <em>Domo Imobiliário?</em></h2>
+        <p>Confirme o módulo e a gente já agenda a imersão.</p>
+        <div class="contact-btns">
+            <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20quero%20conversar%20sobre%20a%20proposta%20da%20Domo%20Imobili%C3%A1rio." class="btn btn-yellow">Falar com Rodrigo no WhatsApp</a>
+            <a href="mailto:rodrigo@rroncolato.com" class="btn">Enviar email</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Roncolato Studio. Proposta confidencial para Fernando Aguiar — Domo Imobiliário.</p>
+    </div>
+</footer>
+
+</body>
+</html>

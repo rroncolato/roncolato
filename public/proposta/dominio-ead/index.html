@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultoria de Marketing — Domínio EAD</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/assets/IMG/rr-simbolo-white.png">
+    <meta property="og:title" content="Consultoria de Marketing — Domínio EAD">
+    <meta property="og:description" content="Estratégia + Planejamento + Criação para educação digital. Retainer mensal dedicado.">
+    <meta property="og:image" content="/assets/IMG/avatar-fundobranco.png">
+    <meta property="og:url" content="https://rroncolato.com.br/proposta/dominio-ead">
+    <meta property="og:type" content="website">
+    <style>
+        :root {
+            --yellow: #F5C518;
+            --black: #0C0C0C;
+            --black-2: #141414;
+            --white: #FFFFFF;
+            --gray: #7A7A7A;
+            --gray-2: #3A3A3A;
+            --border: rgba(255,255,255,0.07);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; background: var(--black); }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: 'Jost', sans-serif;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* PRESENTATION CONTAINER */
+        .presentation {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .slides-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        /* SLIDE BACKGROUNDS */
+        .slide-1 {
+            background: linear-gradient(135deg, rgba(245,197,24,0.1) 0%, rgba(245,197,24,0.05) 100%);
+        }
+
+        .slide-2, .slide-3, .slide-4, .slide-5, .slide-6, .slide-7 {
+            background: var(--black);
+        }
+
+        /* SLIDE CONTENT */
+        .slide-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* CAPA */
+        .slide-1 .slide-content {
+            text-align: center;
+        }
+
+        .slide-1 .logo {
+            height: 48px;
+            margin-bottom: 80px;
+        }
+
+        .slide-1 .logo img {
+            height: 100%;
+            width: auto;
+        }
+
+        .slide-1 h1 {
+            font-size: clamp(48px, 10vw, 88px);
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1.05;
+            margin-bottom: 24px;
+        }
+
+        .slide-1 h1 em { font-style: italic; color: var(--yellow); }
+
+        .slide-1 .subtitle {
+            font-size: clamp(18px, 3vw, 28px);
+            color: var(--gray);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* QUEM SOU */
+        .slide-2 {
+            flex-direction: row;
+            gap: 30px;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+        }
+
+        .slide-2 .photo {
+            flex: 0 0 280px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .slide-2 .photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .slide-2 .content {
+            flex: 1;
+        }
+
+        .slide-2 .label {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .slide-2 h2 {
+            font-size: clamp(32px, 6vw, 56px);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .slide-2 .bio {
+            font-size: 16px;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .slide-2 .bio strong { color: var(--white); font-weight: 700; }
+
+        /* O QUE FAÇO */
+        .slide-3 .slide-content {
+            text-align: left;
+            max-width: 800px;
+        }
+
+        .slide-3 .label {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .slide-3 h2 {
+            font-size: clamp(40px, 7vw, 64px);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 48px;
+            line-height: 1.05;
+        }
+
+        .slide-3 h2 em { font-style: italic; color: var(--yellow); }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        .skill-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            padding: 28px;
+            border-radius: 4px;
+        }
+
+        .skill-card h3 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: var(--yellow);
+        }
+
+        .skill-card p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* PROPOSTA */
+        .slide-4 .slide-content {
+            text-align: left;
+            max-width: 800px;
+        }
+
+        .slide-4 .label {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .slide-4 h2 {
+            font-size: clamp(40px, 7vw, 64px);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 40px;
+            line-height: 1.05;
+        }
+
+        .slide-4 h2 em { font-style: italic; color: var(--yellow); }
+
+        .deliverables {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .deliverable-item {
+            background: rgba(245,197,24,0.05);
+            border: 1px solid rgba(245,197,24,0.2);
+            border-left: 4px solid var(--yellow);
+            padding: 20px;
+            border-radius: 4px;
+        }
+
+        .deliverable-item h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .deliverable-item p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* MODELO */
+        .slide-5 .slide-content {
+            text-align: left;
+            max-width: 800px;
+        }
+
+        .slide-5 .label {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .slide-5 h2 {
+            font-size: clamp(40px, 7vw, 64px);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 48px;
+            line-height: 1.05;
+        }
+
+        .slide-5 h2 em { font-style: italic; color: var(--yellow); }
+
+        .model-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .model-card {
+            background: var(--black-2);
+            border: 1px solid var(--border);
+            padding: 32px;
+            border-radius: 4px;
+        }
+
+        .model-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--yellow);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .model-card p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        .model-card strong { color: var(--white); }
+
+        /* INVESTIMENTO */
+        .slide-6 .slide-content {
+            text-align: center;
+        }
+
+        .slide-6 .label {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .slide-6 h2 {
+            font-size: clamp(40px, 7vw, 64px);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 60px;
+            line-height: 1.05;
+        }
+
+        .slide-6 h2 em { font-style: italic; color: var(--yellow); }
+
+        .investment-box {
+            background: rgba(245,197,24,0.05);
+            border: 1px solid rgba(245,197,24,0.2);
+            padding: 48px 40px;
+            border-radius: 4px;
+            margin-bottom: 40px;
+        }
+
+        .investment-val {
+            font-size: 72px;
+            font-weight: 900;
+            color: var(--yellow);
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .investment-desc {
+            font-size: 18px;
+            color: var(--white);
+            margin-bottom: 24px;
+        }
+
+        .investment-term {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .investment-term strong { color: var(--white); }
+
+        /* PRÓXIMOS PASSOS */
+        .slide-7 .slide-content {
+            text-align: center;
+        }
+
+        .slide-7 h2 {
+            font-size: clamp(40px, 7vw, 64px);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+            line-height: 1.05;
+        }
+
+        .slide-7 .subtitle {
+            font-size: 18px;
+            color: var(--gray);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            font-family: 'Jost', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--yellow);
+            color: var(--black);
+            border: 1px solid var(--yellow);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--yellow);
+            color: var(--yellow);
+        }
+
+        /* NAVIGATION */
+        .nav-dots {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .dot.active {
+            background: var(--yellow);
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        .nav-arrows {
+            position: fixed;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 30px;
+            pointer-events: none;
+            z-index: 50;
+            transform: translateY(-50%);
+        }
+
+        .arrow {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--white);
+            transition: all 0.3s ease;
+            pointer-events: all;
+        }
+
+        .arrow:hover {
+            background: rgba(245,197,24,0.2);
+            border-color: var(--yellow);
+            color: var(--yellow);
+        }
+
+        /* MOBILE */
+        @media (max-width: 1024px) {
+            .slide {
+                padding: 30px;
+            }
+
+            .slide-2 {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .slide-2 .photo {
+                flex: 0 0 240px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-arrows {
+                padding: 0 15px;
+            }
+
+            .arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px;
+            }
+
+            .slide-1 .logo {
+                height: 36px;
+                margin-bottom: 60px;
+            }
+
+            .slide-2 .photo {
+                max-width: 200px;
+            }
+
+            .nav-dots {
+                bottom: 20px;
+            }
+
+            .model-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="presentation">
+    <div class="slides-wrapper">
+        <!-- SLIDE 1: CAPA -->
+        <div class="slide slide-1 active">
+            <div class="slide-content">
+                <div class="logo">
+                    <img src="/assets/IMG/roncolato-branco-horizontal.png" alt="Roncolato Studio" onerror="this.src='/assets/IMG/rr-simbolo-white.png'">
+                </div>
+                <h1>Consultoria de<br><em>Marketing</em></h1>
+                <p class="subtitle">Estratégia + Planejamento + Criação<br>para educação digital que cresce</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: QUEM SOU -->
+        <div class="slide slide-2">
+            <div class="photo">
+                <img src="/assets/IMG/site/ronco-bio.jpg" alt="Rodrigo Roncolato">
+            </div>
+            <div class="slide-content">
+                <div class="label">Quem é</div>
+                <h2>Rodrigo<br>Roncolato</h2>
+                <p class="bio">
+                    <strong>Estrategista de marca com execução criativa.</strong> 26 anos no mercado, 16 anos de empresa própria. Expertise em publicidade, branding, fotografia corporativa e liderança de departamentos de criação.
+                </p>
+                <p class="bio">
+                    Não sou agência genérica. Sou um profissional sênior que traz <strong>estratégia + operacional</strong>. Cada projeto começa com briefing profundo e entrega em criações que convertem.
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: O QUE FAÇO -->
+        <div class="slide slide-3">
+            <div class="slide-content">
+                <div class="label">Expertise</div>
+                <h2>Competências que<br>entrego <em>todos os dias</em></h2>
+
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>Estratégia de Marketing</h3>
+                        <p>Posicionamento, narrativa, persona, funil de conversão, canais e métricas que importam.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Branding</h3>
+                        <p>Identidade visual, verbale comunicação consistente. Marca que se diferencia e vende.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Criação + Design</h3>
+                        <p>Conteúdo estratégico, peças visuais, campanhas integradas. Tudo feito com propósito.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Liderança de Time</h3>
+                        <p>Organizo, estruturo e dou direcionamento claro. Resultado não é acaso, é execução.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: PROPOSTA -->
+        <div class="slide slide-4">
+            <div class="slide-content">
+                <div class="label">Entrega</div>
+                <h2>O que você<br>vai receber <em>todo mês</em></h2>
+
+                <div class="deliverables">
+                    <div class="deliverable-item">
+                        <h3>Estratégia & Planejamento</h3>
+                        <p>Análise contínua de mercado, persona, canais e oportunidades. Roadmap mensal alinhado com objetivos comerciais.</p>
+                    </div>
+                    <div class="deliverable-item">
+                        <h3>Criação de Materiais</h3>
+                        <p>Posts, banners, vídeos, campanhas, conteúdo para email, landing pages — tudo que impulsiona conversão.</p>
+                    </div>
+                    <div class="deliverable-item">
+                        <h3>Relatórios & Ajustes</h3>
+                        <p>Performance mensal, análise de dados, otimizações de campanha e plano de ação para próximo mês.</p>
+                    </div>
+                    <div class="deliverable-item">
+                        <h3>Suporte Estratégico</h3>
+                        <p>Disponível para decisões críticas, brainstorms com comercial, alinhamento com direção.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: MODELO -->
+        <div class="slide slide-5">
+            <div class="slide-content">
+                <div class="label">Como funciona</div>
+                <h2>Disponibilidade<br>e <em>dedicação</em></h2>
+
+                <div class="model-cards">
+                    <div class="model-card">
+                        <h3>📍 Presença Local</h3>
+                        <p><strong>2 dias por semana</strong> na instituição. Reuniões, alinhamentos, brainstorms com time comercial e liderança.</p>
+                    </div>
+                    <div class="model-card">
+                        <h3>🏠 Híbrido Executivo</h3>
+                        <p><strong>Restante da semana</strong> remoto focado em criação, planejamento e execução. Disponível para prioridades urgentes.</p>
+                    </div>
+                    <div class="model-card">
+                        <h3>⏱ Volume Dedicado</h3>
+                        <p>Média de <strong>40-50 horas/mês</strong> exclusivamente para Domínio EAD. Seu projeto é prioridade.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: INVESTIMENTO -->
+        <div class="slide slide-6">
+            <div class="slide-content">
+                <div class="label">Investimento</div>
+                <h2>Valores<br><em>para os primeiros 6 meses</em></h2>
+
+                <div class="investment-box">
+                    <div class="investment-val">R$ 8.000</div>
+                    <div class="investment-desc">Retainer Mensal</div>
+                    <div class="investment-term">
+                        <strong>Contrato:</strong> 6 meses iniciais<br>
+                        <strong>Próximo passo:</strong> Avaliação completa de demandas e ajuste para renovação anual<br><br>
+                        <strong>Incluso:</strong> Estratégia, planejamento, criação mensal, suporte e relatórios
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: PRÓXIMOS PASSOS -->
+        <div class="slide slide-7">
+            <div class="slide-content">
+                <h2>Pronto para<br>começar?</h2>
+                <p class="subtitle">Vamos conversar sobre como estruturar o marketing da Domínio de forma estratégica e com execução que converte.</p>
+
+                <div class="cta-buttons">
+                    <a href="https://wa.me/5562985928423?text=Ol%C3%A1%20Rodrigo%2C%20gostaria%20de%20conversar%20sobre%20a%20consultoria%20de%20marketing%20para%20a%20Dom%C3%ADnio%20EAD" class="btn btn-primary">Agendar Conversa</a>
+                    <a href="mailto:rodrigo@rroncolato.com" class="btn btn-secondary">Enviar Email</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <div class="nav-arrows">
+        <div class="arrow" onclick="previousSlide()">←</div>
+        <div class="arrow" onclick="nextSlide()">→</div>
+    </div>
+
+    <div class="nav-dots" id="dotsContainer"></div>
+</div>
+
+<script>
+    const totalSlides = 7;
+    let currentSlide = 0;
+
+    function showSlide(n) {
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+
+        if (n >= totalSlides) currentSlide = 0;
+        if (n < 0) currentSlide = totalSlides - 1;
+
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+    }
+
+    function nextSlide() {
+        currentSlide++;
+        showSlide(currentSlide);
+    }
+
+    function previousSlide() {
+        currentSlide--;
+        showSlide(currentSlide);
+    }
+
+    // CREATE DOTS
+    const dotsContainer = document.getElementById('dotsContainer');
+    for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'dot';
+        if (i === 0) dot.classList.add('active');
+        dot.onclick = () => {
+            currentSlide = i;
+            showSlide(currentSlide);
+        };
+        dotsContainer.appendChild(dot);
+    }
+
+    // KEYBOARD NAVIGATION
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') nextSlide();
+        if (e.key === 'ArrowLeft') previousSlide();
+    });
+
+    // TOUCH SWIPE (mobile)
+    let touchStartX = 0;
+    document.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+    });
+    document.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].clientX;
+        if (touchStartX - touchEndX > 50) nextSlide();
+        if (touchEndX - touchStartX > 50) previousSlide();
+    });
+</script>
+
+</body>
+</html>
