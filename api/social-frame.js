@@ -58,7 +58,10 @@ async function listFiles(folderId) {
     pageSize: 1000,
     orderBy: 'name'
   });
-  return res.data.files || [];
+  // Drive ordena como texto (foto-1, foto-10, foto-2); aqui ordena natural (1, 2, ..., 10)
+  return (res.data.files || []).sort((a, b) =>
+    a.name.localeCompare(b.name, 'pt-BR', { numeric: true, sensitivity: 'base' })
+  );
 }
 
 async function listSubfolders(folderId) {
