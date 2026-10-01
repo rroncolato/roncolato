@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    { "source": "/", "destination": "/willian/", "permanent": false },
+    { "source": "/willian", "destination": "/willian/", "permanent": true }
+  ],
+  "headers": [
+    { "source": "/willian/assets/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] }
+  ]
+}
