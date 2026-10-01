@@ -475,3 +475,19 @@ html.lenis { scroll-behavior: auto !important; }
   .footer-grid p { text-align: center; }
   .footer-grid nav { justify-content: center; }
 }
+
+/* Manifesto com o texto na íntegra */
+.manifesto-copy { align-items: start; margin: 64px 0 56px; max-width: 1000px; }
+.manifesto-lines p { margin: 0; padding: 14px 0; border-bottom: 1px solid rgba(10,10,10,.12); font-size: 1.08rem; line-height: 1.55; color: #2f3539; }
+.manifesto-lines p:first-child { font-weight: 600; color: var(--black); }
+.manifesto-close {
+  font-family: "Inter Tight", "Helvetica Neue", Arial, sans-serif; font-weight: 700; text-transform: uppercase;
+  letter-spacing: -.04em; line-height: .95; font-size: clamp(2rem, 3.6vw, 3.4rem); margin: 0 0 88px; color: var(--black);
+}
+.manifesto-close strong { color: var(--slate); }
+@media (max-width: 800px) {
+  .manifesto-copy { margin: 36px auto 40px; gap: 0; }
+  .manifesto-lines p { font-size: 1rem; padding: 12px 0; }
+  .manifesto-lines + .manifesto-lines p:first-child { margin-top: 20px; }
+  .manifesto-close { margin-bottom: 56px; font-size: clamp(1.8rem, 8vw, 2.4rem); }
+}
