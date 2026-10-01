@@ -491,3 +491,77 @@ html.lenis { scroll-behavior: auto !important; }
   .manifesto-lines + .manifesto-lines p:first-child { margin-top: 20px; }
   .manifesto-close { margin-bottom: 56px; font-size: clamp(1.8rem, 8vw, 2.4rem); }
 }
+
+/* =====================================================================
+   TEXTO ORIGINAL NA ÍNTEGRA, seções 3 a 10
+   ===================================================================== */
+
+/* 03 */
+.not-lines { margin-top: 40px; display: grid; gap: 6px; }
+.not-lines p { margin: 0; font-size: clamp(1.05rem, 1.5vw, 1.3rem); line-height: 1.5; color: rgba(248,246,234,.82); }
+.not-lines p:last-child { color: var(--ivory); font-weight: 500; }
+.clarity .lead { margin-top: 28px; }
+
+/* 04 */
+.origin-copy > p.origin-note { max-width: 530px; line-height: 1.65; color: #f8f6eab0; margin: 0; }
+.origin-copy > p.origin-close {
+  max-width: 560px; margin: 40px 0 0; padding-top: 28px; border-top: 1px solid var(--line);
+  font: 600 clamp(1.3rem, 2vw, 1.7rem)/1.3 "Inter Tight", "Helvetica Neue", Arial, sans-serif; letter-spacing: -.02em; color: var(--ivory);
+}
+.origin-close strong { color: #9db0bd; font-weight: 700; }
+
+/* 05 */
+.scale .route { margin-top: 44px; gap: 14px; }
+.scale .route span:first-child { color: var(--ivory); font-weight: 600; }
+.scale-close {
+  margin: 40px 0 0; padding-top: 26px; border-top: 1px solid var(--line); max-width: 560px;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem); line-height: 1.55; color: var(--ivory);
+}
+
+/* 06 */
+.abyss { padding: 144px 0 152px; }
+.abyss-top { display: grid; grid-template-columns: 1.1fr .9fr; gap: 8vw; align-items: end; }
+.abyss .display-sm strong { color: #9db0bd; }
+.abyss-lines p { margin: 0; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: clamp(1.02rem, 1.4vw, 1.2rem); line-height: 1.55; color: rgba(248,246,234,.82); }
+.abyss-cross { margin-top: 128px; text-align: center; }
+.abyss-statement { margin: 0; font: 600 clamp(1.5rem, 2.8vw, 2.5rem)/1.15 "Inter Tight", "Helvetica Neue", Arial, sans-serif; letter-spacing: -.03em; color: rgba(248,246,234,.85); }
+.abyss-bridge { position: relative; width: min(720px, 86%); height: 2px; margin: 48px auto; }
+.abyss-bridge::before, .abyss-bridge::after { content: ""; position: absolute; top: 50%; width: 10px; height: 10px; margin-top: -5px; border-radius: 50%; background: var(--ivory); }
+.abyss-bridge::before { left: -5px; } .abyss-bridge::after { right: -5px; opacity: .35; }
+.abyss-bridge i { display: block; height: 100%; background: linear-gradient(90deg, var(--ivory), rgba(248,246,234,.35)); transform: scaleX(0); transform-origin: left; transition: transform 1.8s cubic-bezier(.6,0,.2,1) .4s; }
+.abyss-bridge.visible i { transform: none; }
+.abyss-final { margin: 0; font: 700 clamp(1.9rem, 4vw, 3.8rem)/.98 "Inter Tight", "Helvetica Neue", Arial, sans-serif; letter-spacing: -.045em; text-transform: uppercase; color: var(--ivory); }
+
+/* 07 */
+.for-you-title { margin-bottom: 48px; }
+
+/* 08 */
+.pillars-title { font-size: clamp(2rem, 3.2vw, 3.1rem) !important; }
+
+/* 09 */
+.question .lead { margin: 0 0 14px; }
+.question .lead.question-first { margin-top: 36px; color: var(--ivory); }
+.question .button { margin-top: 22px; }
+
+/* 10 */
+.finale-content > p.finale-identity { margin: 36px 0 0; font-weight: 600; font-size: clamp(1.1rem, 1.5vw, 1.3rem); color: var(--black); }
+.finale-content > p.finale-identity + p { margin-top: 14px; }
+@media (min-width: 801px) { .finale-content h2 { font-size: 58px; } }
+
+@media (max-width: 800px) {
+  .not-lines { margin-top: 28px; }
+  .origin-copy > p.origin-note, .origin-copy > p.origin-close { margin-inline: auto; }
+  .scale-close { margin-inline: auto; }
+  .abyss { padding: 96px 0; }
+  .abyss-top { grid-template-columns: 1fr; gap: 28px; }
+  .abyss-cross { margin-top: 72px; }
+  .abyss-bridge { margin: 36px auto; }
+  .for-you-title { margin-bottom: 28px; }
+  .question .lead.question-first { margin-top: 26px; }
+  .finale-content > p.finale-identity { margin-top: 26px; }
+}
+@media (prefers-reduced-motion: reduce) { .abyss-bridge i { transform: none; transition: none; } }
+
+/* Grafia da marca preservada em títulos e botões */
+.brand-name { text-transform: none; }
+.button .brand-name { font-weight: inherit; letter-spacing: .13em; }
