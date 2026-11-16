@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!-- Modelo do blog. As páginas em public/nova-home/blog/ são geradas a partir dele: npm run seo -->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#FAFAF7">
+<!--SEO--><title>Blog | Rodrigo Roncolato</title><!--/SEO-->
+<script>window.wideFix=function(i){if(i.naturalWidth/i.naturalHeight>2.2)i.style.objectPosition="18% 50%"};</script>
+<link rel="icon" href="/assets/IMG/site/rr-simbolo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* Blog em fundo claro, com a identidade do estúdio: Jost, preto, off-white e amarelo */
+:root{
+  color-scheme:light;
+  --bg:#FAFAF7; --band:#F0F0EB; --card:#FFFFFF; --line:#E4E3DD;
+  --k:#0A0A0A; --ink:#2B2B28; --mute:#6E6D67; --soft:#9A9993;
+  --y:#F5C518; --y-soft:#FBEDB0; --w:#F0F0EB; --g6:#b0b0a8;
+  --f:'Jost',system-ui,sans-serif;
+  --ease:cubic-bezier(.25,.46,.45,.94);
+  --max:1280px; --pad:clamp(20px,4vw,48px); --navh:72px; --read:680px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--navh) + 16px)}
+body{background:var(--bg);color:var(--ink);font-family:var(--f);font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--y);color:var(--k)}
+:focus-visible{outline:2px solid var(--k);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--k)}
+.eyebrow::before{content:"";width:28px;height:3px;background:var(--y)}
+.pill{display:inline-flex;align-items:center;padding:5px 12px;border-radius:999px;background:var(--y);color:var(--k);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.meta{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;font-size:14px;color:var(--mute)}
+.meta .dot{width:3px;height:3px;border-radius:50%;background:var(--soft)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:13px 26px;border-radius:999px;font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border:1px solid transparent;white-space:nowrap;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s,color .3s,border-color .3s}
+.btn svg{width:18px;height:18px;flex-shrink:0}
+.btn-y{background:var(--y);color:var(--k)}
+.btn-y:hover{transform:translateY(-2px);box-shadow:0 12px 30px -12px rgba(245,197,24,.7)}
+.btn-k{background:var(--k);color:var(--w)}
+.btn-k:hover{transform:translateY(-2px);box-shadow:0 12px 30px -14px rgba(0,0,0,.5)}
+.btn-line{border-color:rgba(240,240,235,.35);color:var(--w)}
+.btn-line:hover{border-color:var(--w)}
+.more{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--k);padding:6px 0;background:linear-gradient(var(--y),var(--y)) left bottom/100% 2px no-repeat;transition:gap .3s var(--ease)}
+.more svg{width:16px;height:16px}
+.more:hover{gap:14px}
+
+/* Navegação clara */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(250,250,247,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:var(--navh)}
+.nav-logo img{height:30px;width:auto}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a:not(.btn){font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);transition:color .3s}
+.nav-links a:not(.btn):hover,.nav-links a[aria-current]{color:var(--k)}
+.nav-links a[aria-current]{box-shadow:0 2px 0 var(--y)}
+.nav .btn{min-height:44px;padding:10px 20px;font-size:12px}
+.menu-btn{display:none;align-items:center;gap:10px;min-height:44px;padding:0 4px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--k)}
+.menu-btn i{display:grid;gap:5px}
+.menu-btn i::before,.menu-btn i::after{content:"";display:block;width:22px;height:1.5px;background:var(--k)}
+.menu{position:fixed;inset:0;z-index:70;background:var(--bg);display:flex;flex-direction:column;padding:92px var(--pad) calc(32px + env(safe-area-inset-bottom));opacity:0;visibility:hidden;transition:opacity .3s var(--ease),visibility 0s .3s}
+.menu.open{opacity:1;visibility:visible;transition:opacity .3s var(--ease)}
+.menu a:not(.btn){font-size:clamp(32px,9vw,46px);font-weight:600;letter-spacing:-.02em;line-height:1.25;padding:6px 0;border-bottom:1px solid var(--line);color:var(--k)}
+.menu .btn{margin-top:auto}
+.menu-close{position:absolute;top:12px;right:max(12px,var(--pad));width:48px;height:48px;display:grid;place-items:center;color:var(--k)}
+.menu-close svg{width:24px;height:24px}
+.progress{position:fixed;left:0;top:0;height:3px;width:100%;z-index:60;background:var(--y);transform-origin:left;transform:scaleX(0)}
+
+/* ===== LISTA ===== */
+.b-head{padding-top:calc(var(--navh) + clamp(48px,7vw,104px));padding-bottom:clamp(36px,4vw,56px);display:flex;justify-content:space-between;align-items:flex-end;gap:24px 48px;flex-wrap:wrap}
+.b-head h1{font-size:clamp(52px,8vw,120px);font-weight:600;line-height:.92;letter-spacing:-.045em;color:var(--k);margin-top:22px}
+.b-head p{font-size:clamp(17px,1.5vw,21px);font-weight:300;color:var(--mute);max-width:24em}
+
+.featured{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,64px);align-items:center;padding-bottom:clamp(48px,6vw,88px);border-bottom:1px solid var(--line)}
+.featured figure{aspect-ratio:16/10;border-radius:10px;overflow:hidden;background:var(--band)}
+.featured figure img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.featured:hover figure img{transform:scale(1.03)}
+.featured .lbl{font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);margin-bottom:18px}
+.featured h2{font-size:clamp(30px,3.4vw,50px);font-weight:600;line-height:1.06;letter-spacing:-.03em;color:var(--k);margin:16px 0 18px;text-wrap:balance}
+.featured p{font-size:18px;color:var(--mute);margin-bottom:26px;max-width:30em}
+
+.filters{position:sticky;top:var(--navh);z-index:30;background:rgba(250,250,247,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.filters .wrap{display:flex;gap:8px;padding-top:12px;padding-bottom:12px;overflow-x:auto;scrollbar-width:none}
+.filters .wrap::-webkit-scrollbar{display:none}
+.chip{flex-shrink:0;display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-size:14px;font-weight:500;color:var(--ink);transition:background .25s,border-color .25s,color .25s}
+.chip small{font-size:12px;color:var(--soft)}
+.chip:hover{border-color:var(--soft)}
+.chip[aria-pressed="true"]{background:var(--k);border-color:var(--k);color:var(--w)}
+.chip[aria-pressed="true"] small{color:var(--g6)}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(36px,4vw,56px) clamp(20px,2.4vw,32px);padding-top:clamp(36px,4vw,56px);padding-bottom:clamp(80px,9vw,128px)}
+.post-card{display:flex;flex-direction:column}
+.post-card[hidden]{display:none}
+.post-card figure{aspect-ratio:3/2;border-radius:8px;overflow:hidden;background:var(--band);margin-bottom:18px}
+.post-card figure img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.post-card:hover figure img{transform:scale(1.04)}
+.post-card h3{font-size:clamp(20px,1.7vw,24px);font-weight:600;line-height:1.2;letter-spacing:-.015em;color:var(--k);margin:12px 0 10px;text-wrap:balance}
+.post-card h3 span{background:linear-gradient(var(--y),var(--y)) left 92%/0 30% no-repeat;transition:background-size .5s var(--ease)}
+.post-card:hover h3 span{background-size:100% 30%}
+.post-card p{font-size:16px;color:var(--mute);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.post-card .foot{margin-top:auto;padding-top:14px;font-size:13px}
+.empty{grid-column:1/-1;padding:48px 0;text-align:center;color:var(--mute)}
+
+/* Faixa escura de chamada */
+.cta-band{background:var(--k);color:var(--w)}
+.cta-band .wrap{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;padding-top:clamp(64px,8vw,104px);padding-bottom:clamp(64px,8vw,104px)}
+.cta-band h2{font-size:clamp(32px,4.4vw,64px);font-weight:600;line-height:1.02;letter-spacing:-.035em;max-width:14em}
+.cta-band h2 em{font-style:normal;color:var(--y)}
+.cta-band p{font-size:18px;color:var(--g6);margin-top:16px;max-width:30em}
+.cta-band .acts{display:flex;gap:12px;flex-wrap:wrap}
+
+/* ===== ARTIGO ===== */
+.article{padding-top:calc(var(--navh) + clamp(32px,4vw,56px))}
+.back{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);transition:color .25s,gap .25s}
+.back svg{width:16px;height:16px}
+.back:hover{color:var(--k);gap:12px}
+.a-head{max-width:880px;margin:clamp(20px,3vw,40px) auto 0;text-align:left}
+.a-head h1{font-size:clamp(34px,5.2vw,68px);font-weight:600;line-height:1.04;letter-spacing:-.035em;color:var(--k);margin:20px 0 22px;text-wrap:balance}
+.a-lead{font-size:clamp(19px,1.8vw,23px);font-weight:300;line-height:1.5;color:var(--mute);max-width:36em}
+.author{display:flex;align-items:center;gap:14px;margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
+.author img{width:48px;height:48px;border-radius:50%;object-fit:cover;object-position:50% 20%;background:var(--band)}
+.author b{display:block;font-weight:600;color:var(--k);line-height:1.2}
+.author small{font-size:14px;color:var(--mute)}
+.a-cover{max-width:1120px;margin:clamp(32px,4vw,56px) auto 0}
+.a-cover figure,.a-cover .video{aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:var(--band)}
+.a-cover img{width:100%;height:100%;object-fit:cover}
+.a-cover iframe{width:100%;height:100%;border:0;display:block}
+
+.a-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,var(--read)) minmax(0,1fr);gap:40px;margin-top:clamp(40px,5vw,72px)}
+.toc{grid-column:1;justify-self:end;width:100%;max-width:230px;position:sticky;top:calc(var(--navh) + 32px);align-self:start}
+.toc b{display:block;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--k);margin-bottom:14px}
+.toc ol{list-style:none;border-left:1px solid var(--line)}
+.toc a{display:block;padding:7px 0 7px 16px;margin-left:-1px;border-left:2px solid transparent;font-size:14px;line-height:1.35;color:var(--mute);transition:color .2s,border-color .2s}
+.toc a:hover{color:var(--k)}
+.toc a.on{color:var(--k);border-left-color:var(--y);font-weight:500}
+
+.prose-wrap{grid-column:2;min-width:0;width:100%;max-width:var(--read)}
+.prose{font-size:clamp(18px,calc(1vw + 5px),20px);line-height:1.75;color:var(--ink)}
+.prose>*+*{margin-top:1.15em}
+.prose p:first-child::first-letter{float:left;font-size:4.1em;line-height:.85;font-weight:600;color:var(--k);margin:.06em .1em 0 0}
+.prose h2{font-size:clamp(26px,2.4vw,34px);font-weight:600;line-height:1.15;letter-spacing:-.025em;color:var(--k);margin-top:2.1em}
+.prose h2::before{content:"";display:block;width:32px;height:3px;background:var(--y);margin-bottom:18px}
+.prose h3{font-size:22px;font-weight:600;color:var(--k);margin-top:1.8em}
+.prose strong,.prose b{font-weight:600;color:var(--k)}
+.prose em{font-style:italic}
+.prose a{color:var(--k);text-decoration:underline;text-decoration-color:var(--y);text-decoration-thickness:2px;text-underline-offset:3px}
+.prose ul,.prose ol{padding-left:1.3em}
+.prose li+li{margin-top:.5em}
+.prose ul li::marker{color:var(--y);font-size:1.1em}
+.prose ol li::marker{color:var(--k);font-weight:600}
+.prose blockquote{margin:1.8em 0;padding:4px 0 4px 26px;border-left:3px solid var(--y);font-size:clamp(22px,2vw,27px);font-weight:500;line-height:1.4;letter-spacing:-.01em;color:var(--k)}
+.prose img{border-radius:8px;margin:1.6em 0}
+/* Posts antigos trazem cores do fundo escuro: aqui elas viram as do fundo claro */
+.prose [style]{color:inherit!important;line-height:inherit!important}
+.prose ul[style],.prose ol[style]{margin:1.15em 0 0!important;padding-left:1.3em!important}
+.prose strong[style],.prose b[style]{color:var(--k)!important}
+
+.share{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:48px;padding-top:28px;border-top:1px solid var(--line)}
+.share span{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--k);margin-right:6px}
+.share a,.share button{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-size:14px;font-weight:500;color:var(--ink);transition:border-color .2s,background .2s}
+.share a:hover,.share button:hover{border-color:var(--k)}
+.share svg{width:17px;height:17px}
+
+.bio{display:flex;gap:20px;align-items:flex-start;margin-top:40px;padding:28px;border-radius:12px;background:var(--band)}
+.bio img{width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:50% 20%;flex-shrink:0}
+.bio b{display:block;font-size:18px;font-weight:600;color:var(--k)}
+.bio p{font-size:16px;color:var(--mute);margin:6px 0 12px}
+
+.a-cta{margin-top:28px;padding:clamp(28px,4vw,44px);border-radius:12px;background:var(--y);color:var(--k)}
+.a-cta h3{font-size:clamp(24px,2.6vw,34px);font-weight:600;line-height:1.1;letter-spacing:-.02em}
+.a-cta p{font-size:17px;margin:12px 0 22px;color:rgba(10,10,10,.78);max-width:30em}
+.a-cta .acts{display:flex;gap:10px;flex-wrap:wrap}
+.a-cta .btn-ghostk{border-color:rgba(10,10,10,.3);color:var(--k)}
+.a-cta .btn-ghostk:hover{border-color:var(--k)}
+
+.related{margin-top:clamp(72px,8vw,112px);padding:clamp(56px,6vw,88px) 0;border-top:1px solid var(--line)}
+.related h2{font-size:clamp(28px,3vw,40px);font-weight:600;letter-spacing:-.03em;color:var(--k);margin-bottom:clamp(28px,3vw,44px)}
+.related .grid{padding:0}
+
+/* Rodapé escuro */
+.footer{background:var(--k);color:var(--g6);padding:56px 0 calc(40px + env(safe-area-inset-bottom))}
+.footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+.footer img{height:28px;width:auto;margin-bottom:16px}
+.footer p{font-size:14px;color:#7a7a7a;max-width:30em}
+.footer nav{display:flex;flex-wrap:wrap;gap:8px 28px;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.footer nav a{padding:8px 0;transition:color .3s}
+.footer nav a:hover{color:var(--y)}
+.copy{width:100%;padding-top:28px;border-top:1px solid #1a1a1a;font-size:12px;color:#404040}
+
+.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.js .reveal.in{opacity:1;transform:none}
+[hidden]{display:none!important}
+
+@media (max-width:1100px){
+  .nav-links a:not(.btn){display:none}
+  .menu-btn{display:inline-flex}
+  .nav-links{margin-left:auto}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .a-body{grid-template-columns:minmax(0,1fr);justify-items:center}
+  .toc{display:none}
+  .prose-wrap{grid-column:1}
+}
+@media (max-width:760px){
+  :root{--navh:64px}
+  .nav-logo img{height:24px}
+  .nav .btn span{display:none}
+  .nav .btn{padding:0;width:44px}
+  .featured{grid-template-columns:1fr;gap:20px}
+  .grid{grid-template-columns:1fr}
+  .prose p:first-child::first-letter{font-size:3.4em}
+  .bio{flex-direction:column;padding:22px}
+  .cta-band .acts,.a-cta .acts{flex-direction:column;align-items:stretch;width:100%}
+  .cta-band .btn,.a-cta .btn{width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  .js .reveal{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body data-page="list">
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="/nova-home/" class="nav-logo" aria-label="Rodrigo Roncolato — início">
+      <img src="/assets/IMG/roncolato-horizontal.png" alt="Roncolato — Estrategista de Marca" width="1136" height="257">
+    </a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="/nova-home/portfolio/">Portfólio</a>
+      <a href="/ensaio">Ensaios</a>
+      <a href="/nova-home/blog/" aria-current="page">Blog</a>
+      <a href="/nova-home/#sobre">Sobre</a>
+      <a class="btn btn-y" data-wa="Olá Rodrigo! Vim pelo seu blog e quero conversar sobre um projeto." href="https://wa.me/5562985928423" aria-label="Agendar pelo WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-wa"/></svg><span>Agendar</span>
+      </a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu"><i></i>Menu</button>
+  </div>
+</header>
+
+<div class="menu" id="menu" aria-label="Menu">
+  <button class="menu-close" id="menuClose" type="button" aria-label="Fechar menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="/nova-home/">Início</a>
+  <a href="/nova-home/portfolio/">Portfólio</a>
+  <a href="/ensaio">Ensaios</a>
+  <a href="/nova-home/blog/">Blog</a>
+  <a href="/nova-home/#contato">Contato</a>
+  <a class="btn btn-y" data-wa="Olá Rodrigo! Vim pelo seu blog e quero conversar sobre um projeto." href="https://wa.me/5562985928423">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-wa"/></svg>Agendar pelo WhatsApp
+  </a>
+</div>
+
+<main id="main">
+  <!-- LISTA DE ARTIGOS -->
+  <!--R:list--><div id="listView">
+    <section class="wrap b-head">
+      <div>
+        <span class="eyebrow" id="countLabel"><!--R:count-->Blog<!--/R:count--></span>
+        <h1>Artigos</h1>
+      </div>
+      <p>Reflexões sobre fotografia, autoridade visual e construção de marca.</p>
+    </section>
+
+    <section class="wrap" aria-label="Artigo em destaque">
+      <!--R:featured--><!--/R:featured-->
+    </section>
+
+    <div class="filters" role="group" aria-label="Filtrar artigos por tema">
+      <div class="wrap" id="filters"></div>
+    </div>
+
+    <section class="wrap grid" id="grid" aria-label="Todos os artigos"><!--R:grid--><!--/R:grid--></section>
+
+    <section class="cta-band">
+      <div class="wrap">
+        <div>
+          <h2>Sua imagem já está <em>trabalhando por você?</em></h2>
+          <p>Ensaios fotográficos para empresários, mentores e marcas pessoais. A partir de R$ 1.500.</p>
+        </div>
+        <div class="acts">
+          <a class="btn btn-y" href="/ensaio">Ver ensaios e valores</a>
+          <a class="btn btn-line" data-wa="Olá Rodrigo! Vim pelo seu blog e quero conversar sobre um ensaio." href="https://wa.me/5562985928423">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-wa"/></svg>Falar no WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ARTIGO -->
+  <!--/R:list-->
+  <!--R:article--><article id="articleView" class="article">
+    <div class="wrap">
+      <a class="back" href="__BLOG_URL__" id="backLink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Todos os artigos</a>
+      <header class="a-head">
+        <div class="meta" id="aMeta"><!--R:aMeta--><!--/R:aMeta--></div>
+        <h1 id="aTitle"><!--R:aTitle--><!--/R:aTitle--></h1>
+        <p class="a-lead" id="aLead"><!--R:aLead--><!--/R:aLead--></p>
+        <div class="author">
+          <img src="/assets/IMG/home/sobre-rodrigo.webp" alt="" width="48" height="48">
+          <div><b>Rodrigo Roncolato</b><small>Designer estratégico e fotógrafo</small></div>
+        </div>
+      </header>
+      <div class="a-cover" id="aCover"><!--R:aCover--><!--/R:aCover--></div>
+      <div class="a-body">
+        <!--R:toc--><!--/R:toc-->
+        <div class="prose-wrap">
+          <div class="prose" id="aBody"><!--R:aBody--><!--/R:aBody--></div>
+
+          <!--R:share--><!--/R:share-->
+
+          <div class="bio">
+            <img src="/assets/IMG/home/sobre-rodrigo.webp" alt="Rodrigo Roncolato" width="72" height="72" loading="lazy">
+            <div>
+              <b>Rodrigo Roncolato</b>
+              <p>Designer estratégico e fotógrafo corporativo com mais de 20 anos de atuação. Clientes como Coca-Cola, Toyota e Augusto Cury, no Brasil, em Portugal e na Irlanda.</p>
+              <a class="more" href="/nova-home/#sobre">Conheça o estúdio <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </div>
+
+          <div class="a-cta">
+            <h3>Quer aplicar isso na sua imagem?</h3>
+            <p>Conheça os ensaios do estúdio ou conte o que você precisa pelo WhatsApp.</p>
+            <div class="acts">
+              <a class="btn btn-k" href="/ensaio">Ver ensaios e valores</a>
+              <!--R:ctaWa--><!--/R:ctaWa-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="wrap related" aria-labelledby="relTitle">
+      <h2 id="relTitle">Leia também</h2>
+      <div class="grid" id="relGrid"><!--R:related--><!--/R:related--></div>
+    </section>
+  </article><!--/R:article-->
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div>
+      <img src="/ensaio/roncolato-branco-horizontal.png" alt="Roncolato — Estrategista de Marca" width="1136" height="257" loading="lazy">
+      <p>Transformando identidade em imagem e imagem em posicionamento.</p>
+    </div>
+    <nav aria-label="Rodapé">
+      <a href="/nova-home/">Início</a>
+      <a href="/nova-home/portfolio/">Portfólio</a>
+      <a href="/ensaio">Ensaios</a>
+      <a href="https://instagram.com/rroncolato" target="_blank" rel="noopener">Instagram</a>
+      <a data-wa="Olá Rodrigo! Vim pelo seu blog." href="https://wa.me/5562985928423">WhatsApp</a>
+    </nav>
+    <p class="copy">© <span id="ano">2026</span> Rodrigo Roncolato · Estúdio Roncolato · rroncolato.com.br</p>
+  </div>
+</footer>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.6-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.6 2.2 13.8 2.2 12 2.2 6.6 6.6 2.2 12 2.2c2.6 0 5.1 1 6.9 2.9 1.8 1.8 2.9 4.3 2.9 6.9 0 5.4-4.4 9.8-9.8 9.8zm8.4-18.2C18.1 1.3 15.2.1 12 .1 5.5.1.1 5.4.1 12c0 2.1.5 4.1 1.6 5.9L0 24l6.3-1.7c1.7.9 3.7 1.4 5.7 1.4 6.5 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.1-3.5-8.2z"/></symbol>
+</svg>
+
+<!--R:slugMap--><!--/R:slugMap-->
+<script>
+(function(){
+  var root = document.documentElement; root.classList.add('js');
+  var $ = function(id){ return document.getElementById(id); };
+  var WA = 'https://wa.me/5562985928423';
+  function wa(t){ return WA + '?text=' + encodeURIComponent(t); }
+
+  // Links antigos do blog (#post7, #arquetipos-de-marca) levam ao endereço novo do artigo
+  var mapEl = $('slugMap');
+  if (mapEl && location.hash) {
+    try { var alvo = JSON.parse(mapEl.textContent)[decodeURIComponent(location.hash.slice(1))]; if (alvo) location.replace(alvo); } catch (e) {}
+  }
+
+  // Filtros por tema (lista)
+  var grid = $('grid'), fw = $('filters');
+  if (grid && fw) {
+    var itens = [].slice.call(document.querySelectorAll('#featured, #grid .post-card'));
+    var tags = ['Todos'];
+    itens.forEach(function(el){ var t = el.dataset.tag; if (t && tags.indexOf(t) < 0) tags.push(t); });
+    var atual = 'Todos';
+    tags.forEach(function(t){
+      var n = t === 'Todos' ? itens.length : itens.filter(function(el){ return el.dataset.tag === t; }).length;
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'chip';
+      b.setAttribute('aria-pressed', t === atual);
+      b.appendChild(document.createTextNode(t + ' ')); var sm = document.createElement('small'); sm.textContent = n; b.appendChild(sm);
+      b.addEventListener('click', function(){
+        atual = t; fw.querySelectorAll('.chip').forEach(function(x){ x.setAttribute('aria-pressed', x === b); });
+        itens.forEach(function(el){
+          var ok = atual === 'Todos' || el.dataset.tag === atual;
+          if (el.id === 'featured') el.parentElement.hidden = !ok; else el.hidden = !ok;
+          if (ok) el.classList.add('in');
+        });
+      });
+      fw.appendChild(b);
+    });
+  }
+
+  // Artigo: índice que acompanha a leitura, barra de progresso, copiar link
+  if (document.body.dataset.page === 'post') {
+    var links = document.querySelectorAll('#tocList a');
+    links.forEach(function(a){ a.addEventListener('click', function(e){
+      var el = document.getElementById(a.getAttribute('href').slice(1)); if (!el) return;
+      e.preventDefault(); window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 90, behavior: 'smooth' });
+    }); });
+    if (links.length && 'IntersectionObserver' in window) {
+      var spy = new IntersectionObserver(function(es){
+        es.forEach(function(e){ if (e.isIntersecting) links.forEach(function(l){ l.classList.toggle('on', l.getAttribute('href') === '#' + e.target.id); }); });
+      }, { rootMargin: '-20% 0px -70% 0px' });
+      document.querySelectorAll('#aBody h2[id]').forEach(function(h){ spy.observe(h); });
+    }
+    var prog = $('progress');
+    window.addEventListener('scroll', function(){
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      prog.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, window.scrollY / max) : 0) + ')';
+    }, { passive: true });
+    var cp = $('shCopy');
+    if (cp) cp.addEventListener('click', function(){
+      var txt = $('copyTxt');
+      var ok = function(){ txt.textContent = 'Link copiado'; }, erro = function(){ txt.textContent = 'Não deu para copiar'; };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(cp.dataset.url).then(ok, erro); else erro();
+    });
+  }
+
+  // Revelar ao rolar
+  var els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  } else { els.forEach(function(el){ el.classList.add('in'); }); }
+
+  // WhatsApp, menu, ano
+  document.querySelectorAll('[data-wa]').forEach(function(a){ a.href = wa(a.getAttribute('data-wa')); a.target = '_blank'; a.rel = 'noopener'; });
+  var menu = $('menu'), mb = $('menuBtn');
+  function setMenu(o){ menu.classList.toggle('open', o); mb.setAttribute('aria-expanded', o); document.body.style.overflow = o ? 'hidden' : ''; if (o) $('menuClose').focus(); }
+  mb.addEventListener('click', function(){ setMenu(true); });
+  $('menuClose').addEventListener('click', function(){ setMenu(false); mb.focus(); });
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && menu.classList.contains('open')) { setMenu(false); mb.focus(); } });
+  $('ano').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

@@ -10,7 +10,8 @@
     "artigos": "node add-article.js",
     "projetos": "node add-project.js",
     "deploy": "vercel --prod --yes",
-    "publicar": "node scripts/publicar-social-frame.js"
+    "publicar": "node scripts/publicar-social-frame.js",
+    "seo": "node scripts/seo/gerar-seo.mjs"
   },
   "devDependencies": {
     "live-server": "^1.2.2",
