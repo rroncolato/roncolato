@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 // Deploy da página /ensaio, feito do computador do Rodrigo (onde está a versão completa do site).
 //
+// Tudo de uma vez (pergunta antes de publicar):
+//      node scripts/deploy/ensaio.mjs publicar
+//
+// Ou passo a passo, para conferir no localhost antes:
 //   1) node scripts/deploy/ensaio.mjs preparar    traz só a página nova e o que ela usa
 //   2) npm start  →  abrir http://localhost:3012/ensaio e conferir
 //   3) git add -A public/ensaio public/assets ARCHIVE/ensaio && git commit -m "feat(ensaio): nova página"
@@ -13,6 +17,7 @@
 import { execSync } from 'node:child_process';
 import { existsSync, mkdirSync, copyFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { createInterface } from 'node:readline/promises';
 
 const BRANCH = 'claude/brave-volta-e8k19w';
 const SITE = 'https://rroncolato.com.br';
@@ -36,14 +41,11 @@ function raiz() {
   catch { console.error('Rode este comando dentro da pasta do site (repositório git).'); process.exit(1); }
 }
 
-function preparar() {
+function preparar({ resumo = true } = {}) {
   process.chdir(raiz());
   console.log(`\nBranch atual: ${sh('git rev-parse --abbrev-ref HEAD')}`);
-  const sujo = sh('git status --porcelain -- public/ensaio');
-  if (sujo) {
-    console.log('\nA pasta public/ensaio tem mudanças não salvas no git:\n' + sujo);
-    console.log('Salve (commit) ou descarte essas mudanças e rode de novo.');
-    process.exit(1);
+  if (sh('git status --porcelain -- public/ensaio/index.html')) {
+    console.log('  (a página atual tem mudanças que não estão no git; elas ficam guardadas na cópia do ARCHIVE)');
   }
 
   console.log(`\nBuscando a página nova no GitHub (${BRANCH})…`);
@@ -68,13 +70,38 @@ function preparar() {
   const mantidos = ARQUIVOS.length - trazer.length;
   if (mantidos) ok(`${mantidos} imagens que você já tinha foram mantidas`);
 
-  console.log(`\nPronto. Próximos passos:
+  if (resumo) console.log(`\nPronto. Próximos passos:
   1. npm start  e abra http://localhost:3012/ensaio para conferir
   2. git add -A public/ensaio public/assets ARCHIVE/ensaio
      git commit -m "feat(ensaio): nova página de ensaio"
   3. npm run deploy   (só com a sua aprovação)
   4. node scripts/deploy/ensaio.mjs verificar
 `);
+}
+
+async function publicar() {
+  const rl = createInterface({ input: process.stdin, output: process.stdout });
+  const resp = await rl.question('\nIsso publica a página nova em rroncolato.com.br/ensaio. Continuar? (s/n) ');
+  rl.close();
+  if (!/^s/i.test(resp.trim())) { console.log('Cancelado. Nada foi alterado.'); return; }
+
+  preparar({ resumo: false });
+
+  const caminhos = ['public/ensaio', 'public/assets/IMG/og/og-ensaio.jpg', 'public/assets/IMG/home/sobre-rodrigo.webp',
+                    'scripts/deploy', 'ARCHIVE/ensaio'].map((c) => `"${c}"`).join(' ');
+  try {
+    sh(`git add -A -- ${caminhos}`);
+    sh(`git commit -m "feat(ensaio): nova página de ensaio" -- ${caminhos}`);
+    ok('Salvo no git');
+  } catch { console.log('  (nada novo para salvar no git; seguindo)'); }
+
+  console.log('\nPublicando na Vercel (leva 1 a 2 minutos)…\n');
+  try { execSync('npm run deploy', { stdio: 'inherit' }); }
+  catch {
+    console.error('\nO deploy não terminou. O site no ar continua como estava. Tente de novo com: npm run deploy');
+    process.exit(1);
+  }
+  await verificar();
 }
 
 async function verificar() {
@@ -111,6 +138,7 @@ async function verificar() {
 }
 
 const acao = process.argv[2];
-if (acao === 'preparar') preparar();
+if (acao === 'publicar') publicar();
+else if (acao === 'preparar') preparar();
 else if (acao === 'verificar') verificar();
-else console.log('Uso: node scripts/deploy/ensaio.mjs preparar | verificar');
+else console.log('Uso: node scripts/deploy/ensaio.mjs publicar | preparar | verificar');

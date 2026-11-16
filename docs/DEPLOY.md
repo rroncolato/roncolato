@@ -11,6 +11,14 @@ No computador, dentro da pasta do site e na branch de sempre:
 ```bash
 git fetch origin claude/brave-volta-e8k19w
 git checkout origin/claude/brave-volta-e8k19w -- scripts/deploy/ensaio.mjs
+node scripts/deploy/ensaio.mjs publicar
+```
+
+O `publicar` pergunta antes ("Continuar? s/n") e então faz tudo: guarda a página atual, traz a nova, salva no git, publica na Vercel e confere o site no ar. No fim, tudo tem que aparecer com ✓.
+
+### Passo a passo (se quiser conferir no localhost antes)
+
+```bash
 node scripts/deploy/ensaio.mjs preparar
 ```
 
