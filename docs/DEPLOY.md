@@ -6,7 +6,7 @@ Recomendado antes de tudo: `git push -u origin feat/admin-seguro`, para ter cóp
 
 ## Fase 1 — Página /ensaio (pronta)
 
-No computador, dentro da pasta do site e na branch de sempre:
+No computador, dentro da pasta do site:
 
 ```bash
 git fetch origin claude/brave-volta-e8k19w
@@ -14,9 +14,18 @@ git checkout origin/claude/brave-volta-e8k19w -- scripts/deploy/ensaio.mjs
 node scripts/deploy/ensaio.mjs publicar
 ```
 
-O `publicar` pergunta antes ("Continuar? s/n") e então faz tudo: guarda a página atual, traz a nova, salva no git, publica na Vercel e confere o site no ar. No fim, tudo tem que aparecer com ✓.
+O `publicar` publica **só a página de ensaio**:
+1. copia da Vercel a versão que está no ar (admin, contratos, propostas, Social Frame, tudo);
+2. troca apenas `public/ensaio/index.html` e acrescenta 2 imagens novas (`og-ensaio.jpg` e `sobre-rodrigo.webp`);
+3. mostra quantos arquivos ficam iguais e pergunta "Publicar? (s/n)";
+4. publica, espera ficar no ar e confere o site (tudo tem que aparecer com ✓);
+5. atualiza a página no seu computador e salva no git, para o próximo deploy (Social Frame, por exemplo) não trazer a página antiga de volta.
 
-### Passo a passo (se quiser conferir no localhost antes)
+Outras alterações que você tenha no computador e ainda não publicou **não vão junto**. Se a cópia do site no ar vier incompleta, ele para antes de publicar.
+
+Precisa do Vercel CLI atualizado (comando `vercel api`). Se ele avisar que está antigo: `npm i -g vercel@latest`.
+
+### Passo a passo manual (publica o site inteiro a partir do seu computador)
 
 ```bash
 node scripts/deploy/ensaio.mjs preparar
