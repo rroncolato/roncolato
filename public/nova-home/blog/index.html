@@ -397,29 +397,25 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     return new Date(+m[3], mo, +m[1]);
   }
   function fmtDate(p){ return p._d ? p._d.getDate() + ' de ' + NOMES[p._d.getMonth()] + ' de ' + p._d.getFullYear() : (p.date || ''); }
-  function readTime(html){
-    var words = String(html || '').replace(/<[^>]+>/g, ' ').trim().split(/\s+/).filter(Boolean).length;
-    return Math.max(1, Math.round(words / 200));
-  }
   function esc(s){ return String(s || '').replace(/[&<>"]/g, function(c){ return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]; }); }
   function cover(p){ return p.img || (p.video ? 'https://i.ytimg.com/vi/' + p.video + '/hqdefault.jpg' : ''); }
   function metaHTML(p, withTag){
     return (withTag ? '<span class="pill">' + esc(p.tag) + '</span>' : '') +
-      '<span>' + esc(fmtDate(p)) + '</span><span class="dot"></span><span>' + p._min + ' min de leitura</span>';
+      '<span>' + esc(fmtDate(p)) + '</span>';
   }
   function cardHTML(p){
     return '<a class="post-card reveal" href="#' + encodeURIComponent(p.slug) + '" data-tag="' + esc(p.tag) + '">' +
       '<figure><img src="' + esc(cover(p)) + '" alt="" loading="lazy" width="1200" height="800" onload="wideFix(this)"></figure>' +
       '<div class="meta"><span class="pill">' + esc(p.tag) + '</span></div>' +
       '<h3><span>' + esc(p.title) + '</span></h3><p>' + esc(p.excerpt) + '</p>' +
-      '<div class="meta foot"><span>' + esc(fmtDate(p)) + '</span><span class="dot"></span><span>' + p._min + ' min</span></div></a>';
+      '<div class="meta foot"><span>' + esc(fmtDate(p)) + '</span></div></a>';
   }
 
   var POSTS = [], bySlug = {}, current = 'Todos', listScroll = 0;
 
   loadPosts().then(function(data){
     POSTS = (Array.isArray(data) ? data : (data.posts || [])).filter(function(p){ return p.published !== false && p.slug; });
-    POSTS.forEach(function(p){ p._d = parseDate(p.date); p._min = readTime(p.body); bySlug[p.slug] = p; });
+    POSTS.forEach(function(p){ p._d = parseDate(p.date); bySlug[p.slug] = p; });
     POSTS.sort(function(a, b){ return (b._d || 0) - (a._d || 0); });
     renderList(); route();
   }).catch(function(){
