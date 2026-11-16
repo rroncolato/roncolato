@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Portfólio | Rodrigo Roncolato</title>
+<meta name="description" content="Portfólio de Rodrigo Roncolato: fotografia executiva, personal branding, fotografia institucional e identidade visual para líderes, empresas e marcas pessoais.">
+<meta name="theme-color" content="#0A0A0A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Portfólio | Rodrigo Roncolato">
+<meta property="og:description" content="Fotografia executiva, personal branding e identidade visual.">
+<meta property="og:image" content="https://rroncolato.com.br/assets/IMG/keniskley/DSCF1801-1024x576.jpg">
+<link rel="icon" href="/assets/IMG/site/rr-simbolo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Mesma identidade da nova home e da /ensaio */
+:root{
+  --k:#0A0A0A; --g1:#111111; --g2:#1a1a1a; --g3:#242424; --g4:#404040;
+  --g5:#7a7a7a; --g6:#b0b0a8; --w:#F0F0EB; --y:#F5C518;
+  --f:'Jost',system-ui,sans-serif;
+  --ease:cubic-bezier(.25,.46,.45,.94); --ease2:cubic-bezier(.76,0,.24,1);
+  --max:1440px; --pad:clamp(20px,4vw,56px); --navh:76px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--k);color:var(--w);font-family:var(--f);font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--y);color:var(--k)}
+:focus-visible{outline:2px solid var(--y);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.eyebrow{display:inline-flex;align-items:center;gap:14px;font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--y)}
+.eyebrow::before{content:"";width:32px;height:1px;background:currentColor}
+.hl{color:var(--y)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:14px 28px;border-radius:999px;font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border:1px solid transparent;cursor:pointer;white-space:nowrap;transition:transform .35s var(--ease),background .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease),box-shadow .35s var(--ease)}
+.btn svg{width:18px;height:18px;flex-shrink:0}
+.btn-y{background:var(--y);color:var(--k)}
+.btn-y:hover{transform:translateY(-2px);box-shadow:0 14px 40px -12px rgba(245,197,24,.55)}
+.btn-ghost{border-color:rgba(240,240,235,.32);color:var(--w)}
+.btn-ghost:hover{border-color:var(--w);background:rgba(240,240,235,.08)}
+.btn-k{background:var(--k);color:var(--y)}
+.btn-k:hover{transform:translateY(-2px);box-shadow:0 14px 40px -14px rgba(0,0,0,.6)}
+
+/* Navegação */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(10,10,10,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(240,240,235,.08)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;height:var(--navh)}
+.nav-logo img{height:34px;width:auto}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a:not(.btn){font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--g6);transition:color .3s}
+.nav-links a:not(.btn):hover,.nav-links a[aria-current]{color:var(--w)}
+.nav-links a[aria-current]{box-shadow:0 2px 0 var(--y)}
+.nav .btn{min-height:44px;padding:10px 22px;font-size:12px}
+.menu-btn{display:none;align-items:center;gap:10px;min-height:44px;padding:0 4px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.menu-btn i{display:grid;gap:5px}
+.menu-btn i::before,.menu-btn i::after{content:"";display:block;width:22px;height:1.5px;background:var(--w)}
+.menu{position:fixed;inset:0;z-index:70;background:var(--k);display:flex;flex-direction:column;padding:96px var(--pad) calc(32px + env(safe-area-inset-bottom));opacity:0;visibility:hidden;transition:opacity .35s var(--ease),visibility 0s .35s}
+.menu.open{opacity:1;visibility:visible;transition:opacity .35s var(--ease)}
+.menu a:not(.btn){font-size:clamp(34px,10vw,48px);font-weight:600;letter-spacing:-.02em;line-height:1.25;padding:6px 0;border-bottom:1px solid var(--g2)}
+.menu .btn{margin-top:auto}
+.menu-close{position:absolute;top:10px;right:max(12px,var(--pad));width:48px;height:48px;display:grid;place-items:center}
+.menu-close svg{width:24px;height:24px}
+
+/* Cabeçalho da página */
+.pf-head{padding-top:calc(var(--navh) + clamp(56px,8vw,120px));padding-bottom:clamp(32px,4vw,56px)}
+.pf-head h1{font-size:clamp(48px,8vw,128px);font-weight:600;line-height:.95;letter-spacing:-.045em;margin:24px 0 28px}
+.pf-head p{font-size:clamp(17px,1.5vw,21px);font-weight:300;color:var(--g6);max-width:34em}
+
+/* Filtros */
+.filters{position:sticky;top:var(--navh);z-index:30;background:rgba(10,10,10,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--g2)}
+.filters .wrap{display:flex;gap:10px;padding-top:14px;padding-bottom:14px;overflow-x:auto;scrollbar-width:none}
+.filters .wrap::-webkit-scrollbar{display:none}
+.chip{flex-shrink:0;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--g3);font-size:13px;font-weight:500;letter-spacing:.06em;color:var(--g6);transition:background .3s,color .3s,border-color .3s}
+.chip small{font-size:12px;color:var(--g5)}
+.chip:hover{border-color:var(--g4);color:var(--w)}
+.chip[aria-pressed="true"]{background:var(--y);border-color:var(--y);color:var(--k)}
+.chip[aria-pressed="true"] small{color:rgba(10,10,10,.6)}
+
+/* Grade de projetos */
+.cases{display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,6vw,96px) clamp(16px,2.4vw,40px);padding-top:clamp(40px,5vw,72px);padding-bottom:clamp(120px,12vw,180px)}
+.card{display:block;transition:transform .8s var(--ease)}
+.card.off{transform:translateY(clamp(0px,9vw,140px))}
+.card[hidden]{display:none}
+.card figure{position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:var(--g2)}
+.card figure img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.card:hover figure img{transform:scale(1.045)}
+.card-count{position:absolute;left:16px;top:16px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:6px 12px;border-radius:999px;background:rgba(10,10,10,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.card-meta{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding-top:20px}
+.card h2{font-size:clamp(24px,2.6vw,38px);font-weight:600;line-height:1.08;letter-spacing:-.025em}
+.card p{font-size:12px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--g6);margin-top:8px}
+.go{flex-shrink:0;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--g3);color:var(--w);transition:background .4s var(--ease),color .4s,border-color .4s,transform .4s var(--ease)}
+.go svg{width:18px;height:18px}
+.card:hover .go{background:var(--y);border-color:var(--y);color:var(--k);transform:rotate(-45deg)}
+
+/* CTA */
+.cta{background:var(--y);color:var(--k)}
+.cta .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;padding-top:clamp(80px,10vw,140px);padding-bottom:clamp(80px,10vw,140px)}
+.cta h2{font-size:clamp(44px,6vw,96px);font-weight:700;line-height:.92;letter-spacing:-.04em;text-transform:uppercase}
+.cta p{font-size:clamp(17px,1.4vw,20px);margin-top:20px;color:rgba(10,10,10,.75);max-width:26em}
+
+/* Rodapé */
+.footer{padding:56px 0 calc(40px + env(safe-area-inset-bottom))}
+.footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+.footer img{height:30px;width:auto;margin-bottom:16px}
+.footer p{font-size:14px;color:var(--g5);max-width:30em}
+.footer nav{display:flex;flex-wrap:wrap;gap:8px 28px;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.footer nav a{color:var(--g6);padding:8px 0;transition:color .3s}
+.footer nav a:hover{color:var(--y)}
+.copy{width:100%;max-width:none!important;padding-top:28px;border-top:1px solid var(--g2);font-size:12px;color:var(--g4)}
+
+/* Página do projeto */
+.cv{position:fixed;inset:0;z-index:80;background:var(--k);overflow-y:auto;overscroll-behavior:contain;transform:translateY(100%);visibility:hidden;transition:transform .7s var(--ease2),visibility 0s .7s}
+.cv.open{transform:none;visibility:visible;transition:transform .7s var(--ease2)}
+.cv:focus{outline:none}
+.cv-bar{position:sticky;top:0;z-index:5;background:rgba(10,10,10,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--g2);padding-top:env(safe-area-inset-top)}
+.cv-bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.cv-back{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.cv-back svg{width:18px;height:18px;color:var(--y)}
+.cv-count{font-size:13px;letter-spacing:.18em;color:var(--g5)}
+.cv-close{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--g3)}
+.cv-close svg{width:20px;height:20px}
+.cv-head{padding-top:clamp(48px,7vw,104px);padding-bottom:clamp(40px,5vw,72px)}
+.cv-head h2{font-size:clamp(44px,7.4vw,120px);font-weight:600;line-height:.95;letter-spacing:-.045em;margin:22px 0 clamp(32px,4vw,56px)}
+.cv-info{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,96px);align-items:start}
+.cv-meta{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--g3)}
+.cv-meta div{padding:16px 16px 16px 0;border-bottom:1px solid var(--g3)}
+.cv-meta dt{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--g5)}
+.cv-meta dd{font-size:17px;font-weight:500;margin-top:4px}
+.cv-desc{font-size:clamp(19px,1.7vw,24px);font-weight:300;line-height:1.5;color:var(--g6)}
+.cv-desc strong{color:var(--w);font-weight:500}
+.cv-gal{columns:2;column-gap:16px}
+.cv-gal button{display:block;width:100%;margin-bottom:16px;border-radius:4px;overflow:hidden;background:var(--g2);cursor:zoom-in;break-inside:avoid}
+.cv-gal button:first-child{column-span:all}
+.cv-gal img{width:100%;height:auto;transition:transform 1.2s var(--ease)}
+.cv-gal button:hover img{transform:scale(1.03)}
+.cv-cta{margin:clamp(56px,7vw,104px) 0;padding:clamp(28px,4vw,56px);border-radius:12px;background:var(--y);color:var(--k);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.cv-cta h3{font-size:clamp(26px,3vw,44px);font-weight:600;line-height:1.05;letter-spacing:-.025em;max-width:16em}
+.cv-next{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,3vw,48px);align-items:center;padding:clamp(40px,5vw,72px) 0 calc(clamp(56px,7vw,104px) + env(safe-area-inset-bottom));border-top:1px solid var(--g2)}
+.cv-next small{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--y)}
+.cv-next b{display:block;font-size:clamp(32px,4.4vw,68px);font-weight:600;line-height:1;letter-spacing:-.035em;margin-top:12px}
+.cv-next figure{aspect-ratio:16/9;border-radius:6px;overflow:hidden}
+.cv-next img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.cv-next:hover img{transform:scale(1.04)}
+
+/* Lightbox */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(6,6,6,.97);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:64px 16px calc(24px + env(safe-area-inset-bottom));opacity:0;visibility:hidden;transition:opacity .3s var(--ease),visibility 0s .3s}
+.lb.open{opacity:1;visibility:visible;transition:opacity .3s var(--ease)}
+.lb img{max-width:min(1400px,100%);max-height:80svh;width:auto;height:auto;border-radius:4px;object-fit:contain}
+.lb-count{font-size:13px;letter-spacing:.2em;color:var(--g6)}
+.lb-close{position:absolute;top:12px;right:12px;width:48px;height:48px;border-radius:50%;display:grid;place-items:center}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:rgba(10,10,10,.55);border:1px solid rgba(240,240,235,.14);transition:background .3s,color .3s}
+.lb-nav:hover{background:var(--y);color:var(--k)}
+.lb-prev{left:16px}.lb-next{right:16px}
+.lb svg{width:22px;height:22px}
+
+/* Barra fixa (celular) */
+.mbar{display:none}
+
+/* Revelar */
+.js .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.js .reveal.in{opacity:1;transform:none}
+.js .card.off.reveal.in{transform:translateY(clamp(0px,9vw,140px))}
+
+@media (max-width:1100px){
+  .nav-links a:not(.btn){display:none}
+  .menu-btn{display:inline-flex}
+}
+@media (max-width:900px){
+  .cases{grid-template-columns:1fr}
+  .card.off,.js .card.off.reveal.in{transform:none}
+  .cv-info{grid-template-columns:1fr}
+  .cv-next{grid-template-columns:1fr}
+  .cv-next figure{order:-1}
+  body{padding-bottom:calc(80px + env(safe-area-inset-bottom))}
+  .mbar{display:flex;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(10,10,10,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(240,240,235,.1);transform:translateY(110%);transition:transform .45s var(--ease)}
+  .mbar.show{transform:none}
+  .mbar .btn{flex:1;min-height:50px;padding:12px 16px;font-size:13px;gap:10px}
+}
+@media (max-width:640px){
+  :root{--navh:64px}
+  .nav-logo img{height:26px}
+  .nav .btn{display:none}
+  .cv-gal{columns:1}
+  .cv-gal button{margin-bottom:10px}
+  .cv-cta{flex-direction:column;align-items:stretch}
+  .cv-cta .btn{width:100%}
+  .lb-nav{width:44px;height:44px}
+  .lb-prev{left:8px}.lb-next{right:8px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .reveal{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="/nova-home/" class="nav-logo" aria-label="Rodrigo Roncolato — início">
+      <img src="/ensaio/roncolato-branco-horizontal.png" alt="Roncolato — Estrategista de Marca" width="1136" height="257">
+    </a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="/nova-home/portfolio/" aria-current="page">Portfólio</a>
+      <a href="/ensaio">Ensaios</a>
+      <a href="/#blog">Blog</a>
+      <a href="/nova-home/#sobre">Sobre</a>
+      <a class="btn btn-y" data-wa="Olá Rodrigo! Vi o seu portfólio e quero conversar sobre um projeto." href="https://wa.me/5562985928423">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-wa"/></svg>Agendar
+      </a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu"><i></i>Menu</button>
+  </div>
+</header>
+
+<div class="menu" id="menu" aria-label="Menu">
+  <button class="menu-close" id="menuClose" type="button" aria-label="Fechar menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="/nova-home/">Início</a>
+  <a href="/nova-home/portfolio/">Portfólio</a>
+  <a href="/ensaio">Ensaios</a>
+  <a href="/#blog">Blog</a>
+  <a href="/nova-home/#contato">Contato</a>
+  <a class="btn btn-y" data-wa="Olá Rodrigo! Vi o seu portfólio e quero conversar sobre um projeto." href="https://wa.me/5562985928423">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-wa"/></svg>Agendar pelo WhatsApp
+  </a>
+</div>
+
+<main>
+  <section class="wrap pf-head">
+    <span class="eyebrow" id="countLabel">Portfólio</span>
+    <h1>Trabalhos <span class="hl">selecionados.</span></h1>
+    <p>Fotografia executiva, personal branding, fotografia institucional e identidade visual. Toque em um projeto para ver todas as imagens.</p>
+  </section>
+
+  <div class="filters" role="group" aria-label="Filtrar projetos por categoria">
+    <div class="wrap" id="filters"></div>
+  </div>
+
+  <section class="wrap cases" id="cases" aria-label="Projetos"></section>
+
+  <section class="cta">
+    <div class="wrap">
+      <div>
+        <h2>Vamos criar juntos?</h2>
+        <p>Conte o que você precisa. A mensagem chega direto no meu WhatsApp e eu respondo pessoalmente.</p>
+      </div>
+      <a class="btn btn-k" data-wa="Olá Rodrigo! Vi o seu portfólio e quero conversar sobre um projeto." href="https://wa.me/5562985928423">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-wa"/></svg>Falar com Rodrigo
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div>
+      <img src="/ensaio/roncolato-branco-horizontal.png" alt="Roncolato — Estrategista de Marca" width="1136" height="257" loading="lazy">
+      <p>Transformando identidade em imagem e imagem em posicionamento.</p>
+    </div>
+    <nav aria-label="Rodapé">
+      <a href="/nova-home/">Início</a>
+      <a href="/ensaio">Ensaios</a>
+      <a href="/#blog">Blog</a>
+      <a href="https://instagram.com/rroncolato" target="_blank" rel="noopener">Instagram</a>
+      <a data-wa="Olá Rodrigo! Vi o seu portfólio." href="https://wa.me/5562985928423">WhatsApp</a>
+    </nav>
+    <p class="copy">© <span id="ano">2026</span> Rodrigo Roncolato · Estúdio Roncolato · rroncolato.com.br</p>
+  </div>
+</footer>
+
+<!-- Página do projeto -->
+<div class="cv" id="cv" role="dialog" aria-modal="true" aria-labelledby="cvTitle" tabindex="-1">
+  <div class="cv-bar">
+    <div class="wrap">
+      <button class="cv-back" id="cvBack" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Todos os projetos</button>
+      <span class="cv-count" id="cvCount"></span>
+      <button class="cv-close" id="cvClose" type="button" aria-label="Fechar projeto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="cv-head">
+      <span class="eyebrow" id="cvEyebrow"></span>
+      <h2 id="cvTitle"></h2>
+      <div class="cv-info">
+        <dl class="cv-meta" id="cvMeta"></dl>
+        <p class="cv-desc" id="cvDesc"></p>
+      </div>
+    </div>
+    <div class="cv-gal" id="cvGal"></div>
+    <div class="cv-cta">
+      <h3>Quer um projeto assim para a sua marca?</h3>
+      <a class="btn btn-k" id="cvWa" href="https://wa.me/5562985928423" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-wa"/></svg>Quero algo assim
+      </a>
+    </div>
+    <a class="cv-next" id="cvNext" href="#">
+      <div><small>Próximo projeto</small><b id="cvNextTitle"></b></div>
+      <figure><img id="cvNextImg" alt="" loading="lazy"></figure>
+    </a>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+  <button class="lb-close" id="lbClose" type="button" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <span class="lb-count" id="lbCount"></span>
+  <img id="lbImg" alt="">
+  <button class="lb-nav lb-prev" id="lbPrev" type="button" aria-label="Imagem anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button class="lb-nav lb-next" id="lbNext" type="button" aria-label="Próxima imagem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+</div>
+
+<div class="mbar" id="mbar">
+  <a class="btn btn-y" data-wa="Olá Rodrigo! Vi o seu portfólio e quero conversar sobre um projeto." href="https://wa.me/5562985928423">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-wa"/></svg>Agendar pelo WhatsApp
+  </a>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.6-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.6 2.2 13.8 2.2 12 2.2 6.6 6.6 2.2 12 2.2c2.6 0 5.1 1 6.9 2.9 1.8 1.8 2.9 4.3 2.9 6.9 0 5.4-4.4 9.8-9.8 9.8zm8.4-18.2C18.1 1.3 15.2.1 12 .1 5.5.1.1 5.4.1 12c0 2.1.5 4.1 1.6 5.9L0 24l6.3-1.7c1.7.9 3.7 1.4 5.7 1.4 6.5 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.1-3.5-8.2z"/></symbol>
+</svg>
+
+<script>
+(function(){
+  var root = document.documentElement; root.classList.add('js');
+  var WA = 'https://wa.me/5562985928423';
+  function wa(t){ return WA + '?text=' + encodeURIComponent(t); }
+  var $ = function(id){ return document.getElementById(id); };
+
+  /* =========================================================
+     PROJETOS — para trocar fotos ou textos, edite esta lista.
+     cover: [arquivo, largura, altura]  ·  imgs: idem
+     ========================================================= */
+  var CASES = [
+ {
+  "id": "tiago",
+  "title": "Thiago Keniskley",
+  "client": "Thiago Keniskley",
+  "cat": "Executiva",
+  "year": "2023",
+  "deliverable": "Sessão executiva",
+  "desc": "Sessão executiva completa para empresário com atuação em múltiplos segmentos. Foco em <strong>transmitir liderança e confiança</strong> para uso em LinkedIn, site e materiais comerciais.",
+  "cover": [
+   "/assets/IMG/keniskley/DSCF1801-1024x576.jpg",
+   1024,
+   576
+  ],
+  "pos": "55% 40%",
+  "imgs": [
+   [
+    "/assets/IMG/keniskley/DSCF1801-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/keniskley/DSCF1892-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/keniskley/DSCF2017-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/keniskley/DSCF2075-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/keniskley/DSCF2324-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/keniskley/DSCF2417-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/keniskley/DSCF2711-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/keniskley/DSCF2735-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/keniskley/DSCF2831-1024x576.jpg",
+    1024,
+    576
+   ]
+  ]
+ },
+ {
+  "id": "lara",
+  "title": "Lara Brenner",
+  "client": "Lara Brenner",
+  "cat": "Personal Branding",
+  "year": "2023",
+  "deliverable": "Sessão fotográfica completa",
+  "desc": "Sessão fotográfica com <strong>direção criativa completa</strong> para profissional do mercado de saúde e bem-estar. O resultado une delicadeza e autoridade em um banco de imagens versátil.",
+  "cover": [
+   "/assets/IMG/lara-brenner/larabrenner-004-1024x576.jpg",
+   1024,
+   576
+  ],
+  "pos": "50% 35%",
+  "imgs": [
+   [
+    "/assets/IMG/lara-brenner/larabrenner-001-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/lara-brenner/larabrenner-002-1024x579.jpg",
+    1024,
+    579
+   ],
+   [
+    "/assets/IMG/lara-brenner/larabrenner-004-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/lara-brenner/larabrenner-006-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/lara-brenner/larabrenner-008-576x1024.jpg",
+    576,
+    1024
+   ],
+   [
+    "/assets/IMG/lara-brenner/larabrenner-009-576x1024.jpg",
+    576,
+    1024
+   ],
+   [
+    "/assets/IMG/lara-brenner/larabrenner-010-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/lara-brenner/larabrenner-011-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/lara-brenner/larabrenner-012-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/lara-brenner/larabrenner-013-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/lara-brenner/larabrenner-014-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/lara-brenner/larabrenner-015-1024x576.jpg",
+    1024,
+    576
+   ]
+  ]
+ },
+ {
+  "id": "bonifacil",
+  "title": "Bonifácil Advocacia",
+  "client": "Bonifácil",
+  "cat": "Institucional",
+  "year": "2021",
+  "deliverable": "Fotografia institucional",
+  "desc": "Fotografia institucional completa para escritório de advocacia. O projeto buscava <strong>modernizar a imagem da empresa</strong> mantendo a seriedade e credibilidade esperadas do setor jurídico.",
+  "cover": [
+   "/assets/IMG/bonifacil/DSCF1922-1024x683.jpg",
+   1024,
+   683
+  ],
+  "pos": "62% 45%",
+  "imgs": [
+   [
+    "/assets/IMG/bonifacil/DSCF1624-1024x683.jpg",
+    1024,
+    683
+   ],
+   [
+    "/assets/IMG/bonifacil/DSCF1782-1024x683.jpg",
+    1024,
+    683
+   ],
+   [
+    "/assets/IMG/bonifacil/DSCF1922-1024x683.jpg",
+    1024,
+    683
+   ],
+   [
+    "/assets/IMG/bonifacil/DSCF2292-1024x683.jpg",
+    1024,
+    683
+   ],
+   [
+    "/assets/IMG/bonifacil/DSCF2444-1024x683.jpg",
+    1024,
+    683
+   ],
+   [
+    "/assets/IMG/bonifacil/DSCF2473-1024x683.jpg",
+    1024,
+    683
+   ],
+   [
+    "/assets/IMG/bonifacil/DSCF2543-1024x683.jpg",
+    1024,
+    683
+   ],
+   [
+    "/assets/IMG/bonifacil/DSCF2595-1024x683.jpg",
+    1024,
+    683
+   ],
+   [
+    "/assets/IMG/bonifacil/DSCF2622-683x1024.jpg",
+    683,
+    1024
+   ],
+   [
+    "/assets/IMG/bonifacil/DSCF2776-683x1024.jpg",
+    683,
+    1024
+   ],
+   [
+    "/assets/IMG/bonifacil/DSCF2797-683x1024.jpg",
+    683,
+    1024
+   ]
+  ]
+ },
+ {
+  "id": "silvano",
+  "title": "Engenheiro Silvano",
+  "client": "Eng. Silvano",
+  "cat": "Executiva",
+  "year": "2023",
+  "deliverable": "Sessão LinkedIn + site",
+  "desc": "Sessão executiva para engenheiro com foco em <strong>autoridade técnica e presença digital</strong>. As imagens foram pensadas especificamente para LinkedIn, currículo e apresentações profissionais.",
+  "cover": [
+   "/assets/IMG/site/DSCF3937.jpg",
+   1800,
+   1200
+  ],
+  "pos": "50% 45%",
+  "imgs": [
+   [
+    "/assets/IMG/silvano/DSCF3807-1024x683.jpg",
+    1024,
+    683
+   ],
+   [
+    "/assets/IMG/silvano/DSCF3854-1024x683.jpg",
+    1024,
+    683
+   ],
+   [
+    "/assets/IMG/silvano/DSCF3926-1024x683.jpg",
+    1024,
+    683
+   ],
+   [
+    "/assets/IMG/silvano/DSCF3937-1024x683.jpg",
+    1024,
+    683
+   ],
+   [
+    "/assets/IMG/silvano/DSCF3999-1024x683.jpg",
+    1024,
+    683
+   ],
+   [
+    "/assets/IMG/silvano/DSCF4240-1024x683.jpg",
+    1024,
+    683
+   ],
+   [
+    "/assets/IMG/silvano/DSCF4254-1024x683.jpg",
+    1024,
+    683
+   ],
+   [
+    "/assets/IMG/silvano/DSCF4289-1024x683.jpg",
+    1024,
+    683
+   ]
+  ]
+ },
+ {
+  "id": "attila",
+  "title": "Attila Personal Trainer",
+  "client": "Attila Fitness",
+  "cat": "Personal Branding",
+  "year": "2024",
+  "deliverable": "Banco de imagens + branding",
+  "desc": "Construção visual completa de personal brand para profissional de fitness. Foram criadas imagens para <strong>redes sociais, site e materiais de divulgação</strong>, com foco em energia, técnica e resultado.",
+  "cover": [
+   "/assets/IMG/attila/pag-attila17-1024x576.png",
+   1024,
+   576
+  ],
+  "pos": "50% 40%",
+  "imgs": [
+   [
+    "/assets/IMG/attila/pag-attila02-1024x576.png",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/attila/pag-attila03-1024x576.png",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/attila/pag-attila04-1024x576.png",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/attila/pag-attila05-1024x576.png",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/attila/pag-attila06-1024x576.png",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/attila/pag-attila07-1024x576.png",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/attila/pag-attila08-1024x576.png",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/attila/pag-attila09-1024x576.png",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/attila/pag-attila10-1024x576.png",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/attila/pag-attila11-1024x576.png",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/attila/pag-attila12-1024x576.png",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/attila/pag-attila13-1024x576.png",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/attila/pag-attila14-1024x576.png",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/attila/pag-attila15-1024x576.png",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/attila/pag-attila16-1024x576.png",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/attila/pag-attila17-1024x576.png",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/attila/pag-attila18-1024x576.png",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/attila/pag-attila19-1024x576.png",
+    1024,
+    576
+   ]
+  ]
+ },
+ {
+  "id": "raro",
+  "title": "Raro Investimentos",
+  "client": "Raro Investimentos",
+  "cat": "Personal Branding",
+  "year": "2023",
+  "deliverable": "Fotos + Identidade Visual",
+  "desc": "Projeto completo de <strong>fotografia corporativa e personal branding</strong> para gestora de investimentos em Goiânia. O desafio era transmitir solidez, modernidade e confiança para um público exigente do mercado financeiro.",
+  "cover": [
+   "/assets/IMG/raro/portifa-raro-12-1024x576.jpg",
+   1024,
+   576
+  ],
+  "pos": "40% 50%",
+  "imgs": [
+   [
+    "/assets/IMG/raro/portifa-raro-01-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/raro/portifa-raro-02-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/raro/portifa-raro-03-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/raro/portifa-raro-04-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/raro/portifa-raro-05-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/raro/portifa-raro-06-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/raro/portifa-raro-07-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/raro/portifa-raro-08-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/raro/portifa-raro-09-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/raro/portifa-raro-10-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/raro/portifa-raro-11-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/raro/portifa-raro-12-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/raro/portifa-raro-13-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/raro/portifa-raro-14-1024x584.jpg",
+    1024,
+    584
+   ],
+   [
+    "/assets/IMG/raro/portifa-raro-15-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/raro/portifa-raro-16-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/raro/portifa-raro-17-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/raro/portifa-raro-19-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/raro/portifa-raro-20-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/raro/portifa-raro-21-1-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/raro/portifa-raro-22-1024x576.jpg",
+    1024,
+    576
+   ]
+  ]
+ },
+ {
+  "id": "cury",
+  "title": "Augusto Cury",
+  "client": "Augusto Cury",
+  "cat": "Executiva",
+  "year": "2022",
+  "deliverable": "Sessão fotográfica",
+  "desc": "Sessão executiva para um dos maiores escritores e palestrantes do Brasil. O foco foi capturar <strong>autoridade, inteligência e acolhimento</strong> — a essência da comunicação de Augusto Cury.",
+  "cover": [
+   "/assets/IMG/augusto-cury/thumb-port-augusto.png",
+   619,
+   334
+  ],
+  "pos": "30% 50%",
+  "imgs": [
+   [
+    "/assets/IMG/augusto-cury/port-cury-02.jpg",
+    1400,
+    1000
+   ],
+   [
+    "/assets/IMG/augusto-cury/port-cury-03.jpg",
+    1400,
+    1200
+   ],
+   [
+    "/assets/IMG/augusto-cury/port-cury-04.jpg",
+    1400,
+    1200
+   ],
+   [
+    "/assets/IMG/augusto-cury/port-cury-05.jpg",
+    1400,
+    1200
+   ],
+   [
+    "/assets/IMG/augusto-cury/port-cury-06.jpg",
+    1400,
+    981
+   ],
+   [
+    "/assets/IMG/augusto-cury/thumb-port-augusto.png",
+    619,
+    334
+   ]
+  ]
+ },
+ {
+  "id": "stabilize",
+  "title": "Stabilize Pilates",
+  "client": "Stabilize Pilates",
+  "cat": "Evento + Branding",
+  "year": "2023",
+  "deliverable": "Cobertura de evento",
+  "desc": "Cobertura fotográfica de evento corporativo e branding visual para estúdio de pilates em expansão. As imagens foram usadas em <strong>redes sociais, site e materiais de marketing</strong>.",
+  "cover": [
+   "/assets/IMG/stabilize/capa-destacada.jpg",
+   620,
+   334
+  ],
+  "pos": "50% 50%",
+  "imgs": [
+   [
+    "/assets/IMG/stabilize/Frame-10-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/stabilize/Frame-13-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/stabilize/Frame-14-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/stabilize/Frame-4-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/stabilize/Frame-5-1024x640.jpg",
+    1024,
+    640
+   ],
+   [
+    "/assets/IMG/stabilize/Frame-6-1-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/stabilize/Frame-8-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/stabilize/Frame-9-1024x576.jpg",
+    1024,
+    576
+   ],
+   [
+    "/assets/IMG/stabilize/capa-destacada.jpg",
+    620,
+    334
+   ]
+  ]
+ }
+];
+
+  // Filtros com contagem
+  var cats = ['Todos'];
+  CASES.forEach(function(c){ if (cats.indexOf(c.cat) < 0) cats.push(c.cat); });
+  var fWrap = $('filters'), current = 'Todos';
+  cats.forEach(function(cat){
+    var n = cat === 'Todos' ? CASES.length : CASES.filter(function(c){ return c.cat === cat; }).length;
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'chip';
+    b.setAttribute('aria-pressed', cat === 'Todos'); b.innerHTML = cat + ' <small>' + n + '</small>';
+    b.addEventListener('click', function(){ current = cat; render(); fWrap.querySelectorAll('.chip').forEach(function(x){ x.setAttribute('aria-pressed', x === b); }); });
+    fWrap.appendChild(b);
+  });
+  $('countLabel').textContent = 'Portfólio · ' + CASES.length + ' projetos';
+
+  // Cartões
+  var grid = $('cases'), cards = [];
+  CASES.forEach(function(c){
+    var a = document.createElement('a'); a.className = 'card reveal'; a.href = '#' + c.id; a.dataset.cat = c.cat;
+    a.innerHTML = '<figure><img src="' + c.cover[0] + '" alt="' + c.title + '" width="' + c.cover[1] + '" height="' + c.cover[2] + '" loading="lazy" style="object-position:' + c.pos + '"><span class="card-count">' + c.imgs.length + ' imagens</span></figure>' +
+      '<div class="card-meta"><div><h2>' + c.title + '</h2><p>' + c.cat + ' · ' + c.year + '</p></div><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>';
+    grid.appendChild(a); cards.push(a);
+  });
+  function render(){
+    var k = 0;
+    cards.forEach(function(card){
+      var show = current === 'Todos' || card.dataset.cat === current;
+      card.hidden = !show; card.classList.toggle('off', show && (k % 2 === 1));
+      if (show) { k++; card.classList.add('in'); }
+    });
+  }
+  render();
+
+  // Página do projeto (abre por #id, então o link pode ser compartilhado)
+  var cv = $('cv'), gal = $('cvGal'), cur = -1, openedHere = false, lastScroll = 0;
+  function openCase(i){
+    var c = CASES[i]; if (!c) return; cur = i;
+    $('cvEyebrow').textContent = c.cat + ' · ' + c.year;
+    $('cvTitle').textContent = c.title;
+    $('cvCount').textContent = (i + 1) + ' / ' + CASES.length;
+    $('cvMeta').innerHTML = [['Cliente', c.client], ['Categoria', c.cat], ['Ano', c.year], ['Entrega', c.deliverable]]
+      .map(function(r){ return '<div><dt>' + r[0] + '</dt><dd>' + r[1] + '</dd></div>'; }).join('');
+    $('cvDesc').innerHTML = c.desc;
+    gal.innerHTML = '';
+    c.imgs.forEach(function(im, k){
+      var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', 'Ampliar imagem ' + (k + 1) + ' de ' + c.imgs.length);
+      b.innerHTML = '<img src="' + im[0] + '" alt="' + c.title + ' — imagem ' + (k + 1) + '" width="' + im[1] + '" height="' + im[2] + '"' + (k > 1 ? ' loading="lazy"' : '') + '>';
+      b.addEventListener('click', function(){ openLb(k); });
+      gal.appendChild(b);
+    });
+    $('cvWa').href = wa('Olá Rodrigo! Vi o projeto ' + c.title + ' no seu portfólio e quero algo assim para a minha marca.');
+    var n = CASES[(i + 1) % CASES.length];
+    $('cvNext').href = '#' + n.id; $('cvNextTitle').textContent = n.title;
+    $('cvNextImg').src = n.cover[0]; $('cvNextImg').alt = n.title; $('cvNextImg').style.objectPosition = n.pos;
+    if (!cv.classList.contains('open')) { lastScroll = window.scrollY; }
+    cv.classList.add('open'); cv.scrollTop = 0; document.body.style.overflow = 'hidden';
+    document.title = c.title + ' | Portfólio Rodrigo Roncolato';
+    setTimeout(function(){ cv.focus({ preventScroll: true }); }, 50);
+  }
+  function closeCase(){
+    cv.classList.remove('open'); document.body.style.overflow = ''; cur = -1;
+    document.title = 'Portfólio | Rodrigo Roncolato';
+  }
+  function fromHash(){
+    var id = location.hash.slice(1);
+    var i = CASES.findIndex(function(c){ return c.id === id; });
+    if (i >= 0) openCase(i); else if (cv.classList.contains('open')) closeCase();
+  }
+  grid.addEventListener('click', function(e){ if (e.target.closest('.card')) openedHere = true; });
+  $('cvNext').addEventListener('click', function(){ openedHere = true; });
+  function leave(){
+    if (openedHere && history.length > 1) { history.back(); }
+    else { history.replaceState(null, '', location.pathname + location.search); closeCase(); }
+    openedHere = false;
+  }
+  $('cvBack').addEventListener('click', leave);
+  $('cvClose').addEventListener('click', leave);
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+
+  // Lightbox das imagens do projeto
+  var lb = $('lb'), lbImg = $('lbImg'), li = 0;
+  function showLb(k){ var imgs = CASES[cur].imgs; li = (k + imgs.length) % imgs.length; lbImg.src = imgs[li][0]; lbImg.alt = CASES[cur].title + ' — imagem ' + (li + 1); $('lbCount').textContent = (li + 1) + ' / ' + imgs.length; }
+  function openLb(k){ showLb(k); lb.classList.add('open'); $('lbClose').focus(); }
+  function closeLb(){ lb.classList.remove('open'); }
+  $('lbClose').addEventListener('click', closeLb);
+  $('lbPrev').addEventListener('click', function(){ showLb(li - 1); });
+  $('lbNext').addEventListener('click', function(){ showLb(li + 1); });
+  lb.addEventListener('click', function(e){ if (e.target === lb) closeLb(); });
+  var x0 = null;
+  lb.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', function(e){ if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null; if (Math.abs(dx) > 40) showLb(li + (dx < 0 ? 1 : -1)); });
+  document.addEventListener('keydown', function(e){
+    if (lb.classList.contains('open')) {
+      if (e.key === 'Escape') closeLb(); if (e.key === 'ArrowLeft') showLb(li - 1); if (e.key === 'ArrowRight') showLb(li + 1); return;
+    }
+    if (cv.classList.contains('open') && e.key === 'Escape') leave();
+  });
+
+  // WhatsApp, menu, ano
+  document.querySelectorAll('[data-wa]').forEach(function(a){ a.href = wa(a.getAttribute('data-wa')); a.target = '_blank'; a.rel = 'noopener'; });
+  var menu = $('menu'), mb = $('menuBtn');
+  function setMenu(o){ menu.classList.toggle('open', o); mb.setAttribute('aria-expanded', o); document.body.style.overflow = o ? 'hidden' : ''; if (o) $('menuClose').focus(); }
+  mb.addEventListener('click', function(){ setMenu(true); });
+  $('menuClose').addEventListener('click', function(){ setMenu(false); mb.focus(); });
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+  $('ano').textContent = new Date().getFullYear();
+
+  // Revelar ao rolar + barra fixa
+  var els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px', threshold: .05 });
+    els.forEach(function(el){ io.observe(el); });
+  } else { els.forEach(function(el){ el.classList.add('in'); }); }
+  var mbar = $('mbar'), cta = document.querySelector('.cta');
+  function onScroll(){ mbar.classList.toggle('show', window.scrollY > 300 && cta.getBoundingClientRect().top > window.innerHeight * .9); }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+})();
+</script>
+</body>
+</html>
