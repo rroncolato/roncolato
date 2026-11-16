@@ -45,8 +45,8 @@ export const SERVICOS = [
 
 // Mesmos valores da página /ensaio
 export const PACOTES = [
-  { nome: 'Essencial', preco: 1500, itens: ['2 horas de ensaio', '1 muda de roupa', '30 a 50 fotos editadas'] },
-  { nome: 'Presença', preco: 2400, itens: ['3 horas de ensaio', '2 a 3 mudas de roupa', '80 a 100 fotos editadas', 'Guia de uso estratégico', '1 rodada de revisão'] },
+  { nome: 'Essencial', preco: 1500, itens: ['1 hora de ensaio', '1 muda de roupa', '30 a 50 fotos editadas'] },
+  { nome: 'Presença', preco: 2400, itens: ['2 horas de ensaio', '2 a 3 mudas de roupa', '80 a 100 fotos editadas', 'Guia de uso estratégico', '1 rodada de revisão'] },
   { nome: 'Autoridade', preco: 4200, itens: ['4 horas de ensaio', '3 a 4 mudas de roupa', '150+ fotos editadas', 'Guia de uso completo', 'Revisões ilimitadas', 'Fotos para LinkedIn'] },
   { nome: 'Corporativo', preco: null, itens: ['Ensaio de colaboradores', 'Múltiplas mudas', 'Fotos ilimitadas', 'Lote de fotos de perfil', 'Consultoria de marca', 'Projeto personalizado'] },
 ];
@@ -75,7 +75,7 @@ export const PAGINAS = {
   ensaio: {
     arquivo: 'public/ensaio/index.html', caminho: '/ensaio', final: '/ensaio',
     titulo: 'Ensaio Fotográfico Profissional em Goiânia | Estúdio Roncolato',
-    descricao: 'Ensaio fotográfico para empresários, mentores e marcas pessoais em Goiânia. Pacotes a partir de R$ 1.500, com 2 a 4 horas de sessão e de 30 a 150+ fotos editadas.',
+    descricao: 'Ensaio fotográfico para empresários, mentores e marcas pessoais em Goiânia. Pacotes a partir de R$ 1.500, com 1 a 4 horas de sessão e de 30 a 150+ fotos editadas.',
     imagem: '/assets/IMG/og/og-ensaio.jpg',
   },
 };
