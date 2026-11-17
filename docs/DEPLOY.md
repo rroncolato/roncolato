@@ -4,7 +4,21 @@ O site no ar é publicado do computador do Rodrigo, a partir da branch `feat/adm
 
 Recomendado antes de tudo: `git push -u origin feat/admin-seguro`, para ter cópia no GitHub.
 
-## Fase 1 — Página /ensaio (pronta)
+## Fase 1 — Página /ensaio (publicada em 17/11/2026)
+
+Publicada a partir da versão que estava no ar (`dpl_ADT82YD3YTheixRdzX4KnNfRkYGT`), trocando só a página de ensaio e as 2 imagens novas. Versão no ar: `dpl_6sFHnKwLxG9YXkqPAimyNixrMRoQ`.
+
+**Pendente no computador do Rodrigo:** trazer a página nova para a pasta local, senão o próximo deploy feito de lá (Social Frame, por exemplo) volta a página antiga:
+
+```bash
+git fetch origin claude/brave-volta-e8k19w
+git checkout origin/claude/brave-volta-e8k19w -- scripts/deploy/ensaio.mjs
+node scripts/deploy/ensaio.mjs preparar
+git add -A public/ensaio public/assets/IMG/og public/assets/IMG/home scripts/deploy ARCHIVE/ensaio
+git commit -m "feat(ensaio): nova página de ensaio"
+```
+
+### Como foi feito (para repetir em outra página)
 
 No computador, dentro da pasta do site:
 
