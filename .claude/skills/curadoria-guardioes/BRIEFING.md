@@ -9,7 +9,12 @@
 ## 1. Contexto
 
 - **Cliente:** Comunidade Guardiões do Amor Maior (comunidade católica que realiza acampamentos).
-- **Evento:** Acampamento Espírito Empreendedor, com **5 dias** de duração. O cronograma de uma edição será enviado depois.
+- **Evento:** Acampamento Espírito Empreendedor, com **5 dias** de duração. Cronograma da **X edição (18 a 22/11/2026)** recebido. O mapa completo, com os nomes das dinâmicas, está em `cronograma.local.md`, **fora do git**.
+- **Ritmo (versão neutra):**
+  - O Dia 1 começa à noite, com a chegada por volta das 21h.
+  - O Dia 5 termina por volta das 16h, com a **foto oficial**.
+  - Os momentos mais fortes se concentram **à noite, de madrugada e com pouquíssima luz**.
+- **Nunca publicar:** banho, higienização e repouso, em nenhuma entrega.
 - **Volume:** cerca de **4.000 fotos** por acampamento.
 - **Equipe:** pode haver **mais de um fotógrafo** na cobertura.
 - **Público:** só adultos, **maiores de 21 anos**.
@@ -115,7 +120,7 @@ Espirito Empreendedor 2026-11/      ← uma pasta por edição
 - **Referência:** a receita real do tratamento (lida dos metadados de 13 fotos de um acampamento anterior) está em **`referencia-edicao.md`**.
 - **Equipamento:** Fujifilm X-T2 em JPEG 16:9, lentes XF18, XF50 e XF90 f/2 (quase sempre abertas) e drone DJI.
 - **JPEG** tem menos margem que RAW, então os ajustes precisam ser mais suaves e as correções de balanço de branco e de altas luzes, moderadas.
-- **Luz:** tem momento à noite (escuro, ISO alto) e durante o dia. *Proposta:* duas variações do preset, uma para dia e outra para noite.
+- **Luz:** o cronograma mostra que cerca de metade dos momentos mais fortes acontece com pouca luz. São necessárias três famílias de preset: **Dia**, **Noite** (tenda e palco com luz artificial) e **Baixa luz** (madrugada e luz mínima).
 - **Ruído:** sem redução agressiva, porque o ruído não incomoda.
 
 ## 8. Decisões técnicas (para a construção)
@@ -142,8 +147,15 @@ Espirito Empreendedor 2026-11/      ← uma pasta por edição
 8. **P&B:** na amostra, o P&B aparece nos bastidores e nos servos e a cor nos campistas. É um critério seu ou foi caso a caso?
 9. **Para que foi essa pasta:** as 118 fotos foram a seleção para as redes, para o telão ou outra coisa?
 
+### Perguntas que surgiram do cronograma
+10. **Segredo:** revisar a proposta de classificação de cada momento no `cronograma.local.md` (SEGREDO? / LIVRE? / DECIDIR).
+11. **Telão:** a retrospectiva do Dia 5, de madrugada, é o momento do telão? É uma sessão única ou há telão em outros dias?
+12. **Atividades externas:** o maior bloco do acampamento (cerca de 12 horas no total) é coberto pelo fotógrafo? Se for segredo, essas fotos ficam só no telão.
+13. **Moção do dia:** pode ser usada publicamente como tema do carrossel do dia?
+14. **Artista convidado:** existe autorização para vender fotos dele na Fotto?
+
 ### Materiais que o Rodrigo vai enviar
-- Cronograma de uma edição (5 dias).
+- ~~Cronograma de uma edição (5 dias).~~ Recebido (X edição).
 - O preset atual do Lightroom (arquivo `.xmp`), para confirmar a receita lida das fotos.
 - **Fotos de referência à noite** (a pasta enviada só tem fotos de dia).
 - Opcional: algumas fotos que ele sempre descarta, para calibrar o critério.
