@@ -1,0 +1,5 @@
+# Proteção do segredo sagrado: vale onde quer que esta pasta esteja.
+segredo-sagrado.md
+*.local.md
+node_modules/
+package-lock.json

@@ -30,9 +30,9 @@ Contexto completo em `BRIEFING.md`. Tratamento de cor do Rodrigo em `referencia-
 
 ### Passo 0 — Conferir o ambiente
 
-- Na raiz do repositório, rode `node -e "require('sharp')"`. Se der erro, rode `npm install`.
+- Confira se o Node está instalado (`node -v`). Dentro da pasta desta skill (`.claude/skills/curadoria-guardioes/`), rode `node -e "require('sharp')"`. Se der erro, rode `npm install` nessa mesma pasta; o `package.json` dela instala o `sharp`.
 - Confira se `cronograma.local.md` e/ou `segredo-sagrado.md` existem nesta pasta. Leia os dois.
-- Confirme com `git check-ignore` que os dois estão ignorados pelo git. Se não estiverem, corrija o `.gitignore` antes de seguir.
+- **Se a pasta estiver dentro de um repositório git**, confirme com `git check-ignore` que os dois estão ignorados. Se não estiverem, corrija o `.gitignore` antes de seguir: `segredo-sagrado.md` e `*.local.md` nunca podem ir para o GitHub.
 - Pergunte ao Rodrigo qual edição é (datas) e onde estão as prévias. Se ainda não houver prévias, vá para o Passo 1.
 
 ### Passo 1 — Rodrigo exporta as prévias (você guia)
