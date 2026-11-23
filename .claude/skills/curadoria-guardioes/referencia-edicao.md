@@ -21,8 +21,9 @@
 - **Tele de longe, sem ser notado:** a 90 mm, flagra o momento sem interferir.
 - **Primeiro plano desfocado:** fotografa "por entre" pessoas e objetos. A borda escura e desfocada emoldura a cena e dá sensação de estar dentro do momento.
 - **Fundo claro de tenda:** o branco estourado da tenda é aceito e dá um ar leve. Não é tratado como defeito.
-- **Mistura de cor e P&B na mesma entrega.** Na amostra, o P&B aparece nos bastidores e nos servos (infra, preparação, retrato posado), e a cor nos momentos com os campistas. *Hipótese a confirmar com o Rodrigo.*
-- **Faixa de logos:** todas as fotos da amostra têm um degradê escuro na base com três logos: Guardiões do Amor Maior, Acampamento Espírito Empreendedor e roncolato. *Pendente: confirmar se continua e em quais entregas.*
+- **Cor é o padrão.** P&B só em alguns casos, quando a foto pede um tratamento mais artístico (confirmado pelo Rodrigo).
+- **Faixa de logos:** as fotos da amostra têm um degradê escuro na base com três logos. Isso era só daquela edição. **Não entra** nas entregas da skill.
+- **A pasta era um resumo** da edição, enviado só como referência de tratamento. Não indica quantidade nem destino das fotos.
 
 ## 3. Receita de cor (preset base)
 
@@ -80,4 +81,4 @@ Contraste **+47 a +54** · Realces **0** · Brancos **+30** · Pretos **0**.
 - **Momentos que ele escolhe:** louvor com mão no peito e olho fechado, abraço com lágrima, oração com imposição de mãos, riso no microfone, banda de louvor, café em grupo.
 - **Respiros que ele intercala:** detalhes litúrgicos (cálices, galhetas), natureza, aérea do lugar, servos preparando o espaço, crianças brincando.
 - **Olho fechado é a regra, não a exceção**, nos momentos de oração e louvor. Isso confirma o critério do briefing.
-- **Crianças aparecem** (num momento com famílias). O briefing diz "só adultos": falta definir a regra para menores.
+- **Crianças aparecem** (num momento com famílias) e podem ser usadas sem regra especial.

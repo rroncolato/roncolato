@@ -18,7 +18,7 @@
 - **Volume:** cerca de **4.000 fotos** por acampamento.
 - **Equipe:** pode haver **mais de um fotógrafo** na cobertura.
 - **Público:** só adultos, **maiores de 21 anos**.
-- **Uso de imagem:** termo assinado por todos na inscrição. **Todo mundo pode aparecer** (campistas, servos, padre, palestrantes). Até hoje ninguém pediu para ficar fora das fotos.
+- **Uso de imagem:** termo assinado por todos na inscrição. **Todo mundo pode aparecer** (campistas, servos, padre, palestrantes). Até hoje ninguém pediu para ficar fora das fotos. Se aparecer criança, também não há restrição.
 - **Papel da skill:** fotógrafo-curador e editor. Escolher as fotos mais fortes (emoção, sorriso, abraço, grupo, mãos dadas, oração, descontração), sugerir a edição e separar cada foto pelo destino certo **sem nunca vazar o segredo sagrado**.
 
 ## 2. Para que servem as fotos
@@ -115,7 +115,9 @@ Espirito Empreendedor 2026-11/      ← uma pasta por edição
 
 ## 7. Edição
 
-- **Escopo:** preset e ajuste por foto ou por grupo de cena. **Sem marca dos Guardiões na foto**, só tratamento e edição (ver pendência sobre a faixa de logos).
+- **Escopo:** preset e ajuste por foto ou por grupo de cena. Só tratamento e edição.
+- **Sem logo e sem faixa degradê** em nenhuma entrega. A faixa das fotos de referência era só daquela edição.
+- **Cor é o padrão.** P&B só em alguns casos, quando a foto pede um tratamento mais artístico. Não é prioridade agora.
 - **Ponto de partida:** o Rodrigo já tem um **preset próprio no Lightroom**. A skill parte dele e propõe melhorias, em vez de criar um do zero.
 - **Referência:** a receita real do tratamento (lida dos metadados de 13 fotos de um acampamento anterior) está em **`referencia-edicao.md`**.
 - **Equipamento:** Fujifilm X-T2 em JPEG 16:9, lentes XF18, XF50 e XF90 f/2 (quase sempre abertas) e drone DJI.
@@ -134,25 +136,20 @@ Espirito Empreendedor 2026-11/      ← uma pasta por edição
 
 ## 9. Pendências
 
+### Decisões padrão adotadas (o Rodrigo pode mudar a qualquer momento)
+- **Equipe:** a skill funciona com qualquer número de fotógrafos, com uma subpasta por fotógrafo dentro de cada dia.
+- **Pastas:** segue a estrutura da seção 4.
+- **Telão:** a skill sugere a quantidade de fotos por pasta.
+- **Marca d'água:** a skill não aplica nenhuma. A proteção das fotos de venda fica com a Fotto.
+- **Moção do dia:** não é usada em texto público até o Rodrigo liberar.
+- **Artista convidado:** foto em que o artista aparece fica marcada "Artista — decisão do Rodrigo" e não vai sozinha para a Fotto.
+- **Momentos marcados `SEGREDO?`** no `cronograma.local.md` são tratados como **Só telão** até o Rodrigo revisar.
+- **Crianças:** podem aparecer, sem regra especial.
+
 ### Perguntas abertas
-1. **Equipe:** quantos fotógrafos costumam trabalhar com você? Todos fotografam em JPEG e usam o seu preset?
-2. **Estrutura de pastas:** a proposta da seção 4 serve, ou quer mudar algo?
-3. **Telão:** quantas fotos, mais ou menos, vão na pasta de cada dia? Se preferir, a skill sugere um número.
-4. **Fotto:** a marca d'água é colocada pela plataforma ou por você?
-
-### Perguntas que surgiram das fotos de referência
-5. **Faixa de logos:** todas as fotos de referência têm o degradê com os logos (Guardiões, Espírito Empreendedor, roncolato). Ela continua? Em quais entregas: telão, carrossel, stories? E na Fotto, sai sem?
-6. **Crianças:** na referência há crianças (momento com famílias). Qual é a regra para foto com menor no carrossel e na Fotto?
-7. **Stories:** as fotos verticais 9:16 com logos parecem ser para stories. Stories também é uma entrega?
-8. **P&B:** na amostra, o P&B aparece nos bastidores e nos servos e a cor nos campistas. É um critério seu ou foi caso a caso?
-9. **Para que foi essa pasta:** as 118 fotos foram a seleção para as redes, para o telão ou outra coisa?
-
-### Perguntas que surgiram do cronograma
-10. **Segredo:** revisar a proposta de classificação de cada momento no `cronograma.local.md` (SEGREDO? / LIVRE? / DECIDIR).
-11. **Telão:** a retrospectiva do Dia 5, de madrugada, é o momento do telão? É uma sessão única ou há telão em outros dias?
-12. **Atividades externas:** o maior bloco do acampamento (cerca de 12 horas no total) é coberto pelo fotógrafo? Se for segredo, essas fotos ficam só no telão.
-13. **Moção do dia:** pode ser usada publicamente como tema do carrossel do dia?
-14. **Artista convidado:** existe autorização para vender fotos dele na Fotto?
+1. **X edição:** usar a skill já nas fotos do acampamento de 18 a 22/11, para a Fotto e os carrosséis desta semana?
+2. **Segredo:** revisar a classificação de cada momento no `cronograma.local.md`. Basta apontar o que está errado e resolver os `DECIDIR`.
+3. **Telão:** a retrospectiva do Dia 5, de madrugada, é o momento do telão? É uma sessão única?
 
 ### Materiais que o Rodrigo vai enviar
 - ~~Cronograma de uma edição (5 dias).~~ Recebido (X edição).
