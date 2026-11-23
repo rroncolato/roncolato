@@ -110,9 +110,10 @@ Espirito Empreendedor 2026-11/      ← uma pasta por edição
 
 ## 7. Edição
 
-- **Escopo:** preset e ajuste por foto ou por grupo de cena. **Sem marca dos Guardiões na foto**, só tratamento e edição.
+- **Escopo:** preset e ajuste por foto ou por grupo de cena. **Sem marca dos Guardiões na foto**, só tratamento e edição (ver pendência sobre a faixa de logos).
 - **Ponto de partida:** o Rodrigo já tem um **preset próprio no Lightroom**. A skill parte dele e propõe melhorias, em vez de criar um do zero.
-- **Referência:** fotos já tratadas pelo Rodrigo (ele envia quando estiver no computador).
+- **Referência:** a receita real do tratamento (lida dos metadados de 13 fotos de um acampamento anterior) está em **`referencia-edicao.md`**.
+- **Equipamento:** Fujifilm X-T2 em JPEG 16:9, lentes XF18, XF50 e XF90 f/2 (quase sempre abertas) e drone DJI.
 - **JPEG** tem menos margem que RAW, então os ajustes precisam ser mais suaves e as correções de balanço de branco e de altas luzes, moderadas.
 - **Luz:** tem momento à noite (escuro, ISO alto) e durante o dia. *Proposta:* duas variações do preset, uma para dia e outra para noite.
 - **Ruído:** sem redução agressiva, porque o ruído não incomoda.
@@ -134,9 +135,17 @@ Espirito Empreendedor 2026-11/      ← uma pasta por edição
 3. **Telão:** quantas fotos, mais ou menos, vão na pasta de cada dia? Se preferir, a skill sugere um número.
 4. **Fotto:** a marca d'água é colocada pela plataforma ou por você?
 
+### Perguntas que surgiram das fotos de referência
+5. **Faixa de logos:** todas as fotos de referência têm o degradê com os logos (Guardiões, Espírito Empreendedor, roncolato). Ela continua? Em quais entregas: telão, carrossel, stories? E na Fotto, sai sem?
+6. **Crianças:** na referência há crianças (momento com famílias). Qual é a regra para foto com menor no carrossel e na Fotto?
+7. **Stories:** as fotos verticais 9:16 com logos parecem ser para stories. Stories também é uma entrega?
+8. **P&B:** na amostra, o P&B aparece nos bastidores e nos servos e a cor nos campistas. É um critério seu ou foi caso a caso?
+9. **Para que foi essa pasta:** as 118 fotos foram a seleção para as redes, para o telão ou outra coisa?
+
 ### Materiais que o Rodrigo vai enviar
 - Cronograma de uma edição (5 dias).
-- O preset atual do Lightroom (arquivo `.xmp`).
-- Fotos já tratadas, como referência de edição.
+- O preset atual do Lightroom (arquivo `.xmp`), para confirmar a receita lida das fotos.
+- **Fotos de referência à noite** (a pasta enviada só tem fotos de dia).
 - Opcional: algumas fotos que ele sempre descarta, para calibrar o critério.
+- ~~Fotos já tratadas, como referência de edição.~~ Recebidas: pasta "FOTOS" no Drive, analisada em `referencia-edicao.md`.
 - O documento do segredo sagrado (no arquivo local, a partir do modelo).
