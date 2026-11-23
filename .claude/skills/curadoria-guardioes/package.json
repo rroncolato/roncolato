@@ -1,0 +1,8 @@
+{
+  "name": "curadoria-guardioes",
+  "private": true,
+  "description": "Scripts da skill de curadoria de fotos dos acampamentos dos Guardiões do Amor Maior",
+  "dependencies": {
+    "sharp": "^0.34.5"
+  }
+}
