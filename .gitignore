@@ -28,3 +28,6 @@ SOCIAL-FRAME/config/*.json
 
 # Log do agendador SOCIAL FRAME
 scripts/auto-publicar.log
+
+# Segredo sagrado dos Guardiões — nunca vai para o GitHub (repo público)
+.claude/skills/curadoria-guardioes/segredo-sagrado.md
