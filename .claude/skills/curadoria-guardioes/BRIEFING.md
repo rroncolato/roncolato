@@ -37,6 +37,17 @@ O segredo sagrado **só aparece no telão**. Fotos com segredo não sobem para a
 - Cada carrossel conta **um bloco do dia** (um momento ou um período), em ordem: abre forte, varia entre plano aberto, detalhe e close, e fecha com impacto.
 - A **primeira foto é a capa**: a imagem que faz a pessoa parar no feed.
 
+### Venda (definido em 23/11, primeira entrega da skill)
+- **Seleção dentro do Lightroom**, sobre as fotos já tratadas do catálogo. Nesta primeira versão não há triagem dos brutos.
+- **Rótulo vermelho = venda.** **Rótulo amarelo = o Rodrigo revisa.**
+- **Foco em rosto:** emoção (sorrindo, chorando, orando), grupos, fotos posadas para a câmera, casais, duplas e trios.
+- **Sujeira:** evitar foto com a pessoa muito suja de lama.
+- **Momento `SEGREDO?`:** close no rosto emocionado, sem mostrar o contexto, pode entrar depois da revisão do Rodrigo.
+- **Roteiro:** `SKILL.md` (modo VENDA). **Critérios:** `criterios-venda.md`.
+
+### Telão
+- É sempre a **retrospectiva**, no último dia. Não é foco agora.
+
 ## 3. Fluxo de trabalho no evento
 
 - Fotografa **sempre em JPEG**.
@@ -147,9 +158,7 @@ Espirito Empreendedor 2026-11/      ← uma pasta por edição
 - **Crianças:** podem aparecer, sem regra especial.
 
 ### Perguntas abertas
-1. **X edição:** usar a skill já nas fotos do acampamento de 18 a 22/11, para a Fotto e os carrosséis desta semana?
-2. **Segredo:** revisar a classificação de cada momento no `cronograma.local.md`. Basta apontar o que está errado e resolver os `DECIDIR`.
-3. **Telão:** a retrospectiva do Dia 5, de madrugada, é o momento do telão? É uma sessão única?
+1. **Segredo:** revisar a classificação de cada momento no `cronograma.local.md`. Basta apontar o que está errado e resolver os `DECIDIR`. Enquanto isso, a trava do script manda tudo o que for `SEGREDO?` para o amarelo.
 
 ### Materiais que o Rodrigo vai enviar
 - ~~Cronograma de uma edição (5 dias).~~ Recebido (X edição).
